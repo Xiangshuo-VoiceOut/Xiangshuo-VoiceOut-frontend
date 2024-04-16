@@ -1,0 +1,9 @@
+/* 
+  Localizable.en.strings
+  voiceout
+
+  Created by Xiaoyu Zhu on 3/20/24.
+  
+*/
+"email_placeholder" = "enter your email";
+"password_placeholder" = "enter your password";

@@ -1,0 +1,42 @@
+//
+//  Typography.swift
+//  voiceout
+//
+//  Created by Xiaoyu Zhu on 4/16/24.
+//
+
+import SwiftUI
+
+enum Typography {
+    case headerLarge
+    case headerMedium
+    case headerSmall
+    case bodyLarge
+    case bodyLargeEmphasis
+    case bodyMedium
+    case bodyMediumEmphasis
+    case bodySmall
+}
+
+extension Font {
+    static let typography: (Typography) -> Font = { Typography in
+        switch Typography {
+        case .headerLarge:
+            Font.custom("AlibabaPuHuiTi_3_85_Bold", size: 48)
+        case .headerMedium:
+            Font.custom("AlibabaPuHuiTi_3_85_Bold", size: 40)
+        case .headerSmall:
+            Font.custom("AlibabaPuHuiTi_3_85_Bold", size: 32)
+        case .bodyLarge:
+            Font.custom("AlibabaPuHuiTi_3_65_Medium", size: 18)
+        case .bodyLargeEmphasis:
+            Font.custom("AlibabaPuHuiTi_3_85_Bold", size: 18)
+        case .bodyMedium:
+            Font.custom("AlibabaPuHuiTi_3_65_Medium", size: 16)
+        case .bodyMediumEmphasis:
+            Font.custom("AlibabaPuHuiTi_3_85_Bold", size: 16)
+        case .bodySmall:
+            Font.custom("AlibabaPuHuiTi_3_65_Medium", size: 14)
+        }
+    }
+}

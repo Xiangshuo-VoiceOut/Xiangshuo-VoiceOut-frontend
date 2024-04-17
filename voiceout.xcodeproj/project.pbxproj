@@ -16,6 +16,7 @@
 		D2071D6C2BAB9E110040B0AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2071D6E2BAB9E110040B0AE /* Localizable.strings */; };
 		D25C2EC62BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D25C2EC52BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf */; };
 		D25C2EC82BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D25C2EC72BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf */; };
+		D25C2ECC2BCF6EB00011212A /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25C2ECB2BCF6EB00011212A /* Typography.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		D2071D6F2BAB9E260040B0AE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D25C2EC52BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlibabaPuHuiTi-Medium.ttf"; sourceTree = "<group>"; };
 		D25C2EC72BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlibabaPuHuiTi-Bold.ttf"; sourceTree = "<group>"; };
+		D25C2ECB2BCF6EB00011212A /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 		D25C2EC42BCF56790011212A /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				D25C2ECB2BCF6EB00011212A /* Typography.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D25C2ECC2BCF6EB00011212A /* Typography.swift in Sources */,
 				D2071D432BAA8C020040B0AE /* LoginView.swift in Sources */,
 				D2071D472BAB5E9E0040B0AE /* InputView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,

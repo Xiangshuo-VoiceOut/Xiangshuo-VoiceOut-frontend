@@ -11,16 +11,6 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
-    init(){
-        for family in UIFont.familyNames {
-             print(family)
-
-             for names in UIFont.fontNames(forFamilyName: family){
-             print("== \(names)")
-             }
-        }
-    }
-    
     var body: some View {
         NavigationStack {
             VStack {
@@ -37,9 +27,6 @@ struct LoginView: View {
                     placeholder: "password_placeholder"
                 )
                 .autocapitalization(.none)
-                
-                Text("123")
-                    .font(.custom("AlibabaPuHuiTi_3_65_Medium", size: 23))
             }
             .background(Color(.backgroundLight))
             .padding(EdgeInsets(top: 36, leading: 34, bottom: 26, trailing: 34))

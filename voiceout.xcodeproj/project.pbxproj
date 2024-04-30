@@ -18,6 +18,7 @@
 		D25C2EC82BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D25C2EC72BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf */; };
 		D25C2ECC2BCF6EB00011212A /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25C2ECB2BCF6EB00011212A /* Typography.swift */; };
 		D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25C2ED12BDDD5D20011212A /* Spacing.swift */; };
+		D28498DC2BDDE47F00963B3A /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28498DB2BDDE47F00963B3A /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		D25C2EC72BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlibabaPuHuiTi-Bold.ttf"; sourceTree = "<group>"; };
 		D25C2ECB2BCF6EB00011212A /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		D25C2ED12BDDD5D20011212A /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		D28498DB2BDDE47F00963B3A /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		D28498E52BE08E2F00963B3A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +55,7 @@
 			children = (
 				D2071D0A2BA62F300040B0AE /* voiceout */,
 				D2071D092BA62F300040B0AE /* Products */,
+				D28498E42BE08E2F00963B3A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +70,7 @@
 		D2071D0A2BA62F300040B0AE /* voiceout */ = {
 			isa = PBXGroup;
 			children = (
+				D28498DD2BDEB81400963B3A /* Tests */,
 				D25C2ED02BDDD58B0011212A /* Utils */,
 				D2071D382BAA82E70040B0AE /* Models */,
 				D2071D552BAB8A6C0040B0AE /* Resources */,
@@ -130,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				D2071D462BAB5E9E0040B0AE /* InputView.swift */,
+				D28498DB2BDDE47F00963B3A /* ButtonView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -158,6 +164,29 @@
 				D25C2EC42BCF56790011212A /* Foundation */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		D28498DD2BDEB81400963B3A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D28498E12BDEBC0D00963B3A /* Components */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		D28498E12BDEBC0D00963B3A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D28498E42BE08E2F00963B3A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D28498E52BE08E2F00963B3A /* XCTest.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D2BA2F9F2BCE0E15006DA63D /* Fonts */ = {
@@ -249,6 +278,7 @@
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
 				D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */,
 				D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */,
+				D28498DC2BDDE47F00963B3A /* ButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +422,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voiceout/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = voiceout/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -405,6 +436,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rita.voiceout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -413,6 +445,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
@@ -425,6 +458,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voiceout/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = voiceout/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -438,6 +472,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rita.voiceout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -446,6 +481,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};

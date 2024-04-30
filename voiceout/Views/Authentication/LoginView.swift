@@ -27,8 +27,20 @@ struct LoginView: View {
                     placeholder: "password_placeholder"
                 )
                 .autocapitalization(.none)
+                
+                VStack {
+                    ButtonView(
+                            text: "Button",
+                            variant: .solid,
+                            theme: .action,
+                            padding: .small,
+                            size: .large,
+                            action: {}
+                        )
+                }
+                .frame(width: 200)
             }
-            .background(Color(.backgroundLight))
+            .background(Color(.grey50))
             .padding(EdgeInsets(top: 36, leading: 34, bottom: 26, trailing: 34))
         }
     }

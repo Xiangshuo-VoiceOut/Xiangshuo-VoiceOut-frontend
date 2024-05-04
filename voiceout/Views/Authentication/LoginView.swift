@@ -10,38 +10,25 @@ import SwiftUI
 struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var isEmailValid: Bool = true
     
     var body: some View {
         NavigationStack {
             VStack {
-                InputView(
+                TextInputView(
                     text: $email,
-                    icon: "email",
-                    placeholder: "email_placeholder"
+                    isSecuredField: .constant(false),
+                    placeholder: "email_placeholder",
+                    prefixIcon: "email",
+                    validationState: isEmailValid ? ValidationState.neutral : ValidationState.error
                 )
                 .autocapitalization(.none)
                 
-                InputView(
-                    text: $password,
-                    icon: "lock",
-                    placeholder: "password_placeholder"
-                )
-                .autocapitalization(.none)
-                
-                VStack {
-                    ButtonView(
-                            text: "Button",
-                            variant: .solid,
-                            theme: .action,
-                            padding: .small,
-                            size: .large,
-                            action: {}
-                        )
-                }
-                .frame(width: 200)
+                SecuredTextInputView(text: $password)
             }
             .background(Color(.grey50))
             .padding(EdgeInsets(top: 36, leading: 34, bottom: 26, trailing: 34))
+            .environment(\.locale, .init(identifier: "zh-Hans"))
         }
     }
 }

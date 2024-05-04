@@ -31,29 +31,29 @@ enum ButtonSize {
 
 struct ButtonView: View {
     var text: String
+    var action: () -> Void
     var variant: ButtonVariant? = ButtonVariant.solid
     var theme: ButtonTheme? = ButtonTheme.action
     var padding: ButtonPadding? = ButtonPadding.base
-    var size: ButtonSize? = ButtonSize.base
-    var action: () -> Void
+    var size: ButtonSize? = ButtonSize.xsmall
     
     var body: some View {
         Button(action: action) {
             Text(text)
                 .font(.typography(.bodyMedium))
         }
-        .frame(width: frameSize())
-        .padding(paddingSize())
-        .foregroundColor(foregroundColorForTheme())
-        .background(backgroundForVariant())
-        .cornerRadius(360)
+        .frame(width: frameSize)
+        .padding(paddingSize)
+        .foregroundColor(foregroundColorForTheme)
+        .background(backgroundForVariant)
+        .cornerRadius(.full)
         .overlay(
-            RoundedRectangle(cornerRadius: 360)
-                .stroke(strokeColorForTheme(), lineWidth: variant == .outline ? 2 : 0)
+            RoundedRectangle(cornerRadius: .full)
+                .stroke(.width200, strokeColorForTheme)
         )
     }
     
-    private func foregroundColorForTheme() -> Color {
+    private var foregroundColorForTheme: Color {
         switch theme {
         case .base:
             return Color(.grey300)
@@ -62,7 +62,7 @@ struct ButtonView: View {
         }
     }
     
-    private func backgroundForVariant() -> Color {
+    private var backgroundForVariant: Color {
         switch variant {
         case .outline:
             return Color(.grey50)
@@ -71,7 +71,7 @@ struct ButtonView: View {
         }
     }
     
-    private func strokeColorForTheme() -> Color {
+    private var strokeColorForTheme: Color {
         switch theme {
         case .base:
             return Color(.grey300)
@@ -80,7 +80,7 @@ struct ButtonView: View {
         }
     }
     
-    private func paddingSize() -> EdgeInsets {
+    private var paddingSize: EdgeInsets {
         switch padding {
         case .small:
             return EdgeInsets(
@@ -99,7 +99,7 @@ struct ButtonView: View {
         }
     }
     
-    private func frameSize() -> CGFloat? {
+    private var frameSize: CGFloat? {
         switch size {
         case .xsmall:
             return 72
@@ -110,6 +110,15 @@ struct ButtonView: View {
         default:
             return 204
         }
+    }
+}
+
+struct ButtonView_Previews: PreviewProvider {
+    static var previews: some View {
+        ButtonView(
+            text: "Button",
+            action: {}
+        )
     }
 }
 

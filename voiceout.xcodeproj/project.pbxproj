@@ -12,13 +12,16 @@
 		D2071D102BA62F340040B0AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2071D0F2BA62F340040B0AE /* Assets.xcassets */; };
 		D2071D132BA62F340040B0AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2071D122BA62F340040B0AE /* Preview Assets.xcassets */; };
 		D2071D432BAA8C020040B0AE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D422BAA8C020040B0AE /* LoginView.swift */; };
-		D2071D472BAB5E9E0040B0AE /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D462BAB5E9E0040B0AE /* InputView.swift */; };
+		D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D462BAB5E9E0040B0AE /* TextInputView.swift */; };
 		D2071D6C2BAB9E110040B0AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2071D6E2BAB9E110040B0AE /* Localizable.strings */; };
 		D25C2EC62BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D25C2EC52BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf */; };
 		D25C2EC82BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D25C2EC72BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf */; };
 		D25C2ECC2BCF6EB00011212A /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25C2ECB2BCF6EB00011212A /* Typography.swift */; };
 		D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25C2ED12BDDD5D20011212A /* Spacing.swift */; };
 		D28498DC2BDDE47F00963B3A /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28498DB2BDDE47F00963B3A /* ButtonView.swift */; };
+		D28498EA2BE171F700963B3A /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28498E92BE171F700963B3A /* Border.swift */; };
+		D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28498EB2BE19DE300963B3A /* SecuredTextInputView.swift */; };
+		D28498EE2BE1B64100963B3A /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28498ED2BE1B64100963B3A /* EmailValidator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +31,7 @@
 		D2071D0F2BA62F340040B0AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2071D122BA62F340040B0AE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D2071D422BAA8C020040B0AE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		D2071D462BAB5E9E0040B0AE /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		D2071D462BAB5E9E0040B0AE /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		D2071D6D2BAB9E110040B0AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D2071D6F2BAB9E260040B0AE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D25C2EC52BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlibabaPuHuiTi-Medium.ttf"; sourceTree = "<group>"; };
@@ -37,6 +40,9 @@
 		D25C2ED12BDDD5D20011212A /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		D28498DB2BDDE47F00963B3A /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		D28498E52BE08E2F00963B3A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D28498E92BE171F700963B3A /* Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
+		D28498EB2BE19DE300963B3A /* SecuredTextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredTextInputView.swift; sourceTree = "<group>"; };
+		D28498ED2BE1B64100963B3A /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,8 +140,9 @@
 		D2071D452BAB5E7D0040B0AE /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				D2071D462BAB5E9E0040B0AE /* InputView.swift */,
+				D2071D462BAB5E9E0040B0AE /* TextInputView.swift */,
 				D28498DB2BDDE47F00963B3A /* ButtonView.swift */,
+				D28498EB2BE19DE300963B3A /* SecuredTextInputView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -154,6 +161,7 @@
 			children = (
 				D25C2ECB2BCF6EB00011212A /* Typography.swift */,
 				D25C2ED12BDDD5D20011212A /* Spacing.swift */,
+				D28498E92BE171F700963B3A /* Border.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -162,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				D25C2EC42BCF56790011212A /* Foundation */,
+				D28498ED2BE1B64100963B3A /* EmailValidator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -274,9 +283,12 @@
 			files = (
 				D25C2ECC2BCF6EB00011212A /* Typography.swift in Sources */,
 				D2071D432BAA8C020040B0AE /* LoginView.swift in Sources */,
-				D2071D472BAB5E9E0040B0AE /* InputView.swift in Sources */,
+				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
+				D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */,
 				D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */,
+				D28498EA2BE171F700963B3A /* Border.swift in Sources */,
+				D28498EE2BE1B64100963B3A /* EmailValidator.swift in Sources */,
 				D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */,
 				D28498DC2BDDE47F00963B3A /* ButtonView.swift in Sources */,
 			);

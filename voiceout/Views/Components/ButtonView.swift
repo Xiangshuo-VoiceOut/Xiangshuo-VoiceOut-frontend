@@ -48,8 +48,6 @@ struct ButtonView: View {
     var action: () -> Void
     var variant: ButtonVariant? = ButtonVariant.solid
     var theme: ButtonTheme? = ButtonTheme.action
-//    var padding: ButtonPadding? = ButtonPadding.base
-//    var size: ButtonSize? = ButtonSize.xsmall
     var spacing: ButtonSpacing? = ButtonSpacing.medium
     
     var body: some View {
@@ -156,9 +154,7 @@ struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
         Group{
             ButtonView(
-                text: "", action: {print("button")},
-                variant: .solid,
-                theme: .secondary, spacing:.mini
+                text: "登录", action: {}
             )
             .previewLayout(.sizeThatFits)
         }

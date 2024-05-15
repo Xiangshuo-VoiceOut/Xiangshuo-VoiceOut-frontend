@@ -13,13 +13,19 @@ enum ButtonVariant {
 }
 
 enum ButtonTheme {
-    case base
     case action
+    case base
+    case secondary
+    case inactiveRadio
+    case activeRadio
 }
 
 enum ButtonPadding {
+    case mini
     case small
     case base
+    case medium
+    case long
 }
 
 enum ButtonSize {
@@ -29,18 +35,27 @@ enum ButtonSize {
     case large
 }
 
+enum ButtonSpacing {
+    case mini
+    case small
+    case medium
+    case long
+}
+
+
 struct ButtonView: View {
     var text: String
     var action: () -> Void
     var variant: ButtonVariant? = ButtonVariant.solid
     var theme: ButtonTheme? = ButtonTheme.action
-    var padding: ButtonPadding? = ButtonPadding.base
-    var size: ButtonSize? = ButtonSize.xsmall
+//    var padding: ButtonPadding? = ButtonPadding.base
+//    var size: ButtonSize? = ButtonSize.xsmall
+    var spacing: ButtonSpacing? = ButtonSpacing.medium
     
     var body: some View {
         Button(action: action) {
             Text(text)
-                .font(.typography(.bodyMedium))
+                .font(fontForFrameSize)
         }
         .frame(width: frameSize)
         .padding(paddingSize)
@@ -52,20 +67,36 @@ struct ButtonView: View {
                 .stroke(.width200, strokeColorForTheme)
         )
     }
+    private var fontForFrameSize: Font {
+        switch spacing {
+        case .mini:
+            return .typography(.bodySmall)
+        default:
+            return .typography(.bodyMedium)
+        }
+    }
     
     private var foregroundColorForTheme: Color {
         switch theme {
+        case .action:
+            return Color(.textInverted)
         case .base:
-            return Color(.grey300)
+            return Color(.inactiveBlack)
+        case .secondary:
+            return Color(.brandPrimary)
         default:
             return variant == .solid ? Color(.textInverted) : Color(.brandPrimary)
         }
     }
     
     private var backgroundForVariant: Color {
-        switch variant {
-        case .outline:
-            return Color(.grey50)
+        switch theme {
+        case .action:
+            return Color(.brandPrimary)
+        case .base:
+            return Color(.inactiveGrey)
+        case .secondary:
+            return Color(.textInverted)
         default:
             return Color(.brandPrimary)
         }
@@ -73,52 +104,64 @@ struct ButtonView: View {
     
     private var strokeColorForTheme: Color {
         switch theme {
+        case .action:
+            return Color(.brandPrimary)
         case .base:
-            return Color(.grey300)
+            return Color(.inactiveGrey)
+        case .secondary:
+            return Color(.brandPrimary)
         default:
             return Color(.brandPrimary)
         }
     }
     
     private var paddingSize: EdgeInsets {
-        switch padding {
-        case .small:
+        switch spacing {
+        case .mini:
+            return EdgeInsets(
+                top: 8,
+                leading: 16,
+                bottom: 8,
+                trailing: 16
+            )
+        
+        default:
             return EdgeInsets(
                 top: ViewSpacing.small,
                 leading: ViewSpacing.medium,
                 bottom: ViewSpacing.small,
                 trailing: ViewSpacing.medium
             )
-        default:
-            return EdgeInsets(
-                top: ViewSpacing.small,
-                leading: ViewSpacing.large,
-                bottom: ViewSpacing.small,
-                trailing: ViewSpacing.large
-            )
         }
     }
     
     private var frameSize: CGFloat? {
-        switch size {
-        case .xsmall:
-            return 72
+        switch spacing {
+        case .mini:
+            return nil
         case .small:
-            return 88
-        case .large:
+            return nil
+        case .medium:
+            return 204
+        case .long:
             return 280
         default:
             return 204
         }
     }
+    
 }
 
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonView(
-            text: "Button",
-            action: {}
-        )
+        Group{
+            ButtonView(
+                text: "", action: {print("button")},
+                variant: .solid,
+                theme: .secondary, spacing:.mini
+            )
+            .previewLayout(.sizeThatFits)
+        }
     }
 }
 

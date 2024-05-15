@@ -45,9 +45,9 @@ extension RoundedRectangle {
     func stroke(_ strokeWidth: StrokeWidth, _ color: Color? = .clear) -> some View {
         switch strokeWidth {
         case .width100:
-            self.stroke(color!, lineWidth: 1.0)
+            return self.stroke(color!, lineWidth: 1.0)
         case .width200:
-            self.stroke(color!, lineWidth: 2.0)
+            return self.stroke(color!, lineWidth: 2.0)
         }
     }
 

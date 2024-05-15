@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B845CC1E2BF50B1600C34976 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845CC1D2BF50B1600C34976 /* RadioButton.swift */; };
 		D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */; };
 		D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0D2BA62F300040B0AE /* ContentView.swift */; };
 		D2071D102BA62F340040B0AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2071D0F2BA62F340040B0AE /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B845CC1D2BF50B1600C34976 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		D2071D082BA62F300040B0AE /* voiceout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voiceout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voiceoutApp.swift; sourceTree = "<group>"; };
 		D2071D0D2BA62F300040B0AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				D2071D462BAB5E9E0040B0AE /* TextInputView.swift */,
 				D28498DB2BDDE47F00963B3A /* ButtonView.swift */,
 				D28498EB2BE19DE300963B3A /* SecuredTextInputView.swift */,
+				B845CC1D2BF50B1600C34976 /* RadioButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				D28498EA2BE171F700963B3A /* Border.swift in Sources */,
 				D28498EE2BE1B64100963B3A /* EmailValidator.swift in Sources */,
 				D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */,
+				B845CC1E2BF50B1600C34976 /* RadioButton.swift in Sources */,
 				D28498DC2BDDE47F00963B3A /* ButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

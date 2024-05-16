@@ -16,23 +16,6 @@ enum ButtonTheme {
     case action
     case base
     case secondary
-    case inactiveRadio
-    case activeRadio
-}
-
-enum ButtonPadding {
-    case mini
-    case small
-    case base
-    case medium
-    case long
-}
-
-enum ButtonSize {
-    case xsmall
-    case small
-    case base
-    case large
 }
 
 enum ButtonSpacing {
@@ -79,7 +62,7 @@ struct ButtonView: View {
         case .action:
             return Color(.textInverted)
         case .base:
-            return Color(.inactiveBlack)
+            return Color(.textPrimary)
         case .secondary:
             return Color(.brandPrimary)
         default:
@@ -92,7 +75,7 @@ struct ButtonView: View {
         case .action:
             return Color(.brandPrimary)
         case .base:
-            return Color(.inactiveGrey)
+            return Color(.primaryGrey)
         case .secondary:
             return Color(.textInverted)
         default:
@@ -105,7 +88,7 @@ struct ButtonView: View {
         case .action:
             return Color(.brandPrimary)
         case .base:
-            return Color(.inactiveGrey)
+            return Color(.primaryGrey)
         case .secondary:
             return Color(.brandPrimary)
         default:

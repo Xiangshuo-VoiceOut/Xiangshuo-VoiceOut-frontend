@@ -19,7 +19,7 @@ enum ButtonTheme {
 }
 
 enum ButtonSpacing {
-    case mini
+    case xsmall
     case small
     case medium
     case long
@@ -50,7 +50,7 @@ struct ButtonView: View {
     }
     private var fontForFrameSize: Font {
         switch spacing {
-        case .mini:
+        case .xsmall:
             return .typography(.bodySmall)
         default:
             return .typography(.bodyMedium)
@@ -98,27 +98,27 @@ struct ButtonView: View {
     
     private var paddingSize: EdgeInsets {
         switch spacing {
-        case .mini:
-            return EdgeInsets(
-                top: 8,
-                leading: 16,
-                bottom: 8,
-                trailing: 16
-            )
-        
-        default:
+        case .xsmall:
             return EdgeInsets(
                 top: ViewSpacing.small,
                 leading: ViewSpacing.medium,
                 bottom: ViewSpacing.small,
                 trailing: ViewSpacing.medium
             )
+        
+        default:
+            return EdgeInsets(
+                top: ViewSpacing.small,
+                leading: ViewSpacing.large,
+                bottom: ViewSpacing.small,
+                trailing: ViewSpacing.large
+            )
         }
     }
     
     private var frameSize: CGFloat? {
         switch spacing {
-        case .mini:
+        case .xsmall:
             return nil
         case .small:
             return nil

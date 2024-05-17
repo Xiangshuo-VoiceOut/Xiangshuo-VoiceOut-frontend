@@ -13,6 +13,11 @@ enum ValidationState {
     case success
 }
 
+enum InputType {
+    case normal
+    case login
+}
+
 struct TextInputView: View {
     @Binding var text: String
     @Binding var isSecuredField: Bool
@@ -21,53 +26,68 @@ struct TextInputView: View {
     var validationState: ValidationState? = ValidationState.neutral
     var validationMessage: String? = ""
     var suffixContetnt: AnyView?
-    
+    var inputType: InputType? = InputType.normal
     var body: some View {
         HStack(spacing: ViewSpacing.small) {
             if let icon = prefixIcon {
                 Image(icon)
-                    .foregroundColor(validationStateColor)
+                    .foregroundColor(Color(.borderSecondary))
             }
             
             if isSecuredField {
                 SecureField(
                     LocalizedStringKey(placeholder),
-                    text: $text
+                    text: $text,
+                    prompt: Text(placeholder)
+                        .foregroundColor(Color(.textSecondary))
+                        .font(.typography(.bodyMediumEmphasis))
                 )
-                .foregroundColor(Color(.grey300))
+                .foregroundColor(Color(.textPrimary))
             } else {
                 TextField(
                     LocalizedStringKey(placeholder),
-                    text: $text
+                    text: $text,
+                    prompt: Text(placeholder)
+                        .font(.typography(.bodyMediumEmphasis))
+                        .foregroundColor(Color(.textSecondary))
                 )
-                .foregroundColor(Color(.grey300))
+                .foregroundColor(Color(.textPrimary))
             }
             
             suffixContetnt
         }
         .padding(.horizontal, ViewSpacing.medium)
         .padding(.vertical, ViewSpacing.small)
-        .background(Color(.grey50))
-        .cornerRadius(.medium)
+        .background(Color(.surfacePrimaryGrey2))
+        .cornerRadius(radiusValue)
         .overlay(
-            RoundedRectangle(cornerRadius: .medium)
+            RoundedRectangle(cornerRadius: radiusValue)
                 .stroke(
                     .width100,
                     validationStateColor
                 )
         )
         .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-    
+        
     }
     
     private var validationStateColor: Color {
         switch validationState {
         case .error:
-            return Color(.actionFail)
+            return Color(.borderInvalid)
         case .success:
-            return Color(.actionSuccess)
+            return Color(.borderValid)
         default:
-            return Color(.grey300)
+            return Color(.clear)
+        }
+    }
+    
+    private var radiusValue: CGFloat {
+        switch inputType {
+        case .login:
+            return 18
+        default:
+            return CornerRadius.medium.value
         }
     }
 }
@@ -76,7 +96,8 @@ struct TextInputView_Previews: PreviewProvider {
     static var previews: some View {
         TextInputView(
             text: .constant(""),
-            isSecuredField: .constant(false),
+            isSecuredField: .constant(true),
+            
             placeholder: "placeholder"
         )
     }

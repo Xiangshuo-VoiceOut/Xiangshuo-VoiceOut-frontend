@@ -10,6 +10,15 @@ import SwiftUI
 enum CornerRadius {
     case full
     case medium
+    
+    var value: CGFloat{
+        switch self{
+        case .full:
+            return 360
+        case .medium:
+            return 16
+        }
+    }
 }
 
 enum StrokeWidth {
@@ -19,12 +28,7 @@ enum StrokeWidth {
 
 extension View {
     func cornerRadius(_ style: CornerRadius) -> some View {
-        switch style {
-        case .full:
-            return self.clipShape(RoundedRectangle(cornerRadius: 360))
-        case .medium:
-            return self.clipShape(RoundedRectangle(cornerRadius: 16))
-        }
+        return clipShape(RoundedRectangle(cornerRadius: style.value))
     }
 }
 
@@ -45,9 +49,9 @@ extension RoundedRectangle {
     func stroke(_ strokeWidth: StrokeWidth, _ color: Color? = .clear) -> some View {
         switch strokeWidth {
         case .width100:
-            self.stroke(color!, lineWidth: 1.0)
+            return self.stroke(color!, lineWidth: 1.0)
         case .width200:
-            self.stroke(color!, lineWidth: 2.0)
+            return self.stroke(color!, lineWidth: 2.0)
         }
     }
 

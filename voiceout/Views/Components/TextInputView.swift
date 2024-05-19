@@ -13,11 +13,6 @@ enum ValidationState {
     case success
 }
 
-enum InputType {
-    case normal
-    case login
-}
-
 struct TextInputView: View {
     @Binding var text: String
     @Binding var isSecuredField: Bool
@@ -26,7 +21,8 @@ struct TextInputView: View {
     var validationState: ValidationState? = ValidationState.neutral
     var validationMessage: String? = ""
     var suffixContetnt: AnyView?
-    var inputType: InputType? = InputType.normal
+    var isLogInInput: Bool = false
+    var borderRadius: CGFloat = CornerRadius.medium.value
     var body: some View {
         HStack(spacing: ViewSpacing.small) {
             if let icon = prefixIcon {
@@ -59,9 +55,9 @@ struct TextInputView: View {
         .padding(.horizontal, ViewSpacing.medium)
         .padding(.vertical, ViewSpacing.small)
         .background(Color(.surfacePrimaryGrey2))
-        .cornerRadius(radiusValue)
+        .cornerRadius(isLogInInput ? 18 : CornerRadius.medium.value)
         .overlay(
-            RoundedRectangle(cornerRadius: radiusValue)
+            RoundedRectangle(cornerRadius: isLogInInput ? 18 : CornerRadius.medium.value)
                 .stroke(
                     .width100,
                     validationStateColor
@@ -81,15 +77,6 @@ struct TextInputView: View {
             return Color(.clear)
         }
     }
-    
-    private var radiusValue: CGFloat {
-        switch inputType {
-        case .login:
-            return 18
-        default:
-            return CornerRadius.medium.value
-        }
-    }
 }
 
 struct TextInputView_Previews: PreviewProvider {
@@ -97,8 +84,8 @@ struct TextInputView_Previews: PreviewProvider {
         TextInputView(
             text: .constant(""),
             isSecuredField: .constant(true),
-            
-            placeholder: "placeholder"
+            placeholder: "placeholder",
+            isLogInInput: true
         )
     }
 }

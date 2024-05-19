@@ -10,14 +10,17 @@ import SwiftUI
 struct SecuredTextInputView: View {
     @State private var isSecuredField: Bool = true
     @Binding var text: String
+    var securedPlaceholder: String
+    var securedValidation: ValidationState? = ValidationState.neutral
     
     var body: some View {
         
         TextInputView(
             text: $text,
             isSecuredField: $isSecuredField,
-            placeholder: "password_placeholder",
+            placeholder: securedPlaceholder,
             prefixIcon: "lock",
+            validationState: securedValidation,
             suffixContetnt:
                 AnyView(
                     SecuredToggle(
@@ -37,7 +40,7 @@ struct SecuredToggle: View {
             Image(
                 isSecuredField ? "preview-close" : "preview-open"
             )
-            .foregroundColor(Color(.grey300))
+            .foregroundColor(Color(.borderSecondary))
         }
     }
 }
@@ -45,7 +48,8 @@ struct SecuredToggle: View {
 struct SecuredTextInputView_Previews: PreviewProvider {
     static var previews: some View {
         SecuredTextInputView(
-            text: .constant("")
+            text: .constant(""),
+            securedPlaceholder: "placeholder"
         )
     }
 }

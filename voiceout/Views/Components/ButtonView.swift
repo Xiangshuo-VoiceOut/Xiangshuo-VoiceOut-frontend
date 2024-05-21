@@ -15,14 +15,16 @@ enum ButtonVariant {
 enum ButtonTheme {
     case action
     case base
-    case secondary
 }
 
 enum ButtonSpacing {
-    case xsmall
     case small
     case medium
-    case long
+}
+
+enum ButtonFrontSize {
+    case small
+    case medium
 }
 
 
@@ -32,73 +34,61 @@ struct ButtonView: View {
     var variant: ButtonVariant? = ButtonVariant.solid
     var theme: ButtonTheme? = ButtonTheme.action
     var spacing: ButtonSpacing? = ButtonSpacing.medium
+    var fontSize: ButtonFrontSize? = ButtonFrontSize.medium
     
     var body: some View {
         Button(action: action) {
-            Text(text)
+            Text(LocalizedStringKey(text))
                 .font(fontForFrameSize)
         }
-        .frame(width: frameSize)
         .padding(paddingSize)
-        .foregroundColor(foregroundColorForTheme)
+        .foregroundColor(foregroundColorForVariant)
         .background(backgroundForVariant)
-        .cornerRadius(.full)
-        .overlay(
+        .cornerRadius(CornerRadius.full.value)
+        .background(
             RoundedRectangle(cornerRadius: .full)
-                .stroke(.width200, strokeColorForTheme)
+                .stroke(.width200, strokeColorForVariant)
         )
     }
     private var fontForFrameSize: Font {
-        switch spacing {
-        case .xsmall:
+        switch fontSize {
+        case .small:
             return .typography(.bodySmall)
         default:
             return .typography(.bodyMedium)
         }
     }
     
-    private var foregroundColorForTheme: Color {
-        switch theme {
-        case .action:
-            return Color(.textInverted)
-        case .base:
-            return Color(.textPrimary)
-        case .secondary:
+    private var foregroundColorForVariant: Color {
+        switch variant {
+        case .outline:
             return Color(.brandPrimary)
         default:
-            return variant == .solid ? Color(.textInverted) : Color(.brandPrimary)
+            return theme == .action ? Color(.textInverted) : Color(.textPrimary)
         }
     }
     
     private var backgroundForVariant: Color {
-        switch theme {
-        case .action:
-            return Color(.brandPrimary)
-        case .base:
-            return Color(.primaryGrey)
-        case .secondary:
+        switch variant {
+        case .outline:
             return Color(.textInverted)
         default:
-            return Color(.brandPrimary)
+            return theme == .action ? Color(.brandPrimary) : Color(.primaryGrey)
         }
     }
     
-    private var strokeColorForTheme: Color {
-        switch theme {
-        case .action:
-            return Color(.brandPrimary)
-        case .base:
-            return Color(.primaryGrey)
-        case .secondary:
+    private var strokeColorForVariant: Color {
+        switch variant {
+        case .outline:
             return Color(.brandPrimary)
         default:
-            return Color(.brandPrimary)
+            return Color.clear
         }
     }
     
     private var paddingSize: EdgeInsets {
         switch spacing {
-        case .xsmall:
+        case .small:
             return EdgeInsets(
                 top: ViewSpacing.small,
                 leading: ViewSpacing.medium,
@@ -115,22 +105,6 @@ struct ButtonView: View {
             )
         }
     }
-    
-    private var frameSize: CGFloat? {
-        switch spacing {
-        case .xsmall:
-            return nil
-        case .small:
-            return nil
-        case .medium:
-            return 204
-        case .long:
-            return 280
-        default:
-            return 204
-        }
-    }
-    
 }
 
 struct ButtonView_Previews: PreviewProvider {

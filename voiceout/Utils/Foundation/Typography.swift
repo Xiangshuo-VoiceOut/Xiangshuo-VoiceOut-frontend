@@ -16,6 +16,7 @@ enum Typography {
     case bodyMedium
     case bodyMediumEmphasis
     case bodySmall
+    case bodyXSmall
 }
 
 extension Font {
@@ -37,6 +38,8 @@ extension Font {
             Font.custom("AlibabaPuHuiTi_3_85_Bold", size: 16)
         case .bodySmall:
             Font.custom("AlibabaPuHuiTi_3_65_Medium", size: 14)
+        case .bodyXSmall:
+            Font.custom("AlibabaPuHuiTi_3_65_Medium", size: 12)
         }
     }
 }

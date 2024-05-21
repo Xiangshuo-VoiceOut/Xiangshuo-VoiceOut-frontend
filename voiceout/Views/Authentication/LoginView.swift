@@ -24,11 +24,10 @@ struct LoginView: View {
                 )
                 .autocapitalization(.none)
                 
-                SecuredTextInputView(text: $password)
+                SecuredTextInputView(text: $password, securedPlaceholder: "email_placeholder")
             }
             .background(Color(.grey50))
             .padding(EdgeInsets(top: 36, leading: 34, bottom: 26, trailing: 34))
-            .environment(\.locale, .init(identifier: "zh-Hans"))
         }
     }
 }

@@ -22,6 +22,17 @@
 		D28498EA2BE171F700963B3A /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28498E92BE171F700963B3A /* Border.swift */; };
 		D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28498EB2BE19DE300963B3A /* SecuredTextInputView.swift */; };
 		D28498EE2BE1B64100963B3A /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28498ED2BE1B64100963B3A /* EmailValidator.swift */; };
+		D28499242BE9AAE300963B3A /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28499232BE9AAE200963B3A /* Popup.swift */; };
+		D28499262BE9AB6200963B3A /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28499252BE9AB6200963B3A /* PopupView.swift */; };
+		D28499292BE9BFF900963B3A /* PopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28499282BE9BFF900963B3A /* PopupViewModel.swift */; };
+		D284992B2BEB0B4900963B3A /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D284992A2BEB0B4800963B3A /* RadioButtonView.swift */; };
+		D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D284992D2BEEF4D700963B3A /* LegalButton.swift */; };
+		D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD772BF8E22200DD7688 /* LegalDialogContent.swift */; };
+		D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD792BF8FD0400DD7688 /* DialogViewModel.swift */; };
+		D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD7B2BF8FE3400DD7688 /* DialogView.swift */; };
+		D2D6CD7F2BFBCF8B00DD7688 /* 注册协议.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2D6CD7E2BFBCF8B00DD7688 /* 注册协议.txt */; };
+		D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD802BFBD2BE00DD7688 /* LegalPopupContent.swift */; };
+		D2D6CD832BFBD5CA00DD7688 /* ⽤户隐私政策.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2D6CD822BFBD5CA00DD7688 /* ⽤户隐私政策.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +54,17 @@
 		D28498E92BE171F700963B3A /* Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
 		D28498EB2BE19DE300963B3A /* SecuredTextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredTextInputView.swift; sourceTree = "<group>"; };
 		D28498ED2BE1B64100963B3A /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
+		D28499232BE9AAE200963B3A /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
+		D28499252BE9AB6200963B3A /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		D28499282BE9BFF900963B3A /* PopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewModel.swift; sourceTree = "<group>"; };
+		D284992A2BEB0B4800963B3A /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
+		D284992D2BEEF4D700963B3A /* LegalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalButton.swift; sourceTree = "<group>"; };
+		D2D6CD772BF8E22200DD7688 /* LegalDialogContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDialogContent.swift; sourceTree = "<group>"; };
+		D2D6CD792BF8FD0400DD7688 /* DialogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogViewModel.swift; sourceTree = "<group>"; };
+		D2D6CD7B2BF8FE3400DD7688 /* DialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogView.swift; sourceTree = "<group>"; };
+		D2D6CD7E2BFBCF8B00DD7688 /* 注册协议.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "注册协议.txt"; path = "../../../../注册协议.txt"; sourceTree = "<group>"; };
+		D2D6CD802BFBD2BE00DD7688 /* LegalPopupContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalPopupContent.swift; sourceTree = "<group>"; };
+		D2D6CD822BFBD5CA00DD7688 /* ⽤户隐私政策.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "⽤户隐私政策.txt"; path = "../../../../⽤户隐私政策.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +83,6 @@
 			children = (
 				D2071D0A2BA62F300040B0AE /* voiceout */,
 				D2071D092BA62F300040B0AE /* Products */,
-				D28498E42BE08E2F00963B3A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +139,7 @@
 		D2071D3A2BAA83030040B0AE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				D28499272BE9BFB900963B3A /* Components */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -125,6 +147,7 @@
 		D2071D412BAA8B880040B0AE /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				D284992C2BEEF3FE00963B3A /* Components */,
 				D2071D422BAA8C020040B0AE /* LoginView.swift */,
 			);
 			path = Authentication;
@@ -143,6 +166,9 @@
 				D2071D462BAB5E9E0040B0AE /* TextInputView.swift */,
 				D28498DB2BDDE47F00963B3A /* ButtonView.swift */,
 				D28498EB2BE19DE300963B3A /* SecuredTextInputView.swift */,
+				D28499252BE9AB6200963B3A /* PopupView.swift */,
+				D284992A2BEB0B4800963B3A /* RadioButtonView.swift */,
+				D2D6CD7B2BF8FE3400DD7688 /* DialogView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -150,6 +176,7 @@
 		D2071D552BAB8A6C0040B0AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D2D6CD7D2BFBCF7000DD7688 /* Legal */,
 				D2BA2F9F2BCE0E15006DA63D /* Fonts */,
 				D2071D6E2BAB9E110040B0AE /* Localizable.strings */,
 			);
@@ -162,6 +189,7 @@
 				D25C2ECB2BCF6EB00011212A /* Typography.swift */,
 				D25C2ED12BDDD5D20011212A /* Spacing.swift */,
 				D28498E92BE171F700963B3A /* Border.swift */,
+				D28499232BE9AAE200963B3A /* Popup.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -175,27 +203,23 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		D28498DD2BDEB81400963B3A /* Tests */ = {
+		D28499272BE9BFB900963B3A /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				D28498E12BDEBC0D00963B3A /* Components */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		D28498E12BDEBC0D00963B3A /* Components */ = {
-			isa = PBXGroup;
-			children = (
+				D28499282BE9BFF900963B3A /* PopupViewModel.swift */,
+				D2D6CD792BF8FD0400DD7688 /* DialogViewModel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
 		};
-		D28498E42BE08E2F00963B3A /* Frameworks */ = {
+		D284992C2BEEF3FE00963B3A /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				D28498E52BE08E2F00963B3A /* XCTest.framework */,
+				D284992D2BEEF4D700963B3A /* LegalButton.swift */,
+				D2D6CD772BF8E22200DD7688 /* LegalDialogContent.swift */,
+				D2D6CD802BFBD2BE00DD7688 /* LegalPopupContent.swift */,
 			);
-			name = Frameworks;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		D2BA2F9F2BCE0E15006DA63D /* Fonts */ = {
@@ -205,6 +229,15 @@
 				D25C2EC72BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D2D6CD7D2BFBCF7000DD7688 /* Legal */ = {
+			isa = PBXGroup;
+			children = (
+				D2D6CD7E2BFBCF8B00DD7688 /* 注册协议.txt */,
+				D2D6CD822BFBD5CA00DD7688 /* ⽤户隐私政策.txt */,
+			);
+			path = Legal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,7 +277,7 @@
 			};
 			buildConfigurationList = D2071D032BA62F300040B0AE /* Build configuration list for PBXProject "voiceout" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = "zh-Hans";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -267,10 +300,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2071D132BA62F340040B0AE /* Preview Assets.xcassets in Resources */,
+				D2D6CD7F2BFBCF8B00DD7688 /* 注册协议.txt in Resources */,
 				D2071D6C2BAB9E110040B0AE /* Localizable.strings in Resources */,
 				D2071D102BA62F340040B0AE /* Assets.xcassets in Resources */,
 				D25C2EC62BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf in Resources */,
 				D25C2EC82BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf in Resources */,
+				D2D6CD832BFBD5CA00DD7688 /* ⽤户隐私政策.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,14 +317,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				D25C2ECC2BCF6EB00011212A /* Typography.swift in Sources */,
+				D28499292BE9BFF900963B3A /* PopupViewModel.swift in Sources */,
+				D284992B2BEB0B4900963B3A /* RadioButtonView.swift in Sources */,
+				D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */,
+				D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */,
 				D2071D432BAA8C020040B0AE /* LoginView.swift in Sources */,
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
 				D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */,
+				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
+				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,
+				D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */,
 				D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */,
 				D28498EA2BE171F700963B3A /* Border.swift in Sources */,
 				D28498EE2BE1B64100963B3A /* EmailValidator.swift in Sources */,
 				D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */,
+				D28499262BE9AB6200963B3A /* PopupView.swift in Sources */,
+				D28499242BE9AAE300963B3A /* Popup.swift in Sources */,
 				D28498DC2BDDE47F00963B3A /* ButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

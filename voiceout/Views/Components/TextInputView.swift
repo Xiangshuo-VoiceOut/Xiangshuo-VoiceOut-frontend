@@ -34,7 +34,7 @@ struct TextInputView: View {
                 SecureField(
                     LocalizedStringKey(placeholder),
                     text: $text,
-                    prompt: Text(placeholder)
+                    prompt: Text(LocalizedStringKey(placeholder))
                         .foregroundColor(Color(.textSecondary))
                         .font(.typography(.bodyMediumEmphasis))
                 )
@@ -43,7 +43,7 @@ struct TextInputView: View {
                 TextField(
                     LocalizedStringKey(placeholder),
                     text: $text,
-                    prompt: Text(placeholder)
+                    prompt: Text(LocalizedStringKey(placeholder))
                         .font(.typography(.bodyMediumEmphasis))
                         .foregroundColor(Color(.textSecondary))
                 )
@@ -84,7 +84,7 @@ struct TextInputView_Previews: PreviewProvider {
         TextInputView(
             text: .constant(""),
             isSecuredField: .constant(true),
-            placeholder: "placeholder",
+            placeholder: "email_placeholder",
             isLogInInput: true
         )
     }

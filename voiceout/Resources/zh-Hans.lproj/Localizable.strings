@@ -7,3 +7,12 @@
 */
 "email_placeholder" = "请输入邮箱号";
 "password_placeholder" = "请输入密码";
+"legal_button_text %@ %@" = "同意 %@ 和 %@";
+"registration_protocol" = "《注册协议》";
+"privacy_policy" = "《隐私政策》";
+"legal_dialog_content_title" = "服务协议与隐私政策";
+"legal_dialog_content %@ %@" = "为保障您的合法权益，请您审慎阅读、充分理解 %@ 和 %@ 的个条款。如同意，请点击“同意”开始接受我们的服务。";
+"registration_protocol_popup_title" = "想说VoiceOut注册协议";
+"privacy_policy_popup_title" = "想说VoiceOut⽤户隐私政策";
+"disagree" = "暂不同意";
+"agree" = "同意";

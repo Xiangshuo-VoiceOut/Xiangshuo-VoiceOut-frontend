@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Border.swift
 //  voiceout
 //
 //  Created by Xiaoyu Zhu on 4/30/24.
@@ -27,8 +27,19 @@ enum StrokeWidth {
 }
 
 extension View {
-    func cornerRadius(_ style: CornerRadius) -> some View {
-        return clipShape(RoundedRectangle(cornerRadius: style.value))
+    func cornerRadius(_ radius: CornerRadius, corners: UIRectCorner) -> some View {
+        return clipShape(RoundedCorner(radius: radius.value, corners: corners))
+    }
+}
+                  
+struct RoundedCorner: Shape {
+    var radius: CGFloat
+    var corners: UIRectCorner = .allCorners
+    
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        
+        return Path(path.cgPath)
     }
 }
 

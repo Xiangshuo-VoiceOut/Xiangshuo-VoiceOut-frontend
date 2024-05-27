@@ -49,7 +49,7 @@ struct DialogView: View {
                 }
 
             content
-            .background(Color(.white))
+            .background(Color.surfacePrimary)
             .cornerRadius(.medium, corners: .allCorners)
             .padding(ViewSpacing.xlarge)
             .opacity(opacity ? 1 : 0)

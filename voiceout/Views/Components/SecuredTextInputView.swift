@@ -40,7 +40,7 @@ struct SecuredToggle: View {
             Image(
                 isSecuredField ? "preview-close" : "preview-open"
             )
-            .foregroundColor(Color(.borderSecondary))
+            .foregroundColor(.borderSecondary)
         }
     }
 }

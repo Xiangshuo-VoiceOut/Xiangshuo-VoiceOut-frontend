@@ -39,14 +39,14 @@ struct PopupView: View {
     var body: some View {
         content
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.white)
+            .background(Color.surfacePrimary)
             .cornerRadius(.medium, corners: [.topLeft, .topRight])
             .overlay(alignment: .topTrailing) {
                 Button (action: didClose) {
                     Image("close")
                         .foregroundColor(Color(.grey500))
                 }
-                .padding(.top, ViewSpacing.large)
+                .padding(.top, ViewSpacing.xxlarge)
                 .padding(.trailing, ViewSpacing.large)
             }
             .ignoresSafeArea()

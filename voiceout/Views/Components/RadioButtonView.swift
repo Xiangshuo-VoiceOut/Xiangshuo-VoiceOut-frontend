@@ -34,7 +34,9 @@ struct RadioButtonView: View {
         HStack {
             circleView
                 .contentShape(Rectangle())
-                .onTapGesture { isSelected = true }
+                .onTapGesture {
+                    isSelected = !isSelected
+                }
                 .disabled(isDisabled)
             labelView
         }
@@ -55,14 +57,14 @@ private extension RadioButtonView {
     }
     
     var innerCircleColor: Color {
-        guard isSelected else { return Color.clear }
-        if isDisabled { return Color(.grey500).opacity(0.6) }
-        return Color(.brandPrimary)
+        guard isSelected else { return .surfacePrimary }
+        if isDisabled { return .borderLight }
+        return .borderBrandPrimary
     }
 
     var outlineColor: Color {
-        if isDisabled { return Color(.grey500).opacity(0.6) }
-        return isSelected ? Color(.brandPrimary) : Color(.grey500)
+        if isDisabled { return .borderLight }
+        return isSelected ? .borderBrandPrimary : .borderLight
     }
     
     func disabled(_ value: Bool) -> Self {
@@ -74,6 +76,6 @@ private extension RadioButtonView {
 
 struct RadioButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        RadioButtonView(isSelected: .constant(true), labelView: AnyView(Text("123")))
+        RadioButtonView(isSelected: .constant(false), labelView: AnyView(Text("123")))
     }
 }

@@ -13,9 +13,9 @@ struct LegalButton: View {
     @Binding var isSelected: Bool
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             Color
-                .white
+                .clear
                 .ignoresSafeArea()
             
             RadioButtonView(
@@ -31,6 +31,7 @@ struct LegalButton: View {
                     )
                 )
             }
+            .padding(ViewSpacing.xxlarge)
         }
         .popup(with: .DialogViewModel(dialogViewModel))
         .popup(with: .PopupViewModel(popupViewModel))
@@ -39,7 +40,7 @@ struct LegalButton: View {
 
 private extension LegalButton {
     @ViewBuilder var legalButtonLabel: some View {
-        Text("legal_button_text \(Text("registration_protocol").foregroundColor(Color(.link))) \(Text("privacy_policy").foregroundColor(Color(.link)))")
+        Text("legal_button_text \(Text("registration_protocol").foregroundColor(.textInfo)) \(Text("privacy_policy").foregroundColor(.textInfo))")
             .font(.typography(.bodySmall))
     }
 }
@@ -49,6 +50,5 @@ struct LegalButton_Previews: PreviewProvider {
         LegalButton(isSelected: .constant(false))
             .environmentObject(DialogViewModel())
             .environmentObject(PopupViewModel())
-            .environment(\.locale, .init(identifier: "zh-Hans"))
     }
 }

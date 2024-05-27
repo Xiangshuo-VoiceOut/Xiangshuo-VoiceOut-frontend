@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B88DF2992C00868D00A69607 /* LogoSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2982C00868D00A69607 /* LogoSize.swift */; };
+		B88DF29C2C008CFE00A69607 /* APIConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF29B2C008CFE00A69607 /* APIConfigs.swift */; };
+		B88DF29F2C01ED7200A69607 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF29E2C01ED7200A69607 /* User.swift */; };
+		B88DF2A22C01EDBB00A69607 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2A12C01EDBB00A69607 /* AuthViewModel.swift */; };
+		B88DF2A42C01F13600A69607 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2A32C01F13600A69607 /* APIResponse.swift */; };
+		B88DF2A62C0437C800A69607 /* ResetPWViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2A52C0437C800A69607 /* ResetPWViewModel.swift */; };
+		B88DF2A82C04CC3700A69607 /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2A72C04CC3700A69607 /* ForgetPasswordView.swift */; };
+		B88DF2AA2C04DBE400A69607 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2A92C04DBE400A69607 /* ResetPasswordView.swift */; };
 		D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */; };
 		D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0D2BA62F300040B0AE /* ContentView.swift */; };
 		D2071D102BA62F340040B0AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2071D0F2BA62F340040B0AE /* Assets.xcassets */; };
@@ -30,12 +38,18 @@
 		D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD772BF8E22200DD7688 /* LegalDialogContent.swift */; };
 		D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD792BF8FD0400DD7688 /* DialogViewModel.swift */; };
 		D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD7B2BF8FE3400DD7688 /* DialogView.swift */; };
-		D2D6CD7F2BFBCF8B00DD7688 /* 注册协议.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2D6CD7E2BFBCF8B00DD7688 /* 注册协议.txt */; };
 		D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD802BFBD2BE00DD7688 /* LegalPopupContent.swift */; };
-		D2D6CD832BFBD5CA00DD7688 /* ⽤户隐私政策.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2D6CD822BFBD5CA00DD7688 /* ⽤户隐私政策.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B88DF2982C00868D00A69607 /* LogoSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoSize.swift; sourceTree = "<group>"; };
+		B88DF29B2C008CFE00A69607 /* APIConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfigs.swift; sourceTree = "<group>"; };
+		B88DF29E2C01ED7200A69607 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B88DF2A12C01EDBB00A69607 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		B88DF2A32C01F13600A69607 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		B88DF2A52C0437C800A69607 /* ResetPWViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPWViewModel.swift; sourceTree = "<group>"; };
+		B88DF2A72C04CC3700A69607 /* ForgetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordView.swift; sourceTree = "<group>"; };
+		B88DF2A92C04DBE400A69607 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		D2071D082BA62F300040B0AE /* voiceout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voiceout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voiceoutApp.swift; sourceTree = "<group>"; };
 		D2071D0D2BA62F300040B0AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,7 +64,6 @@
 		D25C2ECB2BCF6EB00011212A /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		D25C2ED12BDDD5D20011212A /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		D28498DB2BDDE47F00963B3A /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
-		D28498E52BE08E2F00963B3A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D28498E92BE171F700963B3A /* Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
 		D28498EB2BE19DE300963B3A /* SecuredTextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredTextInputView.swift; sourceTree = "<group>"; };
 		D28498ED2BE1B64100963B3A /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
@@ -62,9 +75,7 @@
 		D2D6CD772BF8E22200DD7688 /* LegalDialogContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDialogContent.swift; sourceTree = "<group>"; };
 		D2D6CD792BF8FD0400DD7688 /* DialogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogViewModel.swift; sourceTree = "<group>"; };
 		D2D6CD7B2BF8FE3400DD7688 /* DialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogView.swift; sourceTree = "<group>"; };
-		D2D6CD7E2BFBCF8B00DD7688 /* 注册协议.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "注册协议.txt"; path = "../../../../注册协议.txt"; sourceTree = "<group>"; };
 		D2D6CD802BFBD2BE00DD7688 /* LegalPopupContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalPopupContent.swift; sourceTree = "<group>"; };
-		D2D6CD822BFBD5CA00DD7688 /* ⽤户隐私政策.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "⽤户隐私政策.txt"; path = "../../../../⽤户隐私政策.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +89,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B88DF29A2C008CE800A69607 /* APIConfigs */ = {
+			isa = PBXGroup;
+			children = (
+				B88DF29B2C008CFE00A69607 /* APIConfigs.swift */,
+			);
+			path = APIConfigs;
+			sourceTree = "<group>";
+		};
+		B88DF29D2C01ED6200A69607 /* Therapist */ = {
+			isa = PBXGroup;
+			children = (
+				B88DF29E2C01ED7200A69607 /* User.swift */,
+				B88DF2A32C01F13600A69607 /* APIResponse.swift */,
+			);
+			path = Therapist;
+			sourceTree = "<group>";
+		};
 		D2071CFF2BA62F300040B0AE = {
 			isa = PBXGroup;
 			children = (
@@ -97,7 +125,6 @@
 		D2071D0A2BA62F300040B0AE /* voiceout */ = {
 			isa = PBXGroup;
 			children = (
-				D28498DD2BDEB81400963B3A /* Tests */,
 				D25C2ED02BDDD58B0011212A /* Utils */,
 				D2071D382BAA82E70040B0AE /* Models */,
 				D2071D552BAB8A6C0040B0AE /* Resources */,
@@ -132,6 +159,7 @@
 		D2071D382BAA82E70040B0AE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B88DF29D2C01ED6200A69607 /* Therapist */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -140,6 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				D28499272BE9BFB900963B3A /* Components */,
+				B88DF2A12C01EDBB00A69607 /* AuthViewModel.swift */,
+				B88DF2A52C0437C800A69607 /* ResetPWViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -149,6 +179,8 @@
 			children = (
 				D284992C2BEEF3FE00963B3A /* Components */,
 				D2071D422BAA8C020040B0AE /* LoginView.swift */,
+				B88DF2A72C04CC3700A69607 /* ForgetPasswordView.swift */,
+				B88DF2A92C04DBE400A69607 /* ResetPasswordView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -190,6 +222,7 @@
 				D25C2ED12BDDD5D20011212A /* Spacing.swift */,
 				D28498E92BE171F700963B3A /* Border.swift */,
 				D28499232BE9AAE200963B3A /* Popup.swift */,
+				B88DF2982C00868D00A69607 /* LogoSize.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -197,6 +230,7 @@
 		D25C2ED02BDDD58B0011212A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B88DF29A2C008CE800A69607 /* APIConfigs */,
 				D25C2EC42BCF56790011212A /* Foundation */,
 				D28498ED2BE1B64100963B3A /* EmailValidator.swift */,
 			);
@@ -234,8 +268,6 @@
 		D2D6CD7D2BFBCF7000DD7688 /* Legal */ = {
 			isa = PBXGroup;
 			children = (
-				D2D6CD7E2BFBCF8B00DD7688 /* 注册协议.txt */,
-				D2D6CD822BFBD5CA00DD7688 /* ⽤户隐私政策.txt */,
 			);
 			path = Legal;
 			sourceTree = "<group>";
@@ -300,12 +332,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2071D132BA62F340040B0AE /* Preview Assets.xcassets in Resources */,
-				D2D6CD7F2BFBCF8B00DD7688 /* 注册协议.txt in Resources */,
 				D2071D6C2BAB9E110040B0AE /* Localizable.strings in Resources */,
 				D2071D102BA62F340040B0AE /* Assets.xcassets in Resources */,
 				D25C2EC62BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf in Resources */,
 				D25C2EC82BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf in Resources */,
-				D2D6CD832BFBD5CA00DD7688 /* ⽤户隐私政策.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,8 +349,10 @@
 				D25C2ECC2BCF6EB00011212A /* Typography.swift in Sources */,
 				D28499292BE9BFF900963B3A /* PopupViewModel.swift in Sources */,
 				D284992B2BEB0B4900963B3A /* RadioButtonView.swift in Sources */,
+				B88DF2AA2C04DBE400A69607 /* ResetPasswordView.swift in Sources */,
 				D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */,
 				D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */,
+				B88DF2A42C01F13600A69607 /* APIResponse.swift in Sources */,
 				D2071D432BAA8C020040B0AE /* LoginView.swift in Sources */,
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
@@ -328,12 +360,18 @@
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
 				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,
 				D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */,
+				B88DF2A62C0437C800A69607 /* ResetPWViewModel.swift in Sources */,
 				D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */,
 				D28498EA2BE171F700963B3A /* Border.swift in Sources */,
 				D28498EE2BE1B64100963B3A /* EmailValidator.swift in Sources */,
+				B88DF2992C00868D00A69607 /* LogoSize.swift in Sources */,
 				D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */,
 				D28499262BE9AB6200963B3A /* PopupView.swift in Sources */,
+				B88DF2A22C01EDBB00A69607 /* AuthViewModel.swift in Sources */,
+				B88DF29F2C01ED7200A69607 /* User.swift in Sources */,
+				B88DF2A82C04CC3700A69607 /* ForgetPasswordView.swift in Sources */,
 				D28499242BE9AAE300963B3A /* Popup.swift in Sources */,
+				B88DF29C2C008CFE00A69607 /* APIConfigs.swift in Sources */,
 				D28498DC2BDDE47F00963B3A /* ButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

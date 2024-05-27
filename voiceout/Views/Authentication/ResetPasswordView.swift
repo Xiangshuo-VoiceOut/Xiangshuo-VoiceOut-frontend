@@ -1,17 +1,15 @@
 //
-//  LoginView.swift
+//  ResetPasswordView.swift
 //  voiceout
 //
-//  Created by Xiaoyu Zhu on 3/19/24.
+//  Created by J. Wu on 5/27/24.
 //
 
 import SwiftUI
 
-struct LoginView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var isEmailValid: Bool = true
-//    @StateObject private var loginVM = AuthViewModel()
+struct ResetPasswordView: View {
+    
+    @StateObject private var resetPasswordVM = ResetPWViewModel()
     
     var body: some View {
         NavigationStack {
@@ -35,19 +33,12 @@ struct LoginView: View {
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 32, trailing:74 ))
                 
                 VStack {
-                    TextInputView(
-                        text: $email,
-                        isSecuredField: .constant(false),
-                        placeholder: "email_placeholder",
-                        prefixIcon: "email",
-                        validationState: isEmailValid ? ValidationState.neutral : ValidationState.error
-                    )
-                    .autocapitalization(.none)
-                    .padding(.bottom)
                     
-                    SecuredTextInputView(text: $password, securedPlaceholder: "email_placeholder")
+                    SecuredTextInputView(text: $resetPasswordVM.newPassword, securedPlaceholder: "new_password")
+                    
+                    SecuredTextInputView(text: $resetPasswordVM.confirmNewPassword, securedPlaceholder: "new_password")
+                    
                 }
-                //            .navigationBarHidden(true)
                 .background(Color(.surfacePrimary))
                 .padding(EdgeInsets(top: 0, leading: 32, bottom: 0, trailing: 32))
                 
@@ -63,7 +54,7 @@ struct LoginView: View {
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 32) )
                 
-                ButtonView(text: "login", action: {}, theme: .base)
+                ButtonView(text: "finished", action: {resetPasswordVM.isVerificationCodeSent}, theme: .base)
                 
                 
             }
@@ -82,8 +73,6 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
+#Preview {
+    ResetPasswordView()
 }

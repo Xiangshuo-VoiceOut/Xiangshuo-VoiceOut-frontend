@@ -1,17 +1,16 @@
 //
-//  LoginView.swift
+//  ForgetPasswordView.swift
 //  voiceout
 //
-//  Created by Xiaoyu Zhu on 3/19/24.
+//  Created by J. Wu on 5/27/24.
 //
 
 import SwiftUI
 
-struct LoginView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
+struct ForgetPasswordView: View {
     @State private var isEmailValid: Bool = true
-//    @StateObject private var loginVM = AuthViewModel()
+    @State private var isVerificationValid: Bool = true
+    @StateObject private var resetPasswordVM = ResetPWViewModel()
     
     var body: some View {
         NavigationStack {
@@ -36,7 +35,7 @@ struct LoginView: View {
                 
                 VStack {
                     TextInputView(
-                        text: $email,
+                        text: $resetPasswordVM.email,
                         isSecuredField: .constant(false),
                         placeholder: "email_placeholder",
                         prefixIcon: "email",
@@ -45,9 +44,24 @@ struct LoginView: View {
                     .autocapitalization(.none)
                     .padding(.bottom)
                     
-                    SecuredTextInputView(text: $password, securedPlaceholder: "email_placeholder")
+                    ZStack {
+                        TextInputView(
+                            text: $resetPasswordVM.verificationCode,
+                            isSecuredField: .constant(false),
+                            placeholder: "input_verification_code",
+                            prefixIcon: "email",
+                            validationState: isVerificationValid ? ValidationState.neutral : ValidationState.error
+                        )
+                        
+                        HStack {
+                            Spacer()
+                            ButtonView(text: "get_verification_code", action: {resetPasswordVM.sendVerificationCode()}, spacing: .small)
+                                .padding(.horizontal, 19)
+                        }
+
+                            
+                    }
                 }
-                //            .navigationBarHidden(true)
                 .background(Color(.surfacePrimary))
                 .padding(EdgeInsets(top: 0, leading: 32, bottom: 0, trailing: 32))
                 
@@ -63,7 +77,7 @@ struct LoginView: View {
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 32) )
                 
-                ButtonView(text: "login", action: {}, theme: .base)
+                ButtonView(text: "next_step", action: {resetPasswordVM.isVerificationCodeSent}, theme: .base)
                 
                 
             }
@@ -82,8 +96,6 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
+#Preview {
+    ForgetPasswordView()
 }

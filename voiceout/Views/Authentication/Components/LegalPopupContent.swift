@@ -20,6 +20,7 @@ struct LegalPopupContent: View {
                 Text(parseLegalContent(fileName: fileName))
                     .font(.typography(.bodySmall))
             }
+            .foregroundColor(.textPrimary)
             .padding(ViewSpacing.large)
             .padding(.top, ViewSpacing.xxlarge)
         }

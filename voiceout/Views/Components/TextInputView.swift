@@ -27,7 +27,7 @@ struct TextInputView: View {
         HStack(spacing: ViewSpacing.small) {
             if let icon = prefixIcon {
                 Image(icon)
-                    .foregroundColor(Color(.borderSecondary))
+                    .foregroundColor(.borderSecondary)
             }
             
             if isSecuredField {
@@ -35,26 +35,26 @@ struct TextInputView: View {
                     LocalizedStringKey(placeholder),
                     text: $text,
                     prompt: Text(LocalizedStringKey(placeholder))
-                        .foregroundColor(Color(.textSecondary))
+                        .foregroundColor(.textSecondary)
                         .font(.typography(.bodyMediumEmphasis))
                 )
-                .foregroundColor(Color(.textPrimary))
+                .foregroundColor(.textPrimary)
             } else {
                 TextField(
                     LocalizedStringKey(placeholder),
                     text: $text,
                     prompt: Text(LocalizedStringKey(placeholder))
                         .font(.typography(.bodyMediumEmphasis))
-                        .foregroundColor(Color(.textSecondary))
+                        .foregroundColor(.textSecondary)
                 )
-                .foregroundColor(Color(.textPrimary))
+                .foregroundColor(.textPrimary)
             }
             
             suffixContetnt
         }
         .padding(.horizontal, ViewSpacing.medium)
         .padding(.vertical, ViewSpacing.small)
-        .background(Color(.surfacePrimaryGrey2))
+        .background(Color.surfacePrimaryGrey2)
         .cornerRadius(isLogInInput ? 18 : CornerRadius.medium.value)
         .overlay(
             RoundedRectangle(cornerRadius: isLogInInput ? 18 : CornerRadius.medium.value)
@@ -70,9 +70,9 @@ struct TextInputView: View {
     private var validationStateColor: Color {
         switch validationState {
         case .error:
-            return Color(.borderInvalid)
+            return .borderInValid
         case .success:
-            return Color(.borderValid)
+            return .borderValid
         default:
             return Color(.clear)
         }

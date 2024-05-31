@@ -19,10 +19,13 @@ struct LegalDialogContent: View {
         VStack {
             Text("legal_dialog_content_title")
                 .font(.typography(.bodyMedium))
+                .foregroundColor(.textPrimary)
                 .padding(.bottom, ViewSpacing.medium)
+
             Text("legal_dialog_content \(Text("[\(registrationProtocolLinkText)](registrationProtocol)")) \(Text("[\(privacyPolicyLinkText)](privacyPolicy)"))")
-                .tint(Color(.link))
+                .tint(.textInfo)
                 .font(.typography(.bodyXSmall))
+                .foregroundColor(.textPrimary)
                 .padding(.bottom, ViewSpacing.large)
                 .environment(\.openURL, OpenURLAction { url in
                     switch url.absoluteString {
@@ -47,6 +50,8 @@ struct LegalDialogContent: View {
                     },
                     variant: ButtonVariant.outline
                 )
+                
+                Spacer()
                 
                 ButtonView(
                     text: "agree",

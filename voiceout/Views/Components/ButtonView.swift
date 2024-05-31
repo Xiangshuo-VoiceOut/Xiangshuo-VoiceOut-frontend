@@ -62,27 +62,27 @@ struct ButtonView: View {
     private var foregroundColorForVariant: Color {
         switch variant {
         case .outline:
-            return Color(.brandPrimary)
+            return .textBrandPrimary
         default:
-            return theme == .action ? Color(.textInverted) : Color(.textPrimary)
+            return theme == .action ? .textInvert : .textPrimary
         }
     }
     
     private var backgroundForVariant: Color {
         switch variant {
         case .outline:
-            return Color(.textInverted)
+            return .surfacePrimary
         default:
-            return theme == .action ? Color(.brandPrimary) : Color(.primaryGrey)
+            return theme == .action ? .surfaceBrandPrimary : .surfacePrimaryGrey
         }
     }
     
     private var strokeColorForVariant: Color {
         switch variant {
         case .outline:
-            return Color(.brandPrimary)
+            return .borderBrandPrimary
         default:
-            return Color.clear
+            return .clear
         }
     }
     

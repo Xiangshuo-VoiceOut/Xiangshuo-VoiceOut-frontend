@@ -27,12 +27,15 @@
 		D28499292BE9BFF900963B3A /* PopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28499282BE9BFF900963B3A /* PopupViewModel.swift */; };
 		D284992B2BEB0B4900963B3A /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D284992A2BEB0B4800963B3A /* RadioButtonView.swift */; };
 		D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D284992D2BEEF4D700963B3A /* LegalButton.swift */; };
+		D2B8F4C92C04049F0053F82B /* 注册协议.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2B8F4C82C04049F0053F82B /* 注册协议.txt */; };
+		D2B8F4CD2C0404FC0053F82B /* ⽤户隐私政策.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2B8F4CC2C0404FB0053F82B /* ⽤户隐私政策.txt */; };
 		D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD772BF8E22200DD7688 /* LegalDialogContent.swift */; };
 		D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD792BF8FD0400DD7688 /* DialogViewModel.swift */; };
 		D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD7B2BF8FE3400DD7688 /* DialogView.swift */; };
-		D2D6CD7F2BFBCF8B00DD7688 /* 注册协议.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2D6CD7E2BFBCF8B00DD7688 /* 注册协议.txt */; };
 		D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD802BFBD2BE00DD7688 /* LegalPopupContent.swift */; };
-		D2D6CD832BFBD5CA00DD7688 /* ⽤户隐私政策.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2D6CD822BFBD5CA00DD7688 /* ⽤户隐私政策.txt */; };
+		D2D6CD852C03699000DD7688 /* RouterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD842C03699000DD7688 /* RouterModel.swift */; };
+		D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD862C036BCD00DD7688 /* RouterView.swift */; };
+		D2D6CD892C038B1700DD7688 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD882C038B1700DD7688 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +53,6 @@
 		D25C2ECB2BCF6EB00011212A /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		D25C2ED12BDDD5D20011212A /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		D28498DB2BDDE47F00963B3A /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
-		D28498E52BE08E2F00963B3A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D28498E92BE171F700963B3A /* Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
 		D28498EB2BE19DE300963B3A /* SecuredTextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredTextInputView.swift; sourceTree = "<group>"; };
 		D28498ED2BE1B64100963B3A /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
@@ -59,12 +61,15 @@
 		D28499282BE9BFF900963B3A /* PopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewModel.swift; sourceTree = "<group>"; };
 		D284992A2BEB0B4800963B3A /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
 		D284992D2BEEF4D700963B3A /* LegalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalButton.swift; sourceTree = "<group>"; };
+		D2B8F4C82C04049F0053F82B /* 注册协议.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "注册协议.txt"; sourceTree = "<group>"; };
+		D2B8F4CC2C0404FB0053F82B /* ⽤户隐私政策.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "⽤户隐私政策.txt"; sourceTree = "<group>"; };
 		D2D6CD772BF8E22200DD7688 /* LegalDialogContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDialogContent.swift; sourceTree = "<group>"; };
 		D2D6CD792BF8FD0400DD7688 /* DialogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogViewModel.swift; sourceTree = "<group>"; };
 		D2D6CD7B2BF8FE3400DD7688 /* DialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogView.swift; sourceTree = "<group>"; };
-		D2D6CD7E2BFBCF8B00DD7688 /* 注册协议.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "注册协议.txt"; path = "../../../../注册协议.txt"; sourceTree = "<group>"; };
 		D2D6CD802BFBD2BE00DD7688 /* LegalPopupContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalPopupContent.swift; sourceTree = "<group>"; };
-		D2D6CD822BFBD5CA00DD7688 /* ⽤户隐私政策.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "⽤户隐私政策.txt"; path = "../../../../⽤户隐私政策.txt"; sourceTree = "<group>"; };
+		D2D6CD842C03699000DD7688 /* RouterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterModel.swift; sourceTree = "<group>"; };
+		D2D6CD862C036BCD00DD7688 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
+		D2D6CD882C038B1700DD7688 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +102,6 @@
 		D2071D0A2BA62F300040B0AE /* voiceout */ = {
 			isa = PBXGroup;
 			children = (
-				D28498DD2BDEB81400963B3A /* Tests */,
 				D25C2ED02BDDD58B0011212A /* Utils */,
 				D2071D382BAA82E70040B0AE /* Models */,
 				D2071D552BAB8A6C0040B0AE /* Resources */,
@@ -125,6 +129,7 @@
 				D2071D452BAB5E7D0040B0AE /* Components */,
 				D2071D412BAA8B880040B0AE /* Authentication */,
 				D2071D0D2BA62F300040B0AE /* ContentView.swift */,
+				D2D6CD862C036BCD00DD7688 /* RouterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				D28499272BE9BFB900963B3A /* Components */,
+				D2D6CD842C03699000DD7688 /* RouterModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -190,6 +196,7 @@
 				D25C2ED12BDDD5D20011212A /* Spacing.swift */,
 				D28498E92BE171F700963B3A /* Border.swift */,
 				D28499232BE9AAE200963B3A /* Popup.swift */,
+				D2D6CD882C038B1700DD7688 /* Color.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -234,8 +241,8 @@
 		D2D6CD7D2BFBCF7000DD7688 /* Legal */ = {
 			isa = PBXGroup;
 			children = (
-				D2D6CD7E2BFBCF8B00DD7688 /* 注册协议.txt */,
-				D2D6CD822BFBD5CA00DD7688 /* ⽤户隐私政策.txt */,
+				D2B8F4C82C04049F0053F82B /* 注册协议.txt */,
+				D2B8F4CC2C0404FB0053F82B /* ⽤户隐私政策.txt */,
 			);
 			path = Legal;
 			sourceTree = "<group>";
@@ -300,12 +307,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2071D132BA62F340040B0AE /* Preview Assets.xcassets in Resources */,
-				D2D6CD7F2BFBCF8B00DD7688 /* 注册协议.txt in Resources */,
+				D2B8F4CD2C0404FC0053F82B /* ⽤户隐私政策.txt in Resources */,
 				D2071D6C2BAB9E110040B0AE /* Localizable.strings in Resources */,
 				D2071D102BA62F340040B0AE /* Assets.xcassets in Resources */,
 				D25C2EC62BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf in Resources */,
 				D25C2EC82BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf in Resources */,
-				D2D6CD832BFBD5CA00DD7688 /* ⽤户隐私政策.txt in Resources */,
+				D2B8F4C92C04049F0053F82B /* 注册协议.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,9 +332,12 @@
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
 				D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */,
+				D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */,
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
 				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,
 				D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */,
+				D2D6CD892C038B1700DD7688 /* Color.swift in Sources */,
+				D2D6CD852C03699000DD7688 /* RouterModel.swift in Sources */,
 				D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */,
 				D28498EA2BE171F700963B3A /* Border.swift in Sources */,
 				D28498EE2BE1B64100963B3A /* EmailValidator.swift in Sources */,

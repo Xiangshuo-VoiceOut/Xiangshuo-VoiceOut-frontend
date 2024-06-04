@@ -9,12 +9,18 @@
 /* Begin PBXBuildFile section */
 		B88DF2992C00868D00A69607 /* LogoSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2982C00868D00A69607 /* LogoSize.swift */; };
 		B88DF29C2C008CFE00A69607 /* APIConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF29B2C008CFE00A69607 /* APIConfigs.swift */; };
-		B88DF29F2C01ED7200A69607 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF29E2C01ED7200A69607 /* User.swift */; };
+		B88DF29F2C01ED7200A69607 /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF29E2C01ED7200A69607 /* UserLogin.swift */; };
 		B88DF2A22C01EDBB00A69607 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2A12C01EDBB00A69607 /* AuthViewModel.swift */; };
-		B88DF2A42C01F13600A69607 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2A32C01F13600A69607 /* APIResponse.swift */; };
-		B88DF2A62C0437C800A69607 /* ResetPWViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2A52C0437C800A69607 /* ResetPWViewModel.swift */; };
+		B88DF2A42C01F13600A69607 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2A32C01F13600A69607 /* ErrorResponse.swift */; };
 		B88DF2A82C04CC3700A69607 /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2A72C04CC3700A69607 /* ForgetPasswordView.swift */; };
 		B88DF2AA2C04DBE400A69607 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2A92C04DBE400A69607 /* ResetPasswordView.swift */; };
+		B88DF2AC2C05BA0A00A69607 /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2AB2C05BA0A00A69607 /* MainPageView.swift */; };
+		B88DF2AE2C05D88900A69607 /* ForgetPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2AD2C05D88900A69607 /* ForgetPasswordVM.swift */; };
+		B88DF2B02C060FA700A69607 /* ResetPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DF2AF2C060FA700A69607 /* ResetPasswordVM.swift */; };
+		B8D471FE2C16F71C00D6716A /* LoginWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D471FD2C16F71C00D6716A /* LoginWebService.swift */; };
+		B8FA0E7E2C13E8DC00B1760F /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA0E7D2C13E8DC00B1760F /* BackgroundView.swift */; };
+		B8FA0E802C13EC2F00B1760F /* BGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA0E7F2C13EC2F00B1760F /* BGConstants.swift */; };
+		B8FA0E842C1598E100B1760F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA0E832C1598E100B1760F /* HeaderView.swift */; };
 		D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */; };
 		D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0D2BA62F300040B0AE /* ContentView.swift */; };
 		D2071D102BA62F340040B0AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2071D0F2BA62F340040B0AE /* Assets.xcassets */; };
@@ -44,12 +50,18 @@
 /* Begin PBXFileReference section */
 		B88DF2982C00868D00A69607 /* LogoSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoSize.swift; sourceTree = "<group>"; };
 		B88DF29B2C008CFE00A69607 /* APIConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfigs.swift; sourceTree = "<group>"; };
-		B88DF29E2C01ED7200A69607 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B88DF29E2C01ED7200A69607 /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogin.swift; sourceTree = "<group>"; };
 		B88DF2A12C01EDBB00A69607 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
-		B88DF2A32C01F13600A69607 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
-		B88DF2A52C0437C800A69607 /* ResetPWViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPWViewModel.swift; sourceTree = "<group>"; };
+		B88DF2A32C01F13600A69607 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		B88DF2A72C04CC3700A69607 /* ForgetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordView.swift; sourceTree = "<group>"; };
 		B88DF2A92C04DBE400A69607 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		B88DF2AB2C05BA0A00A69607 /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
+		B88DF2AD2C05D88900A69607 /* ForgetPasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVM.swift; sourceTree = "<group>"; };
+		B88DF2AF2C060FA700A69607 /* ResetPasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVM.swift; sourceTree = "<group>"; };
+		B8D471FD2C16F71C00D6716A /* LoginWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebService.swift; sourceTree = "<group>"; };
+		B8FA0E7D2C13E8DC00B1760F /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		B8FA0E7F2C13EC2F00B1760F /* BGConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGConstants.swift; sourceTree = "<group>"; };
+		B8FA0E832C1598E100B1760F /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		D2071D082BA62F300040B0AE /* voiceout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voiceout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voiceoutApp.swift; sourceTree = "<group>"; };
 		D2071D0D2BA62F300040B0AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,19 +101,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B88DF29A2C008CE800A69607 /* APIConfigs */ = {
+		B8D472012C17318D00D6716A /* Therapist */ = {
 			isa = PBXGroup;
 			children = (
-				B88DF29B2C008CFE00A69607 /* APIConfigs.swift */,
+				D2071D422BAA8C020040B0AE /* LoginView.swift */,
+				B88DF2A72C04CC3700A69607 /* ForgetPasswordView.swift */,
+				B88DF2A92C04DBE400A69607 /* ResetPasswordView.swift */,
 			);
-			path = APIConfigs;
+			path = Therapist;
 			sourceTree = "<group>";
 		};
-		B88DF29D2C01ED6200A69607 /* Therapist */ = {
+		B8D472032C17350100D6716A /* Customer */ = {
 			isa = PBXGroup;
 			children = (
-				B88DF29E2C01ED7200A69607 /* User.swift */,
-				B88DF2A32C01F13600A69607 /* APIResponse.swift */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		B8D472042C17351200D6716A /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		B8D472052C17351C00D6716A /* Therapist */ = {
+			isa = PBXGroup;
+			children = (
+				B8D471FD2C16F71C00D6716A /* LoginWebService.swift */,
 			);
 			path = Therapist;
 			sourceTree = "<group>";
@@ -152,6 +179,7 @@
 				D2071D452BAB5E7D0040B0AE /* Components */,
 				D2071D412BAA8B880040B0AE /* Authentication */,
 				D2071D0D2BA62F300040B0AE /* ContentView.swift */,
+				B88DF2AB2C05BA0A00A69607 /* MainPageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -159,7 +187,8 @@
 		D2071D382BAA82E70040B0AE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B88DF29D2C01ED6200A69607 /* Therapist */,
+				B88DF2A32C01F13600A69607 /* ErrorResponse.swift */,
+				B88DF29E2C01ED7200A69607 /* UserLogin.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -169,7 +198,8 @@
 			children = (
 				D28499272BE9BFB900963B3A /* Components */,
 				B88DF2A12C01EDBB00A69607 /* AuthViewModel.swift */,
-				B88DF2A52C0437C800A69607 /* ResetPWViewModel.swift */,
+				B88DF2AD2C05D88900A69607 /* ForgetPasswordVM.swift */,
+				B88DF2AF2C060FA700A69607 /* ResetPasswordVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -177,10 +207,9 @@
 		D2071D412BAA8B880040B0AE /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				B8D472032C17350100D6716A /* Customer */,
+				B8D472012C17318D00D6716A /* Therapist */,
 				D284992C2BEEF3FE00963B3A /* Components */,
-				D2071D422BAA8C020040B0AE /* LoginView.swift */,
-				B88DF2A72C04CC3700A69607 /* ForgetPasswordView.swift */,
-				B88DF2A92C04DBE400A69607 /* ResetPasswordView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -188,6 +217,9 @@
 		D2071D442BAA8CD00040B0AE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B8D472052C17351C00D6716A /* Therapist */,
+				B8D472042C17351200D6716A /* Customer */,
+				B88DF29B2C008CFE00A69607 /* APIConfigs.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -223,6 +255,7 @@
 				D28498E92BE171F700963B3A /* Border.swift */,
 				D28499232BE9AAE200963B3A /* Popup.swift */,
 				B88DF2982C00868D00A69607 /* LogoSize.swift */,
+				B8FA0E7F2C13EC2F00B1760F /* BGConstants.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -230,7 +263,6 @@
 		D25C2ED02BDDD58B0011212A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				B88DF29A2C008CE800A69607 /* APIConfigs */,
 				D25C2EC42BCF56790011212A /* Foundation */,
 				D28498ED2BE1B64100963B3A /* EmailValidator.swift */,
 			);
@@ -252,6 +284,8 @@
 				D284992D2BEEF4D700963B3A /* LegalButton.swift */,
 				D2D6CD772BF8E22200DD7688 /* LegalDialogContent.swift */,
 				D2D6CD802BFBD2BE00DD7688 /* LegalPopupContent.swift */,
+				B8FA0E7D2C13E8DC00B1760F /* BackgroundView.swift */,
+				B8FA0E832C1598E100B1760F /* HeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -346,21 +380,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8D471FE2C16F71C00D6716A /* LoginWebService.swift in Sources */,
+				B8FA0E7E2C13E8DC00B1760F /* BackgroundView.swift in Sources */,
 				D25C2ECC2BCF6EB00011212A /* Typography.swift in Sources */,
 				D28499292BE9BFF900963B3A /* PopupViewModel.swift in Sources */,
 				D284992B2BEB0B4900963B3A /* RadioButtonView.swift in Sources */,
 				B88DF2AA2C04DBE400A69607 /* ResetPasswordView.swift in Sources */,
 				D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */,
 				D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */,
-				B88DF2A42C01F13600A69607 /* APIResponse.swift in Sources */,
+				B88DF2A42C01F13600A69607 /* ErrorResponse.swift in Sources */,
 				D2071D432BAA8C020040B0AE /* LoginView.swift in Sources */,
+				B8FA0E802C13EC2F00B1760F /* BGConstants.swift in Sources */,
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
 				D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */,
+				B88DF2B02C060FA700A69607 /* ResetPasswordVM.swift in Sources */,
+				B88DF2AE2C05D88900A69607 /* ForgetPasswordVM.swift in Sources */,
+				B8FA0E842C1598E100B1760F /* HeaderView.swift in Sources */,
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
 				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,
 				D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */,
-				B88DF2A62C0437C800A69607 /* ResetPWViewModel.swift in Sources */,
 				D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */,
 				D28498EA2BE171F700963B3A /* Border.swift in Sources */,
 				D28498EE2BE1B64100963B3A /* EmailValidator.swift in Sources */,
@@ -368,7 +407,8 @@
 				D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */,
 				D28499262BE9AB6200963B3A /* PopupView.swift in Sources */,
 				B88DF2A22C01EDBB00A69607 /* AuthViewModel.swift in Sources */,
-				B88DF29F2C01ED7200A69607 /* User.swift in Sources */,
+				B88DF2AC2C05BA0A00A69607 /* MainPageView.swift in Sources */,
+				B88DF29F2C01ED7200A69607 /* UserLogin.swift in Sources */,
 				B88DF2A82C04CC3700A69607 /* ForgetPasswordView.swift in Sources */,
 				D28499242BE9AAE300963B3A /* Popup.swift in Sources */,
 				B88DF29C2C008CFE00A69607 /* APIConfigs.swift in Sources */,

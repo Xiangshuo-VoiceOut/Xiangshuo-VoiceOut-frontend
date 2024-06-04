@@ -40,8 +40,8 @@ struct ButtonView: View {
         Button(action: action) {
             Text(LocalizedStringKey(text))
                 .font(fontForFrameSize)
+                .padding(paddingSize)
         }
-        .padding(paddingSize)
         .foregroundColor(foregroundColorForVariant)
         .background(backgroundForVariant)
         .cornerRadius(CornerRadius.full.value)

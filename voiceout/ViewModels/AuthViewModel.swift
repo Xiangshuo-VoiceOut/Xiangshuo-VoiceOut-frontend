@@ -6,43 +6,72 @@
 //
 
 import Foundation
-import Combine
 
 class AuthViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
-    @Published var isAuthenticated: Bool = false
+    @Published var isEmailValid: Bool = true
+    @Published var isPasswordValid: Bool = true
+    @Published var showingMainPage: Bool = false
+    @Published var emailValidationMsg = ""
+    @Published var isLoginEnabled: Bool = false
     
-    private var cancellables = Set<AnyCancellable>()
+    private var loginService = LoginWebService()
     
     func login(){
-        guard let url = URL(string:APIConfigs.LogInURL) else{
+        
+        if !validateEmail() {
             return
         }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        let body: [String:Any] = ["email":email, "password":password]
-        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        URLSession.shared.dataTaskPublisher(for: request)
-            .map{ $0.data }
-            .decode(type: APIResponse.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
+        loginService.login(email: email, password: password, completions: { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let token):
+                    self?.showingMainPage = true
                 case .failure(let error):
-                    print("Login request failed with error: \(error)")
-                case .finished:
-                    break
+                    self?.handleValidationErrors(error)
                 }
-            }, receiveValue: { response in
-                if response.message == "" { //to be checked
-                    self.isAuthenticated = true
-                }
-            })
-            .store(in: &cancellables)
+            
+            }
+            
+        })
+    }
+    
+    private func handleValidationErrors(_ error: AuthenticationError) {
+        switch error {
+        case .userNotFound:
+            isEmailValid = false
+            emailValidationMsg = "email_not_exist"
+        case .incorrectPasswordOrEmail:
+            isEmailValid = false
+            isPasswordValid = false
+            emailValidationMsg = "login_error"
+        case .na:
+            break
+        }
+    }
+    
+    func validateEmail() -> Bool {
+        if !isValidEmail(email) {
+            isEmailValid = false
+            emailValidationMsg = "email_form_error"
+            return false
+        } else {
+            isEmailValid = true
+            emailValidationMsg = ""
+            return true
+        }
+    }
+    
+    func resetValidateState(){
+        isEmailValid = true
+        isPasswordValid = true
+        emailValidationMsg = ""
+    }
+    
+    func validateInput() {
+        isLoginEnabled = !email.isEmpty && !password.isEmpty
     }
 }
 

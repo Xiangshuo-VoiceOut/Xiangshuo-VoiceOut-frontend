@@ -15,56 +15,66 @@ enum ValidationState {
 
 struct TextInputView: View {
     @Binding var text: String
-    @Binding var isSecuredField: Bool
+    var isSecuredField: Bool
     let placeholder: String
     var prefixIcon: String? = "email"
     var validationState: ValidationState? = ValidationState.neutral
     var validationMessage: String? = ""
     var suffixContetnt: AnyView?
-    var isLogInInput: Bool = false
     var borderRadius: CGFloat = CornerRadius.medium.value
     var body: some View {
-        HStack(spacing: ViewSpacing.small) {
-            if let icon = prefixIcon {
-                Image(icon)
-                    .foregroundColor(Color(.borderSecondary))
+        VStack(alignment: .leading, spacing: 1){
+            HStack(spacing: ViewSpacing.small) {
+                if let icon = prefixIcon {
+                    Image(icon)
+                        .foregroundColor(Color(.borderSecondary))
+                }
+                
+                if isSecuredField {
+                    SecureField(
+                        LocalizedStringKey(placeholder),
+                        text: $text,
+                        prompt: Text(LocalizedStringKey(placeholder))
+                            .foregroundColor(Color(.textSecondary))
+                            .font(.typography(.bodyMediumEmphasis))
+                    )
+                    .foregroundColor(Color(.textPrimary))
+                } else {
+                    TextField(
+                        LocalizedStringKey(placeholder),
+                        text: $text,
+                        prompt: Text(LocalizedStringKey(placeholder))
+                            .font(.typography(.bodyMediumEmphasis))
+                            .foregroundColor(Color(.textSecondary))
+                    )
+                    .foregroundColor(Color(.textPrimary))
+                }
+                
+                suffixContetnt
             }
+            .padding(.horizontal, ViewSpacing.medium)
+            .padding(.vertical, ViewSpacing.base)
+            .background(Color(.surfacePrimaryGrey2))
+            .cornerRadius(CornerRadius.medium.value)
+            .overlay(
+                RoundedRectangle(cornerRadius:CornerRadius.medium.value)
+                    .stroke(
+                        .width100,
+                        validationStateColor
+                    )
+            )
+            .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
-            if isSecuredField {
-                SecureField(
-                    LocalizedStringKey(placeholder),
-                    text: $text,
-                    prompt: Text(LocalizedStringKey(placeholder))
-                        .foregroundColor(Color(.textSecondary))
-                        .font(.typography(.bodyMediumEmphasis))
-                )
-                .foregroundColor(Color(.textPrimary))
-            } else {
-                TextField(
-                    LocalizedStringKey(placeholder),
-                    text: $text,
-                    prompt: Text(LocalizedStringKey(placeholder))
-                        .font(.typography(.bodyMediumEmphasis))
-                        .foregroundColor(Color(.textSecondary))
-                )
-                .foregroundColor(Color(.textPrimary))
+            
+            
+            if let validationMessage = validationMessage, !validationMessage.isEmpty {
+                Text(LocalizedStringKey(validationMessage))
+                    .foregroundColor(validationState == .error ? Color(.borderInvalid) : Color(.textSecondary))
+                    .font(.typography(.bodyXXSmall))
+                    .padding(.leading)
+                    
             }
-            
-            suffixContetnt
         }
-        .padding(.horizontal, ViewSpacing.medium)
-        .padding(.vertical, ViewSpacing.small)
-        .background(Color(.surfacePrimaryGrey2))
-        .cornerRadius(isLogInInput ? 18 : CornerRadius.medium.value)
-        .overlay(
-            RoundedRectangle(cornerRadius: isLogInInput ? 18 : CornerRadius.medium.value)
-                .stroke(
-                    .width100,
-                    validationStateColor
-                )
-        )
-        .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-        
     }
     
     private var validationStateColor: Color {
@@ -83,9 +93,10 @@ struct TextInputView_Previews: PreviewProvider {
     static var previews: some View {
         TextInputView(
             text: .constant(""),
-            isSecuredField: .constant(true),
+            isSecuredField: true,
             placeholder: "email_placeholder",
-            isLogInInput: true
+            validationState : ValidationState.neutral,
+            validationMessage: "错误"
         )
     }
 }

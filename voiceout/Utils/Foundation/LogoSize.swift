@@ -5,7 +5,7 @@
 //  Created by J. Wu on 5/24/24.
 //
 
-import Foundation
+import SwiftUI
 
 struct LogoSize{
     static let medium: CGFloat = 80

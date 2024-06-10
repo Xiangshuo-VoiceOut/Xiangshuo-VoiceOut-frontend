@@ -15,14 +15,18 @@ enum ButtonVariant {
 enum ButtonTheme {
     case action
     case base
+    case badge
+    case bagdeInactive
 }
 
 enum ButtonSpacing {
+    case xsmall
     case small
     case medium
+    case large
 }
 
-enum ButtonFrontSize {
+enum ButtonFontSize {
     case small
     case medium
 }
@@ -34,14 +38,16 @@ struct ButtonView: View {
     var variant: ButtonVariant? = ButtonVariant.solid
     var theme: ButtonTheme? = ButtonTheme.action
     var spacing: ButtonSpacing? = ButtonSpacing.medium
-    var fontSize: ButtonFrontSize? = ButtonFrontSize.medium
+    var fontSize: ButtonFontSize? = ButtonFontSize.medium
+    var maxWidth: CGFloat? = nil
     
     var body: some View {
         Button(action: action) {
             Text(LocalizedStringKey(text))
                 .font(fontForFrameSize)
+                .padding(paddingSize)
+                .frame(maxWidth: maxWidth)
         }
-        .padding(paddingSize)
         .foregroundColor(foregroundColorForVariant)
         .background(backgroundForVariant)
         .cornerRadius(CornerRadius.full.value)
@@ -64,7 +70,15 @@ struct ButtonView: View {
         case .outline:
             return .textBrandPrimary
         default:
-            return theme == .action ? .textInvert : .textPrimary
+            if theme == .bagdeInactive {
+                return .textSecondary
+            } else if theme == .badge {
+                return .textBrandPrimary
+            } else if theme == .base{
+                return .textPrimary
+            } else {
+                return .textInvert
+            }
         }
     }
     
@@ -73,7 +87,13 @@ struct ButtonView: View {
         case .outline:
             return .surfacePrimary
         default:
-            return theme == .action ? .surfaceBrandPrimary : .surfacePrimaryGrey
+            if theme == .action {
+                return .surfaceBrandPrimary
+            } else if theme == .badge {
+                return .brandPrimary.opacity(0.3)
+            } else {
+                return .surfacePrimaryGrey
+            }
         }
     }
     
@@ -88,20 +108,36 @@ struct ButtonView: View {
     
     private var paddingSize: EdgeInsets {
         switch spacing {
-        case .small:
+        case .xsmall:
             return EdgeInsets(
-                top: ViewSpacing.small,
+                top: ViewSpacing.xsmall,
                 leading: ViewSpacing.medium,
-                bottom: ViewSpacing.small,
+                bottom: ViewSpacing.xsmall,
                 trailing: ViewSpacing.medium
             )
         
-        default:
+        case .small:
             return EdgeInsets(
                 top: ViewSpacing.small,
                 leading: ViewSpacing.large,
                 bottom: ViewSpacing.small,
                 trailing: ViewSpacing.large
+            )
+        
+        case .large:
+            return EdgeInsets(
+                top: ViewSpacing.small,
+                leading: ViewSpacing.xxxxlarge,
+                bottom: ViewSpacing.small,
+                trailing: ViewSpacing.xxxxlarge
+            )
+        
+        default:
+            return EdgeInsets(
+                top: ViewSpacing.small,
+                leading: ViewSpacing.xxxlarge,
+                bottom: ViewSpacing.small,
+                trailing: ViewSpacing.xxxlarge
             )
         }
     }
@@ -112,6 +148,7 @@ struct ButtonView_Previews: PreviewProvider {
         Group{
             ButtonView(
                 text: "登录", action: {}
+//                maxWidth: .infinity
             )
             .previewLayout(.sizeThatFits)
         }

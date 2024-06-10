@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4720C2C175DBB00D6716A /* BadgeView.swift */; };
 		D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */; };
 		D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0D2BA62F300040B0AE /* ContentView.swift */; };
 		D2071D102BA62F340040B0AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2071D0F2BA62F340040B0AE /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B8D4720C2C175DBB00D6716A /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		D2071D082BA62F300040B0AE /* voiceout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voiceout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voiceoutApp.swift; sourceTree = "<group>"; };
 		D2071D0D2BA62F300040B0AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				D28499252BE9AB6200963B3A /* PopupView.swift */,
 				D284992A2BEB0B4800963B3A /* RadioButtonView.swift */,
 				D2D6CD7B2BF8FE3400DD7688 /* DialogView.swift */,
+				B8D4720C2C175DBB00D6716A /* BadgeView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				D284992B2BEB0B4900963B3A /* RadioButtonView.swift in Sources */,
 				D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */,
 				D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */,
+				B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */,
 				D2071D432BAA8C020040B0AE /* LoginView.swift in Sources */,
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,

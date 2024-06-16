@@ -12,15 +12,17 @@ struct SecuredTextInputView: View {
     @Binding var text: String
     var securedPlaceholder: String
     var securedValidation: ValidationState? = ValidationState.neutral
+    var validationMsg: String = ""
     
     var body: some View {
         
         TextInputView(
             text: $text,
-            isSecuredField: $isSecuredField,
+            isSecuredField: isSecuredField,
             placeholder: securedPlaceholder,
             prefixIcon: "lock",
             validationState: securedValidation,
+            validationMessage: validationMsg,
             suffixContetnt:
                 AnyView(
                     SecuredToggle(
@@ -40,7 +42,7 @@ struct SecuredToggle: View {
             Image(
                 isSecuredField ? "preview-close" : "preview-open"
             )
-            .foregroundColor(.borderSecondary)
+            .foregroundColor(Color.borderSecondary)
         }
     }
 }

@@ -11,10 +11,9 @@ import SwiftUI
 struct voiceoutApp: App {
     var body: some Scene {
         WindowGroup {
-//            RouterView {
-//                ContentView()
-//            }
-            LoginView()
+            RouterView {
+                ContentView()
+            }
         }
     }
 }

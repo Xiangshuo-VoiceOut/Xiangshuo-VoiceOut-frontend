@@ -1,0 +1,35 @@
+//
+//  AddButton.swift
+//  voiceout
+//
+//  Created by J. Wu on 6/17/24.
+//
+
+import SwiftUI
+
+struct AddButton: View {
+    var action: () -> Void
+    var body: some View {
+        Button(action: action){
+            HStack {
+                Text(LocalizedStringKey("add_new_qualification"))
+                    .font(.typography(.bodyMedium))
+                .foregroundColor(Color.textBrandPrimary)
+                
+                Image(systemName: "plus.square")
+                    .foregroundColor(Color.textBrandPrimary)
+            }
+            .padding(.vertical, ViewSpacing.base)
+            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+            .background(Color.brandTertiary)
+        }
+        .overlay(
+            RoundedRectangle(cornerRadius: CornerRadius.small.value)
+                .stroke(.width100, Color.brandPrimary)
+        )
+    }
+}
+
+#Preview {
+    AddButton(action: {})
+}

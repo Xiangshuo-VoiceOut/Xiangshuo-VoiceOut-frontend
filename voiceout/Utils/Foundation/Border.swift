@@ -24,6 +24,15 @@ enum CornerRadius {
 enum StrokeWidth {
     case width100
     case width200
+    
+    var value: CGFloat {
+        switch self {
+        case .width100:
+            return 1.0
+        case .width200:
+            return 2.0
+        }
+    }
 }
 
 extension View {

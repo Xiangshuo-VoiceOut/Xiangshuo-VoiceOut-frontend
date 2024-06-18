@@ -12,7 +12,6 @@ struct ResetPasswordView: View {
     @StateObject private var resetPasswordVM = ResetPasswordVM()
     
     var body: some View {
-        NavigationStack {
             ZStack {
                 BackgroundView()
                 VStack{
@@ -41,7 +40,7 @@ struct ResetPasswordView: View {
                     .padding(.vertical, ViewSpacing.xlarge)
                     .background(Color.surfacePrimary)
                     .cornerRadius(CornerRadius.medium.value)
-                    .shadow(color: Color(.grey200),radius: CornerRadius.small.value)
+                    .shadow(color: Color(.grey200),radius: CornerRadius.xxsmall.value)
                     .padding(ViewSpacing.medium)
                     
                     
@@ -60,7 +59,6 @@ struct ResetPasswordView: View {
                 
             }
             .ignoresSafeArea()
-        }
         
         .onChange(of: resetPasswordVM.newPassword){ _ in
             resetPasswordVM.validateInputs()

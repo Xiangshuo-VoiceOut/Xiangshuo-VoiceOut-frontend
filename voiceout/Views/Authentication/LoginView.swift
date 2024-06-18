@@ -12,8 +12,6 @@ struct LoginView: View {
     @StateObject private var loginVM = AuthViewModel()
     
     var body: some View {
-        
-        NavigationStack {
             ZStack {
                 BackgroundView()
                 
@@ -60,7 +58,7 @@ struct LoginView: View {
                     .padding(.vertical, ViewSpacing.xlarge)
                     .background(Color.surfacePrimary)
                     .cornerRadius(CornerRadius.medium.value)
-                    .shadow(color: Color(.grey200),radius: CornerRadius.small.value)
+                    .shadow(color: Color(.grey200),radius: CornerRadius.xxsmall.value)
                     .padding(ViewSpacing.medium)
                     
                     
@@ -82,7 +80,7 @@ struct LoginView: View {
                 }
             }
             .ignoresSafeArea()
-        }
+            .navigationBarHidden(true)
         
         .onChange(of: loginVM.email) { _ in
             loginVM.validateInput()

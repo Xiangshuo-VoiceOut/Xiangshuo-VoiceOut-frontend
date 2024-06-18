@@ -23,51 +23,52 @@ struct TextInputView: View {
     var suffixContetnt: AnyView?
     var borderRadius: CGFloat = CornerRadius.medium.value
     var body: some View {
-        HStack(spacing: ViewSpacing.small) {
-            if let icon = prefixIcon {
-                Image(icon)
-                    .foregroundColor(.borderSecondary)
+        VStack (alignment: .leading, spacing: 1) {
+            HStack(spacing: ViewSpacing.small) {
+                if let icon = prefixIcon {
+                    Image(icon)
+                        .foregroundColor(.borderSecondary)
+                }
+                
+                if isSecuredField {
+                    SecureField(
+                        LocalizedStringKey(placeholder),
+                        text: $text,
+                        prompt: Text(LocalizedStringKey(placeholder))
+                            .foregroundColor(.textSecondary)
+                            .font(.typography(.bodyMediumEmphasis))
+                    )
+                    .foregroundColor(.textPrimary)
+                } else {
+                    TextField(
+                        LocalizedStringKey(placeholder),
+                        text: $text,
+                        prompt: Text(LocalizedStringKey(placeholder))
+                            .font(.typography(.bodyMediumEmphasis))
+                            .foregroundColor(.textSecondary)
+                    )
+                    .foregroundColor(.textPrimary)
+                }
+                suffixContetnt
             }
-            
-            if isSecuredField {
-                SecureField(
-                    LocalizedStringKey(placeholder),
-                    text: $text,
-                    prompt: Text(LocalizedStringKey(placeholder))
-                        .foregroundColor(.textSecondary)
-                        .font(.typography(.bodyMediumEmphasis))
-                )
-                .foregroundColor(.textPrimary)
-            } else {
-                TextField(
-                    LocalizedStringKey(placeholder),
-                    text: $text,
-                    prompt: Text(LocalizedStringKey(placeholder))
-                        .font(.typography(.bodyMediumEmphasis))
-                        .foregroundColor(.textSecondary)
-                )
-                .foregroundColor(.textPrimary)
-            }
-            suffixContetnt
-        }
-        .padding(.horizontal, ViewSpacing.medium)
-        .padding(.vertical, ViewSpacing.small)
-        .background(Color.surfacePrimaryGrey2)
-        .cornerRadius(CornerRadius.medium.value)
-        .overlay(
-            RoundedRectangle(cornerRadius: CornerRadius.medium.value)
-                .stroke(
-                    .width100,
-                    validationStateColor
-                )
-        )
+            .padding(.horizontal, ViewSpacing.medium)
+            .padding(.vertical, ViewSpacing.small)
+            .background(Color.surfacePrimaryGrey2)
+            .cornerRadius(CornerRadius.medium.value)
+            .overlay(
+                RoundedRectangle(cornerRadius: CornerRadius.medium.value)
+                    .stroke(
+                        .width100,
+                        validationStateColor
+                    )
+            )
         .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-        
-        if let validationMessage = validationMessage, !validationMessage.isEmpty {
-            Text(LocalizedStringKey(validationMessage))
-                .foregroundColor(validationState == .error ? Color.borderInValid : Color.textSecondary)
-                .font(.typography(.bodyXXSmall))
-                .padding(.leading)
+            if let validationMessage = validationMessage, !validationMessage.isEmpty {
+                Text(LocalizedStringKey(validationMessage))
+                    .foregroundColor(validationState == .error ? Color.borderInValid : Color.textSecondary)
+                    .font(.typography(.bodyXXSmall))
+                    .padding(.leading)
+            }
         }
     }
     

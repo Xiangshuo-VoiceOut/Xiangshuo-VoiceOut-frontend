@@ -12,7 +12,6 @@ struct ForgetPasswordView: View {
     @StateObject private var forgetPasswordVM = ForgetPWViewModel()
     
     var body: some View {
-        NavigationStack {
             ZStack {
                 BackgroundView()
                 VStack{
@@ -44,14 +43,14 @@ struct ForgetPasswordView: View {
                                 HStack {
                                     Spacer()
                                     if forgetPasswordVM.email.isEmpty {
-                                        ButtonView(text: "get_verification_code", action: {forgetPasswordVM.sendVerificationCode()}, theme: .base, spacing: .small)
+                                        ButtonView(text: "get_verification_code", action: {forgetPasswordVM.sendVerificationCode()}, theme: .base, spacing: .xsmall, fontSize: .small)
                                             .padding(.horizontal, ViewSpacing.small)
                                     }
                                     else if forgetPasswordVM.isVerificationCodeSent {
-                                        ButtonView(text: "\(forgetPasswordVM.timerValue) S", action: {}, theme: .base, spacing: .small)
+                                        ButtonView(text: "\(forgetPasswordVM.timerValue) S", action: {}, theme: .base, spacing: .xsmall, fontSize:.small)
                                             .padding(.horizontal, ViewSpacing.small)
                                     } else {
-                                        ButtonView(text: "get_verification_code", action: {forgetPasswordVM.sendVerificationCode()}, spacing: .small)
+                                        ButtonView(text: "get_verification_code", action: {forgetPasswordVM.sendVerificationCode()}, spacing: .xsmall, fontSize:.small)
                                             .padding(.horizontal, ViewSpacing.small)
                                     }
                                 }
@@ -71,7 +70,7 @@ struct ForgetPasswordView: View {
                     .padding(.vertical, ViewSpacing.xlarge)
                     .background(Color.surfacePrimary)
                     .cornerRadius(CornerRadius.medium.value)
-                    .shadow(color: Color.grey200,radius: CornerRadius.small.value)
+                    .shadow(color: Color.grey200,radius: CornerRadius.xxsmall.value)
                     .padding(ViewSpacing.medium)
                     
                     
@@ -90,7 +89,6 @@ struct ForgetPasswordView: View {
                 }
             }
             .ignoresSafeArea()
-        }
         .onChange(of: forgetPasswordVM.email){ _ in
             forgetPasswordVM.validateInputs()
             forgetPasswordVM.resetValidateState()

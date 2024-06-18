@@ -51,7 +51,9 @@ struct SecuredTextInputView_Previews: PreviewProvider {
     static var previews: some View {
         SecuredTextInputView(
             text: .constant(""),
-            securedPlaceholder: "placeholder"
+            securedPlaceholder: "placeholder",
+            securedValidation: .error,
+            validationMsg: "错误"
         )
     }
 }

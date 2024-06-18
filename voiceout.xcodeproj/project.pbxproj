@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B814C5952C220F66008F4A60 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5942C220F66008F4A60 /* LoginView.swift */; };
 		B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4720C2C175DBB00D6716A /* BadgeView.swift */; };
 		B8D472132C1E3CB700D6716A /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D472122C1E3CB700D6716A /* BackgroundView.swift */; };
 		B8D472152C1E3D0900D6716A /* BGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D472142C1E3D0900D6716A /* BGConstants.swift */; };
 		B8D472172C1E3DB500D6716A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D472162C1E3DB500D6716A /* HeaderView.swift */; };
 		B8D472192C1E3DED00D6716A /* LogoSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D472182C1E3DED00D6716A /* LogoSize.swift */; };
-		B8D4721D2C1E405000D6716A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4721A2C1E404F00D6716A /* LoginView.swift */; };
 		B8D4721E2C1E405000D6716A /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4721B2C1E404F00D6716A /* ForgetPasswordView.swift */; };
 		B8D4721F2C1E405000D6716A /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4721C2C1E405000D6716A /* ResetPasswordView.swift */; };
 		B8D472232C1E408C00D6716A /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D472202C1E408B00D6716A /* AuthViewModel.swift */; };
@@ -54,12 +54,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B814C5942C220F66008F4A60 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B8D4720C2C175DBB00D6716A /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		B8D472122C1E3CB700D6716A /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		B8D472142C1E3D0900D6716A /* BGConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGConstants.swift; sourceTree = "<group>"; };
 		B8D472162C1E3DB500D6716A /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		B8D472182C1E3DED00D6716A /* LogoSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoSize.swift; sourceTree = "<group>"; };
-		B8D4721A2C1E404F00D6716A /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = "../../../../../Documents/Xiangshuo-VoiceOut-frontend/voiceout/Views/Authentication/Therapist/LoginView.swift"; sourceTree = "<group>"; };
 		B8D4721B2C1E404F00D6716A /* ForgetPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordView.swift; sourceTree = "<group>"; };
 		B8D4721C2C1E405000D6716A /* ResetPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		B8D472202C1E408B00D6716A /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				B8D4721B2C1E404F00D6716A /* ForgetPasswordView.swift */,
-				B8D4721A2C1E404F00D6716A /* LoginView.swift */,
+				B814C5942C220F66008F4A60 /* LoginView.swift */,
 				B8D4721C2C1E405000D6716A /* ResetPasswordView.swift */,
 				D284992C2BEEF3FE00963B3A /* Components */,
 			);
@@ -384,6 +384,7 @@
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
 				D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */,
 				B8D4722E2C1E421100D6716A /* ErrorResponse.swift in Sources */,
+				B814C5952C220F66008F4A60 /* LoginView.swift in Sources */,
 				D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */,
 				B8D4722F2C1E421100D6716A /* UserLogin.swift in Sources */,
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
@@ -397,7 +398,6 @@
 				B8D472232C1E408C00D6716A /* AuthViewModel.swift in Sources */,
 				B8D472132C1E3CB700D6716A /* BackgroundView.swift in Sources */,
 				D28498EE2BE1B64100963B3A /* EmailValidator.swift in Sources */,
-				B8D4721D2C1E405000D6716A /* LoginView.swift in Sources */,
 				B8D472242C1E408C00D6716A /* ResetPasswordVM.swift in Sources */,
 				D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */,
 				D28499262BE9AB6200963B3A /* PopupView.swift in Sources */,

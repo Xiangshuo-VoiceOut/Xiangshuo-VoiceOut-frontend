@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DropdownView: View {
-    let title: String
     var prefixIcon: String? = nil
     let prompt: String
     let options: [String]
@@ -17,13 +16,7 @@ struct DropdownView: View {
     @Binding var selection: String?
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(title)
-                .font(.typography(.bodyMedium))
-                .foregroundColor(Color.textPrimary)
-                .padding(.leading, ViewSpacing.small)
-                
-            
+        
             VStack{
                 HStack {
                     if let icon = prefixIcon {
@@ -77,10 +70,10 @@ struct DropdownView: View {
             
             
            
-        }
+        
     }
 }
 
 #Preview {
-    DropdownView(title: "地区",prefixIcon: "local", prompt: "请选择您的地区", options: ["NY", "CA","NJ"], selection: .constant("NY"))
+    DropdownView(prefixIcon: "local", prompt: "请选择您的地区", options: ["NY", "CA","NJ"], selection: .constant("NY"))
 }

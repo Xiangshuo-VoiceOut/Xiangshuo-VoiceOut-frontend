@@ -47,8 +47,9 @@ class AuthViewModel: ObservableObject {
             isEmailValid = false
             isPasswordValid = false
             emailValidationMsg = "login_error"
-        case .na:
-            break
+        default:
+            isEmailValid = false
+            emailValidationMsg = "服务器错误" //TODO: double check with design team & backend
         }
     }
     

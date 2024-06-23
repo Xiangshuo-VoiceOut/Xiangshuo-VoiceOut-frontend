@@ -31,38 +31,41 @@ class LoginWebService {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(body)
         
-        URLSession.shared.dataTask(with: request) {(data, response, error) in
-            
-            guard let data = data, error == nil else {
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completions(.failure(.na))
                 return
             }
             
-            let httpResponse = response as? HTTPURLResponse
-            if httpResponse?.statusCode != 200 {
-                if let errorResponse = try?  JSONDecoder().decode(ErrorResponse.self, from: data) {
-                    let errorMessages = errorResponse.errors.map {$0.msg}
-                    
-                    for message in errorMessages {
-                        if message.contains("用户不存在") {
-                            completions(.failure(.userNotFound))
-                            return
-                        } else if message.contains("邮箱或密码错误"){
-                            completions(.failure(.incorrectPasswordOrEmail))
-                            return
-                        }
-                    }
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completions(.failure(.na))
+                return
+            }
+            
+            switch httpResponse.statusCode {
+            case 200:
+                guard let data = data else {
                     completions(.failure(.na))
-                } else {
-                    completions(.failure(.na))
+                    return
                 }
-            }else {
-                    guard let loginResponse = try? JSONDecoder().decode(LoginResponse.self, from: data),
-                          let token = loginResponse.token else {
+                do {
+                    let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
+                    if let token = loginResponse.token {
+                        completions(.success(token))
+                    } else {
                         completions(.failure(.na))
-                        return
                     }
-                    completions(.success(token))
+                } catch  {
+                    completions(.failure(.na))
                 }
-            }.resume()
+            case 400...499:
+                completions(.failure(.incorrectPasswordOrEmail))
+            case 500...599:
+                completions(.failure(.na))
+            default:
+                completions(.failure(.na))
+            }
+        }.resume()
+        
         }
     }

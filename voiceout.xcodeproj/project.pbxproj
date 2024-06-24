@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B814C58F2C206907008F4A60 /* DropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C58E2C206907008F4A60 /* DropdownView.swift */; };
 		B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4720C2C175DBB00D6716A /* BadgeView.swift */; };
+		B8F845442C28BB98008C0D80 /* DropdownOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845432C28BB98008C0D80 /* DropdownOption.swift */; };
+		B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845452C28BC82008C0D80 /* Dropdown.swift */; };
+		B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845472C29BB09008C0D80 /* DropdownList.swift */; };
+		B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */; };
 		D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */; };
 		D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0D2BA62F300040B0AE /* ContentView.swift */; };
 		D2071D102BA62F340040B0AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2071D0F2BA62F340040B0AE /* Assets.xcassets */; };
@@ -41,8 +44,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B814C58E2C206907008F4A60 /* DropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownView.swift; sourceTree = "<group>"; };
 		B8D4720C2C175DBB00D6716A /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		B8F845432C28BB98008C0D80 /* DropdownOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DropdownOption.swift; path = voiceout/DropdownOption.swift; sourceTree = SOURCE_ROOT; };
+		B8F845452C28BC82008C0D80 /* Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
+		B8F845472C29BB09008C0D80 /* DropdownList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownList.swift; sourceTree = "<group>"; };
+		B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownListRow.swift; sourceTree = "<group>"; };
 		D2071D082BA62F300040B0AE /* voiceout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voiceout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voiceoutApp.swift; sourceTree = "<group>"; };
 		D2071D0D2BA62F300040B0AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 		D2071D382BAA82E70040B0AE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B8F845432C28BB98008C0D80 /* DropdownOption.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -180,7 +187,9 @@
 				D284992A2BEB0B4800963B3A /* RadioButtonView.swift */,
 				D2D6CD7B2BF8FE3400DD7688 /* DialogView.swift */,
 				B8D4720C2C175DBB00D6716A /* BadgeView.swift */,
-				B814C58E2C206907008F4A60 /* DropdownView.swift */,
+				B8F845452C28BC82008C0D80 /* Dropdown.swift */,
+				B8F845472C29BB09008C0D80 /* DropdownList.swift */,
+				B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -334,7 +343,6 @@
 				D284992B2BEB0B4900963B3A /* RadioButtonView.swift in Sources */,
 				D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */,
 				D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */,
-				B814C58F2C206907008F4A60 /* DropdownView.swift in Sources */,
 				B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */,
 				D2071D432BAA8C020040B0AE /* LoginView.swift in Sources */,
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
@@ -343,7 +351,11 @@
 				D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */,
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
 				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,
+				B8F845442C28BB98008C0D80 /* DropdownOption.swift in Sources */,
 				D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */,
+				B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */,
+				B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */,
+				B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */,
 				D2D6CD892C038B1700DD7688 /* Color.swift in Sources */,
 				D2D6CD852C03699000DD7688 /* RouterModel.swift in Sources */,
 				D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */,

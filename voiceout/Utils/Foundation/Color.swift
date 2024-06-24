@@ -40,6 +40,7 @@ extension Color {
     static let textTitle = grey900
     static let textPrimary = grey500
     static let textSecondary = grey300
+    static let textLight = grey200
     static let textInvert = grey50
     static let textBrandPrimary = brandPrimary
     static let textBrandSecondary = brandSecondary

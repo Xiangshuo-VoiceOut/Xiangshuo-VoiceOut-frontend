@@ -13,6 +13,7 @@ struct Dropdown: View {
     var prefixIcon: String? = nil
     let placeholder: String
     let options: [DropdownOption]
+    var isCardInput: Bool = false
     var body: some View {
         Button(action: {
             withAnimation {
@@ -31,27 +32,33 @@ struct Dropdown: View {
                 Spacer()
                 
                 Image("down")
+                    .rotationEffect(Angle(degrees: isOptionPresented ? 180 : 0))
                     
             }
+            .padding(.horizontal,ViewSpacing.medium)
+            .padding(.vertical,ViewSpacing.small)
+            
         }
-        .padding(.horizontal,ViewSpacing.medium)
-        .padding(.vertical,ViewSpacing.base)
         .background(Color.surfacePrimaryGrey2)
         .cornerRadius(CornerRadius.medium.value)
         .overlay(alignment:.top){
             VStack{
                 if self.isOptionPresented {
                     Spacer(minLength: ViewSpacing.xxlarge)
-                    DropdownList(options: self.options)
+                    DropdownList(options: self.options, isCardInput: isCardInput) { option in
+                        self.isOptionPresented = false
+                        self.selectionOption = option
+
+                    }
                 }
             }
-            .padding(.vertical, ViewSpacing.xsmall)
+            .padding(.top, -ViewSpacing.base)
         }
     
     }
 }
 
 #Preview {
-    Dropdown(selectionOption: .constant(nil), prefixIcon: "lock", placeholder: "Select month", options: DropdownOption.testAllMonths)
+    Dropdown(selectionOption: .constant(nil), prefixIcon: "lock", placeholder: "Select month", options: DropdownOption.testAllMonths, isCardInput: false)
         .padding()
 }

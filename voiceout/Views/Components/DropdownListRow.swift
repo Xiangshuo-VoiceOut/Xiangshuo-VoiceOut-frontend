@@ -9,8 +9,10 @@ import SwiftUI
 
 struct DropdownListRow: View {
     let option: DropdownOption
+    let onSelectedAction: (_ option: DropdownOption) -> Void
+    var isCardInput: Bool = false
     var body: some View {
-        Button(action: {}) {
+        Button(action: {self.onSelectedAction(option)}) {
             Text(option.option)
                 .frame(maxWidth:.infinity, alignment: .leading)
                 .foregroundColor(Color.textPrimary)
@@ -18,11 +20,11 @@ struct DropdownListRow: View {
                 
                 
         }
-        .padding(.all,ViewSpacing.medium)
+        .padding(.all, isCardInput ? ViewSpacing.medium : ViewSpacing.small)
         
     }
 }
 
 #Preview {
-    DropdownListRow(option: DropdownOption.testSingleMonth)
+    DropdownListRow(option: DropdownOption.testSingleMonth, onSelectedAction: {_ in})
 }

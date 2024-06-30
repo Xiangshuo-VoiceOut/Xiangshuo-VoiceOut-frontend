@@ -19,6 +19,7 @@ extension DropdownOption {
         DropdownOption(option: "February"),
         DropdownOption(option: "March"),
         DropdownOption(option: "April"),
-        DropdownOption(option: "May")
+        DropdownOption(option: "May"),
+        DropdownOption(option: "June")
     ]
 }

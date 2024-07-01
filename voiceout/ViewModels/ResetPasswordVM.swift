@@ -16,11 +16,12 @@ class ResetPasswordVM : ObservableObject {
     @Published var resetPasswordValidationMsg: String = "password_requirement"
     @Published var repeatPasswordValidationMsg: String = ""
     @Published var isFinishButtonEnabled: Bool = false
+    var role: UserRole = .user
     
     private var webservice = ResetPasswordWebService()
     
     func resetPassword(){
-        webservice.resetPassword(newPassword: newPassword, completion: { [weak self] result in
+        webservice.resetPassword(newPassword: newPassword, role: role, completion: { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case.success(_):

@@ -18,6 +18,7 @@ class ForgetPWViewModel : ObservableObject {
     @Published var isNextButtonEnabled: Bool = false
     @Published var emailValidationMessage: String = ""
     @Published var verificationCodeValidationMsg: String = ""
+    var role: UserRole = .user
     
     private var resetRequestService = ResetPasswordWebService()
     private var timer: AnyCancellable?
@@ -29,7 +30,7 @@ class ForgetPWViewModel : ObservableObject {
                 return
             }
             
-            resetRequestService.requestPasswordReset(email: email) { [weak self] result in
+        resetRequestService.requestPasswordReset(email: email, role: role) { [weak self] result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let message):
@@ -77,7 +78,7 @@ class ForgetPWViewModel : ObservableObject {
                 return
             }
             
-        resetRequestService.validateResetToken() { [weak self] result in
+        resetRequestService.validateResetToken(role: role) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let isValid):

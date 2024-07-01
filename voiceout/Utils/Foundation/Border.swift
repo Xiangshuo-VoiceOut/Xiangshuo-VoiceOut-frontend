@@ -10,6 +10,7 @@ import SwiftUI
 enum CornerRadius {
     case full
     case medium
+    case xxsmall
     
     var value: CGFloat{
         switch self{
@@ -17,6 +18,8 @@ enum CornerRadius {
             return 360
         case .medium:
             return 16
+        case .xxsmall:
+            return 3
         }
     }
 }
@@ -52,6 +55,8 @@ extension RoundedRectangle {
             cornerRadiusValue = 360
         case .medium:
             cornerRadiusValue = 16
+        case .xxsmall:
+            cornerRadiusValue = 3
         }
 
         self.init(cornerRadius: cornerRadiusValue, style: .continuous)

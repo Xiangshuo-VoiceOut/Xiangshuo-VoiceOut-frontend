@@ -27,7 +27,7 @@ struct ContentView: View {
                 text: "user_login",
                 action: {
                     if isSelected {
-                        router.navigateTo(.login)
+                        router.navigateTo(.userLogin)
                     } else {
                         dialogViewModel.present(
                             with: .init(
@@ -37,15 +37,16 @@ struct ContentView: View {
                             )
                         )
                     }
-                }
+                },
+                spacing: .medium
             )
             ButtonView(
                 text: "consultant_login",
                 action: {
-//                    todo: add signup view
-//                    router.navigateTo()
+                    router.navigateTo(.therapistLogin)
                 },
-                variant: .outline
+                variant: .outline,
+                spacing: .medium
             )
         }
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)

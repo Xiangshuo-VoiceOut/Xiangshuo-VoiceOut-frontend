@@ -17,11 +17,13 @@ enum VerificationError: Error{
     case na
 }
 
+
 struct ResetPasswordWebService {
     
-    func requestPasswordReset(email: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func requestPasswordReset(email: String, role: UserRole, completion: @escaping (Result<String, Error>) -> Void) {
+        let urlString = (role == .user) ? APIConfigs.userForgetPWURL : APIConfigs.therapistForgetPWURL
         
-        guard let url = URL(string: APIConfigs.forgetPWURL) else { return }
+        guard let url = URL(string: urlString) else { return }
         
         var request = URLRequest(url:url)
         request.httpMethod = "POST"
@@ -57,14 +59,16 @@ struct ResetPasswordWebService {
     }
     
     
-    func validateResetToken(completion: @escaping (Result<Bool, Error>) -> Void) {
+    func validateResetToken(role: UserRole, completion: @escaping (Result<Bool, Error>) -> Void) {
+        
+        let urlString = (role == .user) ? APIConfigs.userForgetPWURL : APIConfigs.therapistForgetPWURL
         
         guard let token = UserDefaults.standard.string(forKey: "resetToken") else {
             completion(.failure(VerificationError.verificationCodeInvalid))
             return
         }
         
-        guard let url = URL(string: APIConfigs.validateTokenURL) else { return }
+        guard let url = URL(string: urlString) else { return }
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -93,14 +97,17 @@ struct ResetPasswordWebService {
         }
     
     
-    func resetPassword(newPassword: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func resetPassword(newPassword: String, role: UserRole, completion: @escaping (Result<String, Error>) -> Void) {
+        
+        let urlString = (role == .user) ? APIConfigs.userForgetPWURL : APIConfigs.therapistForgetPWURL
+        
         guard let token = UserDefaults.standard.string(forKey: "resetToken") else {
             completion(.failure(VerificationError.verificationCodeInvalid))
             return
         }
         
         
-        guard let url = URL(string:APIConfigs.resetPWURL) else { return }
+        guard let url = URL(string: urlString) else { return }
         
             var request = URLRequest(url: url)
             request.httpMethod = "POST"

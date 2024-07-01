@@ -9,7 +9,11 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @StateObject private var loginVM = AuthViewModel()
+    @StateObject private var loginVM:AuthViewModel
+    
+    init(_ role: UserRole) {
+        _loginVM = StateObject(wrappedValue: AuthViewModel(role: role))
+    }
     
     var body: some View {
             ZStack {
@@ -75,8 +79,7 @@ struct LoginView: View {
                         }
                     }
                 }
-                .navigationDestination(isPresented: $loginVM.showingMainPage) {
-                    
+                .navigationDestination(isPresented: $loginVM.showingUserMainPage) {
                 }
             }
             .ignoresSafeArea()
@@ -95,6 +98,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(.user)
     }
 }

@@ -23,20 +23,24 @@ struct ContentView: View {
                 .foregroundColor(.textSecondary)
                 .padding(.bottom, ViewSpacing.xxlarge)
             
-            ButtonView(
-                text: "user_login",
-                action: {
-                    if isSelected {
-                        router.navigateTo(.userLogin)
-                    } else {
-                        dialogViewModel.present(
-                            with: .init(
-                                content: AnyView(
-                                    LegalDialogContent(isSelected: $isSelected)
+
+            VStack(spacing: ViewSpacing.large) {
+                ButtonView(
+                    text: "user_login",
+                    action: {
+                        if isSelected {
+                            router.navigateTo(.userLogin)
+                        } else {
+                            dialogViewModel.present(
+                                with: .init(
+                                    content: AnyView(
+                                        LegalDialogContent(isSelected: $isSelected)
+                                    )
                                 )
                             )
-                        )
+                        }
                     }
+
                 },
                 spacing: .medium
             )

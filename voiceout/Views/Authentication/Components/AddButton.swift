@@ -16,7 +16,7 @@ struct AddButton: View {
                     .font(.typography(.bodyMedium))
                 .foregroundColor(Color.textBrandPrimary)
                 
-                Image(systemName: "plus.square")
+                Image("add")
                     .foregroundColor(Color.textBrandPrimary)
             }
             .padding(.vertical, ViewSpacing.base)

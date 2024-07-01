@@ -18,7 +18,7 @@ struct RouterView<Content: View>: View {
     var body: some View {
         NavigationStack(path: $router.path) {
             content
-                .navigationDestination(for: RouterModel.Route.self) { route in
+                .navigationDestination(for: Route.self) { route in
                     router.view(for: route)
                 }
         }

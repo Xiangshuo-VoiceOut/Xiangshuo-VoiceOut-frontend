@@ -23,35 +23,30 @@ struct ContentView: View {
                 .foregroundColor(.textSecondary)
                 .padding(.bottom, ViewSpacing.xxlarge)
             
-
             VStack(spacing: ViewSpacing.large) {
                 ButtonView(
                     text: "user_login",
                     action: {
-                        if isSelected {
-                            router.navigateTo(.userLogin)
-                        } else {
-                            dialogViewModel.present(
-                                with: .init(
-                                    content: AnyView(
-                                        LegalDialogContent(isSelected: $isSelected)
-                                    )
-                                )
-                            )
-                        }
-                    }
-
-                },
-                spacing: .medium
-            )
-            ButtonView(
-                text: "consultant_login",
-                action: {
-                    router.navigateTo(.therapistLogin)
-                },
-                variant: .outline,
-                spacing: .medium
-            )
+                        validateToLogin(
+                            screenType: .userLogin,
+                            isSelected: isSelected
+                        )
+                    },
+                    spacing: .medium
+                )
+                
+                ButtonView(
+                    text: "consultant_login",
+                    action: {
+                        validateToLogin(
+                            screenType: .therapistLogin,
+                            isSelected: isSelected
+                        )
+                    },
+                    variant: .outline,
+                    spacing: .medium
+                )
+            }
         }
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
         .background(
@@ -67,6 +62,20 @@ struct ContentView: View {
             LegalButton(isSelected: $isSelected)
                 .environmentObject(dialogViewModel)
                 .environmentObject(popupViewModel)
+        }
+    }
+    
+    func validateToLogin(screenType: Route, isSelected: Bool) {
+        if isSelected {
+            router.navigateTo(.therapistLogin)
+        } else {
+            dialogViewModel.present(
+                with: .init(
+                    content: AnyView(
+                        LegalDialogContent(isSelected: $isSelected)
+                    )
+                )
+            )
         }
     }
 }

@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
+		B814C5912C20F2F4008F4A60 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5902C20F2F4008F4A60 /* AddButton.swift */; };
+
 		B814C5952C220F66008F4A60 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5942C220F66008F4A60 /* LoginView.swift */; };
+
 		B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4720C2C175DBB00D6716A /* BadgeView.swift */; };
 
 		B8F845442C28BB98008C0D80 /* DropdownOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845432C28BB98008C0D80 /* DropdownOption.swift */; };
@@ -61,7 +65,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+
+		B814C5902C20F2F4008F4A60 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+
 		B814C5942C220F66008F4A60 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+
 		B8D4720C2C175DBB00D6716A /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 
 		B8F845432C28BB98008C0D80 /* DropdownOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DropdownOption.swift; path = voiceout/DropdownOption.swift; sourceTree = SOURCE_ROOT; };
@@ -291,6 +299,7 @@
 				D284992D2BEEF4D700963B3A /* LegalButton.swift */,
 				D2D6CD772BF8E22200DD7688 /* LegalDialogContent.swift */,
 				D2D6CD802BFBD2BE00DD7688 /* LegalPopupContent.swift */,
+				B814C5902C20F2F4008F4A60 /* AddButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -417,6 +426,7 @@
 				B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */,
 				B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */,
 				D2D6CD892C038B1700DD7688 /* Color.swift in Sources */,
+				B814C5912C20F2F4008F4A60 /* AddButton.swift in Sources */,
 				D2D6CD852C03699000DD7688 /* RouterModel.swift in Sources */,
 				D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */,
 				D28498EA2BE171F700963B3A /* Border.swift in Sources */,

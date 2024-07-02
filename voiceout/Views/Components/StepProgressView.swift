@@ -1,0 +1,42 @@
+//
+//  StepProgressView.swift
+//  voiceout
+//
+//  Created by J. Wu on 6/18/24.
+//
+
+import SwiftUI
+
+struct StepProgressView: View {
+    var totalSteps: Int
+    var currentStep: Int
+    
+    var body: some View {
+        HStack(spacing: 0) {
+            ForEach(0..<totalSteps) { step in
+                if step == currentStep {
+                    Circle()
+                        .fill(Color.brandPrimary)
+                        .frame(width: ViewSpacing.base, height: ViewSpacing.base)
+                } else {
+                    Circle()
+                        .stroke(Color.brandPrimary, lineWidth:StrokeWidth.width100.value)
+                        .frame(width: ViewSpacing.base, height: ViewSpacing.base)
+                }
+                
+                
+                if step < totalSteps - 1 {
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(.brandPrimary)
+                }
+                
+            }
+        }
+        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+    }
+}
+
+#Preview {
+    StepProgressView(totalSteps: 7, currentStep: 2)
+}

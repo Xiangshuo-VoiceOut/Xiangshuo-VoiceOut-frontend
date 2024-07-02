@@ -37,7 +37,7 @@ struct ButtonView: View {
     var action: () -> Void
     var variant: ButtonVariant? = ButtonVariant.solid
     var theme: ButtonTheme? = ButtonTheme.action
-    var spacing: ButtonSpacing? = ButtonSpacing.medium
+    var spacing: ButtonSpacing? = ButtonSpacing.small
     var fontSize: ButtonFontSize? = ButtonFontSize.medium
     var maxWidth: CGFloat? = nil
     
@@ -139,6 +139,8 @@ struct ButtonView: View {
                 bottom: ViewSpacing.small,
                 trailing: ViewSpacing.xxxlarge
             )
+            
+            
         }
     }
 }
@@ -148,7 +150,6 @@ struct ButtonView_Previews: PreviewProvider {
         Group{
             ButtonView(
                 text: "登录", action: {}
-//                maxWidth: .infinity
             )
             .previewLayout(.sizeThatFits)
         }

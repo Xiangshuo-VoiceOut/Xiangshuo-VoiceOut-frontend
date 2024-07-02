@@ -7,17 +7,20 @@
 
 import SwiftUI
 
+enum Route: Hashable {
+    case userLogin
+    case therapistLogin
+}
+
 final class RouterModel: ObservableObject {
-    enum Route: Hashable {
-        case login
-    }
-    
     @Published var path: NavigationPath = NavigationPath()
     
     @ViewBuilder func view(for route: Route) -> some View {
         switch route {
-        case .login:
-            LoginView()
+        case .userLogin:
+            LoginView(.user)
+        case .therapistLogin:
+            LoginView(.therapist)
         }
     }
     

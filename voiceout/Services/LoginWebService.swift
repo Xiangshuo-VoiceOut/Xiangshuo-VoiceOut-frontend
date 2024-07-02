@@ -17,10 +17,19 @@ struct LoginResponse: Codable {
     let token: String?
 }
 
+
+enum UserRole {
+    case therapist
+    case user
+}
+
+
 class LoginWebService {
     
-    func login(email: String, password: String, completions: @escaping (Result<String, AuthenticationError>) -> Void ) {
-        guard let url = URL(string: APIConfigs.LogInURL) else {
+    func login(email: String, password: String, role: UserRole, completions: @escaping (Result<String, AuthenticationError>) -> Void ) {
+        let urlString = (role == .user) ? APIConfigs.userLogInURL : APIConfigs.therapistLogInURL
+        guard let url = URL(string: urlString) else {
+
             return
         }
         
@@ -38,14 +47,14 @@ class LoginWebService {
             }
             
             guard let httpResponse = response as? HTTPURLResponse else {
-                completions(.failure(.na))
+                completions(.failure(.userNotFound))
                 return
             }
             
             switch httpResponse.statusCode {
             case 200:
                 guard let data = data else {
-                    completions(.failure(.na))
+                    completions(.failure(.userNotFound))
                     return
                 }
                 do {
@@ -56,10 +65,19 @@ class LoginWebService {
                         completions(.failure(.userNotFound))
                     }
                 } catch  {
-                    completions(.failure(.na))
+                    completions(.failure(.userNotFound))
                 }
             case 400...499:
-                completions(.failure(.incorrectPasswordOrEmail))
+                if let data = data, let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data),
+                   let firstError = errorResponse.errors.first {
+                    if firstError.msg.contains("用户不存在") {
+                        completions(.failure(.userNotFound))
+                    } else {
+                        completions(.failure(.incorrectPasswordOrEmail))
+                    }
+                } else {
+                    completions(.failure(.incorrectPasswordOrEmail))
+                }
             case 500...599:
                 completions(.failure(.na))
             default:

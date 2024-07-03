@@ -10,6 +10,7 @@ import SwiftUI
 enum Route: Hashable {
     case userLogin
     case therapistLogin
+    case therapistSignup
 }
 
 final class RouterModel: ObservableObject {
@@ -21,6 +22,8 @@ final class RouterModel: ObservableObject {
             LoginView(.user)
         case .therapistLogin:
             LoginView(.therapist)
+        case .therapistSignup:
+            TherapistSignupView()
         }
     }
     

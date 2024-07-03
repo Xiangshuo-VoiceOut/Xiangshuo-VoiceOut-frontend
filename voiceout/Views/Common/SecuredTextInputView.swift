@@ -13,20 +13,23 @@ struct SecuredTextInputView: View {
     var securedPlaceholder: String
     var securedValidation: ValidationState? = ValidationState.neutral
     var validationMsg: String = ""
+    var theme: TextInputTheme?
+    var prefixIcon: String?
     
     var body: some View {
-        
         TextInputView(
             text: $text,
             isSecuredField: isSecuredField,
             placeholder: securedPlaceholder,
-            prefixIcon: "lock",
+            prefixIcon: prefixIcon,
             validationState: securedValidation,
             validationMessage: validationMsg,
-            suffixContetnt:
+            suffixContent:
                 AnyView(
                     SecuredToggle(
-                        isSecuredField: $isSecuredField))
+                        isSecuredField: $isSecuredField)
+                ),
+            theme: theme
         )
         .autocapitalization(.none)
     }

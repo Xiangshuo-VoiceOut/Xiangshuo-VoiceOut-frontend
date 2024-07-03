@@ -63,11 +63,12 @@ struct ContentView: View {
                 .environmentObject(dialogViewModel)
                 .environmentObject(popupViewModel)
         }
+        .navigationBarBackButtonHidden()
     }
     
     func validateToLogin(screenType: Route, isSelected: Bool) {
         if isSelected {
-            router.navigateTo(.therapistLogin)
+            router.navigateTo(screenType)
         } else {
             dialogViewModel.present(
                 with: .init(

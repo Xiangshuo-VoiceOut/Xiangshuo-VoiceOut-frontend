@@ -8,98 +8,91 @@
 import SwiftUI
 
 struct ForgetPasswordView: View {
+    @StateObject private var verificationCodeVM: VerificationCodeVM
+    @StateObject private var textInputVM: TextInputVM
     
-    @StateObject private var forgetPasswordVM = ForgetPWViewModel()
+    init(_ role: UserRole) {
+        let model = TextInputVM()
+        _textInputVM = StateObject(wrappedValue: model)
+        _verificationCodeVM = StateObject(wrappedValue: VerificationCodeVM(role: role, textInputVM: model))
+    }
     
     var body: some View {
-            ZStack {
-                BackgroundView()
-                VStack{
-                    HeaderView()
+        ZStack {
+            BackgroundView()
+            VStack{
+                HeaderView()
                     
+                VStack {
                     VStack {
-                        VStack {
-                            TextInputView(
-                                text: $forgetPasswordVM.email,
-                                isSecuredField: false,
-                                placeholder: "email_placeholder",
-                                prefixIcon: "email",
-                                validationState: forgetPasswordVM.isEmailValid ? ValidationState.neutral : ValidationState.error,
-                                validationMessage: forgetPasswordVM.emailValidationMessage
+                        TextInputView(
+                            text: $textInputVM.email,
+                            isSecuredField: false,
+                            placeholder: "email_placeholder",
+                            prefixIcon: "email",
+                            validationState: textInputVM.isValidEmail ? ValidationState.neutral : ValidationState.error,
+                            validationMessage: textInputVM.emailValidationMsg
+                        )
+                        .autocapitalization(.none)
+                        .padding(.bottom)
+                        
+                        TextInputView(
+                            text: $textInputVM.verificationCode,
+                            isSecuredField: false,
+                            placeholder: "input_verification_code",
+                            prefixIcon: "protect",
+                            validationState: textInputVM.isVerificationCodeValid ? ValidationState.neutral : ValidationState.error,
+                            suffixContent: AnyView(
+                                VerificationCodeButton()
+                                    .environmentObject(verificationCodeVM)
+                                    .environmentObject(textInputVM)
                             )
-                            .autocapitalization(.none)
-                            .padding(.bottom)
+                        )
+                        .padding(.bottom, ViewSpacing.large)
                             
-                            ZStack {
-                                TextInputView(
-                                    text: $forgetPasswordVM.verificationCode,
-                                    isSecuredField: false,
-                                    placeholder: "input_verification_code",
-                                    prefixIcon: "protect",
-                                    validationState: forgetPasswordVM.isVerificationCodeValid ? ValidationState.neutral : ValidationState.error
-                                )
+                        ButtonView(
+                            text: "next_step",
+                            action: {},
+                            theme: verificationCodeVM.isNextButtonEnabled ? .action : .base,
+                            maxWidth: .infinity
+                        )
+                        .disabled(!verificationCodeVM.isNextButtonEnabled)
                             
-                                
-                                HStack {
-                                    Spacer()
-                                    if forgetPasswordVM.email.isEmpty {
-                                        ButtonView(text: "get_verification_code", action: {forgetPasswordVM.sendVerificationCode()}, theme: .base, spacing: .xsmall, fontSize: .small)
-                                            .padding(.horizontal, ViewSpacing.small)
-                                    }
-                                    else if forgetPasswordVM.isVerificationCodeSent {
-                                        ButtonView(text: "\(forgetPasswordVM.timerValue) S", action: {}, theme: .base, spacing: .xsmall, fontSize:.small)
-                                            .padding(.horizontal, ViewSpacing.small)
-                                    } else {
-                                        ButtonView(text: "get_verification_code", action: {forgetPasswordVM.sendVerificationCode()}, spacing: .xsmall, fontSize:.small)
-                                            .padding(.horizontal, ViewSpacing.small)
-                                    }
-                                }
-                                
-                                
-                            }
-                            .padding(.bottom, ViewSpacing.large)
-                            
-                            ButtonView(text: "next_step", action: {}, theme: forgetPasswordVM.isNextButtonEnabled ? .action : .base,
-                                maxWidth: .infinity
-                            ).disabled(!forgetPasswordVM.isNextButtonEnabled)
-                                
-                        }
-                        .background(Color.surfacePrimary)
-                        .padding(.horizontal,ViewSpacing.xlarge)
                     }
-                    .padding(.vertical, ViewSpacing.xlarge)
                     .background(Color.surfacePrimary)
-                    .cornerRadius(CornerRadius.medium.value)
-                    .shadow(color: Color.grey200,radius: CornerRadius.xxsmall.value)
-                    .padding(ViewSpacing.medium)
-                    
-                    
+                    .padding(.horizontal,ViewSpacing.xlarge)
                 }
-                .toolbar{
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            //TODO
-                            //sign up
-                        }){
-                            Text("signup")
-                                .font(.typography(.bodyMedium))
-                                .foregroundColor(.black.opacity(0.69))
-                        }
+                .padding(.vertical, ViewSpacing.xlarge)
+                .background(Color.surfacePrimary)
+                .cornerRadius(CornerRadius.medium.value)
+                .shadow(color: Color.grey200,radius: CornerRadius.xxsmall.value)
+                .padding(ViewSpacing.medium)
+            }
+            .toolbar{
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        //TODO
+                        //sign up
+                    }){
+                        Text("signup")
+                            .font(.typography(.bodyMedium))
+                            .foregroundColor(.black.opacity(0.69))
                     }
                 }
             }
-            .ignoresSafeArea()
-        .onChange(of: forgetPasswordVM.email){ _ in
-            forgetPasswordVM.validateInputs()
-            forgetPasswordVM.resetValidateState()
         }
-        .onChange(of: forgetPasswordVM.verificationCode) { _ in
-            forgetPasswordVM.validateInputs()
-            forgetPasswordVM.resetValidateState()
+        .ignoresSafeArea()
+        .onChange(of: textInputVM.email){ _ in
+            verificationCodeVM.validateInputs()
+            verificationCodeVM.resetValidateState()
+        }
+        .onChange(of: textInputVM.verificationCode) { _ in
+            verificationCodeVM.validateInputs()
+            verificationCodeVM.resetValidateState()
         }
     }
 }
 
 #Preview {
-    ForgetPasswordView()
+    ForgetPasswordView(.user)
 }

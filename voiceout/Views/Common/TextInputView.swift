@@ -13,15 +13,21 @@ enum ValidationState {
     case success
 }
 
+enum TextInputTheme {
+    case white
+    case grey
+}
+
 struct TextInputView: View {
     @Binding var text: String
     var isSecuredField: Bool
     let placeholder: String
-    var prefixIcon: String? = "email"
+    var prefixIcon: String?
     var validationState: ValidationState? = ValidationState.neutral
     var validationMessage: String? = ""
-    var suffixContetnt: AnyView?
+    var suffixContent: AnyView?
     var borderRadius: CGFloat = CornerRadius.medium.value
+    var theme: TextInputTheme? = .grey
     var body: some View {
         VStack (alignment: .leading, spacing: 1) {
             HStack(spacing: ViewSpacing.small) {
@@ -49,11 +55,11 @@ struct TextInputView: View {
                     )
                     .foregroundColor(.textPrimary)
                 }
-                suffixContetnt
+                suffixContent
             }
             .padding(.horizontal, ViewSpacing.medium)
             .padding(.vertical, ViewSpacing.small)
-            .background(Color.surfacePrimaryGrey2)
+            .background(backgroundColor)
             .cornerRadius(CornerRadius.medium.value)
             .overlay(
                 RoundedRectangle(cornerRadius: CornerRadius.medium.value)
@@ -80,6 +86,15 @@ struct TextInputView: View {
             return .borderValid
         default:
             return Color(.clear)
+        }
+    }
+    
+    private var backgroundColor: Color {
+        switch theme {
+        case .white:
+            return .white
+        default:
+            return .surfacePrimaryGrey2
         }
     }
 }

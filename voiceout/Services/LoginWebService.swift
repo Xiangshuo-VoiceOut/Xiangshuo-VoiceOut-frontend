@@ -17,6 +17,7 @@ struct LoginResponse: Codable {
     let token: String?
 }
 
+
 enum UserRole {
     case therapist
     case user
@@ -28,6 +29,7 @@ class LoginWebService {
     func login(email: String, password: String, role: UserRole, completions: @escaping (Result<String, AuthenticationError>) -> Void ) {
         let urlString = (role == .user) ? APIConfigs.userLogInURL : APIConfigs.therapistLogInURL
         guard let url = URL(string: urlString) else {
+
             return
         }
         

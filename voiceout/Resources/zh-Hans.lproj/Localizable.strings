@@ -39,3 +39,7 @@
 "finished" = "完成";
 "password_form_error" = "密码格式错误，请重新输入";
 "password_not_match" = "密码不匹配，请重新输入";
+"nickname_placeholder" = "请输入昵称";
+"state_placeholder" = "请选择您的所在州";
+"input_birthday" = "MM/DD/YYYY";
+"gender_placeholder" = "请选择您的性别";

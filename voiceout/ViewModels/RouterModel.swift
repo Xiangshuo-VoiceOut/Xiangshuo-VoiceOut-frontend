@@ -11,6 +11,7 @@ enum Route: Hashable {
     case userLogin
     case therapistLogin
     case therapistSignup
+    case userSignUp
 }
 
 final class RouterModel: ObservableObject {
@@ -24,6 +25,8 @@ final class RouterModel: ObservableObject {
             LoginView(.therapist)
         case .therapistSignup:
             TherapistSignupView()
+        case .userSignUp:
+            UserSignUpView()
         }
     }
     

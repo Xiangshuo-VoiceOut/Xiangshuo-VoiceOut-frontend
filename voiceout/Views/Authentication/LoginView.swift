@@ -80,6 +80,9 @@ struct LoginView: View {
                             if loginVM.role == .therapist {
                                 router.navigateTo(.therapistSignup)
                             }
+                            else if loginVM.role == .user {
+                                router.navigateTo(.userSignUp)
+                            }
                         }){
                             Text("signup")
                                 .font(.typography(.bodyMedium))

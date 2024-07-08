@@ -32,6 +32,8 @@ class TextInputVM : ObservableObject {
     @Published var verificationCodeValidationMsg: String = ""
     @Published var newPasswordValidationMsg: String = "password_requirement"
     @Published var confirmPasswordValidationMsg: String = ""
+    @Published var nickname: String = ""
+    @Published var birthday: String = ""
     
     func setIsValidEmail(isValid: Bool) {
         isValidEmail = isValid

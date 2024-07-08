@@ -9,10 +9,11 @@ import SwiftUI
 
 struct AddButton: View {
     var action: () -> Void
+    var text: String
     var body: some View {
         Button(action: action){
             HStack {
-                Text(LocalizedStringKey("add_new_qualification"))
+                Text(LocalizedStringKey(text))
                     .font(.typography(.bodyMedium))
                 .foregroundColor(Color.textBrandPrimary)
                 
@@ -31,5 +32,5 @@ struct AddButton: View {
 }
 
 #Preview {
-    AddButton(action: {})
+    AddButton(action: {}, text: "add_new_qualification")
 }

@@ -36,7 +36,6 @@ struct LoginView: View {
                                 validationMessage: textInputVM.emailValidationMsg
                             )
                             .autocapitalization(.none)
-                            .padding(.bottom)
                             
                             SecuredTextInputView(
                                 text: $textInputVM.password,
@@ -54,6 +53,7 @@ struct LoginView: View {
                                         .foregroundColor(Color.textSecondary)
                                 }
                             }
+                            .padding(.top, -ViewSpacing.medium)
                             .padding(.bottom, ViewSpacing.small)
                             
                             ButtonView(

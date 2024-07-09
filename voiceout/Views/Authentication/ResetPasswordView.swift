@@ -33,7 +33,7 @@ struct ResetPasswordView: View {
                             validationMsg: textInputVM.newPasswordValidationMsg,
                             prefixIcon: "lock"
                         )
-                        .padding(.bottom)
+                        
                             
                         SecuredTextInputView(
                             text: $textInputVM.confirmNewPassowrd,
@@ -42,7 +42,7 @@ struct ResetPasswordView: View {
                             validationMsg: textInputVM.confirmPasswordValidationMsg,
                             prefixIcon: "lock"
                         )
-                        .padding(.bottom, ViewSpacing.large)
+                        
                             
                         ButtonView(
                             text: "finished",

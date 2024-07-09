@@ -43,3 +43,7 @@
 "state_placeholder" = "请选择您的所在州";
 "input_birthday" = "MM/DD/YYYY";
 "gender_placeholder" = "请选择您的性别";
+"female" = "女性";
+"male" = "男性";
+"other" = "其他";
+"nickname_occupied" = "该昵称已被注册，请重新输入！";

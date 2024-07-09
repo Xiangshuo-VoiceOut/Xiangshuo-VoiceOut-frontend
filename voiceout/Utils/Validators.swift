@@ -19,3 +19,14 @@ public func passwordValidator(_ password: String) -> Bool {
     let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
     return passwordPredicate.evaluate(with: password)
 }
+
+public func dateValidator(_ dateString: String) -> Bool {
+    let dateFotmatter = DateFormatter()
+    dateFotmatter.dateFormat = "MM/DD/YYYY"
+    dateFotmatter.locale = Locale(identifier: "en_US_POSIX")
+    if let _ = dateFotmatter.date(from: dateString) {
+        return true
+    } else {
+        return false
+    }
+}

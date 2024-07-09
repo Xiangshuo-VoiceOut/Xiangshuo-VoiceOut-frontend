@@ -12,7 +12,7 @@ struct UserSignUpView: View {
     @StateObject private var userSignUpVM : UserSignUpVM
     @StateObject private var textInputVM: TextInputVM
     @StateObject private var verificationCodeVM: VerificationCodeVM
-    @State private var currentStep: SignUpStep = .step2
+    @State private var currentStep: SignUpStep = .step1
     
     
     init() {
@@ -48,32 +48,55 @@ struct UserSignUpView: View {
                 .padding(.horizontal,ViewSpacing.xlarge)
                 
             }
-            .offset(y: -40)
+            .offset(y: -50)
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         router.navigateTo(.userLogin)
                     }) {
-                        Text("sign_in")
+                        Text("login")
                             .font(.typography(.bodyMedium))
                             .foregroundColor(.black.opacity(0.69))
                     }
                 }
             }
             .navigationDestination(isPresented: $userSignUpVM.isNextStepEnabled) {}
+            
         }
+        .navigationBarBackButtonHidden()
         .ignoresSafeArea()
         .onChange(of: textInputVM.email) {_ in
-            userSignUpVM.validateInput()
-            userSignUpVM.resetValidateState()
+            textInputVM.resetEmailValidationMsg()
+            textInputVM.resetValidationState()
+            userSignUpVM.updateNextStepButtonState()
+        }
+        .onChange(of: textInputVM.verificationCode) {_ in
+            textInputVM.resetVerificationCodeValidationMsg()
+            textInputVM.resetValidationState()
+            userSignUpVM.updateNextStepButtonState()
         }
         .onChange(of: textInputVM.newPassword) {_ in
-            userSignUpVM.validateInput()
-            userSignUpVM.resetValidateState()
+            textInputVM.resetValidationState()
+            textInputVM.resetConfirmPasswordValidationMsg()
+            userSignUpVM.updateNextStepButtonState()
         }
         .onChange(of: textInputVM.confirmNewPassowrd) {_ in
-            userSignUpVM.validateInput()
-            userSignUpVM.resetValidateState()
+            textInputVM.resetConfirmPasswordValidationMsg()
+            textInputVM.resetValidationState()
+            userSignUpVM.updateNextStepButtonState()
+            
+        }
+        .onChange(of: textInputVM.nickname) {_ in
+            userSignUpVM.updateNextStepButtonState()
+        }
+        .onChange(of: userSignUpVM.selectedState) {_ in
+            userSignUpVM.updateNextStepButtonState()
+        }
+        .onChange(of: textInputVM.birthday) {_ in
+            userSignUpVM.updateNextStepButtonState()
+        }
+        .onChange(of: userSignUpVM.selectedGender) {_ in
+            userSignUpVM.updateNextStepButtonState()
             
         }
     }
@@ -89,7 +112,6 @@ struct UserSignUpView: View {
                 validationMessage: textInputVM.emailValidationMsg
             )
             .autocapitalization(.none)
-            .padding(.bottom)
             
             TextInputView(
                 text: $textInputVM.verificationCode,
@@ -103,7 +125,7 @@ struct UserSignUpView: View {
                         .environmentObject(textInputVM)
             )
             )
-            .padding(.bottom)
+            
             
             SecuredTextInputView(
                 text: $textInputVM.newPassword,
@@ -111,20 +133,21 @@ struct UserSignUpView: View {
                 securedValidation: textInputVM.isValidPassword ? .neutral : .error,
                 validationMsg: textInputVM.newPasswordValidationMsg, prefixIcon: "lock"
             )
-            .padding(.bottom)
             
             SecuredTextInputView(
                 text: $textInputVM.confirmNewPassowrd,
                 securedPlaceholder: "password_placeholder",
                 securedValidation: textInputVM.isValidPassword ? .neutral : .error,
+                validationMsg: textInputVM.confirmPasswordValidationMsg,
                 prefixIcon: "lock"
             )
-            .padding(.bottom, ViewSpacing.large)
+            
             ButtonView(text: "next_step",
-                       action: {},
-                       theme: .base, spacing: .large
+                       action: {userSignUpVM.handleButtonClick()},
+                       theme: userSignUpVM.isNextStepEnabled ? .action : .base, maxWidth: .infinity
                        
             )
+            .disabled(!userSignUpVM.isNextStepEnabled)
         }
     .background(Color.surfacePrimary)
     }
@@ -135,48 +158,42 @@ struct UserSignUpView: View {
                 text: $textInputVM.nickname,
                 isSecuredField: false,
                 placeholder: "nickname_placeholder",
-                prefixIcon: "email",
+                prefixIcon: "user",
                 validationState: textInputVM.isValidEmail ? ValidationState.neutral : ValidationState.error,
                 validationMessage: textInputVM.emailValidationMsg
             )
             .autocapitalization(.none)
-            .padding(.bottom)
             
+            
+            Dropdown(selectionOption: $userSignUpVM.selectedState, prefixIcon:"local", placeholder: String(localized: "state_placeholder"), options: userSignUpVM.allStates)
+                .padding(.bottom)
+                .zIndex(2)
             
             TextInputView(
-                text: $textInputVM.verificationCode,
+                text: $textInputVM.birthday,
                 isSecuredField: false,
-                placeholder: "input_verification_code",
-                prefixIcon: "protect",
-                validationState: textInputVM.isVerificationCodeValid ? ValidationState.neutral : ValidationState.error,
-                suffixContent: AnyView(
-                    VerificationCodeButton()
-                        .environmentObject(verificationCodeVM)
-                        .environmentObject(textInputVM)
+                placeholder: "input_birthday",
+                prefixIcon: "birthday-cake",
+                validationState: textInputVM.isVerificationCodeValid ? ValidationState.neutral : ValidationState.error
             )
-            )
-            .padding(.bottom)
+            .onChange(of: textInputVM.birthday) { newValue in
+                textInputVM.birthday = formatDateString(newValue)
+                
+            }
             
-            SecuredTextInputView(
-                text: $textInputVM.newPassword,
-                securedPlaceholder: "password_placeholder",
-                securedValidation: textInputVM.isValidPassword ? .neutral : .error,
-                validationMsg: textInputVM.newPasswordValidationMsg, prefixIcon: "lock"
-            )
-            .padding(.bottom)
             
-            SecuredTextInputView(
-                text: $textInputVM.confirmNewPassowrd,
-                securedPlaceholder: "password_placeholder",
-                securedValidation: textInputVM.isValidPassword ? .neutral : .error,
-                prefixIcon: "lock"
-            )
-            .padding(.bottom, ViewSpacing.large)
-            ButtonView(text: "next_step",
-                       action: {},
-                       theme: .base, spacing: .large
+            Dropdown(selectionOption: $userSignUpVM.selectedGender, prefixIcon:"public-toilet", placeholder: String(localized: "gender_placeholder"), options: DropdownOption.genders)
+                .padding(.bottom, ViewSpacing.large)
+                .zIndex(1)
+            
+            ButtonView(text: "signup",
+                       action: {
+                userSignUpVM.handleButtonClick()
+            },
+                       theme: userSignUpVM.isUserSignUpEnabled ? .action : .base, maxWidth: .infinity
                        
             )
+            .disabled(!userSignUpVM.isUserSignUpEnabled)
         }
     .background(Color.surfacePrimary)
     }
@@ -186,3 +203,4 @@ struct UserSignUpView: View {
     UserSignUpView()
         .environmentObject(RouterModel())
 }
+

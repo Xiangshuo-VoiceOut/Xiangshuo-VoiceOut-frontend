@@ -20,6 +20,9 @@ enum VerificationCodeValidationMessage {
 }
 
 class TextInputVM : ObservableObject {
+    @Published var newEmail: String = ""
+    @Published var isValidNewEmail: Bool = true
+    @Published var newEmailValidationMsg: String = ""
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var verificationCode: String = ""
@@ -33,7 +36,11 @@ class TextInputVM : ObservableObject {
     @Published var newPasswordValidationMsg: String = "password_requirement"
     @Published var confirmPasswordValidationMsg: String = ""
     @Published var nickname: String = ""
+    @Published var isNicknameValid: Bool = true
+    @Published var nicknameValidationMsg: String = ""
     @Published var birthday: String = ""
+    @Published var isDateValid: Bool = true
+    @Published var dateValidationMsg: String = ""
     
     func setIsValidEmail(isValid: Bool) {
         isValidEmail = isValid
@@ -64,6 +71,14 @@ class TextInputVM : ObservableObject {
         isVerificationCodeValid = isValid
     }
     
+    func setIsDateValid(isValid: Bool) {
+        isDateValid = isValid
+    }
+    
+    func setIsNicknameValid(isValid: Bool) {
+        isNicknameValid = isValid
+    }
+    
     func setVerificationCodeValidationMsg(msg: VerificationCodeValidationMessage) {
         switch msg {
         case .enterCode:
@@ -82,11 +97,41 @@ class TextInputVM : ObservableObject {
     }
     
     func setConfirmPasswordValidationMsg() {
-        confirmPasswordValidationMsg = "password_not_match"
+        if !passwordValidator(confirmNewPassowrd) {
+            confirmPasswordValidationMsg = "password_form_error"
+        } else if newPassword != confirmNewPassowrd {
+            confirmPasswordValidationMsg = "password_not_match"
+        }
+        
+            
     }
     
     func resetConfirmPasswordValidationMsg() {
         confirmPasswordValidationMsg = ""
+    }
+    
+    func setDateValidationMsg(){
+        //TODO: check with Designer
+    }
+    
+    func resetDateValidationMsg(){
+        dateValidationMsg = ""
+    }
+    
+    func setNicknameValidationMsg(){
+        nicknameValidationMsg = "nickname_occupied"
+    }
+    
+    func resetNicknameValidationMsg(){
+        nicknameValidationMsg = ""
+    }
+    
+    func resetValidationState(){
+        isValidEmail = true
+        isValidPassword = true
+        isVerificationCodeValid = true
+        isDateValid = true 
+        isNicknameValid = true
     }
     
     func isMatchedPasswords() -> Bool {
@@ -119,6 +164,16 @@ class TextInputVM : ObservableObject {
         }
         setIsValidPassword(isValid: false)
         setConfirmPasswordValidationMsg()
+        return false
+    }
+    
+    func validateDate() -> Bool {
+        if dateValidator(birthday) {
+            setIsDateValid(isValid: true)
+            return true
+        }
+        setIsDateValid(isValid: false)
+        
         return false
     }
 }

@@ -46,7 +46,6 @@ extension Color {
     static let textBrandSecondary = brandSecondary
     static let textInvalid = actionInvalid
     static let textInfo = actionInfo
-    static let textLight = grey200
     
     //border
     static let borderPrimary = grey500
@@ -59,5 +58,4 @@ extension Color {
     static let borderInValid = actionInvalid
     static let borderValid = actionValid
     static let borderInfo = actionInfo
-    static let borderColorStar = Color(red: 0.98, green: 0.99, blue: 1)
 }

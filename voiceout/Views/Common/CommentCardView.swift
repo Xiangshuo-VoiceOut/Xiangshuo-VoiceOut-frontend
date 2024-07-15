@@ -19,14 +19,14 @@ struct StarRatingView1: View {
                         .foregroundColor(.yellow)
                         .overlay(
                             RoundedRectangle(cornerRadius: 3)
-                                .stroke(borderColorStar, lineWidth: 1)
+                                .stroke(Color.textInvert, lineWidth: 1)
                         )
                 } else {
                     Image(systemName: "star")
                         .foregroundColor(.yellow)
                         .overlay(
                             RoundedRectangle(cornerRadius: 3)
-                                .stroke(borderColorStar, lineWidth: 1)
+                                .stroke(Color.textInvert, lineWidth: 1)
                         )
                 }
             }

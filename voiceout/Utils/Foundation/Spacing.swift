@@ -8,6 +8,7 @@
 import SwiftUI
 
 extension ViewSpacing {
+    static let xxxsmall: CGFloat = 1;
     static let xxsmall: CGFloat = 2;
     static let xsmall: CGFloat = 4;
     static let small: CGFloat = 8;

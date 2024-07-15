@@ -9,7 +9,7 @@ import SwiftUI
 struct StarRatingView1: View {
     var rating: Int
     let maximumRating = 5
-    let borderColor = Color(red: 0.98, green: 0.99, blue: 1)
+    //let borderColorStar = Color(red: 0.98, green: 0.99, blue: 1)
 
     var body: some View {
         HStack {
@@ -19,14 +19,14 @@ struct StarRatingView1: View {
                         .foregroundColor(.yellow)
                         .overlay(
                             RoundedRectangle(cornerRadius: 3)
-                                .stroke(borderColor, lineWidth: 1)
+                                .stroke(borderColorStar, lineWidth: 1)
                         )
                 } else {
                     Image(systemName: "star")
                         .foregroundColor(.yellow)
                         .overlay(
                             RoundedRectangle(cornerRadius: 3)
-                                .stroke(borderColor, lineWidth: 1)
+                                .stroke(borderColorStar, lineWidth: 1)
                         )
                 }
             }
@@ -125,8 +125,8 @@ struct CommentCardView: View {
             }
         }
         .onAppear {
-                    viewModel.loadTestData()
-                    //viewModel.fetchUser()
+                    //viewModel.loadTestData()
+                    viewModel.fetchUser()
         }
         .padding(ViewSpacing.medium)
         .frame(width: 358, alignment: .bottomTrailing)

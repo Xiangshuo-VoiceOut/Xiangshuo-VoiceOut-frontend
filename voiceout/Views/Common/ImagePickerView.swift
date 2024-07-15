@@ -1,5 +1,5 @@
 //
-//  ProfilePicker.swift
+//  ImagePickerView.swift
 //  voiceout
 //
 //  Created by J. Wu on 7/8/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct ProfilePicker: View {
+struct ImagePickerView: View {
     @State private var showImagePicker: Bool = false
     @State private var selectedImage: UIImage? = nil
     
@@ -86,5 +86,5 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 #Preview {
-    ProfilePicker()
+    ImagePickerView()
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CustomObjectId: Codable {
+struct ObjectId: Codable {
     var id: String
 }
 

@@ -4,60 +4,45 @@
 //
 //  Created by Yujia Yang on 7/5/24.
 //
-
 import SwiftUI
 struct ClinicianCardView: View {
     @StateObject var viewModel = ClinicianViewModel()
-
     var body: some View {
         NavigationView {
-            VStack {
-                if viewModel.isLoading {
-                    ProgressView()
-                } else if let clinician = viewModel.clinician {
-                    ClinicianDetailView(clinician: clinician)
-                } else if let errorMessage = viewModel.errorMessage {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                } else {
-                    Text("Unable to load clinician data")
-                        .foregroundColor(.red)
-                }
-            }
-            .onAppear {
-                //viewModel.loadTestData()
-                viewModel.fetchClinician()
-            }
-        }
-    }
-}
-
-struct StarRatingView2: View{
-    var rating: Double
-    let maximumRating = 5
-    
-    var body: some View {
-        HStack(spacing: 4) {
-            ForEach(0..<maximumRating, id: \.self) { index in
-                ZStack(alignment: .leading) {
-                    Image(systemName: "star")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.grey50)
-                    
-                    if rating > Double(index) {
-                        Image(systemName: "star.fill")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(Color(red: 0.98, green: 0.75, blue: 0.14))
-                            .mask(
-                                Rectangle()
-                                    .size(width: min(CGFloat(rating - Double(index)) * 20, 20), height: 20)
-                                    .alignmentGuide(.leading) { d in d[.leading] }
-                            )
+            CardView(content:{
+                VStack {
+                    if viewModel.isLoading {
+                        ProgressView()
+                    } else if let clinician = viewModel.clinician {
+                        ClinicianDetailView(clinician: clinician)
+                    } else if let errorMessage = viewModel.errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(.red)
+                    } else {
+                        Text("Unable to load clinician data")
+                            .foregroundColor(.red)
                     }
                 }
-            }
+                .onAppear {
+                    viewModel.loadTestData()
+                    //viewModel.fetchClinician()
+                }
+            }, modifiers: CardModifiers(
+                padding: EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
+                frameWidth: 358,
+                frameHeight: 224,
+                backgroundColor: Color.grey50,
+                cornerRadius: CornerRadius.medium.value,
+                shadow1Color: Color(red: 0.36, green: 0.36, blue: 0.47).opacity(0.03),
+                shadow1Radius: 8.95,
+                shadow1X: 5,
+                shadow1Y: 3,
+                shadow2Color: Color(red: 0.15, green: 0.15, blue: 0.25).opacity(0.08),
+                shadow2Radius: 5.75,
+                shadow2X: 2,
+                shadow2Y: 4
+
+            ))
         }
     }
 }
@@ -68,7 +53,7 @@ struct ClinicianDetailView: View {
         //即刻可约
         VStack(alignment: .center, spacing: 0) {
             //4210
-            VStack(alignment: .center,spacing:ViewSpacing.betweenSmallAndBase) {
+            VStack(alignment: .center,spacing:ViewSpacing.medium) {
                 //4583
                 HStack(alignment: .center, spacing: ViewSpacing.large) {
                     //4207
@@ -196,7 +181,7 @@ struct ClinicianDetailView: View {
             }
             .padding(ViewSpacing.medium)
             .frame(height:99)
-            .cornerRadius(CornerRadius.xxxsmall.value)
+            .cornerRadius(CornerRadius.medium.value)
             //4205
             VStack(alignment: .leading,spacing:ViewSpacing.small) {
                 //第二个4293
@@ -204,13 +189,14 @@ struct ClinicianDetailView: View {
                     Text(clinician.certificationType)
                       .font(Font.typography(.bodySmall))
                       .foregroundColor(Color.textPrimary)
+                      .frame(height:20)
                 }
                 .padding(0)
                 .cornerRadius(CornerRadius.xxxsmall.value)
             }
             .padding(.horizontal, ViewSpacing.medium)
             .padding(.vertical, ViewSpacing.small)
-            .frame(width: 366,height:36,alignment: .topLeading)
+            .frame(width: 358,height:36,alignment: .topLeading)
             .cornerRadius(CornerRadius.xxxsmall.value)
             //4582
             HStack(alignment: .center) {
@@ -220,11 +206,12 @@ struct ClinicianDetailView: View {
                       .font(Font.typography(.bodyLargeEmphasis))
                       .multilineTextAlignment(.center)
                       .foregroundColor(Color.textPrimary)
+                      .frame(height:25)
                     
-                    StarRatingView2(rating: clinician.avgRating)
+                    StarRatingViewDouble(avgRating: clinician.avgRating)
                 }
                 .padding(0)
-                .frame(maxHeight: .infinity, alignment: .leading)
+                .frame(height:25, alignment: .leading)
                 .cornerRadius(CornerRadius.xxxsmall.value)
                 
               Spacer()
@@ -232,17 +219,12 @@ struct ClinicianDetailView: View {
                 Text("$\(clinician.charge)/次")
                   .font(Font.typography(.bodyLargeEmphasis))
                   .foregroundColor(Color.brandPrimary)
+                  .frame(height:25)
             }
             .padding(ViewSpacing.medium)
-            .frame(height:57,alignment: .center)
-            .cornerRadius(CornerRadius.xxxsmall.value)
+            .frame(width:358,height:57,alignment: .center)
+            .cornerRadius(CornerRadius.medium.value)
         }
-        .padding(0)
-        .background(Color.grey50)
-        .cornerRadius(CornerRadius.medium.value)
-        .shadow(color: Color(red: 0.36, green: 0.36, blue: 0.47).opacity(0.03), radius: 8.95, x: 5, y: 3)
-        .shadow(color: Color(red: 0.15, green: 0.15, blue: 0.25).opacity(0.08), radius: 5.75, x: 2, y: 4)
-        .frame(width:366, height:283)
     }
 }
 

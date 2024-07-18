@@ -9,7 +9,6 @@ import SwiftUI
 struct StarRatingView1: View {
     var rating: Int
     let maximumRating = 5
-    //let borderColorStar = Color(red: 0.98, green: 0.99, blue: 1)
 
     var body: some View {
         HStack {

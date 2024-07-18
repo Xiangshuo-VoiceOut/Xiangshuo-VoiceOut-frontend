@@ -13,6 +13,9 @@
 		8433CACA2C459F9800845A7A /* ClinicianCardInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */; };
 		8433CAD22C45A0DD00845A7A /* ClinicianCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAD02C45A0DD00845A7A /* ClinicianCardView.swift */; };
 		846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */; };
+		84F0FD592C48D29200E2DB79 /* StarRatingView(double).swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD582C48D29200E2DB79 /* StarRatingView(double).swift */; };
+		84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD5A2C48D2E200E2DB79 /* CardView.swift */; };
+		84F0FD5F2C48D85A00E2DB79 /* StarRatingView（int）.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD5E2C48D85A00E2DB79 /* StarRatingView（int）.swift */; };
 		B814C5912C20F2F4008F4A60 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5902C20F2F4008F4A60 /* AddButton.swift */; };
 		B814C5952C220F66008F4A60 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5942C220F66008F4A60 /* LoginView.swift */; };
 		B8860E1C2C34725E00A79073 /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8860E1B2C34725E00A79073 /* StepProgressView.swift */; };
@@ -77,6 +80,9 @@
 		8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardInformation.swift; sourceTree = "<group>"; };
 		8433CAD02C45A0DD00845A7A /* ClinicianCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardView.swift; sourceTree = "<group>"; };
 		846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentcardViewModel.swift; sourceTree = "<group>"; };
+		84F0FD582C48D29200E2DB79 /* StarRatingView(double).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StarRatingView(double).swift"; sourceTree = "<group>"; };
+		84F0FD5A2C48D2E200E2DB79 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		84F0FD5E2C48D85A00E2DB79 /* StarRatingView（int）.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StarRatingView（int）.swift"; sourceTree = "<group>"; };
 		B814C5902C20F2F4008F4A60 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		B814C5942C220F66008F4A60 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B8860E1B2C34725E00A79073 /* StepProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepProgressView.swift; sourceTree = "<group>"; };
@@ -147,20 +153,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		84F0FD4E2C48AAE300E2DB79 /* TherapistViewCommon */ = {
+		84F0FD4E2C48AAE300E2DB79 /* Therapist */ = {
 			isa = PBXGroup;
 			children = (
-				8433CAD02C45A0DD00845A7A /* ClinicianCardView.swift */,
+				84F0FD512C48BE9900E2DB79 /* Common */,
 			);
-			path = TherapistViewCommon;
+			path = Therapist;
 			sourceTree = "<group>";
 		};
-		84F0FD4F2C48AC0E00E2DB79 /* TherapistViewModelCommon */ = {
+		84F0FD4F2C48AC0E00E2DB79 /* Therapist */ = {
+			isa = PBXGroup;
+			children = (
+				84F0FD502C48BE8200E2DB79 /* Common */,
+			);
+			path = Therapist;
+			sourceTree = "<group>";
+		};
+		84F0FD502C48BE8200E2DB79 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */,
 			);
-			path = TherapistViewModelCommon;
+			path = Common;
+			sourceTree = "<group>";
+		};
+		84F0FD512C48BE9900E2DB79 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8433CAD02C45A0DD00845A7A /* ClinicianCardView.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		D2071CFF2BA62F300040B0AE = {
@@ -206,7 +228,7 @@
 		D2071D372BAA82D40040B0AE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				84F0FD4E2C48AAE300E2DB79 /* TherapistViewCommon */,
+				84F0FD4E2C48AAE300E2DB79 /* Therapist */,
 				D2071D412BAA8B880040B0AE /* Authentication */,
 				D2071D452BAB5E7D0040B0AE /* Common */,
 				D2071D0D2BA62F300040B0AE /* ContentView.swift */,
@@ -230,7 +252,7 @@
 		D2071D3A2BAA83030040B0AE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				84F0FD4F2C48AC0E00E2DB79 /* TherapistViewModelCommon */,
+				84F0FD4F2C48AC0E00E2DB79 /* Therapist */,
 				D21660D02C33AA9B008248DE /* Authentication */,
 				D28499272BE9BFB900963B3A /* Common */,
 				D2D6CD842C03699000DD7688 /* RouterModel.swift */,
@@ -276,6 +298,9 @@
 				D28498EB2BE19DE300963B3A /* SecuredTextInputView.swift */,
 				D2071D462BAB5E9E0040B0AE /* TextInputView.swift */,
 				8433CAA82C459AA800845A7A /* CommentCardView.swift */,
+				84F0FD5E2C48D85A00E2DB79 /* StarRatingView（int）.swift */,
+				84F0FD582C48D29200E2DB79 /* StarRatingView(double).swift */,
+				84F0FD5A2C48D2E200E2DB79 /* CardView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -465,6 +490,7 @@
 				B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */,
 				B8D4721E2C1E405000D6716A /* ForgetPasswordView.swift in Sources */,
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
+				84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
 				B8860E1C2C34725E00A79073 /* StepProgressView.swift in Sources */,
 				D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */,
@@ -479,7 +505,9 @@
 				8433CACA2C459F9800845A7A /* ClinicianCardInformation.swift in Sources */,
 				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,
 				8433CAD22C45A0DD00845A7A /* ClinicianCardView.swift in Sources */,
+				84F0FD5F2C48D85A00E2DB79 /* StarRatingView（int）.swift in Sources */,
 				B8F845442C28BB98008C0D80 /* DropdownOption.swift in Sources */,
+				84F0FD592C48D29200E2DB79 /* StarRatingView(double).swift in Sources */,
 				D21660CD2C339A49008248DE /* VerificationCodeButton.swift in Sources */,
 				D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */,
 				B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */,

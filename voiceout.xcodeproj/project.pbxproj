@@ -147,6 +147,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84F0FD4E2C48AAE300E2DB79 /* TherapistViewCommon */ = {
+			isa = PBXGroup;
+			children = (
+				8433CAD02C45A0DD00845A7A /* ClinicianCardView.swift */,
+			);
+			path = TherapistViewCommon;
+			sourceTree = "<group>";
+		};
+		84F0FD4F2C48AC0E00E2DB79 /* TherapistViewModelCommon */ = {
+			isa = PBXGroup;
+			children = (
+				8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */,
+			);
+			path = TherapistViewModelCommon;
+			sourceTree = "<group>";
+		};
 		D2071CFF2BA62F300040B0AE = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +206,7 @@
 		D2071D372BAA82D40040B0AE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84F0FD4E2C48AAE300E2DB79 /* TherapistViewCommon */,
 				D2071D412BAA8B880040B0AE /* Authentication */,
 				D2071D452BAB5E7D0040B0AE /* Common */,
 				D2071D0D2BA62F300040B0AE /* ContentView.swift */,
@@ -213,6 +230,7 @@
 		D2071D3A2BAA83030040B0AE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				84F0FD4F2C48AC0E00E2DB79 /* TherapistViewModelCommon */,
 				D21660D02C33AA9B008248DE /* Authentication */,
 				D28499272BE9BFB900963B3A /* Common */,
 				D2D6CD842C03699000DD7688 /* RouterModel.swift */,
@@ -257,7 +275,6 @@
 				B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */,
 				D28498EB2BE19DE300963B3A /* SecuredTextInputView.swift */,
 				D2071D462BAB5E9E0040B0AE /* TextInputView.swift */,
-				8433CAD02C45A0DD00845A7A /* ClinicianCardView.swift */,
 				8433CAA82C459AA800845A7A /* CommentCardView.swift */,
 			);
 			path = Common;
@@ -321,7 +338,6 @@
 				D2D6CD792BF8FD0400DD7688 /* DialogViewModel.swift */,
 				D28499282BE9BFF900963B3A /* PopupViewModel.swift */,
 				D21660DC2C34E68A008248DE /* TextInputVM.swift */,
-				8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */,
 				846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */,
 			);
 			path = Common;

@@ -75,8 +75,12 @@ extension RoundedRectangle {
             cornerRadiusValue = 16
         case .small:
             cornerRadiusValue = 8
+        case .xsmall:
+            cornerRadiusValue = 4
         case .xxsmall:
             cornerRadiusValue = 3
+        case .xxxsmall:
+            cornerRadiusValue = 1
         }
 
         self.init(cornerRadius: cornerRadiusValue, style: .continuous)

@@ -32,9 +32,6 @@ struct ClinicianCardView: View {
     }
 }
 
-
-
-
 struct StarRatingView2: View{
     var rating: Double
     let maximumRating = 5
@@ -71,10 +68,9 @@ struct ClinicianDetailView: View {
         //即刻可约
         VStack(alignment: .center, spacing: 0) {
             //4210
-            VStack(alignment: .center,spacing:10) {
+            VStack(alignment: .center,spacing:ViewSpacing.betweenSmallAndBase) {
                 //4583
                 HStack(alignment: .center, spacing: ViewSpacing.large) {
-                    
                     //4207
                     HStack(alignment: .center, spacing: 0) {
                         ZStack(alignment: .bottomLeading) {
@@ -94,7 +90,6 @@ struct ClinicianDetailView: View {
                                 }
                             }
                             .frame(width: 67, height: 67)
-
                             // 4208
                             HStack(alignment: .center, spacing: 0) {
                                 Rectangle()
@@ -111,7 +106,7 @@ struct ClinicianDetailView: View {
                                 
                                 // "今天可约" 文字
                                 Text("今天可约")
-                                    .font(Font.typography(.bodyXSmall))
+                                    .font(Font.typography(.bodyXSmallEmphasis))
                                     .kerning(0.36)
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(Color.textInvert)
@@ -155,7 +150,7 @@ struct ClinicianDetailView: View {
                             //4302
                             HStack(alignment: .center, spacing: 0) {
                                 Text("从业经验：\(clinician.yearOfExperience)年")
-                                  .font(Font.typography(.bodyXSmall))
+                                  .font(Font.typography(.bodyXSmallEmphasis))
                                   .kerning(0.36)
                                   .foregroundColor(Color.textBrandSecondary)
                             }
@@ -236,7 +231,7 @@ struct ClinicianDetailView: View {
               //$200
                 Text("$\(clinician.charge)/次")
                   .font(Font.typography(.bodyLargeEmphasis))
-                  .foregroundColor(Color.textBrand)
+                  .foregroundColor(Color.brandPrimary)
             }
             .padding(ViewSpacing.medium)
             .frame(height:57,alignment: .center)

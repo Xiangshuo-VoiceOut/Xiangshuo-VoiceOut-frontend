@@ -42,6 +42,8 @@
 		D21660D82C34D689008248DE /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21660D72C34D689008248DE /* Validators.swift */; };
 		D21660DA2C34DE3C008248DE /* TherapistSignupVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21660D92C34DE3C008248DE /* TherapistSignupVM.swift */; };
 		D21660DD2C34E68A008248DE /* TextInputVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21660DC2C34E68A008248DE /* TextInputVM.swift */; };
+		D21660E02C4C22E3008248DE /* CooperationAgreementPopupContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21660DF2C4C22E3008248DE /* CooperationAgreementPopupContent.swift */; };
+		D21660E22C4C24DD008248DE /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21660E12C4C24DD008248DE /* FileReader.swift */; };
 		D25C2EC62BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D25C2EC52BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf */; };
 		D25C2EC82BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D25C2EC72BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf */; };
 		D25C2ECC2BCF6EB00011212A /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25C2ECB2BCF6EB00011212A /* Typography.swift */; };
@@ -103,6 +105,8 @@
 		D21660D72C34D689008248DE /* Validators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		D21660D92C34DE3C008248DE /* TherapistSignupVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistSignupVM.swift; sourceTree = "<group>"; };
 		D21660DC2C34E68A008248DE /* TextInputVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputVM.swift; sourceTree = "<group>"; };
+		D21660DF2C4C22E3008248DE /* CooperationAgreementPopupContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CooperationAgreementPopupContent.swift; sourceTree = "<group>"; };
+		D21660E12C4C24DD008248DE /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
 		D25C2EC52BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlibabaPuHuiTi-Medium.ttf"; sourceTree = "<group>"; };
 		D25C2EC72BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlibabaPuHuiTi-Bold.ttf"; sourceTree = "<group>"; };
 		D25C2ECB2BCF6EB00011212A /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 		D2071D412BAA8B880040B0AE /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				D21660DE2C4C2291008248DE /* Therapist */,
 				D284992C2BEEF3FE00963B3A /* Components */,
 				B8D4721B2C1E404F00D6716A /* ForgetPasswordView.swift */,
 				B814C5942C220F66008F4A60 /* LoginView.swift */,
@@ -279,6 +284,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		D21660DE2C4C2291008248DE /* Therapist */ = {
+			isa = PBXGroup;
+			children = (
+				D21660DF2C4C22E3008248DE /* CooperationAgreementPopupContent.swift */,
+			);
+			path = Therapist;
+			sourceTree = "<group>";
+		};
 		D25C2EC42BCF56790011212A /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +311,7 @@
 			children = (
 				D21660D72C34D689008248DE /* Validators.swift */,
 				D25C2EC42BCF56790011212A /* Foundation */,
+				D21660E12C4C24DD008248DE /* FileReader.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -442,6 +456,7 @@
 				B814C5952C220F66008F4A60 /* LoginView.swift in Sources */,
 				D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */,
 				B8D4722F2C1E421100D6716A /* UserLogin.swift in Sources */,
+				D21660E02C4C22E3008248DE /* CooperationAgreementPopupContent.swift in Sources */,
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
 				B8D472252C1E408C00D6716A /* VerificationCodeVM.swift in Sources */,
 				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,
@@ -456,6 +471,7 @@
 				D2D6CD852C03699000DD7688 /* RouterModel.swift in Sources */,
 				D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */,
 				D28498EA2BE171F700963B3A /* Border.swift in Sources */,
+				D21660E22C4C24DD008248DE /* FileReader.swift in Sources */,
 				B8D472232C1E408C00D6716A /* AuthViewModel.swift in Sources */,
 				B8D472132C1E3CB700D6716A /* BackgroundView.swift in Sources */,
 				D21660CF2C339B98008248DE /* BackButtonView.swift in Sources */,

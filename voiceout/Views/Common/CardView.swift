@@ -8,8 +8,6 @@
 import SwiftUI
 struct CardModifiers {
     var padding: EdgeInsets
-    var frameWidth: CGFloat
-    var frameHeight: CGFloat
     var backgroundColor: Color
     var cornerRadius: CGFloat
     var shadow1Color: Color
@@ -41,6 +39,7 @@ struct CardView<Content: View>: View {
             content
                 .padding(modifiers.padding)
         }
-        .frame(width: modifiers.frameWidth, height: modifiers.frameHeight)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding()
     }
 }

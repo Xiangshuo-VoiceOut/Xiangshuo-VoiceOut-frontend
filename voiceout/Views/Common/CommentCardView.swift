@@ -103,8 +103,6 @@ struct CommentCardView: View {
                 }
             }, modifiers: CardModifiers(
                 padding: EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16),
-                frameWidth: 358,
-                frameHeight: 162,
                 backgroundColor: Color.grey50,
                 cornerRadius: CornerRadius.medium.value,
                 shadow1Color: Color(red: 0.36, green: 0.36, blue: 0.47).opacity(0.03),
@@ -116,6 +114,7 @@ struct CommentCardView: View {
                 shadow2X: 2,
                 shadow2Y: 4
                 ))
+                .frame(width: 358, height: 162)
             }
         }
     }

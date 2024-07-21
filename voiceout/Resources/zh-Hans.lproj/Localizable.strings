@@ -39,3 +39,5 @@
 "finished" = "完成";
 "password_form_error" = "密码格式错误，请重新输入";
 "password_not_match" = "密码不匹配，请重新输入";
+"charge_per_session" = "$%@/次";
+"years_of_experience" = "从业经验：%@年";

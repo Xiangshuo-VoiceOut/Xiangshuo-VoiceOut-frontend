@@ -29,8 +29,6 @@ struct ClinicianCardView: View {
                 }
             }, modifiers: CardModifiers(
                 padding: EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
-                frameWidth: 358,
-                frameHeight: 224,
                 backgroundColor: Color.grey50,
                 cornerRadius: CornerRadius.medium.value,
                 shadow1Color: Color(red: 0.36, green: 0.36, blue: 0.47).opacity(0.03),
@@ -43,6 +41,7 @@ struct ClinicianCardView: View {
                 shadow2Y: 4
 
             ))
+            .frame(width:358,height:224)
         }
     }
 }
@@ -134,7 +133,7 @@ struct ClinicianDetailView: View {
                             .cornerRadius(CornerRadius.xxxsmall.value)
                             //4302
                             HStack(alignment: .center, spacing: 0) {
-                                Text("从业经验：\(clinician.yearOfExperience)年")
+                                Text(String(format: NSLocalizedString("years_of_experience", comment: ""), "\(clinician.yearOfExperience)"))
                                   .font(Font.typography(.bodyXSmallEmphasis))
                                   .kerning(0.36)
                                   .foregroundColor(Color.textBrandSecondary)
@@ -216,9 +215,9 @@ struct ClinicianDetailView: View {
                 
               Spacer()
               //$200
-                Text("$\(clinician.charge)/次")
+                Text(String(format: NSLocalizedString("charge_per_session", comment: ""), "\(clinician.charge)"))
                   .font(Font.typography(.bodyLargeEmphasis))
-                  .foregroundColor(Color.brandPrimary)
+                  .foregroundColor(Color.textBrandPrimary)
                   .frame(height:25)
             }
             .padding(ViewSpacing.medium)

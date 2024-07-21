@@ -1,5 +1,5 @@
 //
-//  StarRatingView(double).swift
+//  StarRatingWithDoubleView.swift
 //  voiceout
 //
 //  Created by 阳羽佳 on 7/18/24.

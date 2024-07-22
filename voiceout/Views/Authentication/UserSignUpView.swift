@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+enum SignUpStep {
+    case step1, step2
+}
+
 struct UserSignUpView: View {
     @StateObject var router: RouterModel = RouterModel()
     @StateObject private var userSignUpVM : UserSignUpVM
@@ -22,9 +26,6 @@ struct UserSignUpView: View {
         _verificationCodeVM = StateObject(wrappedValue: VerificationCodeVM(role: .user, textInputVM: model))
     }
     
-    enum SignUpStep {
-        case step1, step2
-    }
     
     var body: some View {
         ZStack{
@@ -60,7 +61,6 @@ struct UserSignUpView: View {
                     }
                 }
             }
-            .navigationDestination(isPresented: $userSignUpVM.isNextStepEnabled) {}
             
         }
         .navigationBarBackButtonHidden()
@@ -87,16 +87,16 @@ struct UserSignUpView: View {
             
         }
         .onChange(of: textInputVM.nickname) {_ in
-            userSignUpVM.updateNextStepButtonState()
+            userSignUpVM.updateUserSignUpButtonState()
         }
         .onChange(of: userSignUpVM.selectedState) {_ in
-            userSignUpVM.updateNextStepButtonState()
+            userSignUpVM.updateUserSignUpButtonState()
         }
-        .onChange(of: textInputVM.birthday) {_ in
-            userSignUpVM.updateNextStepButtonState()
+        .onChange(of: textInputVM.birthdate) {_ in
+            userSignUpVM.updateUserSignUpButtonState()
         }
         .onChange(of: userSignUpVM.selectedGender) {_ in
-            userSignUpVM.updateNextStepButtonState()
+            userSignUpVM.updateUserSignUpButtonState()
             
         }
     }
@@ -143,7 +143,12 @@ struct UserSignUpView: View {
             )
             
             ButtonView(text: "next_step",
-                       action: {userSignUpVM.handleButtonClick()},
+                       action: {
+                userSignUpVM.goToNextPage()
+                if userSignUpVM.nextPageAvailable {
+                    currentStep = .step2
+                }
+            },
                        theme: userSignUpVM.isNextStepEnabled ? .action : .base, maxWidth: .infinity
                        
             )
@@ -159,8 +164,8 @@ struct UserSignUpView: View {
                 isSecuredField: false,
                 placeholder: "nickname_placeholder",
                 prefixIcon: "user",
-                validationState: textInputVM.isValidEmail ? ValidationState.neutral : ValidationState.error,
-                validationMessage: textInputVM.emailValidationMsg
+                validationState: textInputVM.isNicknameValid ? ValidationState.neutral : ValidationState.error,
+                validationMessage: textInputVM.nicknameValidationMsg
             )
             .autocapitalization(.none)
             
@@ -170,14 +175,14 @@ struct UserSignUpView: View {
                 .zIndex(2)
             
             TextInputView(
-                text: $textInputVM.birthday,
+                text: $textInputVM.birthdate,
                 isSecuredField: false,
-                placeholder: "input_birthday",
+                placeholder: "input_birthday_placeholder",
                 prefixIcon: "birthday-cake",
                 validationState: textInputVM.isVerificationCodeValid ? ValidationState.neutral : ValidationState.error
             )
-            .onChange(of: textInputVM.birthday) { newValue in
-                textInputVM.birthday = formatDateString(newValue)
+            .onChange(of: textInputVM.birthdate) { newValue in
+                textInputVM.birthdate = formatDateString(newValue)
                 
             }
             
@@ -188,7 +193,11 @@ struct UserSignUpView: View {
             
             ButtonView(text: "signup",
                        action: {
-                userSignUpVM.handleButtonClick()
+                userSignUpVM.userSignUp()
+                if userSignUpVM.isSignUpSuccessfully{
+                    router.navigateTo(.finish(finishText: "sign_up_successfully", navigateToText: "navigate_to_login", destination: .userLogin))
+                }
+                
             },
                        theme: userSignUpVM.isUserSignUpEnabled ? .action : .base, maxWidth: .infinity
                        

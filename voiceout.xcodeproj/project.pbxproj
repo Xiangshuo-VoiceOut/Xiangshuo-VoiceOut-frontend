@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B814C5912C20F2F4008F4A60 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5902C20F2F4008F4A60 /* AddButton.swift */; };
 		B814C5952C220F66008F4A60 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5942C220F66008F4A60 /* LoginView.swift */; };
+		B8444E872C47526900CBCAF8 /* SignUpWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8444E862C47526900CBCAF8 /* SignUpWebService.swift */; };
 		B8860E1C2C34725E00A79073 /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8860E1B2C34725E00A79073 /* StepProgressView.swift */; };
 		B8860E1E2C3AC63300A79073 /* UserSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8860E1D2C3AC63300A79073 /* UserSignUpView.swift */; };
 		B8860E202C3ACCC600A79073 /* UserSignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8860E1F2C3ACCC600A79073 /* UserSignUpVM.swift */; };
@@ -30,7 +31,7 @@
 		B8D472292C1E40BD00D6716A /* ResetPasswordWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D472272C1E40BD00D6716A /* ResetPasswordWebService.swift */; };
 		B8D4722B2C1E41E400D6716A /* APIConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4722A2C1E41E400D6716A /* APIConfigs.swift */; };
 		B8D4722E2C1E421100D6716A /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4722C2C1E421000D6716A /* ErrorResponse.swift */; };
-		B8D4722F2C1E421100D6716A /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4722D2C1E421000D6716A /* UserLogin.swift */; };
+		B8D4722F2C1E421100D6716A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4722D2C1E421000D6716A /* User.swift */; };
 		B8F845442C28BB98008C0D80 /* DropdownOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845432C28BB98008C0D80 /* DropdownOption.swift */; };
 		B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845452C28BC82008C0D80 /* Dropdown.swift */; };
 		B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845472C29BB09008C0D80 /* DropdownList.swift */; };
@@ -73,6 +74,7 @@
 /* Begin PBXFileReference section */
 		B814C5902C20F2F4008F4A60 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		B814C5942C220F66008F4A60 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B8444E862C47526900CBCAF8 /* SignUpWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWebService.swift; sourceTree = "<group>"; };
 		B8860E1B2C34725E00A79073 /* StepProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepProgressView.swift; sourceTree = "<group>"; };
 		B8860E1D2C3AC63300A79073 /* UserSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpView.swift; sourceTree = "<group>"; };
 		B8860E1F2C3ACCC600A79073 /* UserSignUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpVM.swift; sourceTree = "<group>"; };
@@ -94,7 +96,7 @@
 		B8D472272C1E40BD00D6716A /* ResetPasswordWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordWebService.swift; sourceTree = "<group>"; };
 		B8D4722A2C1E41E400D6716A /* APIConfigs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConfigs.swift; sourceTree = "<group>"; };
 		B8D4722C2C1E421000D6716A /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
-		B8D4722D2C1E421000D6716A /* UserLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLogin.swift; sourceTree = "<group>"; };
+		B8D4722D2C1E421000D6716A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B8F845432C28BB98008C0D80 /* DropdownOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DropdownOption.swift; path = voiceout/DropdownOption.swift; sourceTree = SOURCE_ROOT; };
 		B8F845452C28BC82008C0D80 /* Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		B8F845472C29BB09008C0D80 /* DropdownList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownList.swift; sourceTree = "<group>"; };
@@ -203,7 +205,7 @@
 			children = (
 				B8F845432C28BB98008C0D80 /* DropdownOption.swift */,
 				B8D4722C2C1E421000D6716A /* ErrorResponse.swift */,
-				B8D4722D2C1E421000D6716A /* UserLogin.swift */,
+				B8D4722D2C1E421000D6716A /* User.swift */,
 				B8860E2B2C3C79B300A79073 /* StateData.swift */,
 			);
 			path = Models;
@@ -239,6 +241,7 @@
 				B8D4722A2C1E41E400D6716A /* APIConfigs.swift */,
 				B8D472262C1E40BD00D6716A /* LoginWebService.swift */,
 				B8D472272C1E40BD00D6716A /* ResetPasswordWebService.swift */,
+				B8444E862C47526900CBCAF8 /* SignUpWebService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -459,7 +462,8 @@
 				B814C5952C220F66008F4A60 /* LoginView.swift in Sources */,
 				D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */,
 				B8860E302C3CD21D00A79073 /* FinishView.swift in Sources */,
-				B8D4722F2C1E421100D6716A /* UserLogin.swift in Sources */,
+				B8D4722F2C1E421100D6716A /* User.swift in Sources */,
+				B8444E872C47526900CBCAF8 /* SignUpWebService.swift in Sources */,
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
 				B8D472252C1E408C00D6716A /* VerificationCodeVM.swift in Sources */,
 				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,

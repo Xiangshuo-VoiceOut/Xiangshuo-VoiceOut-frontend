@@ -12,11 +12,17 @@ enum EmailValidationMessage {
     case notExist
     case serverError
     case formError
+    case alreadyExist
 }
 
 enum VerificationCodeValidationMessage {
     case enterCode
     case invalidVerification
+}
+
+enum EmailValidationContext{
+    case login
+    case signup
 }
 
 class TextInputVM : ObservableObject {
@@ -38,7 +44,7 @@ class TextInputVM : ObservableObject {
     @Published var nickname: String = ""
     @Published var isNicknameValid: Bool = true
     @Published var nicknameValidationMsg: String = ""
-    @Published var birthday: String = ""
+    @Published var birthdate: String = ""
     @Published var isDateValid: Bool = true
     @Published var dateValidationMsg: String = ""
     
@@ -46,16 +52,30 @@ class TextInputVM : ObservableObject {
         isValidEmail = isValid
     }
     
-    func setEmailValidationMsg(msg: EmailValidationMessage) {
-        switch msg {
-        case .loginError:
-            emailValidationMsg = "login_error"
-        case .notExist:
-            emailValidationMsg = "email_not_exist"
-        case .serverError:
-            emailValidationMsg = "服务器错误"
-        case .formError:
-            emailValidationMsg = "email_form_error"
+    func setEmailValidationMsg(msg: EmailValidationMessage, context: EmailValidationContext) {
+        switch context {
+        case .login:
+            switch msg{
+            case .loginError:
+                emailValidationMsg = "login_error"
+            case .notExist:
+                emailValidationMsg = "email_not_exist"
+            case .formError:
+                emailValidationMsg = "email_form_error"
+            default:
+                emailValidationMsg = "network_error"
+            }
+            
+        case .signup:
+            switch msg{
+            case .formError:
+                emailValidationMsg = "email_form_error"
+            case .alreadyExist:
+                emailValidationMsg = "email_already_exist"
+            default:
+                emailValidationMsg = "network_error"
+                
+            }
         }
     }
     
@@ -111,7 +131,7 @@ class TextInputVM : ObservableObject {
     }
     
     func setDateValidationMsg(){
-        //TODO: check with Designer
+        dateValidationMsg = "date_invalid"
     }
     
     func resetDateValidationMsg(){
@@ -145,14 +165,14 @@ class TextInputVM : ObservableObject {
         return false
     }
     
-    func validateEmail() -> Bool {
+        func validateEmail() -> Bool {
         if emailValidator(email) {
             setIsValidEmail(isValid: true)
             resetEmailValidationMsg()
             return true
         }
         setIsValidEmail(isValid: false)
-        setEmailValidationMsg(msg: .formError)
+            setEmailValidationMsg(msg: .formError, context: .login)
         return false
     }
     
@@ -168,7 +188,7 @@ class TextInputVM : ObservableObject {
     }
     
     func validateDate() -> Bool {
-        if dateValidator(birthday) {
+        if dateValidator(birthdate) {
             setIsDateValid(isValid: true)
             return true
         }

@@ -54,16 +54,17 @@ class AuthViewModel: ObservableObject {
         switch error {
         case .userNotFound:
             textInputVM.setIsValidEmail(isValid: false)
-            textInputVM.setEmailValidationMsg(msg: .notExist)
+            textInputVM.setEmailValidationMsg(msg: .notExist, context: .login)
         case .incorrectPasswordOrEmail:
             textInputVM.setIsValidEmail(isValid: false)
             textInputVM.setIsValidPassword(isValid: false)
-            textInputVM.setEmailValidationMsg(msg: .loginError)
+            textInputVM.setEmailValidationMsg(msg: .loginError, context: .login)
         default:
             textInputVM.setIsValidEmail(isValid: false)
-            textInputVM.setEmailValidationMsg(msg: .serverError) //TODO: double check with design team & backend
+            textInputVM.setEmailValidationMsg(msg: .serverError, context: .login) //TODO: double check with design team & backend
         }
     }
+    
     
     func resetValidateState() {
         textInputVM.setIsValidEmail(isValid: true)

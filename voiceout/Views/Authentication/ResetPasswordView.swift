@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ResetPasswordView: View {
+    @EnvironmentObject var router: RouterModel
     @StateObject private var resetPasswordVM: ResetPasswordVM
     @StateObject private var textInputVM: TextInputVM
-    
+    private let role: UserRole
     init(_ role: UserRole) {
+        self.role = role
         let model = TextInputVM()
         _textInputVM = StateObject(wrappedValue: model)
         _resetPasswordVM = StateObject(wrappedValue: ResetPasswordVM(role: role, textInputVM: model))
@@ -46,7 +48,12 @@ struct ResetPasswordView: View {
                             
                         ButtonView(
                             text: "finished",
-                            action: {},
+                            action: {
+                                resetPasswordVM.resetPassword()
+                                if resetPasswordVM.isResetSuccessful {
+                                    router.navigateTo(.finish(finishText: "reset_successfully", navigateToText: "navigate_to_login", destination: .userLogin))
+                                }
+                            },
                             theme: resetPasswordVM.isFinishButtonEnabled ? .action : .base,
                             maxWidth: .infinity
                         )
@@ -64,7 +71,11 @@ struct ResetPasswordView: View {
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                            
+                        if role == .therapist {
+                            router.navigateTo(.therapistSignup)
+                        } else if role == .user {
+                            router.navigateTo(.userSignUp)
+                        }
                     }){
                         Text("signup")
                             .font(.typography(.bodyMedium))

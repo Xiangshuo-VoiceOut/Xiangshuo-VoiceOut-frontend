@@ -12,6 +12,8 @@ enum Route: Hashable {
     case therapistLogin
     case therapistSignup
     case userSignUp
+    case resetPassword(UserRole)
+    indirect case finish(finishText: String, navigateToText: String, destination: Route)
 }
 
 final class RouterModel: ObservableObject {
@@ -27,8 +29,16 @@ final class RouterModel: ObservableObject {
             TherapistSignupView()
         case .userSignUp:
             UserSignUpView()
+        case .resetPassword(let role):
+            ResetPasswordView(role)
+        case .finish(let finishText, let navigateToText, let destination):
+            FinishView(finishText: finishText, navigateToText: navigateToText, destination: destination)
         }
     }
+    
+    func navigateToFinish(finishText: String, navigateToText: String, destination: Route) {
+            path.append(Route.finish(finishText: finishText, navigateToText: navigateToText, destination: destination))
+        }
     
     func navigateTo(_ appRoute: Route) {
         path.append(appRoute)

@@ -6,11 +6,15 @@
 //
 
 import SwiftUI
+import Combine
 
 struct FinishView: View {
     @StateObject var router: RouterModel = RouterModel()
     @State var finishText: String
-    @State var jumpToText: String
+    @State var navigateToText: String
+    @State var countdown: Int = 3
+    @State var destination: Route
+    @State private var timer: AnyCancellable?
     var body: some View {
         ZStack{
             BackgroundView()
@@ -23,11 +27,11 @@ struct FinishView: View {
                     .font(.typography(.headerMedium))
                     .foregroundColor(Color.textPrimary)
                     .padding(.bottom, ViewSpacing.small)
-                Text(jumpToText)
+                Text(navigateToText)
                     .font(.typography(.bodyLarge))
                     .foregroundColor(Color.textPrimary)
                     .padding(.bottom, ViewSpacing.small)
-                Text("3S")
+                Text("\(countdown)S")
                     .font(.typography(.headerSmall))
                     .foregroundColor(Color.textPrimary)
                     .padding(.bottom)
@@ -47,9 +51,26 @@ struct FinishView: View {
                 }
             }
         }
+        .onAppear{
+            startCountdown()
+        }
+    }
+    
+    private func startCountdown(){
+        timer = Timer.publish(every: 1.0, on: .main, in: .common)
+            .autoconnect()
+            .sink{_ in
+                if countdown > 0 {
+                    countdown -= 1
+                } else {
+                    timer?.cancel()
+                    router.navigateTo(destination)
+                }
+                
+            }
     }
 }
 
 #Preview {
-    FinishView(finishText: "注册成功", jumpToText: "正在跳转至登录页面")
+    FinishView(finishText: "注册成功", navigateToText: "正在跳转至登录页面", destination: .userLogin)
 }

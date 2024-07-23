@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct StepProgressView: View {
-    var totalSteps: Int
-    var currentStep: Int
+    @Binding var totalSteps: Int
+    @Binding var currentStep: Int
     
     var body: some View {
         HStack(spacing: 0) {
@@ -38,5 +38,5 @@ struct StepProgressView: View {
 }
 
 #Preview {
-    StepProgressView(totalSteps: 7, currentStep: 2)
+    StepProgressView(totalSteps: .constant(7), currentStep: .constant(2))
 }

@@ -7,3 +7,9 @@
 */
 "email_placeholder" = "enter your email";
 "password_placeholder" = "enter your password";
+"AllowVoiceOutToUseYourLocation" = "Allow \"Voiceout\" to use your location?";
+"Allow" = "Allow";
+"DoNotAllow" = "Don't Allow";
+"AllowOnce" = "Allow Once";
+"AllowWhileUsingApp" = "Allow While Using App";
+"TurnOnPreciseLocation" = "Precise: On";

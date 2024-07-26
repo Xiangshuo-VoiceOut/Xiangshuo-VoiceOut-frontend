@@ -13,7 +13,6 @@
 		840223F62C545ECF0082BB01 /* LocationDropdownOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840223F52C545ECF0082BB01 /* LocationDropdownOptionViewModel.swift */; };
 		840223F82C545EE90082BB01 /* TherapistLocationPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840223F72C545EE90082BB01 /* TherapistLocationPopupViewModel.swift */; };
 		840223FC2C545F200082BB01 /* TherapistLocationPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840223FB2C545F200082BB01 /* TherapistLocationPopupView.swift */; };
-		840223FE2C545F470082BB01 /* states.json in Resources */ = {isa = PBXBuildFile; fileRef = 840223FD2C545F470082BB01 /* states.json */; };
 		840224002C545F640082BB01 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840223FF2C545F640082BB01 /* MapView.swift */; };
 		B814C5912C20F2F4008F4A60 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5902C20F2F4008F4A60 /* AddButton.swift */; };
 		B814C5952C220F66008F4A60 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5942C220F66008F4A60 /* LoginView.swift */; };
@@ -79,7 +78,6 @@
 		840223F52C545ECF0082BB01 /* LocationDropdownOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDropdownOptionViewModel.swift; sourceTree = "<group>"; };
 		840223F72C545EE90082BB01 /* TherapistLocationPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistLocationPopupViewModel.swift; sourceTree = "<group>"; };
 		840223FB2C545F200082BB01 /* TherapistLocationPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistLocationPopupView.swift; sourceTree = "<group>"; };
-		840223FD2C545F470082BB01 /* states.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = states.json; path = "../../../../../Xiangshuo-VoiceOut-frontend copy/voiceout/Views/Therapist/TherapistLocationPopup/states.json"; sourceTree = "<group>"; };
 		840223FF2C545F640082BB01 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B814C5902C20F2F4008F4A60 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		B814C5942C220F66008F4A60 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				840223FB2C545F200082BB01 /* TherapistLocationPopupView.swift */,
-				840223FD2C545F470082BB01 /* states.json */,
 			);
 			path = TherapistLocationPopup;
 			sourceTree = "<group>";
@@ -463,7 +460,6 @@
 				D25C2EC62BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf in Resources */,
 				D25C2EC82BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf in Resources */,
 				D2B8F4C92C04049F0053F82B /* 注册协议.txt in Resources */,
-				840223FE2C545F470082BB01 /* states.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

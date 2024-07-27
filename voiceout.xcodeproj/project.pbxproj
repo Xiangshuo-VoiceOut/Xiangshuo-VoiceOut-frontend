@@ -14,6 +14,7 @@
 		840223F82C545EE90082BB01 /* TherapistLocationPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840223F72C545EE90082BB01 /* TherapistLocationPopupViewModel.swift */; };
 		840223FC2C545F200082BB01 /* TherapistLocationPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840223FB2C545F200082BB01 /* TherapistLocationPopupView.swift */; };
 		840224002C545F640082BB01 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840223FF2C545F640082BB01 /* MapView.swift */; };
+		840294F92C55816200345FB2 /* ClinicianCardInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840294F82C55816200345FB2 /* ClinicianCardInformation.swift */; };
 		B814C5912C20F2F4008F4A60 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5902C20F2F4008F4A60 /* AddButton.swift */; };
 		B814C5952C220F66008F4A60 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5942C220F66008F4A60 /* LoginView.swift */; };
 		B8860E1C2C34725E00A79073 /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8860E1B2C34725E00A79073 /* StepProgressView.swift */; };
@@ -79,6 +80,7 @@
 		840223F72C545EE90082BB01 /* TherapistLocationPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistLocationPopupViewModel.swift; sourceTree = "<group>"; };
 		840223FB2C545F200082BB01 /* TherapistLocationPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistLocationPopupView.swift; sourceTree = "<group>"; };
 		840223FF2C545F640082BB01 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		840294F82C55816200345FB2 /* ClinicianCardInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardInformation.swift; sourceTree = "<group>"; };
 		B814C5902C20F2F4008F4A60 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		B814C5942C220F66008F4A60 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B8860E1B2C34725E00A79073 /* StepProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepProgressView.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				B8F845432C28BB98008C0D80 /* DropdownOption.swift */,
 				840223ED2C545DF10082BB01 /* StateData.swift */,
 				B8D4722C2C1E421000D6716A /* ErrorResponse.swift */,
+				840294F82C55816200345FB2 /* ClinicianCardInformation.swift */,
 				B8D4722D2C1E421000D6716A /* UserLogin.swift */,
 			);
 			path = Models;
@@ -497,6 +500,7 @@
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
 				B8D472252C1E408C00D6716A /* VerificationCodeVM.swift in Sources */,
 				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,
+				840294F92C55816200345FB2 /* ClinicianCardInformation.swift in Sources */,
 				B8F845442C28BB98008C0D80 /* DropdownOption.swift in Sources */,
 				D21660CD2C339A49008248DE /* VerificationCodeButton.swift in Sources */,
 				D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */,
@@ -673,9 +677,6 @@
 				INFOPLIST_FILE = voiceout/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "我们需要访问您的位置信息来查找咨询师";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "我们需要始终访问您的位置信息来提供持续的服务。";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "我们需要使用您的位置信息来提供相关的服务和功能。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -713,9 +714,6 @@
 				INFOPLIST_FILE = voiceout/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "我们需要访问您的位置信息来查找咨询师";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "我们需要始终访问您的位置信息来提供持续的服务。";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "我们需要使用您的位置信息来提供相关的服务和功能。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

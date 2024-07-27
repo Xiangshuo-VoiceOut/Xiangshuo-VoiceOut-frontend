@@ -39,7 +39,7 @@
 "finished" = "完成";
 "password_form_error" = "密码格式错误，请重新输入";
 "password_not_match" = "密码不匹配，请重新输入";
-"AllowVoiceOutToUseYourLocation" = "想说”想要使用你的位置信息";
+"AllowVoiceOutToUseYourLocation" = "允许 “VoiceOut” 使用你的位置？";
 "Allow" = "允许";
 "DoNotAllow" = "不允许";
 "AllowOnce" = "允许一次";

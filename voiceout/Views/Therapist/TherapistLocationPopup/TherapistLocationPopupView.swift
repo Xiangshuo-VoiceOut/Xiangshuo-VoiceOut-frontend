@@ -22,6 +22,7 @@ struct TherapistLocationPopupView: View {
     @State private var states: [DropdownOption] = []
     @State private var isDropdownOpened = false
     @StateObject var locationManager = LocationManager()
+    @State private var isShowingClinicianList = false
     
     private func loadStates() {
         let stateData = StateData.allStates
@@ -34,15 +35,19 @@ struct TherapistLocationPopupView: View {
     
     var body: some View {
         VStack {
-            switch viewModel.currentView {
-            case 1:
-                view1
-            case 2:
-                view2
-            case 3:
-                view3
-            default:
-                EmptyView()
+            if isShowingClinicianList {
+                ClinicianListView(clinicians: viewModel.clinicians)
+            } else {
+                switch viewModel.currentView {
+                case 1:
+                    view1
+                case 2:
+                    view2
+                case 3:
+                    view3
+                default:
+                    EmptyView()
+                }
             }
         }
         .onAppear {
@@ -185,6 +190,11 @@ struct TherapistLocationPopupView: View {
                             locationManager.requestPermission()
                             viewModel.handleAllowOnce()
                             viewModel.hidePopup()
+                            if let location = locationManager.location {
+                                let state = viewModel.getStateFromLocation(location.coordinate)
+                                viewModel.confirmRegionSelection(state: state)
+                                isShowingClinicianList = true
+                            }
                         }) {
                             Text(LocalizedStringKey("AllowOnce"))
                                 .font(Font.typography(.bodyMedium))
@@ -207,6 +217,11 @@ struct TherapistLocationPopupView: View {
                         locationManager.requestPermission()
                         viewModel.handleAllowWhileUsingApp()
                         viewModel.hidePopup()
+                        if let location = locationManager.location {
+                            let state = viewModel.getStateFromLocation(location.coordinate)
+                            viewModel.confirmRegionSelection(state: state)
+                            isShowingClinicianList = true
+                        }
                     }) {
                         Text(LocalizedStringKey("AllowWhileUsingApp"))
                             .font(Font.typography(.bodyMedium))
@@ -290,7 +305,7 @@ struct TherapistLocationPopupView: View {
                                     }
                                 }) {
                                     Text(state.option)
-                                        .frame(maxWidth: .infinity, minHeight: 50) // 设置每个选项的高度
+                                        .frame(maxWidth: .infinity, minHeight: 50)
                                         .contentShape(Rectangle())
                                         .foregroundColor(.textPrimary)
                                 }
@@ -305,7 +320,10 @@ struct TherapistLocationPopupView: View {
             }
             
             Button(action: {
-                viewModel.confirmRegionSelection()
+                if let state = selectedState?.option {
+                    viewModel.confirmRegionSelection(state: state)
+                    isShowingClinicianList = true
+                }
             }) {
                 Text("确认")
                     .font(Font.typography(.bodyMediumEmphasis))
@@ -354,6 +372,16 @@ struct TherapistLocationPopupView: View {
         .padding(0)
         .frame(width: 238, height: 51, alignment: .center)
         .cornerRadius(CornerRadius.xxxsmall.value)
+    }
+}
+
+struct ClinicianListView: View {
+    var clinicians: [Clinician]
+
+    var body: some View {
+        List(clinicians) { clinician in
+            Text(clinician.name)
+        }
     }
 }
 

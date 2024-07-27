@@ -19,10 +19,9 @@ struct MapView: View {
             Map(coordinateRegion: $region, showsUserLocation: true)
                 .onChange(of: locationManager.location) { newLocation in
                     if let newLocation = newLocation {
-                        region = MKCoordinateRegion(center: newLocation, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+                        region = MKCoordinateRegion(center: newLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
                     }
                 }
-            //精确定位
             HStack(alignment: .center, spacing: ViewSpacing.xsmall)  {
                 Image(systemName: "location.fill")
                     .foregroundColor(.blue)
@@ -31,7 +30,6 @@ struct MapView: View {
                     .font(Font.typography(.bodyMedium))
                     .foregroundColor(.blue)
                     .frame(height: 17, alignment: .leading)
-                
             }
             .padding(.horizontal, ViewSpacing.betweenSmallAndBase)
             .padding(.vertical,ViewSpacing.xsmall )
@@ -44,6 +42,5 @@ struct MapView: View {
         }
         .frame(width: 270, height: 174)
         .cornerRadius(CornerRadius.xxxsmall.value)
-
     }
 }

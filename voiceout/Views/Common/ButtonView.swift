@@ -47,6 +47,7 @@ struct ButtonView: View {
                 .font(fontForFrameSize)
                 .padding(paddingSize)
                 .frame(maxWidth: maxWidth)
+                .lineLimit(1)
         }
         .foregroundColor(foregroundColorForVariant)
         .background(backgroundForVariant)
@@ -72,8 +73,6 @@ struct ButtonView: View {
         default:
             if theme == .bagdeInactive {
                 return .textSecondary
-            } else if theme == .badge {
-                return .textBrandPrimary
             } else if theme == .base{
                 return .textPrimary
             } else {
@@ -87,10 +86,8 @@ struct ButtonView: View {
         case .outline:
             return .surfacePrimary
         default:
-            if theme == .action {
+            if theme == .action || theme == .badge {
                 return .surfaceBrandPrimary
-            } else if theme == .badge {
-                return .brandPrimary.opacity(0.3)
             } else {
                 return .surfacePrimaryGrey
             }

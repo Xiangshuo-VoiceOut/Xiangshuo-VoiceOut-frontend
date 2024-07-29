@@ -14,6 +14,7 @@ struct Dropdown: View {
     let placeholder: String
     let options: [DropdownOption]
     var isCardInput: Bool = false
+    var backgroundColor: Color = Color.surfacePrimaryGrey2
     var body: some View {
         Button(action: {
             withAnimation {
@@ -39,17 +40,17 @@ struct Dropdown: View {
             .padding(.vertical,ViewSpacing.small)
             
         }
-        .background(Color.surfacePrimaryGrey2)
+        .background(backgroundColor)
         .cornerRadius(CornerRadius.medium.value)
         .overlay(alignment:.top){
             VStack{
                 if self.isOptionPresented {
                     Spacer(minLength: ViewSpacing.xxlarge)
-                    DropdownList(options: self.options, isCardInput: isCardInput) { option in
+                    DropdownList(options: self.options, onSelectedAction: { option in
                         self.isOptionPresented = false
                         self.selectionOption = option
+                    }, isCardInput: isCardInput, backgroundColor: backgroundColor)
 
-                    }
                 }
             }
             .padding(.top, -ViewSpacing.base)

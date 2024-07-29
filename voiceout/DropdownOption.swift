@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct DropdownOption: Identifiable, Hashable {
     let id = UUID().uuidString
@@ -21,5 +22,23 @@ extension DropdownOption {
         DropdownOption(option: "April"),
         DropdownOption(option: "May"),
         DropdownOption(option: "June")
+    ]
+    
+    static let genders: [DropdownOption] = [
+        DropdownOption(option: String(localized: "male")),
+        DropdownOption(option: String(localized: "female")),
+        DropdownOption(option: String(localized: "other"))
+    ]
+    
+    static let degrees: [DropdownOption] = [
+        DropdownOption(option: String(localized: "bachelor")),
+        DropdownOption(option: String(localized: "master")),
+        DropdownOption(option: String(localized: "phd"))
+    ]
+    
+    static let certificates: [DropdownOption] = [
+        DropdownOption(option: String(localized: "first_grade_certificate")),
+        DropdownOption(option: String(localized: "second_grade_certificate")),
+        DropdownOption(option: String(localized: "third_grade_certificate"))
     ]
 }

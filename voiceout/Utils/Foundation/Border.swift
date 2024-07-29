@@ -9,6 +9,7 @@ import SwiftUI
 
 enum CornerRadius {
     case full
+    case large
     case medium
     case small
     case xxsmall
@@ -17,6 +18,8 @@ enum CornerRadius {
         switch self{
         case .full:
             return 360
+        case .large:
+            return 36
         case .medium:
             return 16
         case .small:
@@ -65,6 +68,8 @@ extension RoundedRectangle {
         switch cornerRadius {
         case .full:
             cornerRadiusValue = 360
+        case .large:
+            cornerRadiusValue = 36
         case .medium:
             cornerRadiusValue = 16
         case .small:

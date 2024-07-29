@@ -41,19 +41,19 @@ struct TextInputView: View {
                         LocalizedStringKey(placeholder),
                         text: $text,
                         prompt: Text(LocalizedStringKey(placeholder))
-                            .foregroundColor(.textSecondary)
+                            .foregroundColor(.textLight)
                             .font(.typography(.bodyMediumEmphasis))
                     )
-                    .foregroundColor(.textPrimary)
+                    .foregroundColor(.textLight)
                 } else {
                     TextField(
                         LocalizedStringKey(placeholder),
                         text: $text,
                         prompt: Text(LocalizedStringKey(placeholder))
                             .font(.typography(.bodyMediumEmphasis))
-                            .foregroundColor(.textSecondary)
+                            .foregroundColor(.textLight)
                     )
-                    .foregroundColor(.textPrimary)
+                    .foregroundColor(.textLight)
                 }
                 suffixContent
             }

@@ -19,6 +19,7 @@
 "registration_protocol_popup_title" = "想说VoiceOut注册协议";
 "privacy_policy_popup_title" = "想说VoiceOut⽤户隐私政策";
 "disagree" = "暂不同意";
+"disagree_short" = "不同意";
 "agree" = "同意";
 "user_login" = "用户端入口";
 "consultant_login" = "咨询师入口";
@@ -39,3 +40,6 @@
 "finished" = "完成";
 "password_form_error" = "密码格式错误，请重新输入";
 "password_not_match" = "密码不匹配，请重新输入";
+"therapist_cooperation_aggrement_popup_title" = "咨询师合作协议";
+"therapist_cooperation_aggrement_disagree_warning" = "若不同意入驻协议则,则无法入驻。";
+"understood" = "知道了";

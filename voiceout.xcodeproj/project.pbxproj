@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8433CAA92C459AA800845A7A /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAA82C459AA800845A7A /* CommentCardView.swift */; };
+		8433CAAB2C459D7300845A7A /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAAA2C459D7300845A7A /* UserInformation.swift */; };
+		8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */; };
+		8433CACA2C459F9800845A7A /* ClinicianCardInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */; };
+		8433CAD22C45A0DD00845A7A /* ClinicianCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAD02C45A0DD00845A7A /* ClinicianCardView.swift */; };
+		846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */; };
+		84F0FD592C48D29200E2DB79 /* StarRatingWithDoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */; };
+		84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD5A2C48D2E200E2DB79 /* CardView.swift */; };
+		84F0FD5F2C48D85A00E2DB79 /* StarRatingWithIntView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD5E2C48D85A00E2DB79 /* StarRatingWithIntView.swift */; };
 		B814C5912C20F2F4008F4A60 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5902C20F2F4008F4A60 /* AddButton.swift */; };
 		B814C5952C220F66008F4A60 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5942C220F66008F4A60 /* LoginView.swift */; };
 		B8860E1C2C34725E00A79073 /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8860E1B2C34725E00A79073 /* StepProgressView.swift */; };
@@ -68,6 +77,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8433CAA82C459AA800845A7A /* CommentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCardView.swift; sourceTree = "<group>"; };
+		8433CAAA2C459D7300845A7A /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
+		8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardViewModel.swift; sourceTree = "<group>"; };
+		8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardInformation.swift; sourceTree = "<group>"; };
+		8433CAD02C45A0DD00845A7A /* ClinicianCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardView.swift; sourceTree = "<group>"; };
+		846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentcardViewModel.swift; sourceTree = "<group>"; };
+		84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingWithDoubleView.swift; sourceTree = "<group>"; };
+		84F0FD5A2C48D2E200E2DB79 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		84F0FD5E2C48D85A00E2DB79 /* StarRatingWithIntView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingWithIntView.swift; sourceTree = "<group>"; };
 		B814C5902C20F2F4008F4A60 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		B814C5942C220F66008F4A60 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B8860E1B2C34725E00A79073 /* StepProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepProgressView.swift; sourceTree = "<group>"; };
@@ -141,6 +159,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84F0FD4E2C48AAE300E2DB79 /* Therapist */ = {
+			isa = PBXGroup;
+			children = (
+				84F0FD512C48BE9900E2DB79 /* Common */,
+			);
+			path = Therapist;
+			sourceTree = "<group>";
+		};
+		84F0FD4F2C48AC0E00E2DB79 /* Therapist */ = {
+			isa = PBXGroup;
+			children = (
+				84F0FD502C48BE8200E2DB79 /* Common */,
+			);
+			path = Therapist;
+			sourceTree = "<group>";
+		};
+		84F0FD502C48BE8200E2DB79 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		84F0FD512C48BE9900E2DB79 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8433CAD02C45A0DD00845A7A /* ClinicianCardView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		D2071CFF2BA62F300040B0AE = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +234,7 @@
 		D2071D372BAA82D40040B0AE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84F0FD4E2C48AAE300E2DB79 /* Therapist */,
 				D2071D412BAA8B880040B0AE /* Authentication */,
 				D2071D452BAB5E7D0040B0AE /* Common */,
 				D2071D0D2BA62F300040B0AE /* ContentView.swift */,
@@ -198,6 +249,8 @@
 				B8F845432C28BB98008C0D80 /* DropdownOption.swift */,
 				B8D4722C2C1E421000D6716A /* ErrorResponse.swift */,
 				B8D4722D2C1E421000D6716A /* UserLogin.swift */,
+				8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */,
+				8433CAAA2C459D7300845A7A /* UserInformation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -205,6 +258,7 @@
 		D2071D3A2BAA83030040B0AE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				84F0FD4F2C48AC0E00E2DB79 /* Therapist */,
 				D21660D02C33AA9B008248DE /* Authentication */,
 				D28499272BE9BFB900963B3A /* Common */,
 				D2D6CD842C03699000DD7688 /* RouterModel.swift */,
@@ -250,6 +304,10 @@
 				B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */,
 				D28498EB2BE19DE300963B3A /* SecuredTextInputView.swift */,
 				D2071D462BAB5E9E0040B0AE /* TextInputView.swift */,
+				8433CAA82C459AA800845A7A /* CommentCardView.swift */,
+				84F0FD5E2C48D85A00E2DB79 /* StarRatingWithIntView.swift */,
+				84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */,
+				84F0FD5A2C48D2E200E2DB79 /* CardView.swift */,
 				B8860E272C3C675200A79073 /* ImagePickerView.swift */,
 			);
 			path = Common;
@@ -322,6 +380,7 @@
 				D2D6CD792BF8FD0400DD7688 /* DialogViewModel.swift */,
 				D28499282BE9BFF900963B3A /* PopupViewModel.swift */,
 				D21660DC2C34E68A008248DE /* TextInputVM.swift */,
+				846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -448,6 +507,7 @@
 				B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */,
 				B8D4721E2C1E405000D6716A /* ForgetPasswordView.swift in Sources */,
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
+				84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
 				B8860E1C2C34725E00A79073 /* StepProgressView.swift in Sources */,
 				B8860E282C3C675200A79073 /* ImagePickerView.swift in Sources */,
@@ -456,10 +516,16 @@
 				B814C5952C220F66008F4A60 /* LoginView.swift in Sources */,
 				D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */,
 				B8D4722F2C1E421100D6716A /* UserLogin.swift in Sources */,
+				8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */,
 				D21660E02C4C22E3008248DE /* CooperationAgreementPopupContent.swift in Sources */,
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
+				846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */,
 				B8D472252C1E408C00D6716A /* VerificationCodeVM.swift in Sources */,
+				8433CACA2C459F9800845A7A /* ClinicianCardInformation.swift in Sources */,
 				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,
+				8433CAD22C45A0DD00845A7A /* ClinicianCardView.swift in Sources */,
+				84F0FD5F2C48D85A00E2DB79 /* StarRatingWithIntView.swift in Sources */,
+				84F0FD592C48D29200E2DB79 /* StarRatingWithDoubleView.swift in Sources */,
 				B8F845442C28BB98008C0D80 /* DropdownOption.swift in Sources */,
 				D21660CD2C339A49008248DE /* VerificationCodeButton.swift in Sources */,
 				D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */,
@@ -469,6 +535,7 @@
 				D2D6CD892C038B1700DD7688 /* Color.swift in Sources */,
 				B814C5912C20F2F4008F4A60 /* AddButton.swift in Sources */,
 				D2D6CD852C03699000DD7688 /* RouterModel.swift in Sources */,
+				8433CAA92C459AA800845A7A /* CommentCardView.swift in Sources */,
 				D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */,
 				D28498EA2BE171F700963B3A /* Border.swift in Sources */,
 				D21660E22C4C24DD008248DE /* FileReader.swift in Sources */,
@@ -476,6 +543,7 @@
 				B8D472132C1E3CB700D6716A /* BackgroundView.swift in Sources */,
 				D21660CF2C339B98008248DE /* BackButtonView.swift in Sources */,
 				B8D472242C1E408C00D6716A /* ResetPasswordVM.swift in Sources */,
+				8433CAAB2C459D7300845A7A /* UserInformation.swift in Sources */,
 				D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */,
 				D21660D82C34D689008248DE /* Validators.swift in Sources */,
 				D28499262BE9AB6200963B3A /* PopupView.swift in Sources */,

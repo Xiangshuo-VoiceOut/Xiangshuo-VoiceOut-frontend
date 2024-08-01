@@ -19,6 +19,7 @@
 		B814C5912C20F2F4008F4A60 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5902C20F2F4008F4A60 /* AddButton.swift */; };
 		B814C5952C220F66008F4A60 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B814C5942C220F66008F4A60 /* LoginView.swift */; };
 		B8860E1C2C34725E00A79073 /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8860E1B2C34725E00A79073 /* StepProgressView.swift */; };
+		B8860E282C3C675200A79073 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8860E272C3C675200A79073 /* ImagePickerView.swift */; };
 		B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4720C2C175DBB00D6716A /* BadgeView.swift */; };
 		B8D472132C1E3CB700D6716A /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D472122C1E3CB700D6716A /* BackgroundView.swift */; };
 		B8D472152C1E3D0900D6716A /* BGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D472142C1E3D0900D6716A /* BGConstants.swift */; };
@@ -50,6 +51,8 @@
 		D21660D82C34D689008248DE /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21660D72C34D689008248DE /* Validators.swift */; };
 		D21660DA2C34DE3C008248DE /* TherapistSignupVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21660D92C34DE3C008248DE /* TherapistSignupVM.swift */; };
 		D21660DD2C34E68A008248DE /* TextInputVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21660DC2C34E68A008248DE /* TextInputVM.swift */; };
+		D21660E02C4C22E3008248DE /* CooperationAgreementPopupContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21660DF2C4C22E3008248DE /* CooperationAgreementPopupContent.swift */; };
+		D21660E22C4C24DD008248DE /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21660E12C4C24DD008248DE /* FileReader.swift */; };
 		D25C2EC62BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D25C2EC52BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf */; };
 		D25C2EC82BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D25C2EC72BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf */; };
 		D25C2ECC2BCF6EB00011212A /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25C2ECB2BCF6EB00011212A /* Typography.swift */; };
@@ -86,6 +89,7 @@
 		B814C5902C20F2F4008F4A60 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		B814C5942C220F66008F4A60 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B8860E1B2C34725E00A79073 /* StepProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepProgressView.swift; sourceTree = "<group>"; };
+		B8860E272C3C675200A79073 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		B8D4720C2C175DBB00D6716A /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		B8D472122C1E3CB700D6716A /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		B8D472142C1E3D0900D6716A /* BGConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGConstants.swift; sourceTree = "<group>"; };
@@ -119,6 +123,8 @@
 		D21660D72C34D689008248DE /* Validators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		D21660D92C34DE3C008248DE /* TherapistSignupVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistSignupVM.swift; sourceTree = "<group>"; };
 		D21660DC2C34E68A008248DE /* TextInputVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputVM.swift; sourceTree = "<group>"; };
+		D21660DF2C4C22E3008248DE /* CooperationAgreementPopupContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CooperationAgreementPopupContent.swift; sourceTree = "<group>"; };
+		D21660E12C4C24DD008248DE /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
 		D25C2EC52BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlibabaPuHuiTi-Medium.ttf"; sourceTree = "<group>"; };
 		D25C2EC72BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlibabaPuHuiTi-Bold.ttf"; sourceTree = "<group>"; };
 		D25C2ECB2BCF6EB00011212A /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
@@ -263,6 +269,7 @@
 		D2071D412BAA8B880040B0AE /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				D21660DE2C4C2291008248DE /* Therapist */,
 				D284992C2BEEF3FE00963B3A /* Components */,
 				B8D4721B2C1E404F00D6716A /* ForgetPasswordView.swift */,
 				B814C5942C220F66008F4A60 /* LoginView.swift */,
@@ -301,6 +308,7 @@
 				84F0FD5E2C48D85A00E2DB79 /* StarRatingWithIntView.swift */,
 				84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */,
 				84F0FD5A2C48D2E200E2DB79 /* CardView.swift */,
+				B8860E272C3C675200A79073 /* ImagePickerView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -334,6 +342,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		D21660DE2C4C2291008248DE /* Therapist */ = {
+			isa = PBXGroup;
+			children = (
+				D21660DF2C4C22E3008248DE /* CooperationAgreementPopupContent.swift */,
+			);
+			path = Therapist;
+			sourceTree = "<group>";
+		};
 		D25C2EC42BCF56790011212A /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +369,7 @@
 			children = (
 				D21660D72C34D689008248DE /* Validators.swift */,
 				D25C2EC42BCF56790011212A /* Foundation */,
+				D21660E12C4C24DD008248DE /* FileReader.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -493,12 +510,14 @@
 				84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
 				B8860E1C2C34725E00A79073 /* StepProgressView.swift in Sources */,
+				B8860E282C3C675200A79073 /* ImagePickerView.swift in Sources */,
 				D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */,
 				B8D4722E2C1E421100D6716A /* ErrorResponse.swift in Sources */,
 				B814C5952C220F66008F4A60 /* LoginView.swift in Sources */,
 				D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */,
 				B8D4722F2C1E421100D6716A /* UserLogin.swift in Sources */,
 				8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */,
+				D21660E02C4C22E3008248DE /* CooperationAgreementPopupContent.swift in Sources */,
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
 				846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */,
 				B8D472252C1E408C00D6716A /* VerificationCodeVM.swift in Sources */,
@@ -506,8 +525,8 @@
 				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,
 				8433CAD22C45A0DD00845A7A /* ClinicianCardView.swift in Sources */,
 				84F0FD5F2C48D85A00E2DB79 /* StarRatingWithIntView.swift in Sources */,
-				B8F845442C28BB98008C0D80 /* DropdownOption.swift in Sources */,
 				84F0FD592C48D29200E2DB79 /* StarRatingWithDoubleView.swift in Sources */,
+				B8F845442C28BB98008C0D80 /* DropdownOption.swift in Sources */,
 				D21660CD2C339A49008248DE /* VerificationCodeButton.swift in Sources */,
 				D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */,
 				B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */,
@@ -519,6 +538,7 @@
 				8433CAA92C459AA800845A7A /* CommentCardView.swift in Sources */,
 				D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */,
 				D28498EA2BE171F700963B3A /* Border.swift in Sources */,
+				D21660E22C4C24DD008248DE /* FileReader.swift in Sources */,
 				B8D472232C1E408C00D6716A /* AuthViewModel.swift in Sources */,
 				B8D472132C1E3CB700D6716A /* BackgroundView.swift in Sources */,
 				D21660CF2C339B98008248DE /* BackButtonView.swift in Sources */,

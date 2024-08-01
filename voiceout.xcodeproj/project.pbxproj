@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8402950A2C5C324500345FB2 /* TherapistScheduleCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840295092C5C324500345FB2 /* TherapistScheduleCalendarView.swift */; };
+		8402950C2C5C326400345FB2 /* TherapistScheduleTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402950B2C5C326400345FB2 /* TherapistScheduleTimeView.swift */; };
+		8402950E2C5C329300345FB2 /* TherapistScheduleAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402950D2C5C329300345FB2 /* TherapistScheduleAvailability.swift */; };
+		840295102C5C32AF00345FB2 /* TherapistScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402950F2C5C32AF00345FB2 /* TherapistScheduleViewModel.swift */; };
 		8433CAA92C459AA800845A7A /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAA82C459AA800845A7A /* CommentCardView.swift */; };
 		8433CAAB2C459D7300845A7A /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAAA2C459D7300845A7A /* UserInformation.swift */; };
 		8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */; };
@@ -77,6 +81,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		840295092C5C324500345FB2 /* TherapistScheduleCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistScheduleCalendarView.swift; sourceTree = "<group>"; };
+		8402950B2C5C326400345FB2 /* TherapistScheduleTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistScheduleTimeView.swift; sourceTree = "<group>"; };
+		8402950D2C5C329300345FB2 /* TherapistScheduleAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistScheduleAvailability.swift; sourceTree = "<group>"; };
+		8402950F2C5C32AF00345FB2 /* TherapistScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistScheduleViewModel.swift; sourceTree = "<group>"; };
 		8433CAA82C459AA800845A7A /* CommentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCardView.swift; sourceTree = "<group>"; };
 		8433CAAA2C459D7300845A7A /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardViewModel.swift; sourceTree = "<group>"; };
@@ -251,6 +259,7 @@
 				B8D4722D2C1E421000D6716A /* UserLogin.swift */,
 				8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */,
 				8433CAAA2C459D7300845A7A /* UserInformation.swift */,
+				8402950D2C5C329300345FB2 /* TherapistScheduleAvailability.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -309,6 +318,8 @@
 				84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */,
 				84F0FD5A2C48D2E200E2DB79 /* CardView.swift */,
 				B8860E272C3C675200A79073 /* ImagePickerView.swift */,
+				840295092C5C324500345FB2 /* TherapistScheduleCalendarView.swift */,
+				8402950B2C5C326400345FB2 /* TherapistScheduleTimeView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -378,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				D2D6CD792BF8FD0400DD7688 /* DialogViewModel.swift */,
+				8402950F2C5C32AF00345FB2 /* TherapistScheduleViewModel.swift */,
 				D28499282BE9BFF900963B3A /* PopupViewModel.swift */,
 				D21660DC2C34E68A008248DE /* TextInputVM.swift */,
 				846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */,
@@ -509,8 +521,10 @@
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
 				84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
+				840295102C5C32AF00345FB2 /* TherapistScheduleViewModel.swift in Sources */,
 				B8860E1C2C34725E00A79073 /* StepProgressView.swift in Sources */,
 				B8860E282C3C675200A79073 /* ImagePickerView.swift in Sources */,
+				8402950A2C5C324500345FB2 /* TherapistScheduleCalendarView.swift in Sources */,
 				D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */,
 				B8D4722E2C1E421100D6716A /* ErrorResponse.swift in Sources */,
 				B814C5952C220F66008F4A60 /* LoginView.swift in Sources */,
@@ -537,11 +551,13 @@
 				D2D6CD852C03699000DD7688 /* RouterModel.swift in Sources */,
 				8433CAA92C459AA800845A7A /* CommentCardView.swift in Sources */,
 				D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */,
+				8402950C2C5C326400345FB2 /* TherapistScheduleTimeView.swift in Sources */,
 				D28498EA2BE171F700963B3A /* Border.swift in Sources */,
 				D21660E22C4C24DD008248DE /* FileReader.swift in Sources */,
 				B8D472232C1E408C00D6716A /* AuthViewModel.swift in Sources */,
 				B8D472132C1E3CB700D6716A /* BackgroundView.swift in Sources */,
 				D21660CF2C339B98008248DE /* BackButtonView.swift in Sources */,
+				8402950E2C5C329300345FB2 /* TherapistScheduleAvailability.swift in Sources */,
 				B8D472242C1E408C00D6716A /* ResetPasswordVM.swift in Sources */,
 				8433CAAB2C459D7300845A7A /* UserInformation.swift in Sources */,
 				D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */,

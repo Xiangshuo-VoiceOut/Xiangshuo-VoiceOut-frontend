@@ -38,5 +38,5 @@ struct StepProgressView: View {
 }
 
 #Preview {
-    StepProgressView(totalSteps: (.constant(3)), currentStep: (.constant(2)))
+    StepProgressView(totalSteps: .constant(7), currentStep: .constant(2))
 }

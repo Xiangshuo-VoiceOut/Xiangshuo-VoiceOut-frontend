@@ -11,7 +11,9 @@ enum CornerRadius {
     case full
     case medium
     case small
+    case xsmall
     case xxsmall
+    case xxxsmall
     
     var value: CGFloat{
         switch self{
@@ -21,8 +23,12 @@ enum CornerRadius {
             return 16
         case .small:
             return 8
+        case .xsmall:
+            return 4
         case .xxsmall:
             return 3
+        case .xxxsmall:
+            return 1
         }
     }
 }
@@ -69,8 +75,12 @@ extension RoundedRectangle {
             cornerRadiusValue = 16
         case .small:
             cornerRadiusValue = 8
+        case .xsmall:
+            cornerRadiusValue = 4
         case .xxsmall:
             cornerRadiusValue = 3
+        case .xxxsmall:
+            cornerRadiusValue = 1
         }
 
         self.init(cornerRadius: cornerRadiusValue, style: .continuous)

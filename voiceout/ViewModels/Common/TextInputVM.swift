@@ -146,12 +146,17 @@ class TextInputVM : ObservableObject {
         nicknameValidationMsg = ""
     }
     
+    func resetBirthdateValidationMsg(){
+        dateValidationMsg = ""
+    }
+    
     func resetValidationState(){
         isValidEmail = true
         isValidPassword = true
         isVerificationCodeValid = true
         isDateValid = true 
         isNicknameValid = true
+        isDateValid = true
     }
     
     func isMatchedPasswords() -> Bool {

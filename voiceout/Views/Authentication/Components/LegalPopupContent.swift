@@ -17,26 +17,13 @@ struct LegalPopupContent: View {
                 Text(LocalizedStringKey(contentTitle))
                     .padding(.bottom, ViewSpacing.xlarge)
                     .font(.typography(.bodyLarge))
-                Text(parseLegalContent(fileName: fileName))
+                Text(readFile(fileName: fileName))
                     .font(.typography(.bodySmall))
             }
             .foregroundColor(.textPrimary)
             .padding(ViewSpacing.large)
             .padding(.top, ViewSpacing.xxlarge)
         }
-    }
-}
-
-private extension LegalPopupContent {
-    func parseLegalContent(fileName: String) -> String {
-        if let fileURL = Bundle.main.url(forResource: fileName, withExtension: "txt") {
-            do {
-                return try String(contentsOf: fileURL)
-            } catch {
-                return "Legal document not found"
-            }
-        }
-        return ""
     }
 }
 

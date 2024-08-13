@@ -91,17 +91,15 @@ struct UserSignUpView: View {
             
         }
         .onChange(of: textInputVM.nickname) {_ in
-            userSignUpVM.updateUserSignUpButtonState()
-        }
-        .onChange(of: userSignUpVM.selectedState) {_ in
-            userSignUpVM.updateUserSignUpButtonState()
-        }
-        .onChange(of: textInputVM.birthdate) {_ in
-            userSignUpVM.updateUserSignUpButtonState()
-        }
-        .onChange(of: userSignUpVM.selectedGender) {_ in
+            textInputVM.resetNicknameValidationMsg()
+            textInputVM.resetValidationState()
             userSignUpVM.updateUserSignUpButtonState()
             
+        }
+        .onChange(of: textInputVM.birthdate) {_ in
+            textInputVM.resetValidationState()
+            textInputVM.resetBirthdateValidationMsg()
+            userSignUpVM.updateUserSignUpButtonState()
         }
     }
 }

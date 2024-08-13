@@ -32,6 +32,8 @@
 		B8D4722B2C1E41E400D6716A /* APIConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4722A2C1E41E400D6716A /* APIConfigs.swift */; };
 		B8D4722E2C1E421100D6716A /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4722C2C1E421000D6716A /* ErrorResponse.swift */; };
 		B8D4722F2C1E421100D6716A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D4722D2C1E421000D6716A /* User.swift */; };
+		B8EF41AB2C69BAD300C77D4D /* SignUpStep1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EF41AA2C69BAD300C77D4D /* SignUpStep1.swift */; };
+		B8EF41AD2C6AAE8500C77D4D /* SignUpStep2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EF41AC2C6AAE8500C77D4D /* SignUpStep2.swift */; };
 		B8F845442C28BB98008C0D80 /* DropdownOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845432C28BB98008C0D80 /* DropdownOption.swift */; };
 		B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845452C28BC82008C0D80 /* Dropdown.swift */; };
 		B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845472C29BB09008C0D80 /* DropdownList.swift */; };
@@ -97,6 +99,8 @@
 		B8D4722A2C1E41E400D6716A /* APIConfigs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConfigs.swift; sourceTree = "<group>"; };
 		B8D4722C2C1E421000D6716A /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		B8D4722D2C1E421000D6716A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B8EF41AA2C69BAD300C77D4D /* SignUpStep1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStep1.swift; sourceTree = "<group>"; };
+		B8EF41AC2C6AAE8500C77D4D /* SignUpStep2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStep2.swift; sourceTree = "<group>"; };
 		B8F845432C28BB98008C0D80 /* DropdownOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DropdownOption.swift; path = voiceout/DropdownOption.swift; sourceTree = SOURCE_ROOT; };
 		B8F845452C28BC82008C0D80 /* Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		B8F845472C29BB09008C0D80 /* DropdownList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownList.swift; sourceTree = "<group>"; };
@@ -340,6 +344,8 @@
 				D2D6CD802BFBD2BE00DD7688 /* LegalPopupContent.swift */,
 				B814C5902C20F2F4008F4A60 /* AddButton.swift */,
 				D21660CC2C339A49008248DE /* VerificationCodeButton.swift */,
+				B8EF41AA2C69BAD300C77D4D /* SignUpStep1.swift */,
+				B8EF41AC2C6AAE8500C77D4D /* SignUpStep2.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -455,6 +461,7 @@
 				B8D4721E2C1E405000D6716A /* ForgetPasswordView.swift in Sources */,
 				B8860E2E2C3CCCC300A79073 /* Formatter.swift in Sources */,
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
+				B8EF41AD2C6AAE8500C77D4D /* SignUpStep2.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
 				B8860E1C2C34725E00A79073 /* StepProgressView.swift in Sources */,
 				D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */,
@@ -475,6 +482,7 @@
 				B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */,
 				B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */,
 				D2D6CD892C038B1700DD7688 /* Color.swift in Sources */,
+				B8EF41AB2C69BAD300C77D4D /* SignUpStep1.swift in Sources */,
 				B814C5912C20F2F4008F4A60 /* AddButton.swift in Sources */,
 				D2D6CD852C03699000DD7688 /* RouterModel.swift in Sources */,
 				D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */,

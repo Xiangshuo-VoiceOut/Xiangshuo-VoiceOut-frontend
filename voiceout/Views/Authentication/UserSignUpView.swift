@@ -37,16 +37,20 @@ struct UserSignUpView: View {
                 VStack {
                     switch currentStep {
                     case .step1:
-                        step1View
+                        SignUpStep1(textInputVM: textInputVM, verificationCodeVM: verificationCodeVM, userSignUpVM: userSignUpVM, currentStep: $currentStep)
                     case .step2:
-                        step2View
+                        SignUpStep2(router: router, textInputVM: textInputVM, userSignUpVM: userSignUpVM)
                     }
                 }
-                .padding(ViewSpacing.medium)
-                .background(Color.surfacePrimary)
-                .cornerRadius(CornerRadius.medium.value)
-                .shadow(color: Color(.grey200),radius: CornerRadius.xxsmall.value)
+                .padding(ViewSpacing.large)
                 .padding(.horizontal,ViewSpacing.xlarge)
+                .background(
+                    RoundedRectangle(cornerRadius: CornerRadius.medium.value)
+                        .fill(Color.surfacePrimary)
+                        .shadow(color: Color(red: 0.15, green: 0.15, blue: 0.47).opacity(0.08), radius: 5.75, x: 2, y: 4)
+                        .padding(.horizontal, ViewSpacing.xlarge)
+                
+                )
                 
             }
             .offset(y: -50)
@@ -99,112 +103,6 @@ struct UserSignUpView: View {
             userSignUpVM.updateUserSignUpButtonState()
             
         }
-    }
-    
-    private var step1View: some View {
-        VStack{
-            TextInputView(
-                text: $textInputVM.email,
-                isSecuredField: false,
-                placeholder: "email_placeholder",
-                prefixIcon: "email",
-                validationState: textInputVM.isValidEmail ? ValidationState.neutral : ValidationState.error,
-                validationMessage: textInputVM.emailValidationMsg
-            )
-            .autocapitalization(.none)
-            
-            TextInputView(
-                text: $textInputVM.verificationCode,
-                isSecuredField: false,
-                placeholder: "input_verification_code",
-                prefixIcon: "protect",
-                validationState: textInputVM.isVerificationCodeValid ? ValidationState.neutral : ValidationState.error,
-                suffixContent: AnyView(
-                    VerificationCodeButton()
-                        .environmentObject(verificationCodeVM)
-                        .environmentObject(textInputVM)
-            )
-            )
-            
-            
-            SecuredTextInputView(
-                text: $textInputVM.newPassword,
-                securedPlaceholder: "password_placeholder",
-                securedValidation: textInputVM.isValidPassword ? .neutral : .error,
-                validationMsg: textInputVM.newPasswordValidationMsg, prefixIcon: "lock"
-            )
-            
-            SecuredTextInputView(
-                text: $textInputVM.confirmNewPassowrd,
-                securedPlaceholder: "password_placeholder",
-                securedValidation: textInputVM.isValidPassword ? .neutral : .error,
-                validationMsg: textInputVM.confirmPasswordValidationMsg,
-                prefixIcon: "lock"
-            )
-            
-            ButtonView(text: "next_step",
-                       action: {
-                userSignUpVM.goToNextPage()
-                if userSignUpVM.nextPageAvailable {
-                    currentStep = .step2
-                }
-            },
-                       theme: userSignUpVM.isNextStepEnabled ? .action : .base, maxWidth: .infinity
-                       
-            )
-            .disabled(!userSignUpVM.isNextStepEnabled)
-        }
-    .background(Color.surfacePrimary)
-    }
-    
-    private var step2View: some View {
-        VStack{
-            TextInputView(
-                text: $textInputVM.nickname,
-                isSecuredField: false,
-                placeholder: "nickname_placeholder",
-                prefixIcon: "user",
-                validationState: textInputVM.isNicknameValid ? ValidationState.neutral : ValidationState.error,
-                validationMessage: textInputVM.nicknameValidationMsg
-            )
-            .autocapitalization(.none)
-            
-            
-            Dropdown(selectionOption: $userSignUpVM.selectedState, prefixIcon:"local", placeholder: String(localized: "state_placeholder"), options: userSignUpVM.allStates)
-                .padding(.bottom)
-                .zIndex(2)
-            
-            TextInputView(
-                text: $textInputVM.birthdate,
-                isSecuredField: false,
-                placeholder: "input_birthday_placeholder",
-                prefixIcon: "birthday-cake",
-                validationState: textInputVM.isVerificationCodeValid ? ValidationState.neutral : ValidationState.error
-            )
-            .onChange(of: textInputVM.birthdate) { newValue in
-                textInputVM.birthdate = formatDateString(newValue)
-                
-            }
-            
-            
-            Dropdown(selectionOption: $userSignUpVM.selectedGender, prefixIcon:"public-toilet", placeholder: String(localized: "gender_placeholder"), options: DropdownOption.genders)
-                .padding(.bottom, ViewSpacing.large)
-                .zIndex(1)
-            
-            ButtonView(text: "signup",
-                       action: {
-                userSignUpVM.userSignUp()
-                if userSignUpVM.isSignUpSuccessfully{
-                    router.navigateTo(.finish(finishText: "sign_up_successfully", navigateToText: "navigate_to_login", destination: .userLogin))
-                }
-                
-            },
-                       theme: userSignUpVM.isUserSignUpEnabled ? .action : .base, maxWidth: .infinity
-                       
-            )
-            .disabled(!userSignUpVM.isUserSignUpEnabled)
-        }
-    .background(Color.surfacePrimary)
     }
 }
 

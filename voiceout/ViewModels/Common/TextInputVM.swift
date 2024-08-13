@@ -193,6 +193,7 @@ class TextInputVM : ObservableObject {
             return true
         }
         setIsDateValid(isValid: false)
+        setDateValidationMsg()
         
         return false
     }

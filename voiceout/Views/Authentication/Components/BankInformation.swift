@@ -72,8 +72,8 @@ struct BankInformation: View {
             )
             .autocapitalization(.none)
             .padding(.bottom)
-            .onChange(of: registrationVM.ssn) { ssn in
-                registrationVM.ssn = formatSSN(ssn)
+            .onChange(of: registrationVM.confirmSSN) { ssn in
+                registrationVM.confirmSSN = formatSSN(ssn)
             }
             
             Text("Date of Birth")
@@ -88,8 +88,8 @@ struct BankInformation: View {
             )
             .autocapitalization(.none)
             .padding(.bottom)
-            .onChange(of: registrationVM.birthdate) { value in
-                registrationVM.birthdate = formatDateString(value)
+            .onChange(of: registrationVM.paymentPageBDate) { value in
+                registrationVM.paymentPageBDate = formatDateString(value)
                 
             }
             
@@ -106,7 +106,7 @@ struct BankInformation: View {
             .autocapitalization(.none)
             .padding(.bottom, ViewSpacing.xlarge)
             .onChange(of: registrationVM.comfirmPaymentPageBDate) { value in
-                registrationVM.paymentPageBDate = formatDateString(value)
+                registrationVM.comfirmPaymentPageBDate = formatDateString(value)
                 
             }
             
@@ -130,7 +130,7 @@ struct BankInformation: View {
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
             TextInputView(
-                text: $registrationVM.routingNumber,
+                text: $registrationVM.confirmRoutingNumber,
                 isSecuredField: false,
                 placeholder: "Confirm Routing Number",
                 validationState: ValidationState.neutral,

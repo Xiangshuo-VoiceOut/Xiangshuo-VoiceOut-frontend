@@ -29,6 +29,7 @@ struct SegmentPicker<T: Hashable>: View {
                             .padding(.horizontal, ViewSpacing.medium)
                             .foregroundColor(selectedSegment == segment ? .textInvert : .textPrimary)
                             .bold(selectedSegment == segment)
+                            .font(.typography(.bodyMedium))
                             .background{
                                 ZStack {
                                         
@@ -42,6 +43,11 @@ struct SegmentPicker<T: Hashable>: View {
                     }
                         
             }
+            .background(
+                RoundedRectangle(cornerRadius: CornerRadius.large.value)
+                            .fill(Color.brandPrimary.opacity(0.2))
+            )
+            
         }
             }
 
@@ -50,7 +56,7 @@ struct SegmentPicker<T: Hashable>: View {
 
 
 struct SegmentPicker_Previews: PreviewProvider {
-    @State static var selectedSegment: TimeType = .start
+    @State static var selectedSegment: TimeType = .end
 
     static var previews: some View {
         SegmentPicker(

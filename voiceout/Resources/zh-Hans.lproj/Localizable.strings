@@ -108,9 +108,8 @@
 "fee_placeholder" = "请输入您的咨询费用";
 "title" = "个人头衔";
 "title_placeholder" = "请输入您的个人头衔";
-"first_grade_certificate" = "一级心理咨询师资格证";
 "second_grade_certificate" = "二级心理咨询师资格证";
-"third_grade_certificate" = "三级心理咨询师资格证";
+"skill_certificate" = "心理咨询专业技能证书";
 "certificate_expiration_date" = "证书有效期";
 "voice_out" = "想说VoiceOut";
 "charge_per_session" = "$%@/次";

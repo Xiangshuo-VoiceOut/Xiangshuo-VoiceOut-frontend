@@ -37,8 +37,26 @@ extension DropdownOption {
     ]
     
     static let certificates: [DropdownOption] = [
-        DropdownOption(option: String(localized: "first_grade_certificate")),
+        DropdownOption(option: String(localized: "Art Therapist")),
+        DropdownOption(option: String(localized: "Clinical Social Work/Therapist")),
+        DropdownOption(option: String(localized: "Counselor")),
+        DropdownOption(option: String(localized: "Drug & Alcohol Counselor")),
+        DropdownOption(option: String(localized: "Licensed Professional Counselor")),
+        DropdownOption(option: String(localized: "Licensed Psychoanalyst")),
+        DropdownOption(option: String(localized: "Limited Licensed Psychologist")),
+        DropdownOption(option: String(localized: "LPC Intern")),
+        DropdownOption(option: String(localized: "Marriage & Family Therapist")),
+        DropdownOption(option: String(localized: "Marriage & Family Therapist Intern")),
+        DropdownOption(option: String(localized: "Marriage & Family Therapist Associate")),
+        DropdownOption(option: String(localized: "Pastoral Counselor")),
+        DropdownOption(option: String(localized: "Pre-Licensed Professional")),
+        DropdownOption(option: String(localized: "Psychiatric Nurse")),
+        DropdownOption(option: String(localized: "Psychiatric Nurse Practitioner")),
+        DropdownOption(option: String(localized: "Psychiatrist")),
+        DropdownOption(option: String(localized: "Registered Psychotherapist")),
+        DropdownOption(option: String(localized: "Treatment Center")),
         DropdownOption(option: String(localized: "second_grade_certificate")),
-        DropdownOption(option: String(localized: "third_grade_certificate"))
+        DropdownOption(option: String(localized: "skill_certificate")),
+        DropdownOption(option: String(localized: "Pre-license/On license")),
     ]
 }

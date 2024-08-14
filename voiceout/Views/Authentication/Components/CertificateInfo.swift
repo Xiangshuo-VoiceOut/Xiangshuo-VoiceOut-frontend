@@ -90,7 +90,7 @@ struct CertificateInfo: View {
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
             
-            Dropdown(selectionOption: $viewModel.certificateLocation, placeholder: String(localized: "certificate_location"), options: DropdownOption.certificates, backgroundColor: .white)
+            Dropdown(selectionOption: $viewModel.certificateLocation, placeholder: String(localized: "certificate_location"), options: registrationVM.allStates, backgroundColor: .white)
                 .padding(.bottom, ViewSpacing.large)
                 .zIndex(6)
             Text("upload_certificate_image")

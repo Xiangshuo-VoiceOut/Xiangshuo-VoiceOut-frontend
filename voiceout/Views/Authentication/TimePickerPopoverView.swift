@@ -33,13 +33,18 @@ struct TimePickerPopoverView: View {
             HStack {
                 
                 ButtonView(text: "cancel", 
-                           action: {},
+                           action: {
+                    //Todo
+                },
                            variant: .outline
                 )
                 .padding()
                 
                 ButtonView(text: "confirmation",
-                           action: {},
+                           action: {
+                    //Todo
+                    
+                },
                            theme: selectedTimeType == .start ? .base : .action,
                            spacing: .medium
                 )

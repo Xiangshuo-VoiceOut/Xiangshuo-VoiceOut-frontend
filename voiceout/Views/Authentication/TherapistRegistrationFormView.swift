@@ -42,7 +42,7 @@ struct RegistrationFormView: View {
                                    spacing: .large
                         )
                         .padding()
-                        .disabled(!registrationVM.isNextStepEnabled)
+//                        .disabled(!registrationVM.isNextStepEnabled)
                     }
                 }
             }

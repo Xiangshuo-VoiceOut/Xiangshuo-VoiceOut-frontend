@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class TherapistRegistrationVM: ObservableObject{
     @Published var isNextStepEnabled: Bool = false
@@ -13,6 +14,8 @@ class TherapistRegistrationVM: ObservableObject{
     @Published var isSchoolInfoComplete: Bool = false
     @Published var isCertificateInfoComplete: Bool = false
     @Published var isConsultantServiceComplete: Bool = false
+    @Published var isBankInformationComplete: Bool = false
+    @Published var isTimeAvailabilityComplete: Bool = false
     @Published var currentStep: Int = 0
     @Published var finished: Bool = false
     @Published var selectedGender: DropdownOption? = nil
@@ -42,29 +45,41 @@ class TherapistRegistrationVM: ObservableObject{
     @Published var fee: String = ""
     @Published var title: String = ""
     
+    
     var allStates: [DropdownOption] {
         return StateData.allStates.map{ DropdownOption(option: $0.code)}
     }
     
-//    var isNextStepEnabled: Bool {
-//            switch currentStep {
-//            case 0:
-//                return isBasicInfoComplete
-//            case 1:
-//                return isSchoolInfoComplete
-//            case 2:
-//                return isCertificateInfoComplete
-//            case 3:
-//                return isConsultantServiceComplete
-//            default:
-//                return false
-//            }
-//        }
+    func isCurrentStepComplet(step: Int) -> Bool {
+        switch step {
+        case 0:
+            return isBasicInfoComplete
+        case 1:
+            return isSchoolInfoComplete
+        case 2:
+            return isCertificateInfoComplete
+        case 3:
+            return isConsultantServiceComplete
+        case 4:
+            return isBankInformationComplete
+        case 5:
+            return isTimeAvailabilityComplete
+        default:
+            return false
+                }
+        }
     
     init(){
         schoolInfos = [SchoolInfoData()]
         certificateInfos = [CertificateInfoData()]
     }
+    
+    func validateSchoolInfo(data: SchoolInfoData) -> Bool {
+        return data.degree != nil &&
+                   !data.college.isEmpty &&
+                   !data.graduationDate.isEmpty &&
+                   !data.major.isEmpty
+        }
     
     func addSchoolInfo(){
         schoolInfos.insert(SchoolInfoData(), at: 0)

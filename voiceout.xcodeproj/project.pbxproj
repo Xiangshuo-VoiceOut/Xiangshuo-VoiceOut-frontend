@@ -312,6 +312,7 @@
 				D21660DE2C4C2291008248DE /* Therapist */,
 				D284992C2BEEF3FE00963B3A /* Components */,
 				B8D4721B2C1E404F00D6716A /* ForgetPasswordView.swift */,
+				B8992D612C6C28E800BF2C6D /* TimePickerPopoverView.swift */,
 				B814C5942C220F66008F4A60 /* LoginView.swift */,
 				B8D4721C2C1E405000D6716A /* ResetPasswordView.swift */,
 				D21660CA2C337E47008248DE /* TherapistSignupView.swift */,
@@ -450,7 +451,6 @@
 				B897BF412C502F90003760AE /* ConsultantService.swift */,
 				B897BF512C59A917003760AE /* TagsView.swift */,
 				B8EF41B02C6B03EA00C77D4D /* BankInformation.swift */,
-				B8992D612C6C28E800BF2C6D /* TimePickerPopoverView.swift */,
 				B8EF41B22C6B049E00C77D4D /* TimeAvailability.swift */,
 			);
 			path = Components;

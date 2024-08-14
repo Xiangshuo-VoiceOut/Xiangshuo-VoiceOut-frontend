@@ -39,7 +39,7 @@ struct BasicInfo: View {
                 Text("location")
                     .font(.typography(.bodyMedium))
                     .foregroundColor(.textPrimary)
-                Dropdown(selectionOption: $registrationVM.selectedState, placeholder: String(localized: "state_placeholder"), options: DropdownOption.genders, backgroundColor: .white)
+                Dropdown(selectionOption: $registrationVM.selectedState, placeholder: String(localized: "state_placeholder"), options: registrationVM.allStates, backgroundColor: .white)
                                 .padding(.bottom, ViewSpacing.large)
                                 .zIndex(5)
                 
@@ -55,6 +55,11 @@ struct BasicInfo: View {
                 )
                 .autocapitalization(.none)
                 .padding(.bottom)
+                .onChange(of: registrationVM.phoneNumber) {phoneNumber in
+                    if !phoneNumber.isEmpty {
+                        registrationVM.phoneNumber = phoneNumber.formatPhoneNumber()
+                    }
+                }
                 
                 Text("birthdate")
                     .font(.typography(.bodyMedium))
@@ -68,6 +73,9 @@ struct BasicInfo: View {
                 )
                 .autocapitalization(.none)
                 .padding(.bottom)
+                .onChange(of: registrationVM.birthdate) {newValue in
+                    registrationVM.birthdate = formatDateString(newValue)
+                }
                 
                 Text("upload_profile")
                     .font(.typography(.bodyMedium))

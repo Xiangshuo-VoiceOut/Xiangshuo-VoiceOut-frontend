@@ -44,7 +44,8 @@ struct TextInputView: View {
                             .foregroundColor(.textLight)
                             .font(.typography(.bodyMediumEmphasis))
                     )
-                    .foregroundColor(.textLight)
+                    .foregroundColor(.textPrimary)
+                    .font(.typography(.bodyMedium))
                 } else {
                     TextField(
                         LocalizedStringKey(placeholder),
@@ -53,7 +54,8 @@ struct TextInputView: View {
                             .font(.typography(.bodyMediumEmphasis))
                             .foregroundColor(.textLight)
                     )
-                    .foregroundColor(.textLight)
+                    .foregroundColor(.textPrimary)
+                    .font(.typography(.bodyMedium))
                 }
                 suffixContent
             }

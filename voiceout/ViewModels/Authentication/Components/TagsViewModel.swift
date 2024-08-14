@@ -11,17 +11,17 @@ import SwiftUI
 
 class TagsViewModel: ObservableObject{
     
-    @Published var rows: [[Tag]] = []
-    @Published var tags: [Tag]
+    @Published var rows: [[BadgeTag]] = []
+    @Published var tags: [BadgeTag]
     @Published var tagText = ""
     
-    init(tags: [Tag]){
+    init(tags: [BadgeTag]){
         self.tags = tags
         getTags()
     }
     
     func addTag(){
-        tags.append(Tag(name: tagText))
+        tags.append(BadgeTag(name: tagText))
         tagText = ""
         getTags()
     }
@@ -33,8 +33,8 @@ class TagsViewModel: ObservableObject{
     
     
     func getTags(){
-        var rows: [[Tag]] = []
-        var currentRow: [Tag] = []
+        var rows: [[BadgeTag]] = []
+        var currentRow: [BadgeTag] = []
         
         var totalWidth: CGFloat = 0
         

@@ -9,14 +9,15 @@ import SwiftUI
 
 struct CertificateInfo: View {
     @StateObject private var registrationVM: TherapistRegistrationVM
+    
     init() {
         _registrationVM = StateObject(wrappedValue: TherapistRegistrationVM())
     }
     
     var body: some View {
         VStack{
-            ForEach(Array(registrationVM.certificateInfos.enumerated()), id: \.offset) { index, _ in
-                certificateInfoSection(index: index)
+            ForEach(Array(registrationVM.certificateInfos.enumerated()), id: \.offset) { index, viewModel in
+                certificateInfoSection(viewModel: viewModel, index: index)
             }
             
             AddButton(action: registrationVM.addCertificateInfo, text: "add_new_certificate")
@@ -27,13 +28,14 @@ struct CertificateInfo: View {
     }
     
     @ViewBuilder
-    private func certificateInfoSection(index: Int) -> some View {
+    private func certificateInfoSection(@ObservedObject viewModel: CertificateInfoData, index: Int) -> some View {
+
         
-        let binding = Binding{
-            registrationVM.certificateInfos[index]
-        } set: {
-            registrationVM.certificateInfos[index] = $0
-        }
+//        let binding = Binding{
+//            registrationVM.certificateInfos[index]
+//        } set: {
+//            registrationVM.certificateInfos[index] = $0
+//        }
         
         VStack(alignment:.leading, spacing: ViewSpacing.small) {
             HStack {
@@ -53,7 +55,7 @@ struct CertificateInfo: View {
                 }
             }
             
-            Dropdown(selectionOption: $registrationVM.selectedCertificationType, placeholder: String(localized: "certificate_type_placeholder"), options: DropdownOption.certificates, backgroundColor: .white)
+            Dropdown(selectionOption: $viewModel.type, placeholder: String(localized: "certificate_type_placeholder"), options: DropdownOption.certificates, backgroundColor: .white)
                             .padding(.bottom, ViewSpacing.large)
                             .zIndex(6)
             
@@ -61,7 +63,7 @@ struct CertificateInfo: View {
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
             TextInputView(
-                text: $registrationVM.phoneNumber,
+                text: $viewModel.id,
                 isSecuredField: false,
                 placeholder: "ID_placeholder",
                 validationState: ValidationState.neutral,
@@ -74,7 +76,7 @@ struct CertificateInfo: View {
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
             TextInputView(
-                text: $registrationVM.phoneNumber,
+                text: $viewModel.expiryDate,
                 isSecuredField: false,
                 placeholder: "date_placeholder",
                 validationState: ValidationState.neutral,
@@ -82,14 +84,15 @@ struct CertificateInfo: View {
             )
             .autocapitalization(.none)
             .padding(.bottom)
+        
             
             Text("location_state")
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
             
-            Dropdown(selectionOption: $registrationVM.selectedCertificationType, placeholder: String(localized: "certificate_location"), options: DropdownOption.certificates, backgroundColor: .white)
-                            .padding(.bottom, ViewSpacing.large)
-                            .zIndex(6)
+            Dropdown(selectionOption: $viewModel.certificateLocation, placeholder: String(localized: "certificate_location"), options: DropdownOption.certificates, backgroundColor: .white)
+                .padding(.bottom, ViewSpacing.large)
+                .zIndex(6)
             Text("upload_certificate_image")
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)

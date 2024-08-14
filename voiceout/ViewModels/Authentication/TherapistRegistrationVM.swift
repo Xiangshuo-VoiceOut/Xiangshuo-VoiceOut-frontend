@@ -26,8 +26,25 @@ class TherapistRegistrationVM: ObservableObject{
     @Published var birthdate: String = ""
     @Published var college: String = ""
     @Published var major: String = ""
-    @Published var schoolInfos: [SchoolInfoData] = []
-    @Published var certificateInfos:[CertificateInfoData] = []
+    @Published var schoolInfos: [SchoolInfoData] = [SchoolInfoData()]
+    @Published var certificateInfos:[CertificateInfoData] = [CertificateInfoData()]
+    @Published var firstName: String = ""
+    @Published var lastName: String = ""
+    @Published var ssn: String = ""
+    @Published var confirmSSN: String = ""
+    @Published var paymentPageBDate: String = ""
+    @Published var comfirmPaymentPageBDate: String = ""
+    @Published var routingNumber: String = ""
+    @Published var confirmRoutingNumber: String = ""
+    @Published var checkingNum: String = ""
+    @Published var confirmCheckingNum: String = ""
+    @Published var bankName: String = ""
+    @Published var fee: String = ""
+    @Published var title: String = ""
+    
+    var allStates: [DropdownOption] {
+        return StateData.allStates.map{ DropdownOption(option: $0.code)}
+    }
     
 //    var isNextStepEnabled: Bool {
 //            switch currentStep {
@@ -71,17 +88,17 @@ class TherapistRegistrationVM: ObservableObject{
     
 }
 
-struct SchoolInfoData{
-    var degree: String = ""
-    var college: String = ""
-    var graduationDate: String = ""
-    var major: String = ""
+class SchoolInfoData : ObservableObject{
+    @Published var degree: DropdownOption? = nil
+    @Published var college: String = ""
+    @Published var graduationDate: String = ""
+    @Published var major: String = ""
 }
 
-struct CertificateInfoData{
-    var type: String = ""
-    var id: String = ""
-    var expiryDate: String = ""
-    var certificateLocation: String = ""
-    var certificateImage: String = ""
+class CertificateInfoData: ObservableObject{
+    @Published var type: DropdownOption? = nil
+    @Published var id: String = ""
+    @Published var expiryDate: String = ""
+    @Published var certificateLocation: DropdownOption? = nil
+//    @Published var certificateImage: UIImage? = nil //Todo
 }

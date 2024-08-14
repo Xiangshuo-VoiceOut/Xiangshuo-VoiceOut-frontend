@@ -7,43 +7,43 @@
 
 import Foundation
 
-struct Tag: Identifiable, Hashable {
+struct BadgeTag: Identifiable, Hashable {
     var id = UUID().uuidString
     var name: String
     var size: CGFloat = 0
 }
 
 
-extension Tag{
-    static let targetGroup:[Tag] = [
-        Tag(name: "children"),
-        Tag(name: "teenager"),
-        Tag(name: "adult"),
-        Tag(name: "partner"),
-        Tag(name: "family"),
-        Tag(name: "aged"),
-        Tag(name: "LGBTQIA+")
+extension BadgeTag{
+    static let targetGroup:[BadgeTag] = [
+        BadgeTag(name: "children"),
+        BadgeTag(name: "teenager"),
+        BadgeTag(name: "adult"),
+        BadgeTag(name: "partner"),
+        BadgeTag(name: "family"),
+        BadgeTag(name: "aged"),
+        BadgeTag(name: "LGBTQIA+")
     ]
     
-    static let targetFields: [Tag] = [
-        Tag(name: "negativy"),
-        Tag(name: "pressure_management"),
-        Tag(name: "interpersonal_relationships"),
-        Tag(name: "family_relationships"),
-        Tag(name: "parent_child_relationships"),
-        Tag(name: "intimate_relationships"),
-        Tag(name: "self_explore"),
-        Tag(name: "psychological_trauma"),
-        Tag(name: "behavior_problem"),
-        Tag(name: "addiction issues")
+    static let targetFields: [BadgeTag] = [
+        BadgeTag(name: "negativy"),
+        BadgeTag(name: "pressure_management"),
+        BadgeTag(name: "interpersonal_relationships"),
+        BadgeTag(name: "family_relationships"),
+        BadgeTag(name: "parent_child_relationships"),
+        BadgeTag(name: "intimate_relationships"),
+        BadgeTag(name: "self_explore"),
+        BadgeTag(name: "psychological_trauma"),
+        BadgeTag(name: "behavior_problem"),
+        BadgeTag(name: "addiction issues")
     ]
     
-    static let targetStyles: [Tag] = [
-        Tag(name: "gentle"),
-        Tag(name: "candid"),
-        Tag(name: "flexible"),
-        Tag(name: "composed"),
-        Tag(name: "easy"),
-        Tag(name: "formal"),
+    static let targetStyles: [BadgeTag] = [
+        BadgeTag(name: "gentle"),
+        BadgeTag(name: "candid"),
+        BadgeTag(name: "flexible"),
+        BadgeTag(name: "composed"),
+        BadgeTag(name: "easy"),
+        BadgeTag(name: "formal"),
     ]
 }

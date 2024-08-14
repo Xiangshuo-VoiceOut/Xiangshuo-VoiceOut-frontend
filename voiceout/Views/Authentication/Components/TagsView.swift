@@ -10,7 +10,7 @@ import SwiftUI
 struct TagsView: View {
     @StateObject var viewModel: TagsViewModel
     
-    init(tags: [Tag]) {
+    init(tags: [BadgeTag]) {
         _viewModel = StateObject(wrappedValue: TagsViewModel(tags: tags))
     }
     var body: some View {
@@ -31,5 +31,5 @@ struct TagsView: View {
 }
 
 #Preview {
-    TagsView(tags: Tag.targetFields)
+    TagsView(tags: BadgeTag.targetFields)
 }

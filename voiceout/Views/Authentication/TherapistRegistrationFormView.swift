@@ -9,10 +9,10 @@ import SwiftUI
 
 struct RegistrationFormView: View {
 //    @AppStorage("currentStep") private var currentStep: Int = 0
-    @State private var currentStep: Int = 3
-    @State private var totalSteps = 4
+    @State private var currentStep: Int = 0
+    @State private var totalSteps = 6
     @StateObject var registrationVM = TherapistRegistrationVM()
-    var titles = ["basic_info", "degree_info", "certificate_info", "consultant_service"]
+    var titles = ["basic_info", "degree_info", "certificate_info", "consultant_service", "payment_information", "consultant_time"]
     
     var body: some View {
         NavigationView{
@@ -31,7 +31,7 @@ struct RegistrationFormView: View {
                             
                         
                         
-                        ButtonView(text: currentStep < totalSteps-1 ? "next_step" : "finished", action: {
+                        ButtonView(text: currentStep < totalSteps-1 ? "next_step" : "confirmation", action: {
                             if currentStep < totalSteps - 1{
                                 currentStep += 1
                             } else{
@@ -62,6 +62,10 @@ struct RegistrationFormView: View {
             CertificateInfo()
         case 3:
             ConsultantService()
+        case 4:
+            BankInformation()
+        case 5:
+            TimeAvailability()
         default:
             BasicInfo()
         }

@@ -15,8 +15,8 @@ struct SchoolInfo: View {
     var body: some View {
         
         VStack{
-            ForEach(Array(registrationVM.schoolInfos.enumerated()), id: \.offset) { index, _ in
-                schoolInfoSection(index: index)
+            ForEach(Array(registrationVM.schoolInfos.enumerated()), id: \.offset) { index, schoolInfoData in
+                schoolInfoSection(viewModel: schoolInfoData, index: index)
             }
             
             AddButton(action: registrationVM.addSchoolInfo, text: "add_new_degree")
@@ -26,13 +26,7 @@ struct SchoolInfo: View {
     }
     
     @ViewBuilder
-    private func schoolInfoSection(index: Int) -> some View {
-        let binding = Binding{
-            registrationVM.schoolInfos[index]
-        } set: {
-            registrationVM.schoolInfos[index] = $0
-        }
-        
+    private func schoolInfoSection(@ObservedObject viewModel: SchoolInfoData, index: Int) -> some View {
         
         VStack(alignment: .leading, spacing: ViewSpacing.small) {
             
@@ -55,7 +49,7 @@ struct SchoolInfo: View {
                 }
                 
             }
-            Dropdown(selectionOption: $registrationVM.selectedDegree, placeholder: String(localized: "degree_placeholder"), options: DropdownOption.degrees, backgroundColor: .white)
+            Dropdown(selectionOption: $viewModel.degree, placeholder: String(localized: "degree_placeholder"), options: DropdownOption.degrees, backgroundColor: .white)
                             .padding(.bottom, ViewSpacing.large)
                             .zIndex(5)
             
@@ -63,7 +57,7 @@ struct SchoolInfo: View {
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
             TextInputView(
-                text: $registrationVM.college,
+                text: $viewModel.college,
                 isSecuredField: false,
                 placeholder: "college_placeholder",
                 validationState: ValidationState.neutral,
@@ -76,9 +70,9 @@ struct SchoolInfo: View {
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
             TextInputView(
-                text: $registrationVM.college,
+                text: $viewModel.graduationDate,
                 isSecuredField: false,
-                placeholder: "date_placeholder",
+                placeholder: "month_placeholder",
                 validationState: ValidationState.neutral,
                 theme: .white
             )
@@ -89,7 +83,7 @@ struct SchoolInfo: View {
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
             TextInputView(
-                text: $registrationVM.major,
+                text: $viewModel.major,
                 isSecuredField: false,
                 placeholder: "major_placeholder",
                 validationState: ValidationState.neutral,

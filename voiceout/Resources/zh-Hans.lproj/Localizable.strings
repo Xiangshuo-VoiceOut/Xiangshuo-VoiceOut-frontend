@@ -113,12 +113,15 @@
 "third_grade_certificate" = "三级心理咨询师资格证";
 "certificate_expiration_date" = "证书有效期";
 "voice_out" = "想说VoiceOut";
-
-
-
 "charge_per_session" = "$%@/次";
 "years_of_experience" = "从业经验：%@年";
 "therapist_cooperation_aggrement_popup_title" = "咨询师合作协议";
 "therapist_cooperation_aggrement_disagree_warning" = "若不同意入驻协议则,则无法入驻。";
 "understood" = "知道了";
-
+"before_click_next_step" = "By clicking '下一步', you consent to paperless delivery of your 1099 tax forms via our online portal. Once your account is approved, you may opt-out of paperless delivery of tax forms at any time by visiting your payments tab.";
+"payment_information" = "收款信息";
+"consultant_time" = "咨询时间";
+"confirmation" = "确定";
+"start_time" = "开始时间";
+"end_time" = "结束时间";
+"cancel" = "取消";

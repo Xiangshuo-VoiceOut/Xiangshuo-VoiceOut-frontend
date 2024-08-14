@@ -10,6 +10,9 @@ import SwiftUI
 struct ConsultantService: View {
     @StateObject var registrationVM: TherapistRegistrationVM
     
+    @State private var maxCharacterLimit = 24
+    @State private var remainingCharacters = 24
+    
     init() {
         _registrationVM = StateObject(wrappedValue: TherapistRegistrationVM())
     }
@@ -19,27 +22,27 @@ struct ConsultantService: View {
             Text("target_client")
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
-            TagsView(tags: Tag.targetGroup)
+            TagsView(tags: BadgeTag.targetGroup)
                 .padding(.bottom)
                 
             
             Text("target_field")
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
-            TagsView(tags: Tag.targetFields)
+            TagsView(tags: BadgeTag.targetFields)
                 .padding(.bottom)
             
             Text("target_style")
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
-            TagsView(tags: Tag.targetStyles)
+            TagsView(tags: BadgeTag.targetStyles)
                 .padding(.bottom)
             
             Text("fee")
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
             TextInputView(
-                text: $registrationVM.phoneNumber,
+                text: $registrationVM.fee,
                 isSecuredField: false,
                 placeholder: "fee_placeholder",
                 validationState: ValidationState.neutral,
@@ -52,7 +55,7 @@ struct ConsultantService: View {
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
             TextInputView(
-                text: $registrationVM.phoneNumber,
+                text: $registrationVM.title,
                 isSecuredField: false,
                 placeholder: "title_placeholder",
                 validationState: ValidationState.neutral,
@@ -60,6 +63,25 @@ struct ConsultantService: View {
             )
             .autocapitalization(.none)
             .padding(.bottom)
+            .onChange(of: registrationVM.title) { newValue in
+                if newValue.count > maxCharacterLimit {
+                registrationVM.title = String(newValue.prefix(maxCharacterLimit))
+                remainingCharacters = 0
+            } else {
+            remainingCharacters = maxCharacterLimit - newValue.count
+                    }
+            }
+            HStack{
+                Spacer()
+                Text("\(remainingCharacters)/\(maxCharacterLimit)")
+                    .padding(.top, -ViewSpacing.medium)
+                    .font(.typography(.bodySmall))
+                    .foregroundColor(.textSecondary)
+                    .padding(.trailing)
+            }
+            
+            
+            
         }
     }
 }

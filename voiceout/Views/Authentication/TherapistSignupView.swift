@@ -36,7 +36,6 @@ struct TherapistSignupView: View {
                     theme: .white
                 )
                 .autocapitalization(.none)
-                .padding(.bottom)
                 
                 Text("email_verification_code")
                     .font(.typography(.bodyMedium))
@@ -53,7 +52,6 @@ struct TherapistSignupView: View {
                     ),
                     theme: .white
                 )
-                .padding(.bottom)
                 
                 Text("password")
                     .font(.typography(.bodyMedium))
@@ -65,7 +63,6 @@ struct TherapistSignupView: View {
                     validationMsg: textInputVM.newPasswordValidationMsg,
                     theme: .white
                 )
-                .padding(.bottom)
                 
                 Text("password_verification")
                     .font(.typography(.bodyMedium))

@@ -8,6 +8,7 @@
 import Foundation
 
 class ResetPasswordVM : ObservableObject {
+    @Published var isNextStepActive: Bool = false
     @Published var isResetSuccessful: Bool = false
     @Published var isFinishButtonEnabled: Bool = false
     private var textInputVM: TextInputVM
@@ -38,6 +39,22 @@ class ResetPasswordVM : ObservableObject {
         })
     }
     
+    private func handleVerificationCodeErrors(_ error: GetVerificationCodeError) {
+        switch error{
+        case .userNotFound:
+            textInputVM.setIsValidEmail(isValid: false)
+            textInputVM.setEmailValidationMsg(msg: .notExist, context: .login)
+        default:
+            textInputVM.setIsVerificationCodeValid(isValid: false)
+            textInputVM.setVerificationCodeValidationMsg(msg: .invalidVerification)
+        }
+        
+    }
+    
+    func validateNext(){
+        
+        isNextStepActive = textInputVM.isValidEmail && textInputVM.isVerificationCodeValid
+    }
     
     func handleInputsFilled() {
         isFinishButtonEnabled = !textInputVM.newPassword.isEmpty && !textInputVM.confirmNewPassowrd.isEmpty

@@ -59,6 +59,6 @@ struct Dropdown: View {
 }
 
 #Preview {
-    Dropdown(selectionOption: .constant(nil), prefixIcon: "lock", placeholder: "Select month", options: DropdownOption.testAllMonths, isCardInput: false)
+    Dropdown(selectionOption: .constant(nil), prefixIcon: "lock", placeholder: "state_placeholder", options: DropdownOption.testAllMonths, isCardInput: false)
         .padding()
 }

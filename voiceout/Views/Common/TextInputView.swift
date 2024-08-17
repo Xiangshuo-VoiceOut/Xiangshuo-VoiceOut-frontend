@@ -41,7 +41,7 @@ struct TextInputView: View {
                         LocalizedStringKey(placeholder),
                         text: $text,
                         prompt: Text(LocalizedStringKey(placeholder))
-                            .foregroundColor(.textSecondary)
+                            .foregroundColor(Color.textLight)
                             .font(.typography(.bodyMediumEmphasis))
                     )
                     .foregroundColor(.textPrimary)
@@ -51,7 +51,7 @@ struct TextInputView: View {
                         text: $text,
                         prompt: Text(LocalizedStringKey(placeholder))
                             .font(.typography(.bodyMediumEmphasis))
-                            .foregroundColor(.textSecondary)
+                            .foregroundColor(.textLight)
                     )
                     .foregroundColor(.textPrimary)
                 }
@@ -74,6 +74,10 @@ struct TextInputView: View {
                     .foregroundColor(validationState == .error ? Color.borderInValid : Color.textSecondary)
                     .font(.typography(.bodyXXSmall))
                     .padding(.leading)
+            } else {
+                Text(" ")
+                    .font(.typography(.bodyXXSmall))
+                    .opacity(0)
             }
         }
     }

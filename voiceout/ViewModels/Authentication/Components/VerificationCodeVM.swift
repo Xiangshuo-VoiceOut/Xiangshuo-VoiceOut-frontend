@@ -37,6 +37,7 @@ class VerificationCodeVM : ObservableObject {
                     self?.verificationToken = message
                     self?.isVerificationCodeSent = true
                     self?.startTimer()
+                    self?.handleVerificationSuccess(token: message, expiryTime:36000)
                 case .failure(let error):
                     self?.handleSendCodeErrors(error: error)
                 }
@@ -44,9 +45,14 @@ class VerificationCodeVM : ObservableObject {
         }
     }
     
+    func handleVerificationSuccess(token: String, expiryTime: TimeInterval) {
+        UserDefaults.standard.set(token, forKey: "resetToken")
+        UserDefaults.standard.set(Date().addingTimeInterval(expiryTime), forKey: "resetTokenExpiry")
+    }
+    
     private func handleSendCodeErrors(error: Error) {
         if let error = error as? GetVerificationCodeError, error == .userNotFound {
-            textInputVM.setEmailValidationMsg(msg: .notExist)
+            textInputVM.setEmailValidationMsg(msg: .notExist, context: .login)
             textInputVM.setIsValidEmail(isValid: false)
         } else {
             return
@@ -76,7 +82,7 @@ class VerificationCodeVM : ObservableObject {
                 return
             }
             
-        resetRequestService.validateResetToken(role: role) { [weak self] result in
+        resetRequestService.validateResetToken(verificationCode: textInputVM.verificationCode, role: role) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let isValid):

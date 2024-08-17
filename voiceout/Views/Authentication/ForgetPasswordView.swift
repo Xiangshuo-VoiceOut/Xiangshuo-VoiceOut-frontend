@@ -10,11 +10,16 @@ import SwiftUI
 struct ForgetPasswordView: View {
     @StateObject private var verificationCodeVM: VerificationCodeVM
     @StateObject private var textInputVM: TextInputVM
+    @StateObject private var resetVM: ResetPasswordVM
+    @EnvironmentObject var router: RouterModel
+    private let role: UserRole
     
     init(_ role: UserRole) {
+        self.role = role
         let model = TextInputVM()
         _textInputVM = StateObject(wrappedValue: model)
         _verificationCodeVM = StateObject(wrappedValue: VerificationCodeVM(role: role, textInputVM: model))
+        _resetVM = StateObject(wrappedValue: ResetPasswordVM(role: role, textInputVM: model))
     }
     
     var body: some View {
@@ -52,7 +57,12 @@ struct ForgetPasswordView: View {
                             
                         ButtonView(
                             text: "next_step",
-                            action: {},
+                            action: {
+                                verificationCodeVM.isVerificationValid()
+                                if resetVM.isNextStepActive {
+                                    router.navigateTo(.resetPassword(role))
+                                }
+                            },
                             theme: verificationCodeVM.isNextButtonEnabled ? .action : .base,
                             maxWidth: .infinity
                         )
@@ -71,8 +81,11 @@ struct ForgetPasswordView: View {
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        //TODO
-                        //sign up
+                        if role == .therapist {
+                            router.navigateTo(.therapistSignup)
+                        } else if role == .user {
+                            router.navigateTo(.userSignUp)
+                        }
                     }){
                         Text("signup")
                             .font(.typography(.bodyMedium))

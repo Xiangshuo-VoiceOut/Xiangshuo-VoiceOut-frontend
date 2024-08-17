@@ -36,7 +36,6 @@ struct LoginView: View {
                                 validationMessage: textInputVM.emailValidationMsg
                             )
                             .autocapitalization(.none)
-                            .padding(.bottom)
                             
                             SecuredTextInputView(
                                 text: $textInputVM.password,
@@ -54,6 +53,7 @@ struct LoginView: View {
                                         .foregroundColor(Color.textSecondary)
                                 }
                             }
+                            .padding(.top, -ViewSpacing.medium)
                             .padding(.bottom, ViewSpacing.small)
                             
                             ButtonView(
@@ -79,6 +79,9 @@ struct LoginView: View {
                         Button(action: {
                             if loginVM.role == .therapist {
                                 router.navigateTo(.therapistSignup)
+                            }
+                            else if loginVM.role == .user {
+                                router.navigateTo(.userSignUp)
                             }
                         }){
                             Text("signup")

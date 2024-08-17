@@ -20,7 +20,8 @@ struct DropdownListRow: View {
                 
                 
         }
-        .padding(.all, isCardInput ? ViewSpacing.medium : ViewSpacing.small)
+        .padding(.horizontal, ViewSpacing.medium)
+        .padding(.vertical, isCardInput ? ViewSpacing.medium : ViewSpacing.small)
         
     }
 }

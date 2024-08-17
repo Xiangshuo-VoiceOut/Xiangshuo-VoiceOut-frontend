@@ -23,12 +23,13 @@ extension DropdownOption {
         DropdownOption(option: "May"),
         DropdownOption(option: "June")
     ]
-    
-    static let genders: [DropdownOption] = [
+
+    static let genders : [DropdownOption] = [
         DropdownOption(option: String(localized: "male")),
         DropdownOption(option: String(localized: "female")),
         DropdownOption(option: String(localized: "other"))
     ]
+
     
     static let degrees: [DropdownOption] = [
         DropdownOption(option: String(localized: "bachelor")),
@@ -59,4 +60,5 @@ extension DropdownOption {
         DropdownOption(option: String(localized: "skill_certificate")),
         DropdownOption(option: String(localized: "Pre-license/On license")),
     ]
+
 }

@@ -19,3 +19,29 @@ public func passwordValidator(_ password: String) -> Bool {
     let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
     return passwordPredicate.evaluate(with: password)
 }
+
+public func dateValidator(_ dateString: String) -> Bool {
+    let dateFotmatter = DateFormatter()
+    dateFotmatter.dateFormat = "MM/DD/yyyy"
+    dateFotmatter.locale = Locale(identifier: "en_US_POSIX")
+    
+    if dateString.count != 10 {
+        return false
+    }
+    
+    guard let date = dateFotmatter.date(from: dateString) else {
+        return false
+    }
+    
+    let currentDate = Date()
+    var dateComponents = DateComponents()
+    dateComponents.year = 1900
+    let calendar = Calendar.current
+    let pastDateLimit = calendar.date(from: dateComponents) ?? Date.distantPast
+    if date > currentDate || date < pastDateLimit {
+        return false
+    }
+    return true
+    
+    
+}

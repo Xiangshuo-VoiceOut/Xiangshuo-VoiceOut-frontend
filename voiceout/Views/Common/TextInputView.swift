@@ -41,6 +41,7 @@ struct TextInputView: View {
                         LocalizedStringKey(placeholder),
                         text: $text,
                         prompt: Text(LocalizedStringKey(placeholder))
+
                             .foregroundColor(.textLight)
                             .font(.typography(.bodyMediumEmphasis))
                     )
@@ -76,6 +77,10 @@ struct TextInputView: View {
                     .foregroundColor(validationState == .error ? Color.borderInValid : Color.textSecondary)
                     .font(.typography(.bodyXXSmall))
                     .padding(.leading)
+            } else {
+                Text(" ")
+                    .font(.typography(.bodyXXSmall))
+                    .opacity(0)
             }
         }
     }

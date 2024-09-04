@@ -35,7 +35,7 @@ struct CardView<Content: View>: View {
                 .fill(modifiers.backgroundColor)
                 .shadow(color: modifiers.shadow1Color, radius: modifiers.shadow1Radius, x: modifiers.shadow1X, y: modifiers.shadow1Y)
                 .shadow(color: modifiers.shadow2Color, radius: modifiers.shadow2Radius, x: modifiers.shadow2X, y: modifiers.shadow2Y)
-            
+
             content
                 .padding(modifiers.padding)
         }

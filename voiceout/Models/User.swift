@@ -7,18 +7,16 @@
 
 import Foundation
 
-struct UserLogin: Codable{
+struct UserLogin: Codable {
     var email: String
     var password: String
 }
-
 
 struct LoginResponse: Codable {
     let token: String?
 }
 
-
-struct UserSignUp: Codable{
+struct UserSignUp: Codable {
     var email: String
     var password: String
     var otp: String
@@ -28,6 +26,6 @@ struct UserSignUp: Codable{
     var gender: String
 }
 
-struct SignUpResponse: Codable{
+struct SignUpResponse: Codable {
     let token: String?
 }

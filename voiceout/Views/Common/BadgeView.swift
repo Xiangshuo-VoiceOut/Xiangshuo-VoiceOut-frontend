@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct BadgeView: View {
-    
+
     @State private var isActive: Bool = false
     var text: String
-    
+
     var body: some View {
-        ButtonView(text: text, 
+        ButtonView(text: text,
                    action: {isActive.toggle()},
                    theme: isActive ? .badge : .bagdeInactive,
                    spacing: .xsmall,

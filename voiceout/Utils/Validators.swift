@@ -13,7 +13,6 @@ public func emailValidator(_ email: String) -> Bool {
     return emailPredicate.evaluate(with: email)
 }
 
-
 public func passwordValidator(_ password: String) -> Bool {
     let passwordRegex = "^(?=.*[a-zA-Z])(?=.*\\d).{8,}$"
     let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
@@ -24,15 +23,15 @@ public func dateValidator(_ dateString: String) -> Bool {
     let dateFotmatter = DateFormatter()
     dateFotmatter.dateFormat = "MM/DD/yyyy"
     dateFotmatter.locale = Locale(identifier: "en_US_POSIX")
-    
+
     if dateString.count != 10 {
         return false
     }
-    
+
     guard let date = dateFotmatter.date(from: dateString) else {
         return false
     }
-    
+
     let currentDate = Date()
     var dateComponents = DateComponents()
     dateComponents.year = 1900
@@ -42,6 +41,5 @@ public func dateValidator(_ dateString: String) -> Bool {
         return false
     }
     return true
-    
-    
+
 }

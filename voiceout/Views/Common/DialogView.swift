@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DialogViewModifier: ViewModifier {
     @ObservedObject var dialogViewModel: DialogViewModel
-    
+
     func body(content: Content) -> some View {
         content
             .overlay(alignment: .bottom) {
@@ -24,7 +24,7 @@ struct DialogViewModifier: ViewModifier {
             }
             .ignoresSafeArea()
     }
-    
+
     func close() {
         withAnimation(.spring()) {
             dialogViewModel.dismiss()
@@ -62,7 +62,6 @@ struct DialogView: View {
         .ignoresSafeArea()
     }
 }
-
 
 struct DialogView_Previews: PreviewProvider {
     static var previews: some View {

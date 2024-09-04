@@ -20,12 +20,12 @@ enum VerificationCodeValidationMessage {
     case invalidVerification
 }
 
-enum EmailValidationContext{
+enum EmailValidationContext {
     case login
     case signup
 }
 
-class TextInputVM : ObservableObject {
+class TextInputVM: ObservableObject {
     @Published var newEmail: String = ""
     @Published var isValidNewEmail: Bool = true
     @Published var newEmailValidationMsg: String = ""
@@ -47,15 +47,15 @@ class TextInputVM : ObservableObject {
     @Published var birthdate: String = ""
     @Published var isDateValid: Bool = true
     @Published var dateValidationMsg: String = ""
-    
+
     func setIsValidEmail(isValid: Bool) {
         isValidEmail = isValid
     }
-    
+
     func setEmailValidationMsg(msg: EmailValidationMessage, context: EmailValidationContext) {
         switch context {
         case .login:
-            switch msg{
+            switch msg {
             case .loginError:
                 emailValidationMsg = "login_error"
             case .notExist:
@@ -65,40 +65,40 @@ class TextInputVM : ObservableObject {
             default:
                 emailValidationMsg = "network_error"
             }
-            
+
         case .signup:
-            switch msg{
+            switch msg {
             case .formError:
                 emailValidationMsg = "email_form_error"
             case .alreadyExist:
                 emailValidationMsg = "email_already_exist"
             default:
                 emailValidationMsg = "network_error"
-                
+
             }
         }
     }
-    
+
     func resetEmailValidationMsg() {
         emailValidationMsg = ""
     }
-    
+
     func setIsValidPassword(isValid: Bool) {
         isValidPassword = isValid
     }
-    
+
     func setIsVerificationCodeValid(isValid: Bool) {
         isVerificationCodeValid = isValid
     }
-    
+
     func setIsDateValid(isValid: Bool) {
         isDateValid = isValid
     }
-    
+
     func setIsNicknameValid(isValid: Bool) {
         isNicknameValid = isValid
     }
-    
+
     func setVerificationCodeValidationMsg(msg: VerificationCodeValidationMessage) {
         switch msg {
         case .enterCode:
@@ -107,58 +107,57 @@ class TextInputVM : ObservableObject {
             verificationCodeValidationMsg = "verification_wrong"
         }
     }
-    
+
     func resetVerificationCodeValidationMsg() {
         verificationCodeValidationMsg = ""
     }
-    
+
     func resetNewPasswordValidationMsg() {
         newPasswordValidationMsg = ""
     }
-    
+
     func setConfirmPasswordValidationMsg() {
         if !passwordValidator(confirmNewPassowrd) {
             confirmPasswordValidationMsg = "password_form_error"
         } else if newPassword != confirmNewPassowrd {
             confirmPasswordValidationMsg = "password_not_match"
         }
-        
-            
+
     }
-    
+
     func resetConfirmPasswordValidationMsg() {
         confirmPasswordValidationMsg = ""
     }
-    
-    func setDateValidationMsg(){
+
+    func setDateValidationMsg() {
         dateValidationMsg = "date_invalid"
     }
-    
-    func resetDateValidationMsg(){
+
+    func resetDateValidationMsg() {
         dateValidationMsg = ""
     }
-    
-    func setNicknameValidationMsg(){
+
+    func setNicknameValidationMsg() {
         nicknameValidationMsg = "nickname_occupied"
     }
-    
-    func resetNicknameValidationMsg(){
+
+    func resetNicknameValidationMsg() {
         nicknameValidationMsg = ""
     }
-    
-    func resetBirthdateValidationMsg(){
+
+    func resetBirthdateValidationMsg() {
         dateValidationMsg = ""
     }
-    
-    func resetValidationState(){
+
+    func resetValidationState() {
         isValidEmail = true
         isValidPassword = true
         isVerificationCodeValid = true
-        isDateValid = true 
+        isDateValid = true
         isNicknameValid = true
         isDateValid = true
     }
-    
+
     func isMatchedPasswords() -> Bool {
         if newPassword == confirmNewPassowrd {
             setIsValidPassword(isValid: true)
@@ -169,7 +168,7 @@ class TextInputVM : ObservableObject {
         setConfirmPasswordValidationMsg()
         return false
     }
-    
+
         func validateEmail() -> Bool {
         if emailValidator(email) {
             setIsValidEmail(isValid: true)
@@ -180,7 +179,7 @@ class TextInputVM : ObservableObject {
             setEmailValidationMsg(msg: .formError, context: .login)
         return false
     }
-    
+
     func validatePassword() -> Bool {
         if passwordValidator(newPassword) {
             setIsValidPassword(isValid: true)
@@ -191,7 +190,7 @@ class TextInputVM : ObservableObject {
         setConfirmPasswordValidationMsg()
         return false
     }
-    
+
     func validateDate() -> Bool {
         if dateValidator(birthdate) {
             setIsDateValid(isValid: true)
@@ -199,7 +198,7 @@ class TextInputVM : ObservableObject {
         }
         setIsDateValid(isValid: false)
         setDateValidationMsg()
-        
+
         return false
     }
 }

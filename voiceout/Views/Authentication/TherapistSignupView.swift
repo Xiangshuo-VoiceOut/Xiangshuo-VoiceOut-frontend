@@ -11,18 +11,18 @@ struct TherapistSignupView: View {
     @StateObject private var verificationCodeVM: VerificationCodeVM
     @StateObject private var therapistSignupVM: TherapistSignupVM
     @StateObject private var textInputVM: TextInputVM
-    
+
     init() {
         let model = TextInputVM()
         _textInputVM = StateObject(wrappedValue: model)
         _therapistSignupVM = StateObject(wrappedValue: TherapistSignupVM(textInputVM: model))
         _verificationCodeVM = StateObject(wrappedValue: VerificationCodeVM(role: .therapist, textInputVM: model))
     }
-    
+
     var body: some View {
         ZStack {
             BackgroundView(backgroundType: .linear)
-            
+
             VStack(alignment: .leading, spacing: ViewSpacing.small) {
                 Text("email")
                     .font(.typography(.bodyMedium))
@@ -36,7 +36,7 @@ struct TherapistSignupView: View {
                     theme: .white
                 )
                 .autocapitalization(.none)
-                
+
                 Text("email_verification_code")
                     .font(.typography(.bodyMedium))
                     .foregroundColor(.textPrimary)
@@ -45,43 +45,43 @@ struct TherapistSignupView: View {
                     isSecuredField: false,
                     placeholder: "input_verification_code",
                     validationState: textInputVM.isVerificationCodeValid ? ValidationState.neutral : ValidationState.error,
-                    suffixContent: AnyView (
+                    suffixContent: AnyView(
                         VerificationCodeButton()
                             .environmentObject(verificationCodeVM)
                             .environmentObject(textInputVM)
                     ),
                     theme: .white
                 )
-                
+
                 Text("password")
                     .font(.typography(.bodyMedium))
                     .foregroundColor(.textPrimary)
                 SecuredTextInputView(
                     text: $textInputVM.newPassword,
                     securedPlaceholder: "new_password",
-                    securedValidation: textInputVM.isValidPassword ? .neutral : .error ,
+                    securedValidation: textInputVM.isValidPassword ? .neutral : .error,
                     validationMsg: textInputVM.newPasswordValidationMsg,
                     theme: .white
                 )
-                
+
                 Text("password_verification")
                     .font(.typography(.bodyMedium))
                     .foregroundColor(.textPrimary)
                 SecuredTextInputView(
                     text: $textInputVM.confirmNewPassowrd, securedPlaceholder: "new_password",
-                    securedValidation: textInputVM.isValidPassword ? .neutral : .error ,
+                    securedValidation: textInputVM.isValidPassword ? .neutral : .error,
                     validationMsg: textInputVM.confirmPasswordValidationMsg,
                     theme: .white
                 )
-                
+
                 Spacer()
             }
             .padding(ViewSpacing.xlarge)
             .padding(.top, ViewSpacing.xxlarge)
-            
+
             VStack(alignment: .center) {
                 Spacer()
-                
+
                 ButtonView(
                     text: "signup",
                     action: {
@@ -93,7 +93,7 @@ struct TherapistSignupView: View {
                 )
                 .frame(maxWidth: 281)
                 .disabled(!therapistSignupVM.isButtonEnabled)
-                
+
             }
         }
         .navigationTitle("signup")

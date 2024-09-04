@@ -11,7 +11,7 @@ struct LegalDialogContent: View {
     @EnvironmentObject var dialogViewModel: DialogViewModel
     @EnvironmentObject var popupViewModel: PopupViewModel
     @Binding var isSelected: Bool
-    
+
     let registrationProtocolLinkText = NSLocalizedString("registration_protocol", comment: "")
     let privacyPolicyLinkText = NSLocalizedString("privacy_policy", comment: "")
 
@@ -39,7 +39,7 @@ struct LegalDialogContent: View {
                         return .discarded
                     }
                 })
-            
+
             HStack {
                 ButtonView(
                     text: "disagree",
@@ -50,9 +50,9 @@ struct LegalDialogContent: View {
                     },
                     variant: ButtonVariant.outline
                 )
-                
+
                 Spacer()
-                
+
                 ButtonView(
                     text: "agree",
                     action: {
@@ -66,7 +66,7 @@ struct LegalDialogContent: View {
         }
         .padding(ViewSpacing.large)
     }
-    
+
     func openRegistrationProtocolPopup() {
         withAnimation(.spring()) {
             popupViewModel.present(
@@ -78,7 +78,7 @@ struct LegalDialogContent: View {
             )
         }
     }
-    
+
     func openPrivacyPolicyPopup() {
         withAnimation(.spring()) {
             popupViewModel.present(

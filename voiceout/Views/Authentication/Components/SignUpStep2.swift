@@ -11,9 +11,9 @@ struct SignUpStep2: View {
     @StateObject var router: RouterModel = RouterModel()
     @ObservedObject var textInputVM: TextInputVM
     @ObservedObject var userSignUpVM: UserSignUpVM
-    
+
     var body: some View {
-        VStack{
+        VStack {
             TextInputView(
                 text: $textInputVM.nickname,
                 isSecuredField: false,
@@ -23,12 +23,11 @@ struct SignUpStep2: View {
                 validationMessage: textInputVM.nicknameValidationMsg
             )
             .autocapitalization(.none)
-            
-            
-            Dropdown(selectionOption: $userSignUpVM.selectedState, prefixIcon:"local", placeholder: String(localized: "state_placeholder"), options: userSignUpVM.allStates)
+
+            Dropdown(selectionOption: $userSignUpVM.selectedState, prefixIcon: "local", placeholder: String(localized: "state_placeholder"), options: userSignUpVM.allStates)
                 .padding(.bottom)
                 .zIndex(2)
-            
+
             TextInputView(
                 text: $textInputVM.birthdate,
                 isSecuredField: false,
@@ -38,24 +37,23 @@ struct SignUpStep2: View {
             )
             .onChange(of: textInputVM.birthdate) { newValue in
                 textInputVM.birthdate = formatDateString(newValue)
-                
+
             }
-            
-            
-            Dropdown(selectionOption: $userSignUpVM.selectedGender, prefixIcon:"public-toilet", placeholder: String(localized: "gender_placeholder"), options: DropdownOption.genders)
+
+            Dropdown(selectionOption: $userSignUpVM.selectedGender, prefixIcon: "public-toilet", placeholder: String(localized: "gender_placeholder"), options: DropdownOption.genders)
                 .padding(.bottom, ViewSpacing.large)
                 .zIndex(1)
-            
+
             ButtonView(text: "signup",
                        action: {
                 userSignUpVM.userSignUp()
-                if userSignUpVM.isSignUpSuccessfully{
+                if userSignUpVM.isSignUpSuccessfully {
                     router.navigateTo(.finish(finishText: "sign_up_successfully", navigateToText: "navigate_to_login", destination: .userLogin))
                 }
-                
+
             },
                        theme: userSignUpVM.isUserSignUpEnabled ? .action : .base, maxWidth: .infinity
-                       
+
             )
             .disabled(!userSignUpVM.isUserSignUpEnabled)
         }
@@ -63,6 +61,6 @@ struct SignUpStep2: View {
     }
 }
 
-//#Preview {
+// #Preview {
 //    SignUpStep2()
-//}
+// }

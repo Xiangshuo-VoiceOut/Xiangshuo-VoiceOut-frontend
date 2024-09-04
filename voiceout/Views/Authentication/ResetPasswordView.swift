@@ -18,34 +18,32 @@ struct ResetPasswordView: View {
         _textInputVM = StateObject(wrappedValue: model)
         _resetPasswordVM = StateObject(wrappedValue: ResetPasswordVM(role: role, textInputVM: model))
     }
-    
+
     var body: some View {
         ZStack {
             BackgroundView()
-            
-            VStack{
+
+            VStack {
                 HeaderView()
-                    
+
                 VStack {
                     VStack {
                         SecuredTextInputView(
                             text: $textInputVM.newPassword,
                             securedPlaceholder: "new_password",
-                            securedValidation: textInputVM.isValidPassword ? .neutral : .error ,
+                            securedValidation: textInputVM.isValidPassword ? .neutral : .error,
                             validationMsg: textInputVM.newPasswordValidationMsg,
                             prefixIcon: "lock"
                         )
-                        
-                            
+
                         SecuredTextInputView(
                             text: $textInputVM.confirmNewPassowrd,
                             securedPlaceholder: "new_password",
-                            securedValidation: textInputVM.isValidPassword ? .neutral : .error ,
+                            securedValidation: textInputVM.isValidPassword ? .neutral : .error,
                             validationMsg: textInputVM.confirmPasswordValidationMsg,
                             prefixIcon: "lock"
                         )
-                        
-                            
+
                         ButtonView(
                             text: "finished",
                             action: {
@@ -60,15 +58,15 @@ struct ResetPasswordView: View {
                         .disabled(!resetPasswordVM.isFinishButtonEnabled)
                     }
                     .background(Color.surfacePrimary)
-                    .padding(.horizontal,ViewSpacing.xlarge)
+                    .padding(.horizontal, ViewSpacing.xlarge)
                 }
                 .padding(.vertical, ViewSpacing.xlarge)
                 .background(Color.surfacePrimary)
                 .cornerRadius(CornerRadius.medium.value)
-                .shadow(color: Color(.grey200),radius: CornerRadius.xxsmall.value)
+                .shadow(color: Color(.grey200), radius: CornerRadius.xxsmall.value)
                 .padding(ViewSpacing.medium)
             }
-            .toolbar{
+            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         if role == .therapist {
@@ -76,7 +74,7 @@ struct ResetPasswordView: View {
                         } else if role == .user {
                             router.navigateTo(.userSignUp)
                         }
-                    }){
+                    }) {
                         Text("signup")
                             .font(.typography(.bodyMedium))
                             .foregroundColor(.black.opacity(0.69))
@@ -85,7 +83,7 @@ struct ResetPasswordView: View {
             }
         }
         .ignoresSafeArea()
-        .onChange(of: textInputVM.newPassword){ _ in
+        .onChange(of: textInputVM.newPassword) { _ in
             resetPasswordVM.handleInputsFilled()
         }
         .onChange(of: textInputVM.confirmNewPassowrd) { _ in

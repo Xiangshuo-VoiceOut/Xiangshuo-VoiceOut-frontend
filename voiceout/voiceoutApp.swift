@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct voiceoutApp: App {
+struct VoiceoutApp: App {
     var body: some Scene {
         WindowGroup {
             RouterView {

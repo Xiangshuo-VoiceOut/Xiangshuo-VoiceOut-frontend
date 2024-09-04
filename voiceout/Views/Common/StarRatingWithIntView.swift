@@ -36,5 +36,5 @@ struct StarRatingViewInt: View {
 }
 
 #Preview {
-    StarRatingViewInt(rating:4)
+    StarRatingViewInt(rating: 4)
 }

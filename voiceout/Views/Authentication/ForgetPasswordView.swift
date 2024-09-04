@@ -13,7 +13,7 @@ struct ForgetPasswordView: View {
     @StateObject private var resetVM: ResetPasswordVM
     @EnvironmentObject var router: RouterModel
     private let role: UserRole
-    
+
     init(_ role: UserRole) {
         self.role = role
         let model = TextInputVM()
@@ -21,13 +21,13 @@ struct ForgetPasswordView: View {
         _verificationCodeVM = StateObject(wrappedValue: VerificationCodeVM(role: role, textInputVM: model))
         _resetVM = StateObject(wrappedValue: ResetPasswordVM(role: role, textInputVM: model))
     }
-    
+
     var body: some View {
         ZStack {
             BackgroundView()
-            VStack{
+            VStack {
                 HeaderView()
-                    
+
                 VStack {
                     VStack {
                         TextInputView(
@@ -40,7 +40,7 @@ struct ForgetPasswordView: View {
                         )
                         .autocapitalization(.none)
                         .padding(.bottom)
-                        
+
                         TextInputView(
                             text: $textInputVM.verificationCode,
                             isSecuredField: false,
@@ -54,7 +54,7 @@ struct ForgetPasswordView: View {
                             )
                         )
                         .padding(.bottom, ViewSpacing.large)
-                            
+
                         ButtonView(
                             text: "next_step",
                             action: {
@@ -67,18 +67,18 @@ struct ForgetPasswordView: View {
                             maxWidth: .infinity
                         )
                         .disabled(!verificationCodeVM.isNextButtonEnabled)
-                            
+
                     }
                     .background(Color.surfacePrimary)
-                    .padding(.horizontal,ViewSpacing.xlarge)
+                    .padding(.horizontal, ViewSpacing.xlarge)
                 }
                 .padding(.vertical, ViewSpacing.xlarge)
                 .background(Color.surfacePrimary)
                 .cornerRadius(CornerRadius.medium.value)
-                .shadow(color: Color.grey200,radius: CornerRadius.xxsmall.value)
+                .shadow(color: Color.grey200, radius: CornerRadius.xxsmall.value)
                 .padding(ViewSpacing.medium)
             }
-            .toolbar{
+            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         if role == .therapist {
@@ -86,7 +86,7 @@ struct ForgetPasswordView: View {
                         } else if role == .user {
                             router.navigateTo(.userSignUp)
                         }
-                    }){
+                    }) {
                         Text("signup")
                             .font(.typography(.bodyMedium))
                             .foregroundColor(.black.opacity(0.69))
@@ -95,7 +95,7 @@ struct ForgetPasswordView: View {
             }
         }
         .ignoresSafeArea()
-        .onChange(of: textInputVM.email){ _ in
+        .onChange(of: textInputVM.email) { _ in
             verificationCodeVM.validateInputs()
             verificationCodeVM.resetValidateState()
         }

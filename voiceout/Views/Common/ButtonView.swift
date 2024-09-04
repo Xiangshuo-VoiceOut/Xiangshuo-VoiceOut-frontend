@@ -31,7 +31,6 @@ enum ButtonFontSize {
     case medium
 }
 
-
 struct ButtonView: View {
     var text: String
     var action: () -> Void
@@ -39,8 +38,8 @@ struct ButtonView: View {
     var theme: ButtonTheme? = ButtonTheme.action
     var spacing: ButtonSpacing? = ButtonSpacing.small
     var fontSize: ButtonFontSize? = ButtonFontSize.medium
-    var maxWidth: CGFloat? = nil
-    
+    var maxWidth: CGFloat?
+
     var body: some View {
         Button(action: action) {
             Text(LocalizedStringKey(text))
@@ -64,7 +63,7 @@ struct ButtonView: View {
             return .typography(.bodyMedium)
         }
     }
-    
+
     private var foregroundColorForVariant: Color {
         switch variant {
         case .outline:
@@ -74,14 +73,14 @@ struct ButtonView: View {
                 return .textSecondary
             } else if theme == .badge {
                 return .textBrandPrimary
-            } else if theme == .base{
+            } else if theme == .base {
                 return .textPrimary
             } else {
                 return .textInvert
             }
         }
     }
-    
+
     private var backgroundForVariant: Color {
         switch variant {
         case .outline:
@@ -96,7 +95,7 @@ struct ButtonView: View {
             }
         }
     }
-    
+
     private var strokeColorForVariant: Color {
         switch variant {
         case .outline:
@@ -105,7 +104,7 @@ struct ButtonView: View {
             return .clear
         }
     }
-    
+
     private var paddingSize: EdgeInsets {
         switch spacing {
         case .xsmall:
@@ -115,7 +114,7 @@ struct ButtonView: View {
                 bottom: ViewSpacing.xsmall,
                 trailing: ViewSpacing.medium
             )
-        
+
         case .small:
             return EdgeInsets(
                 top: ViewSpacing.small,
@@ -123,7 +122,7 @@ struct ButtonView: View {
                 bottom: ViewSpacing.small,
                 trailing: ViewSpacing.large
             )
-        
+
         case .large:
             return EdgeInsets(
                 top: ViewSpacing.small,
@@ -131,7 +130,7 @@ struct ButtonView: View {
                 bottom: ViewSpacing.small,
                 trailing: ViewSpacing.xxxxlarge
             )
-        
+
         default:
             return EdgeInsets(
                 top: ViewSpacing.small,
@@ -139,15 +138,14 @@ struct ButtonView: View {
                 bottom: ViewSpacing.small,
                 trailing: ViewSpacing.xxxlarge
             )
-            
-            
+
         }
     }
 }
 
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        Group{
+        Group {
             ButtonView(
                 text: "登录", action: {}
             )
@@ -155,4 +153,3 @@ struct ButtonView_Previews: PreviewProvider {
         }
     }
 }
-

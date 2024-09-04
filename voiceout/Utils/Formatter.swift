@@ -8,7 +8,7 @@
 import SwiftUI
 
 public func formatDateString(_ input: String) -> String {
-    var digits = input.filter{$0.isNumber}
+    var digits = input.filter {$0.isNumber}
     if digits.count > 8 {
         digits = String(digits.prefix(8))
     }

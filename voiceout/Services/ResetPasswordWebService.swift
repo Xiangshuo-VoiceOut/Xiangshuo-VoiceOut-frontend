@@ -12,32 +12,31 @@ enum GetVerificationCodeError: Error {
     case na
 }
 
-enum VerificationError: Error{
+enum VerificationError: Error {
     case verificationCodeInvalid
     case na
 }
 
-
 struct ResetPasswordWebService {
-    
+
     func requestPasswordReset(email: String, role: UserRole, completion: @escaping (Result<String, Error>) -> Void) {
         let urlString = (role == .user) ? APIConfigs.userForgetPWURL : APIConfigs.therapistForgetPWURL
-        
+
         guard let url = URL(string: urlString) else { return }
-        
-        var request = URLRequest(url:url)
+
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         let body: [String: Any] = ["email": email]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            
+
+        URLSession.shared.dataTask(with: request) { data, response, _ in
+
             guard let httpResponse = response as? HTTPURLResponse else {
                 return
             }
-            
+
             switch httpResponse.statusCode {
             case 200:
                 if let jsonResponse = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any],
@@ -52,17 +51,16 @@ struct ResetPasswordWebService {
             }
         }.resume()
     }
-    
-    
+
     func validateResetToken(verificationCode: String, role: UserRole, completion: @escaping (Result<Bool, Error>) -> Void) {
-        
+
         let urlString = (role == .user) ? APIConfigs.userValidateTokenURL : APIConfigs.therapistValidateTokenURL
-        
-        guard let token = UserDefaults.standard.string(forKey: "resetToken") else {
+
+        guard UserDefaults.standard.string(forKey: "resetToken") != nil else {
             completion(.failure(VerificationError.verificationCodeInvalid))
             return
         }
-        
+
         guard let url = URL(string: urlString) else { return }
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
@@ -70,16 +68,16 @@ struct ResetPasswordWebService {
             let body: [String: Any] = [
                 "token": verificationCode
             ]
-        
+
             request.httpBody = try? JSONSerialization.data(withJSONObject: body)
 
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            
+        URLSession.shared.dataTask(with: request) { _, response, _ in
+
             guard let httpResponse = response as? HTTPURLResponse else {
                 completion(.failure(GetVerificationCodeError.na))
                 return
             }
-            
+
             switch httpResponse.statusCode {
             case 200:
                 completion(.success(true))
@@ -90,37 +88,35 @@ struct ResetPasswordWebService {
             }
         }.resume()
     }
-    
-    
+
     func resetPassword(newPassword: String, role: UserRole, completion: @escaping (Result<String, Error>) -> Void) {
-        
+
         let urlString = (role == .user) ? APIConfigs.userResetPWURL : APIConfigs.therapistResetPWURL
-        
-        guard let token = UserDefaults.standard.string(forKey: "resetToken"),!isTokenExpired() else {
+
+        guard let token = UserDefaults.standard.string(forKey: "resetToken"), !isTokenExpired() else {
             UserDefaults.standard.removeObject(forKey: "resetToken")
             UserDefaults.standard.removeObject(forKey: "resetTokenExpiry")
             completion(.failure(VerificationError.verificationCodeInvalid))
             return
         }
-        
-        
+
         guard let url = URL(string: urlString) else { return }
-        
+
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             let body: [String: Any] = ["token": token, "password": newPassword]
             request.httpBody = try? JSONSerialization.data(withJSONObject: body)
 
-            URLSession.shared.dataTask(with: request) { data, response, error in
+            URLSession.shared.dataTask(with: request) { _, response, error in
                 guard error == nil else {
                     return
                 }
-                
+
                 guard let httpResponse = response as? HTTPURLResponse else {
                     return
                 }
-                
+
                 switch httpResponse.statusCode {
                 case 200:
                     UserDefaults.standard.removeObject(forKey: "resetToken")
@@ -132,12 +128,12 @@ struct ResetPasswordWebService {
                 }
             }.resume()
         }
-    
-    func isTokenExpired()-> Bool{
-        guard let expiryDate = UserDefaults.standard.object(forKey: "resetTokenExpiry") as? Date else{
+
+    func isTokenExpired() -> Bool {
+        guard let expiryDate = UserDefaults.standard.object(forKey: "resetTokenExpiry") as? Date else {
             return true
         }
         return Date() > expiryDate
-        
+
     }
 }

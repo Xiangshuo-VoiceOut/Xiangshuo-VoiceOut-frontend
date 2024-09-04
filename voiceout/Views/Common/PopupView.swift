@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PopupViewModifier: ViewModifier {
     @ObservedObject var popupViewModel: PopupViewModel
-    
+
     func body(content: Content) -> some View {
         content
             .overlay(alignment: .bottom) {
@@ -24,7 +24,7 @@ struct PopupViewModifier: ViewModifier {
             }
             .ignoresSafeArea()
     }
-    
+
     func close() {
         withAnimation(.spring()) {
             popupViewModel.dismiss()
@@ -35,14 +35,14 @@ struct PopupViewModifier: ViewModifier {
 struct PopupView: View {
     var content: AnyView
     var didClose: () -> Void
-    
+
     var body: some View {
         content
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.surfacePrimary)
             .cornerRadius(.medium, corners: [.topLeft, .topRight])
             .overlay(alignment: .topTrailing) {
-                Button (action: didClose) {
+                Button(action: didClose) {
                     Image("close")
                         .foregroundColor(Color(.grey500))
                 }
@@ -53,7 +53,6 @@ struct PopupView: View {
             .transition(.move(edge: .bottom))
     }
 }
-
 
 struct PopupView_Previews: PreviewProvider {
     static var previews: some View {

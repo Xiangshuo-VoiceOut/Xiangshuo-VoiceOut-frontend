@@ -15,7 +15,7 @@ struct SecuredTextInputView: View {
     var validationMsg: String = ""
     var theme: TextInputTheme?
     var prefixIcon: String?
-    
+
     var body: some View {
         TextInputView(
             text: $text,
@@ -34,10 +34,10 @@ struct SecuredTextInputView: View {
         .autocapitalization(.none)
     }
 }
-    
+
 struct SecuredToggle: View {
     @Binding var isSecuredField: Bool
-        
+
     var body: some View {
         Button(action: {
             isSecuredField.toggle()

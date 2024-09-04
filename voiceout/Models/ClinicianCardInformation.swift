@@ -36,4 +36,3 @@ struct Clinician: Codable, Identifiable {
            case charge
     }
 }
-

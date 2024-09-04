@@ -135,7 +135,7 @@
 		D2071D462BAB5E9E0040B0AE /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		D2071D6D2BAB9E110040B0AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D2071D6F2BAB9E260040B0AE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D21660CA2C337E47008248DE /* TherapistSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistSignupView.swift; sourceTree = "<group>"; };
+		D21660CA2C337E47008248DE /* TherapistSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TherapistSignupView.swift; path = voiceout/Views/Authentication/TherapistSignupView.swift; sourceTree = SOURCE_ROOT; };
 		D21660CC2C339A49008248DE /* VerificationCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeButton.swift; sourceTree = "<group>"; };
 		D21660CE2C339B98008248DE /* BackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonView.swift; sourceTree = "<group>"; };
 		D21660D72C34D689008248DE /* Validators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
@@ -288,14 +288,12 @@
 		D2071D412BAA8B880040B0AE /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				D22F0C9F2C880E3F00AFE53D /* User */,
 				D21660DE2C4C2291008248DE /* Therapist */,
 				D284992C2BEEF3FE00963B3A /* Components */,
 				B8D4721B2C1E404F00D6716A /* ForgetPasswordView.swift */,
 				B814C5942C220F66008F4A60 /* LoginView.swift */,
 				B8D4721C2C1E405000D6716A /* ResetPasswordView.swift */,
-				D21660CA2C337E47008248DE /* TherapistSignupView.swift */,
-				B8860E1D2C3AC63300A79073 /* UserSignUpView.swift */,
-				B8860E2F2C3CD21D00A79073 /* FinishView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -369,9 +367,21 @@
 		D21660DE2C4C2291008248DE /* Therapist */ = {
 			isa = PBXGroup;
 			children = (
+				D21660CA2C337E47008248DE /* TherapistSignupView.swift */,
 				D21660DF2C4C22E3008248DE /* CooperationAgreementPopupContent.swift */,
 			);
 			path = Therapist;
+			sourceTree = "<group>";
+		};
+		D22F0C9F2C880E3F00AFE53D /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B8EF41AC2C6AAE8500C77D4D /* SignUpStep2.swift */,
+				B8EF41AA2C69BAD300C77D4D /* SignUpStep1.swift */,
+				B8860E1D2C3AC63300A79073 /* UserSignUpView.swift */,
+				B8860E2F2C3CD21D00A79073 /* FinishView.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		D25C2EC42BCF56790011212A /* Foundation */ = {
@@ -420,8 +430,6 @@
 				D2D6CD802BFBD2BE00DD7688 /* LegalPopupContent.swift */,
 				B814C5902C20F2F4008F4A60 /* AddButton.swift */,
 				D21660CC2C339A49008248DE /* VerificationCodeButton.swift */,
-				B8EF41AA2C69BAD300C77D4D /* SignUpStep1.swift */,
-				B8EF41AC2C6AAE8500C77D4D /* SignUpStep2.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";

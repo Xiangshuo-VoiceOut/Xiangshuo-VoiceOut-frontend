@@ -1,0 +1,69 @@
+//
+//  OneWeekView.swift
+//  voiceout
+//
+//  Created by Yujia Yang on 9/4/24.
+//
+
+import SwiftUI
+
+struct Day: Identifiable {
+    let id = UUID()
+    let label: LocalizedStringKey
+}
+
+struct OneWeekView: View {
+    @State private var selectedDayIndices: Set<Int> = []
+    var days: [Day]
+
+    init() {
+        let weekLabels: [LocalizedStringKey] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        var tempDays: [Day] = []
+
+        for label in weekLabels {
+                    tempDays.append(Day(label: label))
+        }
+
+        self.days = tempDays
+    }
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 0) {
+            HStack(alignment: .top, spacing: ViewSpacing.small) {
+                ForEach(0..<days.count) { index in
+                    VStack(alignment: .center, spacing: ViewSpacing.betweenSmallAndBase) {
+                        Text(days[index].label)
+                            .font(Font.typography(.bodyMediumEmphasis))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(selectedDayIndices.contains(index) ? Color.textInvert : Color.textSecondary)
+                    }
+                    .padding(.horizontal, 7)
+                    .padding(.vertical, 18)
+                    .frame(height: 57, alignment: .center)
+                    .background(selectedDayIndices.contains(index) ? Color.surfaceBrandPrimary : Color.surfacePrimaryGrey)
+                    .cornerRadius(CornerRadius.medium.value)
+                    .onTapGesture {
+                        if selectedDayIndices.contains(index) {
+                            selectedDayIndices.remove(index)
+                        } else {
+                            selectedDayIndices.insert(index)
+                        }
+                    }
+                }
+                .frame(width:46)
+            }
+            .padding(0)
+            .cornerRadius(CornerRadius.xxxsmall.value)
+        }
+        .padding(.horizontal, ViewSpacing.medium)
+        .padding(.top, ViewSpacing.xxxsmall)
+        .padding(.bottom, 0)
+        .cornerRadius(CornerRadius.xxxsmall.value)
+    }
+}
+
+#Preview {
+    VStack {
+        OneWeekView()
+    }
+}

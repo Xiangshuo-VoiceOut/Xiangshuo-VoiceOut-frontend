@@ -33,8 +33,8 @@ struct LegalButton: View {
             }
             .padding(ViewSpacing.xxlarge)
         }
-        .popup(with: .DialogViewModel(dialogViewModel))
-        .popup(with: .PopupViewModel(popupViewModel))
+        .popup(with: .dialogViewModel(dialogViewModel))
+        .popup(with: .popupViewModel(popupViewModel))
     }
 }
 

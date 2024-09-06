@@ -78,7 +78,7 @@ struct CooperationAgreementPopupContent: View {
             }
         }
         .edgesIgnoringSafeArea(.all)
-        .popup(with: .DialogViewModel(dialogViewModel))
+        .popup(with: .dialogViewModel(dialogViewModel))
     }
 }
 

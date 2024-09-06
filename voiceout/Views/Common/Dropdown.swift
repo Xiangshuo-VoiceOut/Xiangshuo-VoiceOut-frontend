@@ -45,11 +45,14 @@ struct Dropdown: View {
             VStack {
                 if self.isOptionPresented {
                     Spacer(minLength: ViewSpacing.xxlarge)
-                    DropdownList(options: self.options, isCardInput: isCardInput) { option in
-                        self.isOptionPresented = false
-                        self.selectionOption = option
-
-                    }
+                    DropdownList(
+                        options: self.options,
+                        onSelectedAction: { option in
+                            self.isOptionPresented = false
+                            self.selectionOption = option
+                        },
+                        isCardInput: isCardInput
+                    )
                 }
             }
             .padding(.top, -ViewSpacing.base)
@@ -59,6 +62,12 @@ struct Dropdown: View {
 }
 
 #Preview {
-    Dropdown(selectionOption: .constant(nil), prefixIcon: "lock", placeholder: "state_placeholder", options: DropdownOption.testAllMonths, isCardInput: false)
-        .padding()
+    Dropdown(
+        selectionOption: .constant(nil),
+        prefixIcon: "lock",
+        placeholder: "state_placeholder",
+        options: DropdownOption.testAllMonths,
+        isCardInput: false
+    )
+    .padding()
 }

@@ -15,11 +15,10 @@ struct DialogViewModifier: ViewModifier {
             .overlay(alignment: .bottom) {
                 if case let .present(config) = dialogViewModel.action {
                     DialogView(
-                        content: config.content,
-                        didClose: {
+                        content: config.content
+                    ) {
                             close()
                         }
-                    )
                 }
             }
             .ignoresSafeArea()
@@ -65,6 +64,6 @@ struct DialogView: View {
 
 struct DialogView_Previews: PreviewProvider {
     static var previews: some View {
-        DialogView(content: AnyView(Text("content")), didClose: {})
+        DialogView(content: AnyView(Text("content"))) {}
     }
 }

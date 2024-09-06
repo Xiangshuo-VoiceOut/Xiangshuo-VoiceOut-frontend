@@ -27,7 +27,8 @@ struct SecuredTextInputView: View {
             suffixContent:
                 AnyView(
                     SecuredToggle(
-                        isSecuredField: $isSecuredField)
+                        isSecuredField: $isSecuredField
+                    )
                 ),
             theme: theme
         )

@@ -13,7 +13,7 @@ struct StepProgressView: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            ForEach(0..<totalSteps) { step in
+            ForEach(Array(0..<totalSteps), id: \.self) { step in
                 if step == currentStep {
                     Circle()
                         .fill(Color.brandPrimary)

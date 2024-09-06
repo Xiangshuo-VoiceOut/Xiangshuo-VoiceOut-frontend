@@ -22,8 +22,8 @@ enum Typography {
 }
 
 extension Font {
-    static let typography: (Typography) -> Font = { Typography in
-        switch Typography {
+    static let typography: (Typography) -> Font = { typography in
+        switch typography {
         case .headerLarge:
             Font.custom("AlibabaPuHuiTi_3_85_Bold", size: 48)
         case .headerMedium:

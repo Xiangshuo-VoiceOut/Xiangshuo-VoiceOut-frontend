@@ -24,19 +24,19 @@ class ResetPasswordVM: ObservableObject {
         if !textInputVM.validatePassword() || !textInputVM.isMatchedPasswords() {
             return
         }
-        webservice.resetPassword(newPassword: textInputVM.newPassword, role: role, completion: { [weak self] result in
+        webservice.resetPassword(newPassword: textInputVM.newPassword, role: role) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case.success:
                     self?.textInputVM.resetNewPasswordValidationMsg()
                     self?.isResetSuccessful = true
-                case.failure(let error):
+                case.failure:
                     self?.textInputVM.resetNewPasswordValidationMsg()
                     self?.isResetSuccessful = false
                 }
             }
 
-        })
+        }
     }
 
     private func handleVerificationCodeErrors(_ error: GetVerificationCodeError) {

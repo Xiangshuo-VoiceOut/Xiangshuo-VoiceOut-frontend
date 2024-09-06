@@ -36,7 +36,7 @@ class AuthViewModel: ObservableObject {
     private func handleLoginResult(result: Result<String, AuthenticationError>) {
         DispatchQueue.main.async {
             switch result {
-            case .success(let token):
+            case .success:
                 switch self.role {
                 case .user:
                     self.showingUserMainPage = true

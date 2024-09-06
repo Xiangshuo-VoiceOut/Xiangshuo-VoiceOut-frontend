@@ -147,8 +147,8 @@ struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ButtonView(
-                text: "登录", action: {}
-            )
+                text: "登录"
+            ) {}
             .previewLayout(.sizeThatFits)
         }
     }

@@ -13,11 +13,13 @@ struct BadgeView: View {
     var text: String
 
     var body: some View {
-        ButtonView(text: text,
-                   action: {isActive.toggle()},
-                   theme: isActive ? .badge : .bagdeInactive,
-                   spacing: .xsmall,
-                   fontSize: .small)
+        ButtonView(
+            text: text,
+            action: {isActive.toggle()},
+            theme: isActive ? .badge : .bagdeInactive,
+            spacing: .xsmall,
+            fontSize: .small
+        )
     }
 }
 

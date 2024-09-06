@@ -15,11 +15,10 @@ struct PopupViewModifier: ViewModifier {
             .overlay(alignment: .bottom) {
                 if case let .present(config) = popupViewModel.action {
                     PopupView(
-                        content: config.content,
-                        didClose: {
+                        content: config.content
+                    ) {
                             close()
                         }
-                    )
                 }
             }
             .ignoresSafeArea()
@@ -56,6 +55,6 @@ struct PopupView: View {
 
 struct PopupView_Previews: PreviewProvider {
     static var previews: some View {
-        PopupView(content: AnyView(Text("content")), didClose: {})
+        PopupView(content: AnyView(Text("content"))) {}
     }
 }

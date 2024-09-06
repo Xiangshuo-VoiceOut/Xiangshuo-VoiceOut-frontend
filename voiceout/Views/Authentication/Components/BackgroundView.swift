@@ -24,8 +24,15 @@ struct BackgroundView: View {
                     Gradient.Stop(color: Color.brandTertiary, location: BGConstants.centerLocation),
                     Gradient.Stop(color: Color.surfacePrimary, location: BGConstants.Background.endPointY)
                 ],
-                startPoint: UnitPoint(x: BGConstants.centerPoint, y: BGConstants.Background.startPointY), endPoint: UnitPoint(x: BGConstants.centerPoint, y: BGConstants.Background.endPointY)
+                startPoint: UnitPoint(
+                    x: BGConstants.centerPoint,
+                    y: BGConstants.Background.startPointY
+                ),
+                endPoint: UnitPoint(
+                    x: BGConstants.centerPoint,
+                    y: BGConstants.Background.endPointY
                 )
+            )
             .ignoresSafeArea()
         } else {
             LinearGradient(

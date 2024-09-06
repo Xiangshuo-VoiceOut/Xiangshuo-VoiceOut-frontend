@@ -30,7 +30,8 @@ class TherapistSignupVM: ObservableObject {
     }
 
     func updateButtonState() {
-        let inputsAllFilled = !textInputVM.email.isEmpty && !textInputVM.verificationCode.isEmpty && !textInputVM.newPassword.isEmpty && !textInputVM.confirmNewPassowrd.isEmpty
+        let inputsAllFilled = !textInputVM.email.isEmpty && !textInputVM.verificationCode.isEmpty && !textInputVM.newPassword.isEmpty &&
+        !textInputVM.confirmNewPassowrd.isEmpty
 
         if !inputsAllFilled {
             isButtonEnabled = false

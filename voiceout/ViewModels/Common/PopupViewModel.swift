@@ -11,6 +11,7 @@ final class PopupViewModel: ObservableObject {
     typealias Config = Action.PopupConfig
 
     enum Action {
+        // swiftlint:disable:next nesting
         struct PopupConfig {
             var content: AnyView
         }

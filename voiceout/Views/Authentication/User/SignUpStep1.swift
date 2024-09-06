@@ -53,15 +53,15 @@ struct SignUpStep1: View {
                 prefixIcon: "lock"
             )
 
-            ButtonView(text: "next_step",
-                       action: {
-                userSignUpVM.goToNextPage()
-                if userSignUpVM.nextPageAvailable {
-                    currentStep = .step2
-                }
-            },
-                       theme: userSignUpVM.isNextStepEnabled ? .action : .base, maxWidth: .infinity
-
+            ButtonView(
+                text: "next_step",
+                action: {
+                    userSignUpVM.goToNextPage()
+                    if userSignUpVM.nextPageAvailable {
+                        currentStep = .step2
+                    }
+                },
+                theme: userSignUpVM.isNextStepEnabled ? .action : .base, maxWidth: .infinity
             )
             .disabled(!userSignUpVM.isNextStepEnabled)
         }

@@ -11,6 +11,7 @@ final class DialogViewModel: ObservableObject {
     typealias Config = Action.DialogConfig
 
     enum Action {
+        // swiftlint:disable:next nesting
         struct DialogConfig {
             var content: AnyView
         }

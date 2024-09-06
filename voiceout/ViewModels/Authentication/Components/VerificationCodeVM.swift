@@ -76,7 +76,7 @@ class VerificationCodeVM: ObservableObject {
     }
 
     func isVerificationValid() {
-        guard let token = verificationToken, !textInputVM.verificationCode.isEmpty else {
+        guard verificationToken != nil, !textInputVM.verificationCode.isEmpty else {
                 textInputVM.setVerificationCodeValidationMsg(msg: .enterCode)
                 textInputVM.setIsVerificationCodeValid(isValid: false)
                 return

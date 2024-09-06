@@ -26,5 +26,5 @@ struct DropdownListRow: View {
 }
 
 #Preview {
-    DropdownListRow(option: DropdownOption.testSingleMonth, onSelectedAction: {_ in})
+    DropdownListRow(option: DropdownOption.testSingleMonth) {_ in}
 }

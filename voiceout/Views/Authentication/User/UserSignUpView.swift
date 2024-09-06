@@ -35,9 +35,18 @@ struct UserSignUpView: View {
                 VStack {
                     switch currentStep {
                     case .step1:
-                        SignUpStep1(textInputVM: textInputVM, verificationCodeVM: verificationCodeVM, userSignUpVM: userSignUpVM, currentStep: $currentStep)
+                        SignUpStep1(
+                            textInputVM: textInputVM,
+                            verificationCodeVM: verificationCodeVM,
+                            userSignUpVM: userSignUpVM,
+                            currentStep: $currentStep
+                        )
                     case .step2:
-                        SignUpStep2(router: router, textInputVM: textInputVM, userSignUpVM: userSignUpVM)
+                        SignUpStep2(
+                            router: router,
+                            textInputVM: textInputVM,
+                            userSignUpVM: userSignUpVM
+                        )
                     }
                 }
                 .padding(ViewSpacing.large)

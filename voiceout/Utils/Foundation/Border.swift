@@ -14,9 +14,9 @@ enum CornerRadius {
     case xsmall
     case xxsmall
     case xxxsmall
-    
-    var value: CGFloat{
-        switch self{
+
+    var value: CGFloat {
+        switch self {
         case .full:
             return 360
         case .medium:
@@ -36,7 +36,7 @@ enum CornerRadius {
 enum StrokeWidth {
     case width100
     case width200
-    
+
     var value: CGFloat {
             switch self {
             case .width100:
@@ -52,14 +52,14 @@ extension View {
         return clipShape(RoundedCorner(radius: radius.value, corners: corners))
     }
 }
-                  
+
 struct RoundedCorner: Shape {
     var radius: CGFloat
     var corners: UIRectCorner = .allCorners
-    
+
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        
+
         return Path(path.cgPath)
     }
 }
@@ -67,7 +67,7 @@ struct RoundedCorner: Shape {
 extension RoundedRectangle {
     init(cornerRadius: CornerRadius) {
         let cornerRadiusValue: CGFloat
-        
+
         switch cornerRadius {
         case .full:
             cornerRadiusValue = 360
@@ -85,7 +85,7 @@ extension RoundedRectangle {
 
         self.init(cornerRadius: cornerRadiusValue, style: .continuous)
     }
-    
+
     func stroke(_ strokeWidth: StrokeWidth, _ color: Color? = .clear) -> some View {
         switch strokeWidth {
         case .width100:

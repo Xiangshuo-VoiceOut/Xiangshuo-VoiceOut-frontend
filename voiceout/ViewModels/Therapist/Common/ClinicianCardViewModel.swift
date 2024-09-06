@@ -11,7 +11,7 @@ class ClinicianViewModel: ObservableObject {
     @Published var clinician: Clinician?
     @Published var isLoading = false
     @Published var errorMessage: String?
-    
+
     func loadTestData() {
         let testClinician = Clinician(
             _id: "1",
@@ -27,28 +27,24 @@ class ClinicianViewModel: ObservableObject {
         self.clinician = testClinician
         self.errorMessage = nil
     }
-    
-    
-    
-    
-    
+
     func fetchClinician() {
         isLoading = true
         guard let url = URL(string: "http://localhost:3000/api/profile/me") else {
             isLoading = false
             return
         }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
+
+        URLSession.shared.dataTask(with: url) { data, _, error in
             DispatchQueue.main.async {
                 self.isLoading = false
             }
-            
+
             guard let data = data, error == nil else {
                 self.errorMessage = error?.localizedDescription ?? "Unknown error"
                 return
             }
-            
+
             do {
                 let clinicians = try JSONDecoder().decode([Clinician].self, from: data)
                 if let clinician = clinicians.first {
@@ -65,4 +61,3 @@ class ClinicianViewModel: ObservableObject {
     }
 
        }
-

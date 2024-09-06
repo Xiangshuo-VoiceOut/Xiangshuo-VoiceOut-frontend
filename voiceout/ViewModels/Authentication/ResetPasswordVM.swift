@@ -7,40 +7,40 @@
 
 import Foundation
 
-class ResetPasswordVM : ObservableObject {
+class ResetPasswordVM: ObservableObject {
     @Published var isNextStepActive: Bool = false
     @Published var isResetSuccessful: Bool = false
     @Published var isFinishButtonEnabled: Bool = false
     private var textInputVM: TextInputVM
     var role: UserRole
     private var webservice = ResetPasswordWebService()
-    
+
     init(role: UserRole, textInputVM: TextInputVM) {
         self.role = role
         self.textInputVM = textInputVM
     }
-    
-    func resetPassword(){
+
+    func resetPassword() {
         if !textInputVM.validatePassword() || !textInputVM.isMatchedPasswords() {
             return
         }
-        webservice.resetPassword(newPassword: textInputVM.newPassword, role: role, completion: { [weak self] result in
+        webservice.resetPassword(newPassword: textInputVM.newPassword, role: role) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
-                case.success(_):
+                case.success:
                     self?.textInputVM.resetNewPasswordValidationMsg()
                     self?.isResetSuccessful = true
-                case.failure(let error):
+                case.failure:
                     self?.textInputVM.resetNewPasswordValidationMsg()
                     self?.isResetSuccessful = false
                 }
             }
-            
-        })
+
+        }
     }
-    
+
     private func handleVerificationCodeErrors(_ error: GetVerificationCodeError) {
-        switch error{
+        switch error {
         case .userNotFound:
             textInputVM.setIsValidEmail(isValid: false)
             textInputVM.setEmailValidationMsg(msg: .notExist, context: .login)
@@ -48,18 +48,18 @@ class ResetPasswordVM : ObservableObject {
             textInputVM.setIsVerificationCodeValid(isValid: false)
             textInputVM.setVerificationCodeValidationMsg(msg: .invalidVerification)
         }
-        
+
     }
-    
-    func validateNext(){
-        
+
+    func validateNext() {
+
         isNextStepActive = textInputVM.isValidEmail && textInputVM.isVerificationCodeValid
     }
-    
+
     func handleInputsFilled() {
         isFinishButtonEnabled = !textInputVM.newPassword.isEmpty && !textInputVM.confirmNewPassowrd.isEmpty
     }
-    
+
     func isValidReInput() -> Bool {
         return textInputVM.confirmNewPassowrd == textInputVM.newPassword
     }

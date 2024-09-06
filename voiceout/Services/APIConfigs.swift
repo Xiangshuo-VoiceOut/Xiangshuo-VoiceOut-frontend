@@ -7,7 +7,7 @@
 
 import Foundation
 
-class APIConfigs{
+class APIConfigs {
     static let therapistLogInURL = "http://localhost:3000/api/auth"
     static let therapistForgetPWURL = "http://localhost:3000/api/auth/forgot-password"
     static let therapistValidateTokenURL = "http://localhost:3000/api/validate-reset-token"

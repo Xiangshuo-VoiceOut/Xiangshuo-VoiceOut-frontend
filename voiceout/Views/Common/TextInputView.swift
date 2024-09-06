@@ -29,13 +29,13 @@ struct TextInputView: View {
     var borderRadius: CGFloat = CornerRadius.medium.value
     var theme: TextInputTheme? = .grey
     var body: some View {
-        VStack (alignment: .leading, spacing: 1) {
+        VStack(alignment: .leading, spacing: 1) {
             HStack(spacing: ViewSpacing.small) {
                 if let icon = prefixIcon {
                     Image(icon)
                         .foregroundColor(.borderSecondary)
                 }
-                
+
                 if isSecuredField {
                     SecureField(
                         LocalizedStringKey(placeholder),
@@ -81,7 +81,7 @@ struct TextInputView: View {
             }
         }
     }
-    
+
     private var validationStateColor: Color {
         switch validationState {
         case .error:
@@ -92,7 +92,7 @@ struct TextInputView: View {
             return Color(.clear)
         }
     }
-    
+
     private var backgroundColor: Color {
         switch theme {
         case .white:

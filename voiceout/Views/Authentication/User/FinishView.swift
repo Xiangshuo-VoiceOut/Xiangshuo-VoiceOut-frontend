@@ -16,13 +16,13 @@ struct FinishView: View {
     @State var destination: Route
     @State private var timer: AnyCancellable?
     var body: some View {
-        ZStack{
+        ZStack {
             BackgroundView()
-            
-            VStack{
+
+            VStack {
                 HeaderView()
                     .offset(y: -100)
-                
+
                 Text(finishText)
                     .font(.typography(.headerMedium))
                     .foregroundColor(Color.textPrimary)
@@ -36,11 +36,11 @@ struct FinishView: View {
                     .foregroundColor(Color.textPrimary)
                     .padding(.bottom)
             }
-            
+
         }
         .ignoresSafeArea()
         .offset(y: -20)
-        .toolbar{
+        .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
                     router.navigateTo(.userLogin)
@@ -51,22 +51,22 @@ struct FinishView: View {
                 }
             }
         }
-        .onAppear{
+        .onAppear {
             startCountdown()
         }
     }
-    
-    private func startCountdown(){
+
+    private func startCountdown() {
         timer = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
-            .sink{_ in
+            .sink {_ in
                 if countdown > 0 {
                     countdown -= 1
                 } else {
                     timer?.cancel()
                     router.navigateTo(destination)
                 }
-                
+
             }
     }
 }

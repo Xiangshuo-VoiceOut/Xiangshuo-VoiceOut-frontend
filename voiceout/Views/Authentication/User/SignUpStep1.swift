@@ -12,9 +12,9 @@ struct SignUpStep1: View {
     @ObservedObject var verificationCodeVM: VerificationCodeVM
     @ObservedObject var userSignUpVM: UserSignUpVM
     @Binding var currentStep: SignUpStep
-    
+
     var body: some View {
-        VStack{
+        VStack {
             TextInputView(
                 text: $textInputVM.email,
                 isSecuredField: false,
@@ -24,7 +24,7 @@ struct SignUpStep1: View {
                 validationMessage: textInputVM.emailValidationMsg
             )
             .autocapitalization(.none)
-            
+
             TextInputView(
                 text: $textInputVM.verificationCode,
                 isSecuredField: false,
@@ -37,15 +37,14 @@ struct SignUpStep1: View {
                         .environmentObject(textInputVM)
             )
             )
-            
-            
+
             SecuredTextInputView(
                 text: $textInputVM.newPassword,
                 securedPlaceholder: "password_placeholder",
                 securedValidation: textInputVM.isValidPassword ? .neutral : .error,
                 validationMsg: textInputVM.newPasswordValidationMsg, prefixIcon: "lock"
             )
-            
+
             SecuredTextInputView(
                 text: $textInputVM.confirmNewPassowrd,
                 securedPlaceholder: "password_placeholder",
@@ -53,16 +52,16 @@ struct SignUpStep1: View {
                 validationMsg: textInputVM.confirmPasswordValidationMsg,
                 prefixIcon: "lock"
             )
-            
-            ButtonView(text: "next_step",
-                       action: {
-                userSignUpVM.goToNextPage()
-                if userSignUpVM.nextPageAvailable {
-                    currentStep = .step2
-                }
-            },
-                       theme: userSignUpVM.isNextStepEnabled ? .action : .base, maxWidth: .infinity
-                       
+
+            ButtonView(
+                text: "next_step",
+                action: {
+                    userSignUpVM.goToNextPage()
+                    if userSignUpVM.nextPageAvailable {
+                        currentStep = .step2
+                    }
+                },
+                theme: userSignUpVM.isNextStepEnabled ? .action : .base, maxWidth: .infinity
             )
             .disabled(!userSignUpVM.isNextStepEnabled)
         }
@@ -70,6 +69,6 @@ struct SignUpStep1: View {
     }
 }
 
-//#Preview {
+// #Preview {
 //    SignUpStep1(textInputVM: <#TextInputVM#>, verificationCodeVM: <#VerificationCodeVM#>, userSignUpVM: <#UserSignUpVM#>, currentStep: <#Binding<SignUpStep>#>)
-//}
+// }

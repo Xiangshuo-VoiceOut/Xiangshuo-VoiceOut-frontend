@@ -18,7 +18,7 @@ enum Route: Hashable {
 
 final class RouterModel: ObservableObject {
     @Published var path: NavigationPath = NavigationPath()
-    
+
     @ViewBuilder func view(for route: Route) -> some View {
         switch route {
         case .userLogin:
@@ -35,19 +35,19 @@ final class RouterModel: ObservableObject {
             FinishView(finishText: finishText, navigateToText: navigateToText, destination: destination)
         }
     }
-    
+
     func navigateToFinish(finishText: String, navigateToText: String, destination: Route) {
             path.append(Route.finish(finishText: finishText, navigateToText: navigateToText, destination: destination))
         }
-    
+
     func navigateTo(_ appRoute: Route) {
         path.append(appRoute)
     }
-    
+
     func navigateBack() {
         path.removeLast()
     }
-    
+
     func popToRoot() {
         path.removeLast(path.count)
     }

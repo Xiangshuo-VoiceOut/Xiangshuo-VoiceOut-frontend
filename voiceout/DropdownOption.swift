@@ -22,7 +22,7 @@ extension DropdownOption {
         DropdownOption(option: "May"),
         DropdownOption(option: "June")
     ]
-    static let genders : [DropdownOption] = [
+    static let genders: [DropdownOption] = [
         DropdownOption(option: String(localized: "male")),
         DropdownOption(option: String(localized: "female")),
         DropdownOption(option: String(localized: "other"))

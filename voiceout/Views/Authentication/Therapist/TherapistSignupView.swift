@@ -93,7 +93,6 @@ struct TherapistSignupView: View {
                 )
                 .frame(maxWidth: 281)
                 .disabled(!therapistSignupVM.isButtonEnabled)
-
             }
         }
         .navigationTitle("signup")

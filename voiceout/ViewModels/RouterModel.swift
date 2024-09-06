@@ -13,6 +13,7 @@ enum Route: Hashable {
     case therapistSignup
     case userSignUp
     case resetPassword(UserRole)
+    case forgetPassword(UserRole)
     indirect case finish(finishText: String, navigateToText: String, destination: Route)
 }
 
@@ -31,6 +32,8 @@ final class RouterModel: ObservableObject {
             UserSignUpView()
         case .resetPassword(let role):
             ResetPasswordView(role)
+        case .forgetPassword(let role):
+            ForgetPasswordView(role)
         case .finish(let finishText, let navigateToText, let destination):
             FinishView(finishText: finishText, navigateToText: navigateToText, destination: destination)
         }

@@ -13,7 +13,7 @@ struct SignUpStep2: View {
     @ObservedObject var userSignUpVM: UserSignUpVM
 
     var body: some View {
-        VStack {
+        VStack(spacing: ViewSpacing.small) {
             TextInputView(
                 text: $textInputVM.nickname,
                 isSecuredField: false,
@@ -65,11 +65,19 @@ struct SignUpStep2: View {
                 theme: userSignUpVM.isUserSignUpEnabled ? .action : .base, maxWidth: .infinity
             )
             .disabled(!userSignUpVM.isUserSignUpEnabled)
+            .padding(.top, ViewSpacing.small)
         }
-    .background(Color.surfacePrimary)
     }
 }
 
-// #Preview {
-//    SignUpStep2()
-// }
+struct SignUpStep2_Previews: PreviewProvider {
+    static var previews: some View {
+        let textInputVM = TextInputVM()
+        let userSignUpVM = UserSignUpVM(textInputVM: textInputVM)
+
+        SignUpStep2(
+            textInputVM: textInputVM,
+            userSignUpVM: userSignUpVM
+        )
+    }
+}

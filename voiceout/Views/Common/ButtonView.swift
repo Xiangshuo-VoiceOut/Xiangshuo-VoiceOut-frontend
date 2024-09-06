@@ -43,6 +43,7 @@ struct ButtonView: View {
     var body: some View {
         Button(action: action) {
             Text(LocalizedStringKey(text))
+                .fixedSize(horizontal: true, vertical: false)
                 .font(fontForFrameSize)
                 .padding(paddingSize)
                 .frame(maxWidth: maxWidth)

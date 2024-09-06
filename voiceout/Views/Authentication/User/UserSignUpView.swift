@@ -29,7 +29,7 @@ struct UserSignUpView: View {
         ZStack {
             BackgroundView()
 
-            VStack {
+            VStack(spacing: ViewSpacing.large) {
                 HeaderView()
 
                 VStack {
@@ -50,17 +50,13 @@ struct UserSignUpView: View {
                     }
                 }
                 .padding(ViewSpacing.large)
-                .padding(.horizontal, ViewSpacing.xlarge)
                 .background(
                     RoundedRectangle(cornerRadius: CornerRadius.medium.value)
                         .fill(Color.surfacePrimary)
                         .shadow(color: Color(red: 0.15, green: 0.15, blue: 0.47).opacity(0.08), radius: 5.75, x: 2, y: 4)
-                        .padding(.horizontal, ViewSpacing.xlarge)
-
                 )
-
+                .padding(.horizontal, ViewSpacing.xlarge)
             }
-            .offset(y: -50)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {

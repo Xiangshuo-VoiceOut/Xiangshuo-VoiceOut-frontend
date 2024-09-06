@@ -23,11 +23,11 @@ struct ResetPasswordView: View {
         ZStack {
             BackgroundView()
 
-            VStack {
+            VStack(spacing: ViewSpacing.xlarge) {
                 HeaderView()
 
                 VStack {
-                    VStack {
+                    VStack(spacing: ViewSpacing.small) {
                         SecuredTextInputView(
                             text: $textInputVM.newPassword,
                             securedPlaceholder: "new_password",
@@ -62,15 +62,15 @@ struct ResetPasswordView: View {
                             maxWidth: .infinity
                         )
                         .disabled(!resetPasswordVM.isFinishButtonEnabled)
+                        .padding(.top, ViewSpacing.small)
                     }
                     .background(Color.surfacePrimary)
-                    .padding(.horizontal, ViewSpacing.xlarge)
+                    .padding(ViewSpacing.large)
                 }
-                .padding(.vertical, ViewSpacing.xlarge)
                 .background(Color.surfacePrimary)
                 .cornerRadius(CornerRadius.medium.value)
                 .shadow(color: Color(.grey200), radius: CornerRadius.xxsmall.value)
-                .padding(ViewSpacing.medium)
+                .padding(.horizontal, ViewSpacing.xlarge)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -89,6 +89,7 @@ struct ResetPasswordView: View {
             }
         }
         .ignoresSafeArea()
+        .navigationBarBackButtonHidden()
         .onChange(of: textInputVM.newPassword) { _ in
             resetPasswordVM.handleInputsFilled()
         }

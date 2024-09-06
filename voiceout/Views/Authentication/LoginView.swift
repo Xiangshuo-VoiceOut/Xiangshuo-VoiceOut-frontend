@@ -22,11 +22,11 @@ struct LoginView: View {
             ZStack {
                 BackgroundView()
 
-                VStack {
+                VStack(spacing: ViewSpacing.xlarge) {
                     HeaderView()
 
                     VStack {
-                        VStack {
+                        VStack(spacing: ViewSpacing.small) {
                             TextInputView(
                                 text: $textInputVM.email,
                                 isSecuredField: false,
@@ -46,15 +46,19 @@ struct LoginView: View {
 
                             HStack {
                                 Spacer()
-                                NavigationLink(destination: ForgetPasswordView(loginVM.role)) {
-                                    Text("forget_password")
-                                        .font(.typography(.bodyXXSmall))
-                                        .underline()
-                                        .foregroundColor(Color.textSecondary)
-                                }
+                                Button(
+                                    action: {
+                                        router.navigateTo(.forgetPassword(loginVM.role))
+                                    },
+                                    label: {
+                                        Text("forget_password")
+                                            .font(.typography(.bodyXXSmall))
+                                            .underline()
+                                            .foregroundColor(Color.textSecondary)
+                                    }
+                                )
                             }
-                            .padding(.top, -ViewSpacing.medium)
-                            .padding(.bottom, ViewSpacing.small)
+                            .padding(.top, -ViewSpacing.base)
 
                             ButtonView(
                                 text: "login",
@@ -64,15 +68,15 @@ struct LoginView: View {
                                 theme: loginVM.isLoginEnabled ? .action : .base,
                                 maxWidth: .infinity
                             )
+                            .padding(.top, ViewSpacing.small)
                         }
                         .background(Color.surfacePrimary)
-                        .padding(.horizontal, ViewSpacing.xlarge)
+                        .padding(ViewSpacing.large)
                     }
-                    .padding(.vertical, ViewSpacing.xlarge)
                     .background(Color.surfacePrimary)
                     .cornerRadius(CornerRadius.medium.value)
                     .shadow(color: Color(.grey200), radius: CornerRadius.xxsmall.value)
-                    .padding(ViewSpacing.medium)
+                    .padding(.horizontal, ViewSpacing.xlarge)
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {

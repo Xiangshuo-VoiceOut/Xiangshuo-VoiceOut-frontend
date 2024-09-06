@@ -29,7 +29,7 @@ struct TextInputView: View {
     var borderRadius: CGFloat = CornerRadius.medium.value
     var theme: TextInputTheme? = .grey
     var body: some View {
-        VStack(alignment: .leading, spacing: 1) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: ViewSpacing.small) {
                 if let icon = prefixIcon {
                     Image(icon)
@@ -53,6 +53,9 @@ struct TextInputView: View {
                             .font(.typography(.bodyMediumEmphasis))
                             .foregroundColor(.textLight)
                     )
+                    .truncationMode(.tail)
+                    .lineLimit(1)
+//                    .frame(width: )
                     .foregroundColor(.textPrimary)
                 }
                 suffixContent
@@ -68,12 +71,12 @@ struct TextInputView: View {
                         validationStateColor
                     )
             )
-        .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+
             if let validationMessage = validationMessage, !validationMessage.isEmpty {
-                Text(LocalizedStringKey(validationMessage))
-                    .foregroundColor(validationState == .error ? Color.borderInValid : Color.textSecondary)
-                    .font(.typography(.bodyXXSmall))
-                    .padding(.leading)
+                    Text(LocalizedStringKey(validationMessage))
+                        .foregroundColor(validationState == .error ? Color.borderInValid : Color.textSecondary)
+                        .font(.typography(.bodyXXSmall))
+                        .padding(.top, ViewSpacing.xsmall)
             } else {
                 Text(" ")
                     .font(.typography(.bodyXXSmall))

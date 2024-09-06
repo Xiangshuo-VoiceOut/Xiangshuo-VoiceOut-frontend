@@ -20,8 +20,9 @@ struct FinishView: View {
             BackgroundView()
 
             VStack {
+                Spacer()
+
                 HeaderView()
-                    .offset(y: -100)
 
                 Text(finishText)
                     .font(.typography(.headerMedium))
@@ -35,8 +36,9 @@ struct FinishView: View {
                     .font(.typography(.headerSmall))
                     .foregroundColor(Color.textPrimary)
                     .padding(.bottom)
-            }
 
+                Spacer()
+            }
         }
         .ignoresSafeArea()
         .offset(y: -20)

@@ -14,7 +14,7 @@ struct SignUpStep1: View {
     @Binding var currentStep: SignUpStep
 
     var body: some View {
-        VStack {
+        VStack(spacing: ViewSpacing.small) {
             TextInputView(
                 text: $textInputVM.email,
                 isSecuredField: false,
@@ -35,14 +35,15 @@ struct SignUpStep1: View {
                     VerificationCodeButton()
                         .environmentObject(verificationCodeVM)
                         .environmentObject(textInputVM)
-            )
+                )
             )
 
             SecuredTextInputView(
                 text: $textInputVM.newPassword,
                 securedPlaceholder: "password_placeholder",
                 securedValidation: textInputVM.isValidPassword ? .neutral : .error,
-                validationMsg: textInputVM.newPasswordValidationMsg, prefixIcon: "lock"
+                validationMsg: textInputVM.newPasswordValidationMsg,
+                prefixIcon: "lock"
             )
 
             SecuredTextInputView(
@@ -64,11 +65,28 @@ struct SignUpStep1: View {
                 theme: userSignUpVM.isNextStepEnabled ? .action : .base, maxWidth: .infinity
             )
             .disabled(!userSignUpVM.isNextStepEnabled)
+            .padding(.top, ViewSpacing.small)
         }
-    .background(Color.surfacePrimary)
     }
 }
 
-// #Preview {
-//    SignUpStep1(textInputVM: <#TextInputVM#>, verificationCodeVM: <#VerificationCodeVM#>, userSignUpVM: <#UserSignUpVM#>, currentStep: <#Binding<SignUpStep>#>)
-// }
+struct SignUpStep1_Previews: PreviewProvider {
+    static var previews: some View {
+        let textInputVM = TextInputVM()
+        let verificationCodeVM = VerificationCodeVM(role: .user, textInputVM: textInputVM)
+        let userSignUpVM = UserSignUpVM(textInputVM: textInputVM)
+
+            // Create a constant binding for the currentStep
+        let currentStep = Binding(
+            get: { SignUpStep.step1 },
+            set: { _ in }
+        )
+
+        SignUpStep1(
+            textInputVM: textInputVM,
+            verificationCodeVM: verificationCodeVM,
+            userSignUpVM: userSignUpVM,
+            currentStep: currentStep
+        )
+    }
+}

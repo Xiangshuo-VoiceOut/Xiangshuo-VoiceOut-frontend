@@ -14,21 +14,28 @@ enum BackgroundType {
 
 struct BackgroundView: View {
     var backgroundType: BackgroundType = .radial
-    
+
     var body: some View {
         if case .radial = backgroundType {
-            LinearGradient (
+            LinearGradient(
                 stops: [
                     Gradient.Stop(color: Color.surfacePrimary, location: BGConstants.Background.startPointY),
                     Gradient.Stop(color: Color.brandTertiary, location: BGConstants.centerLocation),
                     Gradient.Stop(color: Color.brandTertiary, location: BGConstants.centerLocation),
                     Gradient.Stop(color: Color.surfacePrimary, location: BGConstants.Background.endPointY)
                 ],
-                startPoint: UnitPoint(x: BGConstants.centerPoint, y: BGConstants.Background.startPointY), endPoint: UnitPoint(x: BGConstants.centerPoint, y: BGConstants.Background.endPointY)
+                startPoint: UnitPoint(
+                    x: BGConstants.centerPoint,
+                    y: BGConstants.Background.startPointY
+                ),
+                endPoint: UnitPoint(
+                    x: BGConstants.centerPoint,
+                    y: BGConstants.Background.endPointY
                 )
+            )
             .ignoresSafeArea()
         } else {
-            LinearGradient (
+            LinearGradient(
                 stops: [
                     Gradient.Stop(color: .brandTertiary, location: 0),
                     Gradient.Stop(color: .brandTertiary, location: 0.63),

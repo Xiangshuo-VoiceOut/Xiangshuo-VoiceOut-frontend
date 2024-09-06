@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LogoSize{
+struct LogoSize {
     static let medium: CGFloat = 80
     static let large: CGFloat = 100
 }

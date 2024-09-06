@@ -12,17 +12,17 @@ struct ContentView: View {
     @StateObject var dialogViewModel = DialogViewModel()
     @StateObject var popupViewModel = PopupViewModel()
     @State var isSelected: Bool = false
-    
+
     var body: some View {
         VStack {
             Image("logo")
                 .padding(.bottom, ViewSpacing.large)
-            
+
             Text("slogan")
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textSecondary)
                 .padding(.bottom, ViewSpacing.xxlarge)
-            
+
             VStack(spacing: ViewSpacing.large) {
                 ButtonView(
                     text: "user_login",
@@ -34,7 +34,7 @@ struct ContentView: View {
                     },
                     spacing: .medium
                 )
-                
+
                 ButtonView(
                     text: "consultant_login",
                     action: {
@@ -65,7 +65,7 @@ struct ContentView: View {
         }
         .navigationBarBackButtonHidden()
     }
-    
+
     func validateToLogin(screenType: Route, isSelected: Bool) {
         if isSelected {
             router.navigateTo(screenType)

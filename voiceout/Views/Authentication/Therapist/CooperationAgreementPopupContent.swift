@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CooperationAgreementPopupContent: View {
     @EnvironmentObject var dialogViewModel: DialogViewModel
-    
+
     var body: some View {
         ZStack {
             ScrollView {
@@ -24,14 +24,14 @@ struct CooperationAgreementPopupContent: View {
                 .padding(.horizontal, ViewSpacing.large)
                 .padding(.vertical, ViewSpacing.xxxlarge)
             }
-            
+
             GeometryReader { geometry in
                 let screenWidth = geometry.size.width
                 let buttonWidth = screenWidth * 0.43
-                    
+
                 VStack {
                     Spacer()
-                    
+
                     HStack(spacing: ViewSpacing.medium) {
                         ButtonView(
                             text: "disagree_short",
@@ -42,7 +42,7 @@ struct CooperationAgreementPopupContent: View {
                                             VStack(spacing: ViewSpacing.xlarge) {
                                                 Text("therapist_cooperation_aggrement_disagree_warning")
                                                     .font(.typography(.bodyMedium))
-                                                
+
                                                 ButtonView(
                                                     text: "understood",
                                                     action: {
@@ -61,7 +61,7 @@ struct CooperationAgreementPopupContent: View {
                             variant: ButtonVariant.outline,
                             maxWidth: buttonWidth
                         )
-                        
+
                         ButtonView(
                             text: "agree",
                             action: {
@@ -78,7 +78,7 @@ struct CooperationAgreementPopupContent: View {
             }
         }
         .edgesIgnoringSafeArea(.all)
-        .popup(with: .DialogViewModel(dialogViewModel))
+        .popup(with: .dialogViewModel(dialogViewModel))
     }
 }
 
@@ -88,4 +88,3 @@ struct CooperationAgreementPopupContent_Previews: PreviewProvider {
             .environmentObject(DialogViewModel())
     }
 }
-

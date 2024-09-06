@@ -11,7 +11,7 @@ struct LegalDialogContent: View {
     @EnvironmentObject var dialogViewModel: DialogViewModel
     @EnvironmentObject var popupViewModel: PopupViewModel
     @Binding var isSelected: Bool
-    
+
     let registrationProtocolLinkText = NSLocalizedString("registration_protocol", comment: "")
     let privacyPolicyLinkText = NSLocalizedString("privacy_policy", comment: "")
 
@@ -22,6 +22,7 @@ struct LegalDialogContent: View {
                 .foregroundColor(.textPrimary)
                 .padding(.bottom, ViewSpacing.medium)
 
+            // swiftlint:disable:next line_length
             Text("legal_dialog_content \(Text("[\(registrationProtocolLinkText)](registrationProtocol)")) \(Text("[\(privacyPolicyLinkText)](privacyPolicy)"))")
                 .tint(.textInfo)
                 .font(.typography(.bodyXSmall))
@@ -39,7 +40,7 @@ struct LegalDialogContent: View {
                         return .discarded
                     }
                 })
-            
+
             HStack {
                 ButtonView(
                     text: "disagree",
@@ -50,23 +51,22 @@ struct LegalDialogContent: View {
                     },
                     variant: ButtonVariant.outline
                 )
-                
+
                 Spacer()
-                
+
                 ButtonView(
-                    text: "agree",
-                    action: {
+                    text: "agree"
+                ) {
                         withAnimation(.spring()) {
                             dialogViewModel.dismiss()
                         }
                         isSelected = true
                     }
-                )
             }
         }
         .padding(ViewSpacing.large)
     }
-    
+
     func openRegistrationProtocolPopup() {
         withAnimation(.spring()) {
             popupViewModel.present(
@@ -78,7 +78,7 @@ struct LegalDialogContent: View {
             )
         }
     }
-    
+
     func openPrivacyPolicyPopup() {
         withAnimation(.spring()) {
             popupViewModel.present(

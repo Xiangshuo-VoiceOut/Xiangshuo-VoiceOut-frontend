@@ -11,18 +11,18 @@ struct LoginView: View {
     @EnvironmentObject var router: RouterModel
     @StateObject private var loginVM: AuthViewModel
     @StateObject private var textInputVM: TextInputVM
-    
+
     init(_ role: UserRole) {
         let model = TextInputVM()
         _textInputVM = StateObject(wrappedValue: model)
         _loginVM = StateObject(wrappedValue: AuthViewModel(role: role, textInputVM: model))
     }
-    
+
     var body: some View {
             ZStack {
                 BackgroundView()
-                
-                VStack{
+
+                VStack {
                     HeaderView()
 
                     VStack {
@@ -36,15 +36,15 @@ struct LoginView: View {
                                 validationMessage: textInputVM.emailValidationMsg
                             )
                             .autocapitalization(.none)
-                            
+
                             SecuredTextInputView(
                                 text: $textInputVM.password,
                                 securedPlaceholder: "password_placeholder",
                                 securedValidation: textInputVM.isValidPassword ? ValidationState.neutral : ValidationState.error,
                                 prefixIcon: "lock"
                             )
-                            
-                            HStack{
+
+                            HStack {
                                 Spacer()
                                 NavigationLink(destination: ForgetPasswordView(loginVM.role)) {
                                     Text("forget_password")
@@ -55,35 +55,34 @@ struct LoginView: View {
                             }
                             .padding(.top, -ViewSpacing.medium)
                             .padding(.bottom, ViewSpacing.small)
-                            
+
                             ButtonView(
                                 text: "login",
                                 action: {
                                     loginVM.login()
                                 },
                                 theme: loginVM.isLoginEnabled ? .action : .base,
-                                maxWidth:.infinity
+                                maxWidth: .infinity
                             )
                         }
                         .background(Color.surfacePrimary)
-                        .padding(.horizontal,ViewSpacing.xlarge)
+                        .padding(.horizontal, ViewSpacing.xlarge)
                     }
                     .padding(.vertical, ViewSpacing.xlarge)
                     .background(Color.surfacePrimary)
                     .cornerRadius(CornerRadius.medium.value)
-                    .shadow(color: Color(.grey200),radius: CornerRadius.xxsmall.value)
+                    .shadow(color: Color(.grey200), radius: CornerRadius.xxsmall.value)
                     .padding(ViewSpacing.medium)
                 }
-                .toolbar{
+                .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {
                             if loginVM.role == .therapist {
                                 router.navigateTo(.therapistSignup)
-                            }
-                            else if loginVM.role == .user {
+                            } else if loginVM.role == .user {
                                 router.navigateTo(.userSignUp)
                             }
-                        }){
+                        }) {
                             Text("signup")
                                 .font(.typography(.bodyMedium))
                                 .foregroundColor(.black.opacity(0.69))
@@ -91,11 +90,12 @@ struct LoginView: View {
                     }
                 }
                 .navigationDestination(
-                    isPresented: $loginVM.showingUserMainPage) {}
+                    isPresented: $loginVM.showingUserMainPage
+                ) {}
             }
             .ignoresSafeArea()
             .navigationBarBackButtonHidden()
-        
+
         .onChange(of: textInputVM.email) { _ in
             loginVM.validateInput()
             loginVM.resetValidateState()

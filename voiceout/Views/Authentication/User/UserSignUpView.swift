@@ -13,48 +13,55 @@ enum SignUpStep {
 
 struct UserSignUpView: View {
     @StateObject var router: RouterModel = RouterModel()
-    @StateObject private var userSignUpVM : UserSignUpVM
+    @StateObject private var userSignUpVM: UserSignUpVM
     @StateObject private var textInputVM: TextInputVM
     @StateObject private var verificationCodeVM: VerificationCodeVM
     @State private var currentStep: SignUpStep = .step1
-    
-    
+
     init() {
         let model = TextInputVM()
         _textInputVM = StateObject(wrappedValue: model)
         _userSignUpVM = StateObject(wrappedValue: UserSignUpVM(textInputVM: model))
         _verificationCodeVM = StateObject(wrappedValue: VerificationCodeVM(role: .user, textInputVM: model))
     }
-    
-    
+
     var body: some View {
-        ZStack{
+        ZStack {
             BackgroundView()
-            
-            VStack{
+
+            VStack {
                 HeaderView()
-                
+
                 VStack {
                     switch currentStep {
                     case .step1:
-                        SignUpStep1(textInputVM: textInputVM, verificationCodeVM: verificationCodeVM, userSignUpVM: userSignUpVM, currentStep: $currentStep)
+                        SignUpStep1(
+                            textInputVM: textInputVM,
+                            verificationCodeVM: verificationCodeVM,
+                            userSignUpVM: userSignUpVM,
+                            currentStep: $currentStep
+                        )
                     case .step2:
-                        SignUpStep2(router: router, textInputVM: textInputVM, userSignUpVM: userSignUpVM)
+                        SignUpStep2(
+                            router: router,
+                            textInputVM: textInputVM,
+                            userSignUpVM: userSignUpVM
+                        )
                     }
                 }
                 .padding(ViewSpacing.large)
-                .padding(.horizontal,ViewSpacing.xlarge)
+                .padding(.horizontal, ViewSpacing.xlarge)
                 .background(
                     RoundedRectangle(cornerRadius: CornerRadius.medium.value)
                         .fill(Color.surfacePrimary)
                         .shadow(color: Color(red: 0.15, green: 0.15, blue: 0.47).opacity(0.08), radius: 5.75, x: 2, y: 4)
                         .padding(.horizontal, ViewSpacing.xlarge)
-                
+
                 )
-                
+
             }
             .offset(y: -50)
-            .toolbar{
+            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         router.navigateTo(.userLogin)
@@ -65,7 +72,7 @@ struct UserSignUpView: View {
                     }
                 }
             }
-            
+
         }
         .navigationBarBackButtonHidden()
         .ignoresSafeArea()
@@ -88,13 +95,13 @@ struct UserSignUpView: View {
             textInputVM.resetConfirmPasswordValidationMsg()
             textInputVM.resetValidationState()
             userSignUpVM.updateNextStepButtonState()
-            
+
         }
         .onChange(of: textInputVM.nickname) {_ in
             textInputVM.resetNicknameValidationMsg()
             textInputVM.resetValidationState()
             userSignUpVM.updateUserSignUpButtonState()
-            
+
         }
         .onChange(of: textInputVM.birthdate) {_ in
             textInputVM.resetValidationState()
@@ -108,4 +115,3 @@ struct UserSignUpView: View {
     UserSignUpView()
         .environmentObject(RouterModel())
 }
-

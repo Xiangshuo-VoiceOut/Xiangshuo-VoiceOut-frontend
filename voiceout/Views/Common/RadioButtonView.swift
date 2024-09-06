@@ -12,12 +12,12 @@ struct RadioButtonView: View {
     @Binding private var isSelected: Bool
     private let labelView: AnyView
     private var isDisabled: Bool = false
-        
+
     init(isSelected: Binding<Bool>, labelView: AnyView = AnyView(Text(""))) {
         self._isSelected = isSelected
         self.labelView = labelView
     }
-    
+
     init<V: Hashable>(
         tag: V,
         selection: Binding<V?>,
@@ -29,7 +29,7 @@ struct RadioButtonView: View {
         )
         self.labelView = labelView
     }
-    
+
     var body: some View {
         HStack {
             circleView
@@ -55,7 +55,7 @@ private extension RadioButtonView {
             )
             .frame(width: 14, height: 14)
     }
-    
+
     var innerCircleColor: Color {
         guard isSelected else { return .surfacePrimary }
         if isDisabled { return .borderLight }
@@ -66,7 +66,7 @@ private extension RadioButtonView {
         if isDisabled { return .borderLight }
         return isSelected ? .borderBrandPrimary : .borderLight
     }
-    
+
     func disabled(_ value: Bool) -> Self {
         var view = self
         view.isDisabled = value

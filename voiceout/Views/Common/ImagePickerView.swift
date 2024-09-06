@@ -10,13 +10,13 @@ import PhotosUI
 
 struct ImagePickerView: View {
     @State private var showImagePicker: Bool = false
-    @State private var selectedImage: UIImage? = nil
-    
+    @State private var selectedImage: UIImage?
+
     var body: some View {
-        VStack{
+        VStack {
             Button(action: {
                 showImagePicker = true
-            }){
+            }) {
                 if let selectedImage = selectedImage {
                     Image(uiImage: selectedImage)
                         .resizable()
@@ -35,13 +35,13 @@ struct ImagePickerView: View {
                                 .strokeBorder(style: StrokeStyle(lineWidth: StrokeWidth.width100.value, dash: [4, 4]))
                                 .foregroundColor(Color.borderBrandPrimary)
                         )
-                        
+
                 }
             }
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(sourceType: .photoLibrary) { image in
                     self.selectedImage = image
-                    
+
                 }
             }
         }
@@ -50,15 +50,15 @@ struct ImagePickerView: View {
 
 struct ImagePicker: UIViewControllerRepresentable {
     var sourceType: UIImagePickerController.SourceType
-    var completionHandler:(UIImage) -> Void
-    
+    var completionHandler: (UIImage) -> Void
+
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = sourceType
         imagePicker.delegate = context.coordinator
         return imagePicker
     }
-    
+
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
 
         func makeCoordinator() -> Coordinator {

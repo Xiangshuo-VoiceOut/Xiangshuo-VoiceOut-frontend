@@ -49,7 +49,13 @@ struct ResetPasswordView: View {
                             action: {
                                 resetPasswordVM.resetPassword()
                                 if resetPasswordVM.isResetSuccessful {
-                                    router.navigateTo(.finish(finishText: "reset_successfully", navigateToText: "navigate_to_login", destination: .userLogin))
+                                    router.navigateTo(
+                                        .finish(
+                                            finishText: "reset_successfully",
+                                            navigateToText: "navigate_to_login",
+                                            destination: .userLogin
+                                        )
+                                    )
                                 }
                             },
                             theme: resetPasswordVM.isFinishButtonEnabled ? .action : .base,

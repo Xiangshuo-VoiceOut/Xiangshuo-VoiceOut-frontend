@@ -90,7 +90,8 @@ struct LoginView: View {
                     }
                 }
                 .navigationDestination(
-                    isPresented: $loginVM.showingUserMainPage) {}
+                    isPresented: $loginVM.showingUserMainPage
+                ) {}
             }
             .ignoresSafeArea()
             .navigationBarBackButtonHidden()

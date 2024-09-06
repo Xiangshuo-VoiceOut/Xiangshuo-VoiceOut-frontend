@@ -24,9 +24,14 @@ struct SignUpStep2: View {
             )
             .autocapitalization(.none)
 
-            Dropdown(selectionOption: $userSignUpVM.selectedState, prefixIcon: "local", placeholder: String(localized: "state_placeholder"), options: userSignUpVM.allStates)
-                .padding(.bottom)
-                .zIndex(2)
+            Dropdown(
+                selectionOption: $userSignUpVM.selectedState,
+                prefixIcon: "local",
+                placeholder: String(localized: "state_placeholder"),
+                options: userSignUpVM.allStates
+            )
+            .padding(.bottom)
+            .zIndex(2)
 
             TextInputView(
                 text: $textInputVM.birthdate,
@@ -40,20 +45,24 @@ struct SignUpStep2: View {
 
             }
 
-            Dropdown(selectionOption: $userSignUpVM.selectedGender, prefixIcon: "public-toilet", placeholder: String(localized: "gender_placeholder"), options: DropdownOption.genders)
-                .padding(.bottom, ViewSpacing.large)
-                .zIndex(1)
+            Dropdown(
+                selectionOption: $userSignUpVM.selectedGender,
+                prefixIcon: "public-toilet",
+                placeholder: String(localized: "gender_placeholder"),
+                options: DropdownOption.genders
+            )
+            .padding(.bottom, ViewSpacing.large)
+            .zIndex(1)
 
-            ButtonView(text: "signup",
-                       action: {
-                userSignUpVM.userSignUp()
-                if userSignUpVM.isSignUpSuccessfully {
-                    router.navigateTo(.finish(finishText: "sign_up_successfully", navigateToText: "navigate_to_login", destination: .userLogin))
-                }
-
-            },
-                       theme: userSignUpVM.isUserSignUpEnabled ? .action : .base, maxWidth: .infinity
-
+            ButtonView(
+                text: "signup",
+                action: {
+                    userSignUpVM.userSignUp()
+                    if userSignUpVM.isSignUpSuccessfully {
+                        router.navigateTo(.finish(finishText: "sign_up_successfully", navigateToText: "navigate_to_login", destination: .userLogin))
+                    }
+                },
+                theme: userSignUpVM.isUserSignUpEnabled ? .action : .base, maxWidth: .infinity
             )
             .disabled(!userSignUpVM.isUserSignUpEnabled)
         }

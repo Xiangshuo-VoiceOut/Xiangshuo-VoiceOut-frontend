@@ -31,12 +31,12 @@ class UserSignUpWebService {
         request.httpBody = try? JSONEncoder().encode(body)
 
         URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
+            if error != nil {
                 completions(.failure(.na))
                 return
             }
 
-            guard let httpResponse = response as? HTTPURLResponse else {
+            guard response is HTTPURLResponse else {
                 return
             }
 

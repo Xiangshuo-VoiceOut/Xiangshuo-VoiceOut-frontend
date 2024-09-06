@@ -22,6 +22,7 @@ struct LegalDialogContent: View {
                 .foregroundColor(.textPrimary)
                 .padding(.bottom, ViewSpacing.medium)
 
+            // swiftlint:disable:next line_length
             Text("legal_dialog_content \(Text("[\(registrationProtocolLinkText)](registrationProtocol)")) \(Text("[\(privacyPolicyLinkText)](privacyPolicy)"))")
                 .tint(.textInfo)
                 .font(.typography(.bodyXSmall))
@@ -54,14 +55,13 @@ struct LegalDialogContent: View {
                 Spacer()
 
                 ButtonView(
-                    text: "agree",
-                    action: {
+                    text: "agree"
+                ) {
                         withAnimation(.spring()) {
                             dialogViewModel.dismiss()
                         }
                         isSelected = true
                     }
-                )
             }
         }
         .padding(ViewSpacing.large)

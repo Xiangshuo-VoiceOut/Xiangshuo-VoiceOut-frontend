@@ -6,12 +6,6 @@
 //
 
 import SwiftUI
-
-struct Day: Identifiable {
-    let id = UUID()
-    let label: LocalizedStringKey
-}
-
 struct OneWeekView: View {
     @State private var selectedDayIndices: Set<Int> = []
     var days: [Day]
@@ -37,8 +31,8 @@ struct OneWeekView: View {
                             .multilineTextAlignment(.center)
                             .foregroundColor(selectedDayIndices.contains(index) ? Color.textInvert : Color.textSecondary)
                     }
-                    .padding(.horizontal, 7)
-                    .padding(.vertical, 18)
+                    .padding(.horizontal, ViewSpacing.xsmall)
+                    .padding(.vertical, ViewSpacing.medium)
                     .frame(height: 57, alignment: .center)
                     .background(selectedDayIndices.contains(index) ? Color.surfaceBrandPrimary : Color.surfacePrimaryGrey)
                     .cornerRadius(CornerRadius.medium.value)

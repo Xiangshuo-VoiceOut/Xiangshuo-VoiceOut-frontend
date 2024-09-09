@@ -15,16 +15,18 @@ struct StickyHeaderView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack(alignment: .center,spacing:120) {
+                HStack {
                     if let leadingComponent = leadingComponent {
                         leadingComponent
                     } else{
                         Spacer()
                     }
+                    Spacer()
                     Text(title)
                         .font(Font.typography(.bodyLargeEmphasis))
                         .foregroundColor(.textPrimary)
                         .frame(width: 71, height: 24, alignment: .bottomLeading)
+                    Spacer()
                     if let trailingComponent = trailingComponent {
                         trailingComponent
                     } else {
@@ -33,7 +35,7 @@ struct StickyHeaderView: View {
                 }
                 .padding(.horizontal, ViewSpacing.medium)
                 .padding(.vertical, 0)
-                .frame(width: 390, height: 44, alignment: .leading)
+                .frame(height: 44, alignment: .leading)
                 .background(Color.surfacePrimary)
 
                 Spacer()

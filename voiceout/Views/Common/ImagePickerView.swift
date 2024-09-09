@@ -29,6 +29,7 @@ struct ImagePickerView: View {
                         .frame(width: 120, height: 100)
                         .overlay(
                             Image("drive-folder-upload")
+                                .foregroundColor(.brandPrimary)
                         )
                         .overlay(
                             Rectangle()
@@ -43,6 +44,7 @@ struct ImagePickerView: View {
                     self.selectedImage = image
 
                 }
+                .ignoresSafeArea()
             }
         }
     }

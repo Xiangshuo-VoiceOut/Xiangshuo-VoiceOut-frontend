@@ -70,13 +70,8 @@ struct LoginView: View {
                             )
                             .padding(.top, ViewSpacing.small)
                         }
-                        .background(Color.surfacePrimary)
-                        .padding(ViewSpacing.large)
                     }
-                    .background(Color.surfacePrimary)
-                    .cornerRadius(CornerRadius.medium.value)
-                    .shadow(color: Color(.grey200), radius: CornerRadius.xxsmall.value)
-                    .padding(.horizontal, ViewSpacing.xlarge)
+                    .frameStyle()
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {

@@ -12,7 +12,7 @@ enum SignUpStep {
 }
 
 struct UserSignUpView: View {
-    @StateObject var router: RouterModel = RouterModel()
+    @EnvironmentObject var router: RouterModel
     @StateObject private var userSignUpVM: UserSignUpVM
     @StateObject private var textInputVM: TextInputVM
     @StateObject private var verificationCodeVM: VerificationCodeVM
@@ -43,19 +43,12 @@ struct UserSignUpView: View {
                         )
                     case .step2:
                         SignUpStep2(
-                            router: router,
                             textInputVM: textInputVM,
                             userSignUpVM: userSignUpVM
                         )
                     }
                 }
-                .padding(ViewSpacing.large)
-                .background(
-                    RoundedRectangle(cornerRadius: CornerRadius.medium.value)
-                        .fill(Color.surfacePrimary)
-                        .shadow(color: Color(red: 0.15, green: 0.15, blue: 0.47).opacity(0.08), radius: 5.75, x: 2, y: 4)
-                )
-                .padding(.horizontal, ViewSpacing.xlarge)
+                .frameStyle()
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

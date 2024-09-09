@@ -9,11 +9,16 @@ import Foundation
 
 class TherapistSignupVM: ObservableObject {
     @Published var isButtonEnabled: Bool = false
+    @Published var isSignupSuccess: Bool = false
 
     private var textInputVM: TextInputVM
 
     init(textInputVM: TextInputVM) {
         self.textInputVM = textInputVM
+    }
+
+    func setIsSignupSuccess(isSuccess: Bool) {
+        isSignupSuccess = isSuccess
     }
 
     func handleButtonClick() {
@@ -27,6 +32,7 @@ class TherapistSignupVM: ObservableObject {
         }
 
         // TODO:  connect to webservice to check if email already regiestered
+        setIsSignupSuccess(isSuccess: true)
     }
 
     func updateButtonState() {

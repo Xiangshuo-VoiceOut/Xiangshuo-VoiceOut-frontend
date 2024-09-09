@@ -9,12 +9,13 @@ import SwiftUI
 
 enum Route: Hashable {
     case userLogin
+    case userSignUp
     case therapistLogin
     case therapistSignup
-    case userSignUp
+    case therapistSignupSuccess
     case resetPassword(UserRole)
     case forgetPassword(UserRole)
-    indirect case finish(finishText: String, navigateToText: String, destination: Route)
+    case successRedirect(title: String)
 }
 
 final class RouterModel: ObservableObject {
@@ -24,24 +25,22 @@ final class RouterModel: ObservableObject {
         switch route {
         case .userLogin:
             LoginView(.user)
+        case .userSignUp:
+            UserSignUpView()
         case .therapistLogin:
             LoginView(.therapist)
         case .therapistSignup:
             TherapistSignupView()
-        case .userSignUp:
-            UserSignUpView()
+        case .therapistSignupSuccess:
+            TherapistFinishView()
         case .resetPassword(let role):
             ResetPasswordView(role)
         case .forgetPassword(let role):
             ForgetPasswordView(role)
-        case .finish(let finishText, let navigateToText, let destination):
-            FinishView(finishText: finishText, navigateToText: navigateToText, destination: destination)
+        case .successRedirect(let title):
+            FinishView(title: title)
         }
     }
-
-    func navigateToFinish(finishText: String, navigateToText: String, destination: Route) {
-            path.append(Route.finish(finishText: finishText, navigateToText: navigateToText, destination: destination))
-        }
 
     func navigateTo(_ appRoute: Route) {
         path.append(appRoute)

@@ -13,6 +13,9 @@
 		8433CACA2C459F9800845A7A /* ClinicianCardInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */; };
 		8433CAD22C45A0DD00845A7A /* ClinicianCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAD02C45A0DD00845A7A /* ClinicianCardView.swift */; };
 		846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */; };
+		848E62AD2C891D37009B162A /* StickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AC2C891D37009B162A /* StickyHeaderView.swift */; };
+		848E62AF2C892439009B162A /* OneWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AE2C892439009B162A /* OneWeekView.swift */; };
+		848E62B42C8BC8F1009B162A /* OneWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62B32C8BC8F1009B162A /* OneWeek.swift */; };
 		84F0FD592C48D29200E2DB79 /* StarRatingWithDoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */; };
 		84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD5A2C48D2E200E2DB79 /* CardView.swift */; };
 		84F0FD5F2C48D85A00E2DB79 /* StarRatingWithIntView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD5E2C48D85A00E2DB79 /* StarRatingWithIntView.swift */; };
@@ -95,6 +98,9 @@
 		8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardInformation.swift; sourceTree = "<group>"; };
 		8433CAD02C45A0DD00845A7A /* ClinicianCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardView.swift; sourceTree = "<group>"; };
 		846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentcardViewModel.swift; sourceTree = "<group>"; };
+		848E62AC2C891D37009B162A /* StickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
+		848E62AE2C892439009B162A /* OneWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWeekView.swift; sourceTree = "<group>"; };
+		848E62B32C8BC8F1009B162A /* OneWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWeek.swift; sourceTree = "<group>"; };
 		84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingWithDoubleView.swift; sourceTree = "<group>"; };
 		84F0FD5A2C48D2E200E2DB79 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		84F0FD5E2C48D85A00E2DB79 /* StarRatingWithIntView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingWithIntView.swift; sourceTree = "<group>"; };
@@ -276,6 +282,7 @@
 				8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */,
 				8433CAAA2C459D7300845A7A /* UserInformation.swift */,
 				B8EF41AE2C6AF63600C77D4D /* User.swift */,
+				848E62B32C8BC8F1009B162A /* OneWeek.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -335,6 +342,8 @@
 				84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */,
 				84F0FD5A2C48D2E200E2DB79 /* CardView.swift */,
 				B8860E272C3C675200A79073 /* ImagePickerView.swift */,
+				848E62AC2C891D37009B162A /* StickyHeaderView.swift */,
+				848E62AE2C892439009B162A /* OneWeekView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -587,12 +596,14 @@
 				B8860E282C3C675200A79073 /* ImagePickerView.swift in Sources */,
 				D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */,
 				B8D4722E2C1E421100D6716A /* ErrorResponse.swift in Sources */,
+				848E62AF2C892439009B162A /* OneWeekView.swift in Sources */,
 				B814C5952C220F66008F4A60 /* LoginView.swift in Sources */,
 				D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */,
 				B8860E302C3CD21D00A79073 /* FinishView.swift in Sources */,
 				B8444E872C47526900CBCAF8 /* SignUpWebService.swift in Sources */,
 				8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */,
 				D21660E02C4C22E3008248DE /* CooperationAgreementPopupContent.swift in Sources */,
+				848E62B42C8BC8F1009B162A /* OneWeek.swift in Sources */,
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
 				846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */,
 				B8D472252C1E408C00D6716A /* VerificationCodeVM.swift in Sources */,
@@ -624,6 +635,7 @@
 				D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */,
 				D21660D82C34D689008248DE /* Validators.swift in Sources */,
 				D28499262BE9AB6200963B3A /* PopupView.swift in Sources */,
+				848E62AD2C891D37009B162A /* StickyHeaderView.swift in Sources */,
 				D21660DD2C34E68A008248DE /* TextInputVM.swift in Sources */,
 				D28670B22C8BD0A400778224 /* TherapistFinishView.swift in Sources */,
 				D21660CB2C337E47008248DE /* TherapistSignupView.swift in Sources */,

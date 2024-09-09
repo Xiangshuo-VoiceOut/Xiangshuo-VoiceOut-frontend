@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignUpStep2: View {
-    @StateObject var router: RouterModel = RouterModel()
+    @EnvironmentObject var router: RouterModel
     @ObservedObject var textInputVM: TextInputVM
     @ObservedObject var userSignUpVM: UserSignUpVM
 
@@ -59,7 +59,11 @@ struct SignUpStep2: View {
                 action: {
                     userSignUpVM.userSignUp()
                     if userSignUpVM.isSignUpSuccessfully {
-                        router.navigateTo(.finish(finishText: "sign_up_successfully", navigateToText: "navigate_to_login", destination: .userLogin))
+                        router.navigateTo(
+                            .successRedirect(
+                                title: "sign_up_successfully"
+                            )
+                        )
                     }
                 },
                 theme: userSignUpVM.isUserSignUpEnabled ? .action : .base, maxWidth: .infinity

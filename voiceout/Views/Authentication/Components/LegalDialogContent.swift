@@ -12,8 +12,8 @@ struct LegalDialogContent: View {
     @EnvironmentObject var popupViewModel: PopupViewModel
     @Binding var isSelected: Bool
 
-    let registrationProtocolLinkText = NSLocalizedString("registration_protocol", comment: "")
-    let privacyPolicyLinkText = NSLocalizedString("privacy_policy", comment: "")
+    let registrationProtocolLinkText = localizedString(forKey: "registration_protocol")
+    let privacyPolicyLinkText = localizedString(forKey: "privacy_policy")
 
     var body: some View {
         VStack {

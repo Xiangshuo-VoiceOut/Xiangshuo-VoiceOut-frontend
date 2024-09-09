@@ -74,6 +74,8 @@
 		D28499292BE9BFF900963B3A /* PopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28499282BE9BFF900963B3A /* PopupViewModel.swift */; };
 		D284992B2BEB0B4900963B3A /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D284992A2BEB0B4800963B3A /* RadioButtonView.swift */; };
 		D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D284992D2BEEF4D700963B3A /* LegalButton.swift */; };
+		D28670B22C8BD0A400778224 /* TherapistFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28670B12C8BD0A300778224 /* TherapistFinishView.swift */; };
+		D29F0CF92C8BD6ED0018E7F7 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29F0CF82C8BD6ED0018E7F7 /* ViewModifiers.swift */; };
 		D2B8F4C92C04049F0053F82B /* 注册协议.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2B8F4C82C04049F0053F82B /* 注册协议.txt */; };
 		D2B8F4CD2C0404FC0053F82B /* ⽤户隐私政策.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2B8F4CC2C0404FB0053F82B /* ⽤户隐私政策.txt */; };
 		D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD772BF8E22200DD7688 /* LegalDialogContent.swift */; };
@@ -83,6 +85,7 @@
 		D2D6CD852C03699000DD7688 /* RouterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD842C03699000DD7688 /* RouterModel.swift */; };
 		D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD862C036BCD00DD7688 /* RouterView.swift */; };
 		D2D6CD892C038B1700DD7688 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD882C038B1700DD7688 /* Color.swift */; };
+		D2ECDF882C8E2C4D00FC3E24 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ECDF872C8E2C4D00FC3E24 /* LocalizationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -155,6 +158,8 @@
 		D28499282BE9BFF900963B3A /* PopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewModel.swift; sourceTree = "<group>"; };
 		D284992A2BEB0B4800963B3A /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
 		D284992D2BEEF4D700963B3A /* LegalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalButton.swift; sourceTree = "<group>"; };
+		D28670B12C8BD0A300778224 /* TherapistFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistFinishView.swift; sourceTree = "<group>"; };
+		D29F0CF82C8BD6ED0018E7F7 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		D2B8F4C82C04049F0053F82B /* 注册协议.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "注册协议.txt"; sourceTree = "<group>"; };
 		D2B8F4CC2C0404FB0053F82B /* ⽤户隐私政策.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "⽤户隐私政策.txt"; sourceTree = "<group>"; };
 		D2D6CD772BF8E22200DD7688 /* LegalDialogContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDialogContent.swift; sourceTree = "<group>"; };
@@ -164,6 +169,7 @@
 		D2D6CD842C03699000DD7688 /* RouterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterModel.swift; sourceTree = "<group>"; };
 		D2D6CD862C036BCD00DD7688 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
 		D2D6CD882C038B1700DD7688 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		D2ECDF872C8E2C4D00FC3E24 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,6 +375,7 @@
 			children = (
 				D21660CA2C337E47008248DE /* TherapistSignupView.swift */,
 				D21660DF2C4C22E3008248DE /* CooperationAgreementPopupContent.swift */,
+				D28670B12C8BD0A300778224 /* TherapistFinishView.swift */,
 			);
 			path = Therapist;
 			sourceTree = "<group>";
@@ -394,6 +401,7 @@
 				D28498E92BE171F700963B3A /* Border.swift */,
 				D28499232BE9AAE200963B3A /* Popup.swift */,
 				D2D6CD882C038B1700DD7688 /* Color.swift */,
+				D29F0CF82C8BD6ED0018E7F7 /* ViewModifiers.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -405,6 +413,7 @@
 				B8860E2D2C3CCCC300A79073 /* Formatter.swift */,
 				D25C2EC42BCF56790011212A /* Foundation */,
 				D21660E12C4C24DD008248DE /* FileReader.swift */,
+				D2ECDF872C8E2C4D00FC3E24 /* LocalizationManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -567,7 +576,9 @@
 				D21660DA2C34DE3C008248DE /* TherapistSignupVM.swift in Sources */,
 				B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */,
 				B8D4721E2C1E405000D6716A /* ForgetPasswordView.swift in Sources */,
+				D2ECDF882C8E2C4D00FC3E24 /* LocalizationManager.swift in Sources */,
 				B8860E2E2C3CCCC300A79073 /* Formatter.swift in Sources */,
+				D29F0CF92C8BD6ED0018E7F7 /* ViewModifiers.swift in Sources */,
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
 				B8EF41AD2C6AAE8500C77D4D /* SignUpStep2.swift in Sources */,
 				84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */,
@@ -614,6 +625,7 @@
 				D21660D82C34D689008248DE /* Validators.swift in Sources */,
 				D28499262BE9AB6200963B3A /* PopupView.swift in Sources */,
 				D21660DD2C34E68A008248DE /* TextInputVM.swift in Sources */,
+				D28670B22C8BD0A400778224 /* TherapistFinishView.swift in Sources */,
 				D21660CB2C337E47008248DE /* TherapistSignupView.swift in Sources */,
 				D28499242BE9AAE300963B3A /* Popup.swift in Sources */,
 				B8D4721F2C1E405000D6716A /* ResetPasswordView.swift in Sources */,

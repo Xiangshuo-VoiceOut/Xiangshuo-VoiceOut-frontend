@@ -50,10 +50,8 @@ struct ResetPasswordView: View {
                                 resetPasswordVM.resetPassword()
                                 if resetPasswordVM.isResetSuccessful {
                                     router.navigateTo(
-                                        .finish(
-                                            finishText: "reset_successfully",
-                                            navigateToText: "navigate_to_login",
-                                            destination: .userLogin
+                                        .successRedirect(
+                                            title: "reset_successfully"
                                         )
                                     )
                                 }
@@ -64,13 +62,8 @@ struct ResetPasswordView: View {
                         .disabled(!resetPasswordVM.isFinishButtonEnabled)
                         .padding(.top, ViewSpacing.small)
                     }
-                    .background(Color.surfacePrimary)
-                    .padding(ViewSpacing.large)
                 }
-                .background(Color.surfacePrimary)
-                .cornerRadius(CornerRadius.medium.value)
-                .shadow(color: Color(.grey200), radius: CornerRadius.xxsmall.value)
-                .padding(.horizontal, ViewSpacing.xlarge)
+                .frameStyle()
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

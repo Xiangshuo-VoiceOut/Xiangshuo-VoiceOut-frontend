@@ -9,26 +9,29 @@ import SwiftUI
 import Combine
 
 struct FinishView: View {
-    @StateObject var router: RouterModel = RouterModel()
-    @State var finishText: String
-    @State var navigateToText: String
+    @EnvironmentObject var router: RouterModel
+    @State var title: String
     @State var countdown: Int = 3
-    @State var destination: Route
     @State private var timer: AnyCancellable?
+
     var body: some View {
         ZStack {
             BackgroundView()
 
-            VStack {
-                Spacer()
-
+            GeometryReader { geometry in
                 HeaderView()
+                    .position(
+                        x: geometry.size.width / 2,
+                        y: geometry.size.height * 0.2
+                    )
+            }
 
-                Text(finishText)
+            VStack {
+                Text(title)
                     .font(.typography(.headerMedium))
                     .foregroundColor(Color.textPrimary)
                     .padding(.bottom, ViewSpacing.small)
-                Text(navigateToText)
+                Text("navigate_to_login")
                     .font(.typography(.bodyLarge))
                     .foregroundColor(Color.textPrimary)
                     .padding(.bottom, ViewSpacing.small)
@@ -36,12 +39,9 @@ struct FinishView: View {
                     .font(.typography(.headerSmall))
                     .foregroundColor(Color.textPrimary)
                     .padding(.bottom)
-
-                Spacer()
             }
         }
         .ignoresSafeArea()
-        .offset(y: -20)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
@@ -66,7 +66,7 @@ struct FinishView: View {
                     countdown -= 1
                 } else {
                     timer?.cancel()
-                    router.navigateTo(destination)
+                    router.navigateTo(.userLogin)
                 }
 
             }
@@ -74,5 +74,5 @@ struct FinishView: View {
 }
 
 #Preview {
-    FinishView(finishText: "注册成功", navigateToText: "正在跳转至登录页面", destination: .userLogin)
+    FinishView(title: "注册成功")
 }

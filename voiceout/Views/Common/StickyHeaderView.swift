@@ -13,36 +13,34 @@ struct StickyHeaderView: View {
     let trailingComponent: AnyView?
 
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack {
-                    if let leadingComponent = leadingComponent {
-                        leadingComponent
-                    } else{
-                        Spacer()
-                    }
+        VStack {
+            HStack {
+                if let leadingComponent = leadingComponent {
+                    leadingComponent
+                } else{
                     Spacer()
-                    Text(title)
-                        .font(Font.typography(.bodyLargeEmphasis))
-                        .foregroundColor(.textPrimary)
-                        .frame(width: 71, height: 24, alignment: .bottomLeading)
-                    Spacer()
-                    if let trailingComponent = trailingComponent {
-                        trailingComponent
-                    } else {
-                        Spacer()
-                    }
                 }
-                .padding(.horizontal, ViewSpacing.medium)
-                .padding(.vertical, 0)
-                .frame(height: 44, alignment: .leading)
-                .background(Color.surfacePrimary)
-
                 Spacer()
+                Text(title)
+                    .font(Font.typography(.bodyLargeEmphasis))
+                    .foregroundColor(.textPrimary)
+                    .frame( height: 24, alignment: .bottomLeading)
+                Spacer()
+                if let trailingComponent = trailingComponent {
+                    trailingComponent
+                } else {
+                    Spacer()
+                }
             }
-            .navigationTitle("")
-            .navigationBarHidden(true)
+            .padding(.horizontal, ViewSpacing.medium)
+            .padding(.vertical, 0)
+            .frame(height: 44, alignment: .leading)
+            .background(Color.surfacePrimary)
+
+            Spacer()
         }
+        .navigationTitle("")
+        .navigationBarHidden(true)
     }
 }
 
@@ -54,7 +52,7 @@ struct StickyHeaderView: View {
             print("")
         }) {
             Image(systemName: "gear")
-                .frame(width: 24, height: 24)
+                .frame(height: 24)
                 .foregroundColor(.black)
         })
     )

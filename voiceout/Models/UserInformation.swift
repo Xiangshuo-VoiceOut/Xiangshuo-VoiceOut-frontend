@@ -22,5 +22,3 @@ struct Comment: Codable, Identifiable {
     var comment: String
     var rating: Int
 }
-
-

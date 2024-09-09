@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TherapistSignupView: View {
-    @EnvironmentObject var router: RouterModel
     @StateObject private var verificationCodeVM: VerificationCodeVM
     @StateObject private var therapistSignupVM: TherapistSignupVM
     @StateObject private var textInputVM: TextInputVM
@@ -22,7 +21,7 @@ struct TherapistSignupView: View {
 
     var body: some View {
         ZStack {
-            BackgroundView(backgroundType: .surfacePrimaryGrey)
+            BackgroundView(backgroundType: .linear)
 
             VStack(alignment: .leading, spacing: ViewSpacing.small) {
                 Text("email")
@@ -76,30 +75,25 @@ struct TherapistSignupView: View {
                 )
 
                 Spacer()
-
-                VStack(alignment: .center) {
-                    ButtonView(
-                        text: "signup",
-                        action: {
-                            therapistSignupVM.handleButtonClick()
-                            if therapistSignupVM.isSignupSuccess {
-                                router.navigateTo(
-                                    .therapistSignupSuccess
-                                )
-                            }
-                        },
-                        theme: therapistSignupVM.isButtonEnabled ? .action : .base,
-                        spacing: .medium,
-                        maxWidth: .infinity
-                    )
-                    .frame(maxWidth: 281)
-                    .disabled(!therapistSignupVM.isButtonEnabled)
-                }
-                .frame(maxWidth: .infinity)
             }
-            .padding(.horizontal, ViewSpacing.xlarge)
+            .padding(ViewSpacing.xlarge)
             .padding(.top, ViewSpacing.xxlarge)
-            .padding(.bottom, ViewSpacing.base)
+
+            VStack(alignment: .center) {
+                Spacer()
+
+                ButtonView(
+                    text: "signup",
+                    action: {
+                        therapistSignupVM.handleButtonClick()
+                    },
+                    theme: therapistSignupVM.isButtonEnabled ? .action : .base,
+                    spacing: .medium,
+                    maxWidth: .infinity
+                )
+                .frame(maxWidth: 281)
+                .disabled(!therapistSignupVM.isButtonEnabled)
+            }
         }
         .navigationTitle("signup")
         .navigationBarBackButtonHidden()

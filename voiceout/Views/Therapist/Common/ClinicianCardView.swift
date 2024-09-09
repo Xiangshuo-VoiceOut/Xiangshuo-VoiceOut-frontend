@@ -9,7 +9,7 @@ struct ClinicianCardView: View {
     @StateObject var viewModel = ClinicianViewModel()
     var body: some View {
         NavigationView {
-            CardView(content:{
+            CardView(content: {
                 VStack {
                     if viewModel.isLoading {
                         ProgressView()
@@ -25,7 +25,7 @@ struct ClinicianCardView: View {
                 }
                 .onAppear {
                     viewModel.loadTestData()
-                    //viewModel.fetchClinician()
+                    // viewModel.fetchClinician()
                 }
             }, modifiers: CardModifiers(
                 padding: EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
@@ -41,21 +41,21 @@ struct ClinicianCardView: View {
                 shadow2Y: 4
 
             ))
-            .frame(width:358,height:224)
+            .frame(width: 358, height: 224)
         }
     }
 }
 
 struct ClinicianDetailView: View {
     var clinician: Clinician
-    var body: some View{
-        //即刻可约
+    var body: some View {
+        // 即刻可约
         VStack(alignment: .center, spacing: 0) {
-            //4210
-            VStack(alignment: .center,spacing:ViewSpacing.medium) {
-                //4583
+            // 4210
+            VStack(alignment: .center, spacing: ViewSpacing.medium) {
+                // 4583
                 HStack(alignment: .center, spacing: ViewSpacing.large) {
-                    //4207
+                    // 4207
                     HStack(alignment: .center, spacing: 0) {
                         ZStack(alignment: .bottomLeading) {
                             // AsyncImage 在 ZStack 的底层
@@ -67,7 +67,7 @@ struct ClinicianDetailView: View {
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: 67, height: 67)
                                         .clipShape(Circle())
-   
+
                                 default:
                                     Color.gray.frame(width: 67, height: 67)
                                     Text("Unable to load image").foregroundColor(.red)
@@ -87,7 +87,7 @@ struct ClinicianDetailView: View {
                                       .clipped()
                                   )
                                   .cornerRadius(CornerRadius.xxxsmall.value)
-                                
+
                                 // "今天可约" 文字
                                 Text("今天可约")
                                     .font(Font.typography(.bodyXSmallEmphasis))
@@ -103,22 +103,22 @@ struct ClinicianDetailView: View {
                             .background(Color.surfaceSecondary)
                             .cornerRadius(CornerRadius.xsmall.value)
                         }
-                        
+
                         .frame(width: 69, height: 67, alignment: .bottomLeading)
                         .cornerRadius(CornerRadius.xxxsmall.value)
-                        
+
                     }
                         .padding(0)
                         .frame(width: 69, height: 67, alignment: .center)
                         .cornerRadius(CornerRadius.xxxsmall.value)
 
-                    //4304
+                    // 4304
                     VStack(alignment: .leading, spacing: ViewSpacing.small) {
-                        //4301
-                        VStack(alignment: .leading, spacing:ViewSpacing.xsmall) {
-                            //4206
+                        // 4301
+                        VStack(alignment: .leading, spacing: ViewSpacing.xsmall) {
+                            // 4206
                             HStack(alignment: .center, spacing: 0) {
-                                //4300
+                                // 4300
                                 HStack(alignment: .center, spacing: 0) {
                                 Text(clinician.name)
                                     .font(Font.typography(.bodyLargeEmphasis))
@@ -131,7 +131,7 @@ struct ClinicianDetailView: View {
                             .padding(0)
                             .frame(width: 54, height: 25, alignment: .center)
                             .cornerRadius(CornerRadius.xxxsmall.value)
-                            //4302
+                            // 4302
                             HStack(alignment: .center, spacing: 0) {
                                 Text(String(format: NSLocalizedString("years_of_experience", comment: ""), "\(clinician.yearOfExperience)"))
                                   .font(Font.typography(.bodyXSmallEmphasis))
@@ -140,17 +140,17 @@ struct ClinicianDetailView: View {
                             }
                             .padding(.leading, ViewSpacing.xxxsmall)
                             .padding(.vertical, 0)
-                            .frame(height:12, alignment: .leading)
+                            .frame(height: 12, alignment: .leading)
                             .cornerRadius(CornerRadius.xsmall.value)
                         }
                         .padding(0)
-                        .frame(width:241,height:42,alignment: .topLeading)
+                        .frame(width: 241, height: 42, alignment: .topLeading)
                         .cornerRadius(CornerRadius.xxxsmall.value)
-                        //4293
+                        // 4293
                         HStack(alignment: .center, spacing: ViewSpacing.medium) {
-                            //4235
-                            //4237
-                            //4236
+                            // 4235
+                            // 4237
+                            // 4236
                             ForEach(clinician.consultField, id: \.tag) { tag in
                                     HStack(alignment: .center, spacing: 0) {
                                         Text(tag.tag)
@@ -164,10 +164,10 @@ struct ClinicianDetailView: View {
                             .padding(.vertical, 1)
                             .background(Color(red: 0.58, green: 0.64, blue: 0.93))
                             .cornerRadius(CornerRadius.xsmall.value)
-                            .frame(height:17)
+                            .frame(height: 17)
                         }
                         .padding(0)
-                        .frame(height:17, alignment: .leading)
+                        .frame(height: 17, alignment: .leading)
                         .cornerRadius(CornerRadius.xxxsmall.value)
                     }
                     .padding(0)
@@ -175,59 +175,57 @@ struct ClinicianDetailView: View {
                     .cornerRadius(CornerRadius.xxxsmall.value)
                 }
                 .padding(0)
-                .frame(width: 334, height:67,alignment: .leading)
+                .frame(width: 334, height: 67, alignment: .leading)
                 .cornerRadius(CornerRadius.xxxsmall.value)
             }
             .padding(ViewSpacing.medium)
-            .frame(height:99)
+            .frame(height: 99)
             .cornerRadius(CornerRadius.medium.value)
-            //4205
-            VStack(alignment: .leading,spacing:ViewSpacing.small) {
-                //第二个4293
+            // 4205
+            VStack(alignment: .leading, spacing: ViewSpacing.small) {
+                // 第二个4293
                 HStack(alignment: .top, spacing: ViewSpacing.base) {
                     Text(clinician.certificationType)
                       .font(Font.typography(.bodySmall))
                       .foregroundColor(Color.textPrimary)
-                      .frame(height:20)
+                      .frame(height: 20)
                 }
                 .padding(0)
                 .cornerRadius(CornerRadius.xxxsmall.value)
             }
             .padding(.horizontal, ViewSpacing.medium)
             .padding(.vertical, ViewSpacing.small)
-            .frame(width: 358,height:36,alignment: .topLeading)
+            .frame(width: 358, height: 36, alignment: .topLeading)
             .cornerRadius(CornerRadius.xxxsmall.value)
-            //4582
+            // 4582
             HStack(alignment: .center) {
-              //4581
+              // 4581
                 HStack(alignment: .center, spacing: ViewSpacing.small) {
                     Text(String(format: "%.1f", clinician.avgRating))
                       .font(Font.typography(.bodyLargeEmphasis))
                       .multilineTextAlignment(.center)
                       .foregroundColor(Color.textPrimary)
-                      .frame(height:25)
-                    
+                      .frame(height: 25)
+
                     StarRatingViewDouble(avgRating: clinician.avgRating)
                 }
                 .padding(0)
-                .frame(height:25, alignment: .leading)
+                .frame(height: 25, alignment: .leading)
                 .cornerRadius(CornerRadius.xxxsmall.value)
-                
+
               Spacer()
-              //$200
+              // $200
                 Text(String(format: NSLocalizedString("charge_per_session", comment: ""), "\(clinician.charge)"))
                   .font(Font.typography(.bodyLargeEmphasis))
                   .foregroundColor(Color.textBrandPrimary)
-                  .frame(height:25)
+                  .frame(height: 25)
             }
             .padding(ViewSpacing.medium)
-            .frame(width:358,height:57,alignment: .center)
+            .frame(width: 358, height: 57, alignment: .center)
             .cornerRadius(CornerRadius.medium.value)
         }
     }
 }
-
-
 
 #Preview {
     ClinicianCardView()

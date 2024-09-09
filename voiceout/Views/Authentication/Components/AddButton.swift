@@ -11,12 +11,12 @@ struct AddButton: View {
     var action: () -> Void
     var text: String
     var body: some View {
-        Button(action: action){
+        Button(action: action) {
             HStack {
                 Text(LocalizedStringKey(text))
                     .font(.typography(.bodyMedium))
                 .foregroundColor(Color.textBrandPrimary)
-                
+
                 Image("add")
                     .foregroundColor(Color.textBrandPrimary)
             }

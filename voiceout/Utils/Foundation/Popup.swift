@@ -8,16 +8,16 @@
 import SwiftUI
 
 enum ViewModelTypes {
-    case DialogViewModel(DialogViewModel)
-    case PopupViewModel(PopupViewModel)
+    case dialogViewModel(DialogViewModel)
+    case popupViewModel(PopupViewModel)
 }
 
 extension View {
     func popup(with viewModel: ViewModelTypes) -> some View {
         switch viewModel {
-        case .DialogViewModel(let dialogViewModel):
+        case .dialogViewModel(let dialogViewModel):
             return AnyView(self.modifier(DialogViewModifier(dialogViewModel: dialogViewModel)))
-        case .PopupViewModel(let popupViewModel):
+        case .popupViewModel(let popupViewModel):
             return AnyView(self.modifier(PopupViewModifier(popupViewModel: popupViewModel)))
         }
     }

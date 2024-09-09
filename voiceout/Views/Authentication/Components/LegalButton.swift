@@ -11,13 +11,13 @@ struct LegalButton: View {
     @EnvironmentObject var dialogViewModel: DialogViewModel
     @EnvironmentObject var popupViewModel: PopupViewModel
     @Binding var isSelected: Bool
-    
+
     var body: some View {
         ZStack(alignment: .bottom) {
             Color
                 .clear
                 .ignoresSafeArea()
-            
+
             RadioButtonView(
                 isSelected: $isSelected,
                 labelView: AnyView(legalButtonLabel)
@@ -33,8 +33,8 @@ struct LegalButton: View {
             }
             .padding(ViewSpacing.xxlarge)
         }
-        .popup(with: .DialogViewModel(dialogViewModel))
-        .popup(with: .PopupViewModel(popupViewModel))
+        .popup(with: .dialogViewModel(dialogViewModel))
+        .popup(with: .popupViewModel(popupViewModel))
     }
 }
 

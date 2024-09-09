@@ -52,13 +52,15 @@
 "nickname_occupied" = "该昵称已被注册，请重新输入！";
 "reset_successfully" = "设置成功";
 "navigate_to_login" = "正在跳转至登录页面";
-"sign_up_successfully" = "注册成功";
+"sign_up_successfully" = "注册成功!";
 "date_invalid" = "日期错误，请重新输入";
 "charge_per_session" = "$%@/次";
 "years_of_experience" = "从业经验：%@年";
 "therapist_cooperation_aggrement_popup_title" = "咨询师合作协议";
 "therapist_cooperation_aggrement_disagree_warning" = "若不同意入驻协议则,则无法入驻。";
 "understood" = "知道了";
+"therapist_finish_view_subheader" = "接下来请继续完成入驻流程！";
+"confirm" = "确认";
 "Sunday" = "周日";
 "Monday" = "周一";
 "Tuesday" = "周二";

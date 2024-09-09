@@ -10,7 +10,7 @@ import SwiftUI
 struct Dropdown: View {
     @State private var isOptionPresented: Bool = false
     @Binding var selectionOption: DropdownOption?
-    var prefixIcon: String? = nil
+    var prefixIcon: String?
     let placeholder: String
     let options: [DropdownOption]
     var isCardInput: Bool = false
@@ -28,37 +28,46 @@ struct Dropdown: View {
                 Text(selectionOption == nil ? placeholder : selectionOption!.option)
                     .foregroundColor(selectionOption == nil ? Color.textLight : Color.textPrimary)
                     .font(.typography(.bodyMedium))
-                
+
                 Spacer()
-                
+
                 Image("down")
                     .rotationEffect(Angle(degrees: isOptionPresented ? 180 : 0))
-                    
+
             }
-            .padding(.horizontal,ViewSpacing.medium)
-            .padding(.vertical,ViewSpacing.small)
-            
+            .padding(.horizontal, ViewSpacing.medium)
+            .padding(.vertical, ViewSpacing.small)
+
         }
         .background(Color.surfacePrimaryGrey2)
         .cornerRadius(CornerRadius.medium.value)
-        .overlay(alignment:.top){
-            VStack{
+        .overlay(alignment: .top) {
+            VStack {
                 if self.isOptionPresented {
                     Spacer(minLength: ViewSpacing.xxlarge)
-                    DropdownList(options: self.options, isCardInput: isCardInput) { option in
-                        self.isOptionPresented = false
-                        self.selectionOption = option
-
-                    }
+                    DropdownList(
+                        options: self.options,
+                        onSelectedAction: { option in
+                            self.isOptionPresented = false
+                            self.selectionOption = option
+                        },
+                        isCardInput: isCardInput
+                    )
                 }
             }
             .padding(.top, -ViewSpacing.base)
         }
-    
+
     }
 }
 
 #Preview {
-    Dropdown(selectionOption: .constant(nil), prefixIcon: "lock", placeholder: "state_placeholder", options: DropdownOption.testAllMonths, isCardInput: false)
-        .padding()
+    Dropdown(
+        selectionOption: .constant(nil),
+        prefixIcon: "lock",
+        placeholder: "state_placeholder",
+        options: DropdownOption.testAllMonths,
+        isCardInput: false
+    )
+    .padding()
 }

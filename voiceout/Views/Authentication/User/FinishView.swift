@@ -9,25 +9,29 @@ import SwiftUI
 import Combine
 
 struct FinishView: View {
-    @StateObject var router: RouterModel = RouterModel()
-    @State var finishText: String
-    @State var navigateToText: String
+    @EnvironmentObject var router: RouterModel
+    @State var title: String
     @State var countdown: Int = 3
-    @State var destination: Route
     @State private var timer: AnyCancellable?
+
     var body: some View {
-        ZStack{
+        ZStack {
             BackgroundView()
-            
-            VStack{
+
+            GeometryReader { geometry in
                 HeaderView()
-                    .offset(y: -100)
-                
-                Text(finishText)
+                    .position(
+                        x: geometry.size.width / 2,
+                        y: geometry.size.height * 0.2
+                    )
+            }
+
+            VStack {
+                Text(title)
                     .font(.typography(.headerMedium))
                     .foregroundColor(Color.textPrimary)
                     .padding(.bottom, ViewSpacing.small)
-                Text(navigateToText)
+                Text("navigate_to_login")
                     .font(.typography(.bodyLarge))
                     .foregroundColor(Color.textPrimary)
                     .padding(.bottom, ViewSpacing.small)
@@ -36,11 +40,9 @@ struct FinishView: View {
                     .foregroundColor(Color.textPrimary)
                     .padding(.bottom)
             }
-            
         }
         .ignoresSafeArea()
-        .offset(y: -20)
-        .toolbar{
+        .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
                     router.navigateTo(.userLogin)
@@ -51,26 +53,26 @@ struct FinishView: View {
                 }
             }
         }
-        .onAppear{
+        .onAppear {
             startCountdown()
         }
     }
-    
-    private func startCountdown(){
+
+    private func startCountdown() {
         timer = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
-            .sink{_ in
+            .sink {_ in
                 if countdown > 0 {
                     countdown -= 1
                 } else {
                     timer?.cancel()
-                    router.navigateTo(destination)
+                    router.navigateTo(.userLogin)
                 }
-                
+
             }
     }
 }
 
 #Preview {
-    FinishView(finishText: "注册成功", navigateToText: "正在跳转至登录页面", destination: .userLogin)
+    FinishView(title: "注册成功")
 }

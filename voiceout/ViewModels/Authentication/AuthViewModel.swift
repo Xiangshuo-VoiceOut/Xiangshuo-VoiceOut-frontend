@@ -14,17 +14,17 @@ class AuthViewModel: ObservableObject {
     var role: UserRole
     private var textInputVM: TextInputVM
     private var loginService = LoginWebService()
-    
+
     init(role: UserRole, textInputVM: TextInputVM) {
         self.role = role
         self.textInputVM = textInputVM
     }
-    
+
     func login() {
-        if !textInputVM.validateEmail()  {
+        if !textInputVM.validateEmail() {
             return
         }
-        
+
         switch role {
         case .user:
             loginService.login(email: textInputVM.email, password: textInputVM.password, role: .user, completions: handleLoginResult)
@@ -32,11 +32,11 @@ class AuthViewModel: ObservableObject {
             loginService.login(email: textInputVM.email, password: textInputVM.password, role: .therapist, completions: handleLoginResult)
         }
     }
-    
+
     private func handleLoginResult(result: Result<String, AuthenticationError>) {
         DispatchQueue.main.async {
             switch result {
-            case .success (let token):
+            case .success:
                 switch self.role {
                 case .user:
                     self.showingUserMainPage = true
@@ -48,8 +48,7 @@ class AuthViewModel: ObservableObject {
             }
         }
     }
-    
-    
+
     private func handleValidationErrors(_ error: AuthenticationError) {
         switch error {
         case .userNotFound:
@@ -61,20 +60,17 @@ class AuthViewModel: ObservableObject {
             textInputVM.setEmailValidationMsg(msg: .loginError, context: .login)
         default:
             textInputVM.setIsValidEmail(isValid: false)
-            textInputVM.setEmailValidationMsg(msg: .serverError, context: .login) //TODO: double check with design team & backend
+            textInputVM.setEmailValidationMsg(msg: .serverError, context: .login) // TODO: double check with design team & backend
         }
     }
-    
-    
+
     func resetValidateState() {
         textInputVM.setIsValidEmail(isValid: true)
         textInputVM.setIsValidPassword(isValid: true)
         textInputVM.resetEmailValidationMsg()
     }
-    
+
     func validateInput() {
         isLoginEnabled = !textInputVM.email.isEmpty && !textInputVM.password.isEmpty
     }
 }
-
-

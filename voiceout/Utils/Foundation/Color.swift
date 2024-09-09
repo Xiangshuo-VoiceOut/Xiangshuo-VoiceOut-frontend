@@ -22,9 +22,9 @@ extension Color {
     static let grey300 = Color(.grey300)
     static let grey500 = Color(.grey500)
     static let grey900 = Color(.grey900)
-    
-    //function tokens
-    //surface
+
+    // function tokens
+    // surface
     static let surfacePrimary = grey50
     static let surfacePrimaryGrey = grey100
     static let surfacePrimaryGrey2 = grey75
@@ -35,8 +35,8 @@ extension Color {
     static let surfaceBrandTertiary = brandTertiary
     static let surfaceInvalid = actionInvalid
     static let surfaceInfo = actionInfo
-    
-    //text
+
+    // text
     static let textTitle = grey900
     static let textPrimary = grey500
     static let textSecondary = grey300
@@ -46,8 +46,8 @@ extension Color {
     static let textBrandSecondary = brandSecondary
     static let textInvalid = actionInvalid
     static let textInfo = actionInfo
-    
-    //border
+
+    // border
     static let borderPrimary = grey500
     static let borderLight = grey200
     static let borderHairline = grey100

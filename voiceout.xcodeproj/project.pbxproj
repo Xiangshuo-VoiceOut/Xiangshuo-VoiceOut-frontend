@@ -77,6 +77,8 @@
 		D28499292BE9BFF900963B3A /* PopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28499282BE9BFF900963B3A /* PopupViewModel.swift */; };
 		D284992B2BEB0B4900963B3A /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D284992A2BEB0B4800963B3A /* RadioButtonView.swift */; };
 		D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D284992D2BEEF4D700963B3A /* LegalButton.swift */; };
+		D28670B22C8BD0A400778224 /* TherapistFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28670B12C8BD0A300778224 /* TherapistFinishView.swift */; };
+		D29F0CF92C8BD6ED0018E7F7 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29F0CF82C8BD6ED0018E7F7 /* ViewModifiers.swift */; };
 		D2B8F4C92C04049F0053F82B /* 注册协议.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2B8F4C82C04049F0053F82B /* 注册协议.txt */; };
 		D2B8F4CD2C0404FC0053F82B /* ⽤户隐私政策.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2B8F4CC2C0404FB0053F82B /* ⽤户隐私政策.txt */; };
 		D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD772BF8E22200DD7688 /* LegalDialogContent.swift */; };
@@ -86,6 +88,7 @@
 		D2D6CD852C03699000DD7688 /* RouterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD842C03699000DD7688 /* RouterModel.swift */; };
 		D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD862C036BCD00DD7688 /* RouterView.swift */; };
 		D2D6CD892C038B1700DD7688 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD882C038B1700DD7688 /* Color.swift */; };
+		D2ECDF882C8E2C4D00FC3E24 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ECDF872C8E2C4D00FC3E24 /* LocalizationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,7 +144,7 @@
 		D2071D462BAB5E9E0040B0AE /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		D2071D6D2BAB9E110040B0AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D2071D6F2BAB9E260040B0AE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D21660CA2C337E47008248DE /* TherapistSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistSignupView.swift; sourceTree = "<group>"; };
+		D21660CA2C337E47008248DE /* TherapistSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TherapistSignupView.swift; path = voiceout/Views/Authentication/TherapistSignupView.swift; sourceTree = SOURCE_ROOT; };
 		D21660CC2C339A49008248DE /* VerificationCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeButton.swift; sourceTree = "<group>"; };
 		D21660CE2C339B98008248DE /* BackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonView.swift; sourceTree = "<group>"; };
 		D21660D72C34D689008248DE /* Validators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 		D28499282BE9BFF900963B3A /* PopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewModel.swift; sourceTree = "<group>"; };
 		D284992A2BEB0B4800963B3A /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
 		D284992D2BEEF4D700963B3A /* LegalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalButton.swift; sourceTree = "<group>"; };
+		D28670B12C8BD0A300778224 /* TherapistFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistFinishView.swift; sourceTree = "<group>"; };
+		D29F0CF82C8BD6ED0018E7F7 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		D2B8F4C82C04049F0053F82B /* 注册协议.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "注册协议.txt"; sourceTree = "<group>"; };
 		D2B8F4CC2C0404FB0053F82B /* ⽤户隐私政策.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "⽤户隐私政策.txt"; sourceTree = "<group>"; };
 		D2D6CD772BF8E22200DD7688 /* LegalDialogContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDialogContent.swift; sourceTree = "<group>"; };
@@ -170,6 +175,7 @@
 		D2D6CD842C03699000DD7688 /* RouterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterModel.swift; sourceTree = "<group>"; };
 		D2D6CD862C036BCD00DD7688 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
 		D2D6CD882C038B1700DD7688 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		D2ECDF872C8E2C4D00FC3E24 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,14 +301,12 @@
 		D2071D412BAA8B880040B0AE /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				D22F0C9F2C880E3F00AFE53D /* User */,
 				D21660DE2C4C2291008248DE /* Therapist */,
 				D284992C2BEEF3FE00963B3A /* Components */,
 				B8D4721B2C1E404F00D6716A /* ForgetPasswordView.swift */,
 				B814C5942C220F66008F4A60 /* LoginView.swift */,
 				B8D4721C2C1E405000D6716A /* ResetPasswordView.swift */,
-				D21660CA2C337E47008248DE /* TherapistSignupView.swift */,
-				B8860E1D2C3AC63300A79073 /* UserSignUpView.swift */,
-				B8860E2F2C3CD21D00A79073 /* FinishView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -378,9 +382,22 @@
 		D21660DE2C4C2291008248DE /* Therapist */ = {
 			isa = PBXGroup;
 			children = (
+				D21660CA2C337E47008248DE /* TherapistSignupView.swift */,
 				D21660DF2C4C22E3008248DE /* CooperationAgreementPopupContent.swift */,
+				D28670B12C8BD0A300778224 /* TherapistFinishView.swift */,
 			);
 			path = Therapist;
+			sourceTree = "<group>";
+		};
+		D22F0C9F2C880E3F00AFE53D /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B8EF41AC2C6AAE8500C77D4D /* SignUpStep2.swift */,
+				B8EF41AA2C69BAD300C77D4D /* SignUpStep1.swift */,
+				B8860E1D2C3AC63300A79073 /* UserSignUpView.swift */,
+				B8860E2F2C3CD21D00A79073 /* FinishView.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		D25C2EC42BCF56790011212A /* Foundation */ = {
@@ -393,6 +410,7 @@
 				D28498E92BE171F700963B3A /* Border.swift */,
 				D28499232BE9AAE200963B3A /* Popup.swift */,
 				D2D6CD882C038B1700DD7688 /* Color.swift */,
+				D29F0CF82C8BD6ED0018E7F7 /* ViewModifiers.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -404,6 +422,7 @@
 				B8860E2D2C3CCCC300A79073 /* Formatter.swift */,
 				D25C2EC42BCF56790011212A /* Foundation */,
 				D21660E12C4C24DD008248DE /* FileReader.swift */,
+				D2ECDF872C8E2C4D00FC3E24 /* LocalizationManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -429,8 +448,6 @@
 				D2D6CD802BFBD2BE00DD7688 /* LegalPopupContent.swift */,
 				B814C5902C20F2F4008F4A60 /* AddButton.swift */,
 				D21660CC2C339A49008248DE /* VerificationCodeButton.swift */,
-				B8EF41AA2C69BAD300C77D4D /* SignUpStep1.swift */,
-				B8EF41AC2C6AAE8500C77D4D /* SignUpStep2.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -463,6 +480,7 @@
 				D2071D042BA62F300040B0AE /* Sources */,
 				D2071D052BA62F300040B0AE /* Frameworks */,
 				D2071D062BA62F300040B0AE /* Resources */,
+				D22F0C9C2C87EE4800AFE53D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -481,7 +499,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					D2071D072BA62F300040B0AE = {
 						CreatedOnToolsVersion = 14.2;
@@ -525,6 +543,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D22F0C9C2C87EE4800AFE53D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.swiftlint.yml",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D2071D042BA62F300040B0AE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -544,7 +585,9 @@
 				D21660DA2C34DE3C008248DE /* TherapistSignupVM.swift in Sources */,
 				B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */,
 				B8D4721E2C1E405000D6716A /* ForgetPasswordView.swift in Sources */,
+				D2ECDF882C8E2C4D00FC3E24 /* LocalizationManager.swift in Sources */,
 				B8860E2E2C3CCCC300A79073 /* Formatter.swift in Sources */,
+				D29F0CF92C8BD6ED0018E7F7 /* ViewModifiers.swift in Sources */,
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
 				B8EF41AD2C6AAE8500C77D4D /* SignUpStep2.swift in Sources */,
 				84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */,
@@ -571,7 +614,6 @@
 				8433CAD22C45A0DD00845A7A /* ClinicianCardView.swift in Sources */,
 				84F0FD5F2C48D85A00E2DB79 /* StarRatingWithIntView.swift in Sources */,
 				84F0FD592C48D29200E2DB79 /* StarRatingWithDoubleView.swift in Sources */,
-				B8F845442C28BB98008C0D80 /* DropdownOption.swift in Sources */,
 				D21660CD2C339A49008248DE /* VerificationCodeButton.swift in Sources */,
 				D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */,
 				B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */,
@@ -595,6 +637,7 @@
 				D28499262BE9AB6200963B3A /* PopupView.swift in Sources */,
 				848E62AD2C891D37009B162A /* StickyHeaderView.swift in Sources */,
 				D21660DD2C34E68A008248DE /* TextInputVM.swift in Sources */,
+				D28670B22C8BD0A400778224 /* TherapistFinishView.swift in Sources */,
 				D21660CB2C337E47008248DE /* TherapistSignupView.swift in Sources */,
 				D28499242BE9AAE300963B3A /* Popup.swift in Sources */,
 				B8D4721F2C1E405000D6716A /* ResetPasswordView.swift in Sources */,
@@ -657,6 +700,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -718,6 +762,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -746,6 +791,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"voiceout/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = voiceout/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -782,6 +828,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"voiceout/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = voiceout/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";

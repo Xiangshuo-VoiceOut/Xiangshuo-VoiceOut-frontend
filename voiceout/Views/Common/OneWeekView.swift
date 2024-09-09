@@ -24,9 +24,9 @@ struct OneWeekView: View {
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
             HStack(alignment: .top, spacing: ViewSpacing.small) {
-                ForEach(0..<days.count) { index in
+                ForEach(Array(days.enumerated()), id: \.offset) { index, day in
                     VStack(alignment: .center, spacing: ViewSpacing.betweenSmallAndBase) {
-                        Text(days[index].label)
+                        Text(day.label)
                             .font(Font.typography(.bodyMediumEmphasis))
                             .multilineTextAlignment(.center)
                             .foregroundColor(selectedDayIndices.contains(index) ? Color.textInvert : Color.textSecondary)

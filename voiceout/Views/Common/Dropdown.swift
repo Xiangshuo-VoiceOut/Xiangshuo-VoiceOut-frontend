@@ -14,6 +14,8 @@ struct Dropdown: View {
     let placeholder: String
     let options: [DropdownOption]
     var isCardInput: Bool = false
+    var backgroundColor: Color = Color.surfacePrimaryGrey2
+
     var body: some View {
         Button(action: {
             withAnimation {
@@ -25,6 +27,7 @@ struct Dropdown: View {
                     Image(icon)
                         .foregroundColor(.grey500)
                 }
+
                 Text(selectionOption == nil ? placeholder : selectionOption!.option)
                     .foregroundColor(selectionOption == nil ? Color.textLight : Color.textPrimary)
                     .font(.typography(.bodyMedium))
@@ -33,13 +36,12 @@ struct Dropdown: View {
 
                 Image("down")
                     .rotationEffect(Angle(degrees: isOptionPresented ? 180 : 0))
-
             }
             .padding(.horizontal, ViewSpacing.medium)
             .padding(.vertical, ViewSpacing.small)
 
         }
-        .background(Color.surfacePrimaryGrey2)
+        .background(backgroundColor)
         .cornerRadius(CornerRadius.medium.value)
         .overlay(alignment: .top) {
             VStack {
@@ -51,13 +53,14 @@ struct Dropdown: View {
                             self.isOptionPresented = false
                             self.selectionOption = option
                         },
-                        isCardInput: isCardInput
+                        isCardInput: isCardInput,
+                        backgroundColor: backgroundColor
                     )
                 }
             }
             .padding(.top, -ViewSpacing.base)
         }
-
+        .zIndex(isOptionPresented ? 1 : 0)
     }
 }
 

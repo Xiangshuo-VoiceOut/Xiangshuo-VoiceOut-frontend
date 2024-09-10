@@ -23,7 +23,7 @@ struct OneWeekView: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
-            HStack(alignment: .top, spacing: ViewSpacing.small) {
+            HStack(alignment: .top, spacing: ViewSpacing.xsmall) {
                 ForEach(Array(days.enumerated()), id: \.offset) { index, day in
                     VStack(alignment: .center, spacing: ViewSpacing.betweenSmallAndBase) {
                         Text(day.label)

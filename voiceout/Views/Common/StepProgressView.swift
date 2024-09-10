@@ -29,10 +29,9 @@ struct StepProgressView: View {
                         .frame(height: 1)
                         .foregroundColor(.brandPrimary)
                 }
-
             }
         }
-        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 12)
     }
 }
 

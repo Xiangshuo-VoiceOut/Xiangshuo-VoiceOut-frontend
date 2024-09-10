@@ -55,7 +55,6 @@ struct TextInputView: View {
                     )
                     .truncationMode(.tail)
                     .lineLimit(1)
-//                    .frame(width: )
                     .foregroundColor(.textPrimary)
                 }
                 suffixContent
@@ -73,10 +72,10 @@ struct TextInputView: View {
             )
 
             if let validationMessage = validationMessage, !validationMessage.isEmpty {
-                    Text(LocalizedStringKey(validationMessage))
-                        .foregroundColor(validationState == .error ? Color.borderInValid : Color.textSecondary)
-                        .font(.typography(.bodyXXSmall))
-                        .padding(.top, ViewSpacing.xsmall)
+                Text(LocalizedStringKey(validationMessage))
+                    .foregroundColor(validationState == .error ? Color.borderInValid : Color.textSecondary)
+                    .font(.typography(.bodyXXSmall))
+                    .padding(.top, ViewSpacing.xsmall)
             } else {
                 Text(" ")
                     .font(.typography(.bodyXXSmall))

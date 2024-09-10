@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CooperationAgreementPopupContent: View {
+    @EnvironmentObject var router: RouterModel
     @EnvironmentObject var dialogViewModel: DialogViewModel
 
     var body: some View {
@@ -65,7 +66,7 @@ struct CooperationAgreementPopupContent: View {
                         ButtonView(
                             text: "agree",
                             action: {
-                                // Todo: redirect to next screen
+                                router.navigateTo(.therapistRegister)
                             },
                             maxWidth: buttonWidth
                         )

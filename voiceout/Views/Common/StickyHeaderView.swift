@@ -21,11 +21,6 @@ struct StickyHeaderView: View {
                     Spacer()
                 }
                 Spacer()
-                Text(title)
-                    .font(Font.typography(.bodyLargeEmphasis))
-                    .foregroundColor(.textPrimary)
-                    .frame( height: 24, alignment: .bottomLeading)
-                Spacer()
                 if let trailingComponent = trailingComponent {
                     trailingComponent
                 } else {
@@ -36,8 +31,12 @@ struct StickyHeaderView: View {
             .padding(.vertical, 0)
             .frame(height: 44, alignment: .leading)
             .background(Color.surfacePrimary)
-
-            Spacer()
+            .overlay(
+                Text(title)
+                    .font(Font.typography(.bodyLargeEmphasis))
+                    .foregroundColor(.textPrimary)
+                    .frame( height: 24, alignment: .bottomLeading)
+            )
         }
         .navigationTitle("")
         .navigationBarHidden(true)

@@ -31,7 +31,6 @@ struct SignUpStep2: View {
                 options: userSignUpVM.allStates
             )
             .padding(.bottom)
-            .zIndex(2)
 
             TextInputView(
                 text: $textInputVM.birthdate,
@@ -52,7 +51,6 @@ struct SignUpStep2: View {
                 options: DropdownOption.genders
             )
             .padding(.bottom, ViewSpacing.large)
-            .zIndex(1)
 
             ButtonView(
                 text: "signup",
@@ -71,6 +69,7 @@ struct SignUpStep2: View {
             .disabled(!userSignUpVM.isUserSignUpEnabled)
             .padding(.top, ViewSpacing.small)
         }
+        .zIndex(/*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
     }
 }
 

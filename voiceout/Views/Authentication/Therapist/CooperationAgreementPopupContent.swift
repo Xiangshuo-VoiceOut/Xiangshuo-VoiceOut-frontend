@@ -66,6 +66,7 @@ struct CooperationAgreementPopupContent: View {
                         ButtonView(
                             text: "agree",
                             action: {
+                                dialogViewModel.dismiss()
                                 router.navigateTo(.therapistRegister)
                             },
                             maxWidth: buttonWidth

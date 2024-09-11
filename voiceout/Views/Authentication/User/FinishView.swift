@@ -18,6 +18,18 @@ struct FinishView: View {
         ZStack {
             BackgroundView()
 
+            StickyHeaderView(
+                trailingComponent: AnyView(
+                    Button(action: {
+                        router.navigateTo(.userLogin)
+                    }) {
+                        Text("login")
+                            .font(.typography(.bodyMedium))
+                            .foregroundColor(.black.opacity(0.69))
+                    }
+                )
+            )
+
             GeometryReader { geometry in
                 HeaderView()
                     .position(
@@ -39,18 +51,6 @@ struct FinishView: View {
                     .font(.typography(.headerSmall))
                     .foregroundColor(Color.textPrimary)
                     .padding(.bottom)
-            }
-        }
-        .ignoresSafeArea()
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
-                    router.navigateTo(.userLogin)
-                }) {
-                    Text("login")
-                        .font(.typography(.bodyMedium))
-                        .foregroundColor(.black.opacity(0.69))
-                }
             }
         }
         .onAppear {
@@ -75,4 +75,5 @@ struct FinishView: View {
 
 #Preview {
     FinishView(title: "注册成功")
+        .environmentObject(RouterModel())
 }

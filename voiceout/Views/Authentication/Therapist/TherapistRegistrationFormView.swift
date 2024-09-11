@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RegistrationFormView: View {
 //    @AppStorage("currentStep") private var currentStep: Int = 0
+    @EnvironmentObject var router: RouterModel
     @State private var currentStep: Int = 0
     @State private var totalSteps = 6
     @StateObject var registrationVM = TherapistRegistrationVM()
@@ -18,12 +19,20 @@ struct RegistrationFormView: View {
         ZStack {
             BackgroundView(backgroundType: .surfacePrimaryGrey)
 
+            StickyHeaderView(
+                title: titles[currentStep],
+                leadingComponent: AnyView(
+                    BackButtonView()
+                )
+            )
+
             VStack(spacing: 0) {
                 StepProgressView(
                     totalSteps: $totalSteps,
                     currentStep: $currentStep
                 )
-                .padding(.vertical, ViewSpacing.xxlarge)
+                .padding(.top, ViewSpacing.xxxlarge)
+                .padding(.bottom, ViewSpacing.xlarge)
 
                 ScrollView {
                     formContent(for: currentStep)

@@ -23,6 +23,22 @@ struct ResetPasswordView: View {
         ZStack {
             BackgroundView()
 
+            StickyHeaderView(
+                trailingComponent: AnyView(
+                    Button(action: {
+                        if role == .therapist {
+                            router.navigateTo(.therapistSignup)
+                        } else if role == .user {
+                            router.navigateTo(.userSignUp)
+                        }
+                    }) {
+                        Text("signup")
+                            .font(.typography(.bodyMedium))
+                            .foregroundColor(.black.opacity(0.69))
+                    }
+                )
+            )
+
             VStack(spacing: ViewSpacing.xlarge) {
                 HeaderView()
 
@@ -65,24 +81,7 @@ struct ResetPasswordView: View {
                 }
                 .frameStyle()
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        if role == .therapist {
-                            router.navigateTo(.therapistSignup)
-                        } else if role == .user {
-                            router.navigateTo(.userSignUp)
-                        }
-                    }) {
-                        Text("signup")
-                            .font(.typography(.bodyMedium))
-                            .foregroundColor(.black.opacity(0.69))
-                    }
-                }
-            }
         }
-        .ignoresSafeArea()
-        .navigationBarBackButtonHidden()
         .onChange(of: textInputVM.newPassword) { _ in
             resetPasswordVM.handleInputsFilled()
         }

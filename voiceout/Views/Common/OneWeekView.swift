@@ -44,7 +44,7 @@ struct OneWeekView: View {
                         }
                     }
                 }
-                .frame(width:46)
+                .frame(width: 46)
             }
             .padding(0)
             .cornerRadius(CornerRadius.xxxsmall.value)

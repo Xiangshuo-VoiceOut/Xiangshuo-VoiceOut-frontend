@@ -13,7 +13,6 @@ struct Dropdown: View {
     var prefixIcon: String?
     let placeholder: String
     let options: [DropdownOption]
-    var isCardInput: Bool = false
     var backgroundColor: Color = Color.surfacePrimaryGrey2
 
     var body: some View {
@@ -53,7 +52,6 @@ struct Dropdown: View {
                             self.isOptionPresented = false
                             self.selectionOption = option
                         },
-                        isCardInput: isCardInput,
                         backgroundColor: backgroundColor
                     )
                 }
@@ -69,8 +67,6 @@ struct Dropdown: View {
         selectionOption: .constant(nil),
         prefixIcon: "lock",
         placeholder: "state_placeholder",
-        options: DropdownOption.testAllMonths,
-        isCardInput: false
+        options: DropdownOption.testAllMonths
     )
-    .padding()
 }

@@ -8,39 +8,36 @@
 import SwiftUI
 
 struct StickyHeaderView: View {
-    let title: String
-    let leadingComponent: AnyView?
-    let trailingComponent: AnyView?
+    var title: String?
+    var leadingComponent: AnyView?
+    var trailingComponent: AnyView?
+    var backgroundColor: Color = Color.surfacePrimary
 
     var body: some View {
         VStack {
             HStack {
-                if let leadingComponent = leadingComponent {
-                    leadingComponent
-                } else{
-                    Spacer()
-                }
+                leadingComponent
+
                 Spacer()
-                Text(title)
-                    .font(Font.typography(.bodyLargeEmphasis))
-                    .foregroundColor(.textPrimary)
-                    .frame( height: 24, alignment: .bottomLeading)
-                Spacer()
-                if let trailingComponent = trailingComponent {
-                    trailingComponent
-                } else {
-                    Spacer()
-                }
+
+                trailingComponent
             }
             .padding(.horizontal, ViewSpacing.medium)
             .padding(.vertical, 0)
             .frame(height: 44, alignment: .leading)
-            .background(Color.surfacePrimary)
+            .background(backgroundColor)
+            .overlay(
+                Text(LocalizedStringKey(title ?? ""))
+                    .font(Font.typography(.bodyLargeEmphasis))
+                    .foregroundColor(.textPrimary)
+                    .frame( height: 24, alignment: .bottomLeading)
+            )
 
             Spacer()
         }
         .navigationTitle("")
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden()
     }
 }
 
@@ -49,11 +46,11 @@ struct StickyHeaderView: View {
         title: "个人主页",
         leadingComponent: AnyView(BackButtonView(navigateBackTo: .therapistLogin)),
         trailingComponent: AnyView(Button(action: {
-            print("")
+           print("")
         }) {
-            Image(systemName: "gear")
-                .frame(height: 24)
-                .foregroundColor(.black)
+           Image(systemName: "gear")
+               .frame(height: 24)
+               .foregroundColor(.black)
         })
     )
     .environmentObject(RouterModel())

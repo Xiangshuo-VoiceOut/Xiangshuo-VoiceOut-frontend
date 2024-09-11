@@ -9,11 +9,15 @@ import SwiftUI
 
 struct BackButtonView: View {
     @EnvironmentObject var router: RouterModel
-    var navigateBackTo: Route
+    var navigateBackTo: Route?
 
     var body: some View {
         Button(action: {
-            router.navigateTo(navigateBackTo)
+            if let route = navigateBackTo {
+                router.navigateTo(route)
+            } else {
+                router.navigateBack()
+            }
         }) {
             Image("left-arrow")
                 .frame(width: 24, height: 24)

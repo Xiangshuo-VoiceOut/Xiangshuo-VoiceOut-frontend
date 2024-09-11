@@ -24,6 +24,12 @@ struct TherapistSignupView: View {
         ZStack {
             BackgroundView(backgroundType: .surfacePrimaryGrey)
 
+            StickyHeaderView(
+                title: "signup",
+                leadingComponent: AnyView(BackButtonView()),
+                backgroundColor: Color.surfacePrimaryGrey2
+            )
+
             VStack(alignment: .leading, spacing: ViewSpacing.small) {
                 Text("email")
                     .font(.typography(.bodyMedium))
@@ -98,14 +104,9 @@ struct TherapistSignupView: View {
                 .frame(maxWidth: .infinity)
             }
             .padding(.horizontal, ViewSpacing.xlarge)
-            .padding(.top, ViewSpacing.xxlarge)
+            .padding(.top, ViewSpacing.xxxlarge)
             .padding(.bottom, ViewSpacing.base)
         }
-        .navigationTitle("signup")
-        .navigationBarBackButtonHidden()
-        .navigationBarItems(
-            leading: BackButtonView(navigateBackTo: .therapistLogin)
-        )
         .onChange(of: textInputVM.email) { _ in
             therapistSignupVM.updateButtonState()
         }
@@ -123,4 +124,5 @@ struct TherapistSignupView: View {
 
 #Preview {
     TherapistSignupView()
+        .environmentObject(RouterModel())
 }

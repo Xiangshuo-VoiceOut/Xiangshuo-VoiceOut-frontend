@@ -29,6 +29,18 @@ struct UserSignUpView: View {
         ZStack {
             BackgroundView()
 
+            StickyHeaderView(
+                trailingComponent: AnyView(
+                    Button(action: {
+                        router.navigateTo(.userLogin)
+                    }) {
+                        Text("login")
+                            .font(.typography(.bodyMedium))
+                            .foregroundColor(.black.opacity(0.69))
+                    }
+                )
+            )
+
             VStack(spacing: ViewSpacing.large) {
                 HeaderView()
 
@@ -50,21 +62,7 @@ struct UserSignUpView: View {
                 }
                 .frameStyle()
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        router.navigateTo(.userLogin)
-                    }) {
-                        Text("login")
-                            .font(.typography(.bodyMedium))
-                            .foregroundColor(.black.opacity(0.69))
-                    }
-                }
-            }
-
         }
-        .navigationBarBackButtonHidden()
-        .ignoresSafeArea()
         .onChange(of: textInputVM.email) {_ in
             textInputVM.resetEmailValidationMsg()
             textInputVM.resetValidationState()

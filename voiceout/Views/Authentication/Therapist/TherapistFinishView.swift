@@ -15,7 +15,31 @@ struct TherapistFinishView: View {
         ZStack {
             BackgroundView()
 
-            // TODO sdd sticky header
+            GeometryReader { geometry in
+                StickyHeaderView(
+                    title: "voice_out",
+                    leadingComponent: AnyView(
+                        Image("logo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: LogoSize.small)
+                            .clipShape(Circle())
+                    ),
+                    trailingComponent: AnyView(
+                        Button(action: {
+                            router.navigateTo(.therapistLogin)
+                        }) {
+                            Text("login")
+                                .font(.typography(.bodyMedium))
+                                .foregroundColor(.black.opacity(0.69))
+                        }
+                    )
+                )
+                .position(
+                    x: geometry.size.width / 2,
+                    y: geometry.size.height * 0.56
+                )
+            }
 
             VStack(spacing: ViewSpacing.xlarge) {
                 Text("sign_up_successfully")
@@ -39,8 +63,6 @@ struct TherapistFinishView: View {
             .frameStyle()
         }
         .environmentObject(popupViewModel)
-        .navigationBarBackButtonHidden()
-        .ignoresSafeArea()
         .popup(with: .popupViewModel(popupViewModel))
     }
 

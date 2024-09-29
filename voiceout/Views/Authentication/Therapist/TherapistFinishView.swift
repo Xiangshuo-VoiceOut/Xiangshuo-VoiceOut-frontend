@@ -73,7 +73,8 @@ struct TherapistFinishView: View {
                     content: AnyView(
                         CooperationAgreementPopupContent()
                             .environmentObject(dialogViewModel)
-                    )
+                    ),
+                    hideCloseButton: true
                 )
             )
         }

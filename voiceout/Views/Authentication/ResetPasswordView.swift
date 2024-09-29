@@ -82,10 +82,10 @@ struct ResetPasswordView: View {
                 .frameStyle()
             }
         }
-        .onChange(of: textInputVM.newPassword) { _ in
+        .onChange(of: textInputVM.newPassword) {
             resetPasswordVM.handleInputsFilled()
         }
-        .onChange(of: textInputVM.confirmNewPassowrd) { _ in
+        .onChange(of: textInputVM.confirmNewPassowrd) {
             resetPasswordVM.handleInputsFilled()
         }
     }

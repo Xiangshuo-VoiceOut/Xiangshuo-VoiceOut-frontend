@@ -21,7 +21,7 @@ struct LegalPopupContent: View {
                     .font(.typography(.bodySmall))
             }
             .foregroundColor(.textPrimary)
-            .padding(ViewSpacing.large)
+            .padding(.horizontal, ViewSpacing.large)
             .padding(.top, ViewSpacing.xxlarge)
         }
     }

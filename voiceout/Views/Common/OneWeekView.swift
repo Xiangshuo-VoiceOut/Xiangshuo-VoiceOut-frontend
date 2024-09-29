@@ -6,58 +6,52 @@
 //
 
 import SwiftUI
+
 struct OneWeekView: View {
-    @State private var selectedDayIndices: Set<Int> = []
-    var days: [Day]
+    @Binding var selectedDayIndices: Set<Int>
+    private var chipWidth: CGFloat = 45
 
-    init() {
-        let weekLabels: [LocalizedStringKey] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-        var tempDays: [Day] = []
-
-        for label in weekLabels {
-                    tempDays.append(Day(label: label))
-        }
-
-        self.days = tempDays
+    init(selectedDayIndices: Binding<Set<Int>>) {
+        self._selectedDayIndices = selectedDayIndices
     }
 
     var body: some View {
-        HStack(alignment: .center, spacing: 0) {
-            HStack(alignment: .top, spacing: ViewSpacing.xsmall) {
-                ForEach(Array(days.enumerated()), id: \.offset) { index, day in
-                    VStack(alignment: .center, spacing: ViewSpacing.betweenSmallAndBase) {
-                        Text(day.label)
-                            .font(Font.typography(.bodyMediumEmphasis))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(selectedDayIndices.contains(index) ? Color.textInvert : Color.textSecondary)
-                    }
-                    .padding(.horizontal, ViewSpacing.xsmall)
-                    .padding(.vertical, ViewSpacing.medium)
-                    .frame(height: 57, alignment: .center)
-                    .background(selectedDayIndices.contains(index) ? Color.surfaceBrandPrimary : Color.surfacePrimaryGrey)
-                    .cornerRadius(CornerRadius.medium.value)
-                    .onTapGesture {
-                        if selectedDayIndices.contains(index) {
-                            selectedDayIndices.remove(index)
-                        } else {
-                            selectedDayIndices.insert(index)
+        GeometryReader { geomtry in
+            HStack(spacing: (geomtry.size.width - chipWidth * 7) / 7) {
+                ForEach(Array(Day.weekLabel.enumerated()), id: \.offset) { index, day in
+                    Text(day.label)
+                        .font(Font.typography(.bodyMediumEmphasis))
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(selectedDayIndices.contains(index) ? Color.textInvert : Color.textSecondary)
+                        .padding(.vertical, ViewSpacing.medium)
+                        .frame(width: chipWidth, alignment: .center)
+                        .background(selectedDayIndices.contains(index) ? Color.surfaceBrandPrimary : Color.surfacePrimaryGrey)
+                        .cornerRadius(CornerRadius.medium.value)
+                        .onTapGesture {
+                            if selectedDayIndices.contains(index) {
+                                selectedDayIndices.remove(index)
+                            } else {
+                                selectedDayIndices.insert(index)
+                            }
                         }
-                    }
                 }
-                .frame(width: 46)
             }
-            .padding(0)
-            .cornerRadius(CornerRadius.xxxsmall.value)
+            .frame(width: geomtry.size.width)
         }
-        .padding(.horizontal, ViewSpacing.medium)
-        .padding(.top, ViewSpacing.xxxsmall)
-        .padding(.bottom, 0)
-        .cornerRadius(CornerRadius.xxxsmall.value)
+        .frame(height: 57)
     }
 }
 
-#Preview {
-    VStack {
-        OneWeekView()
+struct OneWeekView_Previews: PreviewProvider {
+    struct PreviewWrapper: View {
+        @State private var selectedDayIndices: Set<Int> = [1]
+
+        var body: some View {
+            OneWeekView(selectedDayIndices: $selectedDayIndices)
+        }
+    }
+
+    static var previews: some View {
+        PreviewWrapper()
     }
 }

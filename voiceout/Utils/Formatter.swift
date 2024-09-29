@@ -7,27 +7,34 @@
 
 import SwiftUI
 
-public func formatDateString(_ input: String) -> String {
-    var digits = input.filter {$0.isNumber}
-    if digits.count > 8 {
-        digits = String(digits.prefix(8))
-    }
-    switch digits.count {
-    case 5...6:
-        digits.insert("/", at: digits.index(digits.startIndex, offsetBy: 2))
-        digits.insert("/", at: digits.index(digits.startIndex, offsetBy: 5))
-    case 7...8:
-        digits.insert("/", at: digits.index(digits.startIndex, offsetBy: 2))
-        digits.insert("/", at: digits.index(digits.startIndex, offsetBy: 5))
-    default:
-        if digits.count > 2 {
-            digits.insert("/", at: digits.index(digits.startIndex, offsetBy: 2))
-        }
-    }
-    return digits
-}
-
 extension String {
+    var formattedDate: String {
+        var digits = self.filter { $0.isNumber }
+
+        if digits.count > 8 {
+            digits = String(digits.prefix(8))
+        }
+
+        switch digits.count {
+        case 5...6:
+            digits.insert("/", at: digits.index(digits.startIndex, offsetBy: 2))
+            if digits.count == 5 {
+                digits.insert("/", at: digits.index(digits.startIndex, offsetBy: 3))
+            } else {
+                digits.insert("/", at: digits.index(digits.startIndex, offsetBy: 5))
+            }
+        case 7...8:
+            digits.insert("/", at: digits.index(digits.startIndex, offsetBy: 2))
+            digits.insert("/", at: digits.index(digits.startIndex, offsetBy: 5))
+        default:
+            if digits.count > 2 {
+                digits.insert("/", at: digits.index(digits.startIndex, offsetBy: 2))
+            }
+        }
+
+        return digits
+    }
+
     func formatPhoneNumber() -> String {
         let cleanNumber = components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
 
@@ -47,5 +54,19 @@ extension String {
         }
 
         return result
+    }
+
+    var formattedSSN: String {
+        let digits = self.filter { $0.isNumber }
+
+        guard digits.count == 9 else {
+            return self
+        }
+
+        let area = digits.prefix(3)
+        let group = digits.dropFirst(3).prefix(2)
+        let serial = digits.dropFirst(5)
+
+        return "\(area)-\(group)-\(serial)"
     }
 }

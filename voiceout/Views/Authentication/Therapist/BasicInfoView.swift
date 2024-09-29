@@ -16,11 +16,9 @@ struct BasicInfoView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: ViewSpacing.small) {
-            Text("name")
-                .font(.typography(.bodyMedium))
-                .foregroundColor(.textPrimary)
             TextInputView(
                 text: $registrationVM.name,
+                label: "name",
                 isSecuredField: false,
                 placeholder: "input_name_placeholder",
                 validationState: ValidationState.neutral,
@@ -29,56 +27,48 @@ struct BasicInfoView: View {
             )
             .autocapitalization(.none)
 
-            Text("gender")
-                .font(.typography(.bodyMedium))
-                .foregroundColor(.textPrimary)
             Dropdown(
                 selectionOption: $registrationVM.selectedGender,
+                label: "gender",
                 placeholder: String(localized: "gender_placeholder"),
                 options: DropdownOption.genders,
                 backgroundColor: .white
             )
 
-            Text("location")
-                .font(.typography(.bodyMedium))
-                .foregroundColor(.textPrimary)
             Dropdown(
                 selectionOption: $registrationVM.selectedState,
+                label: "location",
                 placeholder: String(localized: "state_placeholder"),
                 options: registrationVM.allStates,
                 backgroundColor: .white
             )
 
-            Text("phone_number")
-                .font(.typography(.bodyMedium))
-                .foregroundColor(.textPrimary)
             TextInputView(
                 text: $registrationVM.phoneNumber,
+                label: "phone_number",
                 isSecuredField: false,
                 placeholder: "phone_number_placeholder",
                 validationState: ValidationState.neutral,
                 theme: .white
             )
             .autocapitalization(.none)
-            .onChange(of: registrationVM.phoneNumber) {phoneNumber in
-                if !phoneNumber.isEmpty {
-                    registrationVM.phoneNumber = phoneNumber.formatPhoneNumber()
+            .onChange(of: registrationVM.phoneNumber) {
+                if !registrationVM.phoneNumber.isEmpty {
+                    registrationVM.phoneNumber = registrationVM.phoneNumber.formatPhoneNumber()
                 }
             }
 
-            Text("birthdate")
-                .font(.typography(.bodyMedium))
-                .foregroundColor(.textPrimary)
             TextInputView(
                 text: $registrationVM.birthdate,
+                label: "birthdate",
                 isSecuredField: false,
                 placeholder: "birthdate_placeholder",
                 validationState: ValidationState.neutral,
                 theme: .white
             )
             .autocapitalization(.none)
-            .onChange(of: registrationVM.birthdate) {newValue in
-                registrationVM.birthdate = formatDateString(newValue)
+            .onChange(of: registrationVM.birthdate) {
+                registrationVM.birthdate = registrationVM.birthdate.formattedDate
             }
 
             Text("upload_profile")

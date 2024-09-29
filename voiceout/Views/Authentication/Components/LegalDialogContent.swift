@@ -57,11 +57,11 @@ struct LegalDialogContent: View {
                 ButtonView(
                     text: "agree"
                 ) {
-                        withAnimation(.spring()) {
-                            dialogViewModel.dismiss()
-                        }
-                        isSelected = true
+                    withAnimation(.spring()) {
+                        dialogViewModel.dismiss()
                     }
+                    isSelected = true
+                }
             }
         }
         .padding(ViewSpacing.large)

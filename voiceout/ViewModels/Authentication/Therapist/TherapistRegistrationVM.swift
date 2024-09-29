@@ -22,6 +22,8 @@ class TherapistRegistrationVM: ObservableObject {
     @Published var selectedState: DropdownOption?
     @Published var selectedDegree: DropdownOption?
     @Published var selectedCertificationType: DropdownOption?
+    @Published var selectedTimeZone: DropdownOption? = DropdownOption.timezones[0]
+    @Published var isSameTimeSchedule: Bool = true
 
     @Published var name: String = ""
     @Published var nameMsg = "name_match"

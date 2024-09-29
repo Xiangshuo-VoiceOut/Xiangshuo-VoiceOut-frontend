@@ -10,6 +10,7 @@ import SwiftUI
 struct RegistrationFormView: View {
 //    @AppStorage("currentStep") private var currentStep: Int = 0
     @EnvironmentObject var router: RouterModel
+    @StateObject var popupViewModel = PopupViewModel()
     @State private var currentStep: Int = 0
     @State private var totalSteps = 6
     @StateObject var registrationVM = TherapistRegistrationVM()
@@ -22,7 +23,11 @@ struct RegistrationFormView: View {
             StickyHeaderView(
                 title: titles[currentStep],
                 leadingComponent: AnyView(
-                    BackButtonView()
+                    BackButtonView(action: {
+                        if currentStep > 0 {
+                            currentStep -= 1
+                        }
+                    })
                 )
             )
 
@@ -34,27 +39,34 @@ struct RegistrationFormView: View {
                 .padding(.top, ViewSpacing.xxxlarge)
                 .padding(.bottom, ViewSpacing.xlarge)
 
-                ScrollView {
-                    formContent(for: currentStep)
-                        .padding(.bottom, ViewSpacing.xxlarge)
+                GeometryReader { geometry in
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            formContent(for: currentStep)
 
-                    ButtonView(
-                        text: currentStep < totalSteps - 1 ?
-                            "next_step" : "confirmation",
-                        action: {
-                            if currentStep < totalSteps - 1 {
-                                currentStep += 1
-                            } else {
-                                // completeRegistration()
-                            }
-                        },
-                        theme: registrationVM.isNextStepEnabled || registrationVM.finished ? .action : .base,
-                                       spacing: .large
-                    )
-                    .padding(.bottom, ViewSpacing.medium)
-//                       .disabled(!registrationVM.isNextStepEnabled)
+                            Spacer()
+
+                            ButtonView(
+                                text: currentStep < totalSteps - 1 ? "next_step" : "confirmation",
+                                action: {
+                                    if currentStep < totalSteps - 1 {
+                                        currentStep += 1
+                                    } else {
+                                        // completeRegistration()
+                                    }
+                                },
+                                theme: registrationVM.isNextStepEnabled || registrationVM.finished ? .action : .base,
+                                spacing: .large
+                            )
+                            .padding(.bottom, ViewSpacing.medium)
+                            .padding(.top, ViewSpacing.xlarge)
+            //                .disabled(!registrationVM.isNextStepEnabled)
+                        }
+                        .frame(minHeight: geometry.size.height)
+                    }
                 }
             }
+            .edgesIgnoringSafeArea(.bottom)
             .padding(.horizontal, ViewSpacing.large)
         }
     }
@@ -64,16 +76,17 @@ struct RegistrationFormView: View {
         switch step {
         case 0:
             BasicInfoView()
-//        case 1:
-//            SchoolInfo()
-//        case 2:
-//            CertificateInfo()
-//        case 3:
-//            ConsultantService()
-//        case 4:
-//            BankInformation()
-//        case 5:
-//            TimeAvailability()
+        case 1:
+            EducationBackgroundView()
+        case 2:
+            CertificateInfoView()
+        case 3:
+            ConsultTypesView()
+        case 4:
+            BankInformationView()
+        case 5:
+            AvailableTimesView()
+                .environmentObject(popupViewModel)
         default:
             BasicInfoView()
         }

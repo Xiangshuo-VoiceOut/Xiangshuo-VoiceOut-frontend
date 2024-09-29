@@ -94,11 +94,11 @@ struct LoginView: View {
                 ) {}
             }
 
-        .onChange(of: textInputVM.email) { _ in
+        .onChange(of: textInputVM.email) {
             loginVM.validateInput()
             loginVM.resetValidateState()
         }
-        .onChange(of: textInputVM.password) { _ in
+        .onChange(of: textInputVM.password) {
             loginVM.validateInput()
             loginVM.resetValidateState()
         }

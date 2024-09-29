@@ -15,10 +15,10 @@ struct PopupViewModifier: ViewModifier {
             .overlay(alignment: .bottom) {
                 if case let .present(config) = popupViewModel.action {
                     PopupView(
-                        content: config.content
-                    ) {
-                            close()
-                        }
+                        content: config.content,
+                        didClose: close,
+                        hideCloseButton: config.hideCloseButton
+                    )
                 }
             }
             .ignoresSafeArea()
@@ -34,22 +34,25 @@ struct PopupViewModifier: ViewModifier {
 struct PopupView: View {
     var content: AnyView
     var didClose: () -> Void
+    var hideCloseButton: Bool?
 
     var body: some View {
         content
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .overlay(alignment: .topTrailing) {
+                if hideCloseButton != true {
+                    Button(action: didClose) {
+                        Image("close")
+                            .foregroundColor(Color(.grey500))
+                    }
+                    .padding(.top, ViewSpacing.large)
+                    .padding(.trailing, ViewSpacing.large)
+                }
+            }
+            .frame(maxWidth: .infinity)
             .background(Color.surfacePrimary)
             .cornerRadius(.medium, corners: [.topLeft, .topRight])
-            .overlay(alignment: .topTrailing) {
-                Button(action: didClose) {
-                    Image("close")
-                        .foregroundColor(Color(.grey500))
-                }
-                .padding(.top, ViewSpacing.xxlarge)
-                .padding(.trailing, ViewSpacing.large)
-            }
-            .ignoresSafeArea()
             .transition(.move(edge: .bottom))
+            .ignoresSafeArea()
     }
 }
 

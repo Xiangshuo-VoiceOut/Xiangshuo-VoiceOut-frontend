@@ -20,23 +20,31 @@ enum TextInputTheme {
 
 struct TextInputView: View {
     @Binding var text: String
-    var isSecuredField: Bool
+    var label: String?
+    var isSecuredField: Bool?
     let placeholder: String
     var prefixIcon: String?
     var validationState: ValidationState? = ValidationState.neutral
     var validationMessage: String? = ""
     var suffixContent: AnyView?
-    var borderRadius: CGFloat = CornerRadius.medium.value
     var theme: TextInputTheme? = .grey
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
+            if let label = label, !label.isEmpty {
+                Text(LocalizedStringKey(label))
+                    .font(.typography(.bodyMedium))
+                    .foregroundColor(.textPrimary)
+                    .padding(.bottom, ViewSpacing.small)
+            }
+
             HStack(spacing: ViewSpacing.small) {
                 if let icon = prefixIcon {
                     Image(icon)
                         .foregroundColor(.borderSecondary)
                 }
 
-                if isSecuredField {
+                if isSecuredField == true {
                     SecureField(
                         LocalizedStringKey(placeholder),
                         text: $text,
@@ -109,6 +117,7 @@ struct TextInputView_Previews: PreviewProvider {
     static var previews: some View {
         TextInputView(
             text: .constant(""),
+            label: "email",
             isSecuredField: true,
             placeholder: "email_placeholder",
             validationMessage: "错误"

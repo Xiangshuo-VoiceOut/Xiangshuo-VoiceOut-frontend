@@ -89,11 +89,11 @@ struct ForgetPasswordView: View {
                 .frameStyle()
             }
         }
-        .onChange(of: textInputVM.email) { _ in
+        .onChange(of: textInputVM.email) {
             verificationCodeVM.validateInputs()
             verificationCodeVM.resetValidateState()
         }
-        .onChange(of: textInputVM.verificationCode) { _ in
+        .onChange(of: textInputVM.verificationCode) {
             verificationCodeVM.validateInputs()
             verificationCodeVM.resetValidateState()
         }

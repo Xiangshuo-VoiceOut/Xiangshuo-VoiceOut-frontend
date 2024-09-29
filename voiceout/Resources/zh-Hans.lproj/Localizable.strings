@@ -63,6 +63,8 @@
 "basic_info" = "基本信息";
 "degree_info" = "学历信息";
 "consultant_service" = "咨询服务";
+"payment_information" = "收款信息";
+"consultant_time" = "咨询时间";
 "degree" = "学历";
 "degree_placeholder" = "请选择您的学历";
 "bachelor" = "本科";
@@ -135,3 +137,10 @@
 "Thursday" = "周四";
 "Friday" = "周五";
 "Saturday" = "周六";
+"confirmation" = "确定";
+"time_zone" = "时区";
+"schedule_same_time" = "为每天设置相同的可约时间";
+"start_time" = "开始时间";
+"end_time" = "结束时间";
+"cancel" = "取消";
+"time" = "时间";

@@ -31,11 +31,9 @@ struct TherapistSignupView: View {
             )
 
             VStack(alignment: .leading, spacing: ViewSpacing.small) {
-                Text("email")
-                    .font(.typography(.bodyMedium))
-                    .foregroundColor(.textPrimary)
                 TextInputView(
                     text: $textInputVM.email,
+                    label: "email",
                     isSecuredField: false,
                     placeholder: "email_placeholder",
                     validationState: textInputVM.isValidEmail ? ValidationState.neutral : ValidationState.error,
@@ -44,11 +42,9 @@ struct TherapistSignupView: View {
                 )
                 .autocapitalization(.none)
 
-                Text("email_verification_code")
-                    .font(.typography(.bodyMedium))
-                    .foregroundColor(.textPrimary)
                 TextInputView(
                     text: $textInputVM.verificationCode,
+                    label: "email_verification_code",
                     isSecuredField: false,
                     placeholder: "input_verification_code",
                     validationState: textInputVM.isVerificationCodeValid ? ValidationState.neutral : ValidationState.error,
@@ -60,22 +56,19 @@ struct TherapistSignupView: View {
                     theme: .white
                 )
 
-                Text("password")
-                    .font(.typography(.bodyMedium))
-                    .foregroundColor(.textPrimary)
                 SecuredTextInputView(
                     text: $textInputVM.newPassword,
+                    label: "password",
                     securedPlaceholder: "new_password",
                     securedValidation: textInputVM.isValidPassword ? .neutral : .error,
                     validationMsg: textInputVM.newPasswordValidationMsg,
                     theme: .white
                 )
 
-                Text("password_verification")
-                    .font(.typography(.bodyMedium))
-                    .foregroundColor(.textPrimary)
                 SecuredTextInputView(
-                    text: $textInputVM.confirmNewPassowrd, securedPlaceholder: "new_password",
+                    text: $textInputVM.confirmNewPassowrd,
+                    label: "password_verification",
+                    securedPlaceholder: "new_password",
                     securedValidation: textInputVM.isValidPassword ? .neutral : .error,
                     validationMsg: textInputVM.confirmPasswordValidationMsg,
                     theme: .white
@@ -107,16 +100,16 @@ struct TherapistSignupView: View {
             .padding(.top, ViewSpacing.xxxlarge)
             .padding(.bottom, ViewSpacing.base)
         }
-        .onChange(of: textInputVM.email) { _ in
+        .onChange(of: textInputVM.email) {
             therapistSignupVM.updateButtonState()
         }
-        .onChange(of: textInputVM.verificationCode) { _ in
+        .onChange(of: textInputVM.verificationCode) {
             therapistSignupVM.updateButtonState()
         }
-        .onChange(of: textInputVM.newPassword) { _ in
+        .onChange(of: textInputVM.newPassword) {
             therapistSignupVM.updateButtonState()
         }
-        .onChange(of: textInputVM.confirmNewPassowrd) { _ in
+        .onChange(of: textInputVM.confirmNewPassowrd) {
             therapistSignupVM.updateButtonState()
         }
     }

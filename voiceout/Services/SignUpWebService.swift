@@ -15,7 +15,6 @@ enum SignUpError: Error {
 }
 
 class UserSignUpWebService {
-
     func userSignUp(email: String, password: String, otp: String, nickname: String, state: String, birthdate: String, gender: String, completions: @escaping (Result<String, SignUpError>) -> Void ) {
         let urlString = APIConfigs.userSignUpURL
         guard let url = URL(string: urlString) else {

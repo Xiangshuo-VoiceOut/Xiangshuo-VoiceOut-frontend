@@ -31,6 +31,11 @@ enum ButtonFontSize {
     case medium
 }
 
+enum ButtonBorderRadius {
+    case full
+    case small
+}
+
 struct ButtonView: View {
     var text: String
     var action: () -> Void
@@ -38,24 +43,30 @@ struct ButtonView: View {
     var theme: ButtonTheme? = ButtonTheme.action
     var spacing: ButtonSpacing? = ButtonSpacing.small
     var fontSize: ButtonFontSize? = ButtonFontSize.medium
+    var borderRadius: ButtonBorderRadius? = ButtonBorderRadius.full
     var maxWidth: CGFloat?
+    var suffixIcon: AnyView?
 
     var body: some View {
         Button(action: action) {
-            Text(LocalizedStringKey(text))
-                .fixedSize(horizontal: true, vertical: false)
-                .font(fontForFrameSize)
-                .padding(paddingSize)
-                .frame(maxWidth: maxWidth)
+            HStack(spacing: ViewSpacing.small) {
+                Text(LocalizedStringKey(text))
+                    .fixedSize(horizontal: true, vertical: false)
+                    .font(fontForFrameSize)
+                suffixIcon
+            }
+            .padding(paddingSize)
+            .frame(maxWidth: maxWidth)
         }
         .foregroundColor(foregroundColorForVariant)
         .background(backgroundForVariant)
-        .cornerRadius(CornerRadius.full.value)
+        .cornerRadius(radius)
         .background(
-            RoundedRectangle(cornerRadius: .full)
+            RoundedRectangle(cornerRadius: radius)
                 .stroke(.width200, strokeColorForVariant)
         )
     }
+
     private var fontForFrameSize: Font {
         switch fontSize {
         case .small:
@@ -142,14 +153,26 @@ struct ButtonView: View {
 
         }
     }
+
+    private var radius: CGFloat {
+        switch borderRadius {
+        case .full:
+            return CornerRadius.full.value
+        case.small:
+            return CornerRadius.small.value
+        default:
+            return CornerRadius.full.value
+        }
+    }
 }
 
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ButtonView(
-                text: "登录"
-            ) {}
+                text: "登录",
+                action: {}
+            )
             .previewLayout(.sizeThatFits)
         }
     }

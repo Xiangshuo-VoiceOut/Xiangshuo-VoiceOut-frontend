@@ -29,3 +29,20 @@ struct UserSignUp: Codable {
 struct SignUpResponse: Codable {
     let token: String?
 }
+
+// profile data
+struct UserProfile: Codable, Identifiable {
+    var _id: String
+    var nickname: String
+    var profilePicture: ObjectId
+    var state: String
+    var date: String
+    var comments: [Comment]
+    var id: String { _id }
+}
+
+struct Comment: Codable, Identifiable {
+    var id = UUID()
+    var comment: String
+    var rating: Int
+}

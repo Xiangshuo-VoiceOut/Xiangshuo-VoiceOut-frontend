@@ -10,6 +10,7 @@ import SwiftUI
 struct SecuredTextInputView: View {
     @State private var isSecuredField: Bool = true
     @Binding var text: String
+    var label: String?
     var securedPlaceholder: String
     var securedValidation: ValidationState? = ValidationState.neutral
     var validationMsg: String = ""
@@ -19,6 +20,7 @@ struct SecuredTextInputView: View {
     var body: some View {
         TextInputView(
             text: $text,
+            label: label,
             isSecuredField: isSecuredField,
             placeholder: securedPlaceholder,
             prefixIcon: prefixIcon,

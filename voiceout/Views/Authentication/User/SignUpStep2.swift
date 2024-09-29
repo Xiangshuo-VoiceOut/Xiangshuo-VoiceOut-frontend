@@ -39,9 +39,8 @@ struct SignUpStep2: View {
                 prefixIcon: "birthday-cake",
                 validationState: textInputVM.isVerificationCodeValid ? ValidationState.neutral : ValidationState.error
             )
-            .onChange(of: textInputVM.birthdate) { newValue in
-                textInputVM.birthdate = formatDateString(newValue)
-
+            .onChange(of: textInputVM.birthdate) {
+                textInputVM.birthdate = textInputVM.birthdate.formattedDate
             }
 
             Dropdown(

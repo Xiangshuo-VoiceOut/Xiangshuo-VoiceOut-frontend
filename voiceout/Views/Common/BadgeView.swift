@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct BadgeView: View {
-
     @State private var isActive: Bool = false
     var text: String
 

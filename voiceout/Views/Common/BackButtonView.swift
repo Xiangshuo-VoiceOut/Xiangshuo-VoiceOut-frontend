@@ -10,10 +10,13 @@ import SwiftUI
 struct BackButtonView: View {
     @EnvironmentObject var router: RouterModel
     var navigateBackTo: Route?
+    var action: (() -> Void)?
 
     var body: some View {
         Button(action: {
-            if let route = navigateBackTo {
+            if let action = action {
+                action()
+            } else if let route = navigateBackTo {
                 router.navigateTo(route)
             } else {
                 router.navigateBack()

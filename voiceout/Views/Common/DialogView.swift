@@ -17,8 +17,8 @@ struct DialogViewModifier: ViewModifier {
                     DialogView(
                         content: config.content
                     ) {
-                            close()
-                        }
+                        close()
+                    }
                 }
             }
             .ignoresSafeArea()

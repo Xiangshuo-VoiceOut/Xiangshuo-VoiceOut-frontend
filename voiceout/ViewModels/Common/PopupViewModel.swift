@@ -14,6 +14,7 @@ final class PopupViewModel: ObservableObject {
         // swiftlint:disable:next nesting
         struct PopupConfig {
             var content: AnyView
+            var hideCloseButton: Bool?
         }
 
         case na

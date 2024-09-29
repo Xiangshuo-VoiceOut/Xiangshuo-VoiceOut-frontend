@@ -63,34 +63,34 @@ struct UserSignUpView: View {
                 .frameStyle()
             }
         }
-        .onChange(of: textInputVM.email) {_ in
+        .onChange(of: textInputVM.email) {
             textInputVM.resetEmailValidationMsg()
             textInputVM.resetValidationState()
             userSignUpVM.updateNextStepButtonState()
         }
-        .onChange(of: textInputVM.verificationCode) {_ in
+        .onChange(of: textInputVM.verificationCode) {
             textInputVM.resetVerificationCodeValidationMsg()
             textInputVM.resetValidationState()
             userSignUpVM.updateNextStepButtonState()
         }
-        .onChange(of: textInputVM.newPassword) {_ in
+        .onChange(of: textInputVM.newPassword) {
             textInputVM.resetValidationState()
             textInputVM.resetConfirmPasswordValidationMsg()
             userSignUpVM.updateNextStepButtonState()
         }
-        .onChange(of: textInputVM.confirmNewPassowrd) {_ in
+        .onChange(of: textInputVM.confirmNewPassowrd) {
             textInputVM.resetConfirmPasswordValidationMsg()
             textInputVM.resetValidationState()
             userSignUpVM.updateNextStepButtonState()
 
         }
-        .onChange(of: textInputVM.nickname) {_ in
+        .onChange(of: textInputVM.nickname) {
             textInputVM.resetNicknameValidationMsg()
             textInputVM.resetValidationState()
             userSignUpVM.updateUserSignUpButtonState()
 
         }
-        .onChange(of: textInputVM.birthdate) {_ in
+        .onChange(of: textInputVM.birthdate) {
             textInputVM.resetValidationState()
             textInputVM.resetBirthdateValidationMsg()
             userSignUpVM.updateUserSignUpButtonState()

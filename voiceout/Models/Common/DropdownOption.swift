@@ -67,4 +67,6 @@ extension DropdownOption {
         DropdownOption(option: "Anchorage (GMT-8)"),
         DropdownOption(option: "Honolulu (GMT-10)")
     ]
+
+    static let states: [DropdownOption] = StateData.allStates.map { DropdownOption(option: $0.code)}
 }

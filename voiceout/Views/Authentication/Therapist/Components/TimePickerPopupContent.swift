@@ -11,6 +11,18 @@ struct TimePickerPopupContent: View {
     @EnvironmentObject var popupViewModel: PopupViewModel
     @State private var activeTab: Tab = Tab.startEndTimes[0]
     @ObservedObject var timeInput: TimeInputData
+    private var initSelectedStartTime: Int
+    private var initSelectedStartAMPM: String
+    private var initSelectedEndTime: Int
+    private var initSelectedEndAMPM: String
+
+    init(timeInput: TimeInputData) {
+        self.timeInput = timeInput
+        initSelectedStartTime = timeInput.selectedStartTime
+        initSelectedStartAMPM = timeInput.selectedStartAmPm
+        initSelectedEndTime = timeInput.selectedEndTime
+        initSelectedEndAMPM = timeInput.selectedEndAmPm
+    }
 
     var body: some View {
         VStack(spacing: ViewSpacing.medium) {
@@ -43,6 +55,7 @@ struct TimePickerPopupContent: View {
                     text: "cancel",
                     action: {
                         dismissPopup()
+                        cancelSelection()
                     },
                     variant: .outline
                 )
@@ -52,7 +65,7 @@ struct TimePickerPopupContent: View {
                     action: {
                         dismissPopup()
                     },
-                    theme: .base,
+                    theme: .action,
                     spacing: .medium
                 )
             }
@@ -66,6 +79,13 @@ struct TimePickerPopupContent: View {
         withAnimation(.spring()) {
             popupViewModel.dismiss()
         }
+    }
+
+    private func cancelSelection() {
+        timeInput.selectedStartTime = initSelectedStartTime
+        timeInput.selectedStartAmPm = initSelectedStartAMPM
+        timeInput.selectedEndTime = initSelectedEndTime
+        timeInput.selectedEndAmPm = initSelectedEndAMPM
     }
 }
 

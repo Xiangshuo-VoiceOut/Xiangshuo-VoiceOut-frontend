@@ -10,7 +10,7 @@ import PhotosUI
 
 struct ImagePickerView: View {
     @State private var showImagePicker: Bool = false
-    @State private var selectedImage: UIImage?
+    @Binding var selectedImage: UIImage?
 
     var body: some View {
         VStack {
@@ -41,7 +41,7 @@ struct ImagePickerView: View {
             }
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(sourceType: .photoLibrary) { image in
-                    self.selectedImage = image
+                    selectedImage = image
 
                 }
                 .ignoresSafeArea()
@@ -88,5 +88,5 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 #Preview {
-    ImagePickerView()
+    ImagePickerView(selectedImage: .constant(nil))
 }

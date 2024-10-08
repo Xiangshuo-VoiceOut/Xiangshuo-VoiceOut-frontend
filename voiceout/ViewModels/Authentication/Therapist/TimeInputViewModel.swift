@@ -8,6 +8,13 @@
 import Foundation
 import SwiftUI
 
+class TimeInputData: ObservableObject {
+    @Published var selectedStartTime: Int = 9
+    @Published var selectedEndTime: Int = 5
+    @Published var selectedStartAmPm: String = "AM"
+    @Published var selectedEndAmPm: String = "PM"
+}
+
 class TimeInputViewModel: ObservableObject {
     @Published var timeInputs: [TimeInputData] = [TimeInputData()]
     @Published var timeInputsByWeek: [[TimeInputData?]] = [
@@ -49,11 +56,4 @@ class TimeInputViewModel: ObservableObject {
             timeInputsByWeek[dayIndex].remove(at: index)
         }
     }
-}
-
-class TimeInputData: ObservableObject {
-    @Published var selectedStartTime: Int = 0
-    @Published var selectedEndTime: Int = 0
-    @Published var selectedStartAmPm: String = "AM"
-    @Published var selectedEndAmPm: String = "AM"
 }

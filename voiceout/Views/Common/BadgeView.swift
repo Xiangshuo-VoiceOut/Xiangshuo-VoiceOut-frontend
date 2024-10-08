@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct BadgeView: View {
-    @State private var isActive: Bool = false
+    var isActive: Bool
     var text: String
 
     var body: some View {
         ButtonView(
             text: text,
-            action: {isActive.toggle()},
-            theme: isActive ? .badge : .bagdeInactive,
+            action: {},
+            theme: isActive ? .action : .bagdeInactive,
             spacing: .xsmall,
             fontSize: .small
         )
@@ -23,5 +23,5 @@ struct BadgeView: View {
 }
 
 #Preview {
-    BadgeView(text: "青少年")
+    BadgeView(isActive: false, text: "青少年")
 }

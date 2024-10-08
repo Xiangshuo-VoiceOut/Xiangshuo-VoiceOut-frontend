@@ -15,7 +15,6 @@ enum ButtonVariant {
 enum ButtonTheme {
     case action
     case base
-    case badge
     case bagdeInactive
 }
 
@@ -83,8 +82,6 @@ struct ButtonView: View {
         default:
             if theme == .bagdeInactive {
                 return .textSecondary
-            } else if theme == .badge {
-                return .textBrandPrimary
             } else if theme == .base {
                 return .textPrimary
             } else {
@@ -100,8 +97,6 @@ struct ButtonView: View {
         default:
             if theme == .action {
                 return .surfaceBrandPrimary
-            } else if theme == .badge {
-                return .brandPrimary.opacity(0.3)
             } else {
                 return .surfacePrimaryGrey
             }

@@ -22,12 +22,14 @@ class TherapistSignupVM: ObservableObject {
     }
 
     func handleButtonClick() {
-        if !textInputVM.validateEmail() {
+        textInputVM.validateEmail()
+        if !textInputVM.isValidEmail {
             isButtonEnabled = false
             return
         }
 
-        if !textInputVM.validatePassword() || !textInputVM.isMatchedPasswords() {
+        textInputVM.validatePassword()
+        if !textInputVM.isValidPassword || !textInputVM.isMatchedPasswords() {
             return
         }
 

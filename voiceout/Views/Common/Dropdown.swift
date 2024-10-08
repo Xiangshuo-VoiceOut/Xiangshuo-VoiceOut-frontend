@@ -15,14 +15,22 @@ struct Dropdown: View {
     let placeholder: String
     let options: [DropdownOption]
     var backgroundColor: Color = Color.surfacePrimaryGrey2
+    var isRequiredField: Bool? = false
+    var dividerIndex: Int?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             if let label = label, !label.isEmpty {
-                Text(LocalizedStringKey(label))
-                    .font(.typography(.bodyMedium))
-                    .foregroundColor(.textPrimary)
-                    .padding(.bottom, ViewSpacing.small)
+                HStack(spacing: 0) {
+                    Text(LocalizedStringKey(label))
+
+                    if isRequiredField == true {
+                        Text("*")
+                    }
+                }
+                .font(.typography(.bodyMedium))
+                .foregroundColor(.textPrimary)
+                .padding(.bottom, ViewSpacing.small)
             }
 
             Button(action: {
@@ -60,7 +68,8 @@ struct Dropdown: View {
                                 self.isOptionPresented = false
                                 self.selectionOption = option
                             },
-                            backgroundColor: backgroundColor
+                            backgroundColor: backgroundColor,
+                            dividerIndex: dividerIndex
                         )
                     }
                 }

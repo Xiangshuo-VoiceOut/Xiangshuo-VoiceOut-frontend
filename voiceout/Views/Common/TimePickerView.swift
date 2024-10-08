@@ -15,7 +15,7 @@ struct TimePickerView: View {
     var body: some View {
         HStack(spacing: 0) {
             PickerViewWithoutIndicator(selection: $hour) {
-                ForEach(0...12, id: \.self) { value in
+                ForEach(1...12, id: \.self) { value in
                     Text("\(value)")
                         .tag(value)
                 }
@@ -47,9 +47,9 @@ struct PickerViewWithoutIndicator<Content: View, Selection: Hashable>: View {
                 RemovePickerIndicator {
                     isHidden = true
                 }
+            } else {
+                content
             }
-
-            content
         }
         .pickerStyle(.wheel)
     }
@@ -87,5 +87,5 @@ extension UIView {
 }
 
 #Preview {
-    TimePickerView(hour: .constant(1), amPm: .constant("AM"))
+    TimePickerView(hour: .constant(8), amPm: .constant("AM"))
 }

@@ -28,14 +28,21 @@ struct TextInputView: View {
     var validationMessage: String? = ""
     var suffixContent: AnyView?
     var theme: TextInputTheme? = .grey
+    var isRequiredField: Bool? = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             if let label = label, !label.isEmpty {
-                Text(LocalizedStringKey(label))
-                    .font(.typography(.bodyMedium))
-                    .foregroundColor(.textPrimary)
-                    .padding(.bottom, ViewSpacing.small)
+                HStack(spacing: 0) {
+                    Text(LocalizedStringKey(label))
+
+                    if isRequiredField == true {
+                        Text("*")
+                    }
+                }
+                .font(.typography(.bodyMedium))
+                .foregroundColor(.textPrimary)
+                .padding(.bottom, ViewSpacing.small)
             }
 
             HStack(spacing: ViewSpacing.small) {

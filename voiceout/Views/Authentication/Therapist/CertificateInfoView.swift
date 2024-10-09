@@ -8,18 +8,27 @@
  import SwiftUI
 
  struct CertificateInfoView: View {
-    @StateObject private var registrationVM: TherapistRegistrationVM
-
-    init() {
-        _registrationVM = StateObject(wrappedValue: TherapistRegistrationVM())
-    }
+     @EnvironmentObject var registrationVM: TherapistRegistrationVM
 
     var body: some View {
         VStack {
             ForEach(Array(registrationVM.certificateInfos.enumerated()), id: \.offset) { index, viewModel in
-                certificateInfoSection(
+                CertificateInfoSection(
                     viewModel: viewModel,
-                    index: index
+                    showDeleteButton: registrationVM.certificateInfos.count > 1 && index < registrationVM.certificateInfos.count - 1,
+                    onDelete: {
+                        registrationVM.removeCertificateInfo(at: index)
+                        registrationVM.validateCertificateInfoComplete()
+                    },
+                    onValidateRequiredFileds: {
+                        registrationVM.validateRestCertificateFieldsRequired(at: index)
+                    },
+                    onValidateCertificateExpireDate: {
+                        registrationVM.validateCertificateExpireDate(at: index)
+                    },
+                    onValidateFieldsComplete: {
+                        registrationVM.validateCertificateInfoComplete()
+                    }
                 )
             }
 
@@ -38,33 +47,31 @@
             .padding(.horizontal, ViewSpacing.xxxsmall)
         }
     }
+ }
 
-    @ViewBuilder
-    private func certificateInfoSection(
-        @ObservedObject viewModel: CertificateInfoData,
-        index: Int
-    ) -> some View {
-//        let binding = Binding{
-//            registrationVM.certificateInfos[index]
-//        } set: {
-//            registrationVM.certificateInfos[index] = $0
-//        }
+struct CertificateInfoSection: View {
+    @ObservedObject var viewModel: CertificateInfoData
+    var showDeleteButton: Bool = false
+    var onDelete: () -> Void
+    var onValidateRequiredFileds: () -> Void
+    var onValidateCertificateExpireDate: () -> Void
+    var onValidateFieldsComplete: () -> Void
 
+    var body: some View {
         VStack(alignment: .leading, spacing: ViewSpacing.small) {
            Dropdown(
-                selectionOption: $viewModel.type,
+                selectionOption: $viewModel.selectedCertificateType,
                 label: "certificate_type",
                 placeholder: String(localized: "certificate_type_placeholder"),
                 options: DropdownOption.certificates,
-                backgroundColor: .white
+                backgroundColor: .white,
+                isRequiredField: true
             )
             .overlay(
                 GeometryReader { geometry in
-                    if registrationVM.certificateInfos.count > 1 && index < registrationVM.certificateInfos.count - 1 {
+                    if showDeleteButton {
                         Button(
-                            action: {
-                                registrationVM.removeCertificateInfo(at: index)
-                            }
+                            action: onDelete
                         ) {
                             Image("delete")
                                 .foregroundColor(.grey300)
@@ -76,6 +83,10 @@
                     }
                 }
             )
+            .onChange(of: viewModel.selectedCertificateType) {
+                onValidateRequiredFileds()
+                onValidateFieldsComplete()
+            }
 
             TextInputView(
                 text: $viewModel.id,
@@ -83,38 +94,65 @@
                 isSecuredField: false,
                 placeholder: "ID_placeholder",
                 validationState: ValidationState.neutral,
-                theme: .white
+                theme: .white,
+                isRequiredField: viewModel.isRestFieldRequired
             )
             .autocapitalization(.none)
+            .onChange(of: viewModel.id) {
+                onValidateFieldsComplete()
+            }
 
             TextInputView(
-                text: $viewModel.expiryDate,
+                text: $viewModel.expireDate,
                 label: "certificate_expiration_date",
                 isSecuredField: false,
                 placeholder: "date_placeholder",
-                validationState: ValidationState.neutral,
-                theme: .white
+                validationState: viewModel.isValidExpireDate ? .neutral : .error,
+                validationMessage: viewModel.expireDateValidationMsg,
+                theme: .white,
+                isRequiredField: viewModel.isRestFieldRequired
             )
             .autocapitalization(.none)
+            .onChange(of: viewModel.expireDate) {
+                if !viewModel.expireDate.isEmpty { viewModel.expireDate = viewModel.expireDate.formattedDateMMDDYYYY
+                    onValidateCertificateExpireDate()
+                }
+                onValidateFieldsComplete()
+            }
 
             Dropdown(
                 selectionOption: $viewModel.certificateLocation,
-                label: "location_state",
+                label: "location",
                 placeholder: String(localized: "certificate_location"),
-                options: registrationVM.allStates,
-                backgroundColor: .white
+                options: [DropdownOption(option: "中国")] + DropdownOption.states,
+                backgroundColor: .white,
+                isRequiredField: viewModel.isRestFieldRequired,
+                dividerIndex: 0
             )
+            .onChange(of: viewModel.certificateLocation) {
+                onValidateFieldsComplete()
+            }
 
-            Text("upload_certificate_image")
-                .font(.typography(.bodyMedium))
-                .foregroundColor(.textPrimary)
-            ImagePickerView()
+            HStack(spacing: 0) {
+                Text("upload_certificate_image")
+                if viewModel.isRestFieldRequired {
+                    Text("*")
+                }
+            }
+            .font(.typography(.bodyMedium))
+            .foregroundColor(.textPrimary)
+            .padding(.top, ViewSpacing.base)
+
+            ImagePickerView(selectedImage: $viewModel.certificateImage)
                 .padding(.bottom, ViewSpacing.xlarge)
+                .onChange(of: viewModel.certificateImage) {
+                    onValidateFieldsComplete()
+                }
         }
-
     }
- }
+}
 
- #Preview {
+#Preview {
     CertificateInfoView()
- }
+        .environmentObject(TherapistRegistrationVM(textInputVM: TextInputVM(), timeInputVM: TimeInputViewModel()))
+}

@@ -33,14 +33,14 @@ struct SignUpStep2: View {
             .padding(.bottom)
 
             TextInputView(
-                text: $textInputVM.birthdate,
+                text: $textInputVM.date,
                 isSecuredField: false,
                 placeholder: "input_birthday_placeholder",
                 prefixIcon: "birthday-cake",
                 validationState: textInputVM.isVerificationCodeValid ? ValidationState.neutral : ValidationState.error
             )
-            .onChange(of: textInputVM.birthdate) {
-                textInputVM.birthdate = textInputVM.birthdate.formattedDate
+            .onChange(of: textInputVM.date) {
+                textInputVM.date = textInputVM.date.formattedDateMMDDYYYY
             }
 
             Dropdown(

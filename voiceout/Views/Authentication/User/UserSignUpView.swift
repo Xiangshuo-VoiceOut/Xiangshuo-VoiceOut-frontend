@@ -64,35 +64,29 @@ struct UserSignUpView: View {
             }
         }
         .onChange(of: textInputVM.email) {
-            textInputVM.resetEmailValidationMsg()
             textInputVM.resetValidationState()
             userSignUpVM.updateNextStepButtonState()
         }
         .onChange(of: textInputVM.verificationCode) {
-            textInputVM.resetVerificationCodeValidationMsg()
             textInputVM.resetValidationState()
             userSignUpVM.updateNextStepButtonState()
         }
         .onChange(of: textInputVM.newPassword) {
             textInputVM.resetValidationState()
-            textInputVM.resetConfirmPasswordValidationMsg()
             userSignUpVM.updateNextStepButtonState()
         }
         .onChange(of: textInputVM.confirmNewPassowrd) {
-            textInputVM.resetConfirmPasswordValidationMsg()
             textInputVM.resetValidationState()
             userSignUpVM.updateNextStepButtonState()
 
         }
         .onChange(of: textInputVM.nickname) {
-            textInputVM.resetNicknameValidationMsg()
             textInputVM.resetValidationState()
             userSignUpVM.updateUserSignUpButtonState()
 
         }
-        .onChange(of: textInputVM.birthdate) {
+        .onChange(of: textInputVM.date) {
             textInputVM.resetValidationState()
-            textInputVM.resetBirthdateValidationMsg()
             userSignUpVM.updateUserSignUpButtonState()
         }
     }

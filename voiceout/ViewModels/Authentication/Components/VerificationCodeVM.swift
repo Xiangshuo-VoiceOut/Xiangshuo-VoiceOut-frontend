@@ -26,7 +26,8 @@ class VerificationCodeVM: ObservableObject {
     var verificationToken: String?
 
     func sendVerificationCode() {
-        if !textInputVM.validateEmail() {
+        textInputVM.validateEmail()
+        if !textInputVM.isValidEmail {
             return
         }
 
@@ -53,7 +54,7 @@ class VerificationCodeVM: ObservableObject {
     private func handleSendCodeErrors(error: Error) {
         if let error = error as? GetVerificationCodeError, error == .userNotFound {
             textInputVM.setEmailValidationMsg(msg: .notExist, context: .login)
-            textInputVM.setIsValidEmail(isValid: false)
+            textInputVM.isValidEmail = false
         } else {
             return
         }
@@ -78,7 +79,7 @@ class VerificationCodeVM: ObservableObject {
     func isVerificationValid() {
         guard verificationToken != nil, !textInputVM.verificationCode.isEmpty else {
                 textInputVM.setVerificationCodeValidationMsg(msg: .enterCode)
-                textInputVM.setIsVerificationCodeValid(isValid: false)
+                textInputVM.isVerificationCodeValid = false
                 return
             }
 
@@ -87,15 +88,15 @@ class VerificationCodeVM: ObservableObject {
                 switch result {
                 case .success(let isValid):
                     if isValid {
-                        self?.textInputVM.resetVerificationCodeValidationMsg()
-                        self?.textInputVM.setIsVerificationCodeValid(isValid: true)
+                        self?.textInputVM.verificationCodeValidationMsg = ""
+                        self?.textInputVM.isVerificationCodeValid = true
                     } else {
                         self?.textInputVM.setVerificationCodeValidationMsg(msg: .invalidVerification)
-                        self?.textInputVM.setIsVerificationCodeValid(isValid: false)
+                        self?.textInputVM.isVerificationCodeValid = false
                     }
                 case .failure:
                     self?.textInputVM.setVerificationCodeValidationMsg(msg: .invalidVerification)
-                    self?.textInputVM.setIsVerificationCodeValid(isValid: false)
+                    self?.textInputVM.isVerificationCodeValid = false
                 }
                 self?.validateInputs()
             }
@@ -103,10 +104,10 @@ class VerificationCodeVM: ObservableObject {
     }
 
     func resetValidateState() {
-        textInputVM.setIsValidEmail(isValid: true)
-        textInputVM.resetEmailValidationMsg()
-        textInputVM.setIsVerificationCodeValid(isValid: true)
-        textInputVM.resetVerificationCodeValidationMsg()
+        textInputVM.isValidEmail = true
+        textInputVM.emailValidationMsg = ""
+        textInputVM.isVerificationCodeValid = true
+        textInputVM.verificationCodeValidationMsg = ""
     }
 
     func validateInputs() {

@@ -64,6 +64,8 @@ struct TimePickerPopupContent: View {
                     text: "confirmation",
                     action: {
                         dismissPopup()
+                        // swiftlint:disable:next line_length
+                        timeInput.timeRangeLabel =  "\(timeInput.selectedStartTime) \(timeInput.selectedStartAmPm) - \(timeInput.selectedEndTime) \(timeInput.selectedEndAmPm)"
                     },
                     theme: .action,
                     spacing: .medium

@@ -135,7 +135,7 @@ struct BankInformationView: View {
                     label: "Confirm Routing Number",
                     isSecuredField: false,
                     placeholder: "Confirm Routing Number",
-                    validationState: registrationVM.isMachedCheckingNumber ? .neutral : .error,
+                    validationState: registrationVM.isMachedRoutingNumber ? .neutral : .error,
                     validationMessage: registrationVM.confirmRoutingNumberValidationMsg,
                     theme: .white,
                     isRequiredField: true

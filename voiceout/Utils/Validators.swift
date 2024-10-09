@@ -126,3 +126,21 @@ public func checkingNumberValidator(_ accountNumber: String) -> Bool {
 
     return CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: accountNumber))
 }
+
+// ex, 9 AM - 5 PM
+public func timeRangeValidator(_ timeRangeInput: String) -> Bool {
+    let components = timeRangeInput.split(separator: "-").map { $0.trimmingCharacters(in: .whitespaces) }
+    guard components.count == 2 else {
+        return false
+    }
+
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "h a"
+    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+
+    if let startTime = dateFormatter.date(from: String(components[0])), let endTime = dateFormatter.date(from: String(components[1])) {
+        return startTime < endTime
+    } else {
+        return false
+    }
+}

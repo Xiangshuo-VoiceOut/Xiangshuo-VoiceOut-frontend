@@ -35,16 +35,18 @@ struct PopupView: View {
     var content: AnyView
     var didClose: () -> Void
     var hideCloseButton: Bool?
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
 
     var body: some View {
         content
+            .padding(.top, safeAreaInsets.top)
             .overlay(alignment: .topTrailing) {
                 if hideCloseButton != true {
                     Button(action: didClose) {
                         Image("close")
                             .foregroundColor(Color(.grey500))
                     }
-                    .padding(.top, ViewSpacing.large)
+                    .padding(.top, safeAreaInsets.top + ViewSpacing.base)
                     .padding(.trailing, ViewSpacing.large)
                 }
             }
@@ -58,6 +60,6 @@ struct PopupView: View {
 
 struct PopupView_Previews: PreviewProvider {
     static var previews: some View {
-        PopupView(content: AnyView(Text("content"))) {}
+        PopupView(content: AnyView(Text("content")), didClose: {}, hideCloseButton: false)
     }
 }

@@ -32,6 +32,9 @@ struct AvailableTimesView: View {
                     isOn: $registrationVM.isSameTimeSchedule
                 )
                 .toggleStyle(CustomToggleStyle())
+                .onChange(of: registrationVM.isSameTimeSchedule) {
+                    registrationVM.validateAvailableTimesComplete()
+                }
 
                 if registrationVM.isSameTimeSchedule {
                     ForEach(Array(timeInputVM.timeInputs.enumerated()), id: \.offset) { index, timeInputData in
@@ -43,6 +46,10 @@ struct AvailableTimesView: View {
                             removeAction: {
                                 timeInputVM.removeTimeInput(at: index)
                             },
+                            onValidate: {
+                                timeInputVM.validateTimeRange(at: index)
+                                registrationVM.validateAvailableTimesComplete()
+                            },
                             showRemoveButton: timeInputVM.timeInputs.count > 1 && index != 0,
                             timeInput: timeInputData
                         )
@@ -53,9 +60,9 @@ struct AvailableTimesView: View {
                             timeInputVM.updateTimeInputByDay(selectedDays: registrationVM.selectedDayIndices.sorted())
                         }
 
-                    ForEach(Array(timeInputVM.timeInputsByWeek.enumerated()), id: \.offset) {index, timeInputsPerDay in
-                        ForEach(Array(timeInputsPerDay.enumerated()), id: \.offset) { i, timeInputData in
-                            if let timeInputData = timeInputData {
+                    ForEach(Array(timeInputVM.timeInputsByDay.enumerated()), id: \.offset) {index, timeInputs in
+                        ForEach(Array(timeInputs.enumerated()), id: \.offset) { i, timeInput in
+                            if let timeInput = timeInput {
                                 TimeInputView(
                                     label: i == 0 ? Day.weekLabel[index].label : "",
                                     addAction: {
@@ -64,8 +71,12 @@ struct AvailableTimesView: View {
                                     removeAction: {
                                         timeInputVM.removeTimeInputByDay(at: index, index: i)
                                     },
-                                    showRemoveButton: timeInputsPerDay.count > 1 && i != 0,
-                                    timeInput: timeInputData
+                                    onValidate: {
+                                        timeInputVM.validateTimeRangeByDay(dayIndex: index, index: i)
+                                        registrationVM.validateAvailableTimesComplete()
+                                    },
+                                    showRemoveButton: timeInputs.count > 1 && i != 0,
+                                    timeInput: timeInput
                                 )
                             }
                         }

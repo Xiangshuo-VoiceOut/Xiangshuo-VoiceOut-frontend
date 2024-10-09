@@ -27,11 +27,13 @@ class UserSignUpVM: ObservableObject {
     }
 
     func goToNextPage() {
-        if !textInputVM.validateEmail() {
+        textInputVM.validateEmail()
+        if !textInputVM.isValidEmail {
             return
         }
 
-        if !textInputVM.validatePassword() || !textInputVM.isMatchedPasswords() {
+        textInputVM.validatePassword()
+        if !textInputVM.isValidPassword || !textInputVM.isMatchedPasswords() {
             return
         }
 
@@ -46,7 +48,8 @@ class UserSignUpVM: ObservableObject {
     }
 
     func userSignUp() {
-        if !textInputVM.validateDate() {
+        textInputVM.validateDate()
+        if !textInputVM.isDateValid {
             return
         }
         guard let stateOption = selectedState?.option,
@@ -59,7 +62,7 @@ class UserSignUpVM: ObservableObject {
             otp: textInputVM.verificationCode,
             nickname: textInputVM.nickname,
             state: stateOption,
-            birthdate: textInputVM.birthdate,
+            birthdate: textInputVM.date,
             gender: genderOption,
             completions: handleUserLoginResult
         )
@@ -83,13 +86,13 @@ class UserSignUpVM: ObservableObject {
     private func handleUserSignUpFailure(_ error: SignUpError) {
         switch error {
         case .userExists:
-            textInputVM.setIsValidEmail(isValid: false)
+            textInputVM.isValidEmail = false
             textInputVM.setEmailValidationMsg(msg: .alreadyExist, context: .signup)
         case .verificationCodeError:
-            textInputVM.setIsVerificationCodeValid(isValid: false)
+            textInputVM.isVerificationCodeValid = false
             textInputVM.setVerificationCodeValidationMsg(msg: .invalidVerification)
         case .nicknameExists:
-            textInputVM.setIsValidEmail(isValid: false)
+            textInputVM.isValidEmail = false
             textInputVM.setNicknameValidationMsg()
         case .na:
             isSignUpSuccessfully = false
@@ -109,7 +112,7 @@ class UserSignUpVM: ObservableObject {
     }
 
     func updateUserSignUpButtonState() {
-        let allCompleted = !textInputVM.nickname.isEmpty && selectedState != nil && !textInputVM.birthdate.isEmpty && selectedGender != nil
+        let allCompleted = !textInputVM.nickname.isEmpty && selectedState != nil && !textInputVM.date.isEmpty && selectedGender != nil
         if !allCompleted {
             isUserSignUpEnabled = false
         } else {

@@ -21,17 +21,18 @@ class ResetPasswordVM: ObservableObject {
     }
 
     func resetPassword() {
-        if !textInputVM.validatePassword() || !textInputVM.isMatchedPasswords() {
+        textInputVM.validatePassword()
+        if !textInputVM.isValidPassword || !textInputVM.isMatchedPasswords() {
             return
         }
         webservice.resetPassword(newPassword: textInputVM.newPassword, role: role) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case.success:
-                    self?.textInputVM.resetNewPasswordValidationMsg()
+                    self?.textInputVM.newPasswordValidationMsg = ""
                     self?.isResetSuccessful = true
                 case.failure:
-                    self?.textInputVM.resetNewPasswordValidationMsg()
+                    self?.textInputVM.newPasswordValidationMsg = ""
                     self?.isResetSuccessful = false
                 }
             }
@@ -42,10 +43,10 @@ class ResetPasswordVM: ObservableObject {
     private func handleVerificationCodeErrors(_ error: GetVerificationCodeError) {
         switch error {
         case .userNotFound:
-            textInputVM.setIsValidEmail(isValid: false)
+            textInputVM.isValidEmail = false
             textInputVM.setEmailValidationMsg(msg: .notExist, context: .login)
         default:
-            textInputVM.setIsVerificationCodeValid(isValid: false)
+            textInputVM.isVerificationCodeValid = false
             textInputVM.setVerificationCodeValidationMsg(msg: .invalidVerification)
         }
 

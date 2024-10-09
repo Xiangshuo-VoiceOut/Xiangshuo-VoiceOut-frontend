@@ -8,13 +8,9 @@
  import SwiftUI
 
  struct ConsultTypesView: View {
-    @StateObject var registrationVM: TherapistRegistrationVM
-    @State private var maxCharacterLimit = 24
-    @State private var remainingCharacters = 24
-
-    init() {
-        _registrationVM = StateObject(wrappedValue: TherapistRegistrationVM())
-    }
+     @EnvironmentObject var registrationVM: TherapistRegistrationVM
+     @State private var maxCharacterLimit = 24
+     @State private var remainingCharacters = 24
 
     var body: some View {
         VStack(alignment: .leading, spacing: ViewSpacing.small) {
@@ -23,9 +19,19 @@
                 .foregroundColor(.textPrimary)
             FlowLayout {
                 ForEach(Badge.targetGroup) { badge in
-                    BadgeView(text: badge.name)
-                        .padding(.trailing, ViewSpacing.medium)
-                        .padding(.bottom, ViewSpacing.medium)
+                    BadgeView(
+                        isActive: registrationVM.targetClientTypes.contains(badge.name),
+                        text: badge.name
+                    )
+                    .padding(.trailing, ViewSpacing.medium)
+                    .padding(.bottom, ViewSpacing.medium)
+                    .simultaneousGesture(
+                        TapGesture()
+                            .onEnded {
+                                registrationVM.selectTargetClientTypes(with: badge.name)
+                                registrationVM.validateConsultTypesComplete()
+                            }
+                    )
                 }
             }
 
@@ -34,9 +40,19 @@
                 .foregroundColor(.textPrimary)
             FlowLayout {
                 ForEach(Badge.areaOfExpertise) { badge in
-                    BadgeView(text: badge.name)
-                        .padding(.trailing, ViewSpacing.medium)
-                        .padding(.bottom, ViewSpacing.medium)
+                    BadgeView(
+                        isActive: registrationVM.targetFieldTypes.contains(badge.name),
+                        text: badge.name
+                    )
+                    .padding(.trailing, ViewSpacing.medium)
+                    .padding(.bottom, ViewSpacing.medium)
+                    .simultaneousGesture(
+                        TapGesture()
+                            .onEnded {
+                                registrationVM.selectTargetFieldTypes(with: badge.name)
+                                registrationVM.validateConsultTypesComplete()
+                                }
+                    )
                 }
             }
 
@@ -45,14 +61,24 @@
                 .foregroundColor(.textPrimary)
             FlowLayout {
                 ForEach(Badge.specializedStyles) { badge in
-                    BadgeView(text: badge.name)
-                        .padding(.trailing, ViewSpacing.medium)
-                        .padding(.bottom, ViewSpacing.medium)
+                    BadgeView(
+                        isActive: registrationVM.targetStyleTypes.contains(badge.name),
+                        text: badge.name
+                    )
+                    .padding(.trailing, ViewSpacing.medium)
+                    .padding(.bottom, ViewSpacing.medium)
+                    .simultaneousGesture(
+                        TapGesture()
+                            .onEnded {
+                                registrationVM.selectTargetStyleTypes(with: badge.name)
+                                registrationVM.validateConsultTypesComplete()
+                            }
+                    )
                 }
             }
 
             TextInputView(
-                text: $registrationVM.fee,
+                text: $registrationVM.consultingRate,
                 label: "fee",
                 isSecuredField: false,
                 placeholder: "fee_placeholder",
@@ -60,9 +86,12 @@
                 theme: .white
             )
             .autocapitalization(.none)
+            .onChange(of: registrationVM.consultingRate) {
+                registrationVM.validateConsultTypesComplete()
+            }
 
             TextInputView(
-                text: $registrationVM.title,
+                text: $registrationVM.personalTitle,
                 label: "title",
                 isSecuredField: false,
                 placeholder: "title_placeholder",
@@ -70,13 +99,14 @@
                 theme: .white
             )
             .autocapitalization(.none)
-            .onChange(of: registrationVM.title) {
-                if registrationVM.title.count > maxCharacterLimit {
-                    registrationVM.title = String(registrationVM.title.prefix(maxCharacterLimit))
+            .onChange(of: registrationVM.personalTitle) {
+                if registrationVM.personalTitle.count > maxCharacterLimit {
+                    registrationVM.personalTitle = String(registrationVM.personalTitle.prefix(maxCharacterLimit))
                     remainingCharacters = 0
                 } else {
-                    remainingCharacters = maxCharacterLimit - registrationVM.title.count
+                    remainingCharacters = maxCharacterLimit - registrationVM.personalTitle.count
                 }
+                registrationVM.validateConsultTypesComplete()
             }
 
             HStack {
@@ -93,4 +123,6 @@
 
  #Preview {
     ConsultTypesView()
+         .environmentObject(TherapistRegistrationVM(textInputVM: TextInputVM(), timeInputVM: TimeInputViewModel()))
+
  }

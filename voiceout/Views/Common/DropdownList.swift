@@ -11,15 +11,20 @@ struct DropdownList: View {
     let options: [DropdownOption]
     let onSelectedAction: (_ option: DropdownOption) -> Void
     var backgroundColor: Color = Color.surfacePrimaryGrey2
+    var dividerIndex: Int? = 0
 
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading) {
-                ForEach(options) { option in
+                ForEach(options.indices, id: \.self) { index in
                     DropdownListRow(
-                        option: option,
+                        option: options[index],
                         onSelectedAction: self.onSelectedAction
                     )
+
+                    if index == dividerIndex {
+                        Divider()
+                    }
                 }
             }
         }

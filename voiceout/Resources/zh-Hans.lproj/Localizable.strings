@@ -56,7 +56,7 @@
 "location" = "地区";
 "state_placeholder" = "请选择您的所在州";
 "phone_number" = "联系电话";
-"phone_number_placeholder" = "(XXX)XXX-XXXX";
+"phone_number_placeholder" = "(XXX) XXX-XXXX";
 "birthdate" = "出生日期";
 "birthdate_placeholder" = "MM/DD/YYYY";
 "upload_profile" = "请上传头像照片";
@@ -85,14 +85,14 @@
 "certificate_location" = "请选择资格证所属的地区";
 "upload_certificate_image" = "请上传证书照片";
 "add_new_certificate" = "添加新的职业";
-"target_client" = "擅长人群*(多选)";
+"target_client" = "擅长人群*（多选）";
 "children" = "儿童";
 "teenager" = "青少年";
 "adult" = "成人";
 "partner" = "伴侣";
 "family" = "家庭";
 "aged" = "老年人";
-"target_field" = "擅长领域*(多选)";
+"target_field" = "擅长领域*（多选）";
 "negativy" = "负面情绪";
 "pressure_management" = "压力管理";
 "interpersonal_relationships" = "人际关系";
@@ -103,7 +103,7 @@
 "psychological_trauma" = "心理创伤";
 "behavior_problem" = "行为问题";
 "addiction issues" = "成瘾问题";
-"target_style" = "擅长风格*(多选)";
+"target_style" = "擅长风格*（多选）";
 "gentle" = "温柔";
 "candid"= "坦率";
 "flexible" = "灵活";
@@ -149,6 +149,7 @@
 "invalid_ssn" = "请输入9位SSN号!";
 "invalid_routing_number" = "请输入正确的9位 Routing number!";
 "invalid_checking_number" = "请输入正确的 Checking Account Number!";
+"invalid_time_range" = "结束时间必须晚于开始时间!";
 "mismatch_input_error" = "输入内容不匹配，请重新输入!";
 "mismatch_date_input_error" = "输入日期不匹配，请重新输入!";
 "flexible_availability_update" = "登录后,您可以随时在您的个人主页编辑您的可约时间.";

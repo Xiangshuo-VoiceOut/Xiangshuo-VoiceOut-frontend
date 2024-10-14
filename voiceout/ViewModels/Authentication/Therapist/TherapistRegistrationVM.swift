@@ -28,6 +28,7 @@ class CertificateInfoData: ObservableObject {
     @Published var certificateImage: UIImage?
 }
 
+// swiftlint:disable:next type_body_length
 class TherapistRegistrationVM: ObservableObject {
     @Published var isNextStepEnabled: Bool = false
     @Published var currentStep: Int = 0
@@ -221,7 +222,18 @@ class TherapistRegistrationVM: ObservableObject {
     }
 
     func validateAvailableTimesComplete() {
-        if selectedTimeZone != nil {
+        let isCompleted = isSameTimeSchedule ?
+            timeInputVM.timeInputs.allSatisfy { timeInput in
+                timeInput.isValidTimeRange
+            }
+            :
+            timeInputVM.timeInputsByDay.allSatisfy { timeInputs in
+                timeInputs.allSatisfy { timeinput in
+                    timeinput?.isValidTimeRange == true
+                }
+            }
+
+        if isCompleted {
             isNextStepEnabled = true
         } else {
             isNextStepEnabled = false
@@ -378,7 +390,7 @@ class TherapistRegistrationVM: ObservableObject {
     }
 
     func validateConfirmCheckingNumber() {
-        if routingNumber == confirmRoutingNumber {
+        if checkingNumber == confirmCheckingNumber {
             isMachedCheckingNumber = true
             confirmCheckingNumberValidationMsg = ""
         } else {

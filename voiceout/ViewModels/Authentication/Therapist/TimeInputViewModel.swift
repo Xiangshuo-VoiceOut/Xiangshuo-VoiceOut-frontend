@@ -13,11 +13,13 @@ class TimeInputData: ObservableObject {
     @Published var selectedEndTime: Int = 5
     @Published var selectedStartAmPm: String = "AM"
     @Published var selectedEndAmPm: String = "PM"
+    @Published var timeRangeLabel: String = "9 AM - 5 PM"
+    @Published var isValidTimeRange: Bool = true
 }
 
 class TimeInputViewModel: ObservableObject {
     @Published var timeInputs: [TimeInputData] = [TimeInputData()]
-    @Published var timeInputsByWeek: [[TimeInputData?]] = [
+    @Published var timeInputsByDay: [[TimeInputData?]] = [
         [TimeInputData()],
         [TimeInputData()],
         [TimeInputData()],
@@ -26,6 +28,10 @@ class TimeInputViewModel: ObservableObject {
         [TimeInputData()],
         [TimeInputData()]
     ]
+
+    func timeRangeLabel(with timeInput: TimeInputData) -> String {
+        "\(timeInput.selectedStartTime) \(timeInput.selectedStartAmPm) - \(timeInput.selectedEndTime) \(timeInput.selectedEndAmPm)"
+    }
 
     func addTimeInput() {
         timeInputs.append(TimeInputData())
@@ -38,9 +44,9 @@ class TimeInputViewModel: ObservableObject {
     }
 
     func updateTimeInputByDay(selectedDays: [Int]) {
-        timeInputsByWeek = timeInputsByWeek.enumerated().map { (offset, _) in
+        timeInputsByDay = timeInputsByDay.enumerated().map { (offset, _) in
             if selectedDays.contains(offset) {
-                return timeInputsByWeek[offset].isEmpty ? [TimeInputData()] : timeInputsByWeek[offset]
+                return timeInputsByDay[offset].isEmpty ? [TimeInputData()] : timeInputsByDay[offset]
             } else {
                 return []
             }
@@ -48,12 +54,28 @@ class TimeInputViewModel: ObservableObject {
     }
 
     func addTimeInputByDay(at index: Int) {
-        timeInputsByWeek[index].append(TimeInputData())
+        timeInputsByDay[index].append(TimeInputData())
     }
 
     func removeTimeInputByDay(at dayIndex: Int, index: Int) {
-        if timeInputsByWeek[dayIndex].count > 1 {
-            timeInputsByWeek[dayIndex].remove(at: index)
+        if timeInputsByDay[dayIndex].count > 1 {
+            timeInputsByDay[dayIndex].remove(at: index)
+        }
+    }
+
+    func validateTimeRange(at index: Int) {
+        if timeRangeValidator(timeInputs[index].timeRangeLabel) {
+            timeInputs[index].isValidTimeRange = true
+        } else {
+            timeInputs[index].isValidTimeRange = false
+        }
+    }
+
+    func validateTimeRangeByDay(dayIndex: Int, index: Int) {
+        if let timeRangeLabel = timeInputsByDay[dayIndex][index]?.timeRangeLabel, !timeRangeLabel.isEmpty, timeRangeValidator(timeRangeLabel) {
+            timeInputsByDay[dayIndex][index]?.isValidTimeRange = true
+        } else {
+            timeInputsByDay[dayIndex][index]?.isValidTimeRange = false
         }
     }
 }

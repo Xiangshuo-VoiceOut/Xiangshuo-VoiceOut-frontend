@@ -64,6 +64,7 @@ struct TherapistFinishView: View {
         }
         .environmentObject(popupViewModel)
         .popup(with: .popupViewModel(popupViewModel))
+        .popup(with: .dialogViewModel(dialogViewModel))
     }
 
     func openCooperationAgreementPopupContent() {

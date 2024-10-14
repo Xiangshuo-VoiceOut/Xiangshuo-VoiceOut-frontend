@@ -38,7 +38,7 @@ struct RegistrationFormView: View {
 
             VStack(spacing: 0) {
                 StepProgressView(
-                    totalSteps: $registrationVM.totalSteps,
+                    totalSteps: registrationVM.totalSteps,
                     currentStep: $registrationVM.currentStep
                 )
                 .padding(.top, safeAreaInsets.top + 83)

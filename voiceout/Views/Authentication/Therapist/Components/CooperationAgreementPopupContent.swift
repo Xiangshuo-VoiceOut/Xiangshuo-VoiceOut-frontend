@@ -23,7 +23,8 @@ struct CooperationAgreementPopupContent: View {
                         .font(.typography(.bodySmall))
                 }
                 .padding(.horizontal, ViewSpacing.large)
-                .padding(.vertical, ViewSpacing.xxxlarge)
+                .padding(.top, ViewSpacing.xlarge)
+                .padding(.bottom, ViewSpacing.xxxlarge)
             }
 
             GeometryReader { geometry in
@@ -79,8 +80,7 @@ struct CooperationAgreementPopupContent: View {
                 }
             }
         }
-        .edgesIgnoringSafeArea(.all)
-        .popup(with: .dialogViewModel(dialogViewModel))
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 

@@ -58,10 +58,9 @@ struct RegistrationFormView: View {
                                 text: registrationVM.currentStep < registrationVM.totalSteps - 1 ? "next_step" : "confirmation",
                                 action: registrationVM.goToNextStep,
                                 theme: registrationVM.isNextStepEnabled ? .action : .base,
-                                spacing: .large
+                                maxWidth: .infinity
                             )
-                            .padding(.bottom, ViewSpacing.medium)
-                            .padding(.top, ViewSpacing.xlarge)
+                            .padding(.vertical, ViewSpacing.xlarge)
                             .disabled(!registrationVM.isNextStepEnabled)
                         }
                         .frame(minHeight: geometry.size.height)
@@ -69,7 +68,7 @@ struct RegistrationFormView: View {
                 }
             }
             .edgesIgnoringSafeArea(.all)
-            .padding(.horizontal, ViewSpacing.large)
+            .padding(.horizontal, ViewSpacing.medium)
             .popup(with: .popupViewModel(popupViewModel))
         }
         .environmentObject(popupViewModel)

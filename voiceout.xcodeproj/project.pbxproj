@@ -240,16 +240,24 @@
 		689489642CC83092000FEA22 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				689489652CC830B0000FEA22 /* NameTagView.swift */,
-				689489692CC847AA000FEA22 /* PersonalView.swift */,
-				6894896B2CC84C52000FEA22 /* EducationView.swift */,
-				6894896D2CC85090000FEA22 /* QualificationView.swift */,
-				6894896F2CC8516B000FEA22 /* ConsultServiceView.swift */,
-				689489712CC8524B000FEA22 /* WordToVisitorView.swift */,
-				689489732CC8533C000FEA22 /* CareerView.swift */,
+				68A60BF42CDB4575001CBA2B /* Components */,
 				68A60BF22CDB412C001CBA2B /* ProfilePageView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		68A60BF42CDB4575001CBA2B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				689489732CC8533C000FEA22 /* CareerView.swift */,
+				689489712CC8524B000FEA22 /* WordToVisitorView.swift */,
+				6894896F2CC8516B000FEA22 /* ConsultServiceView.swift */,
+				6894896D2CC85090000FEA22 /* QualificationView.swift */,
+				6894896B2CC84C52000FEA22 /* EducationView.swift */,
+				689489692CC847AA000FEA22 /* PersonalView.swift */,
+				689489652CC830B0000FEA22 /* NameTagView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		84F0FD4E2C48AAE300E2DB79 /* Therapist */ = {

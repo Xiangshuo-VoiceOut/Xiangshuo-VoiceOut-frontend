@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+//  TODO: 1. Add variables after finishing each component revision (TODOs in component files)
+//  TODO: 2. switcher: 基本信息-客户评价-咨询服务
+//  TODO: 3. Header, menu and setting icon
+//  TODO: 4. 客户评价，咨询服务页面
 struct ProfilePageView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {

@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+//  TODO: 1. Currently created for preview purpose. Replace text content with corresponding variables for edit feature. Refer to PersonalView
+//  TODO: 2. Edit feature - pencil button action and variable passing
 struct CareerView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {

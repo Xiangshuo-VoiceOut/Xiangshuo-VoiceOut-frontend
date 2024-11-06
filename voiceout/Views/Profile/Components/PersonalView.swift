@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+//  TODO: 1. Edit feature - pencil button action and variable passing
 struct PersonalView: View {
     var age: String
     var gender: String

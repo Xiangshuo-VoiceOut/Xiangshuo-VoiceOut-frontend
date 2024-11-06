@@ -8,6 +8,9 @@
 import Foundation
 import SwiftUI
 
+
+//  TODO: 1. Personal pic Redesign - align with Figma
+//  TODO: 2. Edit feature - pencil button action and variable passing
 struct NameTagView: View {
     var name: String
     var consultingPrice: String

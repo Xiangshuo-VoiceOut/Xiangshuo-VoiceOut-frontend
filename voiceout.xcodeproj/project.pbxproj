@@ -23,6 +23,8 @@
 		848E62AD2C891D37009B162A /* StickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AC2C891D37009B162A /* StickyHeaderView.swift */; };
 		848E62AF2C892439009B162A /* OneWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AE2C892439009B162A /* OneWeekView.swift */; };
 		848E62B42C8BC8F1009B162A /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62B32C8BC8F1009B162A /* Day.swift */; };
+		8497B51B2CE81EB9006D6050 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497B51A2CE81EB1006D6050 /* EditButtonView.swift */; };
+		8497B51D2CE825A0006D6050 /* SegementedControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */; };
 		84F0FD592C48D29200E2DB79 /* StarRatingWithDoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */; };
 		84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD5A2C48D2E200E2DB79 /* CardView.swift */; };
 		84F0FD5F2C48D85A00E2DB79 /* StarRatingWithIntView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD5E2C48D85A00E2DB79 /* StarRatingWithIntView.swift */; };
@@ -132,6 +134,8 @@
 		848E62AC2C891D37009B162A /* StickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
 		848E62AE2C892439009B162A /* OneWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWeekView.swift; sourceTree = "<group>"; };
 		848E62B32C8BC8F1009B162A /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		8497B51A2CE81EB1006D6050 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
+		8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegementedControlButtonView.swift; sourceTree = "<group>"; };
 		84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingWithDoubleView.swift; sourceTree = "<group>"; };
 		84F0FD5A2C48D2E200E2DB79 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		84F0FD5E2C48D85A00E2DB79 /* StarRatingWithIntView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingWithIntView.swift; sourceTree = "<group>"; };
@@ -241,7 +245,6 @@
 			isa = PBXGroup;
 			children = (
 				68A60BF42CDB4575001CBA2B /* Components */,
-				68A60BF22CDB412C001CBA2B /* ProfilePageView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -256,8 +259,18 @@
 				6894896B2CC84C52000FEA22 /* EducationView.swift */,
 				689489692CC847AA000FEA22 /* PersonalView.swift */,
 				689489652CC830B0000FEA22 /* NameTagView.swift */,
+				8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */,
+				8497B51A2CE81EB1006D6050 /* EditButtonView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		8497B5192CE6D824006D6050 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				68A60BF22CDB412C001CBA2B /* ProfilePageView.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		84F0FD4E2C48AAE300E2DB79 /* Therapist */ = {
@@ -335,7 +348,7 @@
 		D2071D372BAA82D40040B0AE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				689489642CC83092000FEA22 /* Profile */,
+				8497B5192CE6D824006D6050 /* User */,
 				D2071D0D2BA62F300040B0AE /* ContentView.swift */,
 				D2D6CD862C036BCD00DD7688 /* RouterView.swift */,
 				D2071D412BAA8B880040B0AE /* Authentication */,
@@ -395,6 +408,7 @@
 		D2071D452BAB5E7D0040B0AE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				689489642CC83092000FEA22 /* Profile */,
 				D21660CE2C339B98008248DE /* BackButtonView.swift */,
 				B8D4720C2C175DBB00D6716A /* BadgeView.swift */,
 				D28498DB2BDDE47F00963B3A /* ButtonView.swift */,
@@ -709,6 +723,7 @@
 				689489702CC8516B000FEA22 /* ConsultServiceView.swift in Sources */,
 				D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */,
 				D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */,
+				8497B51D2CE825A0006D6050 /* SegementedControlButtonView.swift in Sources */,
 				D228B2812C94ECBB003975FB /* Badge.swift in Sources */,
 				B8D4722B2C1E41E400D6716A /* APIConfigs.swift in Sources */,
 				B8860E202C3ACCC600A79073 /* UserSignUpVM.swift in Sources */,
@@ -767,6 +782,7 @@
 				6894896C2CC84C52000FEA22 /* EducationView.swift in Sources */,
 				D2D6CD892C038B1700DD7688 /* Color.swift in Sources */,
 				D2AA0AE62CA1C2B6007A96E4 /* TimePickerView.swift in Sources */,
+				8497B51B2CE81EB9006D6050 /* EditButtonView.swift in Sources */,
 				D2ECDF8A2C8F659200FC3E24 /* BasicInfoView.swift in Sources */,
 				68A60BF32CDB412C001CBA2B /* ProfilePageView.swift in Sources */,
 				B8EF41AB2C69BAD300C77D4D /* SignUpStep1.swift in Sources */,

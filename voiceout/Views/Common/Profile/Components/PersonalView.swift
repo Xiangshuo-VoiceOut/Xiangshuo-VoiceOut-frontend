@@ -14,11 +14,12 @@ struct PersonalView: View {
     var location: String
     var language: String
     var showEditButton: Bool
+
     var body: some View {
         VStack(alignment: .leading, spacing: ViewSpacing.small) {
             HStack(alignment: .center, spacing: ViewSpacing.xxlarge) {
                 HStack(alignment: .top, spacing: ViewSpacing.xlarge) {
-                    HStack(alignment: .center, spacing: ViewSpacing.small){
+                    HStack(alignment: .center, spacing: ViewSpacing.small) {
                         Text("年龄")
                             .foregroundColor(.textPrimary)
                             .font(Font.typography(.bodyMedium))
@@ -53,8 +54,7 @@ struct PersonalView: View {
                 .padding(.vertical, ViewSpacing.xxxsmall)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            
-            HStack (alignment: .center, spacing: ViewSpacing.xxlarge){
+            HStack(alignment: .center, spacing: ViewSpacing.xxlarge) {
                 HStack(alignment: .top, spacing: ViewSpacing.small) {
                     Text("咨询语言")
                         .foregroundColor(.textPrimary)
@@ -80,7 +80,9 @@ struct PersonalView_Previews: PreviewProvider {
             gender: "女",
             location: "NY",
             language: "普通话，西班牙语",
-            showEditButton: true 
+            showEditButton: true
         )
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct TherapistProfilePageCardView<Content: View>: View {
-    var title: String? 
+    var title: String?
     var showEditButton: Bool
     @ViewBuilder var content: Content
 

@@ -16,60 +16,59 @@ struct PersonalView: View {
     var showEditButton: Bool
 
     var body: some View {
-        VStack(alignment: .leading, spacing: ViewSpacing.small) {
-            HStack(alignment: .center, spacing: ViewSpacing.xxlarge) {
-                HStack(alignment: .top, spacing: ViewSpacing.xlarge) {
-                    HStack(alignment: .center, spacing: ViewSpacing.small) {
-                        Text("年龄")
+        TherapistProfilePageCardView(title: nil, showEditButton: false) {
+            VStack(alignment: .leading, spacing: ViewSpacing.small) {
+                HStack(alignment: .center, spacing: ViewSpacing.xxlarge) {
+                    HStack(alignment: .top, spacing: ViewSpacing.xlarge) {
+                        HStack(alignment: .center, spacing: ViewSpacing.small) {
+                            Text("年龄")
+                                .foregroundColor(.textPrimary)
+                                .font(Font.typography(.bodyMedium))
+                            Text(age)
+                                .foregroundColor(.textSecondary)
+                                .font(Font.typography(.bodySmall))
+                        }
+                        HStack(alignment: .center, spacing: ViewSpacing.xsmall) {
+                            Text("性别")
+                                .foregroundColor(.textPrimary)
+                                .font(Font.typography(.bodyMedium))
+                            Text(gender)
+                                .foregroundColor(.textSecondary)
+                                .font(Font.typography(.bodySmall))
+                        }
+                        HStack(alignment: .center, spacing: ViewSpacing.xsmall) {
+                            Text("地区")
+                                .foregroundColor(.textPrimary)
+                                .font(Font.typography(.bodyMedium))
+                            Text(location)
+                                .foregroundColor(.textSecondary)
+                                .font(Font.typography(.bodySmall))
+                        }
+                        Spacer()
+                        if showEditButton {
+                            EditButtonView(action: {
+                                print("Edit button tapped")
+                            })
+                        }
+                    }
+                    .padding(.leading, 0)
+                    .padding(.trailing, ViewSpacing.small)
+                    .padding(.vertical, ViewSpacing.xxxsmall)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                HStack(alignment: .center, spacing: ViewSpacing.xxlarge) {
+                    HStack(alignment: .top, spacing: ViewSpacing.small) {
+                        Text("咨询语言")
                             .foregroundColor(.textPrimary)
                             .font(Font.typography(.bodyMedium))
-                        Text(age)
+                        Text(language)
                             .foregroundColor(.textSecondary)
                             .font(Font.typography(.bodySmall))
-                    }
-                    HStack(alignment: .center, spacing: ViewSpacing.xsmall) {
-                        Text("性别")
-                            .foregroundColor(.textPrimary)
-                            .font(Font.typography(.bodyMedium))
-                        Text(gender)
-                            .foregroundColor(.textSecondary)
-                            .font(Font.typography(.bodySmall))
-                    }
-                    HStack(alignment: .center, spacing: ViewSpacing.xsmall) {
-                        Text("地区")
-                            .foregroundColor(.textPrimary)
-                            .font(Font.typography(.bodyMedium))
-                        Text(location)
-                            .foregroundColor(.textSecondary)
-                            .font(Font.typography(.bodySmall))
-                    }
-                    Spacer()
-                    if showEditButton {
-                        EditButtonView(action: {
-                        })
                     }
                 }
-                .padding(.leading, 0)
-                .padding(.trailing, ViewSpacing.small)
-                .padding(.vertical, ViewSpacing.xxxsmall)
+                .frame(alignment: .leading)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            HStack(alignment: .center, spacing: ViewSpacing.xxlarge) {
-                HStack(alignment: .top, spacing: ViewSpacing.small) {
-                    Text("咨询语言")
-                        .foregroundColor(.textPrimary)
-                        .font(Font.typography(.bodyMedium))
-                    Text(language)
-                        .foregroundColor(.textSecondary)
-                        .font(Font.typography(.bodySmall))
-                }
-            }
-            .frame(alignment: .leading)
         }
-        .padding(ViewSpacing.medium)
-        .background(Color.surfacePrimary)
-        .cornerRadius(CornerRadius.medium.value)
-        .frame(maxWidth: .infinity, alignment: .topLeading)
     }
 }
 
@@ -82,7 +81,7 @@ struct PersonalView_Previews: PreviewProvider {
             language: "普通话，西班牙语",
             showEditButton: true
         )
-            .previewLayout(.sizeThatFits)
-            .padding()
+        .previewLayout(.sizeThatFits)
+        .padding()
     }
 }

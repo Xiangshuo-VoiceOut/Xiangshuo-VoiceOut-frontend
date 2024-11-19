@@ -99,6 +99,9 @@
 		D2D6CD852C03699000DD7688 /* RouterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD842C03699000DD7688 /* RouterModel.swift */; };
 		D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD862C036BCD00DD7688 /* RouterView.swift */; };
 		D2D6CD892C038B1700DD7688 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD882C038B1700DD7688 /* Color.swift */; };
+		D2DA1AC62CE19B6700466DBC /* TherapistRegisterWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA1AC52CE19B6600466DBC /* TherapistRegisterWebService.swift */; };
+		D2DA1AC82CE19C5200466DBC /* TherapistRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA1AC72CE19C5200466DBC /* TherapistRegister.swift */; };
+		D2DA1ACA2CE1A04C00466DBC /* UIImageToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA1AC92CE1A04C00466DBC /* UIImageToString.swift */; };
 		D2ECDF882C8E2C4D00FC3E24 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ECDF872C8E2C4D00FC3E24 /* LocalizationManager.swift */; };
 		D2ECDF8A2C8F659200FC3E24 /* BasicInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ECDF892C8F659200FC3E24 /* BasicInfoView.swift */; };
 		D2ECDF8E2C8F661500FC3E24 /* TherapistRegistrationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ECDF8D2C8F661500FC3E24 /* TherapistRegistrationVM.swift */; };
@@ -202,6 +205,9 @@
 		D2D6CD842C03699000DD7688 /* RouterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterModel.swift; sourceTree = "<group>"; };
 		D2D6CD862C036BCD00DD7688 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
 		D2D6CD882C038B1700DD7688 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		D2DA1AC52CE19B6600466DBC /* TherapistRegisterWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistRegisterWebService.swift; sourceTree = "<group>"; };
+		D2DA1AC72CE19C5200466DBC /* TherapistRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistRegister.swift; sourceTree = "<group>"; };
+		D2DA1AC92CE1A04C00466DBC /* UIImageToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageToString.swift; sourceTree = "<group>"; };
 		D2ECDF872C8E2C4D00FC3E24 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		D2ECDF892C8F659200FC3E24 /* BasicInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoView.swift; sourceTree = "<group>"; };
 		D2ECDF8D2C8F661500FC3E24 /* TherapistRegistrationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistRegistrationVM.swift; sourceTree = "<group>"; };
@@ -347,7 +353,7 @@
 				B8D4722A2C1E41E400D6716A /* APIConfigs.swift */,
 				B8D472262C1E40BD00D6716A /* LoginWebService.swift */,
 				B8D472272C1E40BD00D6716A /* ResetPasswordWebService.swift */,
-				B8444E862C47526900CBCAF8 /* SignUpWebService.swift */,
+				D2DA1AC22CE1910E00466DBC /* Authentication */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -443,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */,
+				D2DA1AC72CE19C5200466DBC /* TherapistRegister.swift */,
 			);
 			path = Therapist;
 			sourceTree = "<group>";
@@ -492,6 +499,7 @@
 				D21660E12C4C24DD008248DE /* FileReader.swift */,
 				B8860E2D2C3CCCC300A79073 /* Formatters.swift */,
 				D2ECDF872C8E2C4D00FC3E24 /* LocalizationManager.swift */,
+				D2DA1AC92CE1A04C00466DBC /* UIImageToString.swift */,
 				D21660D72C34D689008248DE /* Validators.swift */,
 				D25C2EC42BCF56790011212A /* Foundation */,
 			);
@@ -538,6 +546,31 @@
 				D2B8F4CC2C0404FB0053F82B /* ⽤户隐私政策.txt */,
 			);
 			path = Legal;
+			sourceTree = "<group>";
+		};
+		D2DA1AC22CE1910E00466DBC /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				D2DA1AC42CE1938000466DBC /* Therapist */,
+				D2DA1AC32CE1911E00466DBC /* User */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		D2DA1AC32CE1911E00466DBC /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B8444E862C47526900CBCAF8 /* SignUpWebService.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		D2DA1AC42CE1938000466DBC /* Therapist */ = {
+			isa = PBXGroup;
+			children = (
+				D2DA1AC52CE19B6600466DBC /* TherapistRegisterWebService.swift */,
+			);
+			path = Therapist;
 			sourceTree = "<group>";
 		};
 		D2ECDF8B2C8F65EC00FC3E24 /* Therapist */ = {
@@ -670,6 +703,8 @@
 				D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */,
 				D228B2812C94ECBB003975FB /* Badge.swift in Sources */,
 				B8D4722B2C1E41E400D6716A /* APIConfigs.swift in Sources */,
+				D2DA1AC82CE19C5200466DBC /* TherapistRegister.swift in Sources */,
+				D2DA1ACA2CE1A04C00466DBC /* UIImageToString.swift in Sources */,
 				B8860E202C3ACCC600A79073 /* UserSignUpVM.swift in Sources */,
 				B8D472192C1E3DED00D6716A /* LogoSize.swift in Sources */,
 				D21660DA2C34DE3C008248DE /* TherapistSignupVM.swift in Sources */,
@@ -740,6 +775,7 @@
 				D228B2882C954573003975FB /* FlowLayout.swift in Sources */,
 				848E62AD2C891D37009B162A /* StickyHeaderView.swift in Sources */,
 				D20F553B2C9C948100D61283 /* TimeInputView.swift in Sources */,
+				D2DA1AC62CE19B6700466DBC /* TherapistRegisterWebService.swift in Sources */,
 				D21660DD2C34E68A008248DE /* TextInputVM.swift in Sources */,
 				D28670B22C8BD0A400778224 /* TherapistFinishView.swift in Sources */,
 				D21660CB2C337E47008248DE /* TherapistSignupView.swift in Sources */,

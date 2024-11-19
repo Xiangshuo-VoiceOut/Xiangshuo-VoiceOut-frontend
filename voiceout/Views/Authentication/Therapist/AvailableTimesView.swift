@@ -55,10 +55,12 @@ struct AvailableTimesView: View {
                         )
                     }
                 } else {
-                    OneWeekView(selectedDayIndices: $registrationVM.selectedDayIndices)
-                        .onChange(of: registrationVM.selectedDayIndices) {
-                            timeInputVM.updateTimeInputByDay(selectedDays: registrationVM.selectedDayIndices.sorted())
-                        }
+                    OneWeekView(
+                        selectedDayIndices: $registrationVM.selectedDayIndices
+                    )
+                    .onChange(of: registrationVM.selectedDayIndices) {
+                        timeInputVM.updateTimeInputByDay(selectedDays: registrationVM.selectedDayIndices.sorted())
+                    }
 
                     ForEach(Array(timeInputVM.timeInputsByDay.enumerated()), id: \.offset) {index, timeInputs in
                         ForEach(Array(timeInputs.enumerated()), id: \.offset) { i, timeInput in

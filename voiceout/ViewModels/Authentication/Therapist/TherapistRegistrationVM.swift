@@ -51,6 +51,7 @@ class TherapistRegistrationVM: ObservableObject {
     @Published var targetFieldTypes: Set<String> = []
     @Published var targetStyleTypes: Set<String> = []
     @Published var consultingRate: String = ""
+    @Published var isValidConsultingRate: Bool = true
     @Published var personalTitle: String = ""
 
     // step 5: bank info
@@ -89,6 +90,7 @@ class TherapistRegistrationVM: ObservableObject {
 
     private var textInputVM: TextInputVM
     private var timeInputVM: TimeInputViewModel
+    private var therapistRegisterWebService = TherapistRegisterWebService()
 
     init(textInputVM: TextInputVM, timeInputVM: TimeInputViewModel) {
         self.textInputVM = textInputVM
@@ -100,8 +102,76 @@ class TherapistRegistrationVM: ObservableObject {
             currentStep += 1
             isNextStepEnabled = false
         } else {
-            // completeRegistration()
+             completeRegistration()
         }
+    }
+
+    func completeRegistration() {
+        var educationList: [Education] = schoolInfos.map { schoolInfo in
+            Education(
+                college: schoolInfo.selectedCollege,
+                degree: schoolInfo.selectedDegree?.option ?? DropdownOption.degrees[0].option,
+                graduationDate: schoolInfo.graduationTime,
+                major: schoolInfo.major
+            )
+        }
+
+        var certifications: [Certification] = certificateInfos.map { certificateInfo in
+            Certification(
+                type: certificateInfo.selectedCertificateType?.option ?? DropdownOption.certificates[0].option,
+                id: certificateInfo.id,
+                time: certificateInfo.expireDate,
+                state: certificateInfo.certificateLocation?.option ?? DropdownOption.certificates[0].option,
+                photo: certificateInfo.certificateImage?.toPngString() ?? ""
+            )
+        }
+
+        let schedules: Schedule
+        if isSameTimeSchedule {
+            var labels = timeInputVM.timeInputs.map {timeInput in
+                timeInput.timeRangeLabel
+            }
+            schedules = Schedule(week: labels)
+        } else {
+            var labels: [[String]] = timeInputVM.timeInputsByDay.map {timeInputs in
+                timeInputs.map { timeInput in
+                    timeInput?.timeRangeLabel ?? ""
+                }
+            }
+            schedules = Schedule(
+                mon: labels[0],
+                tue: labels[1],
+                wed: labels[2],
+                thu: labels[3],
+                fri: labels[4],
+                sat: labels[5],
+                sun: labels[6]
+            )
+        }
+
+        var consultation: Consultation = Consultation(
+            fee: Double(consultingRate) ?? 0,
+            group: targetClientTypes,
+            field: targetFieldTypes,
+            style: targetStyleTypes,
+            timeZone: selectedTimeZone?.option ?? DropdownOption.timezones[0].option,
+            time: schedules,
+            isAllSameTimeSchedule: isSameTimeSchedule
+        )
+
+        var body = TherapistRegister(
+            name: name,
+            gender: selectedGender?.option ?? DropdownOption.genders[0].option,
+            state: selectedState?.option ?? DropdownOption.states[0].option,
+            phone: textInputVM.phoneNumber,
+            birthday: textInputVM.phoneNumber,
+            profileImage: selectedProfileImage?.toPngString() ?? "",
+            education: educationList,
+            certification: certifications,
+            consultation: consultation,
+            signature: personalTitle
+        )
+        therapistRegisterWebService.register(body: body)
     }
 
     func goToPreviousStep() {
@@ -184,6 +254,7 @@ class TherapistRegistrationVM: ObservableObject {
             !targetFieldTypes.isEmpty &&
             !targetStyleTypes.isEmpty &&
             !consultingRate.isEmpty &&
+            isValidConsultingRate &&
             !personalTitle.isEmpty
 
         if isCompleted {

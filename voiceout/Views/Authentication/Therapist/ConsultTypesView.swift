@@ -5,7 +5,8 @@
 //  Created by J. Wu on 7/23/24.
 //
 
- import SwiftUI
+import SwiftUI
+import CoreGraphics
 
  struct ConsultTypesView: View {
      @EnvironmentObject var registrationVM: TherapistRegistrationVM
@@ -82,11 +83,17 @@
                 label: "fee",
                 isSecuredField: false,
                 placeholder: "fee_placeholder",
-                validationState: ValidationState.neutral,
+                validationState: registrationVM.isValidConsultingRate ? .neutral : .error,
+                validationMessage: "invalid_consultation_rate",
                 theme: .white
             )
             .autocapitalization(.none)
             .onChange(of: registrationVM.consultingRate) {
+                if Double(registrationVM.consultingRate) != nil {
+                    registrationVM.isValidConsultingRate = true
+                } else {
+                    registrationVM.isValidConsultingRate = false
+                }
                 registrationVM.validateConsultTypesComplete()
             }
 

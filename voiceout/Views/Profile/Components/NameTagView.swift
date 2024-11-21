@@ -57,12 +57,12 @@ struct NameTagView: View {
 
                     VStack(alignment: .trailing) {
                         if showEditButton {
-                            EditButtonView() // 显示 EditButton
+                            EditButtonView()
                         } else {
                             Button(action: {
                                 print("Follow tapped")
                             }) {
-                                Text("关注")
+                                Text(LocalizedStringKey("follow")) 
                                     .font(Font.typography(.bodySmall))
                                     .foregroundColor(.textInvert)
                                     .frame(width: 101, height: 28)

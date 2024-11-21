@@ -1,5 +1,5 @@
 //
-//  TherapistProfilePageCardView.swift.swift
+//  TherapistProfilePageCardView.swift
 //  voiceout
 //
 //  Created by Yujia Yang on 11/18/24.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct TherapistProfilePageCardView<Content: View>: View {
-    var title: String?
+    var title: LocalizedStringKey?
     var showEditButton: Bool
     @ViewBuilder var content: Content
 

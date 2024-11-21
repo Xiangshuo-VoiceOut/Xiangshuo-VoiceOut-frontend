@@ -12,7 +12,7 @@ struct EducationView: View {
     var showEditButton: Bool
 
     var body: some View {
-        TherapistProfilePageCardView(title: "学历", showEditButton: showEditButton) {
+        TherapistProfilePageCardView(title: LocalizedStringKey("degree"), showEditButton: showEditButton) {
             VStack(alignment: .leading, spacing: ViewSpacing.small) {
                 VStack(alignment: .leading, spacing: ViewSpacing.xsmall) {
                     HStack(alignment: .center) {

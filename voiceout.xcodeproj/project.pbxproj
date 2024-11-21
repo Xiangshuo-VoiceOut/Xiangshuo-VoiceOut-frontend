@@ -25,7 +25,7 @@
 		848E62B42C8BC8F1009B162A /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62B32C8BC8F1009B162A /* Day.swift */; };
 		8497B51B2CE81EB9006D6050 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497B51A2CE81EB1006D6050 /* EditButtonView.swift */; };
 		8497B51D2CE825A0006D6050 /* SegementedControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */; };
-		84ACCBE72CEC24D5000C2C7E /* TherapistProfilePageCardView.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACCBE62CEC24D3000C2C7E /* TherapistProfilePageCardView.swift.swift */; };
+		84ACCBE72CEC24D5000C2C7E /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACCBE62CEC24D3000C2C7E /* ProfileCardView.swift */; };
 		84F0FD592C48D29200E2DB79 /* StarRatingWithDoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */; };
 		84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD5A2C48D2E200E2DB79 /* CardView.swift */; };
 		84F0FD5F2C48D85A00E2DB79 /* StarRatingWithIntView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD5E2C48D85A00E2DB79 /* StarRatingWithIntView.swift */; };
@@ -137,7 +137,7 @@
 		848E62B32C8BC8F1009B162A /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		8497B51A2CE81EB1006D6050 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
 		8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegementedControlButtonView.swift; sourceTree = "<group>"; };
-		84ACCBE62CEC24D3000C2C7E /* TherapistProfilePageCardView.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistProfilePageCardView.swift.swift; sourceTree = "<group>"; };
+		84ACCBE62CEC24D3000C2C7E /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingWithDoubleView.swift; sourceTree = "<group>"; };
 		84F0FD5A2C48D2E200E2DB79 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		84F0FD5E2C48D85A00E2DB79 /* StarRatingWithIntView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingWithIntView.swift; sourceTree = "<group>"; };
@@ -243,37 +243,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		689489642CC83092000FEA22 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				68A60BF42CDB4575001CBA2B /* Components */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		68A60BF42CDB4575001CBA2B /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				84ACCBE62CEC24D3000C2C7E /* TherapistProfilePageCardView.swift.swift */,
-				689489732CC8533C000FEA22 /* CareerView.swift */,
-				689489712CC8524B000FEA22 /* WordToVisitorView.swift */,
-				6894896F2CC8516B000FEA22 /* ConsultServiceView.swift */,
-				6894896D2CC85090000FEA22 /* QualificationView.swift */,
-				6894896B2CC84C52000FEA22 /* EducationView.swift */,
-				689489692CC847AA000FEA22 /* PersonalView.swift */,
-				689489652CC830B0000FEA22 /* NameTagView.swift */,
-				8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */,
-				8497B51A2CE81EB1006D6050 /* EditButtonView.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		8497B5192CE6D824006D6050 /* User */ = {
 			isa = PBXGroup;
 			children = (
 				68A60BF22CDB412C001CBA2B /* ProfilePageView.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		84ACCBEE2CEC4BBB000C2C7E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				84ACCBEF2CEC4BCB000C2C7E /* Components */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		84ACCBEF2CEC4BCB000C2C7E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				689489732CC8533C000FEA22 /* CareerView.swift */,
+				689489712CC8524B000FEA22 /* WordToVisitorView.swift */,
+				6894896F2CC8516B000FEA22 /* ConsultServiceView.swift */,
+				8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */,
+				6894896B2CC84C52000FEA22 /* EducationView.swift */,
+				689489652CC830B0000FEA22 /* NameTagView.swift */,
+				689489692CC847AA000FEA22 /* PersonalView.swift */,
+				8497B51A2CE81EB1006D6050 /* EditButtonView.swift */,
+				6894896D2CC85090000FEA22 /* QualificationView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		84F0FD4E2C48AAE300E2DB79 /* Therapist */ = {
@@ -351,6 +350,7 @@
 		D2071D372BAA82D40040B0AE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84ACCBEE2CEC4BBB000C2C7E /* Profile */,
 				8497B5192CE6D824006D6050 /* User */,
 				D2071D0D2BA62F300040B0AE /* ContentView.swift */,
 				D2D6CD862C036BCD00DD7688 /* RouterView.swift */,
@@ -411,7 +411,6 @@
 		D2071D452BAB5E7D0040B0AE /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				689489642CC83092000FEA22 /* Profile */,
 				D21660CE2C339B98008248DE /* BackButtonView.swift */,
 				B8D4720C2C175DBB00D6716A /* BadgeView.swift */,
 				D28498DB2BDDE47F00963B3A /* ButtonView.swift */,
@@ -433,6 +432,7 @@
 				D2EE58422C9C7EC2002A4C10 /* TabView.swift */,
 				D2071D462BAB5E9E0040B0AE /* TextInputView.swift */,
 				D2AA0AE52CA1C2B6007A96E4 /* TimePickerView.swift */,
+				84ACCBE62CEC24D3000C2C7E /* ProfileCardView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -760,7 +760,7 @@
 				D228B28A2C9547F3003975FB /* BankInformationView.swift in Sources */,
 				8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */,
 				D21660E02C4C22E3008248DE /* CooperationAgreementPopupContent.swift in Sources */,
-				84ACCBE72CEC24D5000C2C7E /* TherapistProfilePageCardView.swift.swift in Sources */,
+				84ACCBE72CEC24D5000C2C7E /* ProfileCardView.swift in Sources */,
 				848E62B42C8BC8F1009B162A /* Day.swift in Sources */,
 				D26DD5D42C93B9C500C9705E /* EducationBackgroundView.swift in Sources */,
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,

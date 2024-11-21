@@ -153,3 +153,11 @@
 "mismatch_input_error" = "输入内容不匹配，请重新输入!";
 "mismatch_date_input_error" = "输入日期不匹配，请重新输入!";
 "flexible_availability_update" = "登录后,您可以随时在您的个人主页编辑您的可约时间.";
+"CareerExperience" = "从业经历";
+"WordToVisitorTitle" = "想对来访者说的话";
+"BasicInfo" = "基本信息";
+"CustomerReviews" = "客户评价";
+"ConsultationReservation" = "咨询预约";
+"follow" = "关注";
+"age" = "年龄";
+"language" = "咨询语言";

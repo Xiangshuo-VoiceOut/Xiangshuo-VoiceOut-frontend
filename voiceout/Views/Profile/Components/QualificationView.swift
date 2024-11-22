@@ -12,7 +12,10 @@ struct QualificationView: View {
     var qualifications: [String]
 
     var body: some View {
-        TherapistProfilePageCardView(title: LocalizedStringKey("certificate_info"), showEditButton: showEditButton) { 
+        ProfileCardView(
+            title: LocalizedStringKey("certificate_info"),
+            showEditButton: showEditButton
+        ) {
             VStack(alignment: .leading, spacing: ViewSpacing.small) {
                 ForEach(qualifications, id: \.self) { qualification in
                     Text(qualification)

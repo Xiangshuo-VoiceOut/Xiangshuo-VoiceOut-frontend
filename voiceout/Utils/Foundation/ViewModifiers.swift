@@ -21,6 +21,15 @@ struct FrameStyle: ViewModifier {
     }
 }
 
+struct CardStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(ViewSpacing.medium)
+            .background(Color.surfacePrimary)
+            .cornerRadius(CornerRadius.medium.value)
+    }
+}
+
 struct OffsetKey: PreferenceKey {
     static var defaultValue: CGFloat = .zero
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
@@ -31,6 +40,11 @@ struct OffsetKey: PreferenceKey {
 extension View {
     func frameStyle() -> some View {
         self.modifier(FrameStyle())
+    }
+
+    // profile cards style
+    func cardStyle() -> some View {
+        self.modifier(CardStyle())
     }
 
     @ViewBuilder
@@ -45,6 +59,5 @@ extension View {
                         .onPreferenceChange(OffsetKey.self, perform: completion)
                 }
             }
-
     }
 }

@@ -15,7 +15,10 @@ struct PersonalView: View {
     var showEditButton: Bool
 
     var body: some View {
-        TherapistProfilePageCardView(title: nil, showEditButton: false) {
+        ProfileCardView(
+            title: nil,
+            showEditButton: false
+        ) {
             VStack(alignment: .leading, spacing: ViewSpacing.small) {
                 HStack(alignment: .center, spacing: ViewSpacing.xxlarge) {
                     HStack(alignment: .top, spacing: ViewSpacing.xlarge) {

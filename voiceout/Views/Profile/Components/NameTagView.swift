@@ -1,4 +1,4 @@
-//  CardView.swift
+//  NameTagView.swift
 //  voiceout
 //
 //  Created by Jiaqi Chen on 10/15/24.
@@ -62,7 +62,7 @@ struct NameTagView: View {
                             Button(action: {
                                 print("Follow tapped")
                             }) {
-                                Text(LocalizedStringKey("follow")) 
+                                Text(LocalizedStringKey("follow"))
                                     .font(Font.typography(.bodySmall))
                                     .foregroundColor(.textInvert)
                                     .frame(width: 101, height: 28)

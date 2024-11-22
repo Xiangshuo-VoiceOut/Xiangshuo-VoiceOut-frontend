@@ -28,7 +28,10 @@ struct ConsultServiceView: View {
     var showEditButton: Bool
 
     var body: some View {
-        TherapistProfilePageCardView(title: LocalizedStringKey("consultant_service"), showEditButton: showEditButton) {
+        ProfileCardView(
+            title: LocalizedStringKey("consultant_service"),
+            showEditButton: showEditButton
+        ) {
             VStack(alignment: .leading, spacing: ViewSpacing.medium) {
                 KeyValuePairView(key: "擅长人群", value: "儿童、青少年、伴侣")
                 KeyValuePairView(key: "咨询类型", value: "亲子关系、心理创伤")

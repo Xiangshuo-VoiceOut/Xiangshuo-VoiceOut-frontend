@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct EditButtonView: View {
-    var action: () -> Void = {} 
+    var action: () -> Void = {}
 
     var body: some View {
         Button(action: {

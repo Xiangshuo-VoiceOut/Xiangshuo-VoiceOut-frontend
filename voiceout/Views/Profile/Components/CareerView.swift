@@ -20,7 +20,10 @@ struct TimelineView: View {
     var showEditButton: Bool = false
 
     var body: some View {
-        TherapistProfilePageCardView(title: title, showEditButton: showEditButton) {
+        ProfileCardView(
+            title: title,
+            showEditButton: showEditButton
+        ) {
             VStack(alignment: .leading, spacing: ViewSpacing.large) {
                 ForEach(items, id: \.title) { item in
                     VStack(alignment: .leading, spacing: ViewSpacing.xsmall) {
@@ -75,7 +78,11 @@ struct CareerView: View {
             )
         ]
 
-        TimelineView(title: "CareerExperience", items: items, showEditButton: showEditButton)
+        TimelineView(
+            title: "career_experience",
+            items: items,
+            showEditButton: showEditButton
+        )
     }
 }
 

@@ -117,6 +117,7 @@
 		D2EE58412C9C7BF3002A4C10 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EE58402C9C7BF3002A4C10 /* Tab.swift */; };
 		D2EE58432C9C7EC2002A4C10 /* SegmentedTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EE58422C9C7EC2002A4C10 /* SegmentedTabView.swift */; };
 		D2EEE6862CF107A700726FCE /* BottomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EEE6852CF107A700726FCE /* BottomNavigationBar.swift */; };
+		D2EEE68A2CF125EF00726FCE /* WarningBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EEE6892CF125EF00726FCE /* WarningBannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -232,6 +233,7 @@
 		D2EE58402C9C7BF3002A4C10 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		D2EE58422C9C7EC2002A4C10 /* SegmentedTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedTabView.swift; sourceTree = "<group>"; };
 		D2EEE6852CF107A700726FCE /* BottomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavigationBar.swift; sourceTree = "<group>"; };
+		D2EEE6892CF125EF00726FCE /* WarningBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningBannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -436,6 +438,7 @@
 				848E62AC2C891D37009B162A /* StickyHeaderView.swift */,
 				D2071D462BAB5E9E0040B0AE /* TextInputView.swift */,
 				D2AA0AE52CA1C2B6007A96E4 /* TimePickerView.swift */,
+				D2EEE6892CF125EF00726FCE /* WarningBannerView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -813,6 +816,7 @@
 				D21660DD2C34E68A008248DE /* TextInputVM.swift in Sources */,
 				D28670B22C8BD0A400778224 /* TherapistFinishView.swift in Sources */,
 				D21660CB2C337E47008248DE /* TherapistSignupView.swift in Sources */,
+				D2EEE68A2CF125EF00726FCE /* WarningBannerView.swift in Sources */,
 				D28499242BE9AAE300963B3A /* Popup.swift in Sources */,
 				6894896A2CC847AA000FEA22 /* PersonalView.swift in Sources */,
 				689489742CC8533C000FEA22 /* CareerView.swift in Sources */,

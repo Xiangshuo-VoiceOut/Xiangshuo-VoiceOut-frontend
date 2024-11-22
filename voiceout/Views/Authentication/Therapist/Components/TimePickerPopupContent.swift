@@ -26,7 +26,7 @@ struct TimePickerPopupContent: View {
 
     var body: some View {
         VStack(spacing: ViewSpacing.medium) {
-            TabView(
+            SegmentedTabView(
                 tabList: Tab.startEndTimes,
                 panelList: [
                     AnyView(

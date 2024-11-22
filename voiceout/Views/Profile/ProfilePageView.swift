@@ -46,7 +46,7 @@ struct ProfilePageView: View {
                     showEditButton: false
                 )
                 .padding(.top, ViewSpacing.medium)
-                
+
                 // Tab + scrollable views
 
                 ScrollView {

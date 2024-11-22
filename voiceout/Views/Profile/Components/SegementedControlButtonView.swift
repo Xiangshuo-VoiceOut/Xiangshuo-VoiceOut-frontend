@@ -19,7 +19,7 @@ struct SegmentedButtonView: View {
             AnyView(CustomerReviewsView()),
             AnyView(ConsultationReservationView())
         ]
-        TabView(tabList: tabs, panelList: panels)
+        SegmentedTabView(tabList: tabs, panelList: panels)
     }
 }
 

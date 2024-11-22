@@ -10,6 +10,7 @@ import Foundation
 struct Tab: Identifiable, Hashable {
     var id = UUID().uuidString
     var name: String
+    var icon: String?
 }
 
 extension Tab {
@@ -22,5 +23,12 @@ extension Tab {
         Tab(name: String(localized: "basic_info")),
         Tab(name: String(localized: "customer_reviews")),
         Tab(name: String(localized: "consultation_reservation"))
+    ]
+
+    static let bottomNavigationBar: [Tab] = [
+        Tab(name: String(localized: "home"), icon: "home"),
+        Tab(name: String(localized: "consultation"), icon: "toolkit"),
+        Tab(name: String(localized: "notification"), icon: "message"),
+        Tab(name: String(localized: "profile"), icon: "me")
     ]
 }

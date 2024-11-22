@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		689489662CC830B0000FEA22 /* NameTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689489652CC830B0000FEA22 /* NameTagView.swift */; };
+		6894896A2CC847AA000FEA22 /* PersonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689489692CC847AA000FEA22 /* PersonalView.swift */; };
+		6894896C2CC84C52000FEA22 /* EducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6894896B2CC84C52000FEA22 /* EducationView.swift */; };
+		6894896E2CC85090000FEA22 /* QualificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6894896D2CC85090000FEA22 /* QualificationView.swift */; };
+		689489702CC8516B000FEA22 /* ConsultServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6894896F2CC8516B000FEA22 /* ConsultServiceView.swift */; };
+		689489722CC8524B000FEA22 /* WordToVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689489712CC8524B000FEA22 /* WordToVisitorView.swift */; };
+		689489742CC8533C000FEA22 /* CareerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689489732CC8533C000FEA22 /* CareerView.swift */; };
+		68A60BF32CDB412C001CBA2B /* ProfilePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A60BF22CDB412C001CBA2B /* ProfilePageView.swift */; };
 		8433CAA92C459AA800845A7A /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAA82C459AA800845A7A /* CommentCardView.swift */; };
 		8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */; };
 		8433CACA2C459F9800845A7A /* ClinicianCardInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */; };
@@ -15,6 +23,9 @@
 		848E62AD2C891D37009B162A /* StickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AC2C891D37009B162A /* StickyHeaderView.swift */; };
 		848E62AF2C892439009B162A /* OneWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AE2C892439009B162A /* OneWeekView.swift */; };
 		848E62B42C8BC8F1009B162A /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62B32C8BC8F1009B162A /* Day.swift */; };
+		8497B51B2CE81EB9006D6050 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497B51A2CE81EB1006D6050 /* EditButtonView.swift */; };
+		8497B51D2CE825A0006D6050 /* SegementedControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */; };
+		84ACCBE72CEC24D5000C2C7E /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACCBE62CEC24D3000C2C7E /* ProfileCardView.swift */; };
 		84F0FD592C48D29200E2DB79 /* StarRatingWithDoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */; };
 		84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD5A2C48D2E200E2DB79 /* CardView.swift */; };
 		84F0FD5F2C48D85A00E2DB79 /* StarRatingWithIntView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0FD5E2C48D85A00E2DB79 /* StarRatingWithIntView.swift */; };
@@ -108,6 +119,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		689489652CC830B0000FEA22 /* NameTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTagView.swift; sourceTree = "<group>"; };
+		689489692CC847AA000FEA22 /* PersonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalView.swift; sourceTree = "<group>"; };
+		6894896B2CC84C52000FEA22 /* EducationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationView.swift; sourceTree = "<group>"; };
+		6894896D2CC85090000FEA22 /* QualificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualificationView.swift; sourceTree = "<group>"; };
+		6894896F2CC8516B000FEA22 /* ConsultServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultServiceView.swift; sourceTree = "<group>"; };
+		689489712CC8524B000FEA22 /* WordToVisitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordToVisitorView.swift; sourceTree = "<group>"; };
+		689489732CC8533C000FEA22 /* CareerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerView.swift; sourceTree = "<group>"; };
+		68A60BF22CDB412C001CBA2B /* ProfilePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageView.swift; sourceTree = "<group>"; };
 		8433CAA82C459AA800845A7A /* CommentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCardView.swift; sourceTree = "<group>"; };
 		8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardViewModel.swift; sourceTree = "<group>"; };
 		8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardInformation.swift; sourceTree = "<group>"; };
@@ -116,6 +135,9 @@
 		848E62AC2C891D37009B162A /* StickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
 		848E62AE2C892439009B162A /* OneWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWeekView.swift; sourceTree = "<group>"; };
 		848E62B32C8BC8F1009B162A /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		8497B51A2CE81EB1006D6050 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
+		8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegementedControlButtonView.swift; sourceTree = "<group>"; };
+		84ACCBE62CEC24D3000C2C7E /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		84F0FD582C48D29200E2DB79 /* StarRatingWithDoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingWithDoubleView.swift; sourceTree = "<group>"; };
 		84F0FD5A2C48D2E200E2DB79 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		84F0FD5E2C48D85A00E2DB79 /* StarRatingWithIntView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingWithIntView.swift; sourceTree = "<group>"; };
@@ -221,6 +243,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8497B5192CE6D824006D6050 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				68A60BF22CDB412C001CBA2B /* ProfilePageView.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		84ACCBEE2CEC4BBB000C2C7E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				84ACCBEF2CEC4BCB000C2C7E /* Components */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		84ACCBEF2CEC4BCB000C2C7E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				689489732CC8533C000FEA22 /* CareerView.swift */,
+				689489712CC8524B000FEA22 /* WordToVisitorView.swift */,
+				6894896F2CC8516B000FEA22 /* ConsultServiceView.swift */,
+				8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */,
+				6894896B2CC84C52000FEA22 /* EducationView.swift */,
+				689489652CC830B0000FEA22 /* NameTagView.swift */,
+				689489692CC847AA000FEA22 /* PersonalView.swift */,
+				8497B51A2CE81EB1006D6050 /* EditButtonView.swift */,
+				6894896D2CC85090000FEA22 /* QualificationView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		84F0FD4E2C48AAE300E2DB79 /* Therapist */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +350,8 @@
 		D2071D372BAA82D40040B0AE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84ACCBEE2CEC4BBB000C2C7E /* Profile */,
+				8497B5192CE6D824006D6050 /* User */,
 				D2071D0D2BA62F300040B0AE /* ContentView.swift */,
 				D2D6CD862C036BCD00DD7688 /* RouterView.swift */,
 				D2071D412BAA8B880040B0AE /* Authentication */,
@@ -376,6 +432,7 @@
 				D2EE58422C9C7EC2002A4C10 /* TabView.swift */,
 				D2071D462BAB5E9E0040B0AE /* TextInputView.swift */,
 				D2AA0AE52CA1C2B6007A96E4 /* TimePickerView.swift */,
+				84ACCBE62CEC24D3000C2C7E /* ProfileCardView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -666,8 +723,10 @@
 				D284992B2BEB0B4900963B3A /* RadioButtonView.swift in Sources */,
 				B8D472282C1E40BD00D6716A /* LoginWebService.swift in Sources */,
 				B8D472292C1E40BD00D6716A /* ResetPasswordWebService.swift in Sources */,
+				689489702CC8516B000FEA22 /* ConsultServiceView.swift in Sources */,
 				D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */,
 				D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */,
+				8497B51D2CE825A0006D6050 /* SegementedControlButtonView.swift in Sources */,
 				D228B2812C94ECBB003975FB /* Badge.swift in Sources */,
 				B8D4722B2C1E41E400D6716A /* APIConfigs.swift in Sources */,
 				B8860E202C3ACCC600A79073 /* UserSignUpVM.swift in Sources */,
@@ -689,6 +748,7 @@
 				D2EE58412C9C7BF3002A4C10 /* Tab.swift in Sources */,
 				D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */,
 				B8D4722E2C1E421100D6716A /* ErrorResponse.swift in Sources */,
+				689489662CC830B0000FEA22 /* NameTagView.swift in Sources */,
 				848E62AF2C892439009B162A /* OneWeekView.swift in Sources */,
 				B814C5952C220F66008F4A60 /* LoginView.swift in Sources */,
 				D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */,
@@ -700,12 +760,14 @@
 				D228B28A2C9547F3003975FB /* BankInformationView.swift in Sources */,
 				8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */,
 				D21660E02C4C22E3008248DE /* CooperationAgreementPopupContent.swift in Sources */,
+				84ACCBE72CEC24D5000C2C7E /* ProfileCardView.swift in Sources */,
 				848E62B42C8BC8F1009B162A /* Day.swift in Sources */,
 				D26DD5D42C93B9C500C9705E /* EducationBackgroundView.swift in Sources */,
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
 				D228B2922C99148E003975FB /* ToggleStyle.swift in Sources */,
 				846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */,
 				B8D472252C1E408C00D6716A /* VerificationCodeVM.swift in Sources */,
+				6894896E2CC85090000FEA22 /* QualificationView.swift in Sources */,
 				8433CACA2C459F9800845A7A /* ClinicianCardInformation.swift in Sources */,
 				D2EE58432C9C7EC2002A4C10 /* TabView.swift in Sources */,
 				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,
@@ -721,9 +783,12 @@
 				B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */,
 				D2ECDF902C8F6DBE00FC3E24 /* TherapistRegistrationFormView.swift in Sources */,
 				B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */,
+				6894896C2CC84C52000FEA22 /* EducationView.swift in Sources */,
 				D2D6CD892C038B1700DD7688 /* Color.swift in Sources */,
 				D2AA0AE62CA1C2B6007A96E4 /* TimePickerView.swift in Sources */,
+				8497B51B2CE81EB9006D6050 /* EditButtonView.swift in Sources */,
 				D2ECDF8A2C8F659200FC3E24 /* BasicInfoView.swift in Sources */,
+				68A60BF32CDB412C001CBA2B /* ProfilePageView.swift in Sources */,
 				B8EF41AB2C69BAD300C77D4D /* SignUpStep1.swift in Sources */,
 				D2D6CD852C03699000DD7688 /* RouterModel.swift in Sources */,
 				8433CAA92C459AA800845A7A /* CommentCardView.swift in Sources */,
@@ -738,12 +803,15 @@
 				D21660D82C34D689008248DE /* Validators.swift in Sources */,
 				D28499262BE9AB6200963B3A /* PopupView.swift in Sources */,
 				D228B2882C954573003975FB /* FlowLayout.swift in Sources */,
+				689489722CC8524B000FEA22 /* WordToVisitorView.swift in Sources */,
 				848E62AD2C891D37009B162A /* StickyHeaderView.swift in Sources */,
 				D20F553B2C9C948100D61283 /* TimeInputView.swift in Sources */,
 				D21660DD2C34E68A008248DE /* TextInputVM.swift in Sources */,
 				D28670B22C8BD0A400778224 /* TherapistFinishView.swift in Sources */,
 				D21660CB2C337E47008248DE /* TherapistSignupView.swift in Sources */,
 				D28499242BE9AAE300963B3A /* Popup.swift in Sources */,
+				6894896A2CC847AA000FEA22 /* PersonalView.swift in Sources */,
+				689489742CC8533C000FEA22 /* CareerView.swift in Sources */,
 				B8D4721F2C1E405000D6716A /* ResetPasswordView.swift in Sources */,
 				D28498DC2BDDE47F00963B3A /* ButtonView.swift in Sources */,
 				B8D472172C1E3DB500D6716A /* HeaderView.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  TherapistProfilePageCardView.swift
+//  ProfileCardView.swift
 //  voiceout
 //
 //  Created by Yujia Yang on 11/18/24.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct TherapistProfilePageCardView<Content: View>: View {
+struct ProfileCardView<Content: View>: View {
     var title: LocalizedStringKey?
     var showEditButton: Bool
     @ViewBuilder var content: Content
@@ -31,15 +31,16 @@ struct TherapistProfilePageCardView<Content: View>: View {
             content
                 .frame(maxWidth: .infinity, alignment: .topLeading)
         }
-        .padding(ViewSpacing.medium)
-        .background(Color.surfacePrimary)
-        .cornerRadius(CornerRadius.medium.value)
+        .cardStyle()
     }
 }
 
-struct TherapistProfilePageCardView_Previews: PreviewProvider {
+struct ProfileCardView_Previews: PreviewProvider {
     static var previews: some View {
-        TherapistProfilePageCardView(title: "从业经历", showEditButton: true) {
+        ProfileCardView(
+            title: "从业经历",
+            showEditButton: true
+        ) {
             Text("")
                 .foregroundColor(.textSecondary)
                 .font(Font.typography(.bodySmall))

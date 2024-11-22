@@ -18,14 +18,12 @@ private struct SafeAreaInsetsKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-
     var safeAreaInsets: EdgeInsets {
         self[SafeAreaInsetsKey.self]
     }
 }
 
 private extension UIEdgeInsets {
-
     var insets: EdgeInsets {
         EdgeInsets(top: top, leading: left, bottom: bottom, trailing: right)
     }

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		841EEE582CD4C41C00C9C767 /* StreamChat in Frameworks */ = {isa = PBXBuildFile; productRef = 841EEE572CD4C41C00C9C767 /* StreamChat */; };
+		841EEE5E2CD4C41C00C9C767 /* StreamChatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 841EEE5D2CD4C41C00C9C767 /* StreamChatUI */; };
+		841EEE632CD5713400C9C767 /* ChatFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EEE622CD5713200C9C767 /* ChatFrameView.swift */; };
+		841EEE682CD576AE00C9C767 /* ChatMessageComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EEE672CD576AC00C9C767 /* ChatMessageComposerView.swift */; };
+		841EEE6D2CD584AD00C9C767 /* ChatClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EEE6C2CD584AC00C9C767 /* ChatClientManager.swift */; };
+		841EEE6F2CD5936700C9C767 /* ChatChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EEE6E2CD5936600C9C767 /* ChatChannelVC.swift */; };
+		841EEE752CD6D8C800C9C767 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EEE742CD6D8C600C9C767 /* ChatManager.swift */; };
 		8433CAA92C459AA800845A7A /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAA82C459AA800845A7A /* CommentCardView.swift */; };
 		8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */; };
 		8433CACA2C459F9800845A7A /* ClinicianCardInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */; };
@@ -108,6 +115,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		841EEE622CD5713200C9C767 /* ChatFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFrameView.swift; sourceTree = "<group>"; };
+		841EEE672CD576AC00C9C767 /* ChatMessageComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageComposerView.swift; sourceTree = "<group>"; };
+		841EEE6A2CD5794C00C9C767 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		841EEE6C2CD584AC00C9C767 /* ChatClientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatClientManager.swift; sourceTree = "<group>"; };
+		841EEE6E2CD5936600C9C767 /* ChatChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatChannelVC.swift; sourceTree = "<group>"; };
+		841EEE742CD6D8C600C9C767 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		8433CAA82C459AA800845A7A /* CommentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCardView.swift; sourceTree = "<group>"; };
 		8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardViewModel.swift; sourceTree = "<group>"; };
 		8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardInformation.swift; sourceTree = "<group>"; };
@@ -215,12 +228,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				841EEE582CD4C41C00C9C767 /* StreamChat in Frameworks */,
+				841EEE5E2CD4C41C00C9C767 /* StreamChatUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		841EEE5F2CD4C47800C9C767 /*  Chat */ = {
+			isa = PBXGroup;
+			children = (
+				841EEE6C2CD584AC00C9C767 /* ChatClientManager.swift */,
+				841EEE6E2CD5936600C9C767 /* ChatChannelVC.swift */,
+				841EEE622CD5713200C9C767 /* ChatFrameView.swift */,
+				841EEE742CD6D8C600C9C767 /* ChatManager.swift */,
+				841EEE672CD576AC00C9C767 /* ChatMessageComposerView.swift */,
+			);
+			path = " Chat";
+			sourceTree = "<group>";
+		};
+		841EEE692CD5794B00C9C767 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				841EEE6A2CD5794C00C9C767 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		84F0FD4E2C48AAE300E2DB79 /* Therapist */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				D2071D0A2BA62F300040B0AE /* voiceout */,
+				841EEE692CD5794B00C9C767 /* Frameworks */,
 				D2071D092BA62F300040B0AE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -296,6 +332,7 @@
 		D2071D372BAA82D40040B0AE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				841EEE5F2CD4C47800C9C767 /*  Chat */,
 				D2071D0D2BA62F300040B0AE /* ContentView.swift */,
 				D2D6CD862C036BCD00DD7688 /* RouterView.swift */,
 				D2071D412BAA8B880040B0AE /* Authentication */,
@@ -604,6 +641,9 @@
 				"zh-Hans",
 			);
 			mainGroup = D2071CFF2BA62F300040B0AE;
+			packageReferences = (
+				841EEE562CD4C41C00C9C767 /* XCRemoteSwiftPackageReference "stream-chat-swift" */,
+			);
 			productRefGroup = D2071D092BA62F300040B0AE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -680,6 +720,7 @@
 				D228B27D2C94E452003975FB /* CertificateInfoView.swift in Sources */,
 				D29F0CF92C8BD6ED0018E7F7 /* ViewModifiers.swift in Sources */,
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
+				841EEE682CD576AE00C9C767 /* ChatMessageComposerView.swift in Sources */,
 				B8EF41AD2C6AAE8500C77D4D /* SignUpStep2.swift in Sources */,
 				84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
@@ -688,6 +729,7 @@
 				B8860E282C3C675200A79073 /* ImagePickerView.swift in Sources */,
 				D2EE58412C9C7BF3002A4C10 /* Tab.swift in Sources */,
 				D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */,
+				841EEE6F2CD5936700C9C767 /* ChatChannelVC.swift in Sources */,
 				B8D4722E2C1E421100D6716A /* ErrorResponse.swift in Sources */,
 				848E62AF2C892439009B162A /* OneWeekView.swift in Sources */,
 				B814C5952C220F66008F4A60 /* LoginView.swift in Sources */,
@@ -721,6 +763,7 @@
 				B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */,
 				D2ECDF902C8F6DBE00FC3E24 /* TherapistRegistrationFormView.swift in Sources */,
 				B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */,
+				841EEE6D2CD584AD00C9C767 /* ChatClientManager.swift in Sources */,
 				D2D6CD892C038B1700DD7688 /* Color.swift in Sources */,
 				D2AA0AE62CA1C2B6007A96E4 /* TimePickerView.swift in Sources */,
 				D2ECDF8A2C8F659200FC3E24 /* BasicInfoView.swift in Sources */,
@@ -742,9 +785,11 @@
 				D20F553B2C9C948100D61283 /* TimeInputView.swift in Sources */,
 				D21660DD2C34E68A008248DE /* TextInputVM.swift in Sources */,
 				D28670B22C8BD0A400778224 /* TherapistFinishView.swift in Sources */,
+				841EEE632CD5713400C9C767 /* ChatFrameView.swift in Sources */,
 				D21660CB2C337E47008248DE /* TherapistSignupView.swift in Sources */,
 				D28499242BE9AAE300963B3A /* Popup.swift in Sources */,
 				B8D4721F2C1E405000D6716A /* ResetPasswordView.swift in Sources */,
+				841EEE752CD6D8C800C9C767 /* ChatManager.swift in Sources */,
 				D28498DC2BDDE47F00963B3A /* ButtonView.swift in Sources */,
 				B8D472172C1E3DB500D6716A /* HeaderView.swift in Sources */,
 				B8860E1E2C3AC63300A79073 /* UserSignUpView.swift in Sources */,
@@ -981,6 +1026,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		841EEE562CD4C41C00C9C767 /* XCRemoteSwiftPackageReference "stream-chat-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GetStream/stream-chat-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.65.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		841EEE572CD4C41C00C9C767 /* StreamChat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 841EEE562CD4C41C00C9C767 /* XCRemoteSwiftPackageReference "stream-chat-swift" */;
+			productName = StreamChat;
+		};
+		841EEE5D2CD4C41C00C9C767 /* StreamChatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 841EEE562CD4C41C00C9C767 /* XCRemoteSwiftPackageReference "stream-chat-swift" */;
+			productName = StreamChatUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D2071D002BA62F300040B0AE /* Project object */;
 }

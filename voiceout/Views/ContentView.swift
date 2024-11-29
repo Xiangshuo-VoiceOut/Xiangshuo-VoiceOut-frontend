@@ -46,6 +46,15 @@ struct ContentView: View {
                     variant: .outline,
                     spacing: .medium
                 )
+
+                NavigationLink(destination: ChatFrameView(userId: "7ee74d29-a1cd-4ab3-8b44-414f1c62bd42", userName: "咨询师刘雨")) {
+                    Text("进入聊天服务")
+                        .font(.title2)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(CornerRadius.medium.value)
+                }
             }
         }
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)

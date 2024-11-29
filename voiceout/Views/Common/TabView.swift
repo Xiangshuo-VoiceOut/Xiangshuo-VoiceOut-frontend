@@ -12,7 +12,7 @@ struct TabView: View {
     var panelList: [AnyView]
     @State var tabProgress: CGFloat = 0.5
     @State var activeTab: Tab?
-    @State private var panelHeight: CGFloat = 214
+    @State private var panelHeight: CGFloat = UIScreen.main.bounds.height
 
     var body: some View {
         HStack(spacing: 0) {

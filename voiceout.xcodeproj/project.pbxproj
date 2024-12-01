@@ -110,6 +110,7 @@
 		D2D6CD852C03699000DD7688 /* RouterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD842C03699000DD7688 /* RouterModel.swift */; };
 		D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD862C036BCD00DD7688 /* RouterView.swift */; };
 		D2D6CD892C038B1700DD7688 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6CD882C038B1700DD7688 /* Color.swift */; };
+		D2E470AB2CFCFCEB00AF493B /* WeekMatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E470AA2CFCFCEB00AF493B /* WeekMatrixView.swift */; };
 		D2ECDF882C8E2C4D00FC3E24 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ECDF872C8E2C4D00FC3E24 /* LocalizationManager.swift */; };
 		D2ECDF8A2C8F659200FC3E24 /* BasicInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ECDF892C8F659200FC3E24 /* BasicInfoView.swift */; };
 		D2ECDF8E2C8F661500FC3E24 /* TherapistRegistrationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ECDF8D2C8F661500FC3E24 /* TherapistRegistrationVM.swift */; };
@@ -226,6 +227,7 @@
 		D2D6CD842C03699000DD7688 /* RouterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterModel.swift; sourceTree = "<group>"; };
 		D2D6CD862C036BCD00DD7688 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
 		D2D6CD882C038B1700DD7688 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		D2E470AA2CFCFCEB00AF493B /* WeekMatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekMatrixView.swift; sourceTree = "<group>"; };
 		D2ECDF872C8E2C4D00FC3E24 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		D2ECDF892C8F659200FC3E24 /* BasicInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoView.swift; sourceTree = "<group>"; };
 		D2ECDF8D2C8F661500FC3E24 /* TherapistRegistrationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistRegistrationVM.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				8433CAD02C45A0DD00845A7A /* ClinicianCardView.swift */,
+				D2E470AA2CFCFCEB00AF493B /* WeekMatrixView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -741,6 +744,7 @@
 				B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */,
 				B8D4721E2C1E405000D6716A /* ForgetPasswordView.swift in Sources */,
 				D2ECDF882C8E2C4D00FC3E24 /* LocalizationManager.swift in Sources */,
+				D2E470AB2CFCFCEB00AF493B /* WeekMatrixView.swift in Sources */,
 				B8860E2E2C3CCCC300A79073 /* Formatters.swift in Sources */,
 				D228B27D2C94E452003975FB /* CertificateInfoView.swift in Sources */,
 				D29F0CF92C8BD6ED0018E7F7 /* ViewModifiers.swift in Sources */,

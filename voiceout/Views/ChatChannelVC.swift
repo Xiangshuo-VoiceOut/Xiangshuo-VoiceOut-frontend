@@ -266,6 +266,20 @@ class CustomChatChannelVC: ChatChannelVC {
                 let imageAttachment = NSTextAttachment()
                 imageAttachment.image = resizeImage(image: image, to: CGSize(width: 50, height: 50))
                 inputTextView.textStorage.insert(NSAttributedString(attachment: imageAttachment), at: 0)
+                do{
+                    let attachment = try AnyAttachmentPayload(localFileURL: tempURL, attachmentType: .image)
+                    guard let channelController = (self.parent as? CustomChatChannelVC)?.channelController else { return }
+                    channelController.createNewMessage(text:"Here's an image", attachments:[attachment]) {result in
+                        switch result{
+                        case .success:
+                            print("Image sent successfully")
+                        case.failure(let error):
+                            print("Failed to send image:\(error.localizedDescription)")
+                        }
+                    }
+                }catch{
+                    print("Failed to create attachment:\(error.localizedDescription)")
+                }
             }
         }
         

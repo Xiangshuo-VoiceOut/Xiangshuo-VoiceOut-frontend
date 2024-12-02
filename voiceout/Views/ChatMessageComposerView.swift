@@ -169,7 +169,8 @@ class CustomMessageContentView: ChatMessageContentView {
             imageView.topAnchor.constraint(equalTo: bubbleView.topAnchor),
             imageView.bottomAnchor.constraint(equalTo: bubbleView.bottomAnchor),
             imageView.leadingAnchor.constraint(equalTo: bubbleView.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: bubbleView.trailingAnchor)
+            imageView.trailingAnchor.constraint(equalTo: bubbleView.trailingAnchor),
+            imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 300)
         ])
 
         let imageURL = attachment.imageURL
@@ -177,6 +178,9 @@ class CustomMessageContentView: ChatMessageContentView {
             if let data = data, let image = UIImage(data: data) {
                 DispatchQueue.main.async {
                     imageView.image = image
+                    let aspectRatio = image.size.height / image.size.width
+                    imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: aspectRatio).isActive = true
+                    bubbleView.layoutIfNeeded()
                 }
             }
         }.resume()

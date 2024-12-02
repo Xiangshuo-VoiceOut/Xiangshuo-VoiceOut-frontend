@@ -10,20 +10,26 @@ import SwiftUI
 struct Day: Identifiable {
     let id = UUID()
     let label: String
-    let date: Date // 日期
-    let isPast: Bool // 是否是过去的日期
-    let isAvailable: Bool // 是否可用
-    let slots: [Slot] // 时间段信息
+    let date: Date
+    let isPast: Bool
+    let isAvailable: Bool
+    let slots: [Slot]
+}
+
+struct Time: Identifiable {
+    let id = UUID()
+    let index: Int
+    let label: String
 }
 
 extension Day {
     static let weekLabel: [Day] = [
         Day(
             label: String(localized: "Sunday"),
-            date: Date(), // 当前日期作为占位
-            isPast: false, // 默认不是过去的日期
-            isAvailable: false, // 默认不可用
-            slots: [] // 空的时间段信息
+            date: Date(),
+            isPast: false,
+            isAvailable: false,
+            slots: []
         ),
         Day(
             label: String(localized: "Monday"),
@@ -68,6 +74,22 @@ extension Day {
             slots: []
         )
     ]
+
+    static let timeLabel: [Time] = [
+        Time(index: 8, label: "8 AM"),
+        Time(index: 9, label: "9 AM"),
+        Time(index: 10, label: "10 AM"),
+        Time(index: 11, label: "11 AM"),
+        Time(index: 12, label: "12 PM"),
+        Time(index: 13, label: "1 PM"),
+        Time(index: 14, label: "2 PM"),
+        Time(index: 15, label: "3 PM"),
+        Time(index: 16, label: "4 PM"),
+        Time(index: 17, label: "5 PM"),
+        Time(index: 18, label: "6 PM"),
+        Time(index: 19, label: "7 PM"),
+        Time(index: 20, label: "8 PM")
+    ]
 }
 
 struct Slot: Identifiable, Codable, Equatable {
@@ -93,7 +115,6 @@ struct Period: Codable {
 }
 
 extension Date {
-    /// 获取 `Date` 对象的小时
     var hour: Int {
         return Calendar.current.component(.hour, from: self)
     }

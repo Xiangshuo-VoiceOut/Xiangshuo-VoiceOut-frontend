@@ -1,5 +1,5 @@
 //
-//  TabPanelListView.swift
+//  SegmentedTabView.swift
 //  voiceout
 //
 //  Created by Xiaoyu Zhu on 9/19/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TabView: View {
+struct SegmentedTabView: View {
     var tabList: [Tab]
     var panelList: [AnyView]
     @State var tabProgress: CGFloat = 0.5
@@ -99,7 +99,7 @@ struct PanelHeightPreferenceKey: PreferenceKey {
 }
 
 #Preview {
-    TabView(
+    SegmentedTabView(
         tabList: Tab.startEndTimes,
         panelList: [
             AnyView(Text("View 1")),

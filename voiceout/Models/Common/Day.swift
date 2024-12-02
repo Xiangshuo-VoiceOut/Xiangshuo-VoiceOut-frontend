@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+
 struct Day: Identifiable {
     let id = UUID()
     let label: String
+    let date: Date
+    let isPast: Bool
+    let isAvailable: Bool
+    let slots: [Slot]
 }
 
 struct Time: Identifiable {
@@ -19,13 +24,55 @@ struct Time: Identifiable {
 
 extension Day {
     static let weekLabel: [Day] = [
-        Day(label: String(localized: "Sunday")),
-        Day(label: String(localized: "Monday")),
-        Day(label: String(localized: "Tuesday")),
-        Day(label: String(localized: "Wednesday")),
-        Day(label: String(localized: "Thursday")),
-        Day(label: String(localized: "Friday")),
-        Day(label: String(localized: "Saturday"))
+        Day(
+            label: String(localized: "Sunday"),
+            date: Date(),
+            isPast: false,
+            isAvailable: false,
+            slots: []
+        ),
+        Day(
+            label: String(localized: "Monday"),
+            date: Date(),
+            isPast: false,
+            isAvailable: false,
+            slots: []
+        ),
+        Day(
+            label: String(localized: "Tuesday"),
+            date: Date(),
+            isPast: false,
+            isAvailable: false,
+            slots: []
+        ),
+        Day(
+            label: String(localized: "Wednesday"),
+            date: Date(),
+            isPast: false,
+            isAvailable: false,
+            slots: []
+        ),
+        Day(
+            label: String(localized: "Thursday"),
+            date: Date(),
+            isPast: false,
+            isAvailable: false,
+            slots: []
+        ),
+        Day(
+            label: String(localized: "Friday"),
+            date: Date(),
+            isPast: false,
+            isAvailable: false,
+            slots: []
+        ),
+        Day(
+            label: String(localized: "Saturday"),
+            date: Date(),
+            isPast: false,
+            isAvailable: false,
+            slots: []
+        )
     ]
 
     static let timeLabel: [Time] = [
@@ -43,4 +90,32 @@ extension Day {
         Time(index: 19, label: "7 PM"),
         Time(index: 20, label: "8 PM")
     ]
+}
+
+struct Slot: Identifiable, Codable, Equatable {
+    var id: UUID = UUID()
+    var startTime: Date
+    var endTime: Date
+    var isAvailable: Bool
+}
+
+struct Availability: Identifiable, Codable {
+    var id: String
+    var clinicianID: String
+    var date: Date
+    var isValid: Bool
+    var period: [Period]
+    var slots: [Slot]
+}
+
+struct Period: Codable {
+    var morning: Bool
+    var afternoon: Bool
+    var evening: Bool
+}
+
+extension Date {
+    var hour: Int {
+        return Calendar.current.component(.hour, from: self)
+    }
 }

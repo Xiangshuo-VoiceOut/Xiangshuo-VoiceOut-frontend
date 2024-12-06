@@ -37,11 +37,11 @@ struct AvailableTimesView: View {
                 }
 
                 if registrationVM.isSameTimeSchedule {
-                    ForEach(Array(timeInputVM.timeInputs.enumerated()), id: \.offset) { index, timeInputData in
+                    ForEach(Array(timeInputVM.week.enumerated()), id: \.offset) { index, timeInputData in
                         TimeInputView(
                             label: "time",
                             addAction: {
-                                timeInputVM.addTimeInput()
+                                timeInputVM.addTimeInput(at: index)
                             },
                             removeAction: {
                                 timeInputVM.removeTimeInput(at: index)
@@ -50,7 +50,7 @@ struct AvailableTimesView: View {
                                 timeInputVM.validateTimeRange(at: index)
                                 registrationVM.validateAvailableTimesComplete()
                             },
-                            showRemoveButton: timeInputVM.timeInputs.count > 1 && index != 0,
+                            showRemoveButton: timeInputVM.week.count > 1 && index != 0,
                             timeInput: timeInputData
                         )
                     }

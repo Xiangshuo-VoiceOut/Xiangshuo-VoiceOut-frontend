@@ -46,12 +46,12 @@ final class RouterModel: ObservableObject {
         case .successRedirect(let title):
             FinishView(title: title)
         case .profilePage:
-            ProfilePageView() 
+            ProfilePageView()
                 .environmentObject(self)
         case .consultationReservation:
             ConsultationReservationView()
                 .environmentObject(self)
-        case .waitingConfirmation: 
+        case .waitingConfirmation:
             WaitingConfirmationView()
                 .environmentObject(self)
         }

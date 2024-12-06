@@ -18,7 +18,7 @@ struct NoReviewsView: View {
             Text("咨询师暂未收到任何客户的评价，请稍后再来。")
                 .font(Font.typography(.bodyLargeEmphasis))
                 .multilineTextAlignment(.center)
-                .foregroundColor(.textSecondary) 
+                .foregroundColor(.textSecondary)
                 .frame(maxWidth: .infinity, alignment: .center)
         }
         .padding(.horizontal, ViewSpacing.xxxlarge)

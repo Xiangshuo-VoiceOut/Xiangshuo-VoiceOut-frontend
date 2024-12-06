@@ -86,3 +86,18 @@ extension String {
         return "\(area)-\(group)-\(serial)"
     }
 }
+
+extension Date {
+    var formatTime: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: self)
+    }
+
+    var formatFullDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M月d日"
+        formatter.locale = Locale(identifier: "zh_Hans_CN")
+        return formatter.string(from: self)
+    }
+}

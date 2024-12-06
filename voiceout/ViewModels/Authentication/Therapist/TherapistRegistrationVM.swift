@@ -31,7 +31,7 @@ class CertificateInfoData: ObservableObject {
 // swiftlint:disable:next type_body_length
 class TherapistRegistrationVM: ObservableObject {
     @Published var isNextStepEnabled: Bool = false
-    @Published var currentStep: Int = 0
+    @Published var currentStep: Int = 5
     @Published var totalSteps = 6
 
     // step 1:basic info
@@ -223,7 +223,7 @@ class TherapistRegistrationVM: ObservableObject {
 
     func validateAvailableTimesComplete() {
         let isCompleted = isSameTimeSchedule ?
-            timeInputVM.timeInputs.allSatisfy { timeInput in
+            timeInputVM.week.allSatisfy { timeInput in
                 timeInput.isValidTimeRange
             }
             :

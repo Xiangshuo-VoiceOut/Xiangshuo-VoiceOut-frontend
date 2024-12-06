@@ -30,7 +30,7 @@ struct TherapistScheduleTimeView: View {
     private var headerView: some View {
         VStack(alignment: .center) {
             HStack(alignment: .center, spacing: 0) {
-                Text(formatFullDate(selectedDate))
+                Text(selectedDate.formatFullDate)
                     .font(Font.typography(.bodyLargeEmphasis))
                     .multilineTextAlignment(.center)
                     .foregroundColor(.textPrimary)
@@ -74,7 +74,7 @@ struct TherapistScheduleTimeView: View {
                     .fill(viewModel.selectedTimeSlot == slot ? Color.surfaceBrandPrimary : .grey75)
                     .frame(height: 38)
 
-                Text(formatTime(slot.startTime))
+                Text(slot.startTime.formatTime)
                     .font(Font.typography(.bodyMedium))
                     .multilineTextAlignment(.center)
                     .foregroundColor(
@@ -84,19 +84,6 @@ struct TherapistScheduleTimeView: View {
         }
         .disabled(!slot.isAvailable)
         .animation(.default, value: viewModel.selectedTimeSlot)
-    }
-
-    private func formatFullDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "M月d日"
-        formatter.locale = Locale(identifier: "zh_Hans_CN")
-        return formatter.string(from: date)
-    }
-
-    private func formatTime(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        return formatter.string(from: date)
     }
 
     private func generateFixedTimeSlots(for date: Date) -> [Slot] {

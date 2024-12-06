@@ -45,7 +45,7 @@ struct WaitingConfirmationView: View {
                 .zIndex(1)
 
                 ScrollView {
-                    VStack{
+                    VStack {
                         ZStack {
                             RoundedRectangle(cornerRadius: CornerRadius.medium.value)
                                 .fill(Color.surfacePrimary)
@@ -76,13 +76,13 @@ struct WaitingConfirmationView: View {
                                             EmptyView()
                                         }
                                     }
-                                    
+
                                     Text("董丽华")
                                         .font(Font.typography(.bodyLargeEmphasis))
                                         .foregroundColor(.black)
-                                
+
                                     Spacer()
-                                    
+
                                     Button(action: {
                                         print("Send message tapped")
                                     }) {
@@ -104,15 +104,15 @@ struct WaitingConfirmationView: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: CornerRadius.medium.value)
                                 .fill(Color.surfacePrimary)
-                            
+
                             VStack(alignment: .leading, spacing: ViewSpacing.medium) {
                                 HStack(alignment: .top) {
                                     Text("视频通话")
                                         .font(Font.typography(.bodyLargeEmphasis))
                                         .foregroundColor(.textBrandSecondary)
                                 }
-                                
-                                HStack(alignment: .center, spacing: ViewSpacing.large)  {
+
+                                HStack(alignment: .center, spacing: ViewSpacing.large) {
                                     Text("咨询时间")
                                         .font(Font.typography(.bodySmall))
                                         .foregroundColor(.textPrimary)
@@ -122,7 +122,7 @@ struct WaitingConfirmationView: View {
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                                HStack(alignment: .center, spacing: ViewSpacing.large)  {
+                                HStack(alignment: .center, spacing: ViewSpacing.large) {
                                     Text("订单价格")
                                         .font(Font.typography(.bodySmall))
                                         .foregroundColor(.textPrimary)
@@ -132,7 +132,7 @@ struct WaitingConfirmationView: View {
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                                HStack(alignment: .center, spacing: ViewSpacing.large)  {
+                                HStack(alignment: .center, spacing: ViewSpacing.large) {
                                     Text("订单状态")
                                         .font(Font.typography(.bodySmall))
                                         .foregroundColor(.textPrimary)

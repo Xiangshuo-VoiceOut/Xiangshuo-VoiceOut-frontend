@@ -32,7 +32,7 @@ struct ContentView: View {
                             isSelected: isSelected
                         )
                     },
-                    spacing: .medium
+                    maxWidth: 258
                 )
 
                 ButtonView(
@@ -44,7 +44,7 @@ struct ContentView: View {
                         )
                     },
                     variant: .outline,
-                    spacing: .medium
+                    maxWidth: 258
                 )
             }
         }

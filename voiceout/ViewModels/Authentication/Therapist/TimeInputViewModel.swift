@@ -18,7 +18,7 @@ class TimeInputData: ObservableObject {
 }
 
 class TimeInputViewModel: ObservableObject {
-    @Published var timeInputs: [TimeInputData] = [TimeInputData()]
+    @Published var week: [TimeInputData] = [TimeInputData()]
     @Published var timeInputsByDay: [[TimeInputData?]] = [
         [TimeInputData()],
         [TimeInputData()],
@@ -33,13 +33,13 @@ class TimeInputViewModel: ObservableObject {
         "\(timeInput.selectedStartTime) \(timeInput.selectedStartAmPm) - \(timeInput.selectedEndTime) \(timeInput.selectedEndAmPm)"
     }
 
-    func addTimeInput() {
-        timeInputs.append(TimeInputData())
+    func addTimeInput(at index: Int) {
+        week.insert(TimeInputData(), at: index + 1)
     }
 
     func removeTimeInput(at index: Int) {
-        if timeInputs.count > 1 {
-            timeInputs.remove(at: index)
+        if week.count > 1 {
+            week.remove(at: index)
         }
     }
 
@@ -64,10 +64,10 @@ class TimeInputViewModel: ObservableObject {
     }
 
     func validateTimeRange(at index: Int) {
-        if timeRangeValidator(timeInputs[index].timeRangeLabel) {
-            timeInputs[index].isValidTimeRange = true
+        if timeRangeValidator(week[index].timeRangeLabel) {
+            week[index].isValidTimeRange = true
         } else {
-            timeInputs[index].isValidTimeRange = false
+            week[index].isValidTimeRange = false
         }
     }
 

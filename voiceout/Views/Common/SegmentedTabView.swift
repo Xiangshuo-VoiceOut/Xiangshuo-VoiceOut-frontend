@@ -10,6 +10,8 @@ import SwiftUI
 struct SegmentedTabView: View {
     var tabList: [Tab]
     var panelList: [AnyView]
+    var horizontalSpacing: CGFloat? = 0
+    var isUsePanelHeight: Bool? = false
     @State var tabProgress: CGFloat = 0.5
     @State var activeTab: Tab?
     @State private var panelHeight: CGFloat = UIScreen.main.bounds.height
@@ -45,6 +47,7 @@ struct SegmentedTabView: View {
             }
         )
         .background(Color.surfacePrimaryGrey, in: .capsule)
+        .padding(.horizontal, horizontalSpacing)
 
         GeometryReader {
             let size = $0.size
@@ -59,6 +62,7 @@ struct SegmentedTabView: View {
                                 return Color.clear
                             })
                             .id(tabList[index])
+                            .padding(.horizontal, horizontalSpacing)
                             .containerRelativeFrame(.horizontal)
                     }
                 }
@@ -73,7 +77,7 @@ struct SegmentedTabView: View {
             .scrollTargetBehavior(.paging)
             .scrollClipDisabled()
         }
-        .frame(height: panelHeight)
+        .frame(height: isUsePanelHeight == true ? panelHeight : .infinity)
     }
 
     private var activeTabBinding: Binding<Tab?> {

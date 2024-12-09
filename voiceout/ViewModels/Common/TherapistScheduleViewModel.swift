@@ -12,8 +12,8 @@ class TherapistScheduleViewModel: ObservableObject {
     @Published var days: [Day] = []
     @Published var currentDate: Date = Date()
     @Published var timeSlots: [Slot] = []
-    @Published var selectedDate: Date? = nil
-    @Published var selectedTimeSlot: Slot? = nil
+    @Published var selectedDate: Date?
+    @Published var selectedTimeSlot: Slot?
 
     var isAppointmentReady: Bool {
         return selectedDate != nil && selectedTimeSlot != nil
@@ -69,7 +69,7 @@ class TherapistScheduleViewModel: ObservableObject {
         let firstDayOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: currentDate))!
         let testAvailabilities = (1...numDays).map { day -> Availability in
             let date = calendar.date(byAdding: .day, value: day - 1, to: firstDayOfMonth)!
-            let isAvailable = (12...19).contains(day) 
+            let isAvailable = (12...19).contains(day)
             let slots = (10...18).map { hour -> Slot in
                 let startTime = calendar.date(bySettingHour: hour, minute: 0, second: 0, of: date)!
                 let endTime = calendar.date(byAdding: .hour, value: 1, to: startTime)!

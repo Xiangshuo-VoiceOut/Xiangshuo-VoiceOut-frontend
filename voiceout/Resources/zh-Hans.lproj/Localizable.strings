@@ -166,3 +166,6 @@
 "consultation" = "咨询";
 "notification" = "消息";
 "profile" = "我的";
+"unfollow_prompt"="确认不再关注？";
+"continue_to_follow"="继续关注";
+"unfollow"="取消关注";

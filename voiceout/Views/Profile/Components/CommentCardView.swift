@@ -9,7 +9,7 @@ struct CommentCardView: View {
     @StateObject var viewModel = CommentCardViewModel()
 
     var body: some View {
-        VStack(alignment: .leading, spacing: ViewSpacing.medium) { 
+        VStack(alignment: .leading, spacing: ViewSpacing.medium) {
             HStack(alignment: .top, spacing: ViewSpacing.base) {
                 AsyncImage(url: URL(string: viewModel.user?.profilePicture.id ?? "")) { phase in
                     switch phase {
@@ -41,11 +41,7 @@ struct CommentCardView: View {
                     .foregroundColor(.textLight)
             }
         }
-        .padding(ViewSpacing.medium)
-        .background(Color.surfacePrimary)
-        .cornerRadius(CornerRadius.medium.value)
-        .shadow(color: Color(red: 0.35, green: 0.46, blue: 0.65).opacity(0.04), radius: 10, x: 2, y: 12)
-        .fixedSize(horizontal: false, vertical: true)
+        .cardStyle()
         .onAppear {
             viewModel.loadTestData()
         }

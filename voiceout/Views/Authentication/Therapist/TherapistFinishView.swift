@@ -56,9 +56,8 @@ struct TherapistFinishView: View {
                     action: {
                         openCooperationAgreementPopupContent()
                     },
-                    maxWidth: .infinity
+                    maxWidth: 281
                 )
-                .frame(width: 281)
             }
             .frameStyle()
         }

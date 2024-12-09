@@ -9,15 +9,9 @@ import SwiftUI
 
 struct SegmentedButtonView: View {
     @State private var selectedTab: String = "basicInfo"
-    @State private var hasReviews: Bool? = nil
+    @State private var hasReviews: Bool?
 
     var body: some View {
-        let tabs: [Tab] = [
-            Tab(id: "basicInfo", name: NSLocalizedString("basic_info", comment: "基本信息")),
-            Tab(id: "Reviews", name: NSLocalizedString("customer_reviews", comment: "客户评价")),
-            Tab(id: "consultationReservation", name: NSLocalizedString("consultation_reservation", comment: "咨询预约"))
-        ]
-
         let panels: [AnyView] = [
             AnyView(BasicInfoContentView()),
             AnyView(
@@ -34,52 +28,10 @@ struct SegmentedButtonView: View {
             AnyView(ConsultationReservationView())
         ]
 
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                ForEach(tabs, id: \.id) { tab in
-                    Button(action: {
-                        selectedTab = tab.id
-                    }) {
-                        Text(tab.name)
-                            .font(Font.typography(.bodyMedium))
-                            .foregroundColor(selectedTab == tab.id ? .textPrimary : .textSecondary)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, ViewSpacing.small)
-                            .background(
-                                Capsule()
-                                    .fill(selectedTab == tab.id ? Color.surfacePrimary : Color.surfacePrimaryGrey)
-                            )
-                    }
-                }
+        SegmentedTabView(tabList: Tab.profile, panelList: panels, horizontalSpacing: ViewSpacing.medium)
+            .onAppear {
+                fetchReviewsStatus()
             }
-            .padding(ViewSpacing.xxxsmall)
-            .background(
-                Capsule()
-                    .fill(Color.surfacePrimaryGrey)
-            )
-
-            GeometryReader { geometry in
-                ScrollView {
-                    VStack {
-                        if selectedTab == "basicInfo" {
-                            panels[0]
-                                .frame(minHeight: geometry.size.height)
-                        } else if selectedTab == "Reviews" {
-                            panels[1]
-                                .frame(minHeight: geometry.size.height)
-                        } else if selectedTab == "consultationReservation" {
-                            panels[2]
-                                .frame(minHeight: geometry.size.height)
-                        }
-                    }
-                    .padding(.top,ViewSpacing.medium)
-                }
-                .background(Color.surfacePrimaryGrey2)
-            }
-        }
-        .onAppear {
-            fetchReviewsStatus()
-        }
     }
 
     func fetchReviewsStatus() {

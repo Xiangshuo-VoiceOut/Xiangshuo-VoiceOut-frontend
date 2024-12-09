@@ -17,82 +17,67 @@ struct NameTagView: View {
     var isFollowing: Bool
 
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: CornerRadius.medium.value)
-                .fill(Color.surfacePrimary)
+        HStack(alignment: .bottom, spacing: 0) {
+            Text(name)
+                .font(.typography(.headerSmall))
+                .foregroundColor(.textTitle)
 
-            VStack(spacing: 0) {
-                HStack(spacing: 0) {
-                    VStack(alignment: .leading) {
-                        AsyncImage(url: URL(string: imageUrl)) { phase in
-                            switch phase {
-                            case .empty:
-                                ProgressView()
-                                    .frame(width: 88, height: 88)
-                            case .success(let image):
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 88, height: 88)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().stroke(Color.gray.opacity(0.3), lineWidth: 1))
-                            case .failure:
-                                Image(systemName: "person.circle.fill")
-                                    .resizable()
-                                    .frame(width: 88, height: 88)
-                                    .clipShape(Circle())
-                                    .foregroundColor(.gray)
-                            @unknown default:
-                                EmptyView()
-                            }
-                        }
-                        .offset(y: -ViewSpacing.xlarge)
-                        .padding(.bottom, -ViewSpacing.xlarge)
+            Spacer()
 
-                        Text(name)
-                            .font(Font.typography(.headerSmall))
-                            .foregroundColor(.textTitle)
-                            .padding(.top, ViewSpacing.base) 
-                    }
-                    .padding(.bottom, ViewSpacing.medium)
-
-                    Spacer()
-
-                    VStack(alignment: .trailing) {
-                        if showEditButton {
-                            EditButtonView()
-                        } else {
-                            Button(action: {
-                                followButtonAction?()
-                            }) {
-                                Text(isFollowing ? NSLocalizedString("followed", comment: "已关注") : NSLocalizedString("follow", comment: "关注"))
-                                    .font(Font.typography(.bodySmall))
-                                    .foregroundColor(isFollowing ? .textPrimary : .white)
-                                    .frame(width: 101, height: 28)
-                                    .background(isFollowing ? Color.surfacePrimaryGrey : Color.surfaceBrandPrimary)
-                                    .cornerRadius(CornerRadius.full.value)
-                            }
-                        }
-
-                        Text(consultingPrice)
-                            .font(Font.typography(.bodySmall))
-                            .foregroundColor(.textBrandSecondary)
-                            .frame(height: 20, alignment: .topLeading)
-                            .padding(.top, ViewSpacing.large)
-
-                        Text(personalTitle)
-                            .padding(.top, ViewSpacing.xsmall)
-                            .font(Font.typography(.bodyXSmallEmphasis))
-                            .kerning(0.36)
-                            .multilineTextAlignment(.trailing)
-                            .foregroundColor(.textSecondary)
-                            .frame(height: 16, alignment: .topTrailing)
-                    }
+            VStack(alignment: .trailing, spacing: ViewSpacing.xsmall) {
+                if showEditButton {
+                    EditButtonView()
+                } else {
+                    ButtonView(
+                        text: isFollowing ? "followed" : "follow",
+                        action: {
+                            followButtonAction?()
+                        },
+                        theme: isFollowing ? .base : .action,
+                        spacing: .xsmall,
+                        maxWidth: 101
+                    )
                 }
-                .padding(.horizontal, ViewSpacing.large)
+
+                Spacer()
+
+                Text(consultingPrice)
+                    .font(.typography(.bodySmall))
+                    .foregroundColor(.textBrandSecondary)
+
+                Text(personalTitle)
+                    .font(.typography(.bodyXSmall))
+                    .multilineTextAlignment(.trailing)
+                    .foregroundColor(.textSecondary)
             }
         }
-        .frame(width: 358, height: 124)
+        .padding(.horizontal, ViewSpacing.large)
+        .padding(.vertical, ViewSpacing.medium)
+        .background(Color.surfacePrimary)
+        .cornerRadius(.medium, corners: .allCorners)
+        .frame(height: 124)
+        .overlay {
+            AsyncImage(url: URL(string: imageUrl)) { phase in
+                switch phase {
+                    case .empty:
+                        ProgressView()
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .overlay(Circle().stroke(Color.gray.opacity(0.3), lineWidth: 1))
+                    case .failure:
+                        Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .foregroundColor(.gray)
+                    @unknown default:
+                        EmptyView()
+                    }
+            }
+            .frame(width: 88, height: 88)
+            .clipShape(Circle())
+            .offset(x: -140, y: -55)
+        }
     }
 }
 

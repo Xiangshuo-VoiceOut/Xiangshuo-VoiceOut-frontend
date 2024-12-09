@@ -21,13 +21,12 @@ struct ReviewsView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing:ViewSpacing.small) {
+            VStack(spacing: ViewSpacing.small) {
                 ForEach(reviews.indices, id: \.self) { index in
                     CommentCardView(viewModel: reviews[index])
                 }
             }
         }
-        .background(Color.surfacePrimaryGrey2)
     }
 }
 

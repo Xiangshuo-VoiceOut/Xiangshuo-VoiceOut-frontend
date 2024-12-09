@@ -53,17 +53,17 @@ struct MonthHeader: View {
 
 struct CalendarGrid: View {
     @ObservedObject var viewModel: TherapistScheduleViewModel
-    
+
     var body: some View {
         VStack(spacing: ViewSpacing.small) {
             WeekdaysHeader(weekdays: viewModel.weekdays)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            
+
             CalendarRows(viewModel: viewModel)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            
+
         }
-        .padding(.bottom,ViewSpacing.medium)
+        .padding(.bottom, ViewSpacing.medium)
         .padding(.horizontal, ViewSpacing.medium)
     }
 }

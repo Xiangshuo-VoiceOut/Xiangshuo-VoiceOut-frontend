@@ -10,7 +10,7 @@ import SwiftUI
 struct BasicInfoContentView: View {
     var body: some View {
         ScrollView {
-            VStack(spacing: ViewSpacing.small) { 
+            VStack(spacing: ViewSpacing.small) {
                 PersonalView(
                     age: "32",
                     gender: "女",
@@ -35,7 +35,6 @@ struct BasicInfoContentView: View {
 
                 WordToVisitorView(showEditButton: false)
             }
-            .background(Color.surfacePrimaryGrey2)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

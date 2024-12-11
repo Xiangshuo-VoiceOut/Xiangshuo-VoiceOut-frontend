@@ -85,6 +85,23 @@ extension String {
 
         return "\(area)-\(group)-\(serial)"
     }
+    
+    // 'yyyy年M月d日'
+    var formattedDateYYYYChinese: String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+                
+        guard let date = inputFormatter.date(from: self) else {
+            return self
+        }
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.locale = Locale(identifier: "zh_CN")
+        outputFormatter.dateFormat = "yyyy年M月d日"
+        
+        return outputFormatter.string(from: date)
+    }
 }
 
 extension Date {

@@ -1,17 +1,19 @@
 //
 //  CommentCardView.swift
+//  voiceout
 //
 //  Created by Yujia Yang on 7/5/24.
 //
 import SwiftUI
 
-struct CommentCardView: View {
+struct CommentCardGeneralView: View {
     @StateObject var viewModel = CommentCardViewModel()
+    var isConsultantMode: Bool = false 
 
     var body: some View {
         VStack(alignment: .leading, spacing: ViewSpacing.medium) {
             HStack(alignment: .top, spacing: ViewSpacing.base) {
-                AsyncImage(url: URL(string: viewModel.user?.profilePicture.id ?? "")) { phase in
+                AsyncImage(url: URL(string: viewModel.userComments.first?.profilePicture ?? "")) { phase in
                     switch phase {
                     case .success(let image):
                         image
@@ -19,35 +21,57 @@ struct CommentCardView: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 48, height: 48)
                             .clipShape(Circle())
+                    case .failure:
+                        Circle()
+                            .fill(Color.gray)
+                            .frame(width: 48, height: 48)
                     default:
-                        Color.gray.frame(width: 48, height: 48)
-                        Text("Unable to load image").foregroundColor(.red)
+                        ProgressView()
+                            .frame(width: 48, height: 48)
                     }
                 }
                 VStack(alignment: .leading, spacing: ViewSpacing.small) {
-                    Text(viewModel.user?.nickname ?? "")
-                        .font(Font.typography(.bodyLarge))
-                        .foregroundColor(Color.textPrimary)
-
-                    Text(viewModel.user?.comments.first?.comment ?? "")
-                        .font(Font.typography(.bodyMedium))
-                        .foregroundColor(.textPrimary)
+                    if let nickName = viewModel.userComments.first?.nickName {
+                        Text(nickName)
+                            .font(Font.typography(.bodyLarge))
+                            .foregroundColor(isConsultantMode ? .textBrandSecondary : .textSecondary)
+                    }
+                    if let feedback = viewModel.userComments.first?.feedback {
+                        Text(feedback)
+                            .font(Font.typography(.bodyMedium))
+                            .foregroundColor(.textPrimary)
+                    }
                 }
             }
+
             HStack {
                 Spacer()
-                Text(viewModel.user?.date ?? "")
-                    .font(Font.typography(.bodySmall))
-                    .foregroundColor(.textLight)
+                if let timestamp = viewModel.userComments.first?.createTimestamp {
+                    Text(timestamp.formattedDateYYYYChinese)
+                        .font(Font.typography(.bodySmall))
+                        .foregroundColor(.textSecondary)
+                }
             }
         }
         .cardStyle()
         .onAppear {
-            viewModel.loadTestData()
+            viewModel.fetchUser()
         }
     }
 }
 
+struct CommentCardView: View {
+    var body: some View {
+        VStack {
+            CommentCardGeneralView(isConsultantMode: false)
+
+            CommentCardGeneralView(isConsultantMode: true)
+        }
+    }
+}
+
+
 #Preview {
     CommentCardView()
 }
+

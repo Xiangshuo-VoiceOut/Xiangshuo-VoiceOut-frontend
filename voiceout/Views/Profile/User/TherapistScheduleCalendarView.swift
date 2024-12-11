@@ -37,10 +37,12 @@ struct MonthHeader: View {
             HStack(alignment: .center, spacing: ViewSpacing.medium) {
                 Button(action: { viewModel.previousMonth() }) {
                     Image("left-arrow")
+                        .renderingMode(.original)
                         .frame(width: 24, height: 24)
                 }
                 Button(action: { viewModel.nextMonth() }) {
                     Image("right-arrow")
+                        .renderingMode(.original)
                         .frame(width: 24, height: 24)
                 }
             }

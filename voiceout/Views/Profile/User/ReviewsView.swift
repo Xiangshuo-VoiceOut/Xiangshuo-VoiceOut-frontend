@@ -15,19 +15,16 @@ struct ReviewsView: View {
         CommentCardViewModel(),
         CommentCardViewModel(),
         CommentCardViewModel(),
-        CommentCardViewModel(),
-        CommentCardViewModel()
     ]
 
     var body: some View {
         ScrollView {
-            VStack(spacing:ViewSpacing.small) {
+            VStack(spacing: ViewSpacing.small) {
                 ForEach(reviews.indices, id: \.self) { index in
-                    CommentCardView(viewModel: reviews[index])
+                    CommentCardGeneralView(viewModel: reviews[index])
                 }
             }
         }
-        .background(Color.surfacePrimaryGrey2)
     }
 }
 

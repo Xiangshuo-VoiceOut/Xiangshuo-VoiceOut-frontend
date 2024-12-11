@@ -19,7 +19,7 @@ struct WaitingConfirmationView: View {
             VStack(spacing: 0) {
                 ZStack {
                     StickyHeaderView(
-                        title: nil,
+                        title: "订单确认",
                         leadingComponent: AnyView(
                             Button(action: {
                                 router.navigateBack()
@@ -45,7 +45,7 @@ struct WaitingConfirmationView: View {
                 .zIndex(1)
 
                 ScrollView {
-                    VStack{
+                    VStack {
                         ZStack {
                             RoundedRectangle(cornerRadius: CornerRadius.medium.value)
                                 .fill(Color.surfacePrimary)
@@ -83,13 +83,6 @@ struct WaitingConfirmationView: View {
                                 
                                     Spacer()
                                     
-                                    Button(action: {
-                                        print("Send message tapped")
-                                    }) {
-                                        Image("feelgood-one")
-                                            .resizable()
-                                            .frame(width: 24, height: 24)
-                                    }
                                 }
                             }
                             .padding(.leading, ViewSpacing.medium)
@@ -112,40 +105,50 @@ struct WaitingConfirmationView: View {
                                         .foregroundColor(.textBrandSecondary)
                                 }
                                 
-                                HStack(alignment: .center, spacing: ViewSpacing.large)  {
+                                HStack(alignment: .center, spacing: ViewSpacing.large) {
                                     Text("咨询时间")
                                         .font(Font.typography(.bodySmall))
                                         .foregroundColor(.textPrimary)
                                     Text("2024年9月9日 16:00-16:50 PM")
                                         .font(Font.typography(.bodySmall))
-                                        .foregroundColor(.textSecondary)
+                                        .foregroundColor(.textPrimary)
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                                HStack(alignment: .center, spacing: ViewSpacing.large)  {
+                                HStack(alignment: .center, spacing: ViewSpacing.large) {
                                     Text("订单价格")
                                         .font(Font.typography(.bodySmall))
                                         .foregroundColor(.textPrimary)
-                                    Text("$200")
+                                    Text("$200/次")
+                                        .font(Font.typography(.bodySmall))
+                                        .foregroundColor(.textPrimary)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                HStack(alignment: .center, spacing: ViewSpacing.large) {
+                                    Text("实付金额")
+                                        .font(Font.typography(.bodySmall))
+                                        .foregroundColor(.textPrimary)
+                                    Text("$200.00")
                                         .font(Font.typography(.bodyMedium))
                                         .foregroundColor(.textBrandSecondary)
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                                HStack(alignment: .center, spacing: ViewSpacing.large)  {
+                                HStack(alignment: .center, spacing: ViewSpacing.large) {
                                     Text("订单状态")
                                         .font(Font.typography(.bodySmall))
                                         .foregroundColor(.textPrimary)
-                                    Text("待您确认")
+                                    Text("待支付")
                                         .font(Font.typography(.bodySmall))
-                                        .foregroundColor(.textSecondary)
+                                        .foregroundColor(.textPrimary)
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             }
                             .padding(.horizontal, ViewSpacing.medium)
                             .padding(.top, ViewSpacing.medium)
                             .padding(.bottom, ViewSpacing.large)
-                            .frame( alignment: .topLeading)
+                            .frame(alignment: .topLeading)
                             .background(Color.surfacePrimary)
                             .cornerRadius(CornerRadius.medium.value)
                         }
@@ -179,18 +182,57 @@ struct WaitingConfirmationView: View {
                     }
                     .padding(.vertical, ViewSpacing.xsmall)
                 }
-                Button(action: {
-                    print("Submit order tapped")
-                }) {
-                    Text("提交订单")
-                        .font(Font.typography(.bodyMedium))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, minHeight: 44)
-                        .background(Color.surfaceBrandPrimary)
-                        .cornerRadius(CornerRadius.full.value)
+                ZStack {
+                    Color.surfacePrimaryGrey2
+                        .edgesIgnoringSafeArea(.all)
+                    VStack(spacing: 0) {
+                        ScrollView {
+                            VStack {
+                                Spacer()
+                            }
+                        }
+                        ZStack {
+                            Color.surfacePrimaryGrey2
+                            Text("下单后，如果咨询师同意您的预约邀请，咨询师将会向您发送视频链接。")
+                                .font(Font.typography(.bodySmall))
+                                .foregroundColor(.textSecondary)
+                                .frame(width: 245, alignment: .center)
+                        }
+                        .padding(.bottom, -ViewSpacing.large-ViewSpacing.xxlarge)
+                        .frame(maxWidth: .infinity)
+                        HStack {
+                            VStack(alignment: .leading, spacing: ViewSpacing.xsmall) {
+                                Text("$200.00")
+                                    .font(Font.typography(.bodyMediumEmphasis))
+                                    .foregroundColor(.textBrandSecondary)
+                                Text("1次线上咨询")
+                                    .font(Font.typography(.bodyXSmall))
+                                    .foregroundColor(.textSecondary)
+                            }
+                            Spacer()
+                            HStack(alignment: .center, spacing: ViewSpacing.betweenSmallAndBase) {
+                                Button(action: {
+                                    print("确认订单按钮点击")
+                                }) {
+                                    Text("确认订单")
+                                        .font(Font.typography(.bodyMedium))
+                                        .kerning(0.64)
+                                        .multilineTextAlignment(.center)
+                                        .foregroundColor(.textInvert)
+                                }
+                                .padding(.horizontal, ViewSpacing.large)
+                                .padding(.vertical, ViewSpacing.small)
+                                .frame(width: 204, height: 44, alignment: .center)
+                                .background(Color.surfaceBrandPrimary)
+                                .cornerRadius(CornerRadius.full.value)
+                            }
+                        }
+                        .padding(.top,ViewSpacing.large)
+                        .padding(.leading, ViewSpacing.xlarge)
+                        .padding(.trailing, ViewSpacing.medium)
+                        .background(Color.surfacePrimary)
+                    }
                 }
-                .padding(.horizontal, ViewSpacing.medium)
-                .padding(.bottom, ViewSpacing.medium)
             }
         }
     }

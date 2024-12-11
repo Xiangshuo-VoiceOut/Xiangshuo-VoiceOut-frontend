@@ -159,5 +159,13 @@
 "customer_reviews" = "客户评价";
 "consultation_reservation" = "咨询预约";
 "follow" = "关注";
+"followed" = "已关注";
 "age" = "年龄";
 "language" = "咨询语言";
+"home" = "首页";
+"consultation" = "咨询";
+"notification" = "消息";
+"profile" = "我的";
+"unfollow_prompt"="确认不再关注？";
+"continue_to_follow"="继续关注";
+"unfollow"="取消关注";

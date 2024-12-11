@@ -26,7 +26,7 @@ struct TimePickerPopupContent: View {
 
     var body: some View {
         VStack(spacing: ViewSpacing.medium) {
-            TabView(
+            SegmentedTabView(
                 tabList: Tab.startEndTimes,
                 panelList: [
                     AnyView(
@@ -47,7 +47,8 @@ struct TimePickerPopupContent: View {
                         .background(.white)
                         .cornerRadius(CornerRadius.small.value)
                     )
-                ]
+                ],
+                isUsePanelHeight: true
             )
 
             HStack(spacing: ViewSpacing.medium) {
@@ -68,7 +69,7 @@ struct TimePickerPopupContent: View {
                         timeInput.timeRangeLabel =  "\(timeInput.selectedStartTime) \(timeInput.selectedStartAmPm) - \(timeInput.selectedEndTime) \(timeInput.selectedEndAmPm)"
                     },
                     theme: .action,
-                    spacing: .medium
+                    maxWidth: 253
                 )
             }
         }

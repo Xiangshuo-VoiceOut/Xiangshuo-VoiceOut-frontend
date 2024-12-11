@@ -21,8 +21,6 @@ enum ButtonTheme {
 enum ButtonSpacing {
     case xsmall
     case small
-    case medium
-    case large
 }
 
 enum ButtonFontSize {
@@ -122,30 +120,13 @@ struct ButtonView: View {
                 trailing: ViewSpacing.medium
             )
 
-        case .small:
+        default:
             return EdgeInsets(
                 top: ViewSpacing.small,
                 leading: ViewSpacing.large,
                 bottom: ViewSpacing.small,
                 trailing: ViewSpacing.large
             )
-
-        case .large:
-            return EdgeInsets(
-                top: ViewSpacing.small,
-                leading: ViewSpacing.xxxxlarge,
-                bottom: ViewSpacing.small,
-                trailing: ViewSpacing.xxxxlarge
-            )
-
-        default:
-            return EdgeInsets(
-                top: ViewSpacing.small,
-                leading: ViewSpacing.xxxlarge,
-                bottom: ViewSpacing.small,
-                trailing: ViewSpacing.xxxlarge
-            )
-
         }
     }
 

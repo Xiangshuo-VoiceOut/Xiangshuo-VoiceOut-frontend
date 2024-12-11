@@ -1,5 +1,5 @@
 //
-//  TabPanelListView.swift
+//  SegmentedTabView.swift
 //  voiceout
 //
 //  Created by Xiaoyu Zhu on 9/19/24.
@@ -7,12 +7,14 @@
 
 import SwiftUI
 
-struct TabView: View {
+struct SegmentedTabView: View {
     var tabList: [Tab]
     var panelList: [AnyView]
+    var horizontalSpacing: CGFloat? = 0
+    var isUsePanelHeight: Bool? = false
     @State var tabProgress: CGFloat = 0.5
     @State var activeTab: Tab?
-    @State private var panelHeight: CGFloat = 214
+    @State private var panelHeight: CGFloat = UIScreen.main.bounds.height
 
     var body: some View {
         HStack(spacing: 0) {
@@ -45,6 +47,7 @@ struct TabView: View {
             }
         )
         .background(Color.surfacePrimaryGrey, in: .capsule)
+        .padding(.horizontal, horizontalSpacing)
 
         GeometryReader {
             let size = $0.size
@@ -59,6 +62,7 @@ struct TabView: View {
                                 return Color.clear
                             })
                             .id(tabList[index])
+                            .padding(.horizontal, horizontalSpacing)
                             .containerRelativeFrame(.horizontal)
                     }
                 }
@@ -73,7 +77,7 @@ struct TabView: View {
             .scrollTargetBehavior(.paging)
             .scrollClipDisabled()
         }
-        .frame(height: panelHeight)
+        .frame(height: isUsePanelHeight == true ? panelHeight : .infinity)
     }
 
     private var activeTabBinding: Binding<Tab?> {
@@ -99,7 +103,7 @@ struct PanelHeightPreferenceKey: PreferenceKey {
 }
 
 #Preview {
-    TabView(
+    SegmentedTabView(
         tabList: Tab.startEndTimes,
         panelList: [
             AnyView(Text("View 1")),

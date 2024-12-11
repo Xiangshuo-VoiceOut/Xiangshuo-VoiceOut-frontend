@@ -17,6 +17,9 @@ enum Route: Hashable {
     case resetPassword(UserRole)
     case forgetPassword(UserRole)
     case successRedirect(title: String)
+    case profilePage
+    case consultationReservation
+    case waitingConfirmation
 }
 
 final class RouterModel: ObservableObject {
@@ -42,6 +45,15 @@ final class RouterModel: ObservableObject {
             ForgetPasswordView(role)
         case .successRedirect(let title):
             FinishView(title: title)
+        case .profilePage:
+            ProfilePageView()
+                .environmentObject(self)
+        case .consultationReservation:
+            ConsultationReservationView()
+                .environmentObject(self)
+        case .waitingConfirmation:
+            WaitingConfirmationView()
+                .environmentObject(self)
         }
     }
 

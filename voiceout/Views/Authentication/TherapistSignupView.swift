@@ -88,10 +88,8 @@ struct TherapistSignupView: View {
                             }
                         },
                         theme: therapistSignupVM.isButtonEnabled ? .action : .base,
-                        spacing: .medium,
-                        maxWidth: .infinity
+                        maxWidth: 281
                     )
-                    .frame(maxWidth: 281)
                     .disabled(!therapistSignupVM.isButtonEnabled)
                 }
                 .frame(maxWidth: .infinity)

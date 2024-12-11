@@ -8,34 +8,36 @@
 import SwiftUI
 
 struct SegmentedButtonView: View {
+    @State private var selectedTab: String = "basicInfo"
+    @State private var hasReviews: Bool?
+
     var body: some View {
-        let tabs: [Tab] = [
-            Tab(id: "basicInfo", name: "基本信息"),
-            Tab(id: "customerReviews", name: "客户评价"),
-            Tab(id: "consultationReservation", name: "咨询预约")
-        ]
         let panels: [AnyView] = [
-            AnyView(ProfilePageView()),
-            AnyView(CustomerReviewsView()),
+            AnyView(BasicInfoContentView()),
+            AnyView(
+                Group {
+                    if let hasReviews = hasReviews {
+                        if hasReviews {
+                            ReviewsView()
+                        } else {
+                            NoReviewsView()
+                        }
+                    }
+                }
+            ),
             AnyView(ConsultationReservationView())
         ]
-        TabView(tabList: tabs, panelList: panels)
-    }
-}
 
-struct CustomerReviewsView: View {
-    var body: some View {
-        Text("客户评价内容")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.surfacePrimary)
+        SegmentedTabView(tabList: Tab.profile, panelList: panels, horizontalSpacing: ViewSpacing.medium)
+            .onAppear {
+                fetchReviewsStatus()
+            }
     }
-}
 
-struct ConsultationReservationView: View {
-    var body: some View {
-        Text("咨询预约内容")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.surfacePrimary)
+    func fetchReviewsStatus() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            hasReviews = true
+        }
     }
 }
 

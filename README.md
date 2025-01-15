@@ -1,5 +1,8 @@
 # Xiangshuo-VoiceOut
 
+#auth0 account admin@voiceout.pro
+#auth0 password  Voiceoutmin666!
+
 ## Table of Contents
 1. [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)

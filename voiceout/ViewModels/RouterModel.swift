@@ -22,6 +22,23 @@ enum Route: Hashable {
     case waitingConfirmation
 }
 
+enum FAQItemDestination: Hashable {
+    case questionDetail(title: String, questionID: String, answers: [FAQAnswer])
+
+    @ViewBuilder
+    var view: some View {
+        switch self {
+        case .questionDetail(let title, let questionID, let answers):
+            BeforeFirstConsultationView(
+                title: title,
+                questionID: questionID,
+                answers: answers
+            )
+            .navigationBarBackButtonHidden(true)
+        }
+    }
+}
+
 final class RouterModel: ObservableObject {
     @Published var path: NavigationPath = NavigationPath()
 

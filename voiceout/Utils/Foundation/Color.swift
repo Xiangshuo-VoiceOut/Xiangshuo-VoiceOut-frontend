@@ -12,6 +12,8 @@ extension Color {
     static let brandPrimary = Color(.brandPrimary)
     static let brandSecondary = Color(.brandSecondary)
     static let brandTertiary = Color(.brandTertiary)
+    static let brandTertiary2 = Color(.brandTertiary2)
+    static let brandTertiary3 = Color(.brandTertiary3)
     static let actionValid = Color(.actionValid)
     static let actionInvalid = Color(.actionInvalid)
     static let actionInfo = Color(.actionInfo)
@@ -33,6 +35,8 @@ extension Color {
     static let surfaceBrandPrimary = brandPrimary
     static let surfaceBrandSecondary = brandSecondary
     static let surfaceBrandTertiary = brandTertiary
+    static let surfaceBrandTertiary2 = brandTertiary2
+    static let surfaceBrandTertiary3 = brandTertiary3
     static let surfaceInvalid = actionInvalid
     static let surfaceInfo = actionInfo
 

@@ -20,11 +20,8 @@ struct FeedbackReviewView: View {
                 StickyHeaderView(
                     title: "咨询反馈和评价",
                     leadingComponent: AnyView(
-                        Button(action: {}) {
-                            Image("left-arrow")
-                                .foregroundColor(.grey500)
-                        }
-                    ),
+                        BackButtonView()
+                            .foregroundColor(.grey500)),
                     trailingComponent: nil
                 )
                 .frame(height: 44)
@@ -56,7 +53,7 @@ struct FeedbackReviewView: View {
                         VStack(alignment: .center, spacing: ViewSpacing.small) {
                             VStack(alignment: .leading, spacing: ViewSpacing.medium) {
                                 HStack(spacing: 0) {
-                                    Text("您对这次咨询的总体满意度如何？")
+                                    Text(NSLocalizedString("feedback_overall_satisfaction", comment: "Overall satisfaction prompt"))
                                         .font(Font.typography(.bodyMedium))
                                         .foregroundColor(.grey500)
                                     Text("*")
@@ -73,7 +70,7 @@ struct FeedbackReviewView: View {
 
                             VStack(alignment: .leading, spacing: ViewSpacing.medium) {
                                 HStack(spacing: 0) {
-                                    Text("您觉得咨询师在以下方面的表现如何？")
+                                    Text(NSLocalizedString("therapist_performance_prompt", comment: "Therapist performance prompt"))
                                         .font(Font.typography(.bodyMedium))
                                         .foregroundColor(.textPrimary)
                                     Text("*")
@@ -95,13 +92,13 @@ struct FeedbackReviewView: View {
                                 .padding(.horizontal, ViewSpacing.medium)
 
                             FeedbackInputView(
-                                title: "请分享您对这次咨询的具体意见和建议:",
+                                title: NSLocalizedString("feedback_detail_prompt", comment: "Detailed feedback prompt"),
                                 text: $feedbackText
                             )
                             .padding(.horizontal, ViewSpacing.medium)
 
                             FeedbackInputView(
-                                title: "如果您愿意，您可以留下对咨询师的公开评价，这将显示在咨询师的评论页面:",
+                                title: NSLocalizedString("feedback_public_review_prompt", comment: "Public review prompt"),
                                 text: $publicFeedbackText
                             )
                             .padding(.horizontal, ViewSpacing.medium)
@@ -126,20 +123,20 @@ struct FeedbackReviewView: View {
     private func likelihoodSection() -> some View {
         VStack(alignment: .leading, spacing: ViewSpacing.medium) {
             VStack(alignment: .leading, spacing: ViewSpacing.medium) {
-                Text("您是否有可能继续预约咨询师的服务？")
+                Text(NSLocalizedString("continue_appointment_prompt", comment: "Prompt asking user about continuing to book therapist service"))
                     .font(Font.typography(.bodyMedium))
                     .foregroundColor(.textPrimary)
 
                 VStack(spacing: ViewSpacing.xsmall) {
                     HStack(spacing: ViewSpacing.xsmall) {
-                        buttonOption(text: "非常有可能", index: 0)
-                        buttonOption(text: "有可能", index: 1)
-                        buttonOption(text: "不确定", index: 2)
+                        buttonOption(text: NSLocalizedString("option_very_likely", comment: "Very likely"), index: 0)
+                        buttonOption(text: NSLocalizedString("option_likely", comment: "Likely"), index: 1)
+                        buttonOption(text: NSLocalizedString("option_uncertain", comment: "Uncertain"), index: 2)
                         Spacer()
                     }
                     HStack(spacing: ViewSpacing.xsmall) {
-                        buttonOption(text: "不太可能", index: 3)
-                        buttonOption(text: "完全不可能", index: 4)
+                        buttonOption(text: NSLocalizedString("option_unlikely", comment: "Unlikely"), index: 3)
+                        buttonOption(text: NSLocalizedString("option_impossible", comment: "Impossible"), index: 4)
                         Spacer()
                     }
                 }
@@ -173,24 +170,19 @@ struct FeedbackReviewView: View {
 
     private func confirmButton() -> some View {
         VStack {
-            HStack(alignment: .center, spacing: ViewSpacing.betweenSmallAndBase) {
-                Button(action: {
-                    print("提交按钮点击！")
-                }) {
-                    Text("提交")
-                        .font(Font.typography(.bodyMedium))
-                        .kerning(0.64)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(isSubmitEnabled ? .textInvert : .textPrimary)
-                }
-            }
-            .padding(.horizontal, ViewSpacing.xxxxlarge)
-            .padding(.vertical, ViewSpacing.small)
-            .frame(maxWidth: .infinity, minHeight: 44, alignment: .center)
-            .background(isSubmitEnabled ? Color.surfaceBrandPrimary : Color.surfacePrimaryGrey)
-            .cornerRadius(CornerRadius.full.value)
-            .disabled(!isSubmitEnabled)
+            ButtonView(
+                text: NSLocalizedString("submit_button_text", comment: "Text for the submit button"),
+                action: {
+                },
+                theme: isSubmitEnabled ? .action : .base,
+                spacing: .small,
+                fontSize: .medium,
+                borderRadius: .full,
+                maxWidth: .infinity
+            )
+            .opacity(isSubmitEnabled ? 1.0 : 0.6)  
         }
+        .frame(maxWidth: .infinity, minHeight: 44, alignment: .center)
     }
 }
 

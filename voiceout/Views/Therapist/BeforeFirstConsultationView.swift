@@ -16,40 +16,15 @@ struct BeforeFirstConsultationView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            ZStack {
-                Color.surfacePrimaryGrey2
-                    .edgesIgnoringSafeArea(.top)
-
-                HStack {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image("left-arrow")
-                            .foregroundColor(.grey500)
-                    }
-                    .padding(.leading, ViewSpacing.medium)
-
-                    Spacer()
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-                HStack {
-                    Spacer(minLength: 48)
-
-                    Text(title)
-                        .font(Font.typography(.bodyMedium))
-                        .foregroundColor(.textTitle)
-                        .lineLimit(1)
-                        .truncationMode(.tail)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.trailing,ViewSpacing.medium)
-
-                    Spacer(minLength: 16)
-                }
-                .frame(maxWidth: .infinity)
-            }
-            .frame(height: 44)
-
+            StickyHeaderView(
+                title: title,
+                leadingComponent: AnyView(
+                    BackButtonView()
+                        .foregroundColor(.grey500)
+                ),
+                trailingComponent: nil,
+                backgroundColor: Color.surfacePrimary
+            )
             ScrollView {
                 VStack(alignment: .leading, spacing: ViewSpacing.medium) {
                     HStack {
@@ -70,10 +45,8 @@ struct BeforeFirstConsultationView: View {
                             .background(Color.surfacePrimary)
                             .cornerRadius(CornerRadius.medium.value)
                     }
-                    .frame(maxWidth: .infinity)
                     .padding(.horizontal, ViewSpacing.medium)
-                    .padding(.bottom, ViewSpacing.small)
-
+                    
                     VStack(alignment: .leading, spacing: ViewSpacing.medium) {
                         ForEach(answers, id: \.id) { answer in
                             VStack(alignment: .leading, spacing: ViewSpacing.medium) {
@@ -98,11 +71,10 @@ struct BeforeFirstConsultationView: View {
                         }
                     }
                 }
-                .padding(.top,ViewSpacing.medium)
+                .padding(.top, ViewSpacing.medium)
             }
             .background(Color.surfacePrimaryGrey2)
         }
-        .navigationBarBackButtonHidden(true)
     }
 }
 

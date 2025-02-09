@@ -20,23 +20,7 @@ enum Route: Hashable {
     case profilePage
     case consultationReservation
     case waitingConfirmation
-}
-
-enum FAQItemDestination: Hashable {
     case questionDetail(title: String, questionID: String, answers: [FAQAnswer])
-
-    @ViewBuilder
-    var view: some View {
-        switch self {
-        case .questionDetail(let title, let questionID, let answers):
-            BeforeFirstConsultationView(
-                title: title,
-                questionID: questionID,
-                answers: answers
-            )
-            .navigationBarBackButtonHidden(true)
-        }
-    }
 }
 
 final class RouterModel: ObservableObject {
@@ -71,6 +55,12 @@ final class RouterModel: ObservableObject {
         case .waitingConfirmation:
             WaitingConfirmationView()
                 .environmentObject(self)
+        case .questionDetail(let title, let questionID, let answers):
+            BeforeFirstConsultationView(
+                title: title,
+                questionID: questionID,
+                answers: answers
+            )
         }
     }
 

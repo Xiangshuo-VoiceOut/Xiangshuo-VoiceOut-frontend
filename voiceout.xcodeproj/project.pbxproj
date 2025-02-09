@@ -37,6 +37,7 @@
 		84B100E42CF1CB94003C6C20 /* TherapistScheduleTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B100E32CF1CB91003C6C20 /* TherapistScheduleTimeView.swift */; };
 		84B100E62CF457F6003C6C20 /* WaitingConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B100E52CF457F4003C6C20 /* WaitingConfirmationView.swift */; };
 		84B100E82CF5A366003C6C20 /* TimeSlotUnavailableAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B100E72CF5A363003C6C20 /* TimeSlotUnavailableAlert.swift */; };
+		84CB40042D585677004ED7DE /* FAQService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB40032D585676004ED7DE /* FAQService.swift */; };
 		84DC8FDD2D0C109D00FAAAC1 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8FDC2D0C109500FAAAC1 /* FAQView.swift */; };
 		84DC8FDF2D0C10C600FAAAC1 /* SatisfactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8FDE2D0C10BD00FAAAC1 /* SatisfactionView.swift */; };
 		84DC8FE12D1114AC00FAAAC1 /* FeedbackReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8FE02D1114AA00FAAAC1 /* FeedbackReviewView.swift */; };
@@ -171,6 +172,7 @@
 		84B100E32CF1CB91003C6C20 /* TherapistScheduleTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistScheduleTimeView.swift; sourceTree = "<group>"; };
 		84B100E52CF457F4003C6C20 /* WaitingConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingConfirmationView.swift; sourceTree = "<group>"; };
 		84B100E72CF5A363003C6C20 /* TimeSlotUnavailableAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlotUnavailableAlert.swift; sourceTree = "<group>"; };
+		84CB40032D585676004ED7DE /* FAQService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQService.swift; sourceTree = "<group>"; };
 		84DC8FDC2D0C109500FAAAC1 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
 		84DC8FDE2D0C10BD00FAAAC1 /* SatisfactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SatisfactionView.swift; sourceTree = "<group>"; };
 		84DC8FE02D1114AA00FAAAC1 /* FeedbackReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackReviewView.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 		D2071D442BAA8CD00040B0AE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				84CB40032D585676004ED7DE /* FAQService.swift */,
 				B8D4722A2C1E41E400D6716A /* APIConfigs.swift */,
 				B8D472262C1E40BD00D6716A /* LoginWebService.swift */,
 				B8D472272C1E40BD00D6716A /* ResetPasswordWebService.swift */,
@@ -822,6 +825,7 @@
 				B8EF41AD2C6AAE8500C77D4D /* SignUpStep2.swift in Sources */,
 				84B100E42CF1CB94003C6C20 /* TherapistScheduleTimeView.swift in Sources */,
 				D2EEE6862CF107A700726FCE /* BottomNavigationBar.swift in Sources */,
+				84CB40042D585677004ED7DE /* FAQService.swift in Sources */,
 				84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
 				B8860E1C2C34725E00A79073 /* StepProgressView.swift in Sources */,

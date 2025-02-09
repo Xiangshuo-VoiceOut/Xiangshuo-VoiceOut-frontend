@@ -9,59 +9,53 @@ import SwiftUI
 
 struct FAQView: View {
     @StateObject private var viewModel = FAQViewModel()
-    @Environment(\.safeAreaInsets) private var safeAreaInsets
-    @State private var selectedQuestion: FAQQuestion?
+    @EnvironmentObject var router: RouterModel
 
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .top) {
-                Color(Color.surfacePrimaryGrey2)
-                    .edgesIgnoringSafeArea(.all)
+        ZStack(alignment: .top) {
+            Color(Color.surfacePrimaryGrey2)
+                .edgesIgnoringSafeArea(.all)
 
-                ScrollView {
-                    VStack(spacing: ViewSpacing.medium) {
-                        if viewModel.isLoading {
-                            ProgressView("加载中...")
-                        } else if let errorMessage = viewModel.errorMessage {
-                            Text(errorMessage)
-                                .foregroundColor(.red)
-                        } else {
-                            ForEach(viewModel.faqCategories) { category in
-                                FAQSectionView(
-                                    title: category.category,
-                                    questions: category.questions,
-                                    onItemTap: { question in
-                                        selectedQuestion = question
-                                    }
-                                )
-                            }
+            ScrollView {
+                VStack(spacing: ViewSpacing.medium) {
+                    if viewModel.isLoading {
+                        ProgressView("加载中...")
+                    } else if let errorMessage = viewModel.errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(.red)
+                    } else {
+                        ForEach(viewModel.faqCategories) { category in
+                            FAQSectionView(
+                                title: category.category,
+                                questions: category.questions,
+                                onItemTap: { question in
+                                    router.navigateTo(
+                                        .questionDetail(
+                                            title: question.question,
+                                            questionID: question.id ?? "unknown",
+                                            answers: question.answers
+                                        )
+                                    )
+                                }
+                            )
                         }
                     }
-                    .padding(.top, 2 * ViewSpacing.betweenSmallAndBase + ViewSpacing.large)
                 }
-                .padding(.top, ViewSpacing.medium)
+                .padding(.top, 2 * ViewSpacing.betweenSmallAndBase + ViewSpacing.large)
+            }
+            .padding(.top, ViewSpacing.medium)
 
-                StickyHeaderView(
-                    title: "咨询指南FAQ",
-                    leadingComponent: AnyView(
-                        Button(action: {}) {
-                            Image("left-arrow")
-                                .foregroundColor(.grey500)
-                        }
-                    ),
-                    trailingComponent: nil
-                )
-            }
-            .navigationDestination(item: $selectedQuestion) { question in
-                BeforeFirstConsultationView(
-                    title: question.question,
-                    questionID: question.id ?? "unknown",
-                    answers: question.answers
-                )
-            }
-            .onAppear {
-                viewModel.fetchFAQs()
-            }
+            StickyHeaderView(
+                title: NSLocalizedString("consultation_guide_faq_title", comment: ""),
+                leadingComponent: AnyView(
+                    BackButtonView()
+                        .foregroundColor(.grey500)
+                ),
+                trailingComponent: nil
+            )
+        }
+        .onAppear {
+            viewModel.fetchFAQs()
         }
     }
 }
@@ -130,16 +124,16 @@ struct FAQSectionView: View {
             .padding(ViewSpacing.medium)
             .background(Color.surfacePrimary)
             .cornerRadius(CornerRadius.medium.value)
-            .offset(y: -118)
+            .offset(y: -3*ViewSpacing.betweenSmallAndBase-ViewSpacing.xxxlarge)
             .padding(.horizontal, ViewSpacing.medium)
-            .padding(.bottom, -118)
+            .padding(.bottom, -3*ViewSpacing.betweenSmallAndBase-ViewSpacing.xxxlarge)
         }
     }
 }
 
 struct FAQView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        RouterView {
             FAQView()
         }
     }

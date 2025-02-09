@@ -7,3 +7,15 @@
 */
 "email_placeholder" = "enter your email";
 "password_placeholder" = "enter your password";
+"consultation_guide_faq_title" = "Consultation Guide FAQ";
+"continue_appointment_prompt" = "Would you like to continue scheduling your therapist's service?";
+"feedback_public_review_prompt" = "If you are willing, you can leave a public review for the therapist, which will be displayed on their review page:";
+"feedback_detail_prompt" = "Please share your detailed thoughts and suggestions about this consultation:";
+"feedback_overall_satisfaction" = "How would you rate your overall satisfaction with this consultation?";
+"therapist_performance_prompt" = "How do you think the therapist performed in the following areas?";
+"option_very_likely" = "Very likely";
+"option_likely" = "Likely";
+"option_uncertain" = "Uncertain";
+"option_unlikely" = "Unlikely";
+"option_impossible" = "Impossible";
+"submit_button_text" = "Submit";

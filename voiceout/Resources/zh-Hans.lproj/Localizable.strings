@@ -181,3 +181,10 @@
 "option_unlikely" = "不太可能";
 "option_impossible" = "完全不可能";
 "submit_button_text" = "提交";
+"feedback_input_placeholder" = "请输入你想说的......";
+"feedback_review_title" = "咨询反馈和评价";
+"feedback_help_text" = "您的反馈将帮助我们持续为您提供优质的服务";
+"criteria_listen_understand" = "倾听和理解";
+"criteria_advice_given" = "提供的建议";
+"criteria_expertise" = "专业知识和技能";
+"criteria_friendliness" = "亲和力和态度";

@@ -18,7 +18,7 @@ struct FeedbackReviewView: View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 StickyHeaderView(
-                    title: "咨询反馈和评价",
+                    title: NSLocalizedString("feedback_review_title", comment: "Title for feedback and review view"),
                     leadingComponent: AnyView(
                         BackButtonView()
                             .foregroundColor(.grey500)),
@@ -39,7 +39,7 @@ struct FeedbackReviewView: View {
                                         .clipped()
                                 )
                             HStack(alignment: .center, spacing: ViewSpacing.betweenSmallAndBase) {
-                                Text("您的反馈将帮助我们持续为您提供优质的服务")
+                                Text(NSLocalizedString("feedback_help_text", comment: "Text to inform user how feedback helps improve service"))
                                     .font(Font.typography(.bodyMedium))
                                     .foregroundColor(.grey300)
                                     .padding(ViewSpacing.medium)
@@ -79,7 +79,12 @@ struct FeedbackReviewView: View {
                                 }
                                 StarRatingComponent(
                                     ratings: $categoryRatings,
-                                    criteria: ["倾听和理解", "提供的建议", "专业知识和技能", "亲和力和态度"]
+                                    criteria: [
+                                        NSLocalizedString("criteria_listen_understand", comment: "Criteria for therapist's ability to listen and understand"),
+                                        NSLocalizedString("criteria_advice_given", comment: "Criteria for advice given by therapist"),
+                                        NSLocalizedString("criteria_expertise", comment: "Criteria for therapist's professional knowledge and skills"),
+                                        NSLocalizedString("criteria_friendliness", comment: "Criteria for therapist's friendliness and attitude")
+                                    ]
                                 )
                             }
                             .padding(ViewSpacing.medium)
@@ -88,7 +93,7 @@ struct FeedbackReviewView: View {
                             .cornerRadius(CornerRadius.medium.value)
                             .padding(.horizontal, ViewSpacing.medium)
 
-                            likelihoodSection()
+                            LikelihoodSection()
                                 .padding(.horizontal, ViewSpacing.medium)
 
                             FeedbackInputView(
@@ -120,7 +125,7 @@ struct FeedbackReviewView: View {
         }
     }
 
-    private func likelihoodSection() -> some View {
+    private func LikelihoodSection() -> some View {
         VStack(alignment: .leading, spacing: ViewSpacing.medium) {
             VStack(alignment: .leading, spacing: ViewSpacing.medium) {
                 Text(NSLocalizedString("continue_appointment_prompt", comment: "Prompt asking user about continuing to book therapist service"))

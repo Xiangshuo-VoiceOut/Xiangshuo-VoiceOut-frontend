@@ -18,25 +18,14 @@ struct FeedbackInputView: View {
                 .foregroundColor(.textPrimary)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .topLeading)
-            
-            ZStack(alignment: .topLeading) {
-                if text.isEmpty {
-                    Text("请输入你想说的......")
-                        .font(Font.typography(.bodySmall))
-                        .foregroundColor(.grey200)
-                        .padding(.top, ViewSpacing.base)
-                        .padding(.leading, ViewSpacing.medium)
-                }
-                
-                TextEditor(text: $text)
-                    .font(Font.typography(.bodySmall))
-                    .foregroundColor(.textPrimary)
-                    .padding(.top, ViewSpacing.small)
-                    .padding(.leading, ViewSpacing.small)
-                    .frame(maxWidth: .infinity, minHeight: 136, maxHeight: 136, alignment: .topLeading)
-                    .background(Color.clear)
-                    .scrollContentBackground(.hidden)
-            }
+
+            TextInputView(
+                text: $text,
+                placeholder: NSLocalizedString("feedback_input_placeholder", comment: "Placeholder text for feedback input"),
+                theme: .grey
+            )
+            .padding(.top, ViewSpacing.small)
+            .frame(maxWidth: .infinity, minHeight: 136, alignment: .topLeading)
             .background(Color.surfacePrimaryGrey2)
             .cornerRadius(CornerRadius.medium.value)
         }
@@ -58,5 +47,3 @@ struct FeedbackInputView_Previews: PreviewProvider {
         .previewLayout(.sizeThatFits)
     }
 }
-
-

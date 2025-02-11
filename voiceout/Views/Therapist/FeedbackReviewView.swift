@@ -92,8 +92,9 @@ struct FeedbackReviewView: View {
                             .background(Color.surfacePrimary)
                             .cornerRadius(CornerRadius.medium.value)
                             .padding(.horizontal, ViewSpacing.medium)
-
+                                
                             LikelihoodSection()
+
                                 .padding(.horizontal, ViewSpacing.medium)
 
                             FeedbackInputView(
@@ -111,7 +112,7 @@ struct FeedbackReviewView: View {
                         .padding(.vertical, ViewSpacing.medium)
                         .frame(maxWidth: geometry.size.width)
 
-                        confirmButton()
+                        ConfirmButton()
                             .padding(.horizontal, ViewSpacing.medium)
 
                         Spacer()
@@ -127,65 +128,69 @@ struct FeedbackReviewView: View {
 
     private func LikelihoodSection() -> some View {
         VStack(alignment: .leading, spacing: ViewSpacing.medium) {
-            VStack(alignment: .leading, spacing: ViewSpacing.medium) {
-                Text(NSLocalizedString("continue_appointment_prompt", comment: "Prompt asking user about continuing to book therapist service"))
-                    .font(Font.typography(.bodyMedium))
-                    .foregroundColor(.textPrimary)
-
-                VStack(spacing: ViewSpacing.xsmall) {
-                    HStack(spacing: ViewSpacing.xsmall) {
-                        buttonOption(text: NSLocalizedString("option_very_likely", comment: "Very likely"), index: 0)
-                        buttonOption(text: NSLocalizedString("option_likely", comment: "Likely"), index: 1)
-                        buttonOption(text: NSLocalizedString("option_uncertain", comment: "Uncertain"), index: 2)
-                        Spacer()
-                    }
-                    HStack(spacing: ViewSpacing.xsmall) {
-                        buttonOption(text: NSLocalizedString("option_unlikely", comment: "Unlikely"), index: 3)
-                        buttonOption(text: NSLocalizedString("option_impossible", comment: "Impossible"), index: 4)
-                        Spacer()
-                    }
+            Text(NSLocalizedString("continue_appointment_prompt", comment: "Prompt asking user about continuing to book therapist service"))
+                .font(Font.typography(.bodyMedium))
+                .foregroundColor(.textPrimary)
+            FlowLayout {
+                ForEach(0..<5, id: \.self) { index in
+                    ButtonOption(
+                        text: GetOptionText(for: index),
+                        index: index
+                    )
+                    .padding(.trailing,ViewSpacing.xsmall)
+                    .padding(.bottom,ViewSpacing.xsmall)
                 }
             }
-            .padding(ViewSpacing.medium)
-            .background(Color.surfacePrimary)
-            .cornerRadius(CornerRadius.medium.value)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(ViewSpacing.medium)
+        .background(Color.surfacePrimary)
+        .cornerRadius(CornerRadius.medium.value)
+    }
+
+    private func ButtonOption(text: String, index: Int) -> some View {
+        ButtonView(
+            text: text,
+            action: {
+                likelihoodToContinue = index
+            },
+            variant: .solid,
+            theme: likelihoodToContinue == index ? .action : .base,
+            fontSize: .medium,
+            borderRadius: .full,
+            maxWidth: 101
+        )
+    }
+
+    private func GetOptionText(for index: Int) -> String {
+        switch index {
+        case 0: return NSLocalizedString("option_very_likely", comment: "Very likely")
+        case 1: return NSLocalizedString("option_likely", comment: "Likely")
+        case 2: return NSLocalizedString("option_uncertain", comment: "Uncertain")
+        case 3: return NSLocalizedString("option_unlikely", comment: "Unlikely")
+        case 4: return NSLocalizedString("option_impossible", comment: "Impossible")
+        default: return ""
         }
     }
 
-    private func buttonOption(text: String, index: Int) -> some View {
-        Button(action: {
-            likelihoodToContinue = index
-        }) {
-            Text(text)
-                .font(Font.typography(.bodyMedium))
-                .foregroundColor(likelihoodToContinue == index ? .textInvert : .textSecondary)
-                .frame(width: 90, height: 40)
-                .background(
-                    likelihoodToContinue == index ? Color.surfaceBrandPrimary : Color.surfacePrimaryGrey2
-                )
-                .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium.value))
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-
-    private var isSubmitEnabled: Bool {
+    private var IsSubmitEnabled: Bool {
         return overallSatisfaction > 0 &&
                !categoryRatings.contains(0)
     }
 
-    private func confirmButton() -> some View {
+    private func ConfirmButton() -> some View {
         VStack {
             ButtonView(
                 text: NSLocalizedString("submit_button_text", comment: "Text for the submit button"),
                 action: {
                 },
-                theme: isSubmitEnabled ? .action : .base,
+                theme: IsSubmitEnabled ? .action : .base,
                 spacing: .small,
                 fontSize: .medium,
                 borderRadius: .full,
                 maxWidth: .infinity
             )
-            .opacity(isSubmitEnabled ? 1.0 : 0.6)  
+            .opacity(IsSubmitEnabled ? 1.0 : 0.6)
         }
         .frame(maxWidth: .infinity, minHeight: 44, alignment: .center)
     }

@@ -11,9 +11,9 @@ extension Color {
     // sytstem color
     static let brandPrimary = Color(.brandPrimary)
     static let brandSecondary = Color(.brandSecondary)
-    static let brandTertiary = Color(.brandTertiary)
-    static let brandTertiary2 = Color(.brandTertiary2)
-    static let brandTertiary3 = Color(.brandTertiary3)
+    static let brandTertiaryPeach = Color(.brandTertiaryPeach)
+    static let brandTertiaryGreen = Color(.brandTertiaryGreen)
+    static let brandTertiaryBlue = Color(.brandTertiaryBlue)
     static let actionValid = Color(.actionValid)
     static let actionInvalid = Color(.actionInvalid)
     static let actionInfo = Color(.actionInfo)
@@ -34,9 +34,9 @@ extension Color {
     static let surfaceSecondary2 = grey200
     static let surfaceBrandPrimary = brandPrimary
     static let surfaceBrandSecondary = brandSecondary
-    static let surfaceBrandTertiary = brandTertiary
-    static let surfaceBrandTertiary2 = brandTertiary2
-    static let surfaceBrandTertiary3 = brandTertiary3
+    static let surfaceBrandTertiaryPeach = brandTertiaryPeach
+    static let surfaceBrandTertiaryGreen = brandTertiaryGreen
+    static let surfaceBrandTertiaryBlue = brandTertiaryBlue
     static let surfaceInvalid = actionInvalid
     static let surfaceInfo = actionInfo
 

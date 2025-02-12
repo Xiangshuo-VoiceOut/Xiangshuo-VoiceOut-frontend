@@ -41,7 +41,6 @@
 		84DC8FDD2D0C109D00FAAAC1 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8FDC2D0C109500FAAAC1 /* FAQView.swift */; };
 		84DC8FDF2D0C10C600FAAAC1 /* SatisfactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8FDE2D0C10BD00FAAAC1 /* SatisfactionView.swift */; };
 		84DC8FE12D1114AC00FAAAC1 /* FeedbackReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8FE02D1114AA00FAAAC1 /* FeedbackReviewView.swift */; };
-		84DC8FE32D11256C00FAAAC1 /* StarRatingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8FE22D11256900FAAAC1 /* StarRatingComponent.swift */; };
 		84F0D9462D359F340029F651 /* FAQInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0D9452D359F260029F651 /* FAQInformation.swift */; };
 		84F0D9482D359F6E0029F651 /* FAQViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0D9472D359F650029F651 /* FAQViewModel.swift */; };
 		84F0D94B2D35A00D0029F651 /* BeforeFirstConsultationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0D94A2D35A0090029F651 /* BeforeFirstConsultationViewModel.swift */; };
@@ -176,7 +175,6 @@
 		84DC8FDC2D0C109500FAAAC1 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
 		84DC8FDE2D0C10BD00FAAAC1 /* SatisfactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SatisfactionView.swift; sourceTree = "<group>"; };
 		84DC8FE02D1114AA00FAAAC1 /* FeedbackReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackReviewView.swift; sourceTree = "<group>"; };
-		84DC8FE22D11256900FAAAC1 /* StarRatingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingComponent.swift; sourceTree = "<group>"; };
 		84F0D9452D359F260029F651 /* FAQInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQInformation.swift; sourceTree = "<group>"; };
 		84F0D9472D359F650029F651 /* FAQViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewModel.swift; sourceTree = "<group>"; };
 		84F0D94A2D35A0090029F651 /* BeforeFirstConsultationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeFirstConsultationViewModel.swift; sourceTree = "<group>"; };
@@ -375,7 +373,6 @@
 		84F0FD512C48BE9900E2DB79 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				84DC8FE22D11256900FAAAC1 /* StarRatingComponent.swift */,
 				8433CAD02C45A0DD00845A7A /* ClinicianCardView.swift */,
 				D2E470AA2CFCFCEB00AF493B /* WeekMatrixView.swift */,
 			);
@@ -803,7 +800,6 @@
 				B8D472292C1E40BD00D6716A /* ResetPasswordWebService.swift in Sources */,
 				689489702CC8516B000FEA22 /* ConsultServiceView.swift in Sources */,
 				D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */,
-				84DC8FE32D11256C00FAAAC1 /* StarRatingComponent.swift in Sources */,
 				D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */,
 				8497B51D2CE825A0006D6050 /* SegementedControlButtonView.swift in Sources */,
 				D228B2812C94ECBB003975FB /* Badge.swift in Sources */,

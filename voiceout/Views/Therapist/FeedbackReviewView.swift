@@ -18,7 +18,7 @@ struct FeedbackReviewView: View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 StickyHeaderView(
-                    title: NSLocalizedString("feedback_review_title", comment: "Title for feedback and review view"),
+                    title: "feedback_review_title",
                     leadingComponent: AnyView(
                         BackButtonView()
                             .foregroundColor(.grey500)),
@@ -39,7 +39,7 @@ struct FeedbackReviewView: View {
                                         .clipped()
                                 )
                             HStack(alignment: .center, spacing: ViewSpacing.betweenSmallAndBase) {
-                                Text(NSLocalizedString("feedback_help_text", comment: "Text to inform user how feedback helps improve service"))
+                                Text(LocalizedStringKey("feedback_help_text"))
                                     .font(Font.typography(.bodyMedium))
                                     .foregroundColor(.grey300)
                                     .padding(ViewSpacing.medium)
@@ -53,7 +53,7 @@ struct FeedbackReviewView: View {
                         VStack(alignment: .center, spacing: ViewSpacing.small) {
                             VStack(alignment: .leading, spacing: ViewSpacing.medium) {
                                 HStack(spacing: 0) {
-                                    Text(NSLocalizedString("feedback_overall_satisfaction", comment: "Overall satisfaction prompt"))
+                                    Text(LocalizedStringKey("feedback_overall_satisfaction"))
                                         .font(Font.typography(.bodyMedium))
                                         .foregroundColor(.grey500)
                                     Text("*")
@@ -70,22 +70,26 @@ struct FeedbackReviewView: View {
 
                             VStack(alignment: .leading, spacing: ViewSpacing.medium) {
                                 HStack(spacing: 0) {
-                                    Text(NSLocalizedString("therapist_performance_prompt", comment: "Therapist performance prompt"))
+                                    Text(LocalizedStringKey("therapist_performance_prompt"))
                                         .font(Font.typography(.bodyMedium))
                                         .foregroundColor(.textPrimary)
                                     Text("*")
                                         .font(Font.typography(.bodyMedium))
                                         .foregroundColor(.textBrandPrimary)
                                 }
-                                StarRatingComponent(
-                                    ratings: $categoryRatings,
-                                    criteria: [
-                                        NSLocalizedString("criteria_listen_understand", comment: "Criteria for therapist's ability to listen and understand"),
-                                        NSLocalizedString("criteria_advice_given", comment: "Criteria for advice given by therapist"),
-                                        NSLocalizedString("criteria_expertise", comment: "Criteria for therapist's professional knowledge and skills"),
-                                        NSLocalizedString("criteria_friendliness", comment: "Criteria for therapist's friendliness and attitude")
-                                    ]
-                                )
+                                
+                                VStack(alignment: .leading, spacing: ViewSpacing.medium) {
+                                    ForEach(criteria.indices, id: \.self) { index in
+                                        HStack {
+                                            Text(LocalizedStringKey(criteria[index]))
+                                                .font(Font.typography(.bodySmall))
+                                                .foregroundColor(.textPrimary)
+                                                .frame(alignment: .leading)
+                                            Spacer()
+                                            StarRatingViewInt(rating: $categoryRatings[index])
+                                        }
+                                    }
+                                }
                             }
                             .padding(ViewSpacing.medium)
                             .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -93,18 +97,17 @@ struct FeedbackReviewView: View {
                             .cornerRadius(CornerRadius.medium.value)
                             .padding(.horizontal, ViewSpacing.medium)
                                 
-                            LikelihoodSection()
-
+                            likelihoodSection()
                                 .padding(.horizontal, ViewSpacing.medium)
 
                             FeedbackInputView(
-                                title: NSLocalizedString("feedback_detail_prompt", comment: "Detailed feedback prompt"),
+                                title: localizedFeedbackDetailPrompt,
                                 text: $feedbackText
                             )
                             .padding(.horizontal, ViewSpacing.medium)
 
                             FeedbackInputView(
-                                title: NSLocalizedString("feedback_public_review_prompt", comment: "Public review prompt"),
+                                title: localizedFeedbackPublicReviewPrompt,
                                 text: $publicFeedbackText
                             )
                             .padding(.horizontal, ViewSpacing.medium)
@@ -112,8 +115,19 @@ struct FeedbackReviewView: View {
                         .padding(.vertical, ViewSpacing.medium)
                         .frame(maxWidth: geometry.size.width)
 
-                        ConfirmButton()
-                            .padding(.horizontal, ViewSpacing.medium)
+                        ButtonView(
+                            text: "submit_button_text",
+                            action: {
+                            },
+                            theme: isSubmitEnabled ? .action : .base,
+                            spacing: .small,
+                            fontSize: .medium,
+                            borderRadius: .full,
+                            maxWidth: .infinity
+                        )
+                        .opacity(isSubmitEnabled ? 1.0 : 0.6)
+                        .frame(maxWidth: .infinity, minHeight: 44, alignment: .center)
+                        .padding(.horizontal, ViewSpacing.medium)
 
                         Spacer()
                             .frame(height: geometry.safeAreaInsets.bottom + ViewSpacing.medium)
@@ -126,19 +140,26 @@ struct FeedbackReviewView: View {
         }
     }
 
-    private func LikelihoodSection() -> some View {
+    private func likelihoodSection() -> some View {
         VStack(alignment: .leading, spacing: ViewSpacing.medium) {
-            Text(NSLocalizedString("continue_appointment_prompt", comment: "Prompt asking user about continuing to book therapist service"))
+            Text(LocalizedStringKey("continue_appointment_prompt"))
                 .font(Font.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
             FlowLayout {
                 ForEach(0..<5, id: \.self) { index in
-                    ButtonOption(
-                        text: GetOptionText(for: index),
-                        index: index
+                    ButtonView(
+                        text: getOptionText(for: index),
+                        action: {
+                            likelihoodToContinue = index
+                        },
+                        variant: .solid,
+                        theme: likelihoodToContinue == index ? .action : .base,
+                        fontSize: .medium,
+                        borderRadius: .full,
+                        maxWidth: 101
                     )
-                    .padding(.trailing,ViewSpacing.xsmall)
-                    .padding(.bottom,ViewSpacing.xsmall)
+                    .padding(.trailing, ViewSpacing.xsmall)
+                    .padding(.bottom, ViewSpacing.xsmall)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -148,51 +169,35 @@ struct FeedbackReviewView: View {
         .cornerRadius(CornerRadius.medium.value)
     }
 
-    private func ButtonOption(text: String, index: Int) -> some View {
-        ButtonView(
-            text: text,
-            action: {
-                likelihoodToContinue = index
-            },
-            variant: .solid,
-            theme: likelihoodToContinue == index ? .action : .base,
-            fontSize: .medium,
-            borderRadius: .full,
-            maxWidth: 101
-        )
-    }
-
-    private func GetOptionText(for index: Int) -> String {
+    private func getOptionText(for index: Int) -> String {
         switch index {
-        case 0: return NSLocalizedString("option_very_likely", comment: "Very likely")
-        case 1: return NSLocalizedString("option_likely", comment: "Likely")
-        case 2: return NSLocalizedString("option_uncertain", comment: "Uncertain")
-        case 3: return NSLocalizedString("option_unlikely", comment: "Unlikely")
-        case 4: return NSLocalizedString("option_impossible", comment: "Impossible")
+        case 0: return "option_very_likely"
+        case 1: return "option_likely"
+        case 2: return "option_uncertain"
+        case 3: return "option_unlikely"
+        case 4: return "option_impossible"
         default: return ""
         }
     }
 
-    private var IsSubmitEnabled: Bool {
+    private var isSubmitEnabled: Bool {
         return overallSatisfaction > 0 &&
                !categoryRatings.contains(0)
     }
 
-    private func ConfirmButton() -> some View {
-        VStack {
-            ButtonView(
-                text: NSLocalizedString("submit_button_text", comment: "Text for the submit button"),
-                action: {
-                },
-                theme: IsSubmitEnabled ? .action : .base,
-                spacing: .small,
-                fontSize: .medium,
-                borderRadius: .full,
-                maxWidth: .infinity
-            )
-            .opacity(IsSubmitEnabled ? 1.0 : 0.6)
-        }
-        .frame(maxWidth: .infinity, minHeight: 44, alignment: .center)
+    private var criteria: [String] = [
+        "criteria_listen_understand",
+        "criteria_advice_given",
+        "criteria_expertise",
+        "criteria_friendliness"
+    ]
+    
+    private var localizedFeedbackDetailPrompt: String {
+        return NSLocalizedString("feedback_detail_prompt", comment: "")
+    }
+    
+    private var localizedFeedbackPublicReviewPrompt: String {
+        return NSLocalizedString("feedback_public_review_prompt", comment: "")
     }
 }
 

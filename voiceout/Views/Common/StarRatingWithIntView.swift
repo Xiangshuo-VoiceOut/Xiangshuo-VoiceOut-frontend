@@ -8,33 +8,30 @@
 import Foundation
 import SwiftUI
 struct StarRatingViewInt: View {
-    var rating: Int
-    let maximumRating = 5
-    let borderColor = Color(red: 0.98, green: 0.99, blue: 1)
-
+    @Binding var rating: Int
+    let totalStars = 5
+    
     var body: some View {
-        HStack {
-            ForEach(1...maximumRating, id: \.self) { index in
-                if index <= rating {
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 3)
-                                .stroke(borderColor, lineWidth: 1)
-                        )
-                } else {
-                    Image(systemName: "star")
-                        .foregroundColor(.yellow)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 3)
-                                .stroke(borderColor, lineWidth: 1)
+        HStack(spacing: ViewSpacing.small) {
+            ForEach(1...totalStars, id: \.self) { star in
+                Button(action: {
+                    rating = star
+                }) {
+                    Image("star")
+                        .resizable()
+                        .renderingMode(.template)
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(
+                            star <= rating ? Color.surfaceBrandPrimary : Color.surfacePrimaryGrey
                         )
                 }
+                .buttonStyle(PlainButtonStyle())
             }
         }
     }
 }
 
 #Preview {
-    StarRatingViewInt(rating: 4)
+    StarRatingViewInt(rating: .constant(4))
 }

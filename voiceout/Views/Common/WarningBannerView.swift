@@ -19,7 +19,7 @@ struct WarningBannerView: View {
                 .padding(.vertical, ViewSpacing.xsmall)
                 .frame(maxWidth: .infinity)
         }
-        .background(Color.brandTertiary)
+        .background(Color.brandTertiaryPeach)
         .frame(maxWidth: .infinity)
     }
 }

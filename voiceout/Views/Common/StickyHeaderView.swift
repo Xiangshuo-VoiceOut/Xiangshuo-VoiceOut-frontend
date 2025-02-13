@@ -14,27 +14,28 @@ struct StickyHeaderView: View {
     var backgroundColor: Color = Color.surfacePrimary
 
     var body: some View {
-        VStack {
-            HStack {
-                leadingComponent
-
-                Spacer()
-
+        HStack {
+            leadingComponent
+                .frame(width: 24)
+                .padding(.leading, ViewSpacing.medium)
+            Text(LocalizedStringKey(title ?? ""))
+                .font(Font.typography(.bodyLargeEmphasis))
+                .foregroundColor(.textPrimary)
+                .lineLimit(1)
+                .truncationMode(.tail)
+                .frame(maxWidth: .infinity, alignment: .center)
+            if let trailingComponent = trailingComponent {
                 trailingComponent
+                    .frame(width: 24)
+                    .padding(.trailing, ViewSpacing.medium)
+            } else {
+                Spacer()
+                    .frame(width: 24)
+                    .padding(.trailing, ViewSpacing.medium)
             }
-            .padding(.horizontal, ViewSpacing.medium)
-            .padding(.vertical, 0)
-            .frame(height: 44, alignment: .leading)
-            .background(backgroundColor)
-            .overlay(
-                Text(LocalizedStringKey(title ?? ""))
-                    .font(Font.typography(.bodyLargeEmphasis))
-                    .foregroundColor(.textPrimary)
-                    .frame( height: 24, alignment: .bottomLeading)
-            )
-
-            Spacer()
         }
+        .frame(height: 44)
+        .background(backgroundColor)
         .navigationTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden()

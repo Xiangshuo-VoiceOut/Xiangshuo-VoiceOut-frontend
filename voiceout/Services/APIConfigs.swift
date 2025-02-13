@@ -18,4 +18,5 @@ class APIConfigs {
     static let userResetPWURL = "http://localhost:5000/api/auth/reset-password"
     static let userSignUpCodeSendingURL = "http://localhost:5000/api/register/send"
     static let userSignUpURL = "http://localhost:5000/api/register"
+    static let userFAQURL = "http://localhost:6500/api/faq"
 }

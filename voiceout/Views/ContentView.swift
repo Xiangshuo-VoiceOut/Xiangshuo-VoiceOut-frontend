@@ -52,7 +52,7 @@ struct ContentView: View {
         .background(
             LinearGradient(
                 colors: [
-                    Color(.brandTertiaryPeach), .white
+                    Color(Color.surfaceBrandTertiaryPeach), .white
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing

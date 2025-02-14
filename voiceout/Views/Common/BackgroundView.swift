@@ -20,8 +20,8 @@ struct BackgroundView: View {
             LinearGradient(
                 stops: [
                     Gradient.Stop(color: Color.surfacePrimary, location: BGConstants.Background.startPointY),
-                    Gradient.Stop(color: Color.brandTertiaryPeach, location: BGConstants.centerLocation),
-                    Gradient.Stop(color: Color.brandTertiaryPeach, location: BGConstants.centerLocation),
+                    Gradient.Stop(color: Color.surfaceBrandTertiaryPeach, location: BGConstants.centerLocation),
+                    Gradient.Stop(color: Color.surfaceBrandTertiaryPeach, location: BGConstants.centerLocation),
                     Gradient.Stop(color: Color.surfacePrimary, location: BGConstants.Background.endPointY)
                 ],
                 startPoint: UnitPoint(

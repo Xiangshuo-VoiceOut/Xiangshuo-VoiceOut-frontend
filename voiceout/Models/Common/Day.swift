@@ -12,8 +12,8 @@ struct Day: Identifiable {
     let label: String
     let date: Date
     let isPast: Bool
-    let isAvailable: Bool
-    let slots: [Slot]
+    var isAvailable: Bool
+    var slots: [Slot]
 }
 
 struct Time: Identifiable {
@@ -92,11 +92,53 @@ extension Day {
     ]
 }
 
-struct Slot: Identifiable, Codable, Equatable {
-    var id: UUID = UUID()
+struct Slot: Codable, Identifiable {
+    let id: UUID
     var startTime: Date
-    var endTime: Date
-    var isAvailable: Bool
+    var endTime: Date {
+        Calendar.current.date(byAdding: .hour, value: 1, to: startTime) ?? startTime
+    }
+    let isAvailable: Bool
+
+    init(id: UUID = UUID(), startTime: Date, isAvailable: Bool) {
+        self.id = id
+        self.startTime = startTime
+        self.isAvailable = isAvailable
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case startTime = "timestamp"
+        case isAvailable
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let dateString = try container.decode(String.self, forKey: .startTime)
+
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)  // 解析为 UTC 时间
+
+        guard let utcDate = formatter.date(from: dateString) else {
+            throw DecodingError.dataCorruptedError(forKey: .startTime, in: container, debugDescription: "Invalid date format")
+        }
+
+        self.id = UUID()
+        self.startTime = utcDate
+        self.isAvailable = (try container.decode(Int.self, forKey: .isAvailable)) == 1
+    }
+}
+
+extension Slot: Equatable, Hashable {
+    static func == (lhs: Slot, rhs: Slot) -> Bool {
+        lhs.id == rhs.id && lhs.startTime == rhs.startTime && lhs.isAvailable == rhs.isAvailable
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(startTime)
+        hasher.combine(isAvailable)
+    }
 }
 
 struct Availability: Identifiable, Codable {
@@ -117,5 +159,17 @@ struct Period: Codable {
 extension Date {
     var hour: Int {
         return Calendar.current.component(.hour, from: self)
+    }
+    
+    var year: Int {
+        return Calendar.current.component(.year, from: self)
+    }
+    
+    var month: Int {
+        return Calendar.current.component(.month, from: self)
+    }
+    
+    var day: Int {
+        return Calendar.current.component(.day, from: self)
     }
 }

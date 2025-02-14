@@ -15,15 +15,15 @@ struct NoReviewsView: View {
                 .frame(width: 170, height: 108)
                 .background(Color.black)
 
-            Text("咨询师暂未收到任何客户的评价，请稍后再来。")
+            Text(LocalizedStringKey("no_reviews_yet"))
                 .font(Font.typography(.bodyLargeEmphasis))
                 .multilineTextAlignment(.center)
                 .foregroundColor(.textSecondary)
                 .frame(maxWidth: .infinity, alignment: .center)
         }
-        .padding(.horizontal, ViewSpacing.xxxlarge)
+        .padding(.horizontal, ViewSpacing.large+ViewSpacing.xxlarge)
         .padding(.vertical, ViewSpacing.xsmall)
-        .frame(alignment: .top)
+        .frame(width: 358, alignment: .top)
     }
 }
 

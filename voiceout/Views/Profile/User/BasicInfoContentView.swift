@@ -15,7 +15,7 @@ struct BasicInfoContentView: View {
                     age: "32",
                     gender: "女",
                     location: "NY",
-                    language: "普通话，西班牙语",
+                    language: "普通话",
                     showEditButton: false
                 )
 
@@ -35,11 +35,11 @@ struct BasicInfoContentView: View {
 
                 WordToVisitorView(showEditButton: false)
             }
+            .frame(maxWidth: .infinity, alignment: .topLeading)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
-#Preview {
+#Preview{
     BasicInfoContentView()
 }

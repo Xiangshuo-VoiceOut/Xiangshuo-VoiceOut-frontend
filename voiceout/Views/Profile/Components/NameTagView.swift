@@ -4,7 +4,6 @@
 //  Created by Jiaqi Chen on 10/15/24.
 //
 
-import Foundation
 import SwiftUI
 
 struct NameTagView: View {
@@ -17,67 +16,89 @@ struct NameTagView: View {
     var isFollowing: Bool
 
     var body: some View {
-        HStack(alignment: .bottom, spacing: 0) {
-            Text(name)
-                .font(.typography(.headerSmall))
-                .foregroundColor(.textTitle)
+        ZStack {
+            RoundedRectangle(cornerRadius: CornerRadius.medium.value)
+                .fill(Color.surfacePrimary)
 
-            Spacer()
-
-            VStack(alignment: .trailing, spacing: ViewSpacing.xsmall) {
-                if showEditButton {
-                    EditButtonView()
-                } else {
-                    ButtonView(
-                        text: isFollowing ? "followed" : "follow",
-                        action: {
-                            followButtonAction?()
-                        },
-                        theme: isFollowing ? .base : .action,
-                        spacing: .xsmall,
-                        maxWidth: 101
-                    )
-                }
-
-                Spacer()
-
-                Text(consultingPrice)
-                    .font(.typography(.bodySmall))
-                    .foregroundColor(.textBrandSecondary)
-
-                Text(personalTitle)
-                    .font(.typography(.bodyXSmall))
-                    .multilineTextAlignment(.trailing)
-                    .foregroundColor(.textSecondary)
-            }
-        }
-        .padding(.horizontal, ViewSpacing.large)
-        .padding(.vertical, ViewSpacing.medium)
-        .background(Color.surfacePrimary)
-        .cornerRadius(.medium, corners: .allCorners)
-        .frame(height: 124)
-        .overlay {
-            AsyncImage(url: URL(string: imageUrl)) { phase in
-                switch phase {
-                    case .empty:
-                        ProgressView()
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .overlay(Circle().stroke(Color.gray.opacity(0.3), lineWidth: 1))
-                    case .failure:
-                        Image(systemName: "person.circle.fill")
-                            .resizable()
-                            .foregroundColor(.gray)
-                    @unknown default:
-                        EmptyView()
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    VStack(alignment: .leading) {
+                        AsyncImage(url: URL(string: imageUrl)) { phase in
+                            switch phase {
+                            case .empty:
+                                ProgressView()
+                                    .frame(width: 88, height: 88)
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 88, height: 88)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(Color.gray.opacity(0.3), lineWidth: 1))
+                            case .failure:
+                                Image(systemName: "person.circle.fill")
+                                    .resizable()
+                                    .frame(width: 88, height: 88)
+                                    .clipShape(Circle())
+                                    .foregroundColor(.gray)
+                            @unknown default:
+                                EmptyView()
+                            }
+                        }
+                        Spacer()
+                        
+                        nameTextView(name)
                     }
+                    .padding(.top,-ViewSpacing.xlarge)
+                    .padding(.bottom, ViewSpacing.medium)
+
+                    Spacer()
+
+                    VStack(alignment: .trailing) {
+                        if showEditButton {
+                            EditButtonView()
+                        } else {
+                            Button(action: {
+                                followButtonAction?()
+                            }) {
+                                Text(isFollowing ? LocalizedStringKey("followed") : LocalizedStringKey("follow"))
+                                    .font(Font.typography(.bodySmall))
+                                    .foregroundColor(isFollowing ? .textPrimary : .white)
+                                    .frame(width: 101, height: 28)
+                                    .background(isFollowing ? Color.surfacePrimaryGrey : Color.surfaceBrandPrimary)
+                                    .cornerRadius(CornerRadius.full.value)
+                            }
+                        }
+
+                        Text(consultingPrice)
+                            .font(Font.typography(.bodySmall))
+                            .foregroundColor(.textBrandSecondary)
+                            .frame(height: 20, alignment: .topLeading)
+                            .padding(.top, ViewSpacing.base)
+
+                        Text(personalTitle)
+                            .font(Font.typography(.bodyXSmallEmphasis))
+                            .kerning(0.36)
+                            .multilineTextAlignment(.trailing)
+                            .foregroundColor(.textSecondary)
+                            .frame(height: 16, alignment: .topTrailing)
+                            .padding(.top, -ViewSpacing.xsmall)
+
+                    }
+                    .padding(.vertical, ViewSpacing.medium)
+                }
+                .padding(.horizontal, ViewSpacing.large)
             }
-            .frame(width: 88, height: 88)
-            .clipShape(Circle())
-            .offset(x: -140, y: -55)
         }
+        .frame(height: 124)
+    }
+
+    private func nameTextView(_ name: String) -> Text {
+        let containsChinese = name.range(of: "\\p{Han}", options: .regularExpression) != nil
+        let font = containsChinese ? Font.typography(.headerSmall) : Font.typography(.headerXSmall)
+        return Text(name)
+            .font(font)
+            .foregroundColor(.textTitle)
     }
 }
 

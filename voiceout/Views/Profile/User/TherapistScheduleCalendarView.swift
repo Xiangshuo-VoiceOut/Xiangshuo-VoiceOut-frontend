@@ -8,20 +8,26 @@
 import SwiftUI
 
 struct TherapistScheduleCalendarView: View {
-    @ObservedObject var viewModel: TherapistScheduleViewModel
-
+    @ObservedObject var viewModel: TherapistProfilePageService
+    @Binding var selectedTimeSlot: Slot?
+    @Binding var selectedDate: Date?
+    
     var body: some View {
-        VStack {
+        VStack(alignment: .center, spacing: ViewSpacing.medium) {
             MonthHeader(viewModel: viewModel)
-            CalendarGrid(viewModel: viewModel)
+            CalendarGrid(viewModel: viewModel, selectedDate: $selectedDate)
         }
+        .padding()
         .background(Color.surfacePrimary)
         .cornerRadius(CornerRadius.medium.value)
+        .onAppear {
+            viewModel.fetchAvailableDates()
+        }
     }
 }
 
 struct MonthHeader: View {
-    @ObservedObject var viewModel: TherapistScheduleViewModel
+    @ObservedObject var viewModel: TherapistProfilePageService
 
     var body: some View {
         HStack(alignment: .center) {
@@ -34,37 +40,32 @@ struct MonthHeader: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(.textPrimary)
             Spacer()
-            HStack(alignment: .center, spacing: ViewSpacing.medium) {
+            HStack(alignment: .center, spacing: ViewSpacing.medium)  {
                 Button(action: { viewModel.previousMonth() }) {
                     Image("left-arrow")
                         .frame(width: 24, height: 24)
+                        .foregroundColor(.grey500)
                 }
                 Button(action: { viewModel.nextMonth() }) {
                     Image("right-arrow")
                         .frame(width: 24, height: 24)
                 }
             }
+            .padding(.bottom, ViewSpacing.medium)
         }
-        .padding(.top, ViewSpacing.large)
-        .padding(.horizontal, ViewSpacing.medium)
         .frame(alignment: .center)
     }
 }
 
 struct CalendarGrid: View {
-    @ObservedObject var viewModel: TherapistScheduleViewModel
+    @ObservedObject var viewModel: TherapistProfilePageService
+    @Binding var selectedDate: Date?
 
     var body: some View {
-        VStack(spacing: ViewSpacing.small) {
+        VStack {
             WeekdaysHeader(weekdays: viewModel.weekdays)
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-            CalendarRows(viewModel: viewModel)
-                .frame(maxWidth: .infinity, alignment: .leading)
-
+            CalendarRows(viewModel: viewModel, selectedDate: $selectedDate)
         }
-        .padding(.bottom, ViewSpacing.medium)
-        .padding(.horizontal, ViewSpacing.medium)
     }
 }
 
@@ -72,56 +73,58 @@ struct WeekdaysHeader: View {
     let weekdays: [String]
 
     var body: some View {
-        HStack(alignment: .center, spacing: 0) {
+        HStack(alignment: .center, spacing: ViewSpacing.small) {
             ForEach(weekdays, id: \.self) { day in
-                Text(day)
-                    .font(Font.typography(.bodyMediumEmphasis))
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.textPrimary)
-                    .frame(width: 48, height: 48)
+                VStack(alignment: .center, spacing: ViewSpacing.small) {
+                    Text(day)
+                        .font(Font.typography(.bodyMediumEmphasis))
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.textPrimary)
+                }
+                .padding(.horizontal, ViewSpacing.small)
+                .padding(.vertical, ViewSpacing.medium)
+                .frame(width: 40, height: 57, alignment: .center)
             }
         }
-        .padding(.horizontal, 0)
-
         Image("separator")
+            .cornerRadius(0)
             .overlay(
                 RoundedRectangle(cornerRadius: 0)
-                    .stroke(Color.surfacePrimaryGrey, lineWidth: 1)
+                    .stroke(Color(red: 0.96, green: 0.96, blue: 0.96), lineWidth: 1)
             )
     }
 }
 
 struct CalendarRows: View {
-    @ObservedObject var viewModel: TherapistScheduleViewModel
+    @ObservedObject var viewModel: TherapistProfilePageService
+    @Binding var selectedDate: Date?
 
     var body: some View {
-        VStack(spacing: ViewSpacing.small) {
+        VStack(alignment: .leading, spacing: ViewSpacing.small) {
             ForEach(0..<rowCount(), id: \.self) { rowIndex in
                 CalendarRow(
                     rowIndex: rowIndex,
                     days: viewModel.days,
-                    selectedDate: viewModel.selectedDate,
-                    onSelectDate: { viewModel.selectDate($0) }
+                    selectedDate: $selectedDate,
+                    viewModel: viewModel
                 )
             }
         }
-        .padding(.horizontal, 0)
-
     }
 
     private func rowCount() -> Int {
-        viewModel.days.count / 7 + (viewModel.days.count % 7 > 0 ? 1 : 0)
+        (viewModel.days.count / 7) + (viewModel.days.count % 7 > 0 ? 1 : 0)
     }
 }
 
 struct CalendarRow: View {
     let rowIndex: Int
     let days: [Day]
-    let selectedDate: Date?
-    let onSelectDate: (Date) -> Void
+    @Binding var selectedDate: Date?
+    @ObservedObject var viewModel: TherapistProfilePageService
 
     var body: some View {
-        HStack(alignment: .center, spacing: 0) {
+        HStack(alignment: .top, spacing: 0) {
             ForEach(0..<7, id: \.self) { columnIndex in
                 let index = rowIndex * 7 + columnIndex
                 if index < days.count {
@@ -132,21 +135,31 @@ struct CalendarRow: View {
                                 .fill(Color.surfaceBrandPrimary)
                                 .frame(width: 48, height: 48)
                         }
+
                         Text(day.label)
                             .font(Font.typography(.bodyLarge))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(selectedDate == day.date ? .textInvert : day.isPast ? .textLight : day.isAvailable ? .textPrimary : .textLight)
+                            .foregroundColor(
+                                selectedDate == day.date
+                                    ? .textInvert
+                                    : day.isPast
+                                        ? .textLight
+                                        : day.isAvailable
+                                            ? .textPrimary
+                                            : .textLight
+                            )
+                            .padding(ViewSpacing.xsmall)
                             .opacity(day.isPast ? 0.35 : 1.0)
                     }
                     .frame(width: 48, height: 48)
                     .onTapGesture {
-                        if !day.isPast && day.isAvailable {
-                            onSelectDate(day.date)
+                        if day.isAvailable {
+                            print("Date selected:", day.date)
+                            selectedDate = day.date
+                            viewModel.fetchTimeSlots(for: day.date)
                         }
                     }
                 } else {
                     Spacer()
-                        .frame(width: 48, height: 48)
                 }
             }
         }
@@ -154,5 +167,9 @@ struct CalendarRow: View {
 }
 
 #Preview {
-    TherapistScheduleCalendarView(viewModel: TherapistScheduleViewModel())
+    TherapistScheduleCalendarView(
+        viewModel: TherapistProfilePageService(clinicianId: "667ab297a0ada2dceea38f7f"),
+        selectedTimeSlot: .constant(nil),
+        selectedDate: .constant(nil)
+    )
 }

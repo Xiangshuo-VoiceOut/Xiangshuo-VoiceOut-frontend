@@ -19,4 +19,7 @@ class APIConfigs {
     static let userSignUpCodeSendingURL = "http://localhost:5000/api/register/send"
     static let userSignUpURL = "http://localhost:5000/api/register"
     static let userFAQURL = "http://localhost:6500/api/faq"
+    static let clinicianProfileURL = "http://localhost:6500/api/doctors/"
+    static let clinicianAvailabilityMonthURL = "http://localhost:9010/api/doctor/availability/month"
+    static let clinicianAvailableSlotsURL = "http://localhost:9010/api/doctor/avaliable"
 }

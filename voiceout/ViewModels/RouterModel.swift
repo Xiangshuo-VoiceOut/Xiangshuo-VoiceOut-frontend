@@ -18,9 +18,9 @@ enum Route: Hashable {
     case forgetPassword(UserRole)
     case successRedirect(title: String)
     case profilePage
-    case consultationReservation
-    case waitingConfirmation
     case questionDetail(title: String, questionID: String, answers: [FAQAnswer])
+    case profileWithReservation(date: Date, slot: Slot)
+    case waitingConfirmation(date: Date, timeSlot: Slot, clinicianId: String)
 }
 
 final class RouterModel: ObservableObject {
@@ -49,18 +49,22 @@ final class RouterModel: ObservableObject {
         case .profilePage:
             ProfilePageView()
                 .environmentObject(self)
-        case .consultationReservation:
-            ConsultationReservationView()
-                .environmentObject(self)
-        case .waitingConfirmation:
-            WaitingConfirmationView()
-                .environmentObject(self)
         case .questionDetail(let title, let questionID, let answers):
             BeforeFirstConsultationView(
                 title: title,
                 questionID: questionID,
                 answers: answers
             )
+        case .profileWithReservation(let date, let slot):
+            ProfilePageView()
+                .environmentObject(self)
+                .onAppear {
+                    DispatchQueue.main.async {
+                    }
+                }
+        case .waitingConfirmation(let date, let timeSlot, let clinicianId):
+            WaitingConfirmationView(selectedDate: date, selectedTimeSlot: timeSlot, consultantId: clinicianId)
+                .environmentObject(self)
         }
     }
 

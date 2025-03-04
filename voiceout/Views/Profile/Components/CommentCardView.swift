@@ -42,6 +42,8 @@ struct CommentCardView: View {
             }
         }
         .cardStyle()
+        .shadow(color: Color(red: 0.35, green: 0.46, blue: 0.65).opacity(0.04), radius: 10, x: 2, y: 12)
+        .fixedSize(horizontal: false, vertical: true)
         .onAppear {
             viewModel.loadTestData()
         }

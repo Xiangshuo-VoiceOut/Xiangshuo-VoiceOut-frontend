@@ -25,7 +25,7 @@
 		84788CDA2D5F1C2D0039B715 /* ClinicianProfilePageInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84788CD92D5F1C2B0039B715 /* ClinicianProfilePageInformation.swift */; };
 		84788CDC2D5F1D060039B715 /* TherapistProfilePageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84788CDB2D5F1D040039B715 /* TherapistProfilePageService.swift */; };
 		84788CDF2D5F1E610039B715 /* WaitingConfirmationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84788CDE2D5F1E5F0039B715 /* WaitingConfirmationViewModel.swift */; };
-		84788CE12D5F1E760039B715 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84788CE02D5F1E740039B715 /* ProfileViewModel.swift */; };
+		84788CE12D5F1E760039B715 /* ProfilePageInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84788CE02D5F1E740039B715 /* ProfilePageInformation.swift */; };
 		84788CE32D5F1E8C0039B715 /* TherapistScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84788CE22D5F1E8B0039B715 /* TherapistScheduleViewModel.swift */; };
 		84788CE72D5F20000039B715 /* ExitAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84788CE62D5F1FFE0039B715 /* ExitAppointmentView.swift */; };
 		848E62AD2C891D37009B162A /* StickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AC2C891D37009B162A /* StickyHeaderView.swift */; };
@@ -33,7 +33,6 @@
 		848E62B42C8BC8F1009B162A /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62B32C8BC8F1009B162A /* Day.swift */; };
 		8490EDE62D30F6BA00C6C765 /* BeforeFirstConsultationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490EDE52D30F6B900C6C765 /* BeforeFirstConsultationView.swift */; };
 		8497B51B2CE81EB9006D6050 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497B51A2CE81EB1006D6050 /* EditButtonView.swift */; };
-		8497B51D2CE825A0006D6050 /* SegementedControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */; };
 		84ACCBE72CEC24D5000C2C7E /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACCBE62CEC24D3000C2C7E /* ProfileCardView.swift */; };
 		84B100D82CF16FC9003C6C20 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B100D72CF16FC7003C6C20 /* ReviewsView.swift */; };
 		84B100DA2CF1AB21003C6C20 /* NoReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B100D92CF1AB16003C6C20 /* NoReviewsView.swift */; };
@@ -164,7 +163,7 @@
 		84788CD92D5F1C2B0039B715 /* ClinicianProfilePageInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianProfilePageInformation.swift; sourceTree = "<group>"; };
 		84788CDB2D5F1D040039B715 /* TherapistProfilePageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistProfilePageService.swift; sourceTree = "<group>"; };
 		84788CDE2D5F1E5F0039B715 /* WaitingConfirmationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingConfirmationViewModel.swift; sourceTree = "<group>"; };
-		84788CE02D5F1E740039B715 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		84788CE02D5F1E740039B715 /* ProfilePageInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageInformation.swift; sourceTree = "<group>"; };
 		84788CE22D5F1E8B0039B715 /* TherapistScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistScheduleViewModel.swift; sourceTree = "<group>"; };
 		84788CE62D5F1FFE0039B715 /* ExitAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitAppointmentView.swift; sourceTree = "<group>"; };
 		848E62AC2C891D37009B162A /* StickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
@@ -172,7 +171,6 @@
 		848E62B32C8BC8F1009B162A /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		8490EDE52D30F6B900C6C765 /* BeforeFirstConsultationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeFirstConsultationView.swift; sourceTree = "<group>"; };
 		8497B51A2CE81EB1006D6050 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
-		8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegementedControlButtonView.swift; sourceTree = "<group>"; };
 		84ACCBE62CEC24D3000C2C7E /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		84B100D72CF16FC7003C6C20 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		84B100D92CF1AB16003C6C20 /* NoReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReviewsView.swift; sourceTree = "<group>"; };
@@ -319,7 +317,6 @@
 			isa = PBXGroup;
 			children = (
 				84788CDE2D5F1E5F0039B715 /* WaitingConfirmationViewModel.swift */,
-				84788CE02D5F1E740039B715 /* ProfileViewModel.swift */,
 				84788CE22D5F1E8B0039B715 /* TherapistScheduleViewModel.swift */,
 			);
 			path = Profile;
@@ -346,7 +343,6 @@
 				689489692CC847AA000FEA22 /* PersonalView.swift */,
 				84ACCBE62CEC24D3000C2C7E /* ProfileCardView.swift */,
 				6894896D2CC85090000FEA22 /* QualificationView.swift */,
-				8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */,
 				689489712CC8524B000FEA22 /* WordToVisitorView.swift */,
 			);
 			path = Components;
@@ -598,6 +594,7 @@
 				84F0D9452D359F260029F651 /* FAQInformation.swift */,
 				8433CAC92C459F9800845A7A /* ClinicianCardInformation.swift */,
 				84788CD92D5F1C2B0039B715 /* ClinicianProfilePageInformation.swift */,
+				84788CE02D5F1E740039B715 /* ProfilePageInformation.swift */,
 			);
 			path = Therapist;
 			sourceTree = "<group>";
@@ -826,7 +823,6 @@
 				689489702CC8516B000FEA22 /* ConsultServiceView.swift in Sources */,
 				D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */,
 				D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */,
-				8497B51D2CE825A0006D6050 /* SegementedControlButtonView.swift in Sources */,
 				D228B2812C94ECBB003975FB /* Badge.swift in Sources */,
 				842FC91C2D2A275D00BA9242 /* FeedbackInputView.swift in Sources */,
 				B8D4722B2C1E41E400D6716A /* APIConfigs.swift in Sources */,
@@ -912,7 +908,7 @@
 				D28498EA2BE171F700963B3A /* Border.swift in Sources */,
 				D21660E22C4C24DD008248DE /* FileReader.swift in Sources */,
 				B8D472232C1E408C00D6716A /* AuthViewModel.swift in Sources */,
-				84788CE12D5F1E760039B715 /* ProfileViewModel.swift in Sources */,
+				84788CE12D5F1E760039B715 /* ProfilePageInformation.swift in Sources */,
 				B8D472132C1E3CB700D6716A /* BackgroundView.swift in Sources */,
 				D21660CF2C339B98008248DE /* BackButtonView.swift in Sources */,
 				B8D472242C1E408C00D6716A /* ResetPasswordVM.swift in Sources */,

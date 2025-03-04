@@ -11,39 +11,58 @@ struct ProfilePageView: View {
     @EnvironmentObject var router: RouterModel
     @StateObject private var viewModel = TherapistProfilePageService()
     @StateObject private var dialogViewModel = DialogViewModel()
+    @State private var selectedDate: Date? = nil
+    @State private var selectedTimeSlot: Slot? = nil
+    @State private var activeTab: Tab?
 
     var body: some View {
         ZStack {
-            Color.grey75.edgesIgnoringSafeArea(.all)
+            BackgroundView(backgroundType: .surfacePrimaryGrey)
+                .zIndex(0)
 
             VStack(spacing: 0) {
                 stickyHeaderView
-                    .zIndex(2)
                     .frame(height: 44)
+                    .zIndex(2)
 
                 profileHeaderView
-                    .zIndex(1)
                     .padding(.top, ViewSpacing.xlarge)
                     .padding(.bottom, ViewSpacing.small)
                     .padding(.horizontal, ViewSpacing.medium)
+                    .zIndex(1)
 
-                SegmentedButtonView(clinicianId: viewModel.clinicianId)
-                    .environmentObject(viewModel)
-                    .environmentObject(router)
-                    .frame(maxWidth: UIScreen.main.bounds.width)
-            }
+                let validClinicianId = !viewModel.clinicianId.isEmpty ? viewModel.clinicianId : "default_clinician"
 
-            if case let .present(config) = dialogViewModel.action {
-                ZStack {
-                    Color.black.opacity(0.4).edgesIgnoringSafeArea(.all)
+                ScrollView {
+                    VStack(spacing: ViewSpacing.medium) {
+                        SegmentedTabView(
+                            tabList: tabList,
+                            panelList: [
+                                AnyView(BasicInfoContentView()),
+                                AnyView(ReviewsView()),
+                                AnyView(
+                                    ConsultationReservationView(
+                                        clinicianId: validClinicianId,
+                                        selectedDate: $selectedDate,
+                                        selectedTimeSlot: $selectedTimeSlot
+                                    )
+                                    .environmentObject(viewModel)
+                                    .environmentObject(router)
+                                )
+                            ],
+                            horizontalSpacing: ViewSpacing.medium,
+                            isUsePanelHeight: true
+                        )
+                        .frame(maxWidth: .infinity)
 
-                    VStack(spacing: ViewSpacing.large) {
-                        config.content
+                        Spacer(minLength: 50)
                     }
-                    .padding(ViewSpacing.large)
-                    .background(Color.surfacePrimary)
-                    .cornerRadius(CornerRadius.medium.value)
                 }
+            }
+        }
+        .onAppear {
+            if activeTab == nil {
+                activeTab = tabList.first
             }
         }
     }
@@ -84,6 +103,12 @@ struct ProfilePageView: View {
         let config = DialogViewModel.Config(content: AnyView(followDialog))
         dialogViewModel.present(with: config)
     }
+    
+    private let tabList = [
+        Tab(id: "basicInfo", name: NSLocalizedString("basic_info", comment: "基本信息")),
+        Tab(id: "Reviews", name: NSLocalizedString("customer_reviews", comment: "客户评价")),
+        Tab(id: "consultationReservation", name: NSLocalizedString("consultation_reservation", comment: "咨询预约"))
+    ]
 }
 
 struct ProfilePageView_Previews: PreviewProvider {

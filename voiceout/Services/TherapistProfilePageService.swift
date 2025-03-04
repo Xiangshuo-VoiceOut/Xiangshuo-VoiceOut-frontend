@@ -85,20 +85,35 @@ class TherapistProfilePageService: ObservableObject {
     }
     
     func generateDaysForCurrentMonth() {
-        let calendar = Calendar.current
-        let range = calendar.range(of: .day, in: .month, for: currentDate)!
-        let startDate = calendar.startOfDay(for: calendar.date(from: calendar.dateComponents([.year, .month], from: currentDate))!)
-        let today = calendar.startOfDay(for: Date())
-        
-        days = range.map { day in
-            let date = calendar.date(byAdding: .day, value: day - 1, to: startDate)!
-            return Day(
-                label: "\(day)",
-                date: date,
-                isPast: date < today,
+        let calendar = Calendar(identifier: .gregorian)
+        var components = calendar.dateComponents([.year, .month], from: currentDate)
+        components.day = 1
+        guard let firstDayOfMonth = calendar.date(from: components) else { return }
+        let range = calendar.range(of: .day, in: .month, for: firstDayOfMonth)!
+        let weekday = calendar.component(.weekday, from: firstDayOfMonth)
+        let firstWeekdayIndex = weekday - 1
+        days = []
+        for _ in 0..<firstWeekdayIndex {
+            days.append(Day(
+                label: "",
+                date: Date.distantPast,
+                isPast: true,
                 isAvailable: false,
                 slots: []
-            )
+            ))
+        }
+        
+        for day in range {
+            let date = calendar.date(byAdding: .day, value: day - 1, to: firstDayOfMonth)!
+            let isPast = date < calendar.startOfDay(for: Date())
+
+            days.append(Day(
+                label: "\(day)",
+                date: date,
+                isPast: isPast,
+                isAvailable: false,
+                slots: []
+            ))
         }
     }
     

@@ -30,6 +30,7 @@ struct WaitingConfirmationView: View {
                         BackButtonView(action: {
                             showExitPopup()
                         })
+                        .foregroundColor(.grey500)
                     ),
                     trailingComponent: AnyView(
                         Button(action: {

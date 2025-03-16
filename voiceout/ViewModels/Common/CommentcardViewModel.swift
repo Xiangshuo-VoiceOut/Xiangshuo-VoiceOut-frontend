@@ -8,18 +8,18 @@
 import Foundation
 
 class CommentCardViewModel: ObservableObject {
-    @Published var user: UserProfile?
+    @Published var user: User?
     @Published var isLoading = false
     @Published var errorMessage: String?
 
     func loadTestData() {
-        let testComment=Comment(comment: "老师很温暖，气场温和，跟他聊天非常愉快!")
-        let testUser = UserProfile(
+        let testComment=Comment(comment: "老师很温暖，气场温和，跟他聊天非常愉快!", rating: 4)
+        let testUser = User(
             _id: "1",
             nickname: "快乐的小云朵",
-            profilePicture: ObjectId(id: "https://s3-alpha-sig.figma.com/img/cc95/6287/bb02dcd901a19d4857fdc3ed4d9ae631?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OQ2oS~AjsCNhOuhXQ-Ft4F1F~OHuvzqRY8r5C7lPKWgi-8yaSHDMlUj3Ga6LJoTlr-ipJnwYx3jXfpTwHs4dNKPV9fnDYRJxw~ob1BShyedge7E67qsGHZ6IuAQdUJwpKVYjhtvskfQTzn-fO~kJbwd5T4ggewiZC~qFYV0uQ~mkkW85-A9OayyTmo7K5liT0Whbf9SZZ-EO88LBlU-D0Xkulkce6eCfCXVZ74Yuzb8n9elE3Kwz~aabf6pq6etITn2VIiYvB71RDYGdtHIes8bFzLtpobph6PZ4nm~CVYc6MMCyyiOTAih5zpYFr~BFWaDI95jjZH~v8mTNWHQr0w__"),
+            profilePicture: "https://houseofroxylondon.com/cdn/shop/articles/Untitled_design-5_1296x.png?v=1675515844",
             state: "NY, US",
-            date: "2024年4月2日",
+            date: "2024-04-02",
             comments: [testComment]
         )
         self.user = testUser
@@ -44,7 +44,7 @@ class CommentCardViewModel: ObservableObject {
                 }
 
                 do {
-                    let user = try JSONDecoder().decode(UserProfile.self, from: data)
+                    let user = try JSONDecoder().decode(User.self, from: data)
                     self.user = user
                     self.errorMessage = nil
                 } catch {

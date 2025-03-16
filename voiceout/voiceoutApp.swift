@@ -8,11 +8,19 @@
 import SwiftUI
 
 @main
-struct VoiceoutApp: App {
+struct VoiceOutApp: App {
+    @StateObject private var router = RouterModel()
+    @StateObject var progressViewModel = ProgressViewModel()
+
     var body: some Scene {
         WindowGroup {
-            RouterView {
-                ContentView()
+            NavigationStack(path: $router.path) {
+                MatchingConsultantLandingView()
+                    .environmentObject(router)
+                    .environmentObject(progressViewModel)
+                    .navigationDestination(for: Route.self) { route in
+                        router.view(for: route)
+                    }
             }
         }
     }

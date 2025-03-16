@@ -21,10 +21,18 @@ enum Route: Hashable {
     case consultationReservation
     case waitingConfirmation
     case questionDetail(title: String, questionID: String, answers: [FAQAnswer])
+    case singleChoice(question: Question, surveyId: String, surveyResultId: String)
+    case rating(question: Question, surveyId: String, surveyResultId: String)
+    case multipleChoice(question: Question, surveyId: String, surveyResultId: String, nextQuestion: Question?)
+    case multipleChoiceEditable(question: Question, surveyId: String, surveyResultId: String)
+    case resultView(surveyResultId: String)
+    case matchingLoading
+    case matchingTherapistView
 }
 
 final class RouterModel: ObservableObject {
     @Published var path: NavigationPath = NavigationPath()
+    @Published var currentView: Route?
 
     @ViewBuilder func view(for route: Route) -> some View {
         switch route {
@@ -61,11 +69,37 @@ final class RouterModel: ObservableObject {
                 questionID: questionID,
                 answers: answers
             )
+        case .singleChoice(let question, let surveyId, let surveyResultId):
+            SingleChoiceQuestionView(question: question, surveyId: surveyId, surveyResultId: surveyResultId)
+                .environmentObject(self)
+        case .rating(let question, let surveyId, let surveyResultId):
+            RatingQuestionView(question: question, surveyId: surveyId, surveyResultId: surveyResultId)
+                .environmentObject(self)
+        case .multipleChoice(let question, let surveyId, let surveyResultId, let nextQuestion):
+            MultipleChoiceQuestionView(question: question, surveyId: surveyId, nextQuestion: nextQuestion, surveyResultId: surveyResultId)
+                .environmentObject(self)
+        case .multipleChoiceEditable(let question, let surveyId, let surveyResultId):
+            MultipleChoiceWithEditingView(question: question, surveyId: surveyId, surveyResultId: surveyResultId)
+                .environmentObject(self)
+        case .resultView(let surveyResultId):
+            MatchingConsultantResultView(surveyResultId: surveyResultId)
+                .environmentObject(self)
+        case .matchingLoading:
+            MatchingLoadingView()
+                .environmentObject(self)
+        case .matchingTherapistView:
+            MatchingTherapistView()
+                .environmentObject(self)
         }
     }
 
     func navigateTo(_ appRoute: Route) {
         path.append(appRoute)
+        DispatchQueue.main.async {
+            if self.currentView != appRoute {  
+                self.currentView = appRoute
+            }
+        }
     }
 
     func navigateBack() {

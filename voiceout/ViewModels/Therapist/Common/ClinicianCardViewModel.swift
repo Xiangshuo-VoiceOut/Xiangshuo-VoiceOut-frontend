@@ -8,56 +8,79 @@
 import Foundation
 
 class ClinicianViewModel: ObservableObject {
-    @Published var clinician: Clinician?
+    @Published var clinicians: [Clinician] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
 
-    func loadTestData() {
-        let testClinician = Clinician(
-            _id: "1",
-            profilePicture: ObjectId(id: "https://s3-alpha-sig.figma.com/img/48c5/5d85/e8fedc280ffc87fabedcd0787f575fc5?Expires=1721606400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Iz3vQQ3~kxeAX6kehwj~GxXYms6tRiAO2RQVjwDYDojr04c1UR7NLvfq1APHuqWGtt~m~M23mJdM1DRGseEJvriVUrrLEhCfjDcLdd4xqO~ogeKG5jlR~95cO4XBm2Um5pVC3kP9TpmArGDIr4C8KAul3D7GDyQQjlBi1fPfDslKdHYBJgDcD~Cq78769xbQpwaZ1Jr7LgDAWpMnvKuDVnFHp9DZWWl0WIepR0~GYxnT4Dgi40KG3q2iFzGw2CkNM~HtPEB9APiRjotEOg-SzeLKIsDRN9nL2RWR~YY4Q2Svh6bIazdxKwfd0g9hKkRhODy6qSS1DocwVBmuyZachw"),
-            isAvailable: true,
-            name: "董先生",
-            yearOfExperience: 3,
-            certificationType: "国家一级心理咨询师",
-            consultField: [Tag(tag: "人际关系"), Tag(tag: "焦虑抑郁"), Tag(tag: "LGBT")],
-            avgRating: 4.8,
-            charge: 200
-        )
-        self.clinician = testClinician
-        self.errorMessage = nil
-    }
-
-    func fetchClinician() {
+    func fetchClinicians(userId: String, certificationLocation: String, latitude: Double, longitude: Double, page: Int = 1, limit: Int = 5) {
         isLoading = true
-        guard let url = URL(string: "http://localhost:3000/api/profile/me") else {
-            isLoading = false
+        guard let url = URL(string: "http://localhost:4001/api/doctors/getDoctorInfoByState") else {
+            self.errorMessage = "Invalid URL"
             return
         }
 
-        URLSession.shared.dataTask(with: url) { data, _, error in
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let requestBody: [String: Any] = [
+            "userId": userId,
+            "latitude": latitude,
+            "longitude": longitude,
+            "page": page,
+            "limit": limit
+        ]
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: requestBody, options: [])
+            print("Request Body: \(String(data: request.httpBody!, encoding: .utf8) ?? "")")
+        } catch {
+            self.isLoading = false
+            self.errorMessage = "Error creating request body: \(error.localizedDescription)"
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 self.isLoading = false
             }
 
-            guard let data = data, error == nil else {
-                self.errorMessage = error?.localizedDescription ?? "Unknown error"
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Error: \(error.localizedDescription)"
+                    print("Network Error: \(error.localizedDescription)")
+                }
                 return
             }
 
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    self.errorMessage = "No data received from server"
+                    print("No data received from server")
+                }
+                return
+            }
+
+            if let jsonString = String(data: data, encoding: .utf8) {
+                print("Response Data: \(jsonString)")
+            }
+
             do {
-                let clinicians = try JSONDecoder().decode([Clinician].self, from: data)
-                if let clinician = clinicians.first {
-                    self.clinician = clinician
+                let decodedResponse = try JSONDecoder().decode(ClinicianResponse.self, from: data)
+                DispatchQueue.main.async {
+                    self.clinicians = decodedResponse.data
                     self.errorMessage = nil
-                } else {
-                    self.errorMessage = "No therapist data found"
+                    print("Decoded Clinicians: \(decodedResponse.data)")
                 }
             } catch {
-                self.errorMessage = error.localizedDescription
-                print("Error decoding clinicians: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.errorMessage = "Decoding error: \(error.localizedDescription)"
+                    print("Decoding Error: \(error.localizedDescription)")
+                    if let jsonString = String(data: data, encoding: .utf8) {
+                        print("Failed JSON Response: \(jsonString)")
+                    }
+                }
             }
         }.resume()
     }
-
-       }
+}

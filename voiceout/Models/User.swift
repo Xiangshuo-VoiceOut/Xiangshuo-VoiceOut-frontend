@@ -44,4 +44,16 @@ struct UserProfile: Codable, Identifiable {
 struct Comment: Codable, Identifiable {
     var id = UUID()
     var comment: String
+    var rating: Int
+}
+
+// user information
+struct User: Codable, Identifiable {
+    var _id: String
+    var nickname: String
+    var profilePicture: String
+    var state: String
+    var date: String
+    var comments: [Comment]
+    var id: String { _id }
 }

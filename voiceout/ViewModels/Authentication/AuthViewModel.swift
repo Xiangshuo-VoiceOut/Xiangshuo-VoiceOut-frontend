@@ -28,9 +28,9 @@ class AuthViewModel: ObservableObject {
 
         switch role {
         case .user:
-            loginService.login(email: textInputVM.email, password: textInputVM.password, role: .user, completions: handleLoginResult)
+            loginService.login(email: textInputVM.email, password: textInputVM.password, completions: handleLoginResult)
         case .therapist:
-            loginService.login(email: textInputVM.email, password: textInputVM.password, role: .therapist, completions: handleLoginResult)
+            loginService.login(email: textInputVM.email, password: textInputVM.password, completions: handleLoginResult)
         }
     }
 

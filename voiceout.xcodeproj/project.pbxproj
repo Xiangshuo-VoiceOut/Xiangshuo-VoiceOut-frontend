@@ -78,6 +78,9 @@
 		B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845452C28BC82008C0D80 /* Dropdown.swift */; };
 		B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845472C29BB09008C0D80 /* DropdownList.swift */; };
 		B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */; };
+		C02F59852D95C49A0060E200 /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = C02F59822D95C49A0060E200 /* Auth0.plist */; };
+		C02F59862D95C49A0060E200 /* Auth0Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02F59832D95C49A0060E200 /* Auth0Manager.swift */; };
+		C02F59892D95C5140060E200 /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = C02F59882D95C5140060E200 /* Auth0 */; };
 		D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */; };
 		D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0D2BA62F300040B0AE /* ContentView.swift */; };
 		D2071D102BA62F340040B0AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2071D0F2BA62F340040B0AE /* Assets.xcassets */; };
@@ -212,6 +215,8 @@
 		B8F845452C28BC82008C0D80 /* Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		B8F845472C29BB09008C0D80 /* DropdownList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownList.swift; sourceTree = "<group>"; };
 		B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownListRow.swift; sourceTree = "<group>"; };
+		C02F59822D95C49A0060E200 /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
+		C02F59832D95C49A0060E200 /* Auth0Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth0Manager.swift; sourceTree = "<group>"; };
 		D2071D082BA62F300040B0AE /* voiceout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voiceout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voiceoutApp.swift; sourceTree = "<group>"; };
 		D2071D0D2BA62F300040B0AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -281,6 +286,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C02F59892D95C5140060E200 /* Auth0 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +385,15 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		C02F59842D95C49A0060E200 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				C02F59822D95C49A0060E200 /* Auth0.plist */,
+				C02F59832D95C49A0060E200 /* Auth0Manager.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		D2071CFF2BA62F300040B0AE = {
 			isa = PBXGroup;
 			children = (
@@ -398,6 +413,7 @@
 		D2071D0A2BA62F300040B0AE /* voiceout */ = {
 			isa = PBXGroup;
 			children = (
+				C02F59842D95C49A0060E200 /* Auth */,
 				D2071D0F2BA62F340040B0AE /* Assets.xcassets */,
 				D2071D382BAA82E70040B0AE /* Models */,
 				D2071D112BA62F340040B0AE /* Preview Content */,
@@ -735,6 +751,9 @@
 				"zh-Hans",
 			);
 			mainGroup = D2071CFF2BA62F300040B0AE;
+			packageReferences = (
+				C02F59872D95C5140060E200 /* XCRemoteSwiftPackageReference "Auth0" */,
+			);
 			productRefGroup = D2071D092BA62F300040B0AE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -753,6 +772,7 @@
 				D2B8F4CD2C0404FC0053F82B /* ⽤户隐私政策.txt in Resources */,
 				D2071D6C2BAB9E110040B0AE /* Localizable.strings in Resources */,
 				D2071D102BA62F340040B0AE /* Assets.xcassets in Resources */,
+				C02F59852D95C49A0060E200 /* Auth0.plist in Resources */,
 				D25C2EC62BCF5BB50011212A /* AlibabaPuHuiTi-Medium.ttf in Resources */,
 				D25C2EC82BCF5BCB0011212A /* AlibabaPuHuiTi-Bold.ttf in Resources */,
 				D2B8F4C92C04049F0053F82B /* 注册协议.txt in Resources */,
@@ -872,6 +892,7 @@
 				B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */,
 				D2ECDF902C8F6DBE00FC3E24 /* TherapistRegistrationFormView.swift in Sources */,
 				B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */,
+				C02F59862D95C49A0060E200 /* Auth0Manager.swift in Sources */,
 				6894896C2CC84C52000FEA22 /* EducationView.swift in Sources */,
 				D2D6CD892C038B1700DD7688 /* Color.swift in Sources */,
 				D2AA0AE62CA1C2B6007A96E4 /* TimePickerView.swift in Sources */,
@@ -1145,6 +1166,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C02F59872D95C5140060E200 /* XCRemoteSwiftPackageReference "Auth0" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/Auth0.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C02F59882D95C5140060E200 /* Auth0 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C02F59872D95C5140060E200 /* XCRemoteSwiftPackageReference "Auth0" */;
+			productName = Auth0;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D2071D002BA62F300040B0AE /* Project object */;
 }

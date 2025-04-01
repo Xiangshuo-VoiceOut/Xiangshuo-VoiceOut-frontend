@@ -21,6 +21,11 @@ enum Route: Hashable {
     case consultationReservation
     case waitingConfirmation
     case questionDetail(title: String, questionID: String, answers: [FAQAnswer])
+    case moodManagerLoading
+    case moodDiary(selectedImage: String)
+    case moodCalendar
+    case textJournalView(diaries: [DiaryEntry])
+    case textJournalDetail(entry: DiaryEntry)
 }
 
 final class RouterModel: ObservableObject {
@@ -61,6 +66,21 @@ final class RouterModel: ObservableObject {
                 questionID: questionID,
                 answers: answers
             )
+        case .moodManagerLoading:
+            MoodManagerLoadingView()
+                .environmentObject(self)
+        case .moodDiary(let selectedImage):
+            MoodDiaryView(selectedImage: selectedImage)
+                .environmentObject(self)
+        case .moodCalendar:
+            MoodCalendarView()
+                .environmentObject(self)
+        case .textJournalView(let diaries):
+            TextJournalView(diaries: diaries, onBack: { self.navigateBack() })
+                .environmentObject(self)
+        case .textJournalDetail(let entry):
+            TextJournalDetailView(diary: entry)
+                .environmentObject(self)
         }
     }
 

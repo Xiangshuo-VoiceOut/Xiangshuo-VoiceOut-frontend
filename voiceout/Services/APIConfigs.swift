@@ -19,4 +19,5 @@ class APIConfigs {
     static let userSignUpCodeSendingURL = "http://localhost:5000/api/register/send"
     static let userSignUpURL = "http://localhost:5000/api/register"
     static let userFAQURL = "http://localhost:6500/api/faq"
+    static let moodBaseURL = "http://localhost:3000/api/mood"
 }

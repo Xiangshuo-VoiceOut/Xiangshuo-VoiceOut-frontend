@@ -16,6 +16,13 @@
 		689489742CC8533C000FEA22 /* CareerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689489732CC8533C000FEA22 /* CareerView.swift */; };
 		840236712CF06B1000C8BA17 /* BasicInfoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840236702CF06B0A00C8BA17 /* BasicInfoContentView.swift */; };
 		840236732CF06B5400C8BA17 /* ProfilePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840236722CF06B4F00C8BA17 /* ProfilePageView.swift */; };
+		840B854A2D7AB01B00638493 /* MoodManagerLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B85492D7AB01A00638493 /* MoodManagerLoadingView.swift */; };
+		840B854C2D7AD48A00638493 /* MoodDiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B854B2D7AD47B00638493 /* MoodDiaryView.swift */; };
+		840B854E2D7BBAAF00638493 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B854D2D7BBAAD00638493 /* SliderView.swift */; };
+		840B85502D7BE55400638493 /* MoodManagerVoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B854F2D7BE55200638493 /* MoodManagerVoiceView.swift */; };
+		840B85522D7BEA9500638493 /* AudioRecorderVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B85512D7BEA9300638493 /* AudioRecorderVM.swift */; };
+		840B85542D7E560100638493 /* SelectPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B85532D7E560000638493 /* SelectPictureView.swift */; };
+		840B855A2D7E6DB900638493 /* CustomPhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B85592D7E6DB800638493 /* CustomPhotoPickerView.swift */; };
 		842FC91C2D2A275D00BA9242 /* FeedbackInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FC91B2D2A275B00BA9242 /* FeedbackInputView.swift */; };
 		8433CAA92C459AA800845A7A /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAA82C459AA800845A7A /* CommentCardView.swift */; };
 		8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */; };
@@ -29,6 +36,14 @@
 		8497B51B2CE81EB9006D6050 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497B51A2CE81EB1006D6050 /* EditButtonView.swift */; };
 		8497B51D2CE825A0006D6050 /* SegementedControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */; };
 		84ACCBE72CEC24D5000C2C7E /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACCBE62CEC24D3000C2C7E /* ProfileCardView.swift */; };
+		84AFFEB42D80254F00F90680 /* TextJournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFFEB32D80254D00F90680 /* TextJournalView.swift */; };
+		84AFFEB62D82BBFE00F90680 /* MoodCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFFEB52D82BBF600F90680 /* MoodCalendarView.swift */; };
+		84AFFEBC2D8A140600F90680 /* TextJournalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFFEBB2D8A140400F90680 /* TextJournalDetailView.swift */; };
+		84AFFEC02D8E005500F90680 /* MoodReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFFEBF2D8E005300F90680 /* MoodReportView.swift */; };
+		84AFFEC52D8E4BF800F90680 /* MoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFFEC42D8E4BF000F90680 /* MoodManager.swift */; };
+		84AFFEC92D94E96800F90680 /* MoodManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFFEC82D94E96700F90680 /* MoodManagerService.swift */; };
+		84AFFECB2D973EE600F90680 /* MoodManagerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFFECA2D973EDA00F90680 /* MoodManagerVM.swift */; };
+		84AFFECE2D97734C00F90680 /* ShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFFECD2D97734800F90680 /* ShadowModifier.swift */; };
 		84B100D82CF16FC9003C6C20 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B100D72CF16FC7003C6C20 /* ReviewsView.swift */; };
 		84B100DA2CF1AB21003C6C20 /* NoReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B100D92CF1AB16003C6C20 /* NoReviewsView.swift */; };
 		84B100DC2CF1C898003C6C20 /* ConsultationReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B100DB2CF1C896003C6C20 /* ConsultationReservationView.swift */; };
@@ -38,6 +53,7 @@
 		84B100E62CF457F6003C6C20 /* WaitingConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B100E52CF457F4003C6C20 /* WaitingConfirmationView.swift */; };
 		84B100E82CF5A366003C6C20 /* TimeSlotUnavailableAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B100E72CF5A363003C6C20 /* TimeSlotUnavailableAlert.swift */; };
 		84CB40042D585677004ED7DE /* FAQService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB40032D585676004ED7DE /* FAQService.swift */; };
+		84D4C70F2D7A7C8D0091B389 /* RotatingWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D4C70E2D7A7C8B0091B389 /* RotatingWheelView.swift */; };
 		84DC8FDD2D0C109D00FAAAC1 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8FDC2D0C109500FAAAC1 /* FAQView.swift */; };
 		84DC8FDF2D0C10C600FAAAC1 /* SatisfactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8FDE2D0C10BD00FAAAC1 /* SatisfactionView.swift */; };
 		84DC8FE12D1114AC00FAAAC1 /* FeedbackReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8FE02D1114AA00FAAAC1 /* FeedbackReviewView.swift */; };
@@ -150,6 +166,13 @@
 		689489732CC8533C000FEA22 /* CareerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerView.swift; sourceTree = "<group>"; };
 		840236702CF06B0A00C8BA17 /* BasicInfoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoContentView.swift; sourceTree = "<group>"; };
 		840236722CF06B4F00C8BA17 /* ProfilePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageView.swift; sourceTree = "<group>"; };
+		840B85492D7AB01A00638493 /* MoodManagerLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManagerLoadingView.swift; sourceTree = "<group>"; };
+		840B854B2D7AD47B00638493 /* MoodDiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodDiaryView.swift; sourceTree = "<group>"; };
+		840B854D2D7BBAAD00638493 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		840B854F2D7BE55200638493 /* MoodManagerVoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManagerVoiceView.swift; sourceTree = "<group>"; };
+		840B85512D7BEA9300638493 /* AudioRecorderVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderVM.swift; sourceTree = "<group>"; };
+		840B85532D7E560000638493 /* SelectPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPictureView.swift; sourceTree = "<group>"; };
+		840B85592D7E6DB800638493 /* CustomPhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoPickerView.swift; sourceTree = "<group>"; };
 		842FC91B2D2A275B00BA9242 /* FeedbackInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackInputView.swift; sourceTree = "<group>"; };
 		8433CAA82C459AA800845A7A /* CommentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCardView.swift; sourceTree = "<group>"; };
 		8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardViewModel.swift; sourceTree = "<group>"; };
@@ -163,6 +186,14 @@
 		8497B51A2CE81EB1006D6050 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
 		8497B51C2CE82591006D6050 /* SegementedControlButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegementedControlButtonView.swift; sourceTree = "<group>"; };
 		84ACCBE62CEC24D3000C2C7E /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
+		84AFFEB32D80254D00F90680 /* TextJournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextJournalView.swift; sourceTree = "<group>"; };
+		84AFFEB52D82BBF600F90680 /* MoodCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCalendarView.swift; sourceTree = "<group>"; };
+		84AFFEBB2D8A140400F90680 /* TextJournalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextJournalDetailView.swift; sourceTree = "<group>"; };
+		84AFFEBF2D8E005300F90680 /* MoodReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodReportView.swift; sourceTree = "<group>"; };
+		84AFFEC42D8E4BF000F90680 /* MoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManager.swift; sourceTree = "<group>"; };
+		84AFFEC82D94E96700F90680 /* MoodManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManagerService.swift; sourceTree = "<group>"; };
+		84AFFECA2D973EDA00F90680 /* MoodManagerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManagerVM.swift; sourceTree = "<group>"; };
+		84AFFECD2D97734800F90680 /* ShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowModifier.swift; sourceTree = "<group>"; };
 		84B100D72CF16FC7003C6C20 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		84B100D92CF1AB16003C6C20 /* NoReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReviewsView.swift; sourceTree = "<group>"; };
 		84B100DB2CF1C896003C6C20 /* ConsultationReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationReservationView.swift; sourceTree = "<group>"; };
@@ -172,6 +203,7 @@
 		84B100E52CF457F4003C6C20 /* WaitingConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingConfirmationView.swift; sourceTree = "<group>"; };
 		84B100E72CF5A363003C6C20 /* TimeSlotUnavailableAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlotUnavailableAlert.swift; sourceTree = "<group>"; };
 		84CB40032D585676004ED7DE /* FAQService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQService.swift; sourceTree = "<group>"; };
+		84D4C70E2D7A7C8B0091B389 /* RotatingWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatingWheelView.swift; sourceTree = "<group>"; };
 		84DC8FDC2D0C109500FAAAC1 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
 		84DC8FDE2D0C10BD00FAAAC1 /* SatisfactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SatisfactionView.swift; sourceTree = "<group>"; };
 		84DC8FE02D1114AA00FAAAC1 /* FeedbackReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackReviewView.swift; sourceTree = "<group>"; };
@@ -331,6 +363,47 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		84AFFEC12D8E4BC000F90680 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				84AFFEC42D8E4BF000F90680 /* MoodManager.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		84AFFECC2D973EEB00F90680 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				84AFFECA2D973EDA00F90680 /* MoodManagerVM.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		84D4C70C2D7A7C070091B389 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				84D4C70D2D7A7C7A0091B389 /* MoodManager */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		84D4C70D2D7A7C7A0091B389 /* MoodManager */ = {
+			isa = PBXGroup;
+			children = (
+				840B854B2D7AD47B00638493 /* MoodDiaryView.swift */,
+				84AFFEB32D80254D00F90680 /* TextJournalView.swift */,
+				84AFFEBB2D8A140400F90680 /* TextJournalDetailView.swift */,
+				84AFFEB52D82BBF600F90680 /* MoodCalendarView.swift */,
+				84AFFEBF2D8E005300F90680 /* MoodReportView.swift */,
+				840B85592D7E6DB800638493 /* CustomPhotoPickerView.swift */,
+				840B85532D7E560000638493 /* SelectPictureView.swift */,
+				840B854F2D7BE55200638493 /* MoodManagerVoiceView.swift */,
+				840B85492D7AB01A00638493 /* MoodManagerLoadingView.swift */,
+				84D4C70E2D7A7C8B0091B389 /* RotatingWheelView.swift */,
+			);
+			path = MoodManager;
+			sourceTree = "<group>";
+		};
 		84F0D9492D359FFB0029F651 /* FAQ */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +495,7 @@
 		D2071D372BAA82D40040B0AE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84D4C70C2D7A7C070091B389 /* User */,
 				D2071D0D2BA62F300040B0AE /* ContentView.swift */,
 				D2D6CD862C036BCD00DD7688 /* RouterView.swift */,
 				D2071D412BAA8B880040B0AE /* Authentication */,
@@ -435,6 +509,7 @@
 		D2071D382BAA82E70040B0AE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				84AFFEC12D8E4BC000F90680 /* User */,
 				D228B28F2C98783C003975FB /* Therapist */,
 				D228B28E2C9877D5003975FB /* Common */,
 				B8D4722C2C1E421000D6716A /* ErrorResponse.swift */,
@@ -447,6 +522,7 @@
 		D2071D3A2BAA83030040B0AE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				84AFFECC2D973EEB00F90680 /* User */,
 				D2D6CD842C03699000DD7688 /* RouterModel.swift */,
 				D21660D02C33AA9B008248DE /* Authentication */,
 				D28499272BE9BFB900963B3A /* Common */,
@@ -471,6 +547,7 @@
 		D2071D442BAA8CD00040B0AE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				84AFFEC82D94E96700F90680 /* MoodManagerService.swift */,
 				84CB40032D585676004ED7DE /* FAQService.swift */,
 				B8D4722A2C1E41E400D6716A /* APIConfigs.swift */,
 				B8D472262C1E40BD00D6716A /* LoginWebService.swift */,
@@ -483,6 +560,7 @@
 		D2071D452BAB5E7D0040B0AE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				84AFFECD2D97734800F90680 /* ShadowModifier.swift */,
 				B8D472122C1E3CB700D6716A /* BackgroundView.swift */,
 				D21660CE2C339B98008248DE /* BackButtonView.swift */,
 				B8D4720C2C175DBB00D6716A /* BadgeView.swift */,
@@ -495,6 +573,7 @@
 				B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */,
 				B8860E272C3C675200A79073 /* ImagePickerView.swift */,
 				848E62AE2C892439009B162A /* OneWeekView.swift */,
+				840B854D2D7BBAAD00638493 /* SliderView.swift */,
 				D28499252BE9AB6200963B3A /* PopupView.swift */,
 				D284992A2BEB0B4800963B3A /* RadioButtonView.swift */,
 				D28498EB2BE19DE300963B3A /* SecuredTextInputView.swift */,
@@ -636,6 +715,7 @@
 				D2D6CD792BF8FD0400DD7688 /* DialogViewModel.swift */,
 				D28499282BE9BFF900963B3A /* PopupViewModel.swift */,
 				D21660DC2C34E68A008248DE /* TextInputVM.swift */,
+				840B85512D7BEA9300638493 /* AudioRecorderVM.swift */,
 				846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */,
 			);
 			path = Common;
@@ -793,6 +873,7 @@
 				D25C2ECC2BCF6EB00011212A /* Typography.swift in Sources */,
 				D2ECDF8E2C8F661500FC3E24 /* TherapistRegistrationVM.swift in Sources */,
 				B8D472152C1E3D0900D6716A /* BGConstants.swift in Sources */,
+				84AFFECE2D97734C00F90680 /* ShadowModifier.swift in Sources */,
 				D28499292BE9BFF900963B3A /* PopupViewModel.swift in Sources */,
 				84B100E82CF5A366003C6C20 /* TimeSlotUnavailableAlert.swift in Sources */,
 				D284992B2BEB0B4900963B3A /* RadioButtonView.swift in Sources */,
@@ -813,6 +894,7 @@
 				84B100D82CF16FC9003C6C20 /* ReviewsView.swift in Sources */,
 				D2ECDF882C8E2C4D00FC3E24 /* LocalizationManager.swift in Sources */,
 				D2E470AB2CFCFCEB00AF493B /* WeekMatrixView.swift in Sources */,
+				84AFFEC92D94E96800F90680 /* MoodManagerService.swift in Sources */,
 				B8860E2E2C3CCCC300A79073 /* Formatters.swift in Sources */,
 				84F0D9462D359F340029F651 /* FAQInformation.swift in Sources */,
 				D228B27D2C94E452003975FB /* CertificateInfoView.swift in Sources */,
@@ -827,7 +909,10 @@
 				B8860E1C2C34725E00A79073 /* StepProgressView.swift in Sources */,
 				D228B27F2C94E96E003975FB /* ConsultTypesView.swift in Sources */,
 				84DC8FDF2D0C10C600FAAAC1 /* SatisfactionView.swift in Sources */,
+				840B85522D7BEA9500638493 /* AudioRecorderVM.swift in Sources */,
+				84AFFEC52D8E4BF800F90680 /* MoodManager.swift in Sources */,
 				B8860E282C3C675200A79073 /* ImagePickerView.swift in Sources */,
+				840B854E2D7BBAAF00638493 /* SliderView.swift in Sources */,
 				D2EE58412C9C7BF3002A4C10 /* Tab.swift in Sources */,
 				D28498EC2BE19DE300963B3A /* SecuredTextInputView.swift in Sources */,
 				840236732CF06B5400C8BA17 /* ProfilePageView.swift in Sources */,
@@ -844,28 +929,37 @@
 				B8444E872C47526900CBCAF8 /* SignUpWebService.swift in Sources */,
 				D23811362CA1D0CB00B90ED2 /* TimePickerPopupContent.swift in Sources */,
 				D228B28A2C9547F3003975FB /* BankInformationView.swift in Sources */,
+				84D4C70F2D7A7C8D0091B389 /* RotatingWheelView.swift in Sources */,
 				8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */,
 				D21660E02C4C22E3008248DE /* CooperationAgreementPopupContent.swift in Sources */,
+				840B854C2D7AD48A00638493 /* MoodDiaryView.swift in Sources */,
 				84ACCBE72CEC24D5000C2C7E /* ProfileCardView.swift in Sources */,
 				848E62B42C8BC8F1009B162A /* Day.swift in Sources */,
 				D26DD5D42C93B9C500C9705E /* EducationBackgroundView.swift in Sources */,
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
 				D2E470AF2D0389D600AF493B /* FollowDialogContentView.swift in Sources */,
+				84AFFEB62D82BBFE00F90680 /* MoodCalendarView.swift in Sources */,
+				840B855A2D7E6DB900638493 /* CustomPhotoPickerView.swift in Sources */,
 				D228B2922C99148E003975FB /* ToggleStyle.swift in Sources */,
 				846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */,
 				B8D472252C1E408C00D6716A /* VerificationCodeVM.swift in Sources */,
+				840B854A2D7AB01B00638493 /* MoodManagerLoadingView.swift in Sources */,
 				6894896E2CC85090000FEA22 /* QualificationView.swift in Sources */,
+				84AFFEB42D80254F00F90680 /* TextJournalView.swift in Sources */,
 				8433CACA2C459F9800845A7A /* ClinicianCardInformation.swift in Sources */,
 				D2EE58432C9C7EC2002A4C10 /* SegmentedTabView.swift in Sources */,
 				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,
 				B8F845442C28BB98008C0D80 /* DropdownOption.swift in Sources */,
 				B8860E2C2C3C79B300A79073 /* StateData.swift in Sources */,
+				840B85542D7E560100638493 /* SelectPictureView.swift in Sources */,
 				8433CAD22C45A0DD00845A7A /* ClinicianCardView.swift in Sources */,
 				84F0FD5F2C48D85A00E2DB79 /* StarRatingWithIntView.swift in Sources */,
 				84B100E02CF1CB32003C6C20 /* TherapistScheduleViewModel.swift in Sources */,
 				84F0FD592C48D29200E2DB79 /* StarRatingWithDoubleView.swift in Sources */,
 				D21660CD2C339A49008248DE /* VerificationCodeButton.swift in Sources */,
+				84AFFEBC2D8A140600F90680 /* TextJournalDetailView.swift in Sources */,
 				D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */,
+				840B85502D7BE55400638493 /* MoodManagerVoiceView.swift in Sources */,
 				D228B28D2C9870C8003975FB /* AvailableTimesView.swift in Sources */,
 				84B100E62CF457F6003C6C20 /* WaitingConfirmationView.swift in Sources */,
 				B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */,
@@ -906,8 +1000,10 @@
 				6894896A2CC847AA000FEA22 /* PersonalView.swift in Sources */,
 				8490EDE62D30F6BA00C6C765 /* BeforeFirstConsultationView.swift in Sources */,
 				84B100DC2CF1C898003C6C20 /* ConsultationReservationView.swift in Sources */,
+				84AFFECB2D973EE600F90680 /* MoodManagerVM.swift in Sources */,
 				689489742CC8533C000FEA22 /* CareerView.swift in Sources */,
 				B8D4721F2C1E405000D6716A /* ResetPasswordView.swift in Sources */,
+				84AFFEC02D8E005500F90680 /* MoodReportView.swift in Sources */,
 				84B100DA2CF1AB21003C6C20 /* NoReviewsView.swift in Sources */,
 				D28498DC2BDDE47F00963B3A /* ButtonView.swift in Sources */,
 				B8D472172C1E3DB500D6716A /* HeaderView.swift in Sources */,
@@ -1063,6 +1159,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = voiceout/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "我们需要访问你的相机，以便你可以拍照";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "我们需要写入相册，以便你可以保存图片";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "我们需要访问你的相册，以便你可以选择照片";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1100,6 +1199,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = voiceout/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "我们需要访问你的相机，以便你可以拍照";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "我们需要写入相册，以便你可以保存图片";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "我们需要访问你的相册，以便你可以选择照片";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

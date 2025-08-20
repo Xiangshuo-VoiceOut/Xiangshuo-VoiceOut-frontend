@@ -24,38 +24,53 @@ struct MoodDiaryView: View {
     @State private var selectedImages: [UIImage] = []
     @State private var isPhotoPickerPresented: Bool = false
     @State private var diaries: [DiaryEntry] = []
-    
+    @State private var showExitPopup = false
+    @State private var customLocations: [String] = []
+    @State private var customRelations: [String] = []
+    @State private var customReasons: [String] = []
+    @State private var showAddLocationSheet = false
+    @State private var showAddRelationSheet = false
+    @State private var showAddReasonSheet = false
     let selectedImage: String
+    @State private var voiceUrl: String = ""
+    @State private var uploadedImagePaths: [String] = []
     @EnvironmentObject var router: RouterModel
     
-    let locations = [
+    private let defaultLocations = [
         "location_home",
         "location_restaurant",
         "location_street",
         "location_office",
         "location_school",
-        "location_online",
-        "+"
+        "location_online"
     ]
-    let relations = [
+    private let defaultRelations = [
         "relation_colleague",
         "relation_family",
         "relation_classmate",
         "relation_stranger",
         "relation_self",
-        "relation_friend",
-        "+"
+        "relation_friend"
     ]
-    let reasons = [
+    private let defaultReasons = [
         "reason_ignored",
         "reason_stress",
         "reason_misunderstanding",
         "reason_argument",
         "reason_trivial",
-        "reason_criticized",
-        "+"
+        "reason_criticized"
     ]
     
+    private var allLocations: [String] {
+        defaultLocations + customLocations + ["+"]
+    }
+    private var allRelations: [String] {
+        defaultRelations + customRelations + ["+"]
+    }
+    private var allReasons: [String] {
+        defaultReasons + customReasons + ["+"]
+    }
+
     private var diaryHeader: some View {
         StickyHeaderView(
             title: "mood_diary_title",
@@ -70,8 +85,11 @@ struct MoodDiaryView: View {
             trailingComponent: AnyView(
                 Group {
                     if !(content == .voiceRecorder || content == .selectPicture || content == .customPhotoPicker) {
-                        Button(action: { }) {
-                            Image("close").foregroundColor(.grey500)
+                        Button(action: {
+                            showExitPopup = true
+                        }) {
+                            Image("close")
+                                .foregroundColor(.grey500)
                         }
                     } else {
                         Color.clear.frame(width: 44, height: 44)
@@ -98,6 +116,7 @@ struct MoodDiaryView: View {
                             get: { content == .voiceRecorder },
                             set: { isActive in content = isActive ? .voiceRecorder : .diary }
                         ),
+                        voiceUrl: $voiceUrl,
                         onBack: { content = .diary }
                     )
                     .transition(.move(edge: .bottom))
@@ -106,7 +125,7 @@ struct MoodDiaryView: View {
                 case .selectPicture:
                     SelectPictureView(
                         selectedImages: $selectedImages,
-                        onBack: { content = .diary },
+                        onBack: { content = .diary},
                         onSend: { images in content = .diary },
                         onPhotoPicker: { content = .customPhotoPicker }
                     )
@@ -125,6 +144,69 @@ struct MoodDiaryView: View {
                     .transition(.move(edge: .bottom))
                 }
             }
+        }
+        .overlay(
+            Group {
+                if showExitPopup {
+                    ZStack {
+                        Color.black.opacity(0.05)
+                            .ignoresSafeArea()
+                        
+                        ExitMoodManagerView(
+                            didClose: {
+                                showExitPopup = false
+                            },
+                            didConfirm: {
+                                showExitPopup = false
+                                router.navigateTo(.moodManagerLoading)
+                            }
+                        )
+                        .background(Color.surfacePrimary)
+                        .cornerRadius(CornerRadius.medium.value)
+                        .shadow(color: .black.opacity(0.05), radius: 2, x: 0, y: 4)
+                    }
+                    .transition(.opacity)
+                }
+            }
+        )
+        .sheet(isPresented: $showAddLocationSheet) {
+            AddTagView(
+                onCancel: {
+                    showAddLocationSheet = false
+                },
+                onDone: { newTag in
+                    if !newTag.isEmpty {
+                        customLocations.insert(newTag, at: 0)
+                    }
+                    showAddLocationSheet = false
+                }
+            )
+        }
+        .sheet(isPresented: $showAddRelationSheet) {
+            AddTagView(
+                onCancel: {
+                    showAddRelationSheet = false
+                },
+                onDone: { newTag in
+                    if !newTag.isEmpty {
+                        customRelations.insert(newTag, at: 0)
+                    }
+                    showAddRelationSheet = false
+                }
+            )
+        }
+        .sheet(isPresented: $showAddReasonSheet) {
+            AddTagView(
+                onCancel: {
+                    showAddReasonSheet = false
+                },
+                onDone: { newTag in
+                    if !newTag.isEmpty {
+                        customReasons.insert(newTag, at: 0)
+                    }
+                    showAddReasonSheet = false
+                }
+            )
         }
     }
     
@@ -169,9 +251,27 @@ struct MoodDiaryView: View {
                     .font(Font.typography(.bodyXXSmall))
                     .foregroundColor(.textLight)
                 }
-                TagSelectionView(title: String(localized: "tag_where"), options: locations, selectedTag: $selectedLocation)
-                TagSelectionView(title: String(localized: "tag_relation"), options: relations, selectedTag: $selectedRelation)
-                TagSelectionView(title: String(localized: "tag_reason"), options: reasons, selectedTag: $selectedReason)
+                TagSelectionView(
+                    title: String(localized: "tag_where"),
+                    options: allLocations,
+                    selectedTag: $selectedLocation
+                ) {
+                    showAddLocationSheet = true
+                }
+                TagSelectionView(
+                    title: String(localized: "tag_relation"),
+                    options: allRelations,
+                    selectedTag: $selectedRelation
+                ) {
+                    showAddRelationSheet = true
+                }
+                TagSelectionView(
+                    title: String(localized: "tag_reason"),
+                    options: allReasons,
+                    selectedTag: $selectedReason
+                ) {
+                    showAddReasonSheet = true
+                }
             }
             .padding(.top, ViewSpacing.base+ViewSpacing.large)
             
@@ -218,28 +318,49 @@ struct MoodDiaryView: View {
             
             VStack{
                 Button(action: {
+                    let userId = "user00123"
+                    var localPaths: [String] = []
+                    
+                    for (index, image) in selectedImages.enumerated() {
+                        let filename = "image_\(Date().timeIntervalSince1970)_\(index).jpg"
+                        if let _ = MoodManagerImageUploader.saveImageToLocal(image: image, fileName: filename) {
+                            localPaths.append(filename)
+                        }
+                    }
+
+                    print("Save image path: \(localPaths)")
+                    print("Current audio path voiceUrl: \(voiceUrl)")
+                    
+                    if voiceUrl.trimmingCharacters(in: .whitespaces).isEmpty {
+                    }
+
                     let newDiary = DiaryEntry(
                         id: nil,
-                        userId: "user00123",
+                        userId: userId,
                         timestamp: Date(),
                         moodType: selectedImage.lowercased(),
                         keyword: [],
                         intensity: emotionIntensity,
-                        location: selectedLocation.isEmpty ? "" : selectedLocation,
+                        location: selectedLocation,
                         persons: selectedRelation.isEmpty ? [] : [selectedRelation],
                         reasons: selectedReason.isEmpty ? [] : [selectedReason],
-                        diaryText: storyText.isEmpty ? "" : storyText,
+                        diaryText: storyText,
                         selectedImage: selectedImage,
-                        attachments: Attachments(voiceUrl: "", imageUrls: [])
+                        attachments: Attachments(
+                            voiceUrl: voiceUrl.isEmpty ? nil : voiceUrl,
+                            imageUrls: localPaths
+                        )
                     )
                     
                     MoodManagerService.shared.createDiaryEntry(entry: newDiary) { result in
                         DispatchQueue.main.async {
                             switch result {
-                            case .success(let response):
-                                router.navigateTo(.moodManagerLoading)
+                            case .success:
+                                print("The diary was saved successfully.")
+                                print("Final voiceUrl saved in diary: \(voiceUrl)")
+                                router.navigateTo(.moodHomepageLauncher)
                             case .failure(let error):
-                                print("Diary failure:", error.localizedDescription)
+                                print("Diary save failed.: \(error.localizedDescription)")
                             }
                         }
                     }
@@ -257,9 +378,8 @@ struct MoodDiaryView: View {
                                 .foregroundColor(.textBrandPrimary)
                         }
                     }
-                    .overlay(Circle().stroke(Color.grey50, lineWidth: 2))
+                    .overlay(Circle().stroke(Color.grey50, lineWidth: StrokeWidth.width200.value))
                 }
-                
             }
             .padding(.top, ViewSpacing.small)
             .padding(.bottom, ViewSpacing.medium)
@@ -273,17 +393,22 @@ struct TagSelectionView: View {
     let options: [String]
     @Binding var selectedTag: String
     
+    var onPlusTapped: (() -> Void)? = nil
     var body: some View {
         VStack(alignment: .leading, spacing: ViewSpacing.small) {
             Text(title)
                 .font(Font.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
-            
             FlowLayout {
                 ForEach(options, id: \.self) { item in
                     ButtonView(
                         text: item,
-                        action: { selectedTag = item },
+                        action: {  if item == "+" {
+                            onPlusTapped?()
+                        } else {
+                            selectedTag = item
+                        }
+                        },
                         variant: .solid,
                         theme: selectedTag == item ? .action : .bagdeInactive,
                         fontSize: .medium,
@@ -298,6 +423,64 @@ struct TagSelectionView: View {
             .padding(.leading, -ViewSpacing.base)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+struct AddTagView: View {
+    var onCancel: () -> Void
+    var onDone: (String) -> Void
+    @State private var userInput: String = ""
+    @Environment(\.dismiss) private var dismiss
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Button(action: {
+                    onCancel()
+                    dismiss()
+                }) {
+                    Text(LocalizedStringKey("cancel"))
+                        .font(.typography(.bodyMedium))
+                        .foregroundColor(.textSecondary)
+                        .frame(height: 28)
+                        .frame(minWidth: 72)
+                        .background(Color.surfacePrimary)
+                }
+                
+                Spacer()
+                
+                ButtonView(
+                    text: "finished",
+                    action: {
+                        onDone(userInput.trimmingCharacters(in: .whitespacesAndNewlines))
+                        dismiss()
+                    },
+                    variant: .solid,
+                    theme: .action,
+                    spacing: .xsmall,
+                    fontSize: .medium,
+                    borderRadius: .full,
+                    maxWidth: 72
+                )
+                .frame(height: 28)
+            }
+            .padding(.horizontal, ViewSpacing.medium)
+            .padding(.top, ViewSpacing.large)
+            .padding(.bottom, ViewSpacing.medium)
+            
+            TextField("", text: $userInput, prompt:Text(LocalizedStringKey("add_tag_placeholder"))
+                .font(.typography(.bodyMedium))
+                .foregroundColor(.grey200)
+            )
+            .font(.typography(.bodyMedium))
+            .foregroundColor(.textPrimary)
+            .padding(.horizontal, ViewSpacing.medium)
+            .padding(.top, ViewSpacing.small)
+            
+            Spacer()
+        }
+        .background(Color.surfacePrimary)
+        .cornerRadius(CornerRadius.medium.value)
     }
 }
 

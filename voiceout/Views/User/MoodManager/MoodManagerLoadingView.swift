@@ -19,9 +19,10 @@ struct MoodManagerLoadingView: View {
             VStack(spacing: 0) {
                 StickyHeaderView(
                     title: "mood_manager_loading_title",
-                    leadingComponent: AnyView(Spacer().frame(width: 24)),
+                    leadingComponent: AnyView(Spacer().frame(width: ViewSpacing.large)),
                     trailingComponent: AnyView(
                         Button(action: {
+                            router.navigateTo(.moodHomepageLauncher)
                         }) {
                             Image("close")
                                 .frame(width: 24, height: 24)
@@ -42,9 +43,9 @@ struct MoodManagerLoadingView: View {
                                     Image("chart-histogram")
                                         .frame(width: 24, height: 24)
                                 }
-                                .padding(8)
+                                .padding(ViewSpacing.small)
                                 .background(Color.surfaceBrandPrimary)
-                                .cornerRadius(16)
+                                .cornerRadius(CornerRadius.medium.value)
 
                                 Text(LocalizedStringKey("chart_histogram"))
                                     .font(Font.typography(.bodyXXSmall))
@@ -98,7 +99,7 @@ struct MoodManagerLoadingView: View {
                     }
                     .overlay(
                         Circle()
-                            .stroke(Color.grey50, lineWidth: 2)
+                            .stroke(Color.grey50, lineWidth: StrokeWidth.width200.value)
                     )
                 }
                 .frame(width: 72, height: 72)

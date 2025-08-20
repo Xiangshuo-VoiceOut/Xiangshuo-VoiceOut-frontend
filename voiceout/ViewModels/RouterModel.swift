@@ -26,6 +26,9 @@ enum Route: Hashable {
     case moodCalendar
     case textJournalView(diaries: [DiaryEntry])
     case textJournalDetail(entry: DiaryEntry)
+    case moodHomepageLauncher
+    case mainHomepage
+    case systemMessageDetail
 }
 
 final class RouterModel: ObservableObject {
@@ -80,6 +83,15 @@ final class RouterModel: ObservableObject {
                 .environmentObject(self)
         case .textJournalDetail(let entry):
             TextJournalDetailView(diary: entry)
+                .environmentObject(self)
+        case .moodHomepageLauncher:
+            MoodTreatmentLauncherView()
+                .environmentObject(self)
+        case .mainHomepage:
+            MainHomepageView()
+                .environmentObject(self)
+        case .systemMessageDetail:
+            SystemMessageDetailView()
                 .environmentObject(self)
         }
     }

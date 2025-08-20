@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-let moodImageToChinese: [String: String] = [
-    "happy": "开心", "scare": "害怕", "sad": "伤心",
-    "guilt": "内疚", "calm": "平静", "envy": "嫉妒",
-    "shame": "羞耻", "angry": "生气"
-]
-
 struct TextJournalView: View {
     @State var diaries: [DiaryEntry]
     @State private var currentStep: Int
@@ -39,17 +33,15 @@ struct TextJournalView: View {
                     BackButtonView(action: { onBack() })
                         .foregroundColor(.grey500)
                 ),
-                trailingComponent: AnyView(Button(action: { onBack()}) {
-                    Image("close")
-                        .foregroundColor(.grey500)
-                }),
+                trailingComponent: AnyView(){},
                 backgroundColor: Color.surfacePrimaryGrey2
             )
             .frame(maxWidth: .infinity, minHeight: 44)
             
             VStack(spacing: ViewSpacing.medium) {
                 
-                Spacer().frame(height: 44)
+                Spacer()
+                    .frame(height: 44)
                 
                 if diaries.isEmpty {
                     Text(LocalizedStringKey("no_records"))
@@ -124,7 +116,7 @@ struct TextJournalView: View {
                                     }
                                     ZStack {
                                         Circle()
-                                            .stroke(Color.brandPrimary, lineWidth: 1)
+                                            .stroke(Color.brandPrimary, lineWidth: StrokeWidth.width100.value)
                                             .frame(width: 11, height: 11)
                                         
                                         if currentStep == index {
@@ -133,7 +125,7 @@ struct TextJournalView: View {
                                                 .frame(width: 11, height: 11)
                                             
                                             Circle()
-                                                .stroke(Color.brandPrimary, lineWidth: 1)
+                                                .stroke(Color.brandPrimary, lineWidth: StrokeWidth.width100.value)
                                                 .frame(width: 19, height: 19)
                                         }
                                     }

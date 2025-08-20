@@ -52,7 +52,10 @@ struct CustomPhotoPickerView: View {
                     Button(action: {
                         DispatchQueue.main.async {
                             let selected = selectedIndices.map { allImages[$0] }
-                            selectedImages = selected
+                            let uniqueNewImages = selected.filter { newImage in
+                                !selectedImages.contains(where: { $0.pngData() == newImage.pngData() })
+                            }
+                            selectedImages.append(contentsOf: uniqueNewImages)
                             onBack()
                         }
                     }) {
@@ -131,7 +134,10 @@ struct CustomPhotoPickerView: View {
                 .background(Color(red: 0.95, green: 0.95, blue: 0.96))
             }
         }
-        .onAppear(perform: fetchPhotos)
+        .onAppear {
+            selectedIndices.removeAll()
+            fetchPhotos()
+        }
     }
     
     private func fetchPhotos() {

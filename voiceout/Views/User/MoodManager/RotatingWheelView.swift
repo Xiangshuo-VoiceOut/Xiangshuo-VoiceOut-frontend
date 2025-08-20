@@ -12,11 +12,7 @@ struct RotatingWheelView: View {
     @State private var lastRotation: Angle = .zero
     @Binding var selectedImage: String
     
-    private let imageNames = ["happy", "scare", "sad", "guilt", "calm", "envy", "shame", "angry"]
-    private let imageToChinese: [String: String] = [
-        "happy": "开心", "scare": "害怕", "sad": "伤心", "guilt": "内疚",
-        "calm": "平静", "envy": "嫉妒", "shame": "羞耻", "angry": "生气"
-    ]
+    private let imageNames = ["happy", "scare", "sad", "guilt", "calm", "envy", "anxiety", "angry"]
     private let numberOfImages = 8
 
     var body: some View {

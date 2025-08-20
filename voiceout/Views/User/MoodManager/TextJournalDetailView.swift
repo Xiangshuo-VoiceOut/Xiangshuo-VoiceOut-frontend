@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct TextJournalDetailView: View {
     let diary: DiaryEntry
+    @EnvironmentObject var router: RouterModel
+    @Environment(\.dismiss) private var dismiss
+    
+    @State private var isAudioVisible = true
     
     var body: some View {
         ZStack {
@@ -23,22 +28,9 @@ struct TextJournalDetailView: View {
                     Image(diary.moodType.lowercased())
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 168, height: 120, alignment: .center)
+                        .frame(width: 168, height: 120)
                         .padding(.vertical, ViewSpacing.medium)
                         .imageShadow()
-                    
-                    if let extraImageUrl = diary.attachments?.imageUrls?.first {
-                        AsyncImage(url: URL(string: extraImageUrl)) { image in
-                            image
-                                .resizable()
-                                .scaledToFit()
-                        } placeholder: {
-                            Color.gray.opacity(0.2)
-                        }
-                        .frame(width: 174, height: 86)
-                        .cornerRadius(CornerRadius.small.value)
-                        .shadow(radius: 4)
-                    }
                     
                     VStack(alignment: .leading, spacing: ViewSpacing.medium) {
                         HStack(spacing: ViewSpacing.xsmall) {
@@ -76,53 +68,84 @@ struct TextJournalDetailView: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .topLeading)
                 }
-                .frame(maxWidth: .infinity, alignment: .top)
                 
-                HStack(alignment: .center, spacing: 0) {
-                    Text(LocalizedStringKey("audio_file"))
-                        .font(Font.typography(.bodyMedium))
-                        .foregroundColor(.textBrandPrimary)
-                        .frame(height: 60, alignment: .center)
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        if let voiceUrl = diary.attachments?.voiceUrl, !voiceUrl.isEmpty {
-                        } else {
+                ScrollView {
+                    VStack(spacing: ViewSpacing.large) {
+                        if let voiceUrlString = diary.attachments?.voiceUrl,
+                           !voiceUrlString.isEmpty {
+                            let docsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                            let voiceFileUrl = docsDir.appendingPathComponent(voiceUrlString)
+                            
+                            if FileManager.default.fileExists(atPath: voiceFileUrl.path) {
+                                AudioPlaybackView(
+                                    voiceUrl: voiceFileUrl.absoluteString,
+                                    localFileUrl: voiceFileUrl,
+                                    isVisible: $isAudioVisible
+                                )
+                            } else {
+                                Text("The audio file cannot be played")
+                                    .foregroundColor(.gray)
+                                    .onAppear {
+                                        print("The audio file does not exist: \(voiceFileUrl.path)")
+                                    }
+                            }
                         }
-                    }) {
-                        ZStack {
-                            Circle()
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(Color.surfaceBrandPrimary)
-                            Image("polygon")
-                                .frame(width: 12, height: 12)
-                                .foregroundColor(.white)
+
+                        if let imagePaths = diary.attachments?.imageUrls {
+                            let docsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                            let fullPaths = imagePaths.map { path in
+                                path.hasPrefix("/") ? path : docsDir.appendingPathComponent(path).path
+                            }
+
+                            LazyVStack(spacing: ViewSpacing.small) {
+                                ForEach(fullPaths, id: \.self) { fullPath in
+                                    let exists = FileManager.default.fileExists(atPath: fullPath)
+                                    let image = UIImage(contentsOfFile: fullPath)
+
+                                    Group {
+                                        if exists, let image = image {
+                                            Image(uiImage: image)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(height: 188)
+                                                .clipped()
+                                                .onAppear {
+                                                    print("The picture was loaded successfully.: \(fullPath)")
+                                                }
+                                        } else {
+                                            Text("The picture cannot be loaded.")
+                                                .frame(height: 188)
+                                                .frame(maxWidth: .infinity)
+                                                .background(Color.gray)
+                                                .padding(.horizontal, ViewSpacing.xlarge)
+                                                .onAppear {
+                                                    print("The image loading failed.: \(fullPath)")
+                                                }
+                                        }
+                                    }
+                                }
+                            }
+                            .padding(.top, ViewSpacing.medium)
+                            .padding(.horizontal, ViewSpacing.small)
+                            .imageShadow()
                         }
                     }
+
+                    Spacer()
                 }
-                .padding(ViewSpacing.medium)
-                .background(Color.surfaceBrandTertiaryGreen)
-                .cornerRadius(CornerRadius.medium.value)
-                .padding(.horizontal,ViewSpacing.small)
-                .imageShadow()
-                
-                ZStack {
-                    Color.clear
-                }
-                .frame(height: 188)
-                .background(Color(red: 0.84, green: 0.85, blue: 0.85))
-                .padding(.horizontal,ViewSpacing.small)
-                .imageShadow()
-                
-                Spacer()
+                .padding(.bottom, ViewSpacing.large)
             }
             .padding(.horizontal, ViewSpacing.xlarge)
             .padding(.vertical, 2 * ViewSpacing.betweenSmallAndBase)
         }
         .navigationBarTitle(LocalizedStringKey("mood_diary_title"), displayMode: .inline)
-        .navigationBarBackButtonHidden(false)
-        .accentColor(.grey500)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {
+            dismiss()
+        }) {
+            Image("left-arrow")
+                .foregroundColor(.grey500)
+        })
     }
     
     private func formatDate(_ date: Date) -> String {

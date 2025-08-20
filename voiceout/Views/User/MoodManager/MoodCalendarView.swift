@@ -7,17 +7,6 @@
 
 import SwiftUI
 
-let moodColors: [String: Color] = [
-    "angry":Color(red: 0.94, green: 0.54, blue: 0.54),
-    "sad": Color(red: 0.66, green: 0.84, blue: 0.97),
-    "scare": Color(red: 0.65, green: 0.83, blue: 0.82),
-    "envy": Color(red: 0.98, green: 0.77, blue: 0.81),
-    "guilt": Color(red: 0.76, green: 0.82, blue: 0.69),
-    "calm": Color(red: 0.99, green: 0.83, blue: 0.3),
-    "happy": Color(red: 0.99, green: 0.83, blue: 0.3),
-    "shame": Color(red: 0.83, green: 0.75, blue: 0.95)
-]
-
 struct MoodSegment: Identifiable {
     let id = UUID()
     let mood: String
@@ -55,7 +44,7 @@ struct MoodCalendarView: View {
                     title: "mood_cloud_title",
                     leadingComponent: AnyView(BackButtonView().foregroundColor(.grey500)),
                     trailingComponent: AnyView(
-                        Button(action: { router.navigateBack() }) {
+                        Button(action: { router.navigateTo(.moodHomepageLauncher) }) {
                             Image("close")
                                 .frame(width: 24, height: 24)
                                 .foregroundColor(.grey500)
@@ -94,22 +83,24 @@ struct MoodCalendarView: View {
                                 panelList: [
                                     AnyView(MoodReportView(
                                         moodSegments: MoodSegment.normalizedSegments(moodSegmentsWeek),
-                                        lastDiary: lastDiaryOfSelectedDay
+                                        lastDiary: lastDiaryOfSelectedDay,
+                                        period: "week"
                                     )),
                                     AnyView(MoodReportView(
                                         moodSegments: MoodSegment.normalizedSegments(moodSegmentsMonth),
-                                        lastDiary: lastDiaryOfSelectedDay
+                                        lastDiary: lastDiaryOfSelectedDay,
+                                        period: "month"
                                     ))
                                 ],
                                 activeTab: activeTab
                             )
-                            .padding(.top, ViewSpacing.large)
-                            .frame(minWidth: 300)
+                            .padding(.top, ViewSpacing.medium)
                             .zIndex(2)
+                            Spacer(minLength: 105 * ViewSpacing.betweenSmallAndBase)
                         }
                         .padding(.horizontal,ViewSpacing.medium)
-                        .frame(minHeight: geo.size.height + 9 * ViewSpacing.betweenSmallAndBase)
-                        .padding(.bottom, 9 * ViewSpacing.betweenSmallAndBase)
+                        .frame(minHeight: geo.size.height + 5 * ViewSpacing.betweenSmallAndBase)
+                        .padding(.bottom, 5 * ViewSpacing.betweenSmallAndBase)
                     }
                 }
             }
@@ -136,7 +127,7 @@ struct MoodCalendarView: View {
                         self.calendarData = newCalendarData
                         self.computeWeekAndMonth()
                     case .failure(let error):
-                        print(">>> Current selectedDate:", selectedDate)
+                        print("Current selectedDate:", selectedDate)
                     }
                 }
             }
@@ -258,6 +249,7 @@ struct MoodCalendarGrid: View {
                 .fill(Color.surfacePrimaryGrey)
                 .frame(height: 2)
                 .padding(.top, ViewSpacing.medium)
+                .padding(.bottom,ViewSpacing.base)
             calendarDayGrid()
         }
     }
@@ -335,8 +327,8 @@ struct MoodCalendarGrid: View {
                 let dayDiaries = allDiaries.filter { diary in
                     let comps = calendar.dateComponents([.year, .month, .day], from: diary.dateTime)
                     return comps.year == displayedYear &&
-                        comps.month == displayedMonth &&
-                        comps.day == dayValue
+                    comps.month == displayedMonth &&
+                    comps.day == dayValue
                 }
                 if !dayDiaries.isEmpty {
                     router.navigateTo(.textJournalView(diaries: dayDiaries))

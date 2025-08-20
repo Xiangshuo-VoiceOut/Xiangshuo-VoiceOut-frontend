@@ -25,7 +25,7 @@ struct SelectPictureView: View {
 
     var body: some View {
         ZStack {
-            Color.surfacePrimaryGrey2.ignoresSafeArea() 
+            Color.surfacePrimaryGrey2.ignoresSafeArea()
 
             VStack(spacing: 0) {
                 GeometryReader { geometry in
@@ -58,6 +58,7 @@ struct SelectPictureView: View {
 
                     HStack(alignment: .top, spacing: ViewSpacing.large) {
                         Button(action: {
+                            selectedImages.removeAll()
                             onPhotoPicker()
                         }) {
                             VStack(spacing: ViewSpacing.xsmall) {
@@ -106,17 +107,18 @@ struct SelectPictureView: View {
             CustomPhotoPickerView(
                 selectedImages: $selectedImages,
                 isPresented: $showImagePicker,
-                onBack: { showImagePicker = false } 
+                onBack: { showImagePicker = false }
             )
         }
         .fullScreenCover(isPresented: $showCameraPicker) {
             CameraPicker(selectedImage: $selectedImages)
+                .onDisappear {
+                    onSend(selectedImages)
+                }
                 .ignoresSafeArea()
         }
     }
 }
-
-
 
 struct CustomPhotoPicker: UIViewControllerRepresentable {
     @Binding var selectedImages: [UIImage]

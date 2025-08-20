@@ -238,3 +238,5 @@
 "mood_manager_loading_question" = "你现在感觉怎么样？";
 "mood_manager_loading_instruction" = "转动转盘选择你的心情";
 "next_step" = "下一步";
+"add_tag_placeholder" = "输入你想添加的Tag";
+"exit_mood_manager_confirmation" = "确定要退出心情管家吗？";

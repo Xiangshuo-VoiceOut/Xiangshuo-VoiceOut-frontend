@@ -14,6 +14,13 @@
 		689489702CC8516B000FEA22 /* ConsultServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6894896F2CC8516B000FEA22 /* ConsultServiceView.swift */; };
 		689489722CC8524B000FEA22 /* WordToVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689489712CC8524B000FEA22 /* WordToVisitorView.swift */; };
 		689489742CC8533C000FEA22 /* CareerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689489732CC8533C000FEA22 /* CareerView.swift */; };
+		8223CE7D2E6F7BF10034CBAC /* HappyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8223CE782E6F7BF10034CBAC /* HappyHomepageView.swift */; };
+		8223CE7E2E6F7BF10034CBAC /* ScareHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8223CE792E6F7BF10034CBAC /* ScareHomepageView.swift */; };
+		8223CE7F2E6F7BF10034CBAC /* GuiltHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8223CE772E6F7BF10034CBAC /* GuiltHomepageView.swift */; };
+		8223CE802E6F7BF10034CBAC /* SadHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8223CE7B2E6F7BF10034CBAC /* SadHomepageView.swift */; };
+		8223CE812E6F7BF10034CBAC /* AnxietyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8223CE752E6F7BF10034CBAC /* AnxietyHomepageView.swift */; };
+		8223CE822E6F7BF10034CBAC /* AngryHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8223CE742E6F7BF10034CBAC /* AngryHomepageView.swift */; };
+		8223CE832E6F7BF10034CBAC /* EnvyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8223CE762E6F7BF10034CBAC /* EnvyHomepageView.swift */; };
 		840236712CF06B1000C8BA17 /* BasicInfoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840236702CF06B0A00C8BA17 /* BasicInfoContentView.swift */; };
 		840236732CF06B5400C8BA17 /* ProfilePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840236722CF06B4F00C8BA17 /* ProfilePageView.swift */; };
 		840B854A2D7AB01B00638493 /* MoodManagerLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B85492D7AB01A00638493 /* MoodManagerLoadingView.swift */; };
@@ -38,13 +45,6 @@
 		844ED3462D9CFC740055F5D6 /* MoodDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3452D9CFC730055F5D6 /* MoodDefinitions.swift */; };
 		844ED3482D9D19490055F5D6 /* ExitMoodManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3472D9D19470055F5D6 /* ExitMoodManagerView.swift */; };
 		844ED34D2D9FAC660055F5D6 /* MoodTreatmentContainerHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED34C2D9FAC650055F5D6 /* MoodTreatmentContainerHomeView.swift */; };
-		844ED34F2D9FB56F0055F5D6 /* HappyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED34E2D9FB5670055F5D6 /* HappyHomepageView.swift */; };
-		844ED3512D9FB8C80055F5D6 /* AngryHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3502D9FB8C50055F5D6 /* AngryHomepageView.swift */; };
-		844ED3532D9FB8FB0055F5D6 /* SadHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3522D9FB8F50055F5D6 /* SadHomepageView.swift */; };
-		844ED3552D9FB92D0055F5D6 /* GuiltHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3542D9FB92A0055F5D6 /* GuiltHomepageView.swift */; };
-		844ED3572D9FB95A0055F5D6 /* AnxietyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3562D9FB9590055F5D6 /* AnxietyHomepageView.swift */; };
-		844ED3592D9FB9870055F5D6 /* ScareHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3582D9FB9850055F5D6 /* ScareHomepageView.swift */; };
-		844ED35B2D9FB9AD0055F5D6 /* EnvyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED35A2D9FB9AB0055F5D6 /* EnvyHomepageView.swift */; };
 		846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */; };
 		848E62AD2C891D37009B162A /* StickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AC2C891D37009B162A /* StickyHeaderView.swift */; };
 		848E62AF2C892439009B162A /* OneWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AE2C892439009B162A /* OneWeekView.swift */; };
@@ -181,6 +181,13 @@
 		6894896F2CC8516B000FEA22 /* ConsultServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultServiceView.swift; sourceTree = "<group>"; };
 		689489712CC8524B000FEA22 /* WordToVisitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordToVisitorView.swift; sourceTree = "<group>"; };
 		689489732CC8533C000FEA22 /* CareerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerView.swift; sourceTree = "<group>"; };
+		8223CE742E6F7BF10034CBAC /* AngryHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryHomepageView.swift; sourceTree = "<group>"; };
+		8223CE752E6F7BF10034CBAC /* AnxietyHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyHomepageView.swift; sourceTree = "<group>"; };
+		8223CE762E6F7BF10034CBAC /* EnvyHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyHomepageView.swift; sourceTree = "<group>"; };
+		8223CE772E6F7BF10034CBAC /* GuiltHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuiltHomepageView.swift; sourceTree = "<group>"; };
+		8223CE782E6F7BF10034CBAC /* HappyHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyHomepageView.swift; sourceTree = "<group>"; };
+		8223CE792E6F7BF10034CBAC /* ScareHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScareHomepageView.swift; sourceTree = "<group>"; };
+		8223CE7B2E6F7BF10034CBAC /* SadHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadHomepageView.swift; sourceTree = "<group>"; };
 		840236702CF06B0A00C8BA17 /* BasicInfoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoContentView.swift; sourceTree = "<group>"; };
 		840236722CF06B4F00C8BA17 /* ProfilePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageView.swift; sourceTree = "<group>"; };
 		840B85492D7AB01A00638493 /* MoodManagerLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManagerLoadingView.swift; sourceTree = "<group>"; };
@@ -205,13 +212,6 @@
 		844ED3452D9CFC730055F5D6 /* MoodDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodDefinitions.swift; sourceTree = "<group>"; };
 		844ED3472D9D19470055F5D6 /* ExitMoodManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitMoodManagerView.swift; sourceTree = "<group>"; };
 		844ED34C2D9FAC650055F5D6 /* MoodTreatmentContainerHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTreatmentContainerHomeView.swift; sourceTree = "<group>"; };
-		844ED34E2D9FB5670055F5D6 /* HappyHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyHomepageView.swift; sourceTree = "<group>"; };
-		844ED3502D9FB8C50055F5D6 /* AngryHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryHomepageView.swift; sourceTree = "<group>"; };
-		844ED3522D9FB8F50055F5D6 /* SadHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadHomepageView.swift; sourceTree = "<group>"; };
-		844ED3542D9FB92A0055F5D6 /* GuiltHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuiltHomepageView.swift; sourceTree = "<group>"; };
-		844ED3562D9FB9590055F5D6 /* AnxietyHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyHomepageView.swift; sourceTree = "<group>"; };
-		844ED3582D9FB9850055F5D6 /* ScareHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScareHomepageView.swift; sourceTree = "<group>"; };
-		844ED35A2D9FB9AB0055F5D6 /* EnvyHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyHomepageView.swift; sourceTree = "<group>"; };
 		846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentcardViewModel.swift; sourceTree = "<group>"; };
 		848E62AC2C891D37009B162A /* StickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
 		848E62AE2C892439009B162A /* OneWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWeekView.swift; sourceTree = "<group>"; };
@@ -353,6 +353,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8223CE7A2E6F7BF10034CBAC /* others */ = {
+			isa = PBXGroup;
+			children = (
+				8223CE742E6F7BF10034CBAC /* AngryHomepageView.swift */,
+				8223CE752E6F7BF10034CBAC /* AnxietyHomepageView.swift */,
+				8223CE762E6F7BF10034CBAC /* EnvyHomepageView.swift */,
+				8223CE772E6F7BF10034CBAC /* GuiltHomepageView.swift */,
+				8223CE782E6F7BF10034CBAC /* HappyHomepageView.swift */,
+				8223CE792E6F7BF10034CBAC /* ScareHomepageView.swift */,
+			);
+			path = others;
+			sourceTree = "<group>";
+		};
+		8223CE7C2E6F7BF10034CBAC /* Sad */ = {
+			isa = PBXGroup;
+			children = (
+				8223CE7B2E6F7BF10034CBAC /* SadHomepageView.swift */,
+			);
+			path = Sad;
+			sourceTree = "<group>";
+		};
 		8402366F2CF06AFD00C8BA17 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,13 +394,8 @@
 		844ED34B2D9FAC440055F5D6 /* MoodTreatment */ = {
 			isa = PBXGroup;
 			children = (
-				844ED34E2D9FB5670055F5D6 /* HappyHomepageView.swift */,
-				844ED3502D9FB8C50055F5D6 /* AngryHomepageView.swift */,
-				844ED3522D9FB8F50055F5D6 /* SadHomepageView.swift */,
-				844ED3542D9FB92A0055F5D6 /* GuiltHomepageView.swift */,
-				844ED3562D9FB9590055F5D6 /* AnxietyHomepageView.swift */,
-				844ED3582D9FB9850055F5D6 /* ScareHomepageView.swift */,
-				844ED35A2D9FB9AB0055F5D6 /* EnvyHomepageView.swift */,
+				8223CE7A2E6F7BF10034CBAC /* others */,
+				8223CE7C2E6F7BF10034CBAC /* Sad */,
 				844ED34C2D9FAC650055F5D6 /* MoodTreatmentContainerHomeView.swift */,
 				844A7A7D2DAF897B00E58267 /* MoodTreatmentLauncherView.swift */,
 			);
@@ -991,7 +1007,6 @@
 				840236712CF06B1000C8BA17 /* BasicInfoContentView.swift in Sources */,
 				B8444E872C47526900CBCAF8 /* SignUpWebService.swift in Sources */,
 				D23811362CA1D0CB00B90ED2 /* TimePickerPopupContent.swift in Sources */,
-				844ED35B2D9FB9AD0055F5D6 /* EnvyHomepageView.swift in Sources */,
 				D228B28A2C9547F3003975FB /* BankInformationView.swift in Sources */,
 				84D4C70F2D7A7C8D0091B389 /* RotatingWheelView.swift in Sources */,
 				8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */,
@@ -1007,7 +1022,6 @@
 				840B855A2D7E6DB900638493 /* CustomPhotoPickerView.swift in Sources */,
 				D228B2922C99148E003975FB /* ToggleStyle.swift in Sources */,
 				846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */,
-				844ED3572D9FB95A0055F5D6 /* AnxietyHomepageView.swift in Sources */,
 				B8D472252C1E408C00D6716A /* VerificationCodeVM.swift in Sources */,
 				840B854A2D7AB01B00638493 /* MoodManagerLoadingView.swift in Sources */,
 				6894896E2CC85090000FEA22 /* QualificationView.swift in Sources */,
@@ -1021,18 +1035,22 @@
 				844A7A822DB0D2C200E58267 /* AudioPlaybackView.swift in Sources */,
 				8433CAD22C45A0DD00845A7A /* ClinicianCardView.swift in Sources */,
 				84F0FD5F2C48D85A00E2DB79 /* StarRatingWithIntView.swift in Sources */,
-				844ED3592D9FB9870055F5D6 /* ScareHomepageView.swift in Sources */,
 				84B100E02CF1CB32003C6C20 /* TherapistScheduleViewModel.swift in Sources */,
-				844ED3532D9FB8FB0055F5D6 /* SadHomepageView.swift in Sources */,
 				84F0FD592C48D29200E2DB79 /* StarRatingWithDoubleView.swift in Sources */,
 				D21660CD2C339A49008248DE /* VerificationCodeButton.swift in Sources */,
 				84AFFEBC2D8A140600F90680 /* TextJournalDetailView.swift in Sources */,
 				D2D6CD812BFBD2BE00DD7688 /* LegalPopupContent.swift in Sources */,
 				840B85502D7BE55400638493 /* MoodManagerVoiceView.swift in Sources */,
+				8223CE7D2E6F7BF10034CBAC /* HappyHomepageView.swift in Sources */,
+				8223CE7E2E6F7BF10034CBAC /* ScareHomepageView.swift in Sources */,
+				8223CE7F2E6F7BF10034CBAC /* GuiltHomepageView.swift in Sources */,
+				8223CE802E6F7BF10034CBAC /* SadHomepageView.swift in Sources */,
+				8223CE812E6F7BF10034CBAC /* AnxietyHomepageView.swift in Sources */,
+				8223CE822E6F7BF10034CBAC /* AngryHomepageView.swift in Sources */,
+				8223CE832E6F7BF10034CBAC /* EnvyHomepageView.swift in Sources */,
 				D228B28D2C9870C8003975FB /* AvailableTimesView.swift in Sources */,
 				84B100E62CF457F6003C6C20 /* WaitingConfirmationView.swift in Sources */,
 				B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */,
-				844ED3552D9FB92D0055F5D6 /* GuiltHomepageView.swift in Sources */,
 				B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */,
 				D2ECDF902C8F6DBE00FC3E24 /* TherapistRegistrationFormView.swift in Sources */,
 				B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */,
@@ -1050,13 +1068,11 @@
 				844ED34D2D9FAC660055F5D6 /* MoodTreatmentContainerHomeView.swift in Sources */,
 				D28498EA2BE171F700963B3A /* Border.swift in Sources */,
 				D21660E22C4C24DD008248DE /* FileReader.swift in Sources */,
-				844ED34F2D9FB56F0055F5D6 /* HappyHomepageView.swift in Sources */,
 				B8D472232C1E408C00D6716A /* AuthViewModel.swift in Sources */,
 				B8D472132C1E3CB700D6716A /* BackgroundView.swift in Sources */,
 				D21660CF2C339B98008248DE /* BackButtonView.swift in Sources */,
 				B8D472242C1E408C00D6716A /* ResetPasswordVM.swift in Sources */,
 				D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */,
-				844ED3512D9FB8C80055F5D6 /* AngryHomepageView.swift in Sources */,
 				84F0D9482D359F6E0029F651 /* FAQViewModel.swift in Sources */,
 				D21660D82C34D689008248DE /* Validators.swift in Sources */,
 				844ED3482D9D19490055F5D6 /* ExitMoodManagerView.swift in Sources */,

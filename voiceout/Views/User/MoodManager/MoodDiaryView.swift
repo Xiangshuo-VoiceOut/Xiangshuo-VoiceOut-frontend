@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 enum MoodDiaryContent {
     case diary
@@ -34,6 +35,9 @@ struct MoodDiaryView: View {
     let selectedImage: String
     @State private var voiceUrl: String = ""
     @State private var uploadedImagePaths: [String] = []
+    @State private var isUploadingImages = false
+    @State private var imageUploadError: String?
+    @State private var showImageUploadError = false
     @EnvironmentObject var router: RouterModel
     
     private let defaultLocations = [
@@ -76,8 +80,15 @@ struct MoodDiaryView: View {
             title: "mood_diary_title",
             leadingComponent: AnyView(
                 BackButtonView(action: {
-                    if content == .voiceRecorder || content == .selectPicture || content == .customPhotoPicker {
+                    switch content {
+                    case .voiceRecorder:
                         content = .diary
+                    case .customPhotoPicker:
+                        content = .selectPicture
+                    case .selectPicture:
+                        uploadSelectedImagesThenBack()
+                    case .diary:
+                        router.navigateBack()
                     }
                 })
                 .foregroundColor(.grey500)
@@ -126,7 +137,7 @@ struct MoodDiaryView: View {
                     SelectPictureView(
                         selectedImages: $selectedImages,
                         onBack: { content = .diary},
-                        onSend: { images in content = .diary },
+                        onSend: { _ in},
                         onPhotoPicker: { content = .customPhotoPicker }
                     )
                     .transition(.move(edge: .bottom))
@@ -208,6 +219,11 @@ struct MoodDiaryView: View {
                 }
             )
         }
+        .alert("Upload failed", isPresented: $showImageUploadError, actions: {
+            Button("OK") { imageUploadError = nil }
+        }, message: {
+            Text(imageUploadError ?? "Unknown error")
+        })
     }
     
     private var diaryContentView: some View {
@@ -319,20 +335,8 @@ struct MoodDiaryView: View {
             VStack{
                 Button(action: {
                     let userId = "user00123"
-                    var localPaths: [String] = []
-                    
-                    for (index, image) in selectedImages.enumerated() {
-                        let filename = "image_\(Date().timeIntervalSince1970)_\(index).jpg"
-                        if let _ = MoodManagerImageUploader.saveImageToLocal(image: image, fileName: filename) {
-                            localPaths.append(filename)
-                        }
-                    }
-
-                    print("Save image path: \(localPaths)")
+                    let imagePaths = uploadedImagePaths
                     print("Current audio path voiceUrl: \(voiceUrl)")
-                    
-                    if voiceUrl.trimmingCharacters(in: .whitespaces).isEmpty {
-                    }
 
                     let newDiary = DiaryEntry(
                         id: nil,
@@ -348,7 +352,7 @@ struct MoodDiaryView: View {
                         selectedImage: selectedImage,
                         attachments: Attachments(
                             voiceUrl: voiceUrl.isEmpty ? nil : voiceUrl,
-                            imageUrls: localPaths
+                            imageUrls: imagePaths
                         )
                     )
                     
@@ -361,6 +365,8 @@ struct MoodDiaryView: View {
                                 router.navigateTo(.moodHomepageLauncher)
                             case .failure(let error):
                                 print("Diary save failed.: \(error.localizedDescription)")
+                                self.imageUploadError = "Diary save failed: \(error.localizedDescription)"
+                                self.showImageUploadError = true
                             }
                         }
                     }
@@ -385,6 +391,56 @@ struct MoodDiaryView: View {
             .padding(.bottom, ViewSpacing.medium)
         }
         .padding(.horizontal, ViewSpacing.medium)
+    }
+
+    private func uploadSelectedImagesThenBack() {
+        if selectedImages.isEmpty {
+            content = .diary
+            return
+        }
+
+        isUploadingImages = true
+        imageUploadError = nil
+        uploadedImagePaths.removeAll()
+
+        let userId = "user123456"
+        let format = "jpg"
+        let serverBasePath = "/uploads"
+
+        let group = DispatchGroup()
+        var errors: [String] = []
+        var results: [String] = []
+
+        for (idx, img) in selectedImages.enumerated() {
+            group.enter()
+            MoodManagerImageUploader.uploadImageFile(
+                img,
+                userId: userId,
+                format: format,
+                serverBasePath: serverBasePath
+            ) { result in
+                switch result {
+                case .success(let fullUrlOrPath):
+                    print("[\(idx)] image saved:", fullUrlOrPath)
+                    results.append(fullUrlOrPath)
+                case .failure(let e):
+                    print("[\(idx)] image failed:", e.localizedDescription)
+                    errors.append(e.localizedDescription)
+                }
+                group.leave()
+            }
+        }
+
+        group.notify(queue: .main) {
+            self.isUploadingImages = false
+            if errors.isEmpty {
+                self.uploadedImagePaths = results
+                self.content = .diary
+            } else {
+                self.imageUploadError = errors.joined(separator: "\n")
+                self.showImageUploadError = true
+            }
+        }
     }
 }
 

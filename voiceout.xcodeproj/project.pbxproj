@@ -16,6 +16,53 @@
 		689489742CC8533C000FEA22 /* CareerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689489732CC8533C000FEA22 /* CareerView.swift */; };
 		840236712CF06B1000C8BA17 /* BasicInfoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840236702CF06B0A00C8BA17 /* BasicInfoContentView.swift */; };
 		840236732CF06B5400C8BA17 /* ProfilePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840236722CF06B4F00C8BA17 /* ProfilePageView.swift */; };
+		840A6EC32E72010500D8235C /* StressReliefBGMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EC22E72010500D8235C /* StressReliefBGMManager.swift */; };
+		840A6ED12E72014A00D8235C /* CloudGardenJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6ECE2E72014A00D8235C /* CloudGardenJourneyView.swift */; };
+		840A6ED22E72014A00D8235C /* CloudAudioOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6ECF2E72014A00D8235C /* CloudAudioOnboardingView.swift */; };
+		840A6ED32E72014A00D8235C /* CloudGardenOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6ECD2E72014A00D8235C /* CloudGardenOnboardingView.swift */; };
+		840A6ED42E72014A00D8235C /* StressReliefEV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6ECC2E72014A00D8235C /* StressReliefEV.swift */; };
+		840A6ED52E72014A00D8235C /* handdrum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 840A6EC42E72014A00D8235C /* handdrum.mp3 */; };
+		840A6ED62E72014A00D8235C /* tonebar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 840A6EC72E72014A00D8235C /* tonebar.mp3 */; };
+		840A6ED72E72014A00D8235C /* djembe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 840A6EC62E72014A00D8235C /* djembe.mp3 */; };
+		840A6ED82E72014A00D8235C /* garden.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 840A6ECA2E72014A00D8235C /* garden.mp3 */; };
+		840A6ED92E72014A00D8235C /* kalimba.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 840A6EC82E72014A00D8235C /* kalimba.mp3 */; };
+		840A6EDA2E72014A00D8235C /* singingbowl.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 840A6EC92E72014A00D8235C /* singingbowl.mp3 */; };
+		840A6EDB2E72014A00D8235C /* rainstick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 840A6EC52E72014A00D8235C /* rainstick.mp3 */; };
+		840A6EDD2E7201F700D8235C /* MoodTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EDC2E7201F700D8235C /* MoodTreatment.swift */; };
+		840A6EDF2E72021500D8235C /* MoodTreatmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EDE2E72021500D8235C /* MoodTreatmentService.swift */; };
+		840A6EE12E72023500D8235C /* MoodTreatmentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EE02E72023500D8235C /* MoodTreatmentVM.swift */; };
+		840A6EF92E72026800D8235C /* AngryQuestionStyleEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EF02E72026800D8235C /* AngryQuestionStyleEView.swift */; };
+		840A6EFA2E72026800D8235C /* AngryQuestionStyleTimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EF42E72026800D8235C /* AngryQuestionStyleTimingView.swift */; };
+		840A6EFB2E72026800D8235C /* LottieAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EF72E72026800D8235C /* LottieAnimationView.swift */; };
+		840A6EFC2E72026800D8235C /* AngryQuestionStyleBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EED2E72026800D8235C /* AngryQuestionStyleBView.swift */; };
+		840A6EFD2E72026800D8235C /* AngryQuestionPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EEB2E72026800D8235C /* AngryQuestionPageView.swift */; };
+		840A6EFE2E72026800D8235C /* AngryQuestionStyleAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EEC2E72026800D8235C /* AngryQuestionStyleAView.swift */; };
+		840A6EFF2E72026800D8235C /* AngryQuestionStyleBottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EF32E72026800D8235C /* AngryQuestionStyleBottleView.swift */; };
+		840A6F002E72026800D8235C /* AngryQuestionStyleFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EF12E72026800D8235C /* AngryQuestionStyleFView.swift */; };
+		840A6F012E72026800D8235C /* AngryQuestionStyleNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EF52E72026800D8235C /* AngryQuestionStyleNoteView.swift */; };
+		840A6F022E72026800D8235C /* AngryQuestionStyleDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EEF2E72026800D8235C /* AngryQuestionStyleDView.swift */; };
+		840A6F032E72026800D8235C /* AngryQuestionStyleCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EEE2E72026800D8235C /* AngryQuestionStyleCView.swift */; };
+		840A6F042E72026800D8235C /* AngryHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EE82E72026800D8235C /* AngryHomepageView.swift */; };
+		840A6F052E72026800D8235C /* ChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EE92E72026800D8235C /* ChatBubbleView.swift */; };
+		840A6F062E72026800D8235C /* AngryQuestionStyleGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EF22E72026800D8235C /* AngryQuestionStyleGView.swift */; };
+		840A6F072E72026800D8235C /* AnimationInstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EF62E72026800D8235C /* AnimationInstructionView.swift */; };
+		840A6F082E72026800D8235C /* AngryEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EEA2E72026800D8235C /* AngryEndingView.swift */; };
+		840A6F0A2E72026800D8235C /* scroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 840A6EE52E72026800D8235C /* scroll.json */; };
+		840A6F0B2E72026800D8235C /* angry-end.json in Resources */ = {isa = PBXBuildFile; fileRef = 840A6EE62E72026800D8235C /* angry-end.json */; };
+		840A6F0C2E72026800D8235C /* bubble-breaking.json in Resources */ = {isa = PBXBuildFile; fileRef = 840A6EE42E72026800D8235C /* bubble-breaking.json */; };
+		840A6F0D2E72026800D8235C /* relaxing-bluecircle.json in Resources */ = {isa = PBXBuildFile; fileRef = 840A6EE32E72026800D8235C /* relaxing-bluecircle.json */; };
+		840A6F102E7202D700D8235C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 840A6F0F2E7202D700D8235C /* Lottie */; };
+		840A6F122E72034B00D8235C /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6F112E72034B00D8235C /* ProgressViewModel.swift */; };
+		840A6F1E2E72038400D8235C /* EnvyQuestionPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6F162E72038400D8235C /* EnvyQuestionPageView.swift */; };
+		840A6F1F2E72038400D8235C /* EnvyQuestionStyleJView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6F192E72038400D8235C /* EnvyQuestionStyleJView.swift */; };
+		840A6F202E72038400D8235C /* EnvyFinalEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6F152E72038400D8235C /* EnvyFinalEndingView.swift */; };
+		840A6F212E72038400D8235C /* EnvyEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6F142E72038400D8235C /* EnvyEndingView.swift */; };
+		840A6F222E72038400D8235C /* EnvyQuestionStyleHView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6F172E72038400D8235C /* EnvyQuestionStyleHView.swift */; };
+		840A6F232E72038400D8235C /* EnvyQuestionStyleIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6F182E72038400D8235C /* EnvyQuestionStyleIView.swift */; };
+		840A6F242E72038400D8235C /* EnvyQuestionStyleTypingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6F1C2E72038400D8235C /* EnvyQuestionStyleTypingView.swift */; };
+		840A6F252E72038400D8235C /* EnvyQuestionStyleScrollDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6F1B2E72038400D8235C /* EnvyQuestionStyleScrollDownView.swift */; };
+		840A6F262E72038400D8235C /* EnvyQuestionStyleMirrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6F1A2E72038400D8235C /* EnvyQuestionStyleMirrorView.swift */; };
+		840A6F272E72038400D8235C /* EnvyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6F132E72038400D8235C /* EnvyHomepageView.swift */; };
 		840B854A2D7AB01B00638493 /* MoodManagerLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B85492D7AB01A00638493 /* MoodManagerLoadingView.swift */; };
 		840B854C2D7AD48A00638493 /* MoodDiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B854B2D7AD47B00638493 /* MoodDiaryView.swift */; };
 		840B854E2D7BBAAF00638493 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B854D2D7BBAAD00638493 /* SliderView.swift */; };
@@ -39,12 +86,11 @@
 		844ED3482D9D19490055F5D6 /* ExitMoodManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3472D9D19470055F5D6 /* ExitMoodManagerView.swift */; };
 		844ED34D2D9FAC660055F5D6 /* MoodTreatmentContainerHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED34C2D9FAC650055F5D6 /* MoodTreatmentContainerHomeView.swift */; };
 		844ED34F2D9FB56F0055F5D6 /* HappyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED34E2D9FB5670055F5D6 /* HappyHomepageView.swift */; };
-		844ED3512D9FB8C80055F5D6 /* AngryHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3502D9FB8C50055F5D6 /* AngryHomepageView.swift */; };
 		844ED3532D9FB8FB0055F5D6 /* SadHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3522D9FB8F50055F5D6 /* SadHomepageView.swift */; };
 		844ED3552D9FB92D0055F5D6 /* GuiltHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3542D9FB92A0055F5D6 /* GuiltHomepageView.swift */; };
 		844ED3572D9FB95A0055F5D6 /* AnxietyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3562D9FB9590055F5D6 /* AnxietyHomepageView.swift */; };
 		844ED3592D9FB9870055F5D6 /* ScareHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3582D9FB9850055F5D6 /* ScareHomepageView.swift */; };
-		844ED35B2D9FB9AD0055F5D6 /* EnvyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED35A2D9FB9AB0055F5D6 /* EnvyHomepageView.swift */; };
+		8450E3E12E729C04008B2784 /* TypewriterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450E3E02E729C04008B2784 /* TypewriterText.swift */; };
 		846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */; };
 		848E62AD2C891D37009B162A /* StickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AC2C891D37009B162A /* StickyHeaderView.swift */; };
 		848E62AF2C892439009B162A /* OneWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AE2C892439009B162A /* OneWeekView.swift */; };
@@ -183,6 +229,52 @@
 		689489732CC8533C000FEA22 /* CareerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerView.swift; sourceTree = "<group>"; };
 		840236702CF06B0A00C8BA17 /* BasicInfoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoContentView.swift; sourceTree = "<group>"; };
 		840236722CF06B4F00C8BA17 /* ProfilePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageView.swift; sourceTree = "<group>"; };
+		840A6EC22E72010500D8235C /* StressReliefBGMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressReliefBGMManager.swift; sourceTree = "<group>"; };
+		840A6EC42E72014A00D8235C /* handdrum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = handdrum.mp3; sourceTree = "<group>"; };
+		840A6EC52E72014A00D8235C /* rainstick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rainstick.mp3; sourceTree = "<group>"; };
+		840A6EC62E72014A00D8235C /* djembe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = djembe.mp3; sourceTree = "<group>"; };
+		840A6EC72E72014A00D8235C /* tonebar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tonebar.mp3; sourceTree = "<group>"; };
+		840A6EC82E72014A00D8235C /* kalimba.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kalimba.mp3; sourceTree = "<group>"; };
+		840A6EC92E72014A00D8235C /* singingbowl.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singingbowl.mp3; sourceTree = "<group>"; };
+		840A6ECA2E72014A00D8235C /* garden.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = garden.mp3; sourceTree = "<group>"; };
+		840A6ECC2E72014A00D8235C /* StressReliefEV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressReliefEV.swift; sourceTree = "<group>"; };
+		840A6ECD2E72014A00D8235C /* CloudGardenOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudGardenOnboardingView.swift; sourceTree = "<group>"; };
+		840A6ECE2E72014A00D8235C /* CloudGardenJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudGardenJourneyView.swift; sourceTree = "<group>"; };
+		840A6ECF2E72014A00D8235C /* CloudAudioOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAudioOnboardingView.swift; sourceTree = "<group>"; };
+		840A6EDC2E7201F700D8235C /* MoodTreatment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTreatment.swift; sourceTree = "<group>"; };
+		840A6EDE2E72021500D8235C /* MoodTreatmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTreatmentService.swift; sourceTree = "<group>"; };
+		840A6EE02E72023500D8235C /* MoodTreatmentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTreatmentVM.swift; sourceTree = "<group>"; };
+		840A6EE32E72026800D8235C /* relaxing-bluecircle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "relaxing-bluecircle.json"; sourceTree = "<group>"; };
+		840A6EE42E72026800D8235C /* bubble-breaking.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bubble-breaking.json"; sourceTree = "<group>"; };
+		840A6EE52E72026800D8235C /* scroll.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = scroll.json; sourceTree = "<group>"; };
+		840A6EE62E72026800D8235C /* angry-end.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "angry-end.json"; sourceTree = "<group>"; };
+		840A6EE82E72026800D8235C /* AngryHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryHomepageView.swift; sourceTree = "<group>"; };
+		840A6EE92E72026800D8235C /* ChatBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleView.swift; sourceTree = "<group>"; };
+		840A6EEA2E72026800D8235C /* AngryEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryEndingView.swift; sourceTree = "<group>"; };
+		840A6EEB2E72026800D8235C /* AngryQuestionPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestionPageView.swift; sourceTree = "<group>"; };
+		840A6EEC2E72026800D8235C /* AngryQuestionStyleAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestionStyleAView.swift; sourceTree = "<group>"; };
+		840A6EED2E72026800D8235C /* AngryQuestionStyleBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestionStyleBView.swift; sourceTree = "<group>"; };
+		840A6EEE2E72026800D8235C /* AngryQuestionStyleCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestionStyleCView.swift; sourceTree = "<group>"; };
+		840A6EEF2E72026800D8235C /* AngryQuestionStyleDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestionStyleDView.swift; sourceTree = "<group>"; };
+		840A6EF02E72026800D8235C /* AngryQuestionStyleEView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestionStyleEView.swift; sourceTree = "<group>"; };
+		840A6EF12E72026800D8235C /* AngryQuestionStyleFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestionStyleFView.swift; sourceTree = "<group>"; };
+		840A6EF22E72026800D8235C /* AngryQuestionStyleGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestionStyleGView.swift; sourceTree = "<group>"; };
+		840A6EF32E72026800D8235C /* AngryQuestionStyleBottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestionStyleBottleView.swift; sourceTree = "<group>"; };
+		840A6EF42E72026800D8235C /* AngryQuestionStyleTimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestionStyleTimingView.swift; sourceTree = "<group>"; };
+		840A6EF52E72026800D8235C /* AngryQuestionStyleNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestionStyleNoteView.swift; sourceTree = "<group>"; };
+		840A6EF62E72026800D8235C /* AnimationInstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationInstructionView.swift; sourceTree = "<group>"; };
+		840A6EF72E72026800D8235C /* LottieAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimationView.swift; sourceTree = "<group>"; };
+		840A6F112E72034B00D8235C /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
+		840A6F132E72038400D8235C /* EnvyHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyHomepageView.swift; sourceTree = "<group>"; };
+		840A6F142E72038400D8235C /* EnvyEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyEndingView.swift; sourceTree = "<group>"; };
+		840A6F152E72038400D8235C /* EnvyFinalEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyFinalEndingView.swift; sourceTree = "<group>"; };
+		840A6F162E72038400D8235C /* EnvyQuestionPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyQuestionPageView.swift; sourceTree = "<group>"; };
+		840A6F172E72038400D8235C /* EnvyQuestionStyleHView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyQuestionStyleHView.swift; sourceTree = "<group>"; };
+		840A6F182E72038400D8235C /* EnvyQuestionStyleIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyQuestionStyleIView.swift; sourceTree = "<group>"; };
+		840A6F192E72038400D8235C /* EnvyQuestionStyleJView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyQuestionStyleJView.swift; sourceTree = "<group>"; };
+		840A6F1A2E72038400D8235C /* EnvyQuestionStyleMirrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyQuestionStyleMirrorView.swift; sourceTree = "<group>"; };
+		840A6F1B2E72038400D8235C /* EnvyQuestionStyleScrollDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyQuestionStyleScrollDownView.swift; sourceTree = "<group>"; };
+		840A6F1C2E72038400D8235C /* EnvyQuestionStyleTypingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyQuestionStyleTypingView.swift; sourceTree = "<group>"; };
 		840B85492D7AB01A00638493 /* MoodManagerLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManagerLoadingView.swift; sourceTree = "<group>"; };
 		840B854B2D7AD47B00638493 /* MoodDiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodDiaryView.swift; sourceTree = "<group>"; };
 		840B854D2D7BBAAD00638493 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
@@ -206,12 +298,11 @@
 		844ED3472D9D19470055F5D6 /* ExitMoodManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitMoodManagerView.swift; sourceTree = "<group>"; };
 		844ED34C2D9FAC650055F5D6 /* MoodTreatmentContainerHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTreatmentContainerHomeView.swift; sourceTree = "<group>"; };
 		844ED34E2D9FB5670055F5D6 /* HappyHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyHomepageView.swift; sourceTree = "<group>"; };
-		844ED3502D9FB8C50055F5D6 /* AngryHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryHomepageView.swift; sourceTree = "<group>"; };
 		844ED3522D9FB8F50055F5D6 /* SadHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadHomepageView.swift; sourceTree = "<group>"; };
 		844ED3542D9FB92A0055F5D6 /* GuiltHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuiltHomepageView.swift; sourceTree = "<group>"; };
 		844ED3562D9FB9590055F5D6 /* AnxietyHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyHomepageView.swift; sourceTree = "<group>"; };
 		844ED3582D9FB9850055F5D6 /* ScareHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScareHomepageView.swift; sourceTree = "<group>"; };
-		844ED35A2D9FB9AB0055F5D6 /* EnvyHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyHomepageView.swift; sourceTree = "<group>"; };
+		8450E3E02E729C04008B2784 /* TypewriterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypewriterText.swift; sourceTree = "<group>"; };
 		846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentcardViewModel.swift; sourceTree = "<group>"; };
 		848E62AC2C891D37009B162A /* StickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
 		848E62AE2C892439009B162A /* OneWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWeekView.swift; sourceTree = "<group>"; };
@@ -347,6 +438,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840A6F102E7202D700D8235C /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,18 +462,97 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		840A6ECB2E72014A00D8235C /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				840A6EC42E72014A00D8235C /* handdrum.mp3 */,
+				840A6EC52E72014A00D8235C /* rainstick.mp3 */,
+				840A6EC62E72014A00D8235C /* djembe.mp3 */,
+				840A6EC72E72014A00D8235C /* tonebar.mp3 */,
+				840A6EC82E72014A00D8235C /* kalimba.mp3 */,
+				840A6EC92E72014A00D8235C /* singingbowl.mp3 */,
+				840A6ECA2E72014A00D8235C /* garden.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		840A6ED02E72014A00D8235C /* StressRelief */ = {
+			isa = PBXGroup;
+			children = (
+				840A6ECB2E72014A00D8235C /* Sounds */,
+				840A6ECC2E72014A00D8235C /* StressReliefEV.swift */,
+				840A6ECD2E72014A00D8235C /* CloudGardenOnboardingView.swift */,
+				840A6ECE2E72014A00D8235C /* CloudGardenJourneyView.swift */,
+				840A6ECF2E72014A00D8235C /* CloudAudioOnboardingView.swift */,
+			);
+			path = StressRelief;
+			sourceTree = "<group>";
+		};
+		840A6EE72E72026800D8235C /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				840A6EE32E72026800D8235C /* relaxing-bluecircle.json */,
+				840A6EE42E72026800D8235C /* bubble-breaking.json */,
+				840A6EE52E72026800D8235C /* scroll.json */,
+				840A6EE62E72026800D8235C /* angry-end.json */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		840A6EF82E72026800D8235C /* Angry */ = {
+			isa = PBXGroup;
+			children = (
+				840A6EE72E72026800D8235C /* Animation */,
+				840A6EE82E72026800D8235C /* AngryHomepageView.swift */,
+				840A6EE92E72026800D8235C /* ChatBubbleView.swift */,
+				840A6EEA2E72026800D8235C /* AngryEndingView.swift */,
+				840A6EEB2E72026800D8235C /* AngryQuestionPageView.swift */,
+				840A6EEC2E72026800D8235C /* AngryQuestionStyleAView.swift */,
+				840A6EED2E72026800D8235C /* AngryQuestionStyleBView.swift */,
+				840A6EEE2E72026800D8235C /* AngryQuestionStyleCView.swift */,
+				840A6EEF2E72026800D8235C /* AngryQuestionStyleDView.swift */,
+				840A6EF02E72026800D8235C /* AngryQuestionStyleEView.swift */,
+				840A6EF12E72026800D8235C /* AngryQuestionStyleFView.swift */,
+				840A6EF22E72026800D8235C /* AngryQuestionStyleGView.swift */,
+				840A6EF32E72026800D8235C /* AngryQuestionStyleBottleView.swift */,
+				840A6EF42E72026800D8235C /* AngryQuestionStyleTimingView.swift */,
+				840A6EF52E72026800D8235C /* AngryQuestionStyleNoteView.swift */,
+				840A6EF62E72026800D8235C /* AnimationInstructionView.swift */,
+				840A6EF72E72026800D8235C /* LottieAnimationView.swift */,
+			);
+			path = Angry;
+			sourceTree = "<group>";
+		};
+		840A6F1D2E72038400D8235C /* Envy */ = {
+			isa = PBXGroup;
+			children = (
+				840A6F132E72038400D8235C /* EnvyHomepageView.swift */,
+				840A6F142E72038400D8235C /* EnvyEndingView.swift */,
+				840A6F152E72038400D8235C /* EnvyFinalEndingView.swift */,
+				840A6F162E72038400D8235C /* EnvyQuestionPageView.swift */,
+				840A6F172E72038400D8235C /* EnvyQuestionStyleHView.swift */,
+				840A6F182E72038400D8235C /* EnvyQuestionStyleIView.swift */,
+				840A6F192E72038400D8235C /* EnvyQuestionStyleJView.swift */,
+				840A6F1A2E72038400D8235C /* EnvyQuestionStyleMirrorView.swift */,
+				840A6F1B2E72038400D8235C /* EnvyQuestionStyleScrollDownView.swift */,
+				840A6F1C2E72038400D8235C /* EnvyQuestionStyleTypingView.swift */,
+			);
+			path = Envy;
+			sourceTree = "<group>";
+		};
 		844ED34B2D9FAC440055F5D6 /* MoodTreatment */ = {
 			isa = PBXGroup;
 			children = (
+				840A6EF82E72026800D8235C /* Angry */,
+				840A6F1D2E72038400D8235C /* Envy */,
 				844ED34E2D9FB5670055F5D6 /* HappyHomepageView.swift */,
-				844ED3502D9FB8C50055F5D6 /* AngryHomepageView.swift */,
 				844ED3522D9FB8F50055F5D6 /* SadHomepageView.swift */,
 				844ED3542D9FB92A0055F5D6 /* GuiltHomepageView.swift */,
 				844ED3562D9FB9590055F5D6 /* AnxietyHomepageView.swift */,
 				844ED3582D9FB9850055F5D6 /* ScareHomepageView.swift */,
-				844ED35A2D9FB9AB0055F5D6 /* EnvyHomepageView.swift */,
 				844ED34C2D9FAC650055F5D6 /* MoodTreatmentContainerHomeView.swift */,
 				844A7A7D2DAF897B00E58267 /* MoodTreatmentLauncherView.swift */,
+				8450E3E02E729C04008B2784 /* TypewriterText.swift */,
 			);
 			path = MoodTreatment;
 			sourceTree = "<group>";
@@ -417,6 +588,8 @@
 			isa = PBXGroup;
 			children = (
 				84AFFEC42D8E4BF000F90680 /* MoodManager.swift */,
+				840A6EDC2E7201F700D8235C /* MoodTreatment.swift */,
+				840A6EC22E72010500D8235C /* StressReliefBGMManager.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -427,6 +600,7 @@
 				84AFFECA2D973EDA00F90680 /* MoodManagerVM.swift */,
 				844942FD2DC17D1800C8E740 /* MoodManagerImageUploader.swift */,
 				840B85512D7BEA9300638493 /* MoodManagerAudioRecorderVM.swift */,
+				840A6EE02E72023500D8235C /* MoodTreatmentVM.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -434,8 +608,8 @@
 		84D4C70C2D7A7C070091B389 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				844ED34B2D9FAC440055F5D6 /* MoodTreatment */,
 				84D4C70D2D7A7C7A0091B389 /* MoodManager */,
+				844ED34B2D9FAC440055F5D6 /* MoodTreatment */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -552,15 +726,16 @@
 			isa = PBXGroup;
 			children = (
 				84D4C70C2D7A7C070091B389 /* User */,
+				84F0FD4E2C48AAE300E2DB79 /* Therapist */,
+				D2071D452BAB5E7D0040B0AE /* Common */,
+				840A6ED02E72014A00D8235C /* StressRelief */,
+				84ACCBEE2CEC4BBB000C2C7E /* Profile */,
+				D2071D412BAA8B880040B0AE /* Authentication */,
 				8427A8CD2E554CA40014067D /* MainHomepageView.swift */,
 				8427A8D12E554CDE0014067D /* MainHomepageMapView.swift */,
 				8427A8D32E554CF70014067D /* SystemMessageDetailView.swift */,
 				D2071D0D2BA62F300040B0AE /* ContentView.swift */,
 				D2D6CD862C036BCD00DD7688 /* RouterView.swift */,
-				D2071D412BAA8B880040B0AE /* Authentication */,
-				D2071D452BAB5E7D0040B0AE /* Common */,
-				84ACCBEE2CEC4BBB000C2C7E /* Profile */,
-				84F0FD4E2C48AAE300E2DB79 /* Therapist */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -582,10 +757,10 @@
 			isa = PBXGroup;
 			children = (
 				84AFFECC2D973EEB00F90680 /* User */,
-				D2D6CD842C03699000DD7688 /* RouterModel.swift */,
-				D21660D02C33AA9B008248DE /* Authentication */,
-				D28499272BE9BFB900963B3A /* Common */,
 				84F0FD4F2C48AC0E00E2DB79 /* Therapist */,
+				D28499272BE9BFB900963B3A /* Common */,
+				D21660D02C33AA9B008248DE /* Authentication */,
+				D2D6CD842C03699000DD7688 /* RouterModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -607,6 +782,7 @@
 			isa = PBXGroup;
 			children = (
 				84AFFEC82D94E96700F90680 /* MoodManagerService.swift */,
+				840A6EDE2E72021500D8235C /* MoodTreatmentService.swift */,
 				84CB40032D585676004ED7DE /* FAQService.swift */,
 				B8D4722A2C1E41E400D6716A /* APIConfigs.swift */,
 				B8D472262C1E40BD00D6716A /* LoginWebService.swift */,
@@ -771,6 +947,7 @@
 		D28499272BE9BFB900963B3A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				840A6F112E72034B00D8235C /* ProgressViewModel.swift */,
 				84B100DF2CF1CB2E003C6C20 /* TherapistScheduleViewModel.swift */,
 				D2D6CD792BF8FD0400DD7688 /* DialogViewModel.swift */,
 				D28499282BE9BFF900963B3A /* PopupViewModel.swift */,
@@ -874,6 +1051,9 @@
 				"zh-Hans",
 			);
 			mainGroup = D2071CFF2BA62F300040B0AE;
+			packageReferences = (
+				840A6F0E2E7202D700D8235C /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = D2071D092BA62F300040B0AE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -888,6 +1068,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840A6ED52E72014A00D8235C /* handdrum.mp3 in Resources */,
+				840A6ED62E72014A00D8235C /* tonebar.mp3 in Resources */,
+				840A6ED72E72014A00D8235C /* djembe.mp3 in Resources */,
+				840A6ED82E72014A00D8235C /* garden.mp3 in Resources */,
+				840A6ED92E72014A00D8235C /* kalimba.mp3 in Resources */,
+				840A6EDA2E72014A00D8235C /* singingbowl.mp3 in Resources */,
+				840A6F0A2E72026800D8235C /* scroll.json in Resources */,
+				840A6F0B2E72026800D8235C /* angry-end.json in Resources */,
+				840A6F0C2E72026800D8235C /* bubble-breaking.json in Resources */,
+				840A6F0D2E72026800D8235C /* relaxing-bluecircle.json in Resources */,
+				840A6EDB2E72014A00D8235C /* rainstick.mp3 in Resources */,
 				D2071D132BA62F340040B0AE /* Preview Assets.xcassets in Resources */,
 				D2B8F4CD2C0404FC0053F82B /* ⽤户隐私政策.txt in Resources */,
 				D2071D6C2BAB9E110040B0AE /* Localizable.strings in Resources */,
@@ -950,6 +1141,10 @@
 				B8D472192C1E3DED00D6716A /* LogoSize.swift in Sources */,
 				D21660DA2C34DE3C008248DE /* TherapistSignupVM.swift in Sources */,
 				B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */,
+				840A6ED12E72014A00D8235C /* CloudGardenJourneyView.swift in Sources */,
+				840A6ED22E72014A00D8235C /* CloudAudioOnboardingView.swift in Sources */,
+				840A6ED32E72014A00D8235C /* CloudGardenOnboardingView.swift in Sources */,
+				840A6ED42E72014A00D8235C /* StressReliefEV.swift in Sources */,
 				B8D4721E2C1E405000D6716A /* ForgetPasswordView.swift in Sources */,
 				84B100D82CF16FC9003C6C20 /* ReviewsView.swift in Sources */,
 				D2ECDF882C8E2C4D00FC3E24 /* LocalizationManager.swift in Sources */,
@@ -969,6 +1164,23 @@
 				84CB40042D585677004ED7DE /* FAQService.swift in Sources */,
 				84F0FD5B2C48D2E200E2DB79 /* CardView.swift in Sources */,
 				D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */,
+				840A6EF92E72026800D8235C /* AngryQuestionStyleEView.swift in Sources */,
+				840A6EFA2E72026800D8235C /* AngryQuestionStyleTimingView.swift in Sources */,
+				8450E3E12E729C04008B2784 /* TypewriterText.swift in Sources */,
+				840A6EFB2E72026800D8235C /* LottieAnimationView.swift in Sources */,
+				840A6EFC2E72026800D8235C /* AngryQuestionStyleBView.swift in Sources */,
+				840A6EFD2E72026800D8235C /* AngryQuestionPageView.swift in Sources */,
+				840A6EFE2E72026800D8235C /* AngryQuestionStyleAView.swift in Sources */,
+				840A6EFF2E72026800D8235C /* AngryQuestionStyleBottleView.swift in Sources */,
+				840A6F002E72026800D8235C /* AngryQuestionStyleFView.swift in Sources */,
+				840A6F012E72026800D8235C /* AngryQuestionStyleNoteView.swift in Sources */,
+				840A6F022E72026800D8235C /* AngryQuestionStyleDView.swift in Sources */,
+				840A6F032E72026800D8235C /* AngryQuestionStyleCView.swift in Sources */,
+				840A6F042E72026800D8235C /* AngryHomepageView.swift in Sources */,
+				840A6F052E72026800D8235C /* ChatBubbleView.swift in Sources */,
+				840A6F062E72026800D8235C /* AngryQuestionStyleGView.swift in Sources */,
+				840A6F072E72026800D8235C /* AnimationInstructionView.swift in Sources */,
+				840A6F082E72026800D8235C /* AngryEndingView.swift in Sources */,
 				B8860E1C2C34725E00A79073 /* StepProgressView.swift in Sources */,
 				D228B27F2C94E96E003975FB /* ConsultTypesView.swift in Sources */,
 				84DC8FDF2D0C10C600FAAAC1 /* SatisfactionView.swift in Sources */,
@@ -991,7 +1203,6 @@
 				840236712CF06B1000C8BA17 /* BasicInfoContentView.swift in Sources */,
 				B8444E872C47526900CBCAF8 /* SignUpWebService.swift in Sources */,
 				D23811362CA1D0CB00B90ED2 /* TimePickerPopupContent.swift in Sources */,
-				844ED35B2D9FB9AD0055F5D6 /* EnvyHomepageView.swift in Sources */,
 				D228B28A2C9547F3003975FB /* BankInformationView.swift in Sources */,
 				84D4C70F2D7A7C8D0091B389 /* RotatingWheelView.swift in Sources */,
 				8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */,
@@ -999,6 +1210,7 @@
 				840B854C2D7AD48A00638493 /* MoodDiaryView.swift in Sources */,
 				84ACCBE72CEC24D5000C2C7E /* ProfileCardView.swift in Sources */,
 				848E62B42C8BC8F1009B162A /* Day.swift in Sources */,
+				840A6EE12E72023500D8235C /* MoodTreatmentVM.swift in Sources */,
 				8427A8CE2E554CA40014067D /* MainHomepageView.swift in Sources */,
 				D26DD5D42C93B9C500C9705E /* EducationBackgroundView.swift in Sources */,
 				D2D6CD7A2BF8FD0400DD7688 /* DialogViewModel.swift in Sources */,
@@ -1008,6 +1220,16 @@
 				D228B2922C99148E003975FB /* ToggleStyle.swift in Sources */,
 				846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */,
 				844ED3572D9FB95A0055F5D6 /* AnxietyHomepageView.swift in Sources */,
+				840A6F1E2E72038400D8235C /* EnvyQuestionPageView.swift in Sources */,
+				840A6F1F2E72038400D8235C /* EnvyQuestionStyleJView.swift in Sources */,
+				840A6F202E72038400D8235C /* EnvyFinalEndingView.swift in Sources */,
+				840A6F212E72038400D8235C /* EnvyEndingView.swift in Sources */,
+				840A6F222E72038400D8235C /* EnvyQuestionStyleHView.swift in Sources */,
+				840A6F232E72038400D8235C /* EnvyQuestionStyleIView.swift in Sources */,
+				840A6F242E72038400D8235C /* EnvyQuestionStyleTypingView.swift in Sources */,
+				840A6F252E72038400D8235C /* EnvyQuestionStyleScrollDownView.swift in Sources */,
+				840A6F262E72038400D8235C /* EnvyQuestionStyleMirrorView.swift in Sources */,
+				840A6F272E72038400D8235C /* EnvyHomepageView.swift in Sources */,
 				B8D472252C1E408C00D6716A /* VerificationCodeVM.swift in Sources */,
 				840B854A2D7AB01B00638493 /* MoodManagerLoadingView.swift in Sources */,
 				6894896E2CC85090000FEA22 /* QualificationView.swift in Sources */,
@@ -1017,8 +1239,10 @@
 				D284992E2BEEF4D800963B3A /* LegalButton.swift in Sources */,
 				B8F845442C28BB98008C0D80 /* DropdownOption.swift in Sources */,
 				B8860E2C2C3C79B300A79073 /* StateData.swift in Sources */,
+				840A6EC32E72010500D8235C /* StressReliefBGMManager.swift in Sources */,
 				840B85542D7E560100638493 /* SelectPictureView.swift in Sources */,
 				844A7A822DB0D2C200E58267 /* AudioPlaybackView.swift in Sources */,
+				840A6EDF2E72021500D8235C /* MoodTreatmentService.swift in Sources */,
 				8433CAD22C45A0DD00845A7A /* ClinicianCardView.swift in Sources */,
 				84F0FD5F2C48D85A00E2DB79 /* StarRatingWithIntView.swift in Sources */,
 				844ED3592D9FB9870055F5D6 /* ScareHomepageView.swift in Sources */,
@@ -1031,6 +1255,7 @@
 				840B85502D7BE55400638493 /* MoodManagerVoiceView.swift in Sources */,
 				D228B28D2C9870C8003975FB /* AvailableTimesView.swift in Sources */,
 				84B100E62CF457F6003C6C20 /* WaitingConfirmationView.swift in Sources */,
+				840A6F122E72034B00D8235C /* ProgressViewModel.swift in Sources */,
 				B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */,
 				844ED3552D9FB92D0055F5D6 /* GuiltHomepageView.swift in Sources */,
 				B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */,
@@ -1039,6 +1264,7 @@
 				6894896C2CC84C52000FEA22 /* EducationView.swift in Sources */,
 				D2D6CD892C038B1700DD7688 /* Color.swift in Sources */,
 				D2AA0AE62CA1C2B6007A96E4 /* TimePickerView.swift in Sources */,
+				840A6EDD2E7201F700D8235C /* MoodTreatment.swift in Sources */,
 				8497B51B2CE81EB9006D6050 /* EditButtonView.swift in Sources */,
 				D2ECDF8A2C8F659200FC3E24 /* BasicInfoView.swift in Sources */,
 				B8EF41AB2C69BAD300C77D4D /* SignUpStep1.swift in Sources */,
@@ -1056,7 +1282,6 @@
 				D21660CF2C339B98008248DE /* BackButtonView.swift in Sources */,
 				B8D472242C1E408C00D6716A /* ResetPasswordVM.swift in Sources */,
 				D25C2ED22BDDD5D20011212A /* Spacing.swift in Sources */,
-				844ED3512D9FB8C80055F5D6 /* AngryHomepageView.swift in Sources */,
 				84F0D9482D359F6E0029F651 /* FAQViewModel.swift in Sources */,
 				D21660D82C34D689008248DE /* Validators.swift in Sources */,
 				844ED3482D9D19490055F5D6 /* ExitMoodManagerView.swift in Sources */,
@@ -1323,6 +1548,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		840A6F0E2E7202D700D8235C /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		840A6F0F2E7202D700D8235C /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 840A6F0E2E7202D700D8235C /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D2071D002BA62F300040B0AE /* Project object */;
 }

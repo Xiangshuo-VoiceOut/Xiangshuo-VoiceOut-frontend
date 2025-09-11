@@ -31,62 +31,113 @@ struct MoodManagerImageUploader {
     }
 
     enum UploadError: Error {
-        case invalidImageData
         case emptyResponse
         case unexpectedFormat
+        case badURL
+        case invalidImageData
     }
 
-    static func uploadImageFile(_ image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
-        
-        
-        /// local ip, need to update in the future
-        let url = URL(string: "http://192.168.1.71:4000/upload-image-file")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+    private struct ImageMetaSaveResponse: Codable {
+        struct Payload: Codable {
+            let userId: String
+            let format: String
+            let filePath: String
+            let _id: String?
+        }
+        let message: String?
+        let data: Payload?
+    }
 
-        let boundary = UUID().uuidString
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+    static func uploadImageFile(_ image: UIImage,
+                                userId: String = "user123456",
+                                format: String = "jpg",
+                                serverBasePath: String = "/uploads",
+                                completion: @escaping (Result<String, Error>) -> Void) {
 
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            completion(.failure(UploadError.invalidImageData))
-            return
+        let fileName = "image_\(Date().timeIntervalSince1970).jpg"
+        _ = saveImageToLocal(image: image, fileName: fileName)
+
+        let serverFilePath = serverBasePath.hasSuffix("/")
+            ? "\(serverBasePath)\(fileName)"
+            : "\(serverBasePath)/\(fileName)"
+
+        guard let url = URL(string: "\(API.v1)/upload-image") else {
+            completion(.failure(UploadError.badURL)); return
         }
 
-        var body = Data()
-        body.append("--\(boundary)\r\n".data(using: .utf8)!)
-        body.append("Content-Disposition: form-data; name=\"image\"; filename=\"upload.jpg\"\r\n".data(using: .utf8)!)
-        body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
-        body.append(imageData)
-        body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        var req = URLRequest(url: url)
+        req.httpMethod = "POST"
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        URLSession.shared.uploadTask(with: request, from: body) { data, response, error in
-            if let error = error {
-                print("Network error: \(error.localizedDescription)")
-                completion(.failure(error))
-                return
+        let body: [String: Any] = [
+            "userId": userId,
+            "format": format,
+            "filePath": serverFilePath
+        ]
+        req.httpBody = try? JSONSerialization.data(withJSONObject: body)
+
+        URLSession.shared.dataTask(with: req) { data, resp, err in
+            if let err = err { completion(.failure(err)); return }
+            let status = (resp as? HTTPURLResponse)?.statusCode ?? -1
+            guard let data = data, !data.isEmpty else {
+                completion(.failure(UploadError.emptyResponse)); return
             }
-
-            guard let data = data else {
-                print("Upload failed. No response data")
-                completion(.failure(UploadError.emptyResponse))
-                return
-            }
-
-            if let responseText = String(data: data, encoding: .utf8) {
-            }
-
             do {
-                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                   let filePath = json["filePath"] as? String {
-                    let fullUrl = "http://192.168.1.71:4000\(filePath)"
-                    print("Picture address: \(fullUrl)")
-                    completion(.success(fullUrl))
-                } else {
-                    print("JSON decode failed")
-                    completion(.failure(UploadError.unexpectedFormat))
+                let decoded = try JSONDecoder().decode(ImageMetaSaveResponse.self, from: data)
+                guard (200..<300).contains(status), let payload = decoded.data else {
+                    completion(.failure(UploadError.unexpectedFormat)); return
                 }
+
+                let fullUrl: String
+                if payload.filePath.lowercased().hasPrefix("http://") || payload.filePath.lowercased().hasPrefix("https://") {
+                    fullUrl = payload.filePath
+                } else {
+                    fullUrl = "\(API.host)\(payload.filePath)"
+                }
+                completion(.success(fullUrl))
             } catch {
-                print("JSON Decoding exception: \(error)")
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+
+    static func reportImageMetadata(serverFilePath: String,
+                                    userId: String = "user123456",
+                                    format: String = "jpg",
+                                    completion: @escaping (Result<String, Error>) -> Void) {
+        guard let url = URL(string: "\(API.v1)/upload-image") else {
+            completion(.failure(UploadError.badURL)); return
+        }
+        var req = URLRequest(url: url)
+        req.httpMethod = "POST"
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let body: [String: Any] = [
+            "userId": userId,
+            "format": format,
+            "filePath": serverFilePath
+        ]
+        req.httpBody = try? JSONSerialization.data(withJSONObject: body)
+
+        URLSession.shared.dataTask(with: req) { data, resp, err in
+            if let err = err { completion(.failure(err)); return }
+            let status = (resp as? HTTPURLResponse)?.statusCode ?? -1
+            guard let data = data, !data.isEmpty else {
+                completion(.failure(UploadError.emptyResponse)); return
+            }
+            do {
+                let decoded = try JSONDecoder().decode(ImageMetaSaveResponse.self, from: data)
+                guard (200..<300).contains(status), let payload = decoded.data else {
+                    completion(.failure(UploadError.unexpectedFormat)); return
+                }
+                let fullUrl: String
+                if payload.filePath.lowercased().hasPrefix("http://") || payload.filePath.lowercased().hasPrefix("https://") {
+                    fullUrl = payload.filePath
+                } else {
+                    fullUrl = "\(API.host)\(payload.filePath)"
+                }
+                completion(.success(fullUrl))
+            } catch {
                 completion(.failure(error))
             }
         }.resume()

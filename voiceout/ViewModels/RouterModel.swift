@@ -29,6 +29,12 @@ enum Route: Hashable {
     case moodHomepageLauncher
     case mainHomepage
     case systemMessageDetail
+    case cloudGardenOnboarding(startIndex: Int, showSkip: Bool)
+    case cloudGardenJourney
+    case cloudAudioOnboarding(startIndex: Int, showSkip: Bool)
+    case angrySingleQuestion(id: Int)
+    case envySingleQuestion(id: Int)
+    case stressReliefEntry
 }
 
 final class RouterModel: ObservableObject {
@@ -92,6 +98,24 @@ final class RouterModel: ObservableObject {
                 .environmentObject(self)
         case .systemMessageDetail:
             SystemMessageDetailView()
+                .environmentObject(self)
+        case .cloudGardenOnboarding(let start, let skip):
+            CloudGardenOnboardingView(startIndex: start, showSkip: skip)
+                .environmentObject(self)
+        case .cloudGardenJourney:
+            CloudGardenJourneyView()
+                .environmentObject(self)
+        case .cloudAudioOnboarding(let start, let skip):
+            CloudAudioOnboardingView(startIndex: start, showSkip: skip)
+                .environmentObject(self)
+        case .angrySingleQuestion(let id):
+            AngryQuestionPageView(questionId: id)
+                .environmentObject(self)
+        case .envySingleQuestion(let id):
+            EnvyQuestionPageView(questionId: id)
+                .environmentObject(self)
+        case .stressReliefEntry:
+            StressReliefEntryView()
                 .environmentObject(self)
         }
     }

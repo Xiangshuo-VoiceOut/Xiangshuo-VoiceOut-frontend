@@ -17,6 +17,11 @@ struct MoodManagerVoiceView: View {
     @State private var isRecording = false
     @State private var showAudioPlayback = false
     @State private var hasNewRecording = false
+    @State private var isSaving = false
+    @State private var saveErrorMessage: String?
+
+    private let userIdForRecording = "user00123"
+    private let recordingFormat = "m4a"
     
     var body: some View {
         ZStack {
@@ -58,6 +63,7 @@ struct MoodManagerVoiceView: View {
                             voiceUrl = ""
                             showAudioPlayback = false
                             hasNewRecording = false
+                            saveErrorMessage = nil
                         }) {
                             Circle()
                                 .fill(Color.surfaceBrandPrimary)
@@ -83,6 +89,7 @@ struct MoodManagerVoiceView: View {
                                 hasNewRecording = false
                                 showAudioPlayback = false
                                 voiceUrl = ""
+                                saveErrorMessage = nil
                             }
                         }) {
                             Circle()
@@ -102,9 +109,34 @@ struct MoodManagerVoiceView: View {
                                     switch result {
                                     case .success(let filename):
                                         print("Save successfully，filename =", filename)
-                                        voiceUrl = filename
-                                        print("Final saved voiceUrl is: \(voiceUrl)")
-                                        showVoiceRecorder = false
+                                        let serverBasePath = "/recordings"
+                                        let serverFilePath = serverBasePath.hasSuffix("/")
+                                            ? "\(serverBasePath)\(filename)"
+                                            : "\(serverBasePath)/\(filename)"
+
+                                        let duration = audioRecorder.currentDurationSeconds
+                                        let userId = "user123"
+
+                                        self.voiceUrl = serverFilePath
+
+                                        audioRecorder.reportRecordingMetadata(
+                                            userId: userId,
+                                            serverFilePath: serverFilePath,
+                                            format: "m4a",
+                                            duration: duration
+                                        ) { metaResult in
+                                            DispatchQueue.main.async {
+                                                switch metaResult {
+                                                case .success:
+                                                    print("Recording metadata saved. filePath=\(serverFilePath), duration=\(duration)s")
+                                                    self.showVoiceRecorder = false
+                                                case .failure(let err):
+                                                    print("Recording metadata failed:", err.localizedDescription)
+                                                    self.showVoiceRecorder = false
+                                                }
+                                            }
+                                        }
+
                                     case .failure(let error):
                                         print("Save failed:", error.localizedDescription)
                                     }

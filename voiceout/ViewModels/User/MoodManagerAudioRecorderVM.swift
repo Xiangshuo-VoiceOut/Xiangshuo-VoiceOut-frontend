@@ -11,12 +11,13 @@ import AVFoundation
 class MoodManagerAudioRecorderVM: NSObject, ObservableObject {
     @Published var isRecording = false
     @Published var hasRecording = false
-    @Published var recordingTime: String = "00:00:00"
+    @Published var recordingTime: String = "00:00"
     @Published var localFileUrl: URL? = nil
 
     private var audioRecorder: AVAudioRecorder?
     private var timer: Timer?
     private var elapsedTime: TimeInterval = 0
+    var currentDurationSeconds: Int { Int(elapsedTime.rounded()) }
 
     override init() {
         super.init()
@@ -50,7 +51,7 @@ class MoodManagerAudioRecorderVM: NSObject, ObservableObject {
             isRecording = true
             hasRecording = false
             elapsedTime = 0
-            recordingTime = "00:00:00"
+            recordingTime = "00:00"
             localFileUrl = audioFilename
 
             startTimer()
@@ -69,7 +70,7 @@ class MoodManagerAudioRecorderVM: NSObject, ObservableObject {
     func resetRecording() {
         stopRecording()
         hasRecording = false
-        recordingTime = "00:00:00"
+        recordingTime = "00:00"
         localFileUrl = nil
     }
 
@@ -108,5 +109,60 @@ class MoodManagerAudioRecorderVM: NSObject, ObservableObject {
             return
         }
         completion(.success(fileUrl.lastPathComponent))
+    }
+    
+    struct RecordingSaveResponse: Codable {
+        struct Payload: Codable {
+            let filePath: String
+            let userId: String
+            let format: String
+            let uploadedAt: String?
+            let _id: String?
+            let __v: Int?
+            let duration: Int?
+        }
+        let message: String?
+        let data: Payload?
+    }
+
+    func reportRecordingMetadata(userId: String,
+                                 serverFilePath: String,
+                                 format: String = "m4a",
+                                 duration: Int,
+                                 completion: @escaping (Result<Void, Error>) -> Void) {
+
+        guard let url = URL(string: "\(API.v1)/upload-recording") else {
+            completion(.failure(NSError(domain: "Bad URL", code: -1)))
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let body: [String: Any] = [
+            "userId": userId,
+            "filePath": serverFilePath,
+            "format": format,
+            "duration": duration
+        ]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error { completion(.failure(error)); return }
+            let status = (response as? HTTPURLResponse)?.statusCode ?? -1
+            guard let data = data, !data.isEmpty else {
+                completion(.failure(NSError(domain: "EmptyResponseBody", code: status))); return
+            }
+            do {
+                let resp = try JSONDecoder().decode(RecordingSaveResponse.self, from: data)
+                guard (200..<300).contains(status), resp.data != nil else {
+                    completion(.failure(NSError(domain: "UploadRecordingFailed", code: status))); return
+                }
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
     }
 }

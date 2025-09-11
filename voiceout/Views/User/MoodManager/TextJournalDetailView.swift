@@ -71,58 +71,33 @@ struct TextJournalDetailView: View {
                 
                 ScrollView {
                     VStack(spacing: ViewSpacing.large) {
-                        if let voiceUrlString = diary.attachments?.voiceUrl,
-                           !voiceUrlString.isEmpty {
-                            let docsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                            let voiceFileUrl = docsDir.appendingPathComponent(voiceUrlString)
-                            
-                            if FileManager.default.fileExists(atPath: voiceFileUrl.path) {
-                                AudioPlaybackView(
-                                    voiceUrl: voiceFileUrl.absoluteString,
-                                    localFileUrl: voiceFileUrl,
-                                    isVisible: $isAudioVisible
-                                )
-                            } else {
+                        if let voicePath = diary.attachments?.voiceUrl, !voicePath.isEmpty {
+                            let remoteURL = resolveRemoteURL(from: voicePath)
+                            let localURL  = resolveLocalURL(fromServerPathOrName: voicePath)
+
+                            if remoteURL == nil && localURL == nil {
                                 Text("The audio file cannot be played")
                                     .foregroundColor(.gray)
-                                    .onAppear {
-                                        print("The audio file does not exist: \(voiceFileUrl.path)")
-                                    }
+                                    .onAppear { print("Audio not found remotely or locally: \(voicePath)") }
+                            } else {
+                                AudioPlaybackView(
+                                    voiceUrl: (remoteURL ?? localURL)?.absoluteString ?? "",
+                                    localFileUrl: localURL,
+                                    isVisible: $isAudioVisible
+                                )
+                                .onAppear {
+                                    print("Audio prepared. remote=\(remoteURL?.absoluteString ?? "nil"), local=\(localURL?.path ?? "nil")")
+                                }
                             }
                         }
 
-                        if let imagePaths = diary.attachments?.imageUrls {
-                            let docsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                            let fullPaths = imagePaths.map { path in
-                                path.hasPrefix("/") ? path : docsDir.appendingPathComponent(path).path
-                            }
-
+                        if let imagePaths = diary.attachments?.imageUrls, !imagePaths.isEmpty {
                             LazyVStack(spacing: ViewSpacing.small) {
-                                ForEach(fullPaths, id: \.self) { fullPath in
-                                    let exists = FileManager.default.fileExists(atPath: fullPath)
-                                    let image = UIImage(contentsOfFile: fullPath)
-
-                                    Group {
-                                        if exists, let image = image {
-                                            Image(uiImage: image)
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(height: 188)
-                                                .clipped()
-                                                .onAppear {
-                                                    print("The picture was loaded successfully.: \(fullPath)")
-                                                }
-                                        } else {
-                                            Text("The picture cannot be loaded.")
-                                                .frame(height: 188)
-                                                .frame(maxWidth: .infinity)
-                                                .background(Color.gray)
-                                                .padding(.horizontal, ViewSpacing.xlarge)
-                                                .onAppear {
-                                                    print("The image loading failed.: \(fullPath)")
-                                                }
-                                        }
-                                    }
+                                ForEach(imagePaths, id: \.self) { one in
+                                    RemoteImageWithLocalFallback(pathOrURL: one)
+                                        .frame(height: 188)
+                                        .padding(.horizontal, ViewSpacing.xlarge)
+                                        .imageShadow()
                                 }
                             }
                             .padding(.top, ViewSpacing.medium)
@@ -148,10 +123,89 @@ struct TextJournalDetailView: View {
         })
     }
     
+    private func resolveRemoteURL(from pathOrURL: String) -> URL? {
+        if pathOrURL.lowercased().hasPrefix("http://") || pathOrURL.lowercased().hasPrefix("https://") {
+            return URL(string: pathOrURL)
+        }
+        if pathOrURL.hasPrefix("/") {
+            return URL(string: API.host + pathOrURL)
+        }
+        return nil
+    }
+
+    private func resolveLocalURL(fromServerPathOrName s: String) -> URL? {
+        let name: String
+        if let url = URL(string: s), url.scheme != nil {
+            name = url.lastPathComponent
+        } else {
+            name = (s as NSString).lastPathComponent
+        }
+        let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let local = docs.appendingPathComponent(name)
+        return FileManager.default.fileExists(atPath: local.path) ? local : nil
+    }
+
     private func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         return formatter.string(from: date)
+    }
+}
+
+private struct RemoteImageWithLocalFallback: View {
+    let pathOrURL: String
+
+    private func remoteURL() -> URL? {
+        if pathOrURL.lowercased().hasPrefix("http://") || pathOrURL.lowercased().hasPrefix("https://") {
+            return URL(string: pathOrURL)
+        }
+        if pathOrURL.hasPrefix("/") {
+            return URL(string: API.host + pathOrURL)
+        }
+        return nil
+    }
+
+    private func localImage() -> UIImage? {
+        let name: String
+        if let url = URL(string: pathOrURL), url.scheme != nil {
+            name = url.lastPathComponent
+        } else {
+            name = (pathOrURL as NSString).lastPathComponent
+        }
+        let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let local = docs.appendingPathComponent(name)
+        return UIImage(contentsOfFile: local.path)
+    }
+
+    var body: some View {
+        if let url = remoteURL() {
+            AsyncImage(url: url) { phase in
+                switch phase {
+                case .empty:
+                    Rectangle().fill(Color.gray.opacity(0.2)).overlay(ProgressView())
+                case .success(let image):
+                    image.resizable().aspectRatio(contentMode: .fill).clipped()
+                        .onAppear { print("Remote image loaded: \(url.absoluteString)") }
+                case .failure:
+                    if let ui = localImage() {
+                        Image(uiImage: ui).resizable().aspectRatio(contentMode: .fill).clipped()
+                            .onAppear { print("Fallback local image loaded") }
+                    } else {
+                        Rectangle().fill(Color.gray)
+                            .overlay(Text("The picture cannot be loaded."))
+                            .onAppear { print("Image failed both remote and local: \(pathOrURL)") }
+                    }
+                @unknown default:
+                    Rectangle().fill(Color.gray)
+                }
+            }
+        } else if let ui = localImage() {
+            Image(uiImage: ui).resizable().aspectRatio(contentMode: .fill).clipped()
+                .onAppear { print("Local image loaded (no remote url)") }
+        } else {
+            Rectangle().fill(Color.gray).overlay(Text("The picture cannot be loaded."))
+                .onAppear { print("No remote url, local not found: \(pathOrURL)") }
+        }
     }
 }
 

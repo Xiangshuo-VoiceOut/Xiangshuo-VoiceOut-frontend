@@ -47,6 +47,7 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
     init(from decoder: Decoder) throws {
         let raw = try decoder.singleValueContainer().decode(String.self)
         switch raw {
+        ///Angry
         case "styleA":             self = .styleA
         case "styleB":             self = .styleB
         case "styleC":             self = .styleC
@@ -57,7 +58,9 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
         case "styleNote":          self = .styleNote
         case "styleBottle":        self = .styleBottle
         case "styleAngryEnding":   self = .styleAngryEnding
+        case "AngryQuestionStyleTimingView": self = .styleAngryTiming
             
+        ///Envy
         case "styleH":             self = .styleH
         case "styleI":             self = .styleI
         case "styleJ":             self = .styleJ
@@ -103,17 +106,19 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
 
 struct MoodTreatmentAnswerOption: Identifiable, Decodable, Hashable {///答案
     let id = UUID()
+    let key: String
     let text: String
     let next: Int?
     let exclusive: Bool?
     
     private enum CodingKeys: String, CodingKey {
-        case text, next, exclusive
+        case key, text, next, exclusive
     }
 }
 
 struct MoodTreatmentQuestion: Identifiable, Decodable, Hashable { ///问题的字段
     let id: Int
+    let totalQuestions: Int?
     let type: QuestionType
     let uiStyle: QuestionUIStyle
     let texts: [String]?
@@ -126,6 +131,7 @@ struct MoodTreatmentQuestion: Identifiable, Decodable, Hashable { ///问题的�
     var buttonTitle: String = ""
     let endingStyle: String?
     var customViewName: String? = nil ///特殊题型直接返回前端View的名字
+    let routine: String?
     var viewIdentifier: String {
         if type == .custom, let name = customViewName {
             return name
@@ -135,6 +141,7 @@ struct MoodTreatmentQuestion: Identifiable, Decodable, Hashable { ///问题的�
     
     private enum CodingKeys: String, CodingKey {
         case id            = "_id"
+        case totalQuestions
         case type
         case uiStyle
         case customViewName
@@ -144,6 +151,8 @@ struct MoodTreatmentQuestion: Identifiable, Decodable, Hashable { ///问题的�
         case options
         case showSlider
         case endingStyle
+        case routine
+        case buttonTitle
     }
 }
 

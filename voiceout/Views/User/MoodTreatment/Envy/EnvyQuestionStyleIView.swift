@@ -43,7 +43,7 @@ struct EnvyQuestionStyleIView: View {
                         .resizable()
                         .frame(width: 48, height: 48)
                 }
-                .padding(.leading, 16)
+                .padding(.leading, ViewSpacing.medium)
 
                 VStack {
                     Spacer()
@@ -51,8 +51,8 @@ struct EnvyQuestionStyleIView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: .infinity)
-                        .padding(.horizontal, 48)
-                        .padding(.bottom, 16)
+                        .padding(.horizontal, ViewSpacing.medium+ViewSpacing.xlarge)
+                        .padding(.bottom, ViewSpacing.medium)
                 }
 
                 VStack(spacing: 0) {
@@ -62,7 +62,7 @@ struct EnvyQuestionStyleIView: View {
                             .scaledToFit()
                             .frame(width: 100, height: 71)
                             .scaleEffect(x: -1, y: 1)
-                            .offset(x: -16)
+                            .offset(x: -ViewSpacing.medium)
                             .frame(width: 68)
 
                         BubbleScrollView(
@@ -78,9 +78,9 @@ struct EnvyQuestionStyleIView: View {
                     }
 
                     if showOptions {
-                        HStack(spacing: 8) {
+                        HStack(spacing: ViewSpacing.small) {
                             Spacer()
-                            VStack(alignment: .trailing, spacing: 8) {
+                            VStack(alignment: .trailing, spacing: ViewSpacing.small) {
                                 ForEach(nonConfirmOptions) { option in
                                     let isSelected = selectedOptions.contains(option.id)
                                     Button {
@@ -95,8 +95,8 @@ struct EnvyQuestionStyleIView: View {
                                             .font(.typography(.bodyMedium))
                                             .foregroundColor(.grey500)
                                             .multilineTextAlignment(.leading)
-                                            .padding(.horizontal, 16)
-                                            .padding(.vertical, 12)
+                                            .padding(.horizontal, ViewSpacing.medium)
+                                            .padding(.vertical, ViewSpacing.base)
                                             .background(isSelected
                                                         ? Color(red: 0.42, green: 0.81, blue: 0.95)
                                                         : Color.surfacePrimary
@@ -121,17 +121,17 @@ struct EnvyQuestionStyleIView: View {
                                             .kerning(0.64)
                                             .multilineTextAlignment(.center)
                                             .foregroundColor(Color.textBrandPrimary)
-                                            .padding(.horizontal, 16)
-                                            .padding(.vertical, 8)
+                                            .padding(.horizontal, ViewSpacing.medium)
+                                            .padding(.vertical, ViewSpacing.small)
                                             .frame(height: 44)
                                             .background(Color.surfacePrimary)
-                                            .cornerRadius(360)
+                                            .cornerRadius(CornerRadius.full.value)
                                     }
                                 }
                             }
                         }
-                        .padding(.trailing, 16)
-                        .padding(.top, 40)
+                        .padding(.trailing, ViewSpacing.medium)
+                        .padding(.top, ViewSpacing.medium+ViewSpacing.large)
                         .transition(.opacity)
                     }
 
@@ -165,23 +165,25 @@ struct EnvyQuestionStyleIView: View {
     EnvyQuestionStyleIView(
         question: MoodTreatmentQuestion(
             id: 3,
+            totalQuestions: 100,
             type: .multiChoice,
             uiStyle: .styleI,
             texts: ["可以跟小云朵说说你是因为什么而感到嫉妒的吗？"],
             animation: nil,
             options: [
-                .init(text: "我没有别人的外貌，身材", next: nil, exclusive: false),
-                .init(text: "家庭不够优越", next: nil, exclusive: false),
-                .init(text: "我没有一技之长", next: nil, exclusive: false),
-                .init(text: "别人能力更强", next: nil, exclusive: false),
-                .init(text: "如果有别人的一半幸运就好了", next: nil, exclusive: false),
-                .init(text: "在群体里不受欢迎", next: nil, exclusive: false),
-                .init(text: "其它", next: nil, exclusive: false),
-                .init(text: "我选好了", next: nil, exclusive: true)
+                .init(key: "A",text: "我没有别人的外貌，身材", next: nil, exclusive: false),
+                .init(key: "B",text: "家庭不够优越", next: nil, exclusive: false),
+                .init(key: "C",text: "我没有一技之长", next: nil, exclusive: false),
+                .init(key: "D",text: "别人能力更强", next: nil, exclusive: false),
+                .init(key: "E",text: "如果有别人的一半幸运就好了", next: nil, exclusive: false),
+                .init(key: "F",text: "在群体里不受欢迎", next: nil, exclusive: false),
+                .init(key: "G",text: "其它", next: nil, exclusive: false),
+                .init(key: "H",text: "我选好了", next: nil, exclusive: true)
             ],
             introTexts: nil,
             showSlider: nil,
-            endingStyle: nil
+            endingStyle: nil,
+            routine: "envy"
         ),
         onSelect: { _ in },
         onConfirm: { selected in print("确认：", selected.map { $0.text }) }

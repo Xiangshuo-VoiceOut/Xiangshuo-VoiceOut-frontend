@@ -13,16 +13,70 @@ final class MoodTreatmentVM: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
 
-    func loadQuestion(id: Int) {
+    private let userId = "testuser"
+    private let sessionId = "testsession"
+    func loadQuestion(routine: String, id: Int) {
         isLoading = true
         errorMessage = nil
 
         Task {
             do {
-                let q = try await MoodTreatmentService.shared.fetchQuestion(id: id)
+                let q = try await MoodTreatmentService.shared.fetchQuestion(routine: routine, id: id)
                 question = q
             } catch {
-                errorMessage = "Failed to update：\(error.localizedDescription)"
+                errorMessage = "Failed to load the question：\(error.localizedDescription)"
+            }
+            isLoading = false
+        }
+    }
+
+    func submitAnswer(option: MoodTreatmentAnswerOption) {
+        guard let currentQuestion = question else {
+            errorMessage = "The current question is empty"
+            return
+        }
+
+        isLoading = true
+        errorMessage = nil
+
+        Task {
+            do {
+                let nextQuestion = try await MoodTreatmentService.shared.submitAnswer(
+                    userId: userId,
+                    sessionId: sessionId,
+                    questionId: currentQuestion.id,
+                    selectedOptionKey: option.key
+                )
+                question = nextQuestion
+            } catch {
+                errorMessage = "Failed to submit answer：\(error.localizedDescription)"
+            }
+            isLoading = false
+        }
+    }
+    
+    func submitAnswerWithFallback(option: MoodTreatmentAnswerOption, fallback: ((Int) -> Void)?) {
+        guard let currentQuestion = question else {
+            self.errorMessage = "The current question is empty"
+            if let nxt = option.next { fallback?(nxt) }
+            return
+        }
+
+        isLoading = true
+        errorMessage = nil
+
+        Task {
+            do {
+                let nextQuestion = try await MoodTreatmentService.shared.submitAnswer(
+                    userId: userId,
+                    sessionId: sessionId,
+                    questionId: currentQuestion.id,
+                    selectedOptionKey: option.key
+                )
+                self.question = nextQuestion
+            } catch {
+                self.errorMessage = "Failed to submit answer：\(error.localizedDescription)"
+                if let nxt = option.next { fallback?(nxt) }
             }
             isLoading = false
         }

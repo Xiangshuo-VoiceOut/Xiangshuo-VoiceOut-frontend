@@ -2,34 +2,39 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-
     <key>NSAppTransportSecurity</key>
     <dict>
         <key>NSExceptionDomains</key>
         <dict>
-            <key>34.220.10.242</key>
+            <key>localhost</key>
             <dict>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-
-                <key>NSExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-
-                <key>NSTemporaryExceptionMinimumTLSVersion</key>
-                <string>TLSv1.0</string>
+                <key>NSIncludesSubdomains</key><true/>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key><true/>
+                <key>NSTemporaryExceptionAllowsInsecureHTTPSLoads</key><true/>
+                <key>NSTemporaryExceptionMinimumTLSVersion</key><string>TLSv1.0</string>
+            </dict>
+            <key>127.0.0.1</key>
+            <dict>
+                <key>NSIncludesSubdomains</key><true/>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key><true/>
+                <key>NSTemporaryExceptionAllowsInsecureHTTPSLoads</key><true/>
+                <key>NSTemporaryExceptionMinimumTLSVersion</key><string>TLSv1.0</string>
+            </dict>
+            <key>3.143.142.42</key>
+            <dict>
+                <key>NSIncludesSubdomains</key><true/>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key><true/>
+                <key>NSTemporaryExceptionAllowsInsecureHTTPSLoads</key><true/>
+                <key>NSTemporaryExceptionMinimumTLSVersion</key><string>TLSv1.0</string>
             </dict>
         </dict>
-
-        <key>NSAllowsArbitraryLoadsForMedia</key>
-        <true/>
     </dict>
-	
-	<key>NSSupportsSuddenTermination</key>
-	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>AlibabaPuHuiTi-Medium.ttf</string>
-		<string>AlibabaPuHuiTi-Bold.ttf</string>
-	</array>
+
+    <key>UIAppFonts</key>
+    <array>
+        <string>AlibabaPuHuiTi-Medium.ttf</string>
+        <string>AlibabaPuHuiTi-Bold.ttf</string>
+    </array>
+
 </dict>
 </plist>

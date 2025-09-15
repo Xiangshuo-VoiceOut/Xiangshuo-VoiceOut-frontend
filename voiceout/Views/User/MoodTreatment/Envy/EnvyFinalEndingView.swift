@@ -55,7 +55,7 @@ struct EnvyFinalEndingView: View {
                             Image(isPlayingMusic ? "music" : "stop-music")
                                 .frame(width: 48, height: 48)
                         }
-                        .padding(.leading, 16)
+                        .padding(.leading, ViewSpacing.medium)
                         
                         Spacer()
                     }
@@ -71,19 +71,19 @@ struct EnvyFinalEndingView: View {
                                 .font(Font.typography(.bodyMedium))
                                 .foregroundColor(.grey500)
                                 .multilineTextAlignment(.leading)
-                                .padding(.horizontal,12)
-                                .padding(.vertical, 10)
-                                .padding(.bottom, 16)
+                                .padding(.horizontal,ViewSpacing.base)
+                                .padding(.vertical, ViewSpacing.betweenSmallAndBase)
+                                .padding(.bottom, ViewSpacing.medium)
                         }
-                        .padding(.leading, 40)
+                        .padding(.leading, ViewSpacing.medium+ViewSpacing.large)
                         
                         Image("cloud-chat")
                             .resizable()
                             .frame(width: 100, height: 71)
-                            .offset(y: 120)
+                            .offset(y: ViewSpacing.xlarge+ViewSpacing.xxxlarge)
                     }
-                    .offset(x: 20)
-                    .padding(.top, 24)
+                    .offset(x: ViewSpacing.xsmall+ViewSpacing.medium)
+                    .padding(.top, ViewSpacing.large)
                     .frame(maxWidth: .infinity)
                     
                     Spacer()

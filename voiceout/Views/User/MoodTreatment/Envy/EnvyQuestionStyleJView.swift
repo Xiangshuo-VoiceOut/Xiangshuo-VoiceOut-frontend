@@ -29,7 +29,7 @@ struct EnvyQuestionStyleJView: View {
                             Image("cloud-chat")
                                 .resizable()
                                 .frame(width:168, height:120)
-                                .padding(.bottom, 24)
+                                .padding(.bottom, ViewSpacing.large)
                             Spacer()
                         }
                         HStack {
@@ -43,7 +43,7 @@ struct EnvyQuestionStyleJView: View {
                             Spacer()
                         }
                     }
-                    .padding(.leading, 16)
+                    .padding(.leading, ViewSpacing.medium)
                     
                     ForEach(Array(question.texts?.enumerated() ?? [].enumerated()),
                             id: \.offset) { idx, line in
@@ -59,7 +59,7 @@ struct EnvyQuestionStyleJView: View {
                         .frame( alignment: .topLeading)
                         .multilineTextAlignment(.leading)
                         .foregroundColor(.grey500)
-                        .padding(.horizontal, 64)
+                        .padding(.horizontal, 2*ViewSpacing.xlarge)
                     }
                     
                     Spacer()
@@ -68,16 +68,16 @@ struct EnvyQuestionStyleJView: View {
                         Button(action: {
                             onSelect(option)
                         }){
-                            HStack(spacing: 4) {
+                            HStack(spacing: ViewSpacing.xsmall) {
                                 Image("ai-star")
                                     .frame(width: 24, height: 24)
                                 Text(option.text)
                             }
                             .foregroundColor(Color(red: 0, green: 0.6, blue: 0.8))
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
+                            .padding(.horizontal, ViewSpacing.medium)
+                            .padding(.vertical, ViewSpacing.small)
                             .background(Color.surfacePrimary)
-                            .cornerRadius(360)
+                            .cornerRadius(CornerRadius.full.value)
                         }
                         .transition(.opacity)
                     }
@@ -94,20 +94,20 @@ struct EnvyQuestionStyleJView_Previews: PreviewProvider {
         EnvyQuestionStyleJView(
             question: MoodTreatmentQuestion(
                 id: 4,
+                totalQuestions: 100,
                 type: .singleChoice,
                 uiStyle: .styleJ,
                 texts: ["你可以简单说说，你怎么看待ta？你最关注ta的哪些方面？"],
                 animation: nil,
                 options: [
-                    .init(text: "试试和小云聊聊天", next: 5, exclusive: true)
+                    .init(key: "A",text: "试试和小云聊聊天", next: 5, exclusive: true)
                 ],
                 introTexts: nil,
                 showSlider: nil,
-                endingStyle: nil
+                endingStyle: nil,
+                routine: "envy"
             )
-        ) { selected in
-            print("按钮回调：", selected)
-        }
+        ) { selected in }
     }
 }
 

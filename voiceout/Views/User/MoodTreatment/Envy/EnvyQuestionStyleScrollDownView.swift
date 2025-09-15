@@ -43,7 +43,7 @@ struct EnvyQuestionStyleScrollDownView: View {
                             Image("cloud-chat")
                                 .resizable()
                                 .frame(width: 168, height: 120)
-                                .padding(.bottom, 24)
+                                .padding(.bottom, ViewSpacing.large)
                             Spacer()
                         }
                         Button {
@@ -53,10 +53,10 @@ struct EnvyQuestionStyleScrollDownView: View {
                                 .resizable()
                                 .frame(width: 48, height: 48)
                         }
-                        .padding(.leading, 16)
+                        .padding(.leading, ViewSpacing.medium)
                     }
                     
-                    VStack(spacing: 8) {
+                    VStack(spacing: ViewSpacing.small) {
                         ForEach(question.texts ?? [], id: \.self) { line in
                             if !introDone {
                                 TypewriterText(fullText: line, characterDelay: 0.1) {
@@ -73,11 +73,11 @@ struct EnvyQuestionStyleScrollDownView: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(.grey500)
                     .frame(maxWidth: .infinity)
-                    .padding(.horizontal, 64)
-                    .padding(.top, 24)
+                    .padding(.horizontal, 2*ViewSpacing.xlarge)
+                    .padding(.top, ViewSpacing.large)
                     
                     if introDone {
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: ViewSpacing.small) {
                             Text("我最近有些敏感是因为：")
                                 .font(.typography(.bodyMedium))
                                 .foregroundColor(.textPrimary)
@@ -96,7 +96,7 @@ struct EnvyQuestionStyleScrollDownView: View {
                             .accentColor(.grey500)
                             
                             if selectedTrigger?.option == "其他" {
-                                HStack(spacing: 8) {
+                                HStack(spacing: ViewSpacing.small) {
                                     Image("edit")
                                         .resizable()
                                         .frame(width: 24, height: 24)
@@ -113,9 +113,9 @@ struct EnvyQuestionStyleScrollDownView: View {
                                     .font(.typography(.bodySmall))
                                     .foregroundColor(.textPrimary)
                                 }
-                                .padding(16)
+                                .padding(ViewSpacing.medium)
                                 .background(Color.surfacePrimary)
-                                .cornerRadius(16)
+                                .cornerRadius(CornerRadius.medium.value)
                             }
                             
                             if let confirm = confirmOption,
@@ -125,6 +125,7 @@ struct EnvyQuestionStyleScrollDownView: View {
                                 Button {
                                     onSelect(
                                         MoodTreatmentAnswerOption(
+                                            key: "",
                                             text: selectedTrigger!.option,
                                             next: nil,
                                             exclusive: false
@@ -135,18 +136,18 @@ struct EnvyQuestionStyleScrollDownView: View {
                                     Text(confirm.text)
                                         .font(.typography(.bodyMedium))
                                         .foregroundColor(.textBrandPrimary)
-                                        .padding(.horizontal, 16)
-                                        .padding(.vertical, 8)
+                                        .padding(.horizontal, ViewSpacing.medium)
+                                        .padding(.vertical, ViewSpacing.small)
                                         .frame(width: 114, height: 44)
                                         .background(Color.surfacePrimary)
-                                        .cornerRadius(360)
+                                        .cornerRadius(CornerRadius.full.value)
                                 }
                                 .frame(maxWidth: .infinity)
-                                .padding(.top, 24)
+                                .padding(.top, ViewSpacing.large)
                             }
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.top, 100)
+                        .padding(.horizontal, ViewSpacing.medium)
+                        .padding(.top, ViewSpacing.base+ViewSpacing.xxxlarge)
                     }
                     
                     Spacer()
@@ -160,16 +161,18 @@ struct EnvyQuestionStyleScrollDownView: View {
     EnvyQuestionStyleScrollDownView(
         question: MoodTreatmentQuestion(
             id: 4,
-            type: .custom,
+            totalQuestions: 100,
+            type: .singleChoice,
             uiStyle: .styleScrollDown,
             texts: ["你觉得自己最近的脆弱和敏感是由哪些事情引发的？"],
             animation: nil,
             options: [
-                .init(text: "我选好了", next: 5, exclusive: true)
+                .init(key: "A",text: "我选好了", next: 5, exclusive: true)
             ],
             introTexts: nil,
             showSlider: nil,
-            endingStyle: nil
+            endingStyle: nil,
+            routine: "envy"
         ),
         onSelect: { _ in }
     )

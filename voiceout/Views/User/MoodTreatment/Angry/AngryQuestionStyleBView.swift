@@ -30,7 +30,7 @@ struct AngryQuestionStyleBView: View {
                             Spacer()
                             Image("cloud-chat")
                                 .frame(width:168,height: 120)
-                                .padding(.bottom, 24)
+                                .padding(.bottom, ViewSpacing.large)
                             Spacer()
                         }
                         
@@ -45,18 +45,9 @@ struct AngryQuestionStyleBView: View {
                             Spacer()
                         }
                     }
-                    .padding(.leading, 16)
+                    .padding(.leading, ViewSpacing.medium)
                     
                     ForEach(Array(question.texts?.enumerated() ?? [].enumerated()), id: \.offset) { idx, line in
-//                        TypewriterText(
-//                            fullText: line,
-//                            characterDelay: questionTypingInterval
-//                        ) {
-//                            if idx == (question.texts?.count ?? 0) - 1 {
-//                                showIntro = true
-//                            }
-//                        }
-                        
                         TypewriterText(
                           fullText: line,
                           characterDelay: questionTypingInterval
@@ -73,8 +64,8 @@ struct AngryQuestionStyleBView: View {
                         .multilineTextAlignment(.center)
                         .foregroundColor(.grey500)
                         .frame(maxWidth: .infinity)
-                        .padding(.horizontal, 64)
-                        .padding(.bottom, 16)
+                        .padding(.horizontal, 2*ViewSpacing.xlarge)
+                        .padding(.bottom, ViewSpacing.medium)
                     }
                     
                     if showIntro, let highlights = question.introTexts {
@@ -91,8 +82,8 @@ struct AngryQuestionStyleBView: View {
                             .multilineTextAlignment(.center)
                             .foregroundColor(.textBrandPrimary)
                             .frame(maxWidth: .infinity)
-                            .padding(.horizontal, 64)
-                            .padding(.bottom, 24)
+                            .padding(.horizontal, 2*ViewSpacing.xlarge)
+                            .padding(.bottom, ViewSpacing.large)
                         }
                     }
                     
@@ -110,7 +101,7 @@ struct AngryQuestionStyleBView: View {
                                 .foregroundColor(Color(red: 0, green: 0.6, blue: 0.8))
                                 .frame(width: 114, height: 44)
                                 .background(Color.surfacePrimary)
-                                .cornerRadius(360)
+                                .cornerRadius(CornerRadius.full.value)
                         }
                         .transition(.opacity)
                     }
@@ -128,6 +119,7 @@ struct AngryQuestionStyleBView_Previews: PreviewProvider {
         AngryQuestionStyleBView(
             question: MoodTreatmentQuestion(
                 id: 4,
+                totalQuestions: 45,
                 type: .singleChoice,
                 uiStyle: .styleB,
                 texts: [
@@ -135,13 +127,14 @@ struct AngryQuestionStyleBView_Previews: PreviewProvider {
                 ],
                 animation: nil,
                 options: [
-                    .init(text: "我准备好了", next: 5, exclusive: true)
+                    .init(key: "A",text: "我准备好了", next: 5, exclusive: true)
                 ],
                 introTexts: [
                     "如果你愿意的话，可以先进入一个安全的环境里"
                 ],
                 showSlider: nil,
-                endingStyle: nil
+                endingStyle: nil,
+                routine: "anger"
             ),
             onSelect: { _ in }
         )

@@ -36,7 +36,7 @@ struct AngryQuestionStyleEView: View {
                         .resizable()
                         .frame(width: 48, height: 48)
                 }
-                .padding(.leading, 16)
+                .padding(.leading, ViewSpacing.medium)
 
                 VStack {
                     Spacer()
@@ -53,7 +53,7 @@ struct AngryQuestionStyleEView: View {
                             .scaledToFit()
                             .frame(width: 100, height: 71)
                             .scaleEffect(x: -1, y: 1)
-                            .offset(x: -16)
+                            .offset(x: -ViewSpacing.medium)
                             .frame(width: 68)
 
                         BubbleScrollView(
@@ -61,7 +61,6 @@ struct AngryQuestionStyleEView: View {
                             displayedCount: $displayedCount,
                             bubbleHeight: $bubbleHeight,
                             bubbleSpacing: 24,
-                            //maxVisible: Int.max,
                             totalHeight: bubbleFrameHeight
                         )
                         .frame(height: bubbleFrameHeight)
@@ -70,9 +69,9 @@ struct AngryQuestionStyleEView: View {
                     }
 
                     if showOptions {
-                        HStack(spacing: 8) {
+                        HStack(spacing: ViewSpacing.small) {
                             Spacer()
-                            VStack(alignment: .trailing, spacing: 8) {
+                            VStack(alignment: .trailing, spacing:ViewSpacing.small) {
                                 ForEach(question.options.filter { $0.exclusive != true }) { option in
                                     let isSelected = selectedOptions.contains(option.id)
                                     Button {
@@ -87,8 +86,8 @@ struct AngryQuestionStyleEView: View {
                                             .font(Font.typography(.bodyMedium))
                                             .foregroundColor(.grey500)
                                             .multilineTextAlignment(.trailing)
-                                            .padding(.horizontal, 16)
-                                            .padding(.vertical, 12)
+                                            .padding(.horizontal, ViewSpacing.medium)
+                                            .padding(.vertical, ViewSpacing.base)
                                             .background(
                                                 isSelected
                                                     ? Color(red: 0.42, green: 0.81, blue: 0.95)
@@ -113,18 +112,18 @@ struct AngryQuestionStyleEView: View {
                                         Text(confirmOption.text)
                                             .font(Font.typography(.bodyMedium))
                                             .foregroundColor(Color(red: 0, green: 0.6, blue: 0.8))
-                                            .padding(.horizontal, 16)
-                                            .padding(.vertical, 8)
+                                            .padding(.horizontal, ViewSpacing.medium)
+                                            .padding(.vertical, ViewSpacing.small)
                                             .frame(height: 44)
                                             .background(Color.surfacePrimary)
-                                            .cornerRadius(360)
+                                            .cornerRadius(CornerRadius.full.value)
                                     }
                                     .disabled(selectedOptions.isEmpty)
                                 }
                             }
                         }
-                        .padding(.top, 40)
-                        .padding(.trailing, 16)
+                        .padding(.top, ViewSpacing.medium+ViewSpacing.large)
+                        .padding(.trailing, ViewSpacing.medium)
                         .transition(.opacity)
                     }
                     Spacer()
@@ -160,20 +159,22 @@ struct AngryQuestionStyleEView: View {
     AngryQuestionStyleEView(
         question: MoodTreatmentQuestion(
             id: 3,
+            totalQuestions: 45,
             type: .multiChoice,
             uiStyle: .styleE,
             texts: ["小云朵明白了~","如果你现在感到愤怒，可以告诉我身体是否出现了下列这些变化吗？（多选）"],
             animation: nil,
             options: [
-                .init(text: "肌肉处于紧绷状态", next: nil, exclusive: false),
-                .init(text: "脸颊变红、体温升高、内部像要爆炸", next: nil, exclusive: false),
-                .init(text: "无法控制的流泪", next: nil, exclusive: false),
-                .init(text: "牙齿咬紧，或攥紧拳头", next: nil, exclusive: false),
-                .init(text: "想要扔东西、砸墙，或者伤害某些人事物", next: nil, exclusive: false)
+                .init(key: "A",text: "肌肉处于紧绷状态", next: nil, exclusive: false),
+                .init(key: "B",text: "脸颊变红、体温升高、内部像要爆炸", next: nil, exclusive: false),
+                .init(key: "C",text: "无法控制的流泪", next: nil, exclusive: false),
+                .init(key: "D",text: "牙齿咬紧，或攥紧拳头", next: nil, exclusive: false),
+                .init(key: "E",text: "想要扔东西、砸墙，或者伤害某些人事物", next: nil, exclusive: false)
             ],
             introTexts: nil,
             showSlider: nil,
-            endingStyle: nil
+            endingStyle: nil,
+            routine: "anger"
         ),
         onSelect: { option in
             print("预览选中了：\(option.text)")

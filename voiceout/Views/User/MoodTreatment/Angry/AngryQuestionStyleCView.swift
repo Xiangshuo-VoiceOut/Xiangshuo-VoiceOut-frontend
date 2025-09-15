@@ -27,7 +27,7 @@ struct AngryQuestionStyleCView: View {
                             Spacer()
                             Image("cloud-chat")
                                 .frame(width:168,height: 120)
-                                .padding(.bottom, 24)
+                                .padding(.bottom, ViewSpacing.large)
                             Spacer()
                         }
                         
@@ -42,7 +42,7 @@ struct AngryQuestionStyleCView: View {
                             Spacer()
                         }
                     }
-                    .padding(.leading, 16)
+                    .padding(.leading, ViewSpacing.medium)
                     
                     VStack(spacing:0){
                         if let lines = question.texts {
@@ -54,7 +54,7 @@ struct AngryQuestionStyleCView: View {
                                 .font(Font.typography(.bodyMedium))
                                 .foregroundColor(.grey500)
                                 .multilineTextAlignment(.leading)
-                                .padding(.horizontal, 64)
+                                .padding(.horizontal, 2*ViewSpacing.xlarge)
                             }
                         }
                         
@@ -86,6 +86,7 @@ struct AngryQuestionStyleCView: View {
     AngryQuestionStyleCView(
         question: MoodTreatmentQuestion(
             id: 999,
+            totalQuestions: 45,
             type: .animationOnly,
             uiStyle: .styleC,
             texts: [
@@ -95,7 +96,8 @@ struct AngryQuestionStyleCView: View {
             options: [],
             introTexts: nil,
             showSlider: nil,
-            endingStyle: nil
+            endingStyle: nil,
+            routine: "anger"
         )
     )
 }

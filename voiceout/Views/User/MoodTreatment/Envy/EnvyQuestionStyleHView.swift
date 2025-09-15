@@ -35,7 +35,7 @@ struct EnvyQuestionStyleHView: View {
                         .resizable()
                         .frame(width: 48, height: 48)
                 }
-                .padding(.leading, 16)
+                .padding(.leading, ViewSpacing.medium)
                 
                 VStack {
                     Spacer()
@@ -43,8 +43,8 @@ struct EnvyQuestionStyleHView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: .infinity)
-                        .padding(.horizontal,48)
-                        .padding(.bottom,16)
+                        .padding(.horizontal,ViewSpacing.medium+ViewSpacing.xlarge)
+                        .padding(.bottom,ViewSpacing.medium)
                 }
                 
                 VStack(spacing: 0) {
@@ -54,7 +54,7 @@ struct EnvyQuestionStyleHView: View {
                             .scaledToFit()
                             .frame(width: 100, height: 71)
                             .scaleEffect(x: -1, y: 1)
-                            .offset(x: -16)
+                            .offset(x: -ViewSpacing.medium)
                             .frame(width: 68)
                         
                         BubbleScrollView(
@@ -70,22 +70,22 @@ struct EnvyQuestionStyleHView: View {
                     }
                     
                     if showOptions {
-                        VStack(spacing: 8) {
+                        VStack(spacing: ViewSpacing.small) {
                             ForEach(question.options) { option in
                                 HStack {
                                     Spacer(minLength: 80)
                                     if option.exclusive == true {
                                         Button { onSelect(option) } label: {
-                                            HStack(spacing: 4) {
+                                            HStack(spacing: ViewSpacing.xsmall) {
                                                 Image("ai-star")
                                                     .frame(width: 24, height: 24)
                                                 Text(option.text)
                                             }
                                             .foregroundColor(Color(red: 0, green: 0.6, blue: 0.8))
-                                            .padding(.horizontal, 16)
-                                            .padding(.vertical, 8)
+                                            .padding(.horizontal, ViewSpacing.medium)
+                                            .padding(.vertical, ViewSpacing.small)
                                             .background(Color.surfacePrimary)
-                                            .cornerRadius(360)
+                                            .cornerRadius(CornerRadius.full.value)
                                         }
                                     } else {
                                         Button {
@@ -95,8 +95,8 @@ struct EnvyQuestionStyleHView: View {
                                                 .font(Font.typography(.bodyMedium))
                                                 .foregroundColor(.grey500)
                                                 .multilineTextAlignment(.leading)
-                                                .padding(.horizontal, 16)
-                                                .padding(.vertical, 12)
+                                                .padding(.horizontal, ViewSpacing.medium)
+                                                .padding(.vertical, ViewSpacing.base)
                                                 .background(Color.surfacePrimary)
                                                 .overlay(
                                                     Rectangle()
@@ -110,8 +110,8 @@ struct EnvyQuestionStyleHView: View {
                                 }
                             }
                         }
-                        .padding(.top, 40)
-                        .padding(.trailing, 16)
+                        .padding(.top, ViewSpacing.medium+ViewSpacing.large)
+                        .padding(.trailing, ViewSpacing.medium)
                         .transition(.opacity)
                     }
                     Spacer()
@@ -146,6 +146,7 @@ struct EnvyQuestionStyleHView: View {
     EnvyQuestionStyleHView(
         question: MoodTreatmentQuestion(
             id: 1,
+            totalQuestions: 100,
             type: .singleChoice,
             uiStyle: .styleA,
             texts: [
@@ -153,13 +154,14 @@ struct EnvyQuestionStyleHView: View {
             ],
             animation: nil,
             options: [
-                .init(text: "我心里已经产生了敌意，偏见，厌恶，甚至怨恨。已经开始在语言或行为上伤害对方", next: 2, exclusive: false),
-                .init(text: "产生内耗情绪，常想着与对方竞争比较，以此渴望证明自己", next: 3, exclusive: false),
-                .init(text: "轻微嫉妒。偶尔发生，并不放在心里。没有对别人产生偏见或采取行动影响对方", next: 10, exclusive: false)
+                .init(key: "A",text: "我心里已经产生了敌意，偏见，厌恶，甚至怨恨。已经开始在语言或行为上伤害对方", next: 2, exclusive: false),
+                .init(key: "B",text: "产生内耗情绪，常想着与对方竞争比较，以此渴望证明自己", next: 3, exclusive: false),
+                .init(key: "C",text: "轻微嫉妒。偶尔发生，并不放在心里。没有对别人产生偏见或采取行动影响对方", next: 10, exclusive: false)
             ],
             introTexts: nil,
             showSlider: nil,
-            endingStyle: nil
+            endingStyle: nil,
+            routine: "envy"
         ),
         onSelect: { _ in }
     )

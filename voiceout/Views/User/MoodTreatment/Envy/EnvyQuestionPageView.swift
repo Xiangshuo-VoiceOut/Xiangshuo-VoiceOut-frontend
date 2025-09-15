@@ -28,6 +28,9 @@ struct EnvyQuestionPageView: View {
     private var currentQuestion: MoodTreatmentQuestion? {
         previewQuestion ?? vm.question
     }
+    private var routine: String {
+        previewQuestion?.routine ?? "envy"
+    }
 
     private var headerColor: Color {
         guard let q = currentQuestion else { return Color.surfaceBrandTertiaryGreen }
@@ -68,8 +71,8 @@ struct EnvyQuestionPageView: View {
                                 .fill(Color.surfaceBrandPrimary)
                                 .frame(width: progressViewModel.progressWidth, height: 12)
                         }
-                        .padding(.vertical, 4)
-                        .padding(.horizontal, 64)
+                        .padding(.vertical, ViewSpacing.xsmall)
+                        .padding(.horizontal, 2*ViewSpacing.xlarge)
                         .background(headerColor)
                     }
 
@@ -150,7 +153,7 @@ struct EnvyQuestionPageView: View {
         }
         .onAppear {
             if previewQuestion == nil {
-                vm.loadQuestion(id: questionId)
+                vm.loadQuestion(routine: routine, id: questionId)
             }
         }
     }
@@ -162,27 +165,29 @@ struct EnvyQuestionPageView: View {
 }
 
 ///sigle choice
-//#Preview {
-//    let sampleQuestion = MoodTreatmentQuestion(
-//        id: 1,
-//        type: .singleChoice,
-//        uiStyle: .styleH,
-//        texts: ["可以跟小云朵说说你的嫉妒程度吗？"],
-//        animation: nil,
-//        options: [
-//            .init(text: " 我心里已经产生了敌意，偏见，厌恶，甚至怨恨。已经开始在语言或行为上伤害对方", next: 2, exclusive: false),
-//            .init(text: "产生内耗情绪，常想着与对方竞争比较，以此渴望证明自己", next: 3, exclusive: false),
-//            .init(text: "轻微嫉妒。偶尔发生，并不放在心里。没有对别人产生偏见或采取行动影响对方", next: 10, exclusive: false)
-//        ],
-//        introTexts: nil,
-//        showSlider: nil,
-//        endingStyle: nil,
-//        customViewName: nil
-//    )
-//
-//    EnvyQuestionPageView(question: sampleQuestion)
-//        .environmentObject(RouterModel())
-//}
+#Preview {
+    let sampleQuestion = MoodTreatmentQuestion(
+        id: 1,
+        totalQuestions: 100,
+        type: .singleChoice,
+        uiStyle: .styleH,
+        texts: ["可以跟小云朵说说你的嫉妒程度吗？"],
+        animation: nil,
+        options: [
+            .init(key: "A",text: " 我心里已经产生了敌意，偏见，厌恶，甚至怨恨。已经开始在语言或行为上伤害对方", next: 2, exclusive: false),
+            .init(key: "B",text: "产生内耗情绪，常想着与对方竞争比较，以此渴望证明自己", next: 3, exclusive: false),
+            .init(key: "C",text: "轻微嫉妒。偶尔发生，并不放在心里。没有对别人产生偏见或采取行动影响对方", next: 10, exclusive: false)
+        ],
+        introTexts: nil,
+        showSlider: nil,
+        endingStyle: nil,
+        customViewName: nil,
+        routine: "envy"
+    )
+
+    EnvyQuestionPageView(question: sampleQuestion)
+        .environmentObject(RouterModel())
+}
 
 //#Preview {
 //    let sampleQuestion = MoodTreatmentQuestion(

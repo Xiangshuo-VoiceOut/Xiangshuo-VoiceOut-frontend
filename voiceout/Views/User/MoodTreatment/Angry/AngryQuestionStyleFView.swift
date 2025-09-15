@@ -42,7 +42,7 @@ struct AngryQuestionStyleFView: View {
                         .resizable()
                         .frame(width: 48, height: 48)
                 }
-                .padding(.leading, 16)
+                .padding(.leading, ViewSpacing.medium)
                 
                 VStack {
                     Spacer()
@@ -59,7 +59,7 @@ struct AngryQuestionStyleFView: View {
                             .scaledToFit()
                             .frame(width: 100, height: 71)
                             .scaleEffect(x: -1, y: 1)
-                            .offset(x: -16)
+                            .offset(x: -ViewSpacing.medium)
                             .frame(width: 68)
                         
                         BubbleScrollView(
@@ -67,7 +67,6 @@ struct AngryQuestionStyleFView: View {
                             displayedCount: $displayedCount,
                             bubbleHeight: $bubbleHeight,
                             bubbleSpacing: 24,
-                            //maxVisible: Int.max,
                             totalHeight: bubbleFrameHeight
                         )
                         .frame(height: bubbleFrameHeight)
@@ -78,7 +77,7 @@ struct AngryQuestionStyleFView: View {
                     if showOptions {
                         HStack {
                             Spacer()
-                            VStack(alignment: .trailing, spacing: 8) {
+                            VStack(alignment: .trailing, spacing: ViewSpacing.small) {
                                 ForEach(questionTemplates.indices, id: \.self) { idx in
                                     let isSel = selectedIndex == idx
                                     let display = isSel ? selectedText : questionTemplates[idx]
@@ -89,8 +88,8 @@ struct AngryQuestionStyleFView: View {
                                             .font(Font.typography(.bodyMedium))
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                             .foregroundColor(.grey500)
-                                            .padding(.horizontal, 16)
-                                            .padding(.vertical, 12)
+                                            .padding(.horizontal, ViewSpacing.medium)
+                                            .padding(.vertical, ViewSpacing.base)
                                             .background(isSel
                                                         ? Color(red: 0.42, green: 0.81, blue: 0.95)
                                                         : Color.surfacePrimary)
@@ -106,8 +105,8 @@ struct AngryQuestionStyleFView: View {
                             }
                             .frame(width: 264, alignment: .topTrailing)
                         }
-                        .padding(.top, 40)
-                        .padding(.trailing, 16)
+                        .padding(.top, ViewSpacing.medium+ViewSpacing.large)
+                        .padding(.trailing, ViewSpacing.medium)
                         .transition(.opacity)
                     }
                     
@@ -215,13 +214,13 @@ struct FillInBlankEditorView: View {
                         fontSize: .small,
                         borderRadius: .full
                     )
-                    .padding(.trailing, 16)
+                    .padding(.trailing, ViewSpacing.medium)
                 ),
                 backgroundColor: Color.clear
             )
             .frame(height: 44)
 
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: ViewSpacing.small) {
                 let parts = prompt.components(separatedBy: "___")
                 if parts.count == 2 {
                     HStack(spacing: 0) {
@@ -241,7 +240,7 @@ struct FillInBlankEditorView: View {
                                     .foregroundColor(.textLight),
                                 alignment: .bottomLeading
                             )
-                            .padding(.horizontal, 4)
+                            .padding(.horizontal, ViewSpacing.xsmall)
                     }
                     Text(parts[1])
                         .font(.typography(.bodyMedium))
@@ -252,8 +251,8 @@ struct FillInBlankEditorView: View {
                         .foregroundColor(.textPrimary)
                 }
             }
-            .padding(.horizontal, 24)
-            .padding(.top, 40)
+            .padding(.horizontal, ViewSpacing.large)
+            .padding(.top, ViewSpacing.medium+ViewSpacing.large)
 
             Spacer()
         }
@@ -276,16 +275,18 @@ struct FillInBlankEditorView: View {
         },
         question: MoodTreatmentQuestion(
             id: 999,
+            totalQuestions: 45,
             type: .fillInBlank,
             uiStyle: .styleF,
             texts: ["首先，请记住每一次你回想起令你感到愤怒的情景，情绪涌上来，都是又回到了那一刻，这是在重复伤害自己~","我希望能帮你能用其他方法疏解生气的感觉。","请和我一起回到当下，此时此刻："],
             animation: nil,
             options: [
-                .init(text: "下一步", next: 998, exclusive: false)
+                .init(key: "A",text: "下一步", next: 998, exclusive: false)
             ],
             introTexts: ["我希望能帮你用其他方法疏解生气的感觉。","我希望能帮你用其他方法疏解生气的感觉。"],
             showSlider: nil,
-            endingStyle: nil
+            endingStyle: nil,
+            routine: "anger"
         ),
         onSelect: { selected in
             print("用户点击了选项：\(selected.text)")

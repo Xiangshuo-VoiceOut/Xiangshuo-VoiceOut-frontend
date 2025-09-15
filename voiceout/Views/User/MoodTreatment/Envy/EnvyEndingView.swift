@@ -42,13 +42,13 @@ struct EnvyEndingView: View {
                             Image(isPlayingMusic ? "music" : "stop-music")
                                 .frame(width: 48, height: 48)
                         }
-                        .padding(.leading, 16)
+                        .padding(.leading, ViewSpacing.medium)
                         Spacer()
                     }
                     .padding(.top, geo.safeAreaInsets.top)
 
                     HStack(alignment: .top, spacing: 0) {
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: ViewSpacing.small) {
                             ForEach(question.texts ?? [], id: \.self) { line in
                                 Text(line)
                                     .font(.typography(.bodyMedium))
@@ -56,9 +56,9 @@ struct EnvyEndingView: View {
                                     .multilineTextAlignment(.leading)
                             }
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 12)
-                        .padding(.bottom, 10)
+                        .padding(.horizontal, ViewSpacing.medium)
+                        .padding(.vertical, ViewSpacing.base)
+                        .padding(.bottom, ViewSpacing.betweenSmallAndBase)
                         .background(
                             Image("bubble-union1")
                                 .resizable(capInsets: bubbleInsets, resizingMode: .stretch)
@@ -68,10 +68,10 @@ struct EnvyEndingView: View {
                         Image("cloud-chat")
                             .resizable()
                             .frame(width: 100, height: 71)
-                            .offset(y:80)
+                            .offset(y:2*ViewSpacing.large+ViewSpacing.xlarge)
                     }
-                    .padding(.trailing, -100)
-                    .padding(.top, 24)
+                    .padding(.trailing, -ViewSpacing.base-ViewSpacing.xxxlarge)
+                    .padding(.top, ViewSpacing.large)
                 }
             }
             .ignoresSafeArea(edges: .all)
@@ -84,6 +84,7 @@ struct EnvyEndingView: View {
     EnvyEndingView(
         question: MoodTreatmentQuestion(
             id: 999,
+            totalQuestions: 45,
             type: .custom,
             uiStyle: .styleEnvyEnding,
             texts: [
@@ -94,7 +95,8 @@ struct EnvyEndingView: View {
             introTexts: nil,
             showSlider: nil,
             endingStyle: nil,
-            customViewName: nil
+            customViewName: nil,
+            routine: "envy"
         )
     )
     .environmentObject(RouterModel())

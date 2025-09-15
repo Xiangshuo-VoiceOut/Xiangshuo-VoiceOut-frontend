@@ -63,7 +63,7 @@ struct AngryQuestionStyleDView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 168)
-                            .padding(.bottom, 24)
+                            .padding(.bottom, ViewSpacing.large)
                         Spacer()
                     }
                     
@@ -72,7 +72,7 @@ struct AngryQuestionStyleDView: View {
                             .resizable()
                             .frame(width: 48, height: 48)
                     }
-                    .padding(.leading, 16)
+                    .padding(.leading, ViewSpacing.medium)
                 }
                 
                 ForEach(Array(displayTexts.enumerated()), id: \.offset) { idx, line in
@@ -84,8 +84,8 @@ struct AngryQuestionStyleDView: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(.grey500)
                     .frame(maxWidth: .infinity)
-                    .padding(.horizontal, 64)
-                    .padding(.bottom, 16)
+                    .padding(.horizontal, 2*ViewSpacing.xlarge)
+                    .padding(.bottom, ViewSpacing.medium)
                 }
                 
                 if completedLines >= displayTexts.count {
@@ -98,8 +98,8 @@ struct AngryQuestionStyleDView: View {
                         .multilineTextAlignment(.center)
                         .foregroundColor(.textBrandPrimary)
                         .frame(maxWidth: .infinity)
-                        .padding(.horizontal, 64)
-                        .padding(.bottom, 24)
+                        .padding(.horizontal, 2*ViewSpacing.xlarge)
+                        .padding(.bottom, ViewSpacing.medium)
                     }
                 }
                 
@@ -131,10 +131,9 @@ struct AngryQuestionStyleDView: View {
                                 .foregroundColor(.textLight)
                         }
                     }
-                    .padding(.horizontal, 24)
+                    .padding(.horizontal, ViewSpacing.large)
                     
-                    VStack(spacing: 24) {
-                        
+                    VStack(spacing: ViewSpacing.large) {
                         if let finish = finishOption {
                             Button {
                                 onButtonTap()
@@ -143,12 +142,12 @@ struct AngryQuestionStyleDView: View {
                                     .font(.typography(.bodyMedium))
                                     .kerning(0.64)
                                     .foregroundColor(Color(red: 0, green: 0.6, blue: 0.8))
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, ViewSpacing.medium)
+                                    .padding(.vertical,ViewSpacing.small)
                                     .background(Color.surfacePrimary)
-                                    .cornerRadius(360)
+                                    .cornerRadius(CornerRadius.full.value)
                             }
-                            .padding(.top, 70)
+                            .padding(.top, 7*ViewSpacing.betweenSmallAndBase)
                         }
                         
                         if needCalendarBtn, let onCal = onCalendarTap {
@@ -160,7 +159,7 @@ struct AngryQuestionStyleDView: View {
                             }
                         }
                     }
-                    .padding(.bottom, 120)
+                    .padding(.bottom, ViewSpacing.xlarge+ViewSpacing.xxxlarge)
                 }
             }
         }
@@ -173,22 +172,24 @@ struct AngryQuestionStyleDView: View {
     AngryQuestionStyleDView(
         question: MoodTreatmentQuestion(
             id: 888,
+            totalQuestions: 45,
             type: .slider,
             uiStyle: .styleD,
             texts:      [],
             animation:  nil,
             options: [
-                .init(text: "心情管家-愤怒路线结束",
+                .init(key: "A",text: "心情管家-愤怒路线结束",
                       next: nil,
                       exclusive: false),
-                .init(text: "",
+                .init(key: "B",text: "",
                       next: nil,
                       exclusive: true)
             ],
             introTexts: [],
             showSlider: true,
             buttonTitle: "",
-            endingStyle: nil
+            endingStyle: nil,
+            routine: "anger"
         ),
         onButtonTap:   { print("结束 ") },
         onCalendarTap: { print("去情绪日历 ") }

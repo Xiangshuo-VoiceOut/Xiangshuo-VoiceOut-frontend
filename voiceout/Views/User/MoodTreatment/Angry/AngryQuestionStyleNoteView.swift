@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AngryQuestionStyleNoteView: View {
     let question: MoodTreatmentQuestion
+    let onSelect: (MoodTreatmentAnswerOption) -> Void
     
     @State private var isPlayingMusic     = true
     @State private var selectedShapeIndex : Int? = nil
@@ -21,6 +22,21 @@ struct AngryQuestionStyleNoteView: View {
     
     private let animationDuration: TimeInterval = 4.0
     
+    private var completionOption: MoodTreatmentAnswerOption? {
+        if let opt = question.options.first(where: { ($0.exclusive ?? false) == true }) {
+            return opt
+        }
+
+        if let fallbackNext = question.options.first?.next {
+            return MoodTreatmentAnswerOption(
+                key: "DONE",
+                text: "我完成了",
+                next: fallbackNext,
+                exclusive: true
+            )
+        }
+        return nil
+    }
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .topLeading) {
@@ -34,7 +50,7 @@ struct AngryQuestionStyleNoteView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 168)
-                            .padding(.bottom, 24)
+                            .padding(.bottom, ViewSpacing.large)
                         Spacer()
                     }
                     Button {
@@ -44,7 +60,7 @@ struct AngryQuestionStyleNoteView: View {
                             .resizable()
                             .frame(width: 48, height: 48)
                     }
-                    .padding(.leading, 16)
+                    .padding(.leading, ViewSpacing.medium)
                 }
                 .zIndex(10)
                 
@@ -54,21 +70,21 @@ struct AngryQuestionStyleNoteView: View {
                             .frame(height: 140)
                         
                         if let lines = question.texts {
-                            VStack(spacing: 16) {
+                            VStack(spacing: ViewSpacing.medium) {
                                 ForEach(lines, id: \.self) { line in
                                     Text(line)
                                         .font(.typography(.bodyMedium))
                                         .foregroundColor(.grey500)
                                         .multilineTextAlignment(.leading)
-                                        .padding(.horizontal, 64)
+                                        .padding(.horizontal, 2*ViewSpacing.xlarge)
                                 }
                             }
-                            .padding(.bottom, 36)
+                            .padding(.bottom, ViewSpacing.xsmall+ViewSpacing.xlarge)
                         }
                         
-                        let columns = Array(repeating: GridItem(.flexible(), spacing: 16), count: 3)
+                        let columns = Array(repeating: GridItem(.flexible(), spacing: ViewSpacing.medium), count: 3)
                         let noteAssets = (1...6).map { "note-\($0)" }
-                        LazyVGrid(columns: columns, spacing: 16) {
+                        LazyVGrid(columns: columns, spacing: ViewSpacing.medium) {
                             ForEach(noteAssets.indices, id: \.self) { idx in
                                 Button {
                                     selectedShapeIndex = idx
@@ -82,7 +98,7 @@ struct AngryQuestionStyleNoteView: View {
                                 }
                             }
                         }
-                        .padding(.horizontal, 40)
+                        .padding(.horizontal, ViewSpacing.medium+ViewSpacing.large)
                         Spacer()
                     }
                     .ignoresSafeArea(edges: .bottom)
@@ -95,10 +111,10 @@ struct AngryQuestionStyleNoteView: View {
                                 .foregroundColor(.grey500)
                                 .multilineTextAlignment(.center)
                                 .frame(maxWidth: .infinity)
-                                .padding(.bottom, 24)
+                                .padding(.bottom, ViewSpacing.large)
                         }
                     }
-                    .padding(.top,160)
+                    .padding(.top,ViewSpacing.xsmall+ViewSpacing.xlarge+ViewSpacing.xxxxlarge)
                     
                     ZStack {
                         LottieView(
@@ -134,15 +150,31 @@ struct AngryQuestionStyleNoteView: View {
                     }
                     .ignoresSafeArea(edges: .all)
                 } else {
-                    VStack(spacing: 16) {
+                    VStack(spacing: ViewSpacing.medium) {
                         Text("水泡解压完成!")
                             .font(.typography(.bodyMedium))
                             .foregroundColor(.grey500)
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity)
-                            .padding(.top,24)
+                            .padding(.top,ViewSpacing.large)
+                        
+                        if let opt = completionOption {
+                            Button {
+                                onSelect(opt)
+                            } label: {
+                                Text(opt.text.isEmpty ? "我完成了" : opt.text)
+                                    .font(.typography(.bodyMedium))
+                                    .foregroundColor(.textBrandPrimary)
+                                    .padding(.horizontal, ViewSpacing.medium)
+                                    .padding(.vertical, ViewSpacing.small)
+                                    .frame(height: 44)
+                                    .background(Color.surfacePrimary)
+                                    .cornerRadius(CornerRadius.full.value)
+                            }
+                            .padding(.top, ViewSpacing.small)
+                        }
                     }
-                    .padding(.top, 120)
+                    .padding(.top, ViewSpacing.xlarge+ViewSpacing.xxxlarge)
                     .zIndex(5)
                 }
             }
@@ -213,7 +245,7 @@ private struct NoteEditorView: View {
                             borderRadius: .full
                         )
                         .fixedSize()
-                        .padding(.trailing, 32)
+                        .padding(.trailing, ViewSpacing.xlarge)
                     ),
                     backgroundColor: .clear
                 )
@@ -228,11 +260,11 @@ private struct NoteEditorView: View {
                         Text(placeholder)
                             .font(.typography(.bodyMedium))
                             .foregroundColor(.grey200)
-                            .padding(.top, 8)
+                            .padding(.top, ViewSpacing.small)
                     }
                 }
-                .padding(.top, 8)
-                .padding(.leading, 30)
+                .padding(.top, ViewSpacing.small)
+                .padding(.leading, 3*ViewSpacing.betweenSmallAndBase)
             }
         }
     }
@@ -241,15 +273,21 @@ private struct NoteEditorView: View {
 #Preview {
     AngryQuestionStyleNoteView(
         question: MoodTreatmentQuestion(
-            id: 999,
-            type: .animationOnly,
+            id: 123,
+            totalQuestions: 45,
+            type: .custom,
             uiStyle: .styleNote,
             texts: ["接下来，挑一个你喜欢的便签，把这件令人生气的事情写下来吧~"],
             animation: "bubble-breaking",
-            options: [],
+            options: [
+                .init(key: "A", text: "我完成了", next: 124, exclusive: true)
+            ],
             introTexts: nil,
-            showSlider: nil,
-            endingStyle: nil
-        )
+            showSlider: false,
+            endingStyle: nil,
+            customViewName: nil,
+            routine: "anger"
+        ),
+        onSelect: { _ in }
     )
 }

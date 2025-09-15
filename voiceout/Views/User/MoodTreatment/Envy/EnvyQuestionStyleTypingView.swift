@@ -34,7 +34,7 @@ struct EnvyQuestionStyleTypingView: View {
                             Image("cloud-chat")
                                 .resizable()
                                 .frame(width: 168, height: 120)
-                                .padding(.bottom, 24)
+                                .padding(.bottom, ViewSpacing.large)
                             Spacer()
                         }
                         
@@ -45,10 +45,10 @@ struct EnvyQuestionStyleTypingView: View {
                                 .resizable()
                                 .frame(width: 48, height: 48)
                         }
-                        .padding(.leading, 16)
+                        .padding(.leading, ViewSpacing.medium)
                     }
 
-                    VStack(spacing: 8) {
+                    VStack(spacing: ViewSpacing.small) {
                         ForEach(question.texts ?? [], id: \.self) { line in
                             if !introDone {
                                 TypewriterText(fullText: line, characterDelay: typingInterval) {
@@ -65,34 +65,35 @@ struct EnvyQuestionStyleTypingView: View {
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.grey500)
                     .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.horizontal, 64)
-                    .padding(.top, 24)
+                    .padding(.horizontal, 2*ViewSpacing.xlarge)
+                    .padding(.top, ViewSpacing.large)
 
                     if introDone {
-                        VStack(spacing: 16) {
+                        VStack(spacing: ViewSpacing.medium) {
                             ZStack(alignment: .topLeading) {
                                 if inputText.isEmpty {
                                     Text("我已经尽了最大努力，今天对自己宽容一点。")
                                         .font(.typography(.bodyLarge))
                                         .foregroundColor(.textLight)
-                                        .padding(.horizontal, 16)
-                                        .padding(.vertical, 24)
+                                        .padding(.horizontal, ViewSpacing.medium)
+                                        .padding(.vertical, ViewSpacing.large)
                                 }
                                 TextEditor(text: $inputText)
                                     .font(.typography(.bodyLarge))
                                     .foregroundColor(.textPrimary)
-                                    .padding(12)
+                                    .padding(ViewSpacing.base)
                                     .scrollContentBackground(.hidden)
                                     .background(Color.clear)
                             }
                             .frame(height: 139)
                             .background(Color.surfacePrimary)
-                            .cornerRadius(16)
-                            .padding(.horizontal, 32)
+                            .cornerRadius(CornerRadius.medium.value)
+                            .padding(.horizontal, ViewSpacing.xlarge)
 
                             if let btnOpt = exclusiveOption, !inputText.isEmpty {
                                 Button(action: {
                                     let answer = MoodTreatmentAnswerOption(
+                                        key: btnOpt.key ?? "DONE",
                                         text: inputText,
                                         next: btnOpt.next,
                                         exclusive: true
@@ -102,16 +103,16 @@ struct EnvyQuestionStyleTypingView: View {
                                     Text(btnOpt.text)
                                         .font(.typography(.bodyMedium))
                                         .foregroundColor(.textBrandPrimary)
-                                        .padding(.horizontal, 16)
-                                        .padding(.vertical, 8)
+                                        .padding(.horizontal, ViewSpacing.medium)
+                                        .padding(.vertical, ViewSpacing.small)
                                         .frame(height: 44)
                                         .background(Color.surfacePrimary)
-                                        .cornerRadius(360)
+                                        .cornerRadius(CornerRadius.full.value)
                                 }
-                                .padding(.top, 22)
+                                .padding(.top, ViewSpacing.base+ViewSpacing.betweenSmallAndBase)
                             }
                         }
-                        .padding(.top, 40)
+                        .padding(.top, ViewSpacing.medium+ViewSpacing.large)
                     }
                     Spacer()
                 }
@@ -124,6 +125,7 @@ struct EnvyQuestionStyleTypingView: View {
     EnvyQuestionStyleTypingView(
         question: MoodTreatmentQuestion(
             id: 4,
+            totalQuestions: 100,
             type: .singleChoice,
             uiStyle: .styleTyping,
             texts: [
@@ -131,14 +133,13 @@ struct EnvyQuestionStyleTypingView: View {
             ],
             animation: nil,
             options: [
-                .init(text: "我写好了", next: nil, exclusive: true)
+                .init(key: "A", text: "我写好了", next: nil, exclusive: true)
             ],
             introTexts: nil,
             showSlider: nil,
-            endingStyle: nil
+            endingStyle: nil,
+            routine: "envy"
         ),
-        onSelect: { answer in
-            print("用户写下：", answer.text)
-        }
+        onSelect: { _ in }
     )
 }

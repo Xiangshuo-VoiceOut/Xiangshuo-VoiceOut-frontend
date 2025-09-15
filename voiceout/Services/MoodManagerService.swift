@@ -8,14 +8,13 @@
 import Foundation
 
 enum API {
-    static let host = "http://34.220.10.242:3001"
+    static let host = "http://3.143.142.42:3000"
     static let moodBase = "\(host)/api/mood"
     static let v1 = "\(host)/api/v1"
 }
 
 class MoodManagerService {
     static let shared = MoodManagerService()
-    //    private let baseUrl = "http://localhost:3000/api/mood"
     private let baseUrl = API.moodBase
     private let userId = "user00123"
 

@@ -46,11 +46,11 @@ struct AngryEndingView: View {
                         Image("happy")
                             .frame(width: 214, height: 124)
                     }
-                    .padding(.horizontal, 1)
-                    .padding(.vertical, 20)
+                    .padding(.horizontal, ViewSpacing.xxxsmall)
+                    .padding(.vertical, 2*ViewSpacing.betweenSmallAndBase)
                     .frame(width: 216, height: 154, alignment: .center)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                    .padding(.top,180)
+                    .padding(.top,ViewSpacing.large+ViewSpacing.xlarge+ViewSpacing.xxxxlarge)
                 }
 
                 VStack(spacing: 0) {
@@ -61,7 +61,7 @@ struct AngryEndingView: View {
                             Image(isPlayingMusic ? "music" : "stop-music")
                                 .frame(width: 48, height: 48)
                         }
-                        .padding(.leading, 16)
+                        .padding(.leading, ViewSpacing.medium)
 
                         Spacer()
                     }
@@ -76,20 +76,20 @@ struct AngryEndingView: View {
                                 .font(Font.typography(.bodyMedium))
                                 .foregroundColor(.grey500)
                                 .multilineTextAlignment(.center)
-                                .padding(.horizontal, 16)
-                                .padding(.trailing, 8)
+                                .padding(.horizontal, ViewSpacing.medium)
+                                .padding(.trailing, ViewSpacing.small)
                         }
-                        .padding(.leading, 36)
+                        .padding(.leading, ViewSpacing.xsmall+ViewSpacing.xlarge)
 
                         Spacer()
 
                         Image("cloud-chat")
                             .resizable()
                             .frame(width: 100, height: 71)
-                            .padding(.trailing, 16)
-                            .offset(y: -20)
+                            .padding(.trailing, ViewSpacing.medium)
+                            .offset(y: -ViewSpacing.small-ViewSpacing.base)
                     }
-                    .padding(.top, 40)
+                    .padding(.top, ViewSpacing.medium+ViewSpacing.large)
 
                     Spacer()
                 }
@@ -104,10 +104,6 @@ struct AngryEndingView: View {
         }
     }
 }
-
-
-
-
 
 #Preview {
     AngryEndingView()

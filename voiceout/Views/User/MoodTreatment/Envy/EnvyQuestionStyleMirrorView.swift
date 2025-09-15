@@ -114,7 +114,7 @@ struct EnvyQuestionStyleMirrorView: View {
                             Image("cloud-chat")
                                 .resizable()
                                 .frame(width: 168, height: 120)
-                                .padding(.bottom, 24)
+                                .padding(.bottom, ViewSpacing.large)
                             Spacer()
                         }
                         
@@ -126,7 +126,7 @@ struct EnvyQuestionStyleMirrorView: View {
                             Spacer()
                         }
                     }
-                    .padding(.leading, 16)
+                    .padding(.leading, ViewSpacing.medium)
 
                     ForEach(Array(question.texts?.enumerated() ?? [].enumerated()),
                             id: \.offset) { idx, line in
@@ -138,7 +138,7 @@ struct EnvyQuestionStyleMirrorView: View {
                         .font(.typography(.bodyMedium))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.grey500)
-                        .padding(.horizontal, 64)
+                        .padding(.horizontal, 2*ViewSpacing.xlarge)
                     }
 
                     if showShards {
@@ -161,7 +161,7 @@ struct EnvyQuestionStyleMirrorView: View {
                                 }
                             }
                         }
-                        .padding(.top, 140)
+                        .padding(.top, ViewSpacing.medium+ViewSpacing.xxxxlarge)
                         .frame(maxWidth: .infinity)
 
                         if selectedIndices.count >= needCount,
@@ -170,12 +170,12 @@ struct EnvyQuestionStyleMirrorView: View {
                                 Text(confirm.text)
                                     .font(.typography(.bodyMedium))
                                     .foregroundColor(.textBrandPrimary)
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, ViewSpacing.medium)
+                                    .padding(.vertical, ViewSpacing.small)
                                     .background(Color.surfacePrimary)
-                                    .cornerRadius(360)
+                                    .cornerRadius(CornerRadius.full.value)
                             }
-                            .padding(.top, 180)
+                            .padding(.top, ViewSpacing.large+ViewSpacing.xlarge+ViewSpacing.xxxxlarge)
                         }
                     }
                     Spacer()
@@ -187,47 +187,47 @@ struct EnvyQuestionStyleMirrorView: View {
 
 struct EnvyQuestionStyleMirrorView_Previews: PreviewProvider {
     static let singleOptions: [MoodTreatmentAnswerOption] = [
-        .init(text: "工作/事业发展", next: nil, exclusive: false),
-        .init(text: "朋友/人际关系", next: nil, exclusive: false),
-        .init(text: "克服困难", next: nil, exclusive: false),
-        .init(text: "学业/专业技能提升", next: nil, exclusive: false),
-        .init(text: "情绪管理/心理成长", next: nil, exclusive: false),
-        .init(text: "独立生活能力", next: nil, exclusive: false),
-        .init(text: "兴趣爱好", next: nil, exclusive: false),
-        .init(text: "运动/健康习惯", next: nil, exclusive: false),
-        .init(text: "帮助过他人", next: nil, exclusive: false),
-        .init(text: "其他", next: nil, exclusive: false),
-        .init(text: "我选好了", next: nil, exclusive: true),
+        .init(key: "A",text: "工作/事业发展", next: nil, exclusive: false),
+        .init(key: "B",text: "朋友/人际关系", next: nil, exclusive: false),
+        .init(key: "c",text: "克服困难", next: nil, exclusive: false),
+        .init(key: "D",text: "学业/专业技能提升", next: nil, exclusive: false),
+        .init(key: "E",text: "情绪管理/心理成长", next: nil, exclusive: false),
+        .init(key: "F",text: "独立生活能力", next: nil, exclusive: false),
+        .init(key: "G",text: "兴趣爱好", next: nil, exclusive: false),
+        .init(key: "H",text: "运动/健康习惯", next: nil, exclusive: false),
+        .init(key: "I",text: "帮助过他人", next: nil, exclusive: false),
+        .init(key: "J",text: "其他", next: nil, exclusive: false),
+        .init(key: "K",text: "我选好了", next: nil, exclusive: true),
     ]
     static let anyMultiOptions: [MoodTreatmentAnswerOption] = [
-        .init(text: "锻炼", next: nil, exclusive: false),
-        .init(text: "阅读", next: nil, exclusive: false),
-        .init(text: "考证", next: nil, exclusive: false),
-        .init(text: "新的语言", next: nil, exclusive: false),
-        .init(text: "按时睡觉", next: nil, exclusive: false),
-        .init(text: "健康饮食", next: nil, exclusive: false),
-        .init(text: "时间管理", next: nil, exclusive: false),
-        .init(text: "改善关系", next: nil, exclusive: false),
-        .init(text: "我选好了", next: nil, exclusive: true),
+        .init(key: "A",text: "锻炼", next: nil, exclusive: false),
+        .init(key: "B",text: "阅读", next: nil, exclusive: false),
+        .init(key: "C",text: "考证", next: nil, exclusive: false),
+        .init(key: "D",text: "新的语言", next: nil, exclusive: false),
+        .init(key: "E",text: "按时睡觉", next: nil, exclusive: false),
+        .init(key: "F",text: "健康饮食", next: nil, exclusive: false),
+        .init(key: "G",text: "时间管理", next: nil, exclusive: false),
+        .init(key: "H",text: "改善关系", next: nil, exclusive: false),
+        .init(key: "I",text: "我选好了", next: nil, exclusive: true),
     ]
     static let threeMultiOptions: [MoodTreatmentAnswerOption] = [
-        .init(text: "我生活在没有战乱的国家", next: nil, exclusive: false),
-        .init(text: "健康的身体", next: nil, exclusive: false),
-        .init(text: "支持的家人和朋友", next: nil, exclusive: false),
-        .init(text: "工作的机会", next: nil, exclusive: false),
-        .init(text: "大自然", next: nil, exclusive: false),
-        .init(text: "每天的三餐", next: nil, exclusive: false),
-        .init(text: "安全的住所", next: nil, exclusive: false),
-        .init(text: "小小的日常", next: nil, exclusive: false),
-        .init(text: "学习和成长的机会", next: nil, exclusive: false),
-        .init(text: "我选好了", next: nil, exclusive: true),
+        .init(key: "A",text: "我生活在没有战乱的国家", next: nil, exclusive: false),
+        .init(key: "B",text: "健康的身体", next: nil, exclusive: false),
+        .init(key: "C",text: "支持的家人和朋友", next: nil, exclusive: false),
+        .init(key: "D",text: "工作的机会", next: nil, exclusive: false),
+        .init(key: "E",text: "大自然", next: nil, exclusive: false),
+        .init(key: "F",text: "每天的三餐", next: nil, exclusive: false),
+        .init(key: "G",text: "安全的住所", next: nil, exclusive: false),
+        .init(key: "H",text: "小小的日常", next: nil, exclusive: false),
+        .init(key: "I",text: "学习和成长的机会", next: nil, exclusive: false),
+        .init(key: "J",text: "我选好了", next: nil, exclusive: true),
     ]
 
     static var previews: some View {
-        Group {
             EnvyQuestionStyleMirrorView(
                 question: .init(
                     id: 1,
+                    totalQuestions: 100,
                     type: .singleChoice,
                     uiStyle: .styleMirror,
                     texts: ["当你感到嫉妒时，你内心相信自己也能够实现类似的成就。现在，请选择你觉得自己擅长或已取得成就的方面吧！"],
@@ -235,14 +235,17 @@ struct EnvyQuestionStyleMirrorView_Previews: PreviewProvider {
                     options: singleOptions,
                     introTexts: nil,
                     showSlider: nil,
-                    endingStyle: nil
+                    endingStyle: nil,
+                    routine: "envy"
                 )
-            ) { _ in }
+            ) { _ in
+            }
             .previewDisplayName("单选")
 
             EnvyQuestionStyleMirrorView(
                 question: .init(
                     id: 2,
+                    totalQuestions: 100,
                     type: .multiChoice,
                     uiStyle: .styleMirror,
                     texts: ["有哪些个人成长的目标是你可以通过自己的努力实现的？"],
@@ -250,7 +253,8 @@ struct EnvyQuestionStyleMirrorView_Previews: PreviewProvider {
                     options: anyMultiOptions,
                     introTexts: nil,
                     showSlider: nil,
-                    endingStyle: nil
+                    endingStyle: nil,
+                    routine: "envy"
                 ),
                 requiredSelections: 1
             ) { _ in }
@@ -259,6 +263,7 @@ struct EnvyQuestionStyleMirrorView_Previews: PreviewProvider {
             EnvyQuestionStyleMirrorView(
                 question: .init(
                     id: 3,
+                    totalQuestions: 100,
                     type: .multiChoice,
                     uiStyle: .styleMirror,
                     texts: ["选出三件你现在生活中感到感激的事物："],
@@ -266,11 +271,11 @@ struct EnvyQuestionStyleMirrorView_Previews: PreviewProvider {
                     options: threeMultiOptions,
                     introTexts: nil,
                     showSlider: nil,
-                    endingStyle: nil
+                    endingStyle: nil,
+                    routine: "envy"
                 ),
                 requiredSelections: 3
             ) { _ in }
             .previewDisplayName("多选（必选3）")
-        }
     }
 }

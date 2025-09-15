@@ -91,6 +91,7 @@
 		844ED3572D9FB95A0055F5D6 /* AnxietyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3562D9FB9590055F5D6 /* AnxietyHomepageView.swift */; };
 		844ED3592D9FB9870055F5D6 /* ScareHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3582D9FB9850055F5D6 /* ScareHomepageView.swift */; };
 		8450E3E12E729C04008B2784 /* TypewriterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450E3E02E729C04008B2784 /* TypewriterText.swift */; };
+		8450E3E32E7783D4008B2784 /* AngryQuestion1StyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450E3E22E7783D2008B2784 /* AngryQuestion1StyleView.swift */; };
 		846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */; };
 		848E62AD2C891D37009B162A /* StickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AC2C891D37009B162A /* StickyHeaderView.swift */; };
 		848E62AF2C892439009B162A /* OneWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AE2C892439009B162A /* OneWeekView.swift */; };
@@ -303,6 +304,7 @@
 		844ED3562D9FB9590055F5D6 /* AnxietyHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyHomepageView.swift; sourceTree = "<group>"; };
 		844ED3582D9FB9850055F5D6 /* ScareHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScareHomepageView.swift; sourceTree = "<group>"; };
 		8450E3E02E729C04008B2784 /* TypewriterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypewriterText.swift; sourceTree = "<group>"; };
+		8450E3E22E7783D2008B2784 /* AngryQuestion1StyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestion1StyleView.swift; sourceTree = "<group>"; };
 		846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentcardViewModel.swift; sourceTree = "<group>"; };
 		848E62AC2C891D37009B162A /* StickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
 		848E62AE2C892439009B162A /* OneWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWeekView.swift; sourceTree = "<group>"; };
@@ -507,6 +509,7 @@
 				840A6EE92E72026800D8235C /* ChatBubbleView.swift */,
 				840A6EEA2E72026800D8235C /* AngryEndingView.swift */,
 				840A6EEB2E72026800D8235C /* AngryQuestionPageView.swift */,
+				8450E3E22E7783D2008B2784 /* AngryQuestion1StyleView.swift */,
 				840A6EEC2E72026800D8235C /* AngryQuestionStyleAView.swift */,
 				840A6EED2E72026800D8235C /* AngryQuestionStyleBView.swift */,
 				840A6EEE2E72026800D8235C /* AngryQuestionStyleCView.swift */,
@@ -1264,6 +1267,7 @@
 				6894896C2CC84C52000FEA22 /* EducationView.swift in Sources */,
 				D2D6CD892C038B1700DD7688 /* Color.swift in Sources */,
 				D2AA0AE62CA1C2B6007A96E4 /* TimePickerView.swift in Sources */,
+				8450E3E32E7783D4008B2784 /* AngryQuestion1StyleView.swift in Sources */,
 				840A6EDD2E7201F700D8235C /* MoodTreatment.swift in Sources */,
 				8497B51B2CE81EB9006D6050 /* EditButtonView.swift in Sources */,
 				D2ECDF8A2C8F659200FC3E24 /* BasicInfoView.swift in Sources */,

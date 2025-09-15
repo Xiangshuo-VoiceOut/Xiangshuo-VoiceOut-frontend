@@ -35,7 +35,7 @@ struct AngryQuestionStyleGView: View {
                             Image("cloud-chat")
                                 .resizable()
                                 .frame(width: 168, height: 120)
-                                .padding(.bottom, 24)
+                                .padding(.bottom, ViewSpacing.large)
                             Spacer()
                         }
                         
@@ -46,12 +46,12 @@ struct AngryQuestionStyleGView: View {
                                 .resizable()
                                 .frame(width: 48, height: 48)
                         }
-                        .padding(.leading, 16)
+                        .padding(.leading, ViewSpacing.medium)
                     }
 
-                    VStack(spacing: 24) {
+                    VStack(spacing: ViewSpacing.large) {
                         if !inputDone {
-                            VStack(spacing: 8) {
+                            VStack(spacing: ViewSpacing.small) {
                                 ForEach(question.texts ?? [], id: \.self) { line in
                                     if !introDone {
                                         TypewriterText(fullText: line,
@@ -77,7 +77,7 @@ struct AngryQuestionStyleGView: View {
                                 .foregroundColor(.grey500)
                                 .frame(width: 252, alignment: .topLeading)
                             
-                            HStack(alignment: .top, spacing: 8) {
+                            HStack(alignment: .top, spacing: ViewSpacing.small) {
                                 Image("edit")
                                     .frame(width: 24, height: 24)
                                     .foregroundColor(.textLight)
@@ -88,29 +88,29 @@ struct AngryQuestionStyleGView: View {
                                     .multilineTextAlignment(.leading)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 12)
+                            .padding(.horizontal, ViewSpacing.medium)
+                            .padding(.vertical, ViewSpacing.base)
                             .frame(maxWidth: .infinity, minHeight: 57, alignment: .topLeading)
                             .background(Color.surfacePrimary)
-                            .cornerRadius(16)
+                            .cornerRadius(CornerRadius.medium.value)
                             
                             Button("完成") {
                                 inputDone = true
                             }
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
+                            .padding(.horizontal, ViewSpacing.medium)
+                            .padding(.vertical, ViewSpacing.small)
                             .frame(width: 114, height: 44)
                             .background(Color.surfacePrimary)
                             .disabled(userInput.isEmpty)
-                            .cornerRadius(360)
+                            .cornerRadius(CornerRadius.full.value)
                             .foregroundColor(Color(red: 0, green: 0.6, blue: 0.8))
                             .font(Font.typography(.bodyMedium))
                             .kerning(0.64)
                             .multilineTextAlignment(.center)
                         }
                     }
-                    .padding(.horizontal, 64)
-                    .padding(.bottom,28)
+                    .padding(.horizontal, 2*ViewSpacing.xlarge)
+                    .padding(.bottom,ViewSpacing.xsmall+ViewSpacing.large)
                     
                     if inputDone {
                         if !praiseDone {
@@ -121,13 +121,13 @@ struct AngryQuestionStyleGView: View {
                                            .font(.typography(.bodyMedium))
                                            .multilineTextAlignment(.center)
                                            .foregroundColor(.grey500)
-                                           .padding(.horizontal, 64)
+                                           .padding(.horizontal, 2*ViewSpacing.xlarge)
                         } else {
                             Text(praiseText)
                                 .font(.typography(.bodyMedium))
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(.grey500)
-                                .padding(.horizontal, 64)
+                                .padding(.horizontal, 2*ViewSpacing.xlarge)
                         }
                     }
                     
@@ -137,12 +137,12 @@ struct AngryQuestionStyleGView: View {
                         Button("我会试试的") {
                             onSelect(option)
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
+                        .padding(.horizontal, ViewSpacing.medium)
+                        .padding(.vertical, ViewSpacing.small)
                         .frame(width: 114, height: 44)
                         .background(Color.surfacePrimary)
                         .disabled(userInput.isEmpty)
-                        .cornerRadius(360)
+                        .cornerRadius(CornerRadius.full.value)
                         .foregroundColor(Color(red: 0, green: 0.6, blue: 0.8))
                         .font(Font.typography(.bodyMedium))
                         .kerning(0.64)
@@ -160,16 +160,18 @@ struct AngryQuestionStyleGView: View {
     AngryQuestionStyleGView(
         question: MoodTreatmentQuestion(
             id: 4,
+            totalQuestions: 45,
             type: .openText,
             uiStyle: .styleG,
             texts: ["看来你已经整理好心中各个方案的排序了，可以给我展示看看你想尝试的一种吗？"],
             animation: nil,
             options: [
-                .init(text: "完成", next: 5, exclusive: true)
+                .init(key: "A",text: "完成", next: 5, exclusive: true)
             ],
             introTexts: nil,
             showSlider: nil,
-            endingStyle: nil
+            endingStyle: nil,
+            routine: "anger"
         ),
         onSelect: { _ in }
     )

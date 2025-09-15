@@ -22,7 +22,7 @@ struct AnimationInstructionView: View {
                     Text(line)
                         .font(.headline)
                         .multilineTextAlignment(.center)
-                        .padding(.horizontal, 24)
+                        .padding(.horizontal, ViewSpacing.large)
                 }
             }
             

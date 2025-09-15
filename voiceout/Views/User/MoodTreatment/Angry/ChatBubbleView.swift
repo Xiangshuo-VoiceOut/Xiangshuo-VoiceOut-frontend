@@ -21,14 +21,14 @@ struct ChatBubbleView: View {
             Text(text)
                 .font(Font.typography(.bodyMedium))
                 .foregroundColor(.grey500)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 16)
+                .padding(.horizontal, ViewSpacing.base)
+                .padding(.vertical, ViewSpacing.medium)
                 .frame(width: Self.width, alignment: .leading)
 
             Image("vector49")
                 .resizable()
                 .frame(width: 15, height: 14)
-                .offset(x: 24, y: 14)
+                .offset(x: ViewSpacing.large, y: 14)
         }
     }
 }

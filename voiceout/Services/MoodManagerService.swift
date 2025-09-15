@@ -7,9 +7,15 @@
 
 import Foundation
 
+enum API {
+    static let host = "http://3.143.142.42:3000"
+    static let moodBase = "\(host)/api/mood"
+    static let v1 = "\(host)/api/v1"
+}
+
 class MoodManagerService {
     static let shared = MoodManagerService()
-    private let baseUrl = "http://localhost:3000/api/mood"
+    private let baseUrl = API.moodBase
     private let userId = "user00123"
 
     func createDiaryEntry(entry: DiaryEntry, completion: @escaping (Result<DiaryEntryResponse, Error>) -> Void) {
@@ -20,11 +26,9 @@ class MoodManagerService {
         
         do {
             let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy = .convertToSnakeCase
             encoder.dateEncodingStrategy = .iso8601
             let jsonData = try encoder.encode(entry)
-            
-            if let jsonString = String(data: jsonData, encoding: .utf8) {
-            }
             
             request.httpBody = jsonData
         } catch {
@@ -37,12 +41,17 @@ class MoodManagerService {
                 completion(.failure(error))
                 return
             }
+            let status = (response as? HTTPURLResponse)?.statusCode ?? -1
+            if let data = data, let raw = String(data: data, encoding: .utf8) {
+                print("Diary Response (status=\(status)):\n\(raw)")
+            }
             guard let data = data else {
                 completion(.failure(NSError(domain: "No data", code: -1, userInfo: nil)))
                 return
             }
             do {
                 let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 decoder.dateDecodingStrategy = .iso8601
                 let response = try decoder.decode(DiaryEntryResponse.self, from: data)
                 completion(.success(response))

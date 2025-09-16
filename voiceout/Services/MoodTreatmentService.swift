@@ -9,7 +9,7 @@ import Foundation
 
 struct MoodTreatmentService {
     static let shared = MoodTreatmentService()
-    private static let cloudURL = URL(string: "http://3.143.142.42:4000")!
+    private static let cloudURL = URL(string: "http://18.222.237.219:4000")!
     private static let simulatorLocalURL = URL(string: "http://127.0.0.1:3000")!
     private static var lanURL: URL? {
         if let raw = UserDefaults.standard.string(forKey: "dev.localBaseURL"),
@@ -21,7 +21,7 @@ struct MoodTreatmentService {
     
     private static var candidateBaseURLs: [URL] {
 #if targetEnvironment(simulator)
-        return [simulatorLocalURL, cloudURL]
+        return [cloudURL, cloudURL]
 #else
         if let lan = lanURL {
             return [cloudURL, lan]

@@ -215,16 +215,18 @@ struct MainHomepageView: View {
                 .padding(.bottom, ViewSpacing.medium+ViewSpacing.xlarge)
             }
         }
+        .navigationBarHidden(true)
         .gesture(
             DragGesture()
                 .onEnded { value in
                     if value.translation.height < -50 {
                         withAnimation {
-                            showMapView = true
+                            showMapView = true   // 👈 triggers .fullScreenCover
                         }
                     }
                 }
         )
+
     }
     
     private func showMessagePopup() {

@@ -95,7 +95,7 @@ struct MoodTreatmentAngryHomepageView: View {
                     Spacer()
                     
                     Button(action: {
-                        router.navigateTo(.envySingleQuestion(id: 1))
+                        router.navigateTo(.angrySingleQuestion(id: 1))
                     }) {
                         ZStack {
                             Circle()

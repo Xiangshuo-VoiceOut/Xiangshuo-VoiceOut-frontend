@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MoodTreatmentSadHomepageView: View {
+    @EnvironmentObject var router: RouterModel
+    
     var body: some View {
         let screenWidth = UIScreen.main.bounds.width
 
@@ -91,7 +93,9 @@ struct MoodTreatmentSadHomepageView: View {
 
                     Spacer()
 
-                    Button(action: {}) {
+                    Button(action: {
+                        router.navigateTo(.sadSingleQuestion(id: 1))
+                    }) {
                         ZStack {
                             Circle()
                                 .fill(Color.surfacePrimary)

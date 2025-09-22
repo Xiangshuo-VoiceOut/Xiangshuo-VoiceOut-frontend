@@ -34,6 +34,7 @@ enum Route: Hashable {
     case cloudAudioOnboarding(startIndex: Int, showSkip: Bool)
     case angrySingleQuestion(id: Int)
     case envySingleQuestion(id: Int)
+    case sadSingleQuestion(id: Int)
     case stressReliefEntry
 }
 
@@ -113,6 +114,10 @@ final class RouterModel: ObservableObject {
                 .environmentObject(self)
         case .envySingleQuestion(let id):
             EnvyQuestionPageView(questionId: id)
+                .environmentObject(self)
+        case .sadSingleQuestion(let id):
+            // TODO: 创建SadQuestionPageView
+            Text("Sad Question Page - ID: \(id)")
                 .environmentObject(self)
         case .stressReliefEntry:
             StressReliefEntryView()

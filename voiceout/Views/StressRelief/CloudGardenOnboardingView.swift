@@ -85,7 +85,10 @@ struct CloudGardenOnboardingView: View {
                         title: String(localized: "cloud_garden"),
                         leadingComponent: AnyView(Spacer().frame(width: 24)),
                         trailingComponent: AnyView(
-                            Button { router.popToRoot() } label: {
+                            Button {
+                                router.popToRoot()
+                                router.navigateTo(.stressReliefEntry)
+                            } label: {
                                 Image("close")
                                     .resizable()
                                     .frame(width: 24, height: 24)

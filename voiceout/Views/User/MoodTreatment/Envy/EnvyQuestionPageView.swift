@@ -143,7 +143,7 @@ struct EnvyQuestionPageView: View {
                 }
 
             } else if vm.isLoading {
-                ProgressView("加载中…")
+                ProgressView("Loading…")
             } else if let error = vm.errorMessage {
                 Text(error)
                     .foregroundColor(.red)
@@ -189,27 +189,30 @@ struct EnvyQuestionPageView: View {
         .environmentObject(RouterModel())
 }
 
+///multichoice
 //#Preview {
 //    let sampleQuestion = MoodTreatmentQuestion(
 //        id: 4,
+//        totalQuestions: 100,
 //        type: .multiChoice,
 //        uiStyle: .styleI,
 //        texts: ["可以跟小云朵说说你是因为什么而感到嫉妒的吗？"],
 //        animation: nil,
 //        options:  [
-//            .init(text: "我没有别人的外貌，身材", next: nil, exclusive: false),
-//            .init(text: "家庭不够优越", next: nil, exclusive: false),
-//            .init(text: "我没有一技之长", next: nil, exclusive: false),
-//            .init(text: "别人能力更强", next: nil, exclusive: false),
-//            .init(text: "如果有别人的一半幸运就好了", next: nil, exclusive: false),
-//            .init(text: "在群体里不受欢迎", next: nil, exclusive: false),
-//            .init(text: "其它", next: nil, exclusive: false),
-//            .init(text: "我选好了", next: nil, exclusive: true)
+//            .init(key: "A",text: "我没有别人的外貌，身材", next: nil, exclusive: false),
+//            .init(key: "B",text: "家庭不够优越", next: nil, exclusive: false),
+//            .init(key: "C",text: "我没有一技之长", next: nil, exclusive: false),
+//            .init(key: "D",text: "别人能力更强", next: nil, exclusive: false),
+//            .init(key: "E",text: "如果有别人的一半幸运就好了", next: nil, exclusive: false),
+//            .init(key: "F",text: "在群体里不受欢迎", next: nil, exclusive: false),
+//            .init(key: "G",text: "其它", next: nil, exclusive: false),
+//            .init(key: "H",text: "我选好了", next: nil, exclusive: true)
 //        ],
 //        introTexts: nil,
 //        showSlider: nil,
 //        endingStyle: nil,
-//        customViewName: nil
+//        customViewName: nil,
+//        routine: "envy"
 //    )
 //
 //    EnvyQuestionPageView(question: sampleQuestion)
@@ -220,15 +223,17 @@ struct EnvyQuestionPageView: View {
 //#Preview {
 //    let sampleScroll = MoodTreatmentQuestion(
 //        id: 4,
+//        totalQuestions: 100,
 //        type: .custom,
 //        uiStyle: .styleScrollDown,
 //        texts: ["你觉得自己最近的脆弱和敏感是由哪些事情引发的？"],
 //        animation: nil,
-//        options: [                .init(text: "我选好了", next: 5, exclusive: true)],
+//        options: [.init(key: "A",text: "我选好了", next: 5, exclusive: true)],
 //        introTexts: nil,
 //        showSlider: nil,
 //        endingStyle: nil,
-//        customViewName: nil
+//        customViewName: nil,
+//        routine: "envy"
 //    )
 //    EnvyQuestionPageView(question: sampleScroll)
 //        .environmentObject(RouterModel())
@@ -238,17 +243,19 @@ struct EnvyQuestionPageView: View {
 //#Preview {
 //    let sampleQuestion = MoodTreatmentQuestion(
 //        id: 4,
+//        totalQuestions: 100,
 //        type: .singleChoice,
 //        uiStyle: .styleJ,
 //        texts: ["你可以简单说说，你怎么看待ta？你最关注ta的哪些方面？"],
 //        animation: nil,
 //        options: [
-//            .init(text: " 试试和小云聊聊天", next: 5, exclusive: true)
+//            .init(key: "A",text: " 试试和小云聊聊天", next: 5, exclusive: true)
 //        ],
 //        introTexts: nil,
 //        showSlider: nil,
 //        endingStyle: nil,
-//        customViewName: nil
+//        customViewName: nil,
+//        routine: "envy"
 //    )
 //
 //    EnvyQuestionPageView(question: sampleQuestion)
@@ -259,6 +266,7 @@ struct EnvyQuestionPageView: View {
 //#Preview {
 //    let sampleQuestion = MoodTreatmentQuestion(
 //        id: 4,
+//        totalQuestions: 100,
 //        type: .singleChoice,
 //        uiStyle: .styleMirror,
 //        texts: [
@@ -266,22 +274,23 @@ struct EnvyQuestionPageView: View {
 //        ],
 //        animation: nil,
 //        options: [
-//            .init(text: "工作/事业发展", next: nil, exclusive: false),
-//            .init(text: "朋友/人际关系", next: nil, exclusive: false),
-//            .init(text: "克服困难", next: nil, exclusive: false),
-//            .init(text: "学业/专业技能提升", next: nil, exclusive: false),
-//            .init(text: "情绪管理/心理成长", next: nil, exclusive: false),
-//            .init(text: "独立生活能力", next: nil, exclusive: false),
-//            .init(text: "兴趣爱好", next: nil, exclusive: false),
-//            .init(text: "运动/健康习惯", next: nil, exclusive: false),
-//            .init(text: "帮助过他人", next: nil, exclusive: false),
-//            .init(text: "其他", next: nil, exclusive: false),
-//            .init(text: "我选好了", next: nil, exclusive: true)
+//            .init(key: "A",text: "工作/事业发展", next: nil, exclusive: false),
+//            .init(key: "B",text: "朋友/人际关系", next: nil, exclusive: false),
+//            .init(key: "C",text: "克服困难", next: nil, exclusive: false),
+//            .init(key: "D",text: "学业/专业技能提升", next: nil, exclusive: false),
+//            .init(key: "E",text: "情绪管理/心理成长", next: nil, exclusive: false),
+//            .init(key: "F",text: "独立生活能力", next: nil, exclusive: false),
+//            .init(key: "G",text: "兴趣爱好", next: nil, exclusive: false),
+//            .init(key: "H",text: "运动/健康习惯", next: nil, exclusive: false),
+//            .init(key: "I",text: "帮助过他人", next: nil, exclusive: false),
+//            .init(key: "J",text: "其他", next: nil, exclusive: false),
+//            .init(key: "K",text: "我选好了", next: nil, exclusive: true)
 //        ],
 //        introTexts: nil,
 //        showSlider: nil,
 //        endingStyle: nil,
-//        customViewName: nil
+//        customViewName: nil,
+//        routine: "envy"
 //    )
 //
 //    EnvyQuestionPageView(question: sampleQuestion)
@@ -292,6 +301,7 @@ struct EnvyQuestionPageView: View {
 //#Preview {
 //    let sampleQuestion = MoodTreatmentQuestion(
 //        id: 5,
+//        totalQuestions: 100,
 //        type: .multiChoice,
 //        uiStyle: .styleMirror,
 //        texts: ["有哪些个人成长的目标是你可以通过自己的努力实现的？"],
@@ -300,7 +310,8 @@ struct EnvyQuestionPageView: View {
 //        introTexts: nil,
 //        showSlider: nil,
 //        endingStyle: nil,
-//        customViewName: nil
+//        customViewName: nil,
+//        routine: "envy"
 //    )
 //
 //    EnvyQuestionPageView(question: sampleQuestion)
@@ -311,6 +322,7 @@ struct EnvyQuestionPageView: View {
 //#Preview {
 //    let sampleQuestion = MoodTreatmentQuestion(
 //        id: 6,
+//        totalQuestions: 100,
 //        type: .multiChoice,
 //        uiStyle: .styleMirror,
 //        texts: ["选出三件你现在生活中感到感激的事物："],
@@ -319,24 +331,28 @@ struct EnvyQuestionPageView: View {
 //        introTexts: nil,
 //        showSlider: nil,
 //        endingStyle: nil,
-//        customViewName: nil
+//        customViewName: nil,
+//        routine: "envy"
 //    )
 //
 //    EnvyQuestionPageView(question: sampleQuestion)
 //        .environmentObject(RouterModel())
 //}
 
-
 ///打字
 //#Preview {
 //    let sampleQuestion = MoodTreatmentQuestion(
 //        id: 1,
+//        totalQuestions: 100,
 //        type: .singleChoice,
 //        uiStyle: .styleTyping,
 //        texts: ["在我们感到脆弱和敏感的时候，可能是我们的内心需要更多的关爱。现在，可以跟我一起写下这几句话～"],
 //        animation: nil,
-//        options: [.init(text: "我写好了", next: nil, exclusive: true) ],
-//        introTexts: nil
+//        options: [.init(key: "A",text: "我写好了", next: nil, exclusive: true) ],
+//        introTexts: nil,
+//        showSlider: nil,
+//        endingStyle: nil,
+//        routine: "envy"
 //    )
 //
 //    EnvyQuestionPageView(question: sampleQuestion)
@@ -348,13 +364,16 @@ struct EnvyQuestionPageView: View {
 //    EnvyQuestionPageView(
 //        question: MoodTreatmentQuestion(
 //            id: 999,
+//            totalQuestions: 100,
 //            type: .custom,
 //            uiStyle: .styleEnvyFinalEnding,
 //            texts: [],
 //            animation: nil,
 //            options: [],
 //            introTexts: nil,
-//            showBackButton: false
+//            showSlider: nil,
+//            endingStyle: nil,
+//            routine: "envy"
 //        )
 //    )
 //    .environmentObject(RouterModel())
@@ -365,6 +384,7 @@ struct EnvyQuestionPageView: View {
 //    EnvyQuestionPageView(
 //        question: MoodTreatmentQuestion(
 //            id: 999,
+//            totalQuestions: 100,
 //            type: .custom,
 //            uiStyle: .styleEnvyEnding,
 //            texts: ["愿你像小云朵一样，每天找到新的美好，装满自己的小天空。"],
@@ -373,7 +393,8 @@ struct EnvyQuestionPageView: View {
 //            introTexts: nil,
 //            showSlider: nil,
 //            endingStyle: nil,
-//            customViewName: nil
+//            customViewName: nil,
+//            routine: "envy"
 //        )
 //    )
 //    .environmentObject(RouterModel())

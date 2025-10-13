@@ -75,12 +75,5 @@ struct LottieView: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: Context) {
         guard let animationView = context.coordinator.animationView else { return }
         animationView.animationSpeed = speed
-//        if autoPlay && !animationView.isAnimationPlaying {
-//            animationView.play { finished in
-//                if finished {
-//                    context.coordinator.onFinished?()
-//                }
-//            }
-//        }
     }
 }

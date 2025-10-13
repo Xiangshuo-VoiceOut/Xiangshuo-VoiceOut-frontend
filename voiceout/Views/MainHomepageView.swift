@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+import Foundation
 
 extension Date {
     var currentHour: Int {
         return Calendar.current.component(.hour, from: self)
     }
+}
+
+extension Notification.Name {
+    static let reopenMap = Notification.Name("reopenMap")
 }
 
 struct MainHomepageView: View {
@@ -21,6 +26,7 @@ struct MainHomepageView: View {
     @StateObject private var popupViewModel = PopupViewModel()
     @State private var showMapView = false
     @EnvironmentObject var router: RouterModel
+    @State private var pendingRoute: Route? = nil
     
     var body: some View {
         ZStack {
@@ -88,9 +94,25 @@ struct MainHomepageView: View {
                 }
             }
         )
-        .fullScreenCover(isPresented: $showMapView) {
-            MainHomepageMapView(showMapView: $showMapView)
-                .environmentObject(router)
+        .fullScreenCover(isPresented: $showMapView, onDismiss: {
+            if let r = pendingRoute {
+                router.navigateTo(r)
+                pendingRoute = nil
+            }
+        }) {
+            MainHomepageMapView(
+                showMapView: $showMapView,
+                onSelectRoute: { r in
+                    pendingRoute = r
+                }
+            )
+            .environmentObject(router)
+        }
+        .navigationDestination(for: Route.self) { route in
+            router.view(for: route)
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .reopenMap)) { _ in
+            showMapView = true
         }
     }
     
@@ -221,12 +243,11 @@ struct MainHomepageView: View {
                 .onEnded { value in
                     if value.translation.height < -50 {
                         withAnimation {
-                            showMapView = true   // 👈 triggers .fullScreenCover
+                            showMapView = true
                         }
                     }
                 }
         )
-
     }
     
     private func showMessagePopup() {

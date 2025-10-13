@@ -36,13 +36,8 @@ struct EnvyEndingView: View {
 
                 VStack(spacing: 0) {
                     HStack {
-                        Button {
-                            isPlayingMusic.toggle()
-                        } label: {
-                            Image(isPlayingMusic ? "music" : "stop-music")
-                                .frame(width: 48, height: 48)
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+                        MusicButtonView()
+                            .padding(.leading, ViewSpacing.medium)
                         Spacer()
                     }
                     .padding(.top, geo.safeAreaInsets.top)

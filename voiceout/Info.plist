@@ -17,7 +17,7 @@
 				<key>NSTemporaryExceptionMinimumTLSVersion</key>
 				<string>TLSv1.0</string>
 			</dict>
-			<key>18.222.237.219</key>
+			<key>3.132.55.92</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>

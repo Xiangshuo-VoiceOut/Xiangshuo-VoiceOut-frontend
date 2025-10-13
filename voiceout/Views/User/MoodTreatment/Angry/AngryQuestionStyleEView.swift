@@ -31,12 +31,8 @@ struct AngryQuestionStyleEView: View {
                 Color.surfaceBrandTertiaryGreen
                     .ignoresSafeArea(edges: .bottom)
 
-                Button { isPlayingMusic.toggle() } label: {
-                    Image(isPlayingMusic ? "music" : "stop-music")
-                        .resizable()
-                        .frame(width: 48, height: 48)
-                }
-                .padding(.leading, ViewSpacing.medium)
+                MusicButtonView()
+                    .padding(.leading, ViewSpacing.medium)
 
                 VStack {
                     Spacer()
@@ -169,7 +165,8 @@ struct AngryQuestionStyleEView: View {
                 .init(key: "B",text: "脸颊变红、体温升高、内部像要爆炸", next: nil, exclusive: false),
                 .init(key: "C",text: "无法控制的流泪", next: nil, exclusive: false),
                 .init(key: "D",text: "牙齿咬紧，或攥紧拳头", next: nil, exclusive: false),
-                .init(key: "E",text: "想要扔东西、砸墙，或者伤害某些人事物", next: nil, exclusive: false)
+                .init(key: "E",text: "想要扔东西、砸墙，或者伤害某些人事物", next: nil, exclusive: false),
+                .init(key: "F",text: "其实，我现在没有这些感觉", next: 101, exclusive: true)
             ],
             introTexts: nil,
             showSlider: nil,

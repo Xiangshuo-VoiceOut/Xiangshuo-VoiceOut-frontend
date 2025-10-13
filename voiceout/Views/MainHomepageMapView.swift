@@ -13,7 +13,7 @@ struct MainHomepageMapView: View {
     @State private var showBackpackAlert = false
     @Binding var showMapView: Bool
     @EnvironmentObject var router: RouterModel
-    
+    var onSelectRoute: (Route) -> Void = { _ in }
     let baseMapAspectRatio: CGFloat = 828 / 1792
     
     let topTriangleFrameRatio: (CGFloat, CGFloat, CGFloat, CGFloat) = (0.475, 0.19 + (37 + 8) / 844, 0.08, 0.08 * 13 / 45)
@@ -66,8 +66,8 @@ struct MainHomepageMapView: View {
                 .position(x: screenWidth / 2, y: 3 * ViewSpacing.betweenSmallAndBase)
                 
                 Group {
-                    houseView("house-1", screenWidth, screenHeight, house1FrameRatio)
-                    houseView("house-2", screenWidth, screenHeight, house2FrameRatio)
+                    houseView("house-1", screenWidth, screenHeight, house1FrameRatio).zIndex(1)
+                    houseView("house-2", screenWidth, screenHeight, house2FrameRatio).zIndex(2)
                     labeledHouseView(
                         "house-3",
                         "压力缓解",
@@ -77,6 +77,7 @@ struct MainHomepageMapView: View {
                         label3OffsetRatio,
                         route: .stressReliefEntry
                     )
+                    .zIndex(10)
                     labeledHouseView(
                         "house-4",
                         "心情管家",
@@ -86,6 +87,7 @@ struct MainHomepageMapView: View {
                         label4OffsetRatio,
                         route: .moodManagerLoading
                     )
+                    .zIndex(5)
                     labeledHouseView(
                         "house-5",
                         "我的",
@@ -93,7 +95,7 @@ struct MainHomepageMapView: View {
                         screenHeight,
                         house5FrameRatio,
                         label5OffsetRatio
-                    )
+                    ).zIndex(3)
                     Image("cloud2")
                         .resizable()
                         .scaledToFit()
@@ -105,6 +107,7 @@ struct MainHomepageMapView: View {
                             x: screenWidth * leftCloudFrameRatio.0,
                             y: screenHeight * leftCloudFrameRatio.1
                         )
+                        .zIndex(0)
                 }
             }
             .gesture(
@@ -158,19 +161,13 @@ struct MainHomepageMapView: View {
         if let route = route {
             return AnyView(
                 Button {
-                    withAnimation {
-                      // 👇 dismiss first
-                      showMapView = false
-                    }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                      // 👇 then navigate after dismissal
-                      router.navigateTo(route)
-                  }
+                    withAnimation { showMapView = false }
+                    onSelectRoute(route)
                 } label: {
                     houseContent
-                        .contentShape(Rectangle()) // 👈 expands tap area
+                        .contentShape(Rectangle())
                 }
-                    .buttonStyle(.plain) // 👈 removes button styling
+                    .buttonStyle(.plain)
                     .offset(x: width * frameRatio.0, y: height * frameRatio.1)
             )
         } else {
@@ -180,8 +177,8 @@ struct MainHomepageMapView: View {
             )
         }
     }
-    
 }
+
 #Preview {
     MainHomepageMapView(showMapView: .constant(true))
         .environmentObject(RouterModel())

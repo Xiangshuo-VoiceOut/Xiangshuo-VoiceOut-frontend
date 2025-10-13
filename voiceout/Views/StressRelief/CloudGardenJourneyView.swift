@@ -364,7 +364,10 @@ struct CloudGardenJourneyView: View {
                         title: nil,
                         leadingComponent: nil,
                         trailingComponent: AnyView(
-                            Button { router.popToRoot() } label: {
+                            Button {
+                                router.popToRoot()
+                                router.navigateTo(.stressReliefEntry)
+                            } label: {
                                 Image("close")
                                     .frame(width:24, height:24)
                                     .foregroundColor(.grey500)

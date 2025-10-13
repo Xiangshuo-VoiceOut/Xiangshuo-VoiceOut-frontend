@@ -38,14 +38,8 @@ struct EnvyQuestionStyleTypingView: View {
                             Spacer()
                         }
                         
-                        Button {
-                            isPlayingMusic.toggle()
-                        } label: {
-                            Image(isPlayingMusic ? "music" : "stop-music")
-                                .resizable()
-                                .frame(width: 48, height: 48)
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+                        MusicButtonView()
+                            .padding(.leading, ViewSpacing.medium)
                     }
 
                     VStack(spacing: ViewSpacing.small) {

@@ -89,9 +89,10 @@
 		844ED3532D9FB8FB0055F5D6 /* SadHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3522D9FB8F50055F5D6 /* SadHomepageView.swift */; };
 		844ED3552D9FB92D0055F5D6 /* GuiltHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3542D9FB92A0055F5D6 /* GuiltHomepageView.swift */; };
 		844ED3572D9FB95A0055F5D6 /* AnxietyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3562D9FB9590055F5D6 /* AnxietyHomepageView.swift */; };
-		844ED3592D9FB9870055F5D6 /* ScareHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3582D9FB9850055F5D6 /* ScareHomepageView.swift */; };
 		8450E3E12E729C04008B2784 /* TypewriterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450E3E02E729C04008B2784 /* TypewriterText.swift */; };
 		8450E3E32E7783D4008B2784 /* AngryQuestion1StyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450E3E22E7783D2008B2784 /* AngryQuestion1StyleView.swift */; };
+		8450E4022E7DE387008B2784 /* ScareHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450E3ED2E7DE387008B2784 /* ScareHomepageView.swift */; };
+		8450E4072E7DFCAB008B2784 /* MusicButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450E4062E7DFC9B008B2784 /* MusicButtonView.swift */; };
 		846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */; };
 		848E62AD2C891D37009B162A /* StickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AC2C891D37009B162A /* StickyHeaderView.swift */; };
 		848E62AF2C892439009B162A /* OneWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AE2C892439009B162A /* OneWeekView.swift */; };
@@ -302,9 +303,10 @@
 		844ED3522D9FB8F50055F5D6 /* SadHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadHomepageView.swift; sourceTree = "<group>"; };
 		844ED3542D9FB92A0055F5D6 /* GuiltHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuiltHomepageView.swift; sourceTree = "<group>"; };
 		844ED3562D9FB9590055F5D6 /* AnxietyHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyHomepageView.swift; sourceTree = "<group>"; };
-		844ED3582D9FB9850055F5D6 /* ScareHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScareHomepageView.swift; sourceTree = "<group>"; };
 		8450E3E02E729C04008B2784 /* TypewriterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypewriterText.swift; sourceTree = "<group>"; };
 		8450E3E22E7783D2008B2784 /* AngryQuestion1StyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestion1StyleView.swift; sourceTree = "<group>"; };
+		8450E3ED2E7DE387008B2784 /* ScareHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScareHomepageView.swift; sourceTree = "<group>"; };
+		8450E4062E7DFC9B008B2784 /* MusicButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicButtonView.swift; sourceTree = "<group>"; };
 		846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentcardViewModel.swift; sourceTree = "<group>"; };
 		848E62AC2C891D37009B162A /* StickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
 		848E62AE2C892439009B162A /* OneWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWeekView.swift; sourceTree = "<group>"; };
@@ -490,7 +492,7 @@
 			path = StressRelief;
 			sourceTree = "<group>";
 		};
-		840A6EE72E72026800D8235C /* Animation */ = {
+		840A6EE72E72026800D8235C /* Angry-animation */ = {
 			isa = PBXGroup;
 			children = (
 				840A6EE32E72026800D8235C /* relaxing-bluecircle.json */,
@@ -498,13 +500,13 @@
 				840A6EE52E72026800D8235C /* scroll.json */,
 				840A6EE62E72026800D8235C /* angry-end.json */,
 			);
-			path = Animation;
+			path = "Angry-animation";
 			sourceTree = "<group>";
 		};
 		840A6EF82E72026800D8235C /* Angry */ = {
 			isa = PBXGroup;
 			children = (
-				840A6EE72E72026800D8235C /* Animation */,
+				840A6EE72E72026800D8235C /* Angry-animation */,
 				840A6EE82E72026800D8235C /* AngryHomepageView.swift */,
 				840A6EE92E72026800D8235C /* ChatBubbleView.swift */,
 				840A6EEA2E72026800D8235C /* AngryEndingView.swift */,
@@ -550,9 +552,9 @@
 				840A6F1D2E72038400D8235C /* Envy */,
 				844ED34E2D9FB5670055F5D6 /* HappyHomepageView.swift */,
 				844ED3522D9FB8F50055F5D6 /* SadHomepageView.swift */,
+				8450E3ED2E7DE387008B2784 /* ScareHomepageView.swift */,
 				844ED3542D9FB92A0055F5D6 /* GuiltHomepageView.swift */,
 				844ED3562D9FB9590055F5D6 /* AnxietyHomepageView.swift */,
-				844ED3582D9FB9850055F5D6 /* ScareHomepageView.swift */,
 				844ED34C2D9FAC650055F5D6 /* MoodTreatmentContainerHomeView.swift */,
 				844A7A7D2DAF897B00E58267 /* MoodTreatmentLauncherView.swift */,
 				8450E3E02E729C04008B2784 /* TypewriterText.swift */,
@@ -824,6 +826,7 @@
 				D2071D462BAB5E9E0040B0AE /* TextInputView.swift */,
 				D2AA0AE52CA1C2B6007A96E4 /* TimePickerView.swift */,
 				D2EEE6892CF125EF00726FCE /* WarningBannerView.swift */,
+				8450E4062E7DFC9B008B2784 /* MusicButtonView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1157,6 +1160,8 @@
 				84F0D9462D359F340029F651 /* FAQInformation.swift in Sources */,
 				D228B27D2C94E452003975FB /* CertificateInfoView.swift in Sources */,
 				844A7A7E2DAF897D00E58267 /* MoodTreatmentLauncherView.swift in Sources */,
+				8450E4072E7DFCAB008B2784 /* MusicButtonView.swift in Sources */,
+				8450E4022E7DE387008B2784 /* ScareHomepageView.swift in Sources */,
 				D29F0CF92C8BD6ED0018E7F7 /* ViewModifiers.swift in Sources */,
 				D2071D472BAB5E9E0040B0AE /* TextInputView.swift in Sources */,
 				B8EF41AD2C6AAE8500C77D4D /* SignUpStep2.swift in Sources */,
@@ -1248,7 +1253,6 @@
 				840A6EDF2E72021500D8235C /* MoodTreatmentService.swift in Sources */,
 				8433CAD22C45A0DD00845A7A /* ClinicianCardView.swift in Sources */,
 				84F0FD5F2C48D85A00E2DB79 /* StarRatingWithIntView.swift in Sources */,
-				844ED3592D9FB9870055F5D6 /* ScareHomepageView.swift in Sources */,
 				84B100E02CF1CB32003C6C20 /* TherapistScheduleViewModel.swift in Sources */,
 				844ED3532D9FB8FB0055F5D6 /* SadHomepageView.swift in Sources */,
 				84F0FD592C48D29200E2DB79 /* StarRatingWithDoubleView.swift in Sources */,

@@ -153,4 +153,5 @@ struct MoodTreatmentSadHomepageView: View {
 
 #Preview {
     MoodTreatmentSadHomepageView()
+        .environmentObject(RouterModel())
 }

@@ -64,6 +64,17 @@ struct MoodTreatmentService {
         }
     }
     
+    func submitCustomAnswer(body: [String: Any]) async throws -> MoodTreatmentQuestion {
+        return try await tryAllBaseURLs { base in
+            try await requestJSON(
+                baseURL: base,
+                path: "/quiz/custom-answer",
+                method: "POST",
+                body: body
+            ) as MoodTreatmentQuestion
+        }
+    }
+    
     private func tryAllBaseURLs<T>(_ block: (_ base: URL) async throws -> T) async throws -> T {
         var lastError: Error?
         for base in Self.candidateBaseURLs {

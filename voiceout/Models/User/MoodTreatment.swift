@@ -47,25 +47,14 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
     case styleNotes//便签题
     case styleOrder//排序题
     case styleMatching//配对题
-    case styleScore//打分题
     case styleEmotion//情感表达题
     case styleUpload//上传互动题
-    case styleRandom//随即题
-    case stylePlan//独处计划题
-    case styleFree//自由填空题
-    case styleInteractive//互动题
     case styleInteractiveDialogue//互动对话题
-    case styleCreative//创意表达题
     case styleSlider//滑动卡片题
     case styleMultichoice//互动多选
-    case styleList//列举优点题
-    case styleTyping//打字题
-    case styleDropdown//下拉题
     case styleTodo//记录todo题
-    case styleDropdown2//下拉题2
-    case styleFreeText//自由填写
+    case styleFillInBlank//填空题
     case styleEnd//结束
-    case styleFinalEnding//最终结束
 
 
 
@@ -105,25 +94,14 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
         case "styleNotes":         self = .styleNotes
         case "styleOrder":         self = .styleOrder
         case "styleMatching":      self = .styleMatching
-        case "styleScore":         self = .styleScore
         case "styleEmotion":       self = .styleEmotion
         case "styleUpload":        self = .styleUpload
-        case "styleRandom":        self = .styleRandom
-        case "stylePlan":          self = .stylePlan
-        case "styleFree":          self = .styleFree
-        case "styleInteractive":   self = .styleInteractive
         case "styleInteractiveDialogue": self = .styleInteractiveDialogue
-        case "styleCreative":      self = .styleCreative
         case "styleSlider":        self = .styleSlider
         case "styleMultichoice":   self = .styleMultichoice
-        case "styleList":          self = .styleList
-        case "styleTyping":        self = .styleTyping
-        case "styleDropdown":      self = .styleDropdown
         case "styleTodo":          self = .styleTodo
-        case "styleDropdown2":     self = .styleDropdown2
-        case "styleFreeText":      self = .styleFreeText
+        case "styleFillInBlank":   self = .styleFillInBlank
         case "styleEnd":           self = .styleEnd
-        case "styleFinalEnding":   self = .styleFinalEnding
             
         default:
             self = .unknown
@@ -157,25 +135,14 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
         case .styleNotes:           return "styleNotes"
         case .styleOrder:           return "styleOrder"
         case .styleMatching:        return "styleMatching"
-        case .styleScore:           return "styleScore"
         case .styleEmotion:         return "styleEmotion"
         case .styleUpload:          return "styleUpload"
-        case .styleRandom:          return "styleRandom"
-        case .stylePlan:            return "stylePlan"
-        case .styleFree:            return "styleFree"
-        case .styleInteractive:     return "styleInteractive"
         case .styleInteractiveDialogue: return "styleInteractiveDialogue"
-        case .styleCreative:        return "styleCreative"
         case .styleSlider:          return "styleSlider"
         case .styleMultichoice:     return "styleMultichoice"
-        case .styleList:            return "styleList"
-        case .styleTyping:          return "styleTyping"
-        case .styleDropdown:        return "styleDropdown"
         case .styleTodo:            return "styleTodo"
-        case .styleDropdown2:       return "styleDropdown2"
-        case .styleFreeText:        return "styleFreeText"
+        case .styleFillInBlank:     return "styleFillInBlank"
         case .styleEnd:             return "styleEnd"
-        case .styleFinalEnding:     return "styleFinalEnding"
             
         case .unknown:
             return ""

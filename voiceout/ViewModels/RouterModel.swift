@@ -116,8 +116,7 @@ final class RouterModel: ObservableObject {
             EnvyQuestionPageView(questionId: id)
                 .environmentObject(self)
         case .sadSingleQuestion(let id):
-            // TODO: 创建SadQuestionPageView
-            Text("Sad Question Page - ID: \(id)")
+            SadQuestionPageView(questionId: id)
                 .environmentObject(self)
         case .stressReliefEntry:
             StressReliefEntryView()

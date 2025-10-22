@@ -81,4 +81,38 @@ final class MoodTreatmentVM: ObservableObject {
             isLoading = false
         }
     }
+    
+    // 处理非选择题的数据提交（如便签、填空、情绪表达等）
+    func submitContinueAction(questionId: Int, userData: [String: Any]? = nil) {
+        guard let currentQuestion = question else {
+            errorMessage = "The current question is empty"
+            return
+        }
+        
+        isLoading = true
+        errorMessage = nil
+        
+        Task {
+            do {
+                // 创建提交数据
+                var body: [String: Any] = [
+                    "user_id": userId,
+                    "session_id": sessionId,
+                    "question_id": questionId,
+                    "action": "continue"
+                ]
+                
+                // 如果有用户数据，添加到提交中
+                if let userData = userData {
+                    body["user_data"] = userData
+                }
+                
+                let nextQuestion = try await MoodTreatmentService.shared.submitCustomAnswer(body: body)
+                question = nextQuestion
+            } catch {
+                errorMessage = "Failed to submit data：\(error.localizedDescription)"
+            }
+            isLoading = false
+        }
+    }
 }

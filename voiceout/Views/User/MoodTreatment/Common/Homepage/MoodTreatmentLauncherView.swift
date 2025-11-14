@@ -15,7 +15,7 @@ struct MoodTreatmentLauncherView: View {
     var body: some View {
         Group {
             if loading {
-                ProgressView("加载中…")
+                ProgressView("Loading…")
                     .onAppear {
                         fetchLatestMood()
                     }

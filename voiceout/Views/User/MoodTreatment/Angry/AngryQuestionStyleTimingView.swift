@@ -73,7 +73,7 @@ struct AngryQuestionStyleTimingView: View {
                     VStack(spacing: 0) {
                         Spacer()
                             .frame(height: 144)
-                        TypewriterText(fullText: instructions[stepIndex], characterDelay: 0.05) {
+                        TypewriterText(fullText: instructions[stepIndex]) {
                             startTimer()
                         }
                         .id(stepIndex)
@@ -123,7 +123,7 @@ struct AngryQuestionStyleTimingView: View {
                         .padding(.bottom, ViewSpacing.large)
 
                         if showFinalIntro {
-                            TypewriterText(fullText: "完成后返回主页面继续下一步", characterDelay: 0.05) {
+                            TypewriterText(fullText: "完成后返回主页面继续下一步") {
                                 showFinalButton = true
                             }
                             .id("finalHighlight")
@@ -189,12 +189,7 @@ struct AngryQuestionStyleTimingView: View {
                 Spacer()
             }
             
-            Button { isPlayingMusic.toggle() } label: {
-                Image(isPlayingMusic ? "music" : "stop-music")
-                    .resizable()
-                    .frame(width: 48, height: 48)
-                    .padding(.leading,ViewSpacing.medium)
-            }
+            MusicButtonView()
         }
     }
     

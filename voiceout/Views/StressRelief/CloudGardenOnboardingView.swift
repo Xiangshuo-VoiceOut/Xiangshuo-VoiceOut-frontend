@@ -18,9 +18,7 @@ struct CloudGardenOnboardingView: View {
     @EnvironmentObject var router: RouterModel
     @Environment(\.presentationMode) var presentationMode
     private let startIndex: Int
-    private let showSkip: Bool
     @State private var current: Int
-    
     private let pages: [OnboardingPage] = [
         .init(imageName: nil,
               text: "garden_onboarding_1",
@@ -45,9 +43,8 @@ struct CloudGardenOnboardingView: View {
               buttonTitle: "tap_to_finish")
     ]
     
-    init(startIndex: Int = 0, showSkip: Bool = false) {
+    init(startIndex: Int = 0) {
         self.startIndex = startIndex
-        self.showSkip = showSkip
         self._current = State(initialValue: startIndex)
     }
     
@@ -63,8 +60,6 @@ struct CloudGardenOnboardingView: View {
                     Image("leaf").frame(width: 40, height: 40).offset(x: 5*ViewSpacing.base, y: -30*ViewSpacing.betweenSmallAndBase)
                     Image("flower-blue").frame(width: 65, height: 65).offset(x: -17*ViewSpacing.betweenSmallAndBase, y: ViewSpacing.betweenSmallAndBase)
                     Image("flower-pink").frame(width: 60, height: 60).offset(x: -10*ViewSpacing.betweenSmallAndBase, y: -22*ViewSpacing.betweenSmallAndBase)
-                    Image("flower-yellow").frame(width: 60, height: 60).offset(x: 14*ViewSpacing.betweenSmallAndBase, y:-175)
-                        .zIndex(1)
                     Image("flower-orange").frame(width: 60, height: 60).offset(x: 17*ViewSpacing.betweenSmallAndBase, y: 5*ViewSpacing.medium)
                     Image("leaf")
                         .frame(width: 40, height: 40)
@@ -85,7 +80,10 @@ struct CloudGardenOnboardingView: View {
                         title: String(localized: "cloud_garden"),
                         leadingComponent: AnyView(Spacer().frame(width: 24)),
                         trailingComponent: AnyView(
-                            Button { router.popToRoot() } label: {
+                            Button {
+                                router.popToRoot()
+                                router.navigateTo(.stressReliefEntry)
+                            } label: {
                                 Image("close")
                                     .resizable()
                                     .frame(width: 24, height: 24)
@@ -97,19 +95,25 @@ struct CloudGardenOnboardingView: View {
                     .padding(.top, geo.safeAreaInsets.top)
                     .frame(maxWidth: .infinity)
                     
-                    if showSkip {
-                        HStack {
-                            Spacer()
-                            Button("skip") {
-                                withAnimation { current = 5 }
+                    HStack {
+                        Spacer()
+                        if current <= 4 {
+                            HStack(alignment: .center, spacing: ViewSpacing.betweenSmallAndBase) {
+                                Button("跳过") {
+                                    withAnimation { current = 5 }
+                                }
+                                .font(Font.typography(.bodyMedium))
+                                .foregroundColor(.textBrandPrimary)
+                                .multilineTextAlignment(.center)
                             }
-                            .font(Font.typography(.bodyLarge))
-                            .foregroundColor(.surfaceBrandPrimary)
-                            .padding(.trailing, ViewSpacing.medium)
+                            .padding(.horizontal, ViewSpacing.medium)
+                            .padding(.vertical, ViewSpacing.xsmall)
+                            .background(.white.opacity(0.5))
+                            .cornerRadius(CornerRadius.full.value)
                         }
-                        .padding(.top, ViewSpacing.medium)
                     }
-                    
+                    .frame(height:66)
+                    .padding(.horizontal, ViewSpacing.medium)
                     if let img = pages[current].imageName {
                         Image(img)
                             .resizable()
@@ -145,16 +149,16 @@ struct CloudGardenOnboardingView: View {
                                 .frame(maxWidth: 326 - 32, alignment: .leading)
                                 .padding(.horizontal, ViewSpacing.xlarge)
                                 .padding(.top, ViewSpacing.large)
-                            
                             Button(action: goNext) {
                                 Text(pages[current].buttonTitle)
                                     .font(Font.typography(.bodyXSmall))
                                     .frame(maxWidth: .infinity, alignment: .trailing)
-                                    .foregroundColor(Color(red: 0.63, green: 0.63, blue: 0.63))
-                                    .padding(
-                                        .trailing,
-                                        ViewSpacing.large + ViewSpacing.xxxsmall + ViewSpacing.xxsmall
+                                    .foregroundColor(
+                                        current == 5
+                                        ? .textBrandPrimary
+                                        : .textSecondary
                                     )
+                                    .padding(.trailing,ViewSpacing.large+ViewSpacing.xxxsmall+ViewSpacing.xxsmall)
                                     .padding(.bottom, ViewSpacing.small)
                             }
                         }
@@ -201,7 +205,8 @@ struct CloudGardenOnboardingView: View {
         if current < 5 {
             withAnimation { current += 1 }
         } else if current == 5 {
-            router.navigateTo(.cloudGardenJourney)
+            current = 6
+            router.navigateTo(.playRelaxVideo(name: "relax", ext: "mov"))
         } else {
             router.popToRoot()
         }
@@ -211,11 +216,11 @@ struct CloudGardenOnboardingView: View {
 struct CloudGardenOnboardingView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CloudGardenOnboardingView(startIndex: 0, showSkip: false)
+            CloudGardenOnboardingView(startIndex: 0)
                 .environmentObject(RouterModel())
-            CloudGardenOnboardingView(startIndex: 0, showSkip: true)
+            CloudGardenOnboardingView(startIndex: 0)
                 .environmentObject(RouterModel())
-            CloudGardenOnboardingView(startIndex: 6, showSkip: false)
+            CloudGardenOnboardingView(startIndex: 6)
                 .environmentObject(RouterModel())
         }
     }

@@ -40,25 +40,6 @@ struct MoodPageContainerView<Content: View>: View {
                 VStack(spacing: 0) {
                     Spacer()
                         .frame(height: 44)
-                    
-                    HStack(alignment: .top) {
-                        VStack(spacing: ViewSpacing.small) {
-                            Button(action: {
-                                router.navigateTo(.moodManagerLoading)
-                            }) {
-                                MoodIconBadge(imageName: "diary", label: "日记")
-                            }
-                            
-                            Button(action: {
-                                router.navigateTo(.moodCalendar)
-                            }) {
-                                MoodIconBadge(imageName: "chart-histogram 1", label: "云报")
-                            }
-                        }
-                        Spacer()
-                    }
-                    .padding(.top, ViewSpacing.small)
-                    
                     content
                     Spacer(minLength: ViewSpacing.xxsmall+ViewSpacing.medium)
                 }
@@ -68,10 +49,10 @@ struct MoodPageContainerView<Content: View>: View {
 
             StickyHeaderView(
                 title: "疗愈云港",
-                leadingComponent: AnyView(Spacer().frame(width: ViewSpacing.large)
+                leadingComponent: AnyView(BackButtonView().foregroundColor(.grey500)
                 ),
                 trailingComponent: AnyView(
-                    Button(action: {}) {
+                    Button(action: {router.navigateTo(.mainHomepage) }) {
                         Image("close")
                             .resizable()
                             .frame(width: 24, height: 24)

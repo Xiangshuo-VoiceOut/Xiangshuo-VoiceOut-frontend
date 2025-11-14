@@ -37,12 +37,8 @@ struct AngryQuestionStyleFView: View {
                 Color.surfaceBrandTertiaryGreen
                     .ignoresSafeArea(edges: .bottom)
                 
-                Button { isPlayingMusic.toggle() } label: {
-                    Image(isPlayingMusic ? "music" : "stop-music")
-                        .resizable()
-                        .frame(width: 48, height: 48)
-                }
-                .padding(.leading, ViewSpacing.medium)
+                MusicButtonView()
+                    .padding(.leading, ViewSpacing.medium)
                 
                 VStack {
                     Spacer()
@@ -66,7 +62,7 @@ struct AngryQuestionStyleFView: View {
                             texts: texts,
                             displayedCount: $displayedCount,
                             bubbleHeight: $bubbleHeight,
-                            bubbleSpacing: 24,
+                            bubbleSpacing: ViewSpacing.large,
                             totalHeight: bubbleFrameHeight
                         )
                         .frame(height: bubbleFrameHeight)
@@ -289,7 +285,6 @@ struct FillInBlankEditorView: View {
             routine: "anger"
         ),
         onSelect: { selected in
-            print("用户点击了选项：\(selected.text)")
         }
     )
 }

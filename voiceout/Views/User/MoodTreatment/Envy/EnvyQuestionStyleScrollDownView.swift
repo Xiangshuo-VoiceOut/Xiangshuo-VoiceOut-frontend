@@ -46,20 +46,14 @@ struct EnvyQuestionStyleScrollDownView: View {
                                 .padding(.bottom, ViewSpacing.large)
                             Spacer()
                         }
-                        Button {
-                            isPlayingMusic.toggle()
-                        } label: {
-                            Image(isPlayingMusic ? "music" : "stop-music")
-                                .resizable()
-                                .frame(width: 48, height: 48)
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+                        MusicButtonView()
+                            .padding(.leading, ViewSpacing.medium)
                     }
                     
                     VStack(spacing: ViewSpacing.small) {
                         ForEach(question.texts ?? [], id: \.self) { line in
                             if !introDone {
-                                TypewriterText(fullText: line, characterDelay: 0.1) {
+                                TypewriterText(fullText: line) {
                                     if line == question.texts?.last {
                                         introDone = true
                                     }

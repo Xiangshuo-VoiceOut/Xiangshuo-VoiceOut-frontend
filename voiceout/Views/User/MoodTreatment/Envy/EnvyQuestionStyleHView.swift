@@ -21,21 +21,20 @@ struct EnvyQuestionStyleHView: View {
 
     private let bubbleFrameHeight: CGFloat = 48 + 64 + 71
 
+    @State private var selectedKey: String? = nil
+    private let selectionHold: TimeInterval = 0.15
+
     var body: some View {
         GeometryReader { proxy in
-            let safeTop = proxy.safeAreaInsets.top
+            let _ = proxy.safeAreaInsets.top
             let texts = question.texts ?? []
             
             ZStack(alignment: .topLeading) {
                 Color.surfaceBrandTertiaryGreen
                     .ignoresSafeArea(edges: .bottom)
                 
-                Button { isPlayingMusic.toggle() } label: {
-                    Image(isPlayingMusic ? "music" : "stop-music")
-                        .resizable()
-                        .frame(width: 48, height: 48)
-                }
-                .padding(.leading, ViewSpacing.medium)
+                MusicButtonView()
+                    .padding(.leading, ViewSpacing.medium)
                 
                 VStack {
                     Spacer()
@@ -61,7 +60,7 @@ struct EnvyQuestionStyleHView: View {
                             texts: texts,
                             displayedCount: $displayedCount,
                             bubbleHeight: $bubbleHeight,
-                            bubbleSpacing: 24,
+                            bubbleSpacing: ViewSpacing.large,
                             totalHeight: bubbleFrameHeight
                         )
                         .frame(height: bubbleFrameHeight)
@@ -72,40 +71,73 @@ struct EnvyQuestionStyleHView: View {
                     if showOptions {
                         VStack(spacing: ViewSpacing.small) {
                             ForEach(question.options) { option in
+                                let isSelected = (selectedKey == option.key)
                                 HStack {
                                     Spacer(minLength: 80)
                                     if option.exclusive == true {
-                                        Button { onSelect(option) } label: {
+                                        Button {
+                                            guard selectedKey == nil else { return }
+                                            withAnimation(.easeIn(duration: selectionHold)) {
+                                                selectedKey = option.key
+                                            }
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + selectionHold) {
+                                                onSelect(option)
+                                                selectedKey = nil
+                                            }
+                                        } label: {
                                             HStack(spacing: ViewSpacing.xsmall) {
                                                 Image("ai-star")
                                                     .frame(width: 24, height: 24)
                                                 Text(option.text)
+                                                    .font(Font.typography(.bodyMedium))
                                             }
-                                            .foregroundColor(Color(red: 0, green: 0.6, blue: 0.8))
+                                            .foregroundColor(isSelected ? .white : Color(red: 0, green: 0.6, blue: 0.8))
                                             .padding(.horizontal, ViewSpacing.medium)
                                             .padding(.vertical, ViewSpacing.small)
-                                            .background(Color.surfacePrimary)
+                                            .background(
+                                                isSelected
+                                                ? Color(red: 0.42, green: 0.81, blue: 0.95)
+                                                : Color.surfacePrimary
+                                            )
                                             .cornerRadius(CornerRadius.full.value)
                                         }
+                                        .disabled(selectedKey != nil)
                                     } else {
                                         Button {
-                                            onSelect(option)
+                                            guard selectedKey == nil else { return }
+                                            withAnimation(.easeIn(duration: selectionHold)) {
+                                                selectedKey = option.key
+                                            }
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + selectionHold) {
+                                                onSelect(option)
+                                                selectedKey = nil
+                                            }
                                         } label: {
                                             Text(option.text)
                                                 .font(Font.typography(.bodyMedium))
-                                                .foregroundColor(.grey500)
+                                                .foregroundColor(isSelected ? .white : .grey500)
                                                 .multilineTextAlignment(.leading)
                                                 .padding(.horizontal, ViewSpacing.medium)
                                                 .padding(.vertical, ViewSpacing.base)
-                                                .background(Color.surfacePrimary)
+                                                .background(
+                                                    isSelected
+                                                    ? Color(red: 0.8, green: 0.95, blue: 1)
+                                                    : Color.surfacePrimary
+                                                )
                                                 .overlay(
                                                     Rectangle()
                                                         .inset(by: 2)
-                                                        .stroke(Color(red: 0.86, green: 0.65, blue: 0.38), lineWidth: 4)
-                                                        .shadow(color: Color(red: 0.54, green: 0.28, blue: 0.32),
-                                                                radius: 0, x: 2, y: 2)
+                                                        .stroke(
+                                                            Color(red: 0.86, green: 0.65, blue: 0.38),
+                                                            lineWidth: 4
+                                                        )
+                                                        .shadow(
+                                                            color: Color(red: 0.54, green: 0.28, blue: 0.32),
+                                                            radius: 0, x: 2, y: 2
+                                                        )
                                                 )
                                         }
+                                        .disabled(selectedKey != nil)
                                     }
                                 }
                             }
@@ -166,4 +198,3 @@ struct EnvyQuestionStyleHView: View {
         onSelect: { _ in }
     )
 }
-

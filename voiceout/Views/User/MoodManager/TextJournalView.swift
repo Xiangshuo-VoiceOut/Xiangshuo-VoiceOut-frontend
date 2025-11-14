@@ -74,7 +74,7 @@ struct TextJournalView: View {
                                                 .font(Font.typography(.bodyMedium))
                                                 .foregroundColor(.textPrimary)
                                             let moodText = moodImageToChinese[moodKey] ?? entry.mood
-                                            let intensityText = intensityDescription(entry.intensity)
+                                            let intensityText = intensityDescription(entry.intensity ?? 0)
                                             Text("\(intensityText)\(moodText)")
                                                 .font(Font.typography(.bodyMedium))
                                                 .foregroundColor(.textBrandPrimary)
@@ -142,7 +142,7 @@ struct TextJournalView: View {
                                         time: formatTime(entry.dateTime),
                                         emotion: moodImageToChinese[entry.mood.lowercased()] ?? entry.mood,
                                         image: entry.mood.lowercased(),
-                                        intensity: entry.intensity,
+                                        intensity: entry.intensity ?? 0,
                                         isSelected: (currentStep == index)
                                     )
                                     .id(index)

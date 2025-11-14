@@ -15,9 +15,6 @@ struct AngryQuestionStyleBView: View {
     @State private var showIntro: Bool = false
     @State private var showButton: Bool = false
     
-    private let questionTypingInterval: TimeInterval = 0.1
-    private let highlightTypingInterval: TimeInterval = 0.1
-    
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .topLeading) {
@@ -35,13 +32,7 @@ struct AngryQuestionStyleBView: View {
                         }
                         
                         HStack {
-                            Button {
-                                isPlayingMusic.toggle()
-                            } label: {
-                                Image(isPlayingMusic ? "music" : "stop-music")
-                                    .resizable()
-                                    .frame(width: 48, height: 48)
-                            }
+                            MusicButtonView()
                             Spacer()
                         }
                     }
@@ -49,8 +40,7 @@ struct AngryQuestionStyleBView: View {
                     
                     ForEach(Array(question.texts?.enumerated() ?? [].enumerated()), id: \.offset) { idx, line in
                         TypewriterText(
-                          fullText: line,
-                          characterDelay: questionTypingInterval
+                          fullText: line
                         ) {
                           if idx == (question.texts?.count ?? 0) - 1 {
                             if let highlights = question.introTexts, !highlights.isEmpty {
@@ -71,8 +61,7 @@ struct AngryQuestionStyleBView: View {
                     if showIntro, let highlights = question.introTexts {
                         ForEach(Array(highlights.enumerated()), id: \.offset) { idx, hl in
                             TypewriterText(
-                                fullText: hl,
-                                characterDelay: highlightTypingInterval
+                                fullText: hl
                             ) {
                                 if idx == highlights.count - 1 {
                                     showButton = true

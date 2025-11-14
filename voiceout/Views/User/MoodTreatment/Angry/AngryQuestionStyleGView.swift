@@ -18,7 +18,6 @@ struct AngryQuestionStyleGView: View {
     @State private var inputDone = false
     @State private var praiseDone = false
     
-    private let typingInterval: TimeInterval = 0.1
     private let praiseText =
     "真棒呀，你已经有可以执行的计划了！这是掌控情绪的一大步。接下来，请给自己一些时间，尝试从第一个方案开始做吧，我相信你~"
     
@@ -39,14 +38,8 @@ struct AngryQuestionStyleGView: View {
                             Spacer()
                         }
                         
-                        Button {
-                            isPlayingMusic.toggle()
-                        } label: {
-                            Image(isPlayingMusic ? "music" : "stop-music")
-                                .resizable()
-                                .frame(width: 48, height: 48)
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+                        MusicButtonView()
+                            .padding(.leading, ViewSpacing.medium)
                     }
 
                     VStack(spacing: ViewSpacing.large) {
@@ -54,8 +47,7 @@ struct AngryQuestionStyleGView: View {
                             VStack(spacing: ViewSpacing.small) {
                                 ForEach(question.texts ?? [], id: \.self) { line in
                                     if !introDone {
-                                        TypewriterText(fullText: line,
-                                                       characterDelay: typingInterval) {
+                                        TypewriterText(fullText: line) {
                                             if line == question.texts?.last {
                                                 introDone = true
                                             }
@@ -114,14 +106,13 @@ struct AngryQuestionStyleGView: View {
                     
                     if inputDone {
                         if !praiseDone {
-                            TypewriterText(fullText: praiseText,
-                                           characterDelay: typingInterval) {
+                            TypewriterText(fullText: praiseText) {
                                 praiseDone = true
                             }
-                                           .font(.typography(.bodyMedium))
-                                           .multilineTextAlignment(.center)
-                                           .foregroundColor(.grey500)
-                                           .padding(.horizontal, 2*ViewSpacing.xlarge)
+                            .font(.typography(.bodyMedium))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.grey500)
+                            .padding(.horizontal, 2*ViewSpacing.xlarge)
                         } else {
                             Text(praiseText)
                                 .font(.typography(.bodyMedium))

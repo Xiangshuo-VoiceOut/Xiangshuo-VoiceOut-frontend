@@ -28,13 +28,21 @@ enum Route: Hashable {
     case textJournalDetail(entry: DiaryEntry)
     case moodHomepageLauncher
     case mainHomepage
-    case systemMessageDetail
     case cloudGardenOnboarding(startIndex: Int, showSkip: Bool)
-    case cloudGardenJourney
     case cloudAudioOnboarding(startIndex: Int, showSkip: Bool)
     case angrySingleQuestion(id: Int)
     case envySingleQuestion(id: Int)
+    case scareSingleQuestion(id: Int)
     case stressReliefEntry
+    case moodManagerLoading2
+    case moodCalendarWithMood(String)
+    case moodTreatmentHappyHomepage
+    case moodTreatmentSadHomepage
+    case moodTreatmentAngryHomepage
+    case moodTreatmentEnvyHomepage
+    case moodTreatmentGuiltHomepage
+    case moodTreatmentScareHomepage
+    case playRelaxVideo(name: String, ext: String = "mov")
 }
 
 final class RouterModel: ObservableObject {
@@ -82,7 +90,7 @@ final class RouterModel: ObservableObject {
             MoodDiaryView(selectedImage: selectedImage)
                 .environmentObject(self)
         case .moodCalendar:
-            MoodCalendarView()
+            MoodCalendarView(incomingMood: nil)
                 .environmentObject(self)
         case .textJournalView(let diaries):
             TextJournalView(diaries: diaries, onBack: { self.navigateBack() })
@@ -96,14 +104,8 @@ final class RouterModel: ObservableObject {
         case .mainHomepage:
             MainHomepageView()
                 .environmentObject(self)
-        case .systemMessageDetail:
-            SystemMessageDetailView()
-                .environmentObject(self)
         case .cloudGardenOnboarding(let start, let skip):
-            CloudGardenOnboardingView(startIndex: start, showSkip: skip)
-                .environmentObject(self)
-        case .cloudGardenJourney:
-            CloudGardenJourneyView()
+            CloudGardenOnboardingView(startIndex: start)
                 .environmentObject(self)
         case .cloudAudioOnboarding(let start, let skip):
             CloudAudioOnboardingView(startIndex: start, showSkip: skip)
@@ -114,8 +116,38 @@ final class RouterModel: ObservableObject {
         case .envySingleQuestion(let id):
             EnvyQuestionPageView(questionId: id)
                 .environmentObject(self)
+        case .scareSingleQuestion(let id):
+            ScareQuestionPageView(questionId: id)
+                .environmentObject(self)
         case .stressReliefEntry:
             StressReliefEntryView()
+                .environmentObject(self)
+        case .moodManagerLoading2:
+            MoodManagerLoadingView2()
+                .environmentObject(self)
+        case .moodCalendarWithMood(let mood):
+            MoodCalendarView(incomingMood: mood)
+                .environmentObject(self)
+        case .moodTreatmentHappyHomepage:
+            MoodTreatmentHappyHomepageView()
+                .environmentObject(self)
+        case .moodTreatmentSadHomepage:
+            MoodTreatmentSadHomepageView()
+                .environmentObject(self)
+        case .moodTreatmentAngryHomepage:
+            MoodTreatmentAngryHomepageView()
+                .environmentObject(self)
+        case .moodTreatmentEnvyHomepage:
+            MoodTreatmentEnvyHomepageView()
+                .environmentObject(self)
+        case .moodTreatmentGuiltHomepage:
+            MoodTreatmentGuiltHomepageView()
+                .environmentObject(self)
+        case .moodTreatmentScareHomepage:
+            MoodTreatmentScareHomepageView()
+                .environmentObject(self)
+        case .playRelaxVideo(let name, let ext):
+            RelaxationVideoView(source: .bundle(name: name, ext: ext))
                 .environmentObject(self)
         }
     }

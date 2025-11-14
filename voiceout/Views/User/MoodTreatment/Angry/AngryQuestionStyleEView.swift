@@ -22,6 +22,8 @@ struct AngryQuestionStyleEView: View {
     private let animationDuration: TimeInterval = 0.5
     private let bubbleFrameHeight: CGFloat = 48 + 64 + 71
 
+    @State private var selectedKey: String? = nil
+    private let selectionHold: TimeInterval = 0.15
     var body: some View {
         GeometryReader { proxy in
             let safeTop = proxy.safeAreaInsets.top
@@ -31,12 +33,8 @@ struct AngryQuestionStyleEView: View {
                 Color.surfaceBrandTertiaryGreen
                     .ignoresSafeArea(edges: .bottom)
 
-                Button { isPlayingMusic.toggle() } label: {
-                    Image(isPlayingMusic ? "music" : "stop-music")
-                        .resizable()
-                        .frame(width: 48, height: 48)
-                }
-                .padding(.leading, ViewSpacing.medium)
+                MusicButtonView()
+                    .padding(.leading, ViewSpacing.medium)
 
                 VStack {
                     Spacer()
@@ -60,7 +58,7 @@ struct AngryQuestionStyleEView: View {
                             texts: texts,
                             displayedCount: $displayedCount,
                             bubbleHeight: $bubbleHeight,
-                            bubbleSpacing: 24,
+                            bubbleSpacing: ViewSpacing.large,
                             totalHeight: bubbleFrameHeight
                         )
                         .frame(height: bubbleFrameHeight)
@@ -154,7 +152,6 @@ struct AngryQuestionStyleEView: View {
     }
 }
 
-
 #Preview {
     AngryQuestionStyleEView(
         question: MoodTreatmentQuestion(
@@ -169,7 +166,8 @@ struct AngryQuestionStyleEView: View {
                 .init(key: "B",text: "脸颊变红、体温升高、内部像要爆炸", next: nil, exclusive: false),
                 .init(key: "C",text: "无法控制的流泪", next: nil, exclusive: false),
                 .init(key: "D",text: "牙齿咬紧，或攥紧拳头", next: nil, exclusive: false),
-                .init(key: "E",text: "想要扔东西、砸墙，或者伤害某些人事物", next: nil, exclusive: false)
+                .init(key: "E",text: "想要扔东西、砸墙，或者伤害某些人事物", next: nil, exclusive: false),
+                .init(key: "F",text: "其实，我现在没有这些感觉", next: 101, exclusive: true)
             ],
             introTexts: nil,
             showSlider: nil,
@@ -177,10 +175,8 @@ struct AngryQuestionStyleEView: View {
             routine: "anger"
         ),
         onSelect: { option in
-            print("预览选中了：\(option.text)")
         },
         onConfirm: { selected in
-            print("你选择了：\(selected.map { $0.text })")
         }
     )
 }

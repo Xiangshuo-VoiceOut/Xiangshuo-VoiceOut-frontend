@@ -8,76 +8,109 @@
 import SwiftUI
 
 struct MoodTreatmentHappyHomepageView: View {
+    @EnvironmentObject var router: RouterModel
     var body: some View {
+        let secondaryTextHorizontalPadding: CGFloat = 45
+        let cloudChatOverflowLeft: CGFloat = -54
+        let buttonBottomPadding: CGFloat
         let screenWidth = UIScreen.main.bounds.width
-        
-        enum ScreenSizeCategory {
-            case small, medium, large
-        }
-        
+        enum ScreenSizeCategory { case small, medium, large }
         let category: ScreenSizeCategory = {
             switch screenWidth {
-            case ..<400:
-                return .small
-            case 400..<420:
-                return .medium
-            default:
-                return .large
+            case ..<400: return .small
+            case 400..<420: return .medium
+            default: return .large
             }
         }()
         
         let sunWidth: CGFloat
         let sunHeight: CGFloat
         let sunOffsetY: CGFloat
-        let bubbleTrailingOffset: CGFloat
+        let sunOffsetX: CGFloat
+        let happyOffsetY: CGFloat
+        let bubbleTop: CGFloat
+        let cloudChatOffsetY: CGFloat
         
         switch category {
         case .small:
-            sunWidth = 340
-            sunHeight = 340
-            sunOffsetY = ViewSpacing.xxlarge-ViewSpacing.xxsmall
-            bubbleTrailingOffset = -11*ViewSpacing.betweenSmallAndBase
+            sunWidth = 340; sunHeight = 340
+            sunOffsetX = 50
+            sunOffsetY = -8
+            happyOffsetY = 30
+            buttonBottomPadding = 60
+            bubbleTop = 290
+            cloudChatOffsetY = 350
+
         case .medium:
-            sunWidth = 360
-            sunHeight = 360
-            sunOffsetY = ViewSpacing.xxlarge-ViewSpacing.xxsmall
-            bubbleTrailingOffset = -13*ViewSpacing.betweenSmallAndBase
+            sunWidth = 360; sunHeight = 360
+            sunOffsetX = 50
+            sunOffsetY = 42
+            happyOffsetY = 80
+            buttonBottomPadding = 152
+            bubbleTop = 350
+            cloudChatOffsetY = 390
+
         case .large:
-            sunWidth = 380
-            sunHeight = 380
-            sunOffsetY = 2*ViewSpacing.large+ViewSpacing.xsmall
-            bubbleTrailingOffset = -17*ViewSpacing.betweenSmallAndBase
+            sunWidth = 380; sunHeight = 380
+            sunOffsetX = 50
+            sunOffsetY = 40
+            happyOffsetY = 80
+            buttonBottomPadding = 152
+            bubbleTop = 362
+            cloudChatOffsetY = 420
         }
         
         return MoodPageContainerView(
             mood: "happy",
             onHealTap: {},
             content: {
-                VStack(spacing: 0) {
-                    HStack(alignment: .top, spacing: ViewSpacing.small) {
-                        Image("cloud-chat")
-                            .resizable()
-                            .frame(width: 100, height: 71)
-                            .scaleEffect(x: -1, y: 1)
+                ZStack(alignment: .topLeading) {
+                    Image("cloud-chat")
+                        .resizable()
+                        .frame(width: 100, height: 71)
+                        .scaleEffect(x: -1, y: 1)
+                        .offset(x: cloudChatOverflowLeft,y: cloudChatOffsetY)
+
+                    VStack(spacing: 0) {
                         ZStack(alignment: .topLeading) {
-                            Image("bubble-left")
+                            Image("bubble-down-left")
                                 .resizable()
-                                .frame(width: 200, height: 66)
+                                .frame(width: 268, height: 90)
                                 .imageShadow()
                             Text("你的心情如阳光般明亮，继续享受这一刻！")
-                                .padding(.top, ViewSpacing.betweenSmallAndBase)
-                                .padding(.leading, ViewSpacing.large)
-                                .frame(width: 190, alignment: .topLeading)
                                 .font(Font.typography(.bodyMedium))
                                 .foregroundColor(.grey500)
+                                .frame(width: 244, alignment: .topLeading)
+                                .padding(.top, ViewSpacing.medium)
+                                .padding(.leading, ViewSpacing.base)
                         }
-                        .offset(y: ViewSpacing.xlarge+ViewSpacing.xxsmall+ViewSpacing.xxxsmall)
-                    }
-                    .padding(.top, 22*ViewSpacing.betweenSmallAndBase)
-                    .padding(.leading, cloudChatLeadingOffset(for: screenWidth))
+                        .padding(.top, bubbleTop)
+                        .padding(.horizontal,ViewSpacing.xxxsmall+ViewSpacing.base+ViewSpacing.medium)
+                        Text("如果哪天想倾诉，也可以回来找我噢～")
+                            .font(Font.typography(.bodyMedium))
+                            .foregroundColor(.white)
+                            .frame(width:244, alignment: .leading)
+                            .padding(.horizontal, secondaryTextHorizontalPadding)
+                            .padding(.top, ViewSpacing.small+ViewSpacing.base)
 
-                    Spacer()
-                    
+                        Spacer()
+
+                        Button(action: {
+                            router.navigateTo(.mainHomepage)
+                        }) {
+                            Text("结束")
+                                .font(Font.typography(.bodyMedium))
+                                .kerning(0.64)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.surfaceBrandPrimary)
+                                .frame(maxWidth: .infinity, minHeight: 44)
+                        }
+                        .background(Color.surfacePrimary)
+                        .clipShape(Capsule())
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(.horizontal, 138)
+                        .padding(.bottom, buttonBottomPadding)
+                    }
                 }
             },
             background: {
@@ -85,32 +118,22 @@ struct MoodTreatmentHappyHomepageView: View {
                     Image("sun")
                         .resizable()
                         .frame(width: sunWidth, height: sunHeight)
-                        .offset(x: 5*ViewSpacing.betweenSmallAndBase,y: sunOffsetY)
+                        .offset(x: sunOffsetX, y: sunOffsetY)
                         .allowsHitTesting(false)
                     Image("happy")
                         .resizable()
                         .scaledToFit()
                         .frame(height: 124)
-                        .offset(y: 4*ViewSpacing.large-ViewSpacing.xxxsmall)
+                        .offset(y: happyOffsetY)
                         .allowsHitTesting(false)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             }
         )
     }
-    
-    private func cloudChatLeadingOffset(for width: CGFloat) -> CGFloat {
-        switch width {
-        case ..<400:
-            return -90
-        case 400..<420:
-            return -120
-        default:
-            return -155
-        }
-    }
 }
 
 #Preview {
     MoodTreatmentHappyHomepageView()
+        .environmentObject(RouterModel())
 }

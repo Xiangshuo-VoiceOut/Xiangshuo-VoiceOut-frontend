@@ -13,7 +13,7 @@ struct DiaryEntry: Codable, Identifiable, Equatable, Hashable {
     let timestamp: Date
     let moodType: String
     let keyword: [String]?
-    let intensity: Double
+    let intensity: Double?
     let location: String?
     let persons: [String]?
     let reasons: [String]?

@@ -36,8 +36,7 @@ struct TextJournalDetailView: View {
                         HStack(spacing: ViewSpacing.xsmall) {
                             Text(LocalizedStringKey("i_feel"))
                                 .foregroundColor(.textPrimary)
-                            
-                            Text("\(intensityDescription(diary.intensity))\(moodImageToChinese[diary.moodType.lowercased()] ?? diary.moodType)")
+                            Text("\(intensityDescription(diary.intensity ?? 0))\(moodImageToChinese[diary.moodType.lowercased()] ?? diary.moodType)")
                                 .foregroundColor(.textBrandPrimary)
                         }
                         .font(Font.typography(.bodyMedium))

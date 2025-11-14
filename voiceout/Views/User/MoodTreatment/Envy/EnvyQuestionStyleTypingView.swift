@@ -15,8 +15,6 @@ struct EnvyQuestionStyleTypingView: View {
     @State private var isPlayingMusic = true
     @State private var introDone = false
 
-    private let typingInterval: TimeInterval = 0.1
-
     private var exclusiveOption: MoodTreatmentAnswerOption? {
         question.options.first { $0.exclusive == true}
     }
@@ -38,20 +36,14 @@ struct EnvyQuestionStyleTypingView: View {
                             Spacer()
                         }
                         
-                        Button {
-                            isPlayingMusic.toggle()
-                        } label: {
-                            Image(isPlayingMusic ? "music" : "stop-music")
-                                .resizable()
-                                .frame(width: 48, height: 48)
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+                        MusicButtonView()
+                            .padding(.leading, ViewSpacing.medium)
                     }
 
                     VStack(spacing: ViewSpacing.small) {
                         ForEach(question.texts ?? [], id: \.self) { line in
                             if !introDone {
-                                TypewriterText(fullText: line, characterDelay: typingInterval) {
+                                TypewriterText(fullText: line) {
                                     if line == question.texts?.last {
                                         introDone = true
                                     }

@@ -41,6 +41,27 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
     case styleEnvyEnding///结束
     case styleEnvyFinalEnding///最终结束页面，文案随机
     
+    ///Scare
+    case scareStyleA///single
+    case scareStyleB///multiple
+    case scareStyleC///slider
+    case scareStyleD///云朵+黑文字+绿文字
+    case scareStyleLocation///Location
+    case scareStyleBreathe///Breathe
+    case scareStyleEnding///end
+    case scareStyleMoodWriting///moodwriting
+    case scareStyleBottle///bottle
+    case scareStyleBubble1///bubble1
+    case scareStyleBubble2///bubble2
+    case scareStyleTyping///typing
+
+    ///Guilt
+    case guiltStyleA///single
+    case guiltStyleB///multiple
+    
+    ///伤心+内疚共用
+    case sliderStyle
+    
     ///Custom
     case unknown
     
@@ -70,6 +91,27 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
         case "styleEnvyEnding":    self = .styleEnvyEnding
         case "styleEnvyFinalEnding": self = .styleEnvyFinalEnding
             
+        ///Scare
+        case "scareStyleA":             self = .scareStyleA
+        case "scareStyleB":             self = .scareStyleB
+        case "scareStyleC":             self = .scareStyleC
+        case "scareStyleD":             self = .scareStyleD
+        case "scareStyleLocation":      self = .scareStyleLocation
+        case "scareStyleBreathe":       self = .scareStyleBreathe
+        case "scareStyleEnding":       self = .scareStyleEnding
+        case "scareStyleMoodWriting":       self = .scareStyleMoodWriting
+        case "scareStyleBottle":       self = .scareStyleBottle
+        case "scareStyleBubble1":       self = .scareStyleBubble1
+        case "scareStyleBubble2":       self = .scareStyleBubble2
+        case "scareStyleTyping":       self = .scareStyleTyping
+                
+        ///Guilt
+        case "guiltStyleA":             self = .guiltStyleA
+        case "guiltStyleB":             self = .guiltStyleB
+        
+        ///伤心+内疚共用
+        case "sliderStyle": self = .sliderStyle
+
         default:
             self = .unknown
         }
@@ -97,7 +139,25 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
         case .styleTyping:          return "styleTyping"
         case .styleEnvyEnding:      return "styleEnvyEnding"
         case .styleEnvyFinalEnding: return "styleEnvyFinalEnding"
+        
+        case .scareStyleA:            return "scareStyleA"
+        case .scareStyleB:            return "scareStyleB"
+        case .scareStyleC:            return "scareStyleC"
+        case .scareStyleD:            return "scareStyleD"
+        case .scareStyleLocation:     return "scareStyleLocation"
+        case .scareStyleBreathe:      return "scareStyleBreathe"
+        case .scareStyleEnding:      return "scareStyleEnding"
+        case .scareStyleMoodWriting:      return "scareStyleMoodWriting"
+        case .scareStyleBottle:      return "scareStyleBottle"
+        case .scareStyleBubble1:      return "scareStyleBubble1"
+        case .scareStyleBubble2:      return "scareStyleBubble2"
+        case .scareStyleTyping:      return "scareStyleTyping"
             
+        case .guiltStyleA:            return "guiltStyleA"
+        case .guiltStyleB:            return "guiltStyleB"
+            
+        case .sliderStyle: return "sliderStyle"
+
         case .unknown:
             return ""
         }

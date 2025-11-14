@@ -16,7 +16,7 @@ struct TypewriterText: View {
     @State private var timer: Timer?
 
     init(fullText: String,
-                characterDelay: TimeInterval,
+         characterDelay: TimeInterval = 0.05,
          onComplete: (() -> Void)? = nil) {
         self.fullText = fullText
         self.characterDelay = characterDelay

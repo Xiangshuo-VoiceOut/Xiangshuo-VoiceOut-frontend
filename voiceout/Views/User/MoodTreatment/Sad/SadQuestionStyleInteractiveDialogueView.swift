@@ -12,14 +12,10 @@ struct SadQuestionStyleInteractiveDialogueView: View {
     let onContinue: () -> Void
     
     @State private var currentTextIndex = 0
-    @State private var userInput = ""
-    @State private var showInputField = false
-    @State private var showContinueButton = true
     @State private var isPlayingMusic = true
-    @State private var introDone = false
-    @State private var inputDone = false
+    @State private var textDone = false // text播放完成
+    @State private var introDone = false // introtext播放完成
     @State private var showCurrentText = true
-    @FocusState private var isTextFieldFocused: Bool
     
     private let typingInterval: TimeInterval = 0.1
     
@@ -27,28 +23,28 @@ struct SadQuestionStyleInteractiveDialogueView: View {
         guard let texts = question.texts, currentTextIndex < texts.count else {
             return ""
         }
-        return texts[currentTextIndex]
+        // 将逗号替换为逗号+换行符
+        return texts[currentTextIndex].replacingOccurrences(of: "，", with: "，\n")
+            .replacingOccurrences(of: ",", with: ",\n")
     }
     
     private var hasIntroText: Bool {
-        // 第三句话（索引2）和第五句话（索引4）显示introtext
-        return currentTextIndex == 2 || currentTextIndex == 4
+        // 第一句话（索引0）显示introtext
+        return currentTextIndex == 0 && !(question.introTexts?.isEmpty ?? true)
     }
     
     private var currentIntroText: String {
         guard let introTexts = question.introTexts, !introTexts.isEmpty else {
             return ""
         }
-        
-        if currentTextIndex == 2 {
-            // 第三句话显示第一个introtext
-            return introTexts[0]
-        } else if currentTextIndex == 4 {
-            // 第五句话显示第二个introtext
-            return introTexts.count > 1 ? introTexts[1] : introTexts[0]
-        }
-        
-        return ""
+        // 第一句话显示第一个introtext
+        var text = introTexts[0]
+        // 将逗号和问号替换为换行符
+        text = text.replacingOccurrences(of: "，", with: "，\n")
+        text = text.replacingOccurrences(of: ",", with: ",\n")
+        text = text.replacingOccurrences(of: "？", with: "？\n")
+        text = text.replacingOccurrences(of: "?", with: "?\n")
+        return text
     }
     
     private var isLastText: Bool {
@@ -57,6 +53,7 @@ struct SadQuestionStyleInteractiveDialogueView: View {
     
     var body: some View {
         GeometryReader { proxy in
+            let screenHeight = proxy.size.height
             ZStack(alignment: .topLeading) {
                 Color.surfaceBrandTertiaryGreen
                     .ignoresSafeArea()
@@ -68,7 +65,8 @@ struct SadQuestionStyleInteractiveDialogueView: View {
                             Image("cloud-chat")
                                 .resizable()
                                 .frame(width: 168, height: 120)
-                                .padding(.bottom, ViewSpacing.large)
+                                .padding(.vertical, 15.569)
+                                .padding(.horizontal, 0.842)
                             Spacer()
                         }
                         
@@ -81,115 +79,87 @@ struct SadQuestionStyleInteractiveDialogueView: View {
                         }
                         .padding(.leading, ViewSpacing.medium)
                     }
+                    .padding(.bottom, 24) // 云朵和text之间：24px
 
-                    VStack(spacing: ViewSpacing.large) {
-                        if showCurrentText {
-                            VStack(spacing: ViewSpacing.small) {
+                    // text区域 - 使用固定布局，确保各区域相对独立
+                    if showCurrentText {
+                        VStack(spacing: 0) {
+                            // text区域 - 预留足够空间（假设最多2行），防止挤压下方内容
+                            VStack {
                                 TypewriterText(fullText: currentText, characterDelay: typingInterval) {
-                                    // 打字完成后可以执行的操作
+                                    // text播放完成后
+                                    textDone = true
                                 }
                                 .id(currentTextIndex) // 添加key强制重新渲染
+                                .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31)) // colorGrey500
+                                .frame(width: 358, alignment: .top)
                             }
-                            .font(.typography(.bodyMedium))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.grey500)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                        }
-                        
-                        if showCurrentText && hasIntroText && !inputDone {
-                            TypewriterText(fullText: currentIntroText, characterDelay: typingInterval) {
-                                // introtext打字完成后可以执行的操作
-                            }
-                            .id("intro-\(currentTextIndex)") // 添加key强制重新渲染
-                            .font(.system(size: 16, weight: .regular))
-                            .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6)) // #67B899
-                            .multilineTextAlignment(.center)
-                            .frame(width: 252, alignment: .center)
+                            .frame(minHeight: 22.4 * 2, alignment: .top) // 预留2行的高度（22.4px * 2 = 44.8px）
                             
-                            HStack(alignment: .top, spacing: ViewSpacing.small) {
-                                Image("edit")
-                                    .frame(width: 24, height: 24)
-                                    .foregroundColor(.textLight)
+                            // text的最后一行和introtext之间：16px - 使用固定间距
+                            if hasIntroText {
+                                Color.clear
+                                    .frame(height: 16) // 固定间距16px
                                 
-                                TextField("...", text: $userInput)
-                                    .font(.typography(.bodyMedium))
-                                    .foregroundColor(.textLight)
-                                    .multilineTextAlignment(.leading)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                // introtext区域 - 使用固定高度容器，防止挤压上方内容
+                                VStack {
+                                    // text播放完后才播放introtext
+                                    if textDone {
+                                        TypewriterText(fullText: currentIntroText, characterDelay: typingInterval) {
+                                            // introtext播放完成后，显示输入框和按钮
+                                            introDone = true
+                                        }
+                                        .id("intro-\(currentTextIndex)") // 添加key强制重新渲染
+                                        .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                                        .multilineTextAlignment(.center)
+                                        .foregroundColor(Color(red: 0.4, green: 0.72, blue: 0.6)) // textTextBrand
+                                        .fixedSize(horizontal: false, vertical: true) // 允许文本换行，防止截断
+                                        .frame(width: 358, alignment: .top)
+                                    }
+                                }
+                                .frame(width: 358)
+                                .frame(minHeight: 22.4 * 4, alignment: .top) // 使用minHeight允许扩展，防止截断
                             }
-                            .padding(.horizontal, ViewSpacing.medium)
-                            .padding(.vertical, ViewSpacing.base)
-                            .frame(maxWidth: .infinity, minHeight: 57, alignment: .topLeading)
-                            .background(Color.surfacePrimary)
-                            .cornerRadius(CornerRadius.medium.value)
-                            
-                            Button("完成") {
-                                inputDone = true
-                            }
-                            .padding(.horizontal, ViewSpacing.medium)
-                            .padding(.vertical, ViewSpacing.small)
-                            .frame(width: 114, height: 44)
-                            .background(Color.surfacePrimary)
-                            .disabled(userInput.isEmpty)
-                            .cornerRadius(CornerRadius.full.value)
-                            .foregroundColor(Color(red: 0, green: 0.6, blue: 0.8))
-                            .font(Font.typography(.bodyMedium))
-                            .kerning(0.64)
-                            .multilineTextAlignment(.center)
-                        }
-                    }
-                    .padding(.horizontal, 2*ViewSpacing.xlarge)
-                    .padding(.bottom,ViewSpacing.xsmall+ViewSpacing.large)
-                    
-                    Spacer()
-                    
-                    if showCurrentText && !hasIntroText {
-                        Button(isLastText ? "完成" : "继续") {
-                            handleContinue()
                         }
                         .padding(.horizontal, ViewSpacing.medium)
-                        .padding(.vertical, ViewSpacing.small)
-                        .frame(width: 114, height: 44)
-                        .background(Color.surfacePrimary)
-                        .cornerRadius(CornerRadius.full.value)
-                        .foregroundColor(Color(red: 0, green: 0.6, blue: 0.8))
-                        .font(Font.typography(.bodyMedium))
-                        .kerning(0.64)
-                        .multilineTextAlignment(.center)
-                    }
-                    
-                    if showCurrentText && hasIntroText && inputDone {
-                        Button(isLastText ? "完成" : "继续") {
-                            handleContinue()
-                        }
-                        .padding(.horizontal, ViewSpacing.medium)
-                        .padding(.vertical, ViewSpacing.small)
-                        .frame(width: 114, height: 44)
-                        .background(Color.surfacePrimary)
-                        .cornerRadius(CornerRadius.full.value)
-                        .foregroundColor(Color(red: 0, green: 0.6, blue: 0.8))
-                        .font(Font.typography(.bodyMedium))
-                        .kerning(0.64)
-                        .multilineTextAlignment(.center)
                     }
                     
                     Spacer()
                 }
+                
+                // 继续按钮固定在底部
+                if introDone {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Button("继续") {
+                                // 点击继续直接进入下一题
+                                onContinue()
+                            }
+                            .padding(.horizontal, ViewSpacing.medium)
+                            .padding(.vertical, ViewSpacing.small)
+                            .frame(width: 114, height: 44)
+                            .background(Color.surfacePrimary) // 白底
+                            .cornerRadius(CornerRadius.full.value)
+                            .foregroundColor(Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0)) // 绿色 #67B899
+                            .font(Font.typography(.bodyMedium))
+                            .kerning(0.64)
+                            .multilineTextAlignment(.center)
+                            Spacer()
+                        }
+                        .padding(.bottom, 53) // 距离屏幕最下方53px
+                    }
+                }
             }
             .ignoresSafeArea(edges: .all)
         }
-    }
-    
-    private func handleContinue() {
-        if currentTextIndex < (question.texts?.count ?? 0) - 1 {
-            // 还有下一句文本
-            currentTextIndex += 1
-            showCurrentText = true  // 保持显示状态
-            inputDone = false
-            userInput = ""
-        } else {
-            // 所有文本都显示完了，进入下一题
-            onContinue()
+        .onChange(of: currentTextIndex) { _, _ in
+            // 切换文本时重置状态
+            textDone = false
+            introDone = false
         }
     }
 }

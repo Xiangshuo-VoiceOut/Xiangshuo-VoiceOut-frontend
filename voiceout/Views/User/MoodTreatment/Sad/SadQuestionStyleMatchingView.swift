@@ -21,8 +21,7 @@ struct SadQuestionStyleMatchingView: View {
     
     // 硬编码的测试选项
     private let testOptions = [
-        "善良", "诚实", "责任感", "勇气", "感恩", "礼貌",
-        "耐心", "坚持", "独立", "宽容", "同情心", "正义感"
+        "责任感", "诚实", "善良", "独立", "宽容", "同情心", "正义感", "感恩", "礼貌"
     ]
     
     private var currentText: String {
@@ -43,13 +42,15 @@ struct SadQuestionStyleMatchingView: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) {
+                    // 云朵参数
                     ZStack(alignment: .topLeading) {
-                        HStack {
+                        HStack(alignment: .center) {
                             Spacer()
                             Image("cloud-chat")
                                 .resizable()
-                                .frame(width: 168, height: 120)
-                                .padding(.bottom, ViewSpacing.large)
+                                .frame(width: 168, height: 120, alignment: .center)
+                                .padding(.horizontal, 0.84157)
+                                .padding(.vertical, 15.56904)
                             Spacer()
                         }
                         
@@ -65,22 +66,21 @@ struct SadQuestionStyleMatchingView: View {
 
                     VStack(spacing: ViewSpacing.medium) {
                         if showCurrentText {
-                            VStack(spacing: ViewSpacing.small) {
-                                TypewriterText(fullText: currentText, characterDelay: typingInterval) {
-                                    // 打字完成后可以执行的操作
+                            // text参数
+                            Text(currentText)
+                                .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31)) // colorGrey500
+                                .frame(width: 358, alignment: .top)
+                                .padding(.bottom, ViewSpacing.small)
+                                .onAppear {
+                                    // 文本直接显示后，如果是第一段文本，延迟显示选项
                                     if currentTextIndex == 0 {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                             showOptions = true
                                         }
                                     }
                                 }
-                                .id(currentTextIndex)
-                            }
-                            .font(.typography(.bodyMedium))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.grey500)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .padding(.bottom, ViewSpacing.small)
                         }
                         
                         // 选项区域
@@ -123,15 +123,16 @@ struct SadQuestionStyleMatchingView: View {
                 Button("继续") {
                     handleContinue()
                 }
-                .font(.typography(.bodyMedium))
-                .foregroundColor(Color.white)
-                .frame(maxWidth: .infinity)
-                .padding(.horizontal, ViewSpacing.large)
-                .padding(.vertical, ViewSpacing.medium)
-                .background(Color(red: 0.404, green: 0.722, blue: 0.6))
+                .padding(.horizontal, ViewSpacing.medium)
+                .padding(.vertical, ViewSpacing.small)
+                .frame(width: 114, height: 44)
+                .background(Color.surfacePrimary) // 白底
                 .cornerRadius(CornerRadius.full.value)
-                .padding(.horizontal, ViewSpacing.large)
-                .padding(.bottom, ViewSpacing.large)
+                .foregroundColor(Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0)) // 绿色 #67B899
+                .font(Font.typography(.bodyMedium))
+                .kerning(0.64)
+                .multilineTextAlignment(.center)
+                .padding(.bottom, 55) // 距离屏幕最下方55px
             }
         }
     }
@@ -162,23 +163,55 @@ struct OptionCircleView: View {
     
     var body: some View {
         Button(action: onTap) {
-            Text(option)
-                .font(.system(size: 14, weight: .medium))
-                .foregroundColor(isSelected ? .white : .textPrimary)
-                .multilineTextAlignment(.center)
-                .frame(width: 80, height: 80)
-                .background(
-                    Circle()
-                        .fill(isSelected ? Color(red: 0.404, green: 0.722, blue: 0.6) : Color.clear)
-                        .overlay(
-                            Circle()
-                                .stroke(isSelected ? Color(red: 0.404, green: 0.722, blue: 0.6) : Color.gray.opacity(0.3), lineWidth: 2)
-                        )
-                )
+            ZStack {
+                // 背景圆形
+                VStack(alignment: .center, spacing: 18) {
+                    Text(option)
+                        .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31)) // colorGrey500
+                }
+                .padding(.horizontal, 7.2)
+                .padding(.vertical, 23.4)
+                .frame(width: 96, height: 96, alignment: .center)
+                .background(isSelected ? Color(red: 0xAF/255.0, green: 0xE2/255.0, blue: 0xFD/255.0) : Color(red: 0.99, green: 1, blue: 1))
+                .cornerRadius(999)
+            }
+            .overlay(
+                // 使用overlay添加贴图，避免被cornerRadius裁剪
+                ZStack {
+                    // 右下角的curve贴图（未选中时显示curve，选中时显示curve3）
+                    if !isSelected {
+                        Image("curve")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 48, height: 48)
+                            .offset(x: 20, y: 20) // 右下角位置
+                    } else {
+                        Image("curve3")
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(Color(red: 0xC0/255.0, green: 0xE9/255.0, blue: 0xFF/255.0)) // #C0E9FF
+                            .frame(width: 48, height: 48)
+                            .offset(x: 20, y: 20) // 右下角位置
+                    }
+                    
+                    // 上方的curve2贴图（选中时显示，12点位置偏左下）
+                    if isSelected {
+                        Image("curve2")
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(Color(red: 0xC0/255.0, green: 0xE9/255.0, blue: 0xFF/255.0)) // #C0E9FF
+                            .frame(width: 24, height: 24) // 缩小一倍
+                            .offset(x: -10, y: -36) // 12点位置往左下
+                    }
+                },
+                alignment: .center
+            )
         }
         .buttonStyle(PlainButtonStyle())
-        .scaleEffect(isSelected ? 1.1 : 1.0)
-        .animation(.easeInOut(duration: 0.2), value: isSelected)
     }
 }
 

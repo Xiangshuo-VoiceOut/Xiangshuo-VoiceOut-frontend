@@ -15,11 +15,12 @@ struct SadQuestionStyleNotesView: View {
     @State private var showIntroText = false
     @State private var currentStep = 0 // 0: 显示主文本, 1: 显示便签选择
     @State private var selectedNotes: Set<Int> = [] // 选中的便签
-    @State private var visibleNotesCount = 1 // 当前可见的便签数量
+    @State private var visibleNotesCount = 1 // 当前可见的便签数量（包括添加按钮）
     @State private var showAddButton = true // 是否显示添加按钮
     @State private var showNoteEditor = false // 是否显示便签编辑器
     @State private var editingNoteIndex = 0 // 正在编辑的便签索引
-    @State private var noteTexts: [String] = ["存下500元", "", "", "", "", ""] // 便签文本
+    @State private var noteTexts: [String] = ["", "", "", "", "", ""] // 便签文本（第一个为空，用于显示添加按钮）
+    @State private var editingText = "" // 编辑中的临时文本
     @State private var isFirstContinue = true // 是否是第一次点击继续
     @FocusState private var isTextFieldFocused: Bool // TextField焦点状态
     
@@ -41,7 +42,10 @@ struct SadQuestionStyleNotesView: View {
             }
             .ignoresSafeArea(edges: .all)
             .onAppear {
-                startAnimation()
+                // 直接显示所有文本和introtext，不需要点击
+                // 同时显示whitenote和继续按钮
+                showIntroText = true
+                currentStep = 1 // 显示便签选择区域（包含whitenote）
             }
         }
     }
@@ -62,29 +66,45 @@ struct SadQuestionStyleNotesView: View {
     
     
     private var mainContent: some View {
-        VStack(spacing: ViewSpacing.xlarge) {
-            // 云朵图片
-            cloudImage
-            
-            // 题目题干
-            questionText
-            
-            // 第二阶段：便签选择
-            if currentStep == 1 {
-                stickyNotesGrid
+        GeometryReader { geometry in
+            ZStack(alignment: .bottom) {
+                // 可滚动的内容区域
+                ScrollView {
+                    VStack(spacing: 0) {
+                        // 云朵图片
+                        cloudImage
+                        
+                        // 题目题干
+                        questionText
+                        
+                        // introtext和whitenote之间：44px
+                        Color.clear
+                            .frame(height: 44)
+                        
+                        // 便签选择（始终显示，包含whitenote）
+                        if currentStep == 1 {
+                            stickyNotesGrid
+                            
+                            // 底部额外空间，为固定的继续按钮留出位置
+                            Color.clear
+                            .frame(height: 100)
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, ViewSpacing.large)
+                    .padding(.top, ViewSpacing.large)
+                }
+                
+                // 固定在底部的继续按钮
+                if currentStep == 1 {
+                    VStack {
+                        Spacer()
+                        addNoteButtonArea
+                            .padding(.bottom, 60) // 距离屏幕底部60px，往上移动
+                    }
+                }
             }
-            
-            // 点击屏幕继续（只在第一阶段显示）
-            if showContinueText && currentStep == 0 {
-                continueText
-                    .transition(.opacity)
-            }
-            
-            Spacer() // 只保留底部Spacer，让内容靠上
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, ViewSpacing.large)
-        .padding(.top, ViewSpacing.large)
     }
     
     private var cloudImage: some View {
@@ -98,131 +118,88 @@ struct SadQuestionStyleNotesView: View {
     
     private var questionText: some View {
         VStack(spacing: ViewSpacing.small) {
-            // 第一阶段：显示主文本（三行）
-            if currentStep == 0 {
-                if let texts = question.texts {
-                    ForEach(texts.indices, id: \.self) { index in
-                        Text(texts[index])
-                            .font(.body)
-                            .foregroundColor(.primary)
-                            .multilineTextAlignment(.center)
-                            .transition(.opacity)
-                    }
-                }
+            // 显示text
+            if let texts = question.texts {
+                Text(texts.joined(separator: "\n"))
+                    .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31)) // colorGrey500
+                    .frame(width: 358, alignment: .top)
+                    .fixedSize(horizontal: false, vertical: true) // 允许文本换行，不被截断
             }
             
-            // 第二阶段：显示原题目 + introText
-            if currentStep == 1 {
-                // 保留原题目
-                if let texts = question.texts {
-                    ForEach(texts.indices, id: \.self) { index in
-                        Text(texts[index])
-                            .font(.body)
-                            .foregroundColor(.primary)
-                            .multilineTextAlignment(.center)
-                            .transition(.opacity)
-                    }
-                }
-                
-                // 添加introText
-                if showIntroText, let introTexts = question.introTexts {
-                    ForEach(introTexts.indices, id: \.self) { index in
-                        Text(introTexts[index])
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6)) // #67B899
-                            .multilineTextAlignment(.center)
-                            .lineLimit(nil)
-                            .transition(.opacity)
-                    }
-                }
+            // 显示introText
+            if let introTexts = question.introTexts, !introTexts.isEmpty {
+                Text(introTexts.joined(separator: "\n"))
+                    .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color(red: 0.4, green: 0.72, blue: 0.6)) // textTextBrand
+                    .frame(width: 358, alignment: .top)
+                    .fixedSize(horizontal: false, vertical: true) // 允许文本换行
             }
         }
     }
     
     private var stickyNotesGrid: some View {
-        VStack {
-            // 显示可见的便签
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 16) {
-                ForEach(0..<visibleNotesCount, id: \.self) { index in
+        // 显示可见的便签
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 16) {
+            // 先显示所有已填写的便签
+            ForEach(0..<6, id: \.self) { index in
+                if !noteTexts[index].isEmpty {
                     stickyNoteCard(
                         text: noteTexts[index],
-                        imageName: "sadnote-\(index + 1)",
+                        imageName: "sadnote-2",
                         isSelected: selectedNotes.contains(index)
                     ) {
-                        // 便签点击逻辑
+                        // 点击便签，重新打开编辑器进行修改
+                        editingNoteIndex = index
+                        editingText = noteTexts[index] // 加载已有文本
+                        showNoteEditor = true
                     }
                 }
             }
-            .padding(.horizontal, ViewSpacing.medium)
             
-            Spacer() // 推到底部
-            
-            // 添加按钮区域 - 贴住屏幕下方
-            if showAddButton {
-                addNoteButtonArea
+            // 显示whitenote：初始状态在第一个位置，添加第一个note后移到末尾
+            let filledCount = noteTexts.filter { !$0.isEmpty }.count
+            if filledCount < 6 {
+                // 找到第一个空位作为编辑索引
+                if let firstEmptyIndex = noteTexts.firstIndex(where: { $0.isEmpty }) {
+                    Button(action: {
+                        editingNoteIndex = firstEmptyIndex
+                        editingText = noteTexts[firstEmptyIndex] // 加载已有文本（如果有）
+                        showNoteEditor = true
+                    }) {
+                        addNoteCard
+                    }
+                }
             }
         }
+        .padding(.horizontal, ViewSpacing.medium)
     }
     
     private var addNoteButtonArea: some View {
         VStack(spacing: 8) {
-            if isFirstContinue {
-                // 第一次：继续按钮
-                Button {
-                    handleFirstContinue()
-                } label: {
-                    Text("继续")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
-                        .padding(.horizontal, 40)
-                        .padding(.vertical, 12)
-                        .background(Color.white)
-                        .cornerRadius(20)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color(red: 0.404, green: 0.722, blue: 0.6), lineWidth: 2)
-                        )
-                }
-            } else {
-                // 后续：添加便签按钮
-                VStack(spacing: 4) {
-                    // 只有未完成时才显示提示文字
-                    if visibleNotesCount < 6 {
-                        Text("试试点击添加便利贴")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    Button {
-                        if visibleNotesCount >= 6 {
-                            // 全部完成，进入下一题
-                            onContinue()
-                        } else {
-                            addNewNote()
-                        }
-                    } label: {
-                        Text(visibleNotesCount >= 6 ? "完成" : "添加便利贴")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
-                            .padding(.horizontal, 40)
-                            .padding(.vertical, 12)
-                            .background(Color.white)
-                            .cornerRadius(20)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color(red: 0.404, green: 0.722, blue: 0.6), lineWidth: 2)
-                            )
-                    }
-                    
-                    if visibleNotesCount < 6 {
-                        Text("剩余\(6 - visibleNotesCount)张")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                }
+            // 检查是否有任何note输入
+            let hasAnyNote = noteTexts.contains { !$0.isEmpty }
+            
+            // 继续按钮 - 直接进入下一题
+            // 0个便利贴时灰色禁用，>=1个时可以点击
+            Button {
+                onContinue() // 直接进入下一题
+            } label: {
+                Text("继续")
             }
+            .disabled(!hasAnyNote) // 没有任何note时禁用
+            .padding(.horizontal, ViewSpacing.medium)
+            .padding(.vertical, ViewSpacing.small)
+            .frame(width: 114, height: 44)
+            .background(Color.surfacePrimary) // 白底
+            .cornerRadius(CornerRadius.full.value)
+            .foregroundColor(hasAnyNote ? Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0) : Color.gray) // 有note时绿色，无note时灰色
+            .font(Font.typography(.bodyMedium))
+            .kerning(0.64)
+            .multilineTextAlignment(.center)
         }
-        .padding(.bottom, 20)
     }
     
     private var noteEditorOverlay: some View {
@@ -233,90 +210,72 @@ struct SadQuestionStyleNotesView: View {
                     closeNoteEditor()
                 }
             
-            VStack {
-                // 完成按钮 - 右上角
-                HStack {
-                    Spacer()
-                    Button("完成") {
-                        completeNoteEditing()
-                    }
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 8)
-                    .background(Color.white)
-                    .cornerRadius(16)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color(red: 0.404, green: 0.722, blue: 0.6), lineWidth: 2)
-                    )
-                    .padding(.top, 20)
-                    .padding(.trailing, 20)
-                }
-                
+            VStack(spacing: 0) {
                 Spacer()
                 
-                // 便签编辑器 - 让用户感觉真的在便签上写字
-                ZStack {
-                    Image("sadnote-\(editingNoteIndex + 1)")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 245, height: 257)
-                        .aspectRatio(245/257, contentMode: .fit)
-                    
-                    // 输入区域精确定位在便签图片的写字区域
-                    VStack {
-                        Spacer()
-                            .frame(height: 260) // 再往下80px
+                // note和完成按钮的容器
+                VStack(spacing: 0) {
+                    // 便签编辑器 - 让用户感觉真的在便签上写字
+                    ZStack(alignment: .topLeading) {
+                        Image("sadnote-2")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 245, height: 257)
+                            .aspectRatio(245/257, contentMode: .fit)
                         
-                        HStack {
-                            Spacer()
-                                .frame(width: 20) // 往左40px (30+40=70)
-                            
-                            ZStack {
-                                TextField("", text: Binding(
-                                    get: { noteTexts[editingNoteIndex] },
-                                    set: { noteTexts[editingNoteIndex] = $0 }
-                                ), axis: .vertical) // 支持多行输入
-                                .font(.custom("Abel", size: 12))
-                                .foregroundColor(Color.black) // #000
-                                .fontWeight(.regular) // 400
+                        // 输入区域 - 缩小一倍，向右下移动，支持多行换行
+                        ZStack(alignment: .topLeading) {
+                            // 使用TextEditor支持多行输入，类似填空题
+                            TextEditor(text: $editingText)
+                                .font(Font.custom("Abel", size: 12))
                                 .kerning(0.36)
-                                .textCase(.uppercase)
-                                .multilineTextAlignment(.center)
-                                .textFieldStyle(PlainTextFieldStyle())
+                                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31)) // textTextPrimary
+                                .scrollContentBackground(.hidden) // 隐藏TextEditor的默认背景
                                 .background(Color.clear)
-                                .frame(maxWidth: 150, maxHeight: 100, alignment: .top)
-                                .lineLimit(2) // 限制最多1行
+                                .frame(width: 122.5, height: 128.5, alignment: .topLeading) // 缩小一倍：245/2 = 122.5, 257/2 = 128.5
+                                .padding(.top, 10) // 从note顶部开始，留出一些边距（缩小一倍）
+                                .padding(.leading, 10) // 从note左侧开始（缩小一倍）
+                                .padding(.trailing, 10)
+                                .padding(.bottom, 10)
                                 .focused($isTextFieldFocused)
+                                .offset(x: 50, y: 50) // 向右下移动
                                 .onAppear {
                                     // 编辑器出现时自动获得焦点
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                         isTextFieldFocused = true
                                     }
                                 }
-                                
-                                // "请填写"提示 - 覆盖在TextField上，用户输入时消失
-                                if noteTexts[editingNoteIndex].isEmpty {
-                                    Text("请填写")
-                                        .font(.custom("Abel", size: 12))
-                                        .foregroundColor(Color.black) // #000
-                                        .fontWeight(.regular) // 400
-                                        .kerning(0.36)
-                                        .textCase(.uppercase)
-                                        .multilineTextAlignment(.center)
-                                        .frame(maxWidth: 150, maxHeight: 100, alignment: .top)
-                                        .background(Color.clear)
-                                        .allowsHitTesting(false) // 不拦截点击事件
-                                }
-                            }
                             
-                            Spacer()
-                                .frame(width: 30) // 右边距，避开便签边缘
+                            // "请填写"占位符 - 放在外层ZStack中，不受TextEditor frame限制
+                            if editingText.isEmpty {
+                                Text(" 请填写")
+                                    .font(Font.custom("Abel", size: 12))
+                                    .kerning(0.36)
+                                    .foregroundColor(Color(red: 0.79, green: 0.77, blue: 0.82)) // textTextLight，灰色
+                                    .allowsHitTesting(false)
+                                    .padding(.top, 10 + 8) // TextEditor外部padding(10) + 内部默认padding(8)
+                                    .padding(.leading, 10 + 5) // TextEditor外部padding(10) + 内部默认padding(5)
+                                    .offset(x: 50 + 50, y: 50 + 50) // TextEditor的offset(50,50) + 额外向右下移动(50,50)
+                            }
                         }
-                        
-                        Spacer()
                     }
+                    
+                    // 完成按钮 - 在note下方居中，向上移动100px
+                    Button {
+                        completeNoteEditing()
+                    } label: {
+                        Text("完成")
+                    }
+                    .disabled(editingText.isEmpty) // 空文本时禁用完成按钮
+                    .padding(.horizontal, 24) // spacingSpacingMd
+                    .padding(.vertical, 8) // spacingSpacingSm
+                    .frame(width: 139, height: 44, alignment: .center)
+                    .background(Color(red: 0.4, green: 0.72, blue: 0.6)) // colorBrandBrandPrimary
+                    .cornerRadius(360) // radiusRadiusFull
+                    .shadow(color: Color(red: 0.35, green: 0.46, blue: 0.65).opacity(0.04), radius: 10, x: 2, y: 12)
+                    .foregroundColor(.white)
+                    .font(Font.typography(.bodyMedium))
+                    .offset(y: 4) // 向下移动一个身位（44px），从-40变为4
                 }
                 
                 Spacer()
@@ -324,9 +283,26 @@ struct SadQuestionStyleNotesView: View {
         }
     }
     
+    // 添加便利贴按钮卡片
+    private var addNoteCard: some View {
+        ZStack {
+            // 使用asset中的whitenote图片
+            Image("whitenote")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 120, height: 100)
+            
+            // 绿色文字"添加便利贴"
+            Text("添加便利贴")
+                .font(Font.custom("Alibaba PuHuiTi 3.0", size: 14))
+                .foregroundColor(Color(red: 0.4, green: 0.72, blue: 0.6)) // textTextBrand
+                .multilineTextAlignment(.center)
+        }
+    }
+    
     private func stickyNoteCard(text: String, imageName: String, isSelected: Bool, onTap: @escaping () -> Void) -> some View {
         Button(action: onTap) {
-            ZStack {
+            ZStack(alignment: .topLeading) {
                 // 使用assets中的便签图片
                 Image(imageName)
                     .resizable()
@@ -335,16 +311,16 @@ struct SadQuestionStyleNotesView: View {
                 
                 // 文字叠加在便签上
                 Text(text)
-                    .font(.custom("Abel", size: 12)) // 使用与编辑器相同的字体大小
-                    .foregroundColor(Color.black) // #000
-                    .fontWeight(.regular) // 400
+                    .font(Font.custom("Abel", size: 12))
                     .kerning(0.36)
-                    .textCase(.uppercase)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(3) // 允许2行显示
-                    .frame(maxWidth: 80) // 恢复合适的宽度
+                    .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31)) // textTextPrimary
+                    .frame(width: 60, alignment: .topLeading)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(nil) // 允许多行显示
+                    .fixedSize(horizontal: false, vertical: true) // 允许垂直方向扩展
                     .padding(.horizontal, 4)
                     .padding(.vertical, 8)
+                    .offset(x: 30, y: 16) // 向右下移动，让文字更靠右（向右20px，向下8px）
             }
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
@@ -396,18 +372,32 @@ struct SadQuestionStyleNotesView: View {
     }
     
     private func addNewNote() {
-        editingNoteIndex = visibleNotesCount
-        showNoteEditor = true
+        if let firstEmptyIndex = noteTexts.firstIndex(where: { $0.isEmpty }) {
+            editingNoteIndex = firstEmptyIndex
+            editingText = "" // 重置编辑文本
+            showNoteEditor = true
+        }
     }
     
     private func closeNoteEditor() {
+        editingText = "" // 关闭时清空编辑文本
         showNoteEditor = false
     }
     
     private func completeNoteEditing() {
-        if !noteTexts[editingNoteIndex].isEmpty {
-            visibleNotesCount += 1
+        // 只有在点击完成按钮后，才将编辑中的文本保存到noteTexts
+        if !editingText.isEmpty {
+            noteTexts[editingNoteIndex] = editingText
+            // 计算已填写的便签数量，并确保visibleNotesCount至少包含下一个空位
+            let filledCount = noteTexts.filter { !$0.isEmpty }.count
+            // 如果还有空位，visibleNotesCount应该是已填写数量+1（包含添加按钮）
+            if filledCount < 6 {
+                visibleNotesCount = filledCount + 1
+            } else {
+                visibleNotesCount = 6
+            }
         }
+        editingText = "" // 清空编辑文本
         showNoteEditor = false
     }
     

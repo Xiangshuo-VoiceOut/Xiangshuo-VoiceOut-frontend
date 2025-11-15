@@ -1,21 +1,29 @@
 //
-//  SadQuestionStyleSinglechoiceView.swift
+//  SadQuestionStyleMultichoice2View.swift
 //  voiceout
 //
-//  Created by Ziyang Ye on 9/15/25.
+//  Created by Ziyang Ye on 11/10/25.
 //
 
 import SwiftUI
 
-struct SadQuestionStyleSinglechoiceView: View {
+private struct Constants {
+    static let surfaceSurfacePrimary: Color = Color(red: 0.98, green: 0.99, blue: 1)
+    static let radiusRadiusFull: CGFloat = 360
+    static let spacingSpacingSm: CGFloat = 8
+    static let spacingSpacingM: CGFloat = 16
+    static let textTextBrand: Color = Color(red: 0.4, green: 0.72, blue: 0.6)
+}
+
+struct SadQuestionStyleMultichoice2View: View {
     let question: MoodTreatmentQuestion
-    let onSelect: (MoodTreatmentAnswerOption) -> Void
+    let onContinue: () -> Void
 
     @State private var isPlayingMusic = true
     @State private var displayedCount = 0
     @State private var bubbleHeight: CGFloat = 0
     @State private var showOptions = false
-    @State private var selectedOptionId: UUID? = nil
+    @State private var selectedOptions: Set<UUID> = []
 
     private let displayDuration: TimeInterval = 1.5
     private let animationDuration: TimeInterval = 0.5
@@ -57,8 +65,8 @@ struct SadQuestionStyleSinglechoiceView: View {
             Spacer()
             Image("newmill")
                 .resizable()
-                .scaledToFit() // 保持完整图片显示
-                .frame(maxWidth: .infinity) // 宽度填满，高度自适应
+                .scaledToFit()
+                .frame(maxWidth: .infinity)
         }
     }
     
@@ -71,9 +79,9 @@ struct SadQuestionStyleSinglechoiceView: View {
                 optionsSection
             }
             
-            Spacer() // 让图片自适应高度
+            Spacer()
         }
-        .padding(.top, 44) // 避免对话框遮挡header（header高度44px）
+        .padding(.top, 44)
     }
     
     private func chatBubbleSection(texts: [String]) -> some View {
@@ -100,7 +108,7 @@ struct SadQuestionStyleSinglechoiceView: View {
             .frame(height: bubbleFrameHeight)
             .shadow(color: Color(red: 0.36, green: 0.36, blue: 0.47).opacity(0.03), radius: 8.95, x: 5, y: 3)
             .shadow(color: Color(red: 0.15, green: 0.15, blue: 0.25).opacity(0.08), radius: 5.75, x: 2, y: 4)
-            .offset(y: -35.5) // 向上偏移云朵高度的一半，使题目在云朵中间位置，模拟云朵说话的感觉
+            .offset(y: -35.5)
 
             Spacer()
         }
@@ -113,26 +121,55 @@ struct SadQuestionStyleSinglechoiceView: View {
                 ForEach(question.options) { option in
                     optionButton(option: option)
                 }
+                
+                // 确认按钮 - 始终显示
+                confirmButton
             }
-            .padding(.top, 40) // 第一个选项的起始位置距离对话云朵y轴上40px
+            .padding(.top, 40)
             .padding(.trailing, ViewSpacing.medium)
             .transition(.opacity)
         }
+    }
+    
+    private var confirmButton: some View {
+        HStack {
+            Spacer()
+            Button {
+                // 只有在有选择时才能点击
+                if !selectedOptions.isEmpty {
+                    onContinue()
+                }
+            } label: {
+                HStack(alignment: .center, spacing: 10) {
+                    Text("我选好了")
+                        .font(Font.custom("Abel", size: 16))
+                        .kerning(0.64)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(selectedOptions.isEmpty ? Color.grey300 : Constants.textTextBrand)
+                }
+                .padding(.horizontal, Constants.spacingSpacingM)
+                .padding(.vertical, Constants.spacingSpacingSm)
+                .frame(width: 114, height: 44, alignment: .center)
+                .background(Constants.surfaceSurfacePrimary)
+                .cornerRadius(Constants.radiusRadiusFull)
+            }
+            .disabled(selectedOptions.isEmpty)
+        }
+        .padding(.top, ViewSpacing.small)
     }
     
     private func optionButton(option: MoodTreatmentAnswerOption) -> some View {
         HStack {
             Spacer()
             Button { 
-                // 显示选中效果
-                selectedOptionId = option.id
-                
-                // 150ms 后跳转
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                    onSelect(option)
+                // 多选：切换选中状态
+                if selectedOptions.contains(option.id) {
+                    selectedOptions.remove(option.id)
+                } else {
+                    selectedOptions.insert(option.id)
                 }
             } label: {
-                optionButtonLabel(option: option, isSelected: selectedOptionId == option.id)
+                optionButtonLabel(option: option, isSelected: selectedOptions.contains(option.id))
             }
         }
     }
@@ -254,7 +291,6 @@ private struct SadBubbleScrollView: View {
                 VStack(spacing: bubbleSpacing) {
                     ForEach(Array(texts.prefix(displayedCount).enumerated()), id: \.offset) { idx, line in
                         HStack {
-                            // 只有最后一个对话框显示小三角
                             let isLast = idx == displayedCount - 1
                             SadChatBubbleView(text: line, showTriangle: isLast)
                                 .fixedSize(horizontal: false, vertical: true)
@@ -297,29 +333,32 @@ private struct SadBubbleScrollView: View {
 }
 
 #Preview {
-    SadQuestionStyleSinglechoiceView(
+    SadQuestionStyleMultichoice2View(
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 10,
-            type: .singleChoice,
-            uiStyle: .styleSinglechoice,
+            type: .multiChoice,
+            uiStyle: .styleMultichoice2,
             texts: [
-                "小云朵闻到了下雨的预兆，",
-                "可以跟小云朵说说，",
-                "你的失落程度现在是哪一种吗？"
+                "Xxx是否有一些一直坚持的习惯呢？",
+                "愿意跟小云朵分享一下吗？（多选）"
             ],
             animation: nil,
             options: [
-                .init(key: "A", text: "我有一点轻微的难过（轻度）", next: 2, exclusive: false),
-                .init(key: "B", text: "我很伤心，这已经影响到了正常生活（中度）", next: 3, exclusive: false),
-                .init(key: "C", text: "我完全沉浸于负面情绪里（重度）", next: 4, exclusive: false)
+                .init(key: "A", text: "健身", next: nil, exclusive: false),
+                .init(key: "B", text: "球类运动", next: nil, exclusive: false),
+                .init(key: "C", text: "画画", next: nil, exclusive: false),
+                .init(key: "D", text: "看书", next: nil, exclusive: false),
+                .init(key: "E", text: "早上一杯温水", next: nil, exclusive: false),
+                .init(key: "F", text: "瑜伽", next: nil, exclusive: false)
             ],
-            introTexts: [],
+            introTexts: nil,
             showSlider: false,
             endingStyle: nil,
             customViewName: nil,
             routine: "sad"
         ),
-        onSelect: { _ in }
+        onContinue: {}
     )
 }
+

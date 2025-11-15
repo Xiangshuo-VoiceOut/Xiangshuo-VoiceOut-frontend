@@ -39,7 +39,9 @@ struct MoodTreatmentLauncherView: View {
         case "guilt":
             MoodTreatmentGuiltHomepageView()
         case "shame":
-            MoodTreatmentAnxietyHomepageView()
+            AnxietyHomepageView()
+        case "anxiety":
+            AnxietyHomepageView()
         case "scare":
             MoodTreatmentScareHomepageView()
         case "envy":

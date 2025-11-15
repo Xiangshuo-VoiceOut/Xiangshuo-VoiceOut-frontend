@@ -26,7 +26,7 @@ let moodColors: [String: Color] = [
     "guilt": Color(red: 0.76, green: 0.82, blue: 0.69),
     "calm": Color(red: 0.99, green: 0.83, blue: 0.3),
     "happy": Color(red: 0.99, green: 0.83, blue: 0.3),
-    "anxiety":Color(red: 0.83, green: 0.75, blue: 0.95)
+    "anxiety": Color(red: 0.827, green: 0.753, blue: 0.949)
 ]
 
 let moodImageToChinese: [String: String] = [

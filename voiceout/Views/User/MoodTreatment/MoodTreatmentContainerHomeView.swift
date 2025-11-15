@@ -12,16 +12,19 @@ struct MoodPageContainerView<Content: View>: View {
     let onHealTap: () -> Void
     let content: Content
     let background: AnyView?
+    let showDiaryAndReport: Bool
     @EnvironmentObject var router: RouterModel
 
     init(
         mood: String,
         onHealTap: @escaping () -> Void,
+        showDiaryAndReport: Bool = true,
         @ViewBuilder content: () -> Content,
         @ViewBuilder background: () -> some View = { EmptyView() }
     ) {
         self.mood = mood
         self.onHealTap = onHealTap
+        self.showDiaryAndReport = showDiaryAndReport
         self.content = content()
         let bg = background()
         self.background = bg is EmptyView ? nil : AnyView(bg)
@@ -41,23 +44,25 @@ struct MoodPageContainerView<Content: View>: View {
                     Spacer()
                         .frame(height: 44)
                     
-                    HStack(alignment: .top) {
-                        VStack(spacing: ViewSpacing.small) {
-                            Button(action: {
-                                router.navigateTo(.moodManagerLoading)
-                            }) {
-                                MoodIconBadge(imageName: "diary", label: "日记")
+                    if showDiaryAndReport {
+                        HStack(alignment: .top) {
+                            VStack(spacing: ViewSpacing.small) {
+                                Button(action: {
+                                    router.navigateTo(.moodManagerLoading)
+                                }) {
+                                    MoodIconBadge(imageName: "diary", label: "日记")
+                                }
+                                
+                                Button(action: {
+                                    router.navigateTo(.moodCalendar)
+                                }) {
+                                    MoodIconBadge(imageName: "chart-histogram 1", label: "云报")
+                                }
                             }
-                            
-                            Button(action: {
-                                router.navigateTo(.moodCalendar)
-                            }) {
-                                MoodIconBadge(imageName: "chart-histogram 1", label: "云报")
-                            }
+                            Spacer()
                         }
-                        Spacer()
+                        .padding(.top, ViewSpacing.small)
                     }
-                    .padding(.top, ViewSpacing.small)
                     
                     content
                     Spacer(minLength: ViewSpacing.xxsmall+ViewSpacing.medium)
@@ -68,7 +73,9 @@ struct MoodPageContainerView<Content: View>: View {
 
             StickyHeaderView(
                 title: "疗愈云港",
-                leadingComponent: AnyView(Spacer().frame(width: ViewSpacing.large)
+                leadingComponent: AnyView(
+                    BackButtonView()
+                        .foregroundColor(.grey500)
                 ),
                 trailingComponent: AnyView(
                     Button(action: {}) {
@@ -81,6 +88,7 @@ struct MoodPageContainerView<Content: View>: View {
                 backgroundColor: Color.clear
             )
             .frame(height: 44)
+            .padding(.top, 54)
             .zIndex(0)
         }
     }

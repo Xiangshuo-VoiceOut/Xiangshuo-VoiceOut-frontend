@@ -52,9 +52,16 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
     case styleInteractiveDialogue//互动对话题
     case styleSlider//滑动卡片题
     case styleMultichoice//互动多选
+    case styleMultichoice2//多选2（基于单选模版）
     case styleTodo//记录todo题
     case styleFillInBlank//填空题
     case styleEnd//结束
+    
+    ///Anxiety
+    case styleAnxietySinglechoice//选择题
+    case styleAnxietyMultichoice//多选题
+    case styleAnxietyMatching//配对题
+    case styleAnxietyRank//最终打分题
 
 
 
@@ -103,6 +110,12 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
         case "styleFillInBlank":   self = .styleFillInBlank
         case "styleEnd":           self = .styleEnd
             
+        ///Anxiety
+        case "styleAnxietySinglechoice": self = .styleAnxietySinglechoice
+        case "styleAnxietyMultichoice": self = .styleAnxietyMultichoice
+        case "styleAnxietyMatching": self = .styleAnxietyMatching
+        case "anxietyquestionstylerank": self = .styleAnxietyRank
+            
         default:
             self = .unknown
         }
@@ -140,9 +153,15 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
         case .styleInteractiveDialogue: return "styleInteractiveDialogue"
         case .styleSlider:          return "styleSlider"
         case .styleMultichoice:     return "styleMultichoice"
+        case .styleMultichoice2:    return "styleMultichoice2"
         case .styleTodo:            return "styleTodo"
         case .styleFillInBlank:     return "styleFillInBlank"
         case .styleEnd:             return "styleEnd"
+            
+        case .styleAnxietySinglechoice: return "styleAnxietySinglechoice"
+        case .styleAnxietyMultichoice: return "styleAnxietyMultichoice"
+        case .styleAnxietyMatching: return "styleAnxietyMatching"
+        case .styleAnxietyRank: return "anxietyquestionstylerank"
             
         case .unknown:
             return ""

@@ -135,7 +135,6 @@ struct AnxietyHomepageView: View {
         return MoodPageContainerView(
             mood: "anxiety",
             onHealTap: {},
-            showDiaryAndReport: false,
             content: {
                 ZStack(alignment: .topTrailing) {
                     VStack(spacing: 0) {

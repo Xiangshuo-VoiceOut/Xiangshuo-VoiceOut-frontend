@@ -63,9 +63,6 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
     case styleAnxietyMatching//配对题
     case styleAnxietyRank//最终打分题
 
-
-
-
     
     ///Custom
     case unknown

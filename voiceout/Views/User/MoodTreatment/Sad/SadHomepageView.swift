@@ -92,7 +92,6 @@ struct MoodTreatmentSadHomepageView: View {
         return MoodPageContainerView(
             mood: "sad",
             onHealTap: {},
-            showDiaryAndReport: false,
             content: {
                 ZStack(alignment: .topTrailing) {
                     VStack(spacing: 0) {

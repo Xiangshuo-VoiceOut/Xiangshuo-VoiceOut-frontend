@@ -94,7 +94,7 @@ final class RouterModel: ObservableObject {
             MoodDiaryView(selectedImage: selectedImage)
                 .environmentObject(self)
         case .moodCalendar:
-            MoodCalendarView(incomingMood: nil)
+            MoodCalendarView()
                 .environmentObject(self)
         case .textJournalView(let diaries):
             TextJournalView(diaries: diaries, onBack: { self.navigateBack() })
@@ -142,7 +142,7 @@ final class RouterModel: ObservableObject {
             MoodManagerLoadingView2()
                 .environmentObject(self)
         case .moodCalendarWithMood(let mood):
-            MoodCalendarView(incomingMood: mood)
+            MoodCalendarView()
                 .environmentObject(self)
         case .moodTreatmentHappyHomepage:
             MoodTreatmentHappyHomepageView()

@@ -50,9 +50,7 @@ struct StressReliefEntryView: View {
                     title: nil,
                     leadingComponent: nil,
                     trailingComponent: AnyView(
-                        Button(action: {
-                            router.popToRoot()
-                        }) {
+                        Button(action: { }) {
                             Image("close")
                                 .resizable()
                                 .frame(width: 24, height: 24)

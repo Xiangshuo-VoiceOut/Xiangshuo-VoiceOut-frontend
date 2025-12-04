@@ -38,8 +38,12 @@ struct EnvyQuestionStyleIView: View {
                 Color.surfaceBrandTertiaryGreen
                     .ignoresSafeArea(edges: .bottom)
 
-                MusicButtonView()
-                    .padding(.leading, ViewSpacing.medium)
+                Button { isPlayingMusic.toggle() } label: {
+                    Image(isPlayingMusic ? "music" : "stop-music")
+                        .resizable()
+                        .frame(width: 48, height: 48)
+                }
+                .padding(.leading, ViewSpacing.medium)
 
                 VStack {
                     Spacer()
@@ -65,7 +69,7 @@ struct EnvyQuestionStyleIView: View {
                             texts: texts,
                             displayedCount: $displayedCount,
                             bubbleHeight: $bubbleHeight,
-                            bubbleSpacing: ViewSpacing.large,
+                            bubbleSpacing: 24,
                             totalHeight: bubbleFrameHeight
                         )
                         .frame(height: bubbleFrameHeight)
@@ -94,7 +98,7 @@ struct EnvyQuestionStyleIView: View {
                                             .padding(.horizontal, ViewSpacing.medium)
                                             .padding(.vertical, ViewSpacing.base)
                                             .background(isSelected
-                                                        ? Color(red: 0.8, green: 0.95, blue: 1)
+                                                        ? Color(red: 0.42, green: 0.81, blue: 0.95)
                                                         : Color.surfacePrimary
                                             )
                                             .overlay(
@@ -108,7 +112,6 @@ struct EnvyQuestionStyleIView: View {
                                 }
 
                                 if let confirmOpt = confirmOption {
-                                    let isReady = !selectedOptions.isEmpty
                                     Button {
                                         let selected = nonConfirmOptions.filter { selectedOptions.contains($0.id) }
                                         onConfirm(selected)
@@ -117,15 +120,13 @@ struct EnvyQuestionStyleIView: View {
                                             .font(.typography(.bodyMedium))
                                             .kerning(0.64)
                                             .multilineTextAlignment(.center)
-                                            .foregroundColor(isReady ? .textBrandPrimary : .textLight)
+                                            .foregroundColor(Color.textBrandPrimary)
                                             .padding(.horizontal, ViewSpacing.medium)
                                             .padding(.vertical, ViewSpacing.small)
                                             .frame(height: 44)
                                             .background(Color.surfacePrimary)
                                             .cornerRadius(CornerRadius.full.value)
                                     }
-                                    .disabled(!isReady)
-                                    .animation(.easeInOut(duration: 0.2), value: isReady)
                                 }
                             }
                         }

@@ -16,6 +16,8 @@ struct AngryQuestionStyleDView: View {
     @State private var isPlayingMusic  = true
     @State private var completedLines  = 0
     
+    private let typingInterval: TimeInterval = 0.08
+    
     private var displayTexts: [String] {
         if let texts = question.texts, !texts.isEmpty {
             return texts
@@ -65,12 +67,17 @@ struct AngryQuestionStyleDView: View {
                         Spacer()
                     }
                     
-                    MusicButtonView()
-                        .padding(.leading, ViewSpacing.medium)
+                    Button { isPlayingMusic.toggle() } label: {
+                        Image(isPlayingMusic ? "music" : "stop-music")
+                            .resizable()
+                            .frame(width: 48, height: 48)
+                    }
+                    .padding(.leading, ViewSpacing.medium)
                 }
                 
                 ForEach(Array(displayTexts.enumerated()), id: \.offset) { idx, line in
-                    TypewriterText(fullText: line) {
+                    TypewriterText(fullText: line,
+                                   characterDelay: typingInterval) {
                         completedLines += 1
                     }
                     .font(.typography(.bodyMedium))
@@ -83,7 +90,8 @@ struct AngryQuestionStyleDView: View {
                 
                 if completedLines >= displayTexts.count {
                     ForEach(displayIntro, id: \.self) { line in
-                        TypewriterText(fullText: line) {
+                        TypewriterText(fullText: line,
+                                       characterDelay: typingInterval) {
                             completedLines += 1
                         }
                         .font(.typography(.bodyMediumEmphasis))

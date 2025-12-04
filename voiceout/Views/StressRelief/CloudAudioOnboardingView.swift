@@ -113,10 +113,7 @@ struct CloudAudioOnboardingView: View {
                         title: String(localized: "cloud_audio"),
                         leadingComponent: AnyView(Spacer().frame(width: 24)),
                         trailingComponent: AnyView(
-                            Button {
-                                router.popToRoot()
-                                router.navigateTo(.stressReliefEntry)
-                            } label: {
+                            Button { presentationMode.wrappedValue.dismiss() } label: {
                                 Image("close")
                                     .frame(width: 24, height: 24)
                                     .foregroundColor(.grey500)

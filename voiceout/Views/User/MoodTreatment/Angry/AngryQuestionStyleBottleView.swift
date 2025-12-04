@@ -57,7 +57,13 @@ struct AngryQuestionStyleBottleView: View {
             }
             
             HStack {
-                MusicButtonView()
+                Button {
+                    isPlayingMusic.toggle()
+                } label: {
+                    Image(isPlayingMusic ? "music" : "stop-music")
+                        .resizable()
+                        .frame(width: 48, height: 48)
+                }
                 Spacer()
             }
         }
@@ -125,7 +131,7 @@ struct AngryQuestionStyleBottleView: View {
                                 .foregroundColor(.textInvert)
                                 .frame(alignment: .topLeading)
                                 .padding(.top, -ViewSpacing.large)
-                                .padding(.horizontal,ViewSpacing.small+ViewSpacing.betweenSmallAndBase+ViewSpacing.xxlarge)
+                                .padding(.horizontal,75)
                         }
                         .padding(.bottom, ViewSpacing.large)
                     }

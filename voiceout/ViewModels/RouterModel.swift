@@ -28,10 +28,14 @@ enum Route: Hashable {
     case textJournalDetail(entry: DiaryEntry)
     case moodHomepageLauncher
     case mainHomepage
+    case systemMessageDetail
     case cloudGardenOnboarding(startIndex: Int, showSkip: Bool)
+    case cloudGardenJourney
     case cloudAudioOnboarding(startIndex: Int, showSkip: Bool)
     case angrySingleQuestion(id: Int)
     case envySingleQuestion(id: Int)
+    case sadSingleQuestion(id: Int)
+    case anxietySingleQuestion(id: Int)
     case scareSingleQuestion(id: Int)
     case stressReliefEntry
     case moodManagerLoading2
@@ -104,8 +108,14 @@ final class RouterModel: ObservableObject {
         case .mainHomepage:
             MainHomepageView()
                 .environmentObject(self)
+        case .systemMessageDetail:
+            SystemMessageDetailView()
+                .environmentObject(self)
         case .cloudGardenOnboarding(let start, let skip):
-            CloudGardenOnboardingView(startIndex: start)
+            CloudGardenOnboardingView(startIndex: start, showSkip: skip)
+                .environmentObject(self)
+        case .cloudGardenJourney:
+            CloudGardenJourneyView()
                 .environmentObject(self)
         case .cloudAudioOnboarding(let start, let skip):
             CloudAudioOnboardingView(startIndex: start, showSkip: skip)
@@ -115,6 +125,12 @@ final class RouterModel: ObservableObject {
                 .environmentObject(self)
         case .envySingleQuestion(let id):
             EnvyQuestionPageView(questionId: id)
+                .environmentObject(self)
+        case .sadSingleQuestion(let id):
+            SadQuestionPageView(questionId: id)
+                .environmentObject(self)
+        case .anxietySingleQuestion(let id):
+            AnxietyQuestionPageView(questionId: id)
                 .environmentObject(self)
         case .scareSingleQuestion(let id):
             ScareQuestionPageView(questionId: id)

@@ -53,8 +53,14 @@ struct AngryQuestionStyleNoteView: View {
                             .padding(.bottom, ViewSpacing.large)
                         Spacer()
                     }
-                    MusicButtonView()
-                        .padding(.leading, ViewSpacing.medium)
+                    Button {
+                        isPlayingMusic.toggle()
+                    } label: {
+                        Image(isPlayingMusic ? "music" : "stop-music")
+                            .resizable()
+                            .frame(width: 48, height: 48)
+                    }
+                    .padding(.leading, ViewSpacing.medium)
                 }
                 .zIndex(10)
                 

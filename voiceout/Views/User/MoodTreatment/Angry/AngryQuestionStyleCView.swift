@@ -13,6 +13,8 @@ struct AngryQuestionStyleCView: View {
     @State private var isPlayingMusic = true
     @State private var completedLines = 0
     
+    private let typingInterval: TimeInterval = 0.1
+    
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .topLeading) {
@@ -30,7 +32,13 @@ struct AngryQuestionStyleCView: View {
                         }
                         
                         HStack {
-                            MusicButtonView()
+                            Button {
+                                isPlayingMusic.toggle()
+                            } label: {
+                                Image(isPlayingMusic ? "music" : "stop-music")
+                                    .resizable()
+                                    .frame(width: 48, height: 48)
+                            }
                             Spacer()
                         }
                     }
@@ -39,7 +47,8 @@ struct AngryQuestionStyleCView: View {
                     VStack(spacing:0){
                         if let lines = question.texts {
                             ForEach(Array(lines.enumerated()), id: \.offset) { idx, line in
-                                TypewriterText(fullText: line) {
+                                TypewriterText(fullText: line,
+                                               characterDelay: typingInterval) {
                                     completedLines += 1
                                 }
                                 .font(Font.typography(.bodyMedium))

@@ -31,8 +31,12 @@ struct AngryQuestion1StyleView: View {
                 Color.surfaceBrandTertiaryGreen
                     .ignoresSafeArea(edges: .bottom)
                 
-                MusicButtonView()
-                    .padding(.leading, ViewSpacing.medium)
+                Button { isPlayingMusic.toggle() } label: {
+                    Image(isPlayingMusic ? "music" : "stop-music")
+                        .resizable()
+                        .frame(width: 48, height: 48)
+                }
+                .padding(.leading, ViewSpacing.medium)
                 
                 VStack {
                     Spacer()

@@ -9,7 +9,7 @@ import Foundation
 
 struct MoodTreatmentService {
     static let shared = MoodTreatmentService()
-    private static let cloudURL = URL(string: "http://3.132.55.92:4000")!
+    private static let cloudURL = URL(string: "http://3.143.142.42:4000")!
     private static let simulatorLocalURL = URL(string: "http://127.0.0.1:3000")!
     private static var lanURL: URL? {
         if let raw = UserDefaults.standard.string(forKey: "dev.localBaseURL"),
@@ -21,7 +21,7 @@ struct MoodTreatmentService {
     
     private static var candidateBaseURLs: [URL] {
 #if targetEnvironment(simulator)
-        return [cloudURL, cloudURL]
+        return [simulatorLocalURL, cloudURL]
 #else
         if let lan = lanURL {
             return [cloudURL, lan]
@@ -58,6 +58,17 @@ struct MoodTreatmentService {
             try await requestJSON(
                 baseURL: base,
                 path: "/quiz/answer",
+                method: "POST",
+                body: body
+            ) as MoodTreatmentQuestion
+        }
+    }
+    
+    func submitCustomAnswer(body: [String: Any]) async throws -> MoodTreatmentQuestion {
+        return try await tryAllBaseURLs { base in
+            try await requestJSON(
+                baseURL: base,
+                path: "/quiz/custom-answer",
                 method: "POST",
                 body: body
             ) as MoodTreatmentQuestion

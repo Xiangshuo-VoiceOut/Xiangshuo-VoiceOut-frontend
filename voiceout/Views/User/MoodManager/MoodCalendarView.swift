@@ -34,11 +34,7 @@ struct MoodCalendarView: View {
     @State private var allEntries: [DiaryEntry] = []
     
     let calendar = Calendar.current
-    let incomingMood: String?
-
-    init(incomingMood: String? = nil) {
-        self.incomingMood = incomingMood
-    }
+    
     var body: some View {
         ZStack(alignment: .top) {
             Color.surfacePrimaryGrey2.ignoresSafeArea()
@@ -112,7 +108,7 @@ struct MoodCalendarView: View {
         }
         .onAppear {
             let startDate = ISO8601DateFormatter().date(from: "2025-01-01T00:00:00Z")!
-            let endDate   = ISO8601DateFormatter().date(from: "2025-12-31T23:59:59Z")!
+            let endDate = ISO8601DateFormatter().date(from: "2025-12-31T23:59:59Z")!
             
             MoodManagerService.shared.fetchDiaryEntries(startDate: startDate, endDate: endDate, page: 1, limit: 100) { result in
                 DispatchQueue.main.async {
@@ -120,7 +116,6 @@ struct MoodCalendarView: View {
                     case .success(let response):
                         let entries = response.data.entries
                         self.allEntries = entries
-                        
                         var newCalendarData: [(Int, Int, Int, String)] = []
                         for diary in entries {
                             let comps = Calendar.current.dateComponents([.year, .month, .day], from: diary.timestamp)
@@ -130,24 +125,9 @@ struct MoodCalendarView: View {
                             }
                         }
                         self.calendarData = newCalendarData
-                        
-                        if let mood = incomingMood?.lowercased() {
-                            let comps = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-                            if let y = comps.year, let m = comps.month, let d = comps.day {
-                                self.calendarData.append((y, m, d, mood))
-                            }
-                        }
-                        
                         self.computeWeekAndMonth()
-                        
-                    case .failure(_):
-                        if let mood = incomingMood?.lowercased() {
-                            let comps = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-                            if let y = comps.year, let m = comps.month, let d = comps.day {
-                                self.calendarData.append((y, m, d, mood))
-                            }
-                            self.computeWeekAndMonth()
-                        }
+                    case .failure(let error):
+                        print("Current selectedDate:", selectedDate)
                     }
                 }
             }
@@ -161,8 +141,8 @@ struct MoodCalendarView: View {
                             MoodSegment(mood: $0.key.lowercased(),
                                         fraction: total > 0 ? $0.value / total : 0)
                         }
-                    case .failure(_):
-                        break
+                    case .failure(let error):
+                        print("Failed to obtain weekly statistics:", error.localizedDescription)
                     }
                 }
             }
@@ -174,8 +154,8 @@ struct MoodCalendarView: View {
                         self.moodSegmentsMonth = stats.mood_percentages.map {
                             MoodSegment(mood: $0.key.lowercased(), fraction: $0.value / 100.0)
                         }
-                    case .failure(_):
-                        break
+                    case .failure(let error):
+                        print("Failed to obtain monthly statistics.:", error.localizedDescription)
                     }
                 }
             }
@@ -369,6 +349,6 @@ struct MoodCalendarGrid: View {
 }
 
 #Preview {
-    MoodCalendarView(incomingMood: nil)
+    MoodCalendarView()
         .environmentObject(RouterModel())
 }

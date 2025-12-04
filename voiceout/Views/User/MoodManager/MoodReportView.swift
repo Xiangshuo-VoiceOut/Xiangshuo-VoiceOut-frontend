@@ -23,38 +23,33 @@ struct MoodReportView: View {
             let fixedPanelHeight = ringContainerHeight
             
             VStack(spacing: ViewSpacing.medium) {
-                HStack {
-                    Spacer(minLength: 0)
-                    ZStack {
-                        Circle()
-                            .fill(Color.surfacePrimaryGrey)
-                            .frame(width: ringContainerHeight, height: ringContainerHeight)
-                        Circle()
-                            .fill(Color.surfacePrimaryGrey2)
-                            .frame(width: ringContainerHeight - 12, height: ringContainerHeight - 12)
-                            .padding(.top, ringContainerHeight * 0.05)
-                        Circle()
-                            .fill(Color.surfacePrimaryGrey2)
-                            .stroke(Color.surfacePrimaryGrey, lineWidth: StrokeWidth.width200.value)
-                            .frame(width: ringContainerHeight - 32, height: ringContainerHeight - 32)
-                        
-                        arcsView(width: ringContainerHeight)
-                        
-                        VStack {
-                            let dominantMood = moodSegments.max(by: { $0.fraction < $1.fraction })?.mood.lowercased() ?? "angry"
-                            
-                            Image(dominantMood)
-                                .resizable()
-                                .scaledToFit()
-                                .padding(.horizontal, ViewSpacing.xsmall)
-                                .padding(.vertical, ringContainerHeight * 0.02)
-                                .frame(width: ringContainerHeight * 0.7, height: ringContainerHeight * 0.7)
-                        }
-                    }
-                    .frame(width: ringContainerHeight, height: ringContainerHeight)
+                ZStack {
+                    Circle()
+                        .fill(Color.surfacePrimaryGrey)
+                        .frame(width: ringContainerHeight, height: ringContainerHeight)
+                    Circle()
+                        .fill(Color.surfacePrimaryGrey2)
+                        .frame(width: ringContainerHeight - 12, height: ringContainerHeight - 12)
+                        .padding(.top, ringContainerHeight * 0.05)
+                    Circle()
+                        .fill(Color.surfacePrimaryGrey2)
+                        .stroke(Color.surfacePrimaryGrey, lineWidth: StrokeWidth.width200.value)
+                        .frame(width: ringContainerHeight - 32, height: ringContainerHeight - 32)
+                    
+                    arcsView(width: ringContainerHeight)
+                    
+                    VStack {
+                        let dominantMood = moodSegments.max(by: { $0.fraction < $1.fraction })?.mood.lowercased() ?? "angry"
 
-                    Spacer(minLength: 0)
+                        Image(dominantMood)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(.horizontal, ViewSpacing.xsmall)
+                            .padding(.vertical, ringContainerHeight * 0.02)
+                            .frame(width: ringContainerHeight * 0.7, height: ringContainerHeight * 0.7)
+                    }
                 }
+                .frame(width: ringContainerHeight, height: ringContainerHeight)
                 
                 VStack(spacing: ViewSpacing.medium) {
                     ForEach(moodSegments.sorted(by: { $0.fraction > $1.fraction }), id: \.id) { segment in

@@ -14,6 +14,8 @@ struct EnvyQuestionStyleJView: View {
     @State private var isPlayingMusic: Bool = true
     @State private var showButton: Bool = false
     
+    private let questionTypingInterval: TimeInterval = 0.1
+    
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .topLeading) {
@@ -31,7 +33,13 @@ struct EnvyQuestionStyleJView: View {
                             Spacer()
                         }
                         HStack {
-                            MusicButtonView()
+                            Button {
+                                isPlayingMusic.toggle()
+                            } label: {
+                                Image(isPlayingMusic ? "music" : "stop-music")
+                                    .resizable()
+                                    .frame(width: 48, height: 48)
+                            }
                             Spacer()
                         }
                     }
@@ -40,7 +48,8 @@ struct EnvyQuestionStyleJView: View {
                     ForEach(Array(question.texts?.enumerated() ?? [].enumerated()),
                             id: \.offset) { idx, line in
                         TypewriterText(
-                            fullText: line
+                            fullText: line,
+                            characterDelay: questionTypingInterval
                         ) {
                             if idx == (question.texts?.count ?? 1) - 1 {
                                 showButton = true

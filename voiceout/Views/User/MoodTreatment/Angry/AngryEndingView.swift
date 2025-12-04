@@ -55,8 +55,13 @@ struct AngryEndingView: View {
 
                 VStack(spacing: 0) {
                     HStack {
-                        MusicButtonView()
-                            .padding(.leading, ViewSpacing.medium)
+                        Button {
+                            isPlayingMusic.toggle()
+                        } label: {
+                            Image(isPlayingMusic ? "music" : "stop-music")
+                                .frame(width: 48, height: 48)
+                        }
+                        .padding(.leading, ViewSpacing.medium)
 
                         Spacer()
                     }

@@ -8,7 +8,7 @@
 import Foundation
 
 enum API {
-    static let host = "http://3.132.55.92:3000"
+    static let host = "http://3.143.142.42:3000"
     static let moodBase = "\(host)/api/mood"
     static let v1 = "\(host)/api/v1"
 }

@@ -55,6 +55,8 @@ struct EnvyQuestionStyleMirrorView: View {
     @State private var isPlayingMusic = true
     @State private var showShards = false
 
+    private let questionTypingInterval: TimeInterval = 0.1
+
     private let layoutInfo: [(String, Angle, CGPoint, CGSize)] = [
         ("envy-mirror1", .degrees(0),    .init(x: -130, y: -90),  .init(width: 138.62, height: 98.22)),
         ("envy-mirror1", .degrees(-20),  .init(x: -15,  y: -120), .init(width: 118.29, height: 83.82)),
@@ -117,7 +119,10 @@ struct EnvyQuestionStyleMirrorView: View {
                         }
                         
                         HStack {
-                            MusicButtonView()
+                            Button { isPlayingMusic.toggle() } label: {
+                                Image(isPlayingMusic ? "music" : "stop-music")
+                                    .resizable().frame(width: 48, height: 48)
+                            }
                             Spacer()
                         }
                     }
@@ -125,7 +130,7 @@ struct EnvyQuestionStyleMirrorView: View {
 
                     ForEach(Array(question.texts?.enumerated() ?? [].enumerated()),
                             id: \.offset) { idx, line in
-                        TypewriterText(fullText: line) {
+                        TypewriterText(fullText: line, characterDelay: questionTypingInterval) {
                             if idx == (question.texts?.count ?? 1) - 1 {
                                 withAnimation { showShards = true }
                             }

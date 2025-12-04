@@ -21,19 +21,21 @@ struct AngryQuestionStyleAView: View {
 
     private let bubbleFrameHeight: CGFloat = 48 + 64 + 71
 
-    @State private var selectedKey: String? = nil
-    private let selectionHold: TimeInterval = 0.15
     var body: some View {
         GeometryReader { proxy in
-            let _ = proxy.safeAreaInsets.top
+            let safeTop = proxy.safeAreaInsets.top
             let texts = question.texts ?? []
 
             ZStack(alignment: .topLeading) {
                 Color.surfaceBrandTertiaryGreen
                     .ignoresSafeArea(edges: .bottom)
 
-                MusicButtonView()
-                    .padding(.leading, ViewSpacing.medium)
+                Button { isPlayingMusic.toggle() } label: {
+                    Image(isPlayingMusic ? "music" : "stop-music")
+                        .resizable()
+                        .frame(width: 48, height: 48)
+                }
+                .padding(.leading, ViewSpacing.medium)
 
                 VStack {
                     Spacer()
@@ -57,7 +59,7 @@ struct AngryQuestionStyleAView: View {
                             texts: texts,
                             displayedCount: $displayedCount,
                             bubbleHeight: $bubbleHeight,
-                            bubbleSpacing: ViewSpacing.large,
+                            bubbleSpacing: 24,
                             totalHeight: bubbleFrameHeight
                         )
                         .frame(height: bubbleFrameHeight)
@@ -68,58 +70,29 @@ struct AngryQuestionStyleAView: View {
                     if showOptions {
                         VStack(spacing: ViewSpacing.small) {
                             ForEach(question.options) { option in
-                                let isSelected = (selectedKey == option.key)
                                 HStack {
                                     Spacer()
                                     if option.exclusive == true {
-                                        Button {
-                                            guard selectedKey == nil else { return }
-                                            withAnimation(.easeIn(duration: selectionHold)) {
-                                                selectedKey = option.key
-                                            }
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + selectionHold) {
-                                                onSelect(option)
-                                                selectedKey = nil
-                                            }
-                                        } label: {
+                                        Button { onSelect(option) } label: {
                                             HStack(spacing: ViewSpacing.xsmall) {
                                                 Image("ai-star")
                                                     .frame(width: 24, height: 24)
                                                 Text(option.text)
-                                                    .font(Font.typography(.bodyMedium))
                                             }
-                                            .foregroundColor(isSelected ? .white : Color(red: 0, green: 0.6, blue: 0.8))
+                                            .foregroundColor(Color(red: 0, green: 0.6, blue: 0.8))
                                             .padding(.horizontal, ViewSpacing.medium)
                                             .padding(.vertical, ViewSpacing.small)
-                                            .background(
-                                                isSelected
-                                                    ? Color(red: 0.42, green: 0.81, blue: 0.95)
-                                                    : Color.surfacePrimary
-                                            )
+                                            .background(Color.surfacePrimary)
                                             .cornerRadius(CornerRadius.full.value)
                                         }
-                                        .disabled(selectedKey != nil)
                                     } else {
-                                        Button {
-                                            guard selectedKey == nil else { return }
-                                            withAnimation(.easeIn(duration: selectionHold)) {
-                                                selectedKey = option.key
-                                            }
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + selectionHold) {
-                                                onSelect(option)
-                                                selectedKey = nil
-                                            }
-                                        } label: {
+                                        Button { onSelect(option) } label: {
                                             Text(option.text)
                                                 .font(Font.typography(.bodyMedium))
-                                                .foregroundColor(isSelected ? .white : .grey500)
+                                                .foregroundColor(.grey500)
                                                 .padding(.horizontal, ViewSpacing.medium)
                                                 .padding(.vertical, ViewSpacing.base)
-                                                .background(
-                                                    isSelected
-                                                        ? Color(red: 0.42, green: 0.81, blue: 0.95)
-                                                        : Color.surfacePrimary
-                                                )
+                                                .background(Color.surfacePrimary)
                                                 .cornerRadius(12)
                                                 .overlay(
                                                     RoundedRectangle(cornerRadius: 12)
@@ -128,12 +101,11 @@ struct AngryQuestionStyleAView: View {
                                                                 lineWidth: 4)
                                                 )
                                         }
-                                        .disabled(selectedKey != nil)
                                     }
                                 }
                             }
                         }
-                        .padding(.top, ViewSpacing.medium + ViewSpacing.large)
+                        .padding(.top, ViewSpacing.medium+ViewSpacing.large)
                         .padding(.trailing, ViewSpacing.medium)
                         .transition(.opacity)
                     }
@@ -182,8 +154,8 @@ struct AngryQuestionStyleAView: View {
             options: [
                 .init(key: "A",text: "我只是感到轻微的生气或烦躁", next: 2, exclusive: false),
                 .init(key: "B",text: "我感到愤怒，但是仍在自己的可控范围内", next: 3, exclusive: false),
-                .init(key: "C",text: "我非常愤怒，情绪已经影响了日常生活", next: 10, exclusive: false),
-                .init(key: "X",text: "我明白了，继续", next: 11, exclusive: true)
+                .init(key: "C",text: "我非常愤怒，情绪已经影响了日常生活", next: 10, exclusive: false)
+
             ],
             introTexts: nil,
             showSlider: nil,
@@ -193,3 +165,24 @@ struct AngryQuestionStyleAView: View {
         onSelect: { _ in }
     )
 }
+
+
+// 有 exclusive，没有“上一题”
+//#Preview {
+//    AngryQuestionStyleAView(
+//        question: MoodTreatmentQuestion(
+//            id: 2,
+//            type: .singleChoice,
+//            uiStyle: .styleA,
+//            texts:["这段关系本身是否就是让你产生愤怒情绪的源头呢？","请记住，不要重复陷入一个负面循环中~"],
+//            animation: nil,
+//            options: [
+//                .init(text: "明白了，我想做出改变~可以结束疏导", next: 4, exclusive: false),
+//                .init(text: "我不知道怎么脱离", next: 5, exclusive: true)
+//            ],
+//            introTexts: nil
+//        ),
+//        onSelect: { _ in }
+//    )
+//}
+

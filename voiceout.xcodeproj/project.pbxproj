@@ -1722,14 +1722,17 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = voiceout/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "我们需要访问你的相机，以便你可以拍照";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to the camera to take photos for your profile and mood diary.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires access to the microphone for voice recording features.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "我们需要写入相册，以便你可以保存图片";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "我们需要访问你的相册，以便你可以选择照片";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to the photo library to select photos for your profile and mood diary.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1765,14 +1768,17 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = voiceout/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "我们需要访问你的相机，以便你可以拍照";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to the camera to take photos for your profile and mood diary.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires access to the microphone for voice recording features.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "我们需要写入相册，以便你可以保存图片";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "我们需要访问你的相册，以便你可以选择照片";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to the photo library to select photos for your profile and mood diary.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

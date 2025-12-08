@@ -61,6 +61,27 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
     
     ///伤心+内疚共用
     case sliderStyle
+
+    ///Sad
+    case styleSinglechoice//选择题
+    case styleNotes//便签题
+    case styleOrder//排序题
+    case styleMatching//配对题
+    case styleEmotion//情感表达题
+    case styleUpload//上传互动题
+    case styleInteractiveDialogue//互动对话题
+    case styleSlider//滑动卡片题
+    case styleMultichoice//互动多选
+    case styleMultichoice2//多选2（基于单选模版）
+    case styleTodo//记录todo题
+    case styleFillInBlank//填空题
+    case styleEnd//结束
+    
+    ///Anxiety
+    case styleAnxietySinglechoice//选择题
+    case styleAnxietyMultichoice//多选题
+    case styleAnxietyMatching//配对题
+    case styleAnxietyRank//最终打分题
     
     ///Custom
     case unknown
@@ -112,6 +133,25 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
         ///伤心+内疚共用
         case "sliderStyle": self = .sliderStyle
 
+        ///Sad
+        case "styleSinglechoice":  self = .styleSinglechoice
+        case "styleNotes":         self = .styleNotes
+        case "styleOrder":         self = .styleOrder
+        case "styleMatching":      self = .styleMatching
+        case "styleEmotion":       self = .styleEmotion
+        case "styleUpload":        self = .styleUpload
+        case "styleInteractiveDialogue": self = .styleInteractiveDialogue
+        case "styleSlider":        self = .styleSlider
+        case "styleMultichoice":   self = .styleMultichoice
+        case "styleTodo":          self = .styleTodo
+        case "styleFillInBlank":   self = .styleFillInBlank
+        case "styleEnd":           self = .styleEnd
+            
+        ///Anxiety
+        case "styleAnxietySinglechoice": self = .styleAnxietySinglechoice
+        case "styleAnxietyMultichoice": self = .styleAnxietyMultichoice
+        case "styleAnxietyMatching": self = .styleAnxietyMatching
+        case "anxietyquestionstylerank": self = .styleAnxietyRank
         default:
             self = .unknown
         }
@@ -157,7 +197,25 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
         case .guiltStyleB:            return "guiltStyleB"
             
         case .sliderStyle: return "sliderStyle"
-
+            
+        case .styleSinglechoice:    return "styleSinglechoice"
+        case .styleNotes:           return "styleNotes"
+        case .styleOrder:           return "styleOrder"
+        case .styleMatching:        return "styleMatching"
+        case .styleEmotion:         return "styleEmotion"
+        case .styleUpload:          return "styleUpload"
+        case .styleInteractiveDialogue: return "styleInteractiveDialogue"
+        case .styleSlider:          return "styleSlider"
+        case .styleMultichoice:     return "styleMultichoice"
+        case .styleMultichoice2:    return "styleMultichoice2"
+        case .styleTodo:            return "styleTodo"
+        case .styleFillInBlank:     return "styleFillInBlank"
+        case .styleEnd:             return "styleEnd"
+            
+        case .styleAnxietySinglechoice: return "styleAnxietySinglechoice"
+        case .styleAnxietyMultichoice: return "styleAnxietyMultichoice"
+        case .styleAnxietyMatching: return "styleAnxietyMatching"
+        case .styleAnxietyRank: return "anxietyquestionstylerank"
         case .unknown:
             return ""
         }

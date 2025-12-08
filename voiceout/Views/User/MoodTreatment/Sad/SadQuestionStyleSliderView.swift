@@ -90,8 +90,7 @@ struct SadQuestionStyleSliderView: View {
                                    thumbInnerColor: Color(red: 0.4, green: 0.72, blue: 0.6), // colorBrandBrandPrimary
                                    thumbOuterColor: Color(red: 0.96, green: 0.96, blue: 0.96), // colorGrey75
                                    thumbInnerDiameter: 24,
-                                   thumbOuterDiameter: 24,
-                                   snapToIntegers: true) // 精准打分，只能选择整数
+                                   thumbOuterDiameter: 24)
                         .frame(width: 342, height: 8)
                         .onChange(of: sliderValue) { oldValue, newValue in
                             // 更新当前分数（0-4对应1-5分）

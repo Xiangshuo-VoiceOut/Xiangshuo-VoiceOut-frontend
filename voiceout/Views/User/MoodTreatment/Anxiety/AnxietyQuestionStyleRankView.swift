@@ -170,7 +170,7 @@ struct AnxietyQuestionStyleRankView: View {
                             }
                             
                             if index < 4 {
-                                Spacer()
+            Spacer()
                             }
                         }
                     }
@@ -218,7 +218,7 @@ struct AnxietyQuestionStyleRankView: View {
             Spacer()
         }
     }
-    
+
     private func startBubbleSequence() {
         guard let texts = question.texts else { return }
         for idx in texts.indices {

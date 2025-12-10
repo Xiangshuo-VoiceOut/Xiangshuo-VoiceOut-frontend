@@ -15,7 +15,7 @@ struct SadQuestionPageView: View {
     private let previewQuestion: MoodTreatmentQuestion?
     
     private var routine: String {
-        (previewQuestion ?? vm.question)?.routine ?? "sad"
+        (previewQuestion ?? vm.question)?.routine ?? "sadness"
     }
     
     init(questionId: Int) {

@@ -168,7 +168,7 @@ struct AnxietyHomepageView: View {
                                 .frame(height: buttonSpacingFromVector)
 
                             Button(action: {
-                                router.navigateTo(.anxietySingleQuestion(id: 1))
+                                router.navigateTo(.anxietySingleQuestion(id: 3001))
                             }) {
                                 Text("点击按钮继续")
                                     .font(Font.typography(.bodyMedium))

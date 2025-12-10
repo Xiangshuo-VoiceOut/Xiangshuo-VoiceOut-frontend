@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MoodTreatmentScareHomepageView: View {
+    @EnvironmentObject var router: RouterModel
     @State private var introLine: String
     private static let randomPrompts = [
         "小云朵听见了你心跳‘怦怦怦’的声音，是不是遇到什么让你紧张或不安的事了？别急，我在这儿。",

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MoodTreatmentGuiltHomepageView: View {
+    @EnvironmentObject var router: RouterModel
     @State private var introLine: String
     private static let randomPrompts = [
         "小云朵检测到你今天心里有点沉甸甸的～别担心，我们可以一起把这份内疚轻轻放下。",

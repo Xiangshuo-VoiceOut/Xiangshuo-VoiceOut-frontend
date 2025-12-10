@@ -14,6 +14,9 @@ struct ScareQuestionPageView: View {
     private let questionId: Int?
     private let previewQuestion: MoodTreatmentQuestion?
     
+    private var routine: String {
+        (previewQuestion ?? vm.question)?.routine ?? "fear"
+    }
     
     init(questionId: Int) {
         self.questionId = questionId
@@ -132,7 +135,7 @@ struct ScareQuestionPageView: View {
         }
         .onAppear {
             if previewQuestion == nil, let id = questionId {
-                vm.loadQuestion(routine: "scare", id: id)
+                vm.loadQuestion(routine: routine, id: id)
             }
             progressViewModel.fullWidth = UIScreen.main.bounds.width - 128
             refreshProgress()

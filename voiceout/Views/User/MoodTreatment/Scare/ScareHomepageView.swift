@@ -109,6 +109,7 @@ struct MoodTreatmentScareHomepageView: View {
                             Spacer()
 
                             Button(action: {
+                                router.navigateTo(.scareSingleQuestion(id: 501))
                             }) {
                                 Text("点击按钮继续")
                                     .font(Font.typography(.bodyMedium))

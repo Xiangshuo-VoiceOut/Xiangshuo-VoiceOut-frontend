@@ -35,6 +35,7 @@ enum Route: Hashable {
     case scareSingleQuestion(id: Int)
     case sadSingleQuestion(id: Int)
     case anxietySingleQuestion(id: Int)
+    case guiltSingleQuestion(id: Int)
     case stressReliefEntry
     case moodManagerLoading2
     case moodCalendarWithMood(String)
@@ -126,6 +127,9 @@ final class RouterModel: ObservableObject {
                 .environmentObject(self)
         case .anxietySingleQuestion(let id):
             AnxietyQuestionPageView(questionId: id)
+                .environmentObject(self)
+        case .guiltSingleQuestion(let id):
+            GuiltQuestionPageView(questionId: id)
                 .environmentObject(self)
         case .stressReliefEntry:
             StressReliefEntryView()

@@ -110,7 +110,7 @@ struct AnxietyQuestionPageView: View {
             case .styleAnxietyMatching:
                 AnxietyQuestionStyleMatchingView(question: q, onContinue: handleContinue)
             case .styleAnxietyRank:
-                AnxietyQuestionStyleRankView(question: q, onContinue: handleContinue)
+                AnxietyQuestionStyleRankView(question: q, onContinue: handleContinue, vm: vm)
             default:
                 // TODO: Add other anxiety-specific style views here as they are developed
                 EmptyView()

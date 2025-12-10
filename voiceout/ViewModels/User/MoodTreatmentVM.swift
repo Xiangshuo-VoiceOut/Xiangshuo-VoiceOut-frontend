@@ -81,4 +81,20 @@ final class MoodTreatmentVM: ObservableObject {
             isLoading = false
         }
     }
+    
+    /// 提交疗愈结束时的评分
+    func submitRating(routine: String, rating: Int) async -> Bool {
+        do {
+            _ = try await MoodTreatmentService.shared.submitRating(
+                userId: userId,
+                sessionId: sessionId,
+                routine: routine,
+                rating: rating
+            )
+            return true
+        } catch {
+            errorMessage = "Failed to submit rating：\(error.localizedDescription)"
+            return false
+        }
+    }
 }

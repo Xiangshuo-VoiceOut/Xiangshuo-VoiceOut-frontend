@@ -64,6 +64,29 @@ struct MoodTreatmentService {
         }
     }
     
+    /// 提交疗愈结束时的评分 (1-5)
+    func submitRating(
+        userId: String,
+        sessionId: String,
+        routine: String,
+        rating: Int
+    ) async throws -> RatingResponse {
+        let body: [String: Any] = [
+            "user_id": userId,
+            "session_id": sessionId,
+            "routine": routine,
+            "rating": rating
+        ]
+        return try await tryAllBaseURLs { base in
+            try await requestJSON(
+                baseURL: base,
+                path: "/quiz/rating",
+                method: "POST",
+                body: body
+            ) as RatingResponse
+        }
+    }
+    
     private func tryAllBaseURLs<T>(_ block: (_ base: URL) async throws -> T) async throws -> T {
         var lastError: Error?
         for base in Self.candidateBaseURLs {
@@ -115,4 +138,10 @@ enum APIError: Error {
     case requestFailed(Error)
     case invalidResponse
     case decodingFailed(Error)
+}
+
+/// 评分 API 响应
+struct RatingResponse: Decodable {
+    let success: Bool
+    let message: String?
 }

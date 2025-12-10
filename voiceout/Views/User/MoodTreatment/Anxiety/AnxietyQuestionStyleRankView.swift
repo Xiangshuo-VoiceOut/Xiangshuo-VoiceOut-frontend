@@ -16,11 +16,13 @@ private struct Constants {
 struct AnxietyQuestionStyleRankView: View {
     let question: MoodTreatmentQuestion
     let onContinue: () -> Void
+    @ObservedObject var vm: MoodTreatmentVM
 
     @State private var isPlayingMusic = true
     @State private var displayedCount = 0
     @State private var bubbleHeight: CGFloat = 0
     @State private var selectedIconIndex: Int? = nil
+    @State private var isSubmitting = false
     @EnvironmentObject var router: RouterModel
 
     private let displayDuration: TimeInterval = 1.5
@@ -62,19 +64,45 @@ struct AnxietyQuestionStyleRankView: View {
         VStack {
             Spacer()
             Button(action: {
-                router.navigateTo(.moodHomepageLauncher)
+                submitRatingAndExit()
             }) {
-                Text("结束疗愈路线")
-                    .font(Font.typography(.bodyMedium))
-                    .kerning(0.64)
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.surfaceBrandPrimary)
-                    .frame(maxWidth: .infinity, minHeight: 44)
-                    .background(Color.surfacePrimary)
-                    .clipShape(Capsule())
+                if isSubmitting {
+                    ProgressView()
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                        .background(Color.surfacePrimary)
+                        .clipShape(Capsule())
+                } else {
+                    Text("结束疗愈路线")
+                        .font(Font.typography(.bodyMedium))
+                        .kerning(0.64)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.surfaceBrandPrimary)
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                        .background(Color.surfacePrimary)
+                        .clipShape(Capsule())
+                }
             }
+            .disabled(isSubmitting)
             .padding(.horizontal, 45)
             .padding(.bottom, 60)
+        }
+    }
+    
+    private func submitRatingAndExit() {
+        // 评分：selectedIconIndex 0-4 对应 rating 1-5
+        let rating = (selectedIconIndex ?? 2) + 1  // 默认为3（中间值）
+        let routine = question.routine ?? "anxiety"
+        
+        isSubmitting = true
+        
+        Task {
+            // 使用 ViewModel 提交评分（userId/sessionId 在 VM 中统一管理）
+            _ = await vm.submitRating(routine: routine, rating: rating)
+            
+            await MainActor.run {
+                isSubmitting = false
+                router.navigateTo(.moodHomepageLauncher)
+            }
         }
     }
     
@@ -337,7 +365,8 @@ private struct AnxietyRankBubbleScrollView: View {
             customViewName: nil,
             routine: "anxiety"
         ),
-        onContinue: {}
+        onContinue: {},
+        vm: MoodTreatmentVM()
     )
 }
 

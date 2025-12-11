@@ -158,7 +158,6 @@ struct ScareQuestionStyleBView: View {
         question: MoodTreatmentQuestion(
             id: 3,
             totalQuestions: 45,
-            type: .multiChoice,
             uiStyle: .scareStyleB,
             texts: ["在外面的世界，感觉有点不踏实是很正常",
                     "我们先寻找一些可以让我们安心的东西，来帮助我们安心：你有注意到哪些让你熟悉或者安心的东西吗？"],

@@ -78,7 +78,6 @@ struct AngryQuestionStyleCView: View {
         question: MoodTreatmentQuestion(
             id: 999,
             totalQuestions: 45,
-            type: .animationOnly,
             uiStyle: .styleC,
             texts: [
                 "让我们先闭上眼睛深呼吸，每次吸气和呼气都要超过5秒。请不要担心时间，1分钟后，我会负责提醒你的~"

@@ -205,7 +205,6 @@ struct WindEffectView: View {
         question: MoodTreatmentQuestion(
             id: 12,
             totalQuestions: 12,
-            type: .custom,
             uiStyle: .styleEnd,
             texts: ["你已经收集足够多的风啦，长按屏幕帮助小云朵吧！"],
             animation: nil,

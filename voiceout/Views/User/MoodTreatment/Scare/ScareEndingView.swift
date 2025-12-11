@@ -80,7 +80,6 @@ struct ScareEndingView: View {
         question: MoodTreatmentQuestion(
             id: 999,
             totalQuestions: 45,
-            type: .custom,
             uiStyle: .scareStyleEnding,
             texts: [randomEnding],
             animation: nil,

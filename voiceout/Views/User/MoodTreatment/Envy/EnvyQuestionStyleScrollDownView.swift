@@ -156,7 +156,6 @@ struct EnvyQuestionStyleScrollDownView: View {
         question: MoodTreatmentQuestion(
             id: 4,
             totalQuestions: 100,
-            type: .singleChoice,
             uiStyle: .styleScrollDown,
             texts: ["你觉得自己最近的脆弱和敏感是由哪些事情引发的？"],
             animation: nil,

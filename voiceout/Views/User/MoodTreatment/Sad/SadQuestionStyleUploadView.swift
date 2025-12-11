@@ -321,7 +321,6 @@ struct SadQuestionStyleUploadView: View {
         question: MoodTreatmentQuestion(
             id: 5,
             totalQuestions: 10,
-            type: .custom,
             uiStyle: .styleUpload,
             texts: [
                 "最近有没有吃到好吃的美食呀，和小云朵分享一下吧！",

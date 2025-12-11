@@ -220,7 +220,6 @@ struct OptionCircleView: View {
         question: MoodTreatmentQuestion(
             id: 11,
             totalQuestions: 10,
-            type: .custom,
             uiStyle: .styleMatching,
             texts: [
                 "然后，小云朵希望你能圈出自己具有的品德：",

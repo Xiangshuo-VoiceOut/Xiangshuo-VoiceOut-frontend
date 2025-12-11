@@ -352,7 +352,6 @@ private struct AnxietyRankBubbleScrollView: View {
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 10,
-            type: .singleChoice,
             uiStyle: .styleAnxietyRank,
             texts: [
                 "相比疗愈前，你现在的感受是"

@@ -118,7 +118,6 @@ struct EnvyQuestionStyleTypingView: View {
         question: MoodTreatmentQuestion(
             id: 4,
             totalQuestions: 100,
-            type: .singleChoice,
             uiStyle: .styleTyping,
             texts: [
                 "在我们感到脆弱和敏感的时候，可能是我们的内心需要更多的关爱。现在，可以跟我一起写下这几句话～"

@@ -206,7 +206,6 @@ struct AngryQuestionStyleTimingView_Previews: PreviewProvider {
         let q = MoodTreatmentQuestion(
             id: 5,
             totalQuestions: 45,
-            type: .custom,
             uiStyle: .styleAngryTiming,
             texts: [
                 "接下来可以睁开眼睛，双手相握向上举起，像伸懒腰一样在头顶撑住再放松，手臂回到原位。",

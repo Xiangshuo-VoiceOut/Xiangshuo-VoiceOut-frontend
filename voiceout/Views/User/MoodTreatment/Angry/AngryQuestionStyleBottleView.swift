@@ -187,7 +187,6 @@ struct AngryQuestionStyleBottleView: View {
     let q = MoodTreatmentQuestion(
         id: 24,
         totalQuestions: 45,
-        type: .singleChoice,
         uiStyle: .styleBottle,
         texts: ["在进行积极自我对话之后，现在你是否感觉情绪平稳一些了呢？"],
         animation: nil,

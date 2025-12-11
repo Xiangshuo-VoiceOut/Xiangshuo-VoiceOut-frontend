@@ -143,7 +143,6 @@ struct ScareQuestionStyleBubble1View: View {
     let q = MoodTreatmentQuestion(
         id: 24,
         totalQuestions: 45,
-        type: .multiChoice,
         uiStyle: .styleBottle,
         texts: ["这些情绪对xxx的身体带来了什么影响呢？"],
         animation: nil,

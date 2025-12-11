@@ -252,7 +252,6 @@ struct SadQuestionStyleFillInBlankView: View {
         question: MoodTreatmentQuestion(
             id: 7,
             totalQuestions: 10,
-            type: .fillInBlank,
             uiStyle: .styleFillInBlank,
             texts: ["那在这些环境里，你最想聊的兴趣或爱好是什么呢？"],
             animation: nil,

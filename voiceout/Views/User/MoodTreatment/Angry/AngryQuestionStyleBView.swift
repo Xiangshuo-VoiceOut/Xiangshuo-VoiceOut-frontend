@@ -109,7 +109,6 @@ struct AngryQuestionStyleBView_Previews: PreviewProvider {
             question: MoodTreatmentQuestion(
                 id: 4,
                 totalQuestions: 45,
-                type: .singleChoice,
                 uiStyle: .styleB,
                 texts: [
                     "接下来我们做一组简单的情绪疏导练习，这能够使你的潜意识感受到安全的信号"

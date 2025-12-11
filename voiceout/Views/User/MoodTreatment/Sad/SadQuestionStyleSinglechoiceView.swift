@@ -301,7 +301,6 @@ private struct SadBubbleScrollView: View {
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 10,
-            type: .singleChoice,
             uiStyle: .styleSinglechoice,
             texts: [
                 "小云朵闻到了下雨的预兆，",

@@ -179,7 +179,6 @@ struct EnvyQuestionStyleHView: View {
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 100,
-            type: .singleChoice,
             uiStyle: .styleA,
             texts: [
                 "可以跟小云朵说说你的嫉妒程度吗？"

@@ -271,7 +271,6 @@ struct OrderItemView: View {
         question: MoodTreatmentQuestion(
             id: 10,
             totalQuestions: 10,
-            type: .custom,
             uiStyle: .styleOrder,
             texts: ["小云朵想要你给一下几个品德按照你最看重的顺序进行排序"],
             animation: nil,

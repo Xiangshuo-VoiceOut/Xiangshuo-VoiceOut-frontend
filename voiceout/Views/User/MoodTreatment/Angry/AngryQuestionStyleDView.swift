@@ -165,7 +165,6 @@ struct AngryQuestionStyleDView: View {
         question: MoodTreatmentQuestion(
             id: 888,
             totalQuestions: 45,
-            type: .slider,
             uiStyle: .styleD,
             texts:      [],
             animation:  nil,
@@ -193,7 +192,6 @@ struct AngryQuestionStyleDView: View {
 //    AngryQuestionStyleDView(
 //        question: MoodTreatmentQuestion(
 //            id: 889,
-//            type: .slider,
 //            uiStyle: .styleD,
 //            texts:      [],
 //            animation:  nil,

@@ -287,7 +287,6 @@ struct SadQuestionStyleTodoView: View {
         question: MoodTreatmentQuestion(
             id: 8,
             totalQuestions: 10,
-            type: .custom,
             uiStyle: .styleTodo,
             texts: ["你计划吃点什么呢？"],
             animation: nil,

@@ -141,7 +141,6 @@ struct Scare478BreatheGuideView: View {
                         question: MoodTreatmentQuestion(
                             id: 9,
                             totalQuestions: 45,
-                            type: .singleChoice,
                             uiStyle: .scareStyleA,
                             texts: [
                                 "好棒！这是一次完整的呼吸练习。我们可以再来几轮，或者继续前进。"
@@ -231,7 +230,6 @@ private extension Array {
         styleAQuestion: MoodTreatmentQuestion(
             id: 21,
             totalQuestions: 45,
-            type: .singleChoice,
             uiStyle: .scareStyleA,
             texts: ["小云朵提示", "一轮 478 呼吸完成了！还想继续吗？"],
             animation: nil,

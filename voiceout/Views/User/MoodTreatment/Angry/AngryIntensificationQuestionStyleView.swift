@@ -83,7 +83,6 @@ struct AngryIntensificationQuestionStyleView_Previews: PreviewProvider {
             question: MoodTreatmentQuestion(
                 id: 4,
                 totalQuestions: 45,
-                type: .singleChoice,
                 uiStyle: .styleB,
                 texts: [
                     "没关系，\n先一起深呼吸，让这份难过有个可以放下的地方。"

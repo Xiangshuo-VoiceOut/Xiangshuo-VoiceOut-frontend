@@ -337,7 +337,6 @@ private struct SadBubbleScrollView: View {
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 10,
-            type: .multiChoice,
             uiStyle: .styleMultichoice2,
             texts: [
                 "Xxx是否有一些一直坚持的习惯呢？",

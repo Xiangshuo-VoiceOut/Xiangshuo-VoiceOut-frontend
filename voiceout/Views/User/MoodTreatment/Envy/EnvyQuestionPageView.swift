@@ -177,7 +177,6 @@ struct EnvyQuestionPageView: View {
     let sampleQuestion = MoodTreatmentQuestion(
         id: 1,
         totalQuestions: 1,
-        type: .singleChoice,
         uiStyle: .styleH,
         texts: ["可以跟小云朵说说你的嫉妒程度吗？"],
         animation: nil,
@@ -201,7 +200,6 @@ struct EnvyQuestionPageView: View {
     let sampleQuestion = MoodTreatmentQuestion(
         id: 1,
         totalQuestions: 100,
-        type: .singleChoice,
         uiStyle: .styleH,
         texts: ["可以跟小云朵说说你的嫉妒程度吗？"],
         animation: nil,
@@ -226,7 +224,6 @@ struct EnvyQuestionPageView: View {
     let sampleQuestion = MoodTreatmentQuestion(
         id: 4,
         totalQuestions: 100,
-        type: .multiChoice,
         uiStyle: .styleI,
         texts: ["可以跟小云朵说说你是因为什么而感到嫉妒的吗？"],
         animation: nil,
@@ -256,7 +253,6 @@ struct EnvyQuestionPageView: View {
 //    let sampleScroll = MoodTreatmentQuestion(
 //        id: 4,
 //        totalQuestions: 100,
-//        type: .custom,
 //        uiStyle: .styleScrollDown,
 //        texts: ["你觉得自己最近的脆弱和敏感是由哪些事情引发的？"],
 //        animation: nil,
@@ -276,7 +272,6 @@ struct EnvyQuestionPageView: View {
 //    let sampleQuestion = MoodTreatmentQuestion(
 //        id: 4,
 //        totalQuestions: 100,
-//        type: .singleChoice,
 //        uiStyle: .styleJ,
 //        texts: ["你可以简单说说，你怎么看待ta？你最关注ta的哪些方面？"],
 //        animation: nil,
@@ -299,7 +294,6 @@ struct EnvyQuestionPageView: View {
 //    let sampleQuestion = MoodTreatmentQuestion(
 //        id: 4,
 //        totalQuestions: 100,
-//        type: .singleChoice,
 //        uiStyle: .styleMirror,
 //        texts: [
 //            "当你感到嫉妒时，你内心相信自己也能够实现类似的成就。现在，请选择你觉得自己擅长或已取得成就的方面吧！"
@@ -334,7 +328,6 @@ struct EnvyQuestionPageView: View {
 //    let sampleQuestion = MoodTreatmentQuestion(
 //        id: 5,
 //        totalQuestions: 100,
-//        type: .multiChoice,
 //        uiStyle: .styleMirror,
 //        texts: ["有哪些个人成长的目标是你可以通过自己的努力实现的？"],
 //        animation: nil,
@@ -355,7 +348,6 @@ struct EnvyQuestionPageView: View {
 //    let sampleQuestion = MoodTreatmentQuestion(
 //        id: 6,
 //        totalQuestions: 100,
-//        type: .multiChoice,
 //        uiStyle: .styleMirror,
 //        texts: ["选出三件你现在生活中感到感激的事物："],
 //        animation: nil,
@@ -376,7 +368,6 @@ struct EnvyQuestionPageView: View {
 //    let sampleQuestion = MoodTreatmentQuestion(
 //        id: 1,
 //        totalQuestions: 100,
-//        type: .singleChoice,
 //        uiStyle: .styleTyping,
 //        texts: ["在我们感到脆弱和敏感的时候，可能是我们的内心需要更多的关爱。现在，可以跟我一起写下这几句话～"],
 //        animation: nil,
@@ -397,7 +388,6 @@ struct EnvyQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 999,
 //            totalQuestions: 100,
-//            type: .custom,
 //            uiStyle: .styleEnvyFinalEnding,
 //            texts: [],
 //            animation: nil,
@@ -417,7 +407,6 @@ struct EnvyQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 999,
 //            totalQuestions: 100,
-//            type: .custom,
 //            uiStyle: .styleEnvyEnding,
 //            texts: ["愿你像小云朵一样，每天找到新的美好，装满自己的小天空。"],
 //            animation: nil,

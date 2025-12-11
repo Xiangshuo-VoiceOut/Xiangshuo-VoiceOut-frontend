@@ -133,7 +133,6 @@ struct AngryQuestion1StyleView: View {
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 45,
-            type: .custom,
             uiStyle: .styleA,
             texts: [
                 "可以告诉我，你现在感觉有多愤怒吗？",

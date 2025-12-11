@@ -136,7 +136,6 @@ struct ScareQuestionStyleAView: View {
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 45,
-            type: .singleChoice,
             uiStyle: .scareStyleA,
             texts: [
                 "现在，请感受一下自己的状态。",

@@ -411,7 +411,6 @@ struct SadQuestionStyleNotesView: View {
         question: MoodTreatmentQuestion(
             id: 2,
             totalQuestions: 10,
-            type: .fillInBlank,
             uiStyle: .styleNotes,
             texts: [
                 "和小云朵一起给自己创建一个短期目标吧!",

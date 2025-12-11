@@ -7,17 +7,9 @@
 
 import Foundation
 
-enum QuestionType: String, Decodable {///题型
-    case singleChoice
-    case multiChoice
-    case fillInBlank
-    case animationOnly
-    case slider
-    case openText
-    case custom
-}
-
-enum QuestionUIStyle: String, Decodable { ///ui页面
+/// UI样式枚举 - 后端通过 type 字段返回 questionType.styleId
+/// 前端根据 uiStyle 值决定用哪个 View 渲染
+enum QuestionUIStyle: String, Decodable {
     ///Angry
     case styleA///single
     case styleB///云朵+黑文字+绿文字
@@ -143,6 +135,7 @@ enum QuestionUIStyle: String, Decodable { ///ui页面
         case "styleInteractiveDialogue": self = .styleInteractiveDialogue
         case "styleSlider":        self = .styleSlider
         case "styleMultichoice":   self = .styleMultichoice
+        case "styleMultichoice2":  self = .styleMultichoice2
         case "styleTodo":          self = .styleTodo
         case "styleFillInBlank":   self = .styleFillInBlank
         case "styleEnd":           self = .styleEnd
@@ -234,34 +227,66 @@ struct MoodTreatmentAnswerOption: Identifiable, Decodable, Hashable {///答案
     }
 }
 
-struct MoodTreatmentQuestion: Identifiable, Decodable, Hashable { ///问题的字段
+struct MoodTreatmentQuestion: Identifiable, Hashable { ///问题的字段
     let id: Int
     let totalQuestions: Int?
-    let type: QuestionType
-    let uiStyle: QuestionUIStyle
+    let uiStyle: QuestionUIStyle  // 主要用这个决定渲染哪个视图
     let texts: [String]?
     let animation: String?
     let options: [MoodTreatmentAnswerOption]
     let introTexts: [String]?
     var showBackButton: Bool = false
-    //var showSlider: Bool = false
     let showSlider: Bool?
     var buttonTitle: String = ""
     let endingStyle: String?
     var customViewName: String? = nil ///特殊题型直接返回前端View的名字
     let routine: String?
+    
     var viewIdentifier: String {
-        if type == .custom, let name = customViewName {
+        if let name = customViewName, !name.isEmpty {
             return name
         }
         return uiStyle.rawValue
     }
     
+    /// Preview 用的便捷初始化器
+    init(
+        id: Int,
+        totalQuestions: Int? = nil,
+        uiStyle: QuestionUIStyle,
+        texts: [String]? = nil,
+        animation: String? = nil,
+        options: [MoodTreatmentAnswerOption] = [],
+        introTexts: [String]? = nil,
+        showBackButton: Bool = false,
+        showSlider: Bool? = nil,
+        buttonTitle: String = "",
+        endingStyle: String? = nil,
+        customViewName: String? = nil,
+        routine: String? = nil
+    ) {
+        self.id = id
+        self.totalQuestions = totalQuestions
+        self.uiStyle = uiStyle
+        self.texts = texts
+        self.animation = animation
+        self.options = options
+        self.introTexts = introTexts
+        self.showBackButton = showBackButton
+        self.showSlider = showSlider
+        self.buttonTitle = buttonTitle
+        self.endingStyle = endingStyle
+        self.customViewName = customViewName
+        self.routine = routine
+    }
+}
+
+extension MoodTreatmentQuestion: Decodable {
     private enum CodingKeys: String, CodingKey {
         case id            = "_id"
         case totalQuestions
-        case type
-        case uiStyle
+        case type          // 后端返回 type 字段，值是 styleId
+        case uiStyle       // 保留兼容，如果后端同时返回 uiStyle
         case customViewName
         case texts
         case introTexts
@@ -272,5 +297,30 @@ struct MoodTreatmentQuestion: Identifiable, Decodable, Hashable { ///问题的�
         case routine
         case buttonTitle
     }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try container.decode(Int.self, forKey: .id)
+        totalQuestions = try container.decodeIfPresent(Int.self, forKey: .totalQuestions)
+        texts = try container.decodeIfPresent([String].self, forKey: .texts)
+        animation = try container.decodeIfPresent(String.self, forKey: .animation)
+        options = try container.decodeIfPresent([MoodTreatmentAnswerOption].self, forKey: .options) ?? []
+        introTexts = try container.decodeIfPresent([String].self, forKey: .introTexts)
+        showSlider = try container.decodeIfPresent(Bool.self, forKey: .showSlider)
+        buttonTitle = try container.decodeIfPresent(String.self, forKey: .buttonTitle) ?? ""
+        endingStyle = try container.decodeIfPresent(String.self, forKey: .endingStyle)
+        customViewName = try container.decodeIfPresent(String.self, forKey: .customViewName)
+        routine = try container.decodeIfPresent(String.self, forKey: .routine)
+        
+        // 优先从 uiStyle 字段解析，否则从 type 字段解析
+        if let style = try? container.decode(QuestionUIStyle.self, forKey: .uiStyle) {
+            uiStyle = style
+        } else if let style = try? container.decode(QuestionUIStyle.self, forKey: .type) {
+            // 后端返回 type 字段，值是 styleId（如 "styleA"）
+            uiStyle = style
+        } else {
+            uiStyle = .unknown
+        }
+    }
 }
-

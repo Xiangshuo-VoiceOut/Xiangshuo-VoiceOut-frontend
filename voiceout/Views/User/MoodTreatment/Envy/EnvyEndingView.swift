@@ -80,7 +80,6 @@ struct EnvyEndingView: View {
         question: MoodTreatmentQuestion(
             id: 999,
             totalQuestions: 45,
-            type: .custom,
             uiStyle: .styleEnvyEnding,
             texts: [
                 "愿你像小云朵一样，每天找到新的美好，装满自己的小天空。"

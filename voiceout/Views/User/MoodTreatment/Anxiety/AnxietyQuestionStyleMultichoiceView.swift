@@ -309,7 +309,6 @@ private struct AnxietyBubbleScrollView: View {
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 10,
-            type: .multiChoice,
             uiStyle: .styleAnxietyMultichoice,
             texts: [
                 "此时此刻，你感到："

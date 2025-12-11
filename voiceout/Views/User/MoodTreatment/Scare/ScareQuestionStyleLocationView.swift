@@ -196,7 +196,6 @@ struct ScareQuestionStyleLocationView_Previews: PreviewProvider {
             question: MoodTreatmentQuestion(
                 id: 4,
                 totalQuestions: 45,
-                type: .singleChoice,
                 uiStyle: .scareStyleLocation,
                 texts: [
                     "我们先来描述一下你目前所处的环境，可以讲讲你现在在哪里、周围的情况是什么样的、有哪些人或物在你身边？"

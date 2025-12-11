@@ -157,7 +157,6 @@ struct AngryQuestionStyleEView: View {
         question: MoodTreatmentQuestion(
             id: 3,
             totalQuestions: 45,
-            type: .multiChoice,
             uiStyle: .styleE,
             texts: ["小云朵明白了~","如果你现在感到愤怒，可以告诉我身体是否出现了下列这些变化吗？（多选）"],
             animation: nil,

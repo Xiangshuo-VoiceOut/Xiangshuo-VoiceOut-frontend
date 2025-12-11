@@ -272,7 +272,6 @@ struct FillInBlankEditorView: View {
         question: MoodTreatmentQuestion(
             id: 999,
             totalQuestions: 45,
-            type: .fillInBlank,
             uiStyle: .styleF,
             texts: ["首先，请记住每一次你回想起令你感到愤怒的情景，情绪涌上来，都是又回到了那一刻，这是在重复伤害自己~","我希望能帮你能用其他方法疏解生气的感觉。","请和我一起回到当下，此时此刻："],
             animation: nil,

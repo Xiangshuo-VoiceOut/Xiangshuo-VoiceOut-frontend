@@ -212,7 +212,6 @@ struct ScareQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 1,
 //            totalQuestions: 45,
-//            type: .singleChoice,
 //            uiStyle: .scareStyleA,
 //            texts: ["现在，请感受一下自己的状态。",
 //                    "你是否觉得自己正处于危险之中？"],
@@ -237,7 +236,6 @@ struct ScareQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 99,
 //            totalQuestions: 45,
-//            type: .multiChoice,
 //            uiStyle: .scareStyleB,
 //            texts: ["在外面的世界，感觉有点不踏实是很正常的。",
 //                    "我们先寻找一些可以让我们安心的东西，来帮助我们安心：你有注意到哪些让你熟悉或者安心的东西吗？"],
@@ -267,7 +265,6 @@ struct ScareQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 5,
             totalQuestions: 45,
-            type: .custom,
             uiStyle: .scareStyleC,
             texts: ["可以跟小云朵说下你的害怕程度吗？"],
             animation: nil,
@@ -290,7 +287,6 @@ struct ScareQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 7,
 //            totalQuestions: 45,
-//            type: .singleChoice,
 //            uiStyle: .scareStyleD,
 //            texts: [
 //                "接下来我们做一组简单的情绪疏导练习，这能够使你的潜意识感受到安全的信号"
@@ -316,7 +312,6 @@ struct ScareQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 10,
 //            totalQuestions: 45,
-//            type: .singleChoice,
 //            uiStyle: .scareStyleLocation,
 //            texts: [
 //                "我们先来描述一下你目前所处的环境，可以讲讲你现在在哪里、周围的情况是什么样的、有哪些人或物在你身边？"
@@ -345,7 +340,6 @@ struct ScareQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 11,
 //            totalQuestions: 45,
-//            type: .singleChoice,
 //            uiStyle: .scareStyleBreathe,
 //            texts: [
 //                "深呼吸能帮助我们安抚情绪，放松身体，让害怕感慢慢变轻。\n选择一种你喜欢的呼吸节奏吧！"
@@ -371,7 +365,6 @@ struct ScareQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 1,
 //            totalQuestions: 45,
-//            type: .singleChoice,
 //            uiStyle: .scareStyleMoodWriting,
 //            texts: ["开始描述你的情绪。你感到害怕吗？还是其他感受？"],
 //            animation: nil,
@@ -391,7 +384,6 @@ struct ScareQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 24,
 //            totalQuestions: 45,
-//            type: .singleChoice,
 //            uiStyle: .scareStyleBottle,
 //            texts: ["在进行积极自我对话之后，现在你是否感觉情绪平稳一些了呢？"],
 //            animation: nil,
@@ -421,7 +413,6 @@ struct ScareQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 24,
 //            totalQuestions: 45,
-//            type: .multiChoice,
 //            uiStyle: .scareStyleBubble1,
 //            texts: ["这些情绪对xxx的身体带来了什么影响呢？"],
 //            animation: nil,
@@ -451,7 +442,6 @@ struct ScareQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 25,
 //            totalQuestions: 45,
-//            type: .multiChoice,
 //            uiStyle: .scareStyleBubble2,
 //            texts: ["这些情绪对xxx的身体带来了什么影响呢？"],
 //            animation: nil,
@@ -481,7 +471,6 @@ struct ScareQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 26,
 //            totalQuestions: 45,
-//            type: .singleChoice,
 //            uiStyle: .scareStyleTyping,
 //            texts: [
 //                "在我们感到脆弱和敏感的时候，可能是我们的内心需要更多的关爱。现在，可以跟我一起写下这几句话～"
@@ -513,7 +502,6 @@ struct ScareQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 999,
 //            totalQuestions: 45,
-//            type: .custom,
 //            uiStyle: .scareStyleEnding,
 //            texts: [randomEnding],
 //            animation: nil,

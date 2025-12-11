@@ -404,7 +404,6 @@ struct SadQuestionStyleMultichoiceView: View {
         question: MoodTreatmentQuestion(
             id: 6,
             totalQuestions: 10,
-            type: .multiChoice,
             uiStyle: .styleMultichoice,
             texts: ["事情并不总是一帆风顺的，偶尔的挫折反而是打磨自己的利器。愿意和小云朵分享一下在这个过程中都学到了什么嘛？"],
             animation: nil,

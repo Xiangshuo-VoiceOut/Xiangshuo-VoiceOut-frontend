@@ -161,7 +161,6 @@ struct GuiltQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 1,
 //            totalQuestions: 45,
-//            type: .custom,
 //            uiStyle: .styleA,
 //            texts: [
 //                "小云朵感受到了你现在有些心情不好，",

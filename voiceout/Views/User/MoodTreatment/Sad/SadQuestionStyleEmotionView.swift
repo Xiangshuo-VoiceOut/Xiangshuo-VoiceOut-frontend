@@ -175,7 +175,6 @@ struct SadQuestionStyleEmotionView: View {
         question: MoodTreatmentQuestion(
             id: 9,
             totalQuestions: 10,
-            type: .custom,
             uiStyle: .styleEmotion,
             texts: ["当你准备好了，\n可以在心里对ta说出那些一直埋藏在心底的话，\n也许是遗憾、困惑，或是未曾表达的思念和祝福。不用急，慢慢地，\n一点一点地释放出来。"],
             animation: nil,

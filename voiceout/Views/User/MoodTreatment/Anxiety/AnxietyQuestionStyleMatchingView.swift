@@ -189,7 +189,6 @@ struct AnxietyOptionCircleView: View {
         question: MoodTreatmentQuestion(
             id: 3,
             totalQuestions: 10,
-            type: .custom,
             uiStyle: .styleAnxietyMatching,
             texts: [
                 "然后，小云朵希望你能圈出自己具有的品德：",

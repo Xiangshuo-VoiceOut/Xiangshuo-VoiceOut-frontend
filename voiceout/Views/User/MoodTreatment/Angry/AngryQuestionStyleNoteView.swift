@@ -269,7 +269,6 @@ private struct NoteEditorView: View {
         question: MoodTreatmentQuestion(
             id: 123,
             totalQuestions: 45,
-            type: .custom,
             uiStyle: .styleNote,
             texts: ["接下来，挑一个你喜欢的便签，把这件令人生气的事情写下来吧~"],
             animation: "bubble-breaking",

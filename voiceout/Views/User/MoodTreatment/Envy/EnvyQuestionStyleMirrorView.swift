@@ -87,7 +87,8 @@ struct EnvyQuestionStyleMirrorView: View {
 
     private var needCount: Int {
         if let r = requiredSelections { return r }
-        return question.type == .multiChoice ? 3 : 1
+        // 默认：如果是 styleI（多选）需要选3个，否则选1个
+        return question.uiStyle == .styleI ? 3 : 1
     }
 
     init(
@@ -144,7 +145,8 @@ struct EnvyQuestionStyleMirrorView: View {
                                     isSelected: selectedIndices.contains(idx)
                                 )
                                 .onTapGesture {
-                                    if question.type == .singleChoice {
+                                    // styleI 是多选，其他是单选
+                                    if question.uiStyle != .styleI {
                                         selectedIndices = [idx]
                                     } else {
                                         if selectedIndices.contains(idx) {
@@ -223,7 +225,6 @@ struct EnvyQuestionStyleMirrorView_Previews: PreviewProvider {
                 question: .init(
                     id: 1,
                     totalQuestions: 100,
-                    type: .singleChoice,
                     uiStyle: .styleMirror,
                     texts: ["当你感到嫉妒时，你内心相信自己也能够实现类似的成就。现在，请选择你觉得自己擅长或已取得成就的方面吧！"],
                     animation: nil,
@@ -241,7 +242,6 @@ struct EnvyQuestionStyleMirrorView_Previews: PreviewProvider {
                 question: .init(
                     id: 2,
                     totalQuestions: 100,
-                    type: .multiChoice,
                     uiStyle: .styleMirror,
                     texts: ["有哪些个人成长的目标是你可以通过自己的努力实现的？"],
                     animation: nil,
@@ -259,7 +259,6 @@ struct EnvyQuestionStyleMirrorView_Previews: PreviewProvider {
                 question: .init(
                     id: 3,
                     totalQuestions: 100,
-                    type: .multiChoice,
                     uiStyle: .styleMirror,
                     texts: ["选出三件你现在生活中感到感激的事物："],
                     animation: nil,

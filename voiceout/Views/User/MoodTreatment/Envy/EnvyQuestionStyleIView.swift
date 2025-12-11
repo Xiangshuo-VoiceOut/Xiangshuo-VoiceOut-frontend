@@ -165,7 +165,6 @@ struct EnvyQuestionStyleIView: View {
         question: MoodTreatmentQuestion(
             id: 3,
             totalQuestions: 100,
-            type: .multiChoice,
             uiStyle: .styleI,
             texts: ["可以跟小云朵说说你是因为什么而感到嫉妒的吗？"],
             animation: nil,

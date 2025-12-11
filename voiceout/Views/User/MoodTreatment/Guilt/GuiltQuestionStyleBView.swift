@@ -164,7 +164,6 @@ struct GuiltQuestionStyleBView: View {
         question: MoodTreatmentQuestion(
             id: 3,
             totalQuestions: 45,
-            type: .multiChoice,
             uiStyle: .guiltStyleB,
             texts: ["只有随时保持中立和客观的观察，才能看到事情的全貌哦！","你在练习中做的很棒！","小云朵想问问，你是否能识别出当时自己最真实的情绪？"],
             animation: nil,

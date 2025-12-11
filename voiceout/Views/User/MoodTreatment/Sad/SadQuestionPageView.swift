@@ -189,7 +189,6 @@ struct SadQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 12,
             totalQuestions: 12,
-            type: .custom,
             uiStyle: .styleEnd,
             texts: ["你已经收集足够多的风啦，长按屏幕帮助小云朵吧！"],
             animation: nil,
@@ -209,7 +208,6 @@ struct SadQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 5,
             totalQuestions: 12,
-            type: .custom,
             uiStyle: .styleUpload,
             texts: ["和小云朵分享一下生活中的小美好吧，让心情慢慢明亮起来吧！"],
             animation: nil,
@@ -229,7 +227,6 @@ struct SadQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 6,
             totalQuestions: 12,
-            type: .custom,
             uiStyle: .styleInteractiveDialogue,
             texts: ["尝试和小云朵一起探索拓宽的社交场合， 寻找更多志同道合的朋友吧！"],
             animation: nil,
@@ -249,7 +246,6 @@ struct SadQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 7,
             totalQuestions: 12,
-            type: .fillInBlank,
             uiStyle: .styleFillInBlank,
             texts: ["和小云朵想一想，这些'不足'是否也有他们的意义呢？🤔"],
             animation: nil,
@@ -269,7 +265,6 @@ struct SadQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 8,
             totalQuestions: 12,
-            type: .slider,
             uiStyle: .styleSlider,
             texts: ["请为你的心情打分"],
             animation: nil,
@@ -289,7 +284,6 @@ struct SadQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 9,
             totalQuestions: 12,
-            type: .custom,
             uiStyle: .styleMatching,
             texts: [
                 "然后，小云朵希望你能圈出自己具有的品德：",
@@ -313,7 +307,6 @@ struct SadQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 10,
             totalQuestions: 12,
-            type: .fillInBlank,
             uiStyle: .styleNotes,
             texts: [
                 "和小云朵一起给自己创建一个短期目标吧！",
@@ -337,7 +330,6 @@ struct SadQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 12,
-            type: .singleChoice,
             uiStyle: .styleSinglechoice,
             texts: [
                 "小云朵闻到了下雨的预兆，",
@@ -365,7 +357,6 @@ struct SadQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 11,
             totalQuestions: 12,
-            type: .multiChoice,
             uiStyle: .styleMultichoice2,
             texts: [
                 "Xxx是否有一些一直坚持的习惯呢？",

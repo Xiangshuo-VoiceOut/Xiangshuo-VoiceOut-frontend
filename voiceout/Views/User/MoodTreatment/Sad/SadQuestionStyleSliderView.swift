@@ -155,7 +155,6 @@ struct SadQuestionStyleSliderView: View {
         question: MoodTreatmentQuestion(
             id: 4,
             totalQuestions: 10,
-            type: .slider,
             uiStyle: .styleSlider,
             texts: ["你觉得外部环境或者他人认可的因素，对于这件事的重要程度是多少呢？"],
             animation: nil,

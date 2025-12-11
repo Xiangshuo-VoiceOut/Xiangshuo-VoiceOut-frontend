@@ -86,7 +86,6 @@ struct EnvyQuestionStyleJView_Previews: PreviewProvider {
             question: MoodTreatmentQuestion(
                 id: 4,
                 totalQuestions: 100,
-                type: .singleChoice,
                 uiStyle: .styleJ,
                 texts: ["你可以简单说说，你怎么看待ta？你最关注ta的哪些方面？"],
                 animation: nil,

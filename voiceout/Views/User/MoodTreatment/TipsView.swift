@@ -127,7 +127,6 @@ struct TipsView_Previews: PreviewProvider {
             question: MoodTreatmentQuestion(
                 id: 4,
                 totalQuestions: 45,
-                type: .singleChoice,
                 uiStyle: .styleB,
                 texts: [
                     "我们常常将休息视为“不工作”的时间，\n甚至是生产力的对立面。\n但如果换个角度看呢？"

@@ -229,7 +229,6 @@ struct SliderQuestionStyleView_Previews: PreviewProvider {
             question: MoodTreatmentQuestion(
                 id: 4,
                 totalQuestions: 45,
-                type: .singleChoice,
                 uiStyle: .sliderStyle,
                 texts: [
                     "内疚感是否基于真实的影响，而不是猜测或想象?"

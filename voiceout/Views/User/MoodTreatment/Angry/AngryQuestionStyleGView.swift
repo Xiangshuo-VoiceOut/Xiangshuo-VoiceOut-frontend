@@ -152,7 +152,6 @@ struct AngryQuestionStyleGView: View {
         question: MoodTreatmentQuestion(
             id: 4,
             totalQuestions: 45,
-            type: .openText,
             uiStyle: .styleG,
             texts: ["看来你已经整理好心中各个方案的排序了，可以给我展示看看你想尝试的一种吗？"],
             animation: nil,

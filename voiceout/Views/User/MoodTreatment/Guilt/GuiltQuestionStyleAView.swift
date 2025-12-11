@@ -147,7 +147,6 @@ struct GuiltQuestionStyleAView: View {
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 45,
-            type: .singleChoice,
             uiStyle: .guiltStyleA,
             texts: [
                 "没事的，小云朵会一直陪着你～",

@@ -24,7 +24,6 @@ struct ScareQuestionStyleBreatheView: View {
         MoodTreatmentQuestion(
             id: 10,
             totalQuestions: 45,
-            type: .singleChoice,
             uiStyle: .scareStyleA,
             texts: ["完成呼吸练习后，闭上眼睛，感受身体的变化。你的情绪是否有变得平静些呢？每次呼吸就想是一阵微风，吹散心里的乌云。小云朵会一直在你身边，陪着你走出不安。"],
             animation: nil,
@@ -167,7 +166,6 @@ struct ScareQuestionStyleBreatheView_Previews: PreviewProvider {
             question: MoodTreatmentQuestion(
                 id: 4,
                 totalQuestions: 45,
-                type: .singleChoice,
                 uiStyle: .scareStyleBreathe,
                 texts: [
                     "深呼吸能帮助我们安抚情绪，放松身体，让害怕感慢慢变轻。\n选择一种你喜欢的呼吸节奏吧！"

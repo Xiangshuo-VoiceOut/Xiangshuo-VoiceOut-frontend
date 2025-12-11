@@ -150,7 +150,6 @@ struct AnxietyQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 10,
-            type: .singleChoice,
             uiStyle: .styleAnxietySinglechoice,
             texts: [
                 "小云朵发现你似乎很紧张不安，",
@@ -177,7 +176,6 @@ struct AnxietyQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 2,
             totalQuestions: 10,
-            type: .multiChoice,
             uiStyle: .styleAnxietyMultichoice,
             texts: [
                 "此时此刻，你感到："
@@ -204,7 +202,6 @@ struct AnxietyQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 3,
             totalQuestions: 10,
-            type: .custom,
             uiStyle: .styleAnxietyMatching,
             texts: [
                 "然后，小云朵希望你能圈出自己具有的品德：",
@@ -228,7 +225,6 @@ struct AnxietyQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 10,
             totalQuestions: 10,
-            type: .singleChoice,
             uiStyle: .styleAnxietyRank,
             texts: [
                 "相比疗愈前，你现在的感受是"

@@ -285,7 +285,6 @@ struct AngryQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 1,
 //            totalQuestions: 45,
-//            type: .custom,
 //            uiStyle: .styleA,
 //            texts: [
 //                "小云朵感受到了你现在有些心情不好，",
@@ -314,7 +313,6 @@ struct AngryQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 1,
 //            totalQuestions: 45,
-//            type: .singleChoice,
 //            uiStyle: .styleA,
 //            texts: ["可以告诉我，你现在感觉有多愤怒吗？",
 //                    "小云朵感受到了你现在有些心情不好，",
@@ -342,7 +340,6 @@ struct AngryQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 2,
 //            totalQuestions: 45,
-//            type: .singleChoice,
 //            uiStyle: .styleA,
 //            texts: ["这段关系本身是否就是让你产生愤怒情绪的源头呢？","请记住，不要重复陷入一个负面循环中~"],
 //            animation: nil,
@@ -367,7 +364,6 @@ struct AngryQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 4,
 //            totalQuestions: 45,
-//            type: .singleChoice,
 //            uiStyle: .styleB,
 //            texts: ["接下来我们做一组简单的情绪疏导练习，这能够使你的潜意识感受到安全的信号"],
 //            animation: nil,
@@ -389,7 +385,6 @@ struct AngryQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 5,
 //            totalQuestions: 45,
-//            type: .animationOnly,
 //            uiStyle: .styleC,
 //            texts: ["让我们先闭上眼睛深呼吸，每次吸气和呼气都要超过5秒。请不要担心时间，1分钟后，我会负责提醒你的~"],
 //            animation: "relaxing-bluecircle",
@@ -409,7 +404,6 @@ struct AngryQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 20,
 //            totalQuestions: 45,
-//            type: .slider,
 //            uiStyle: .styleD,
 //            texts:[],
 //            animation:nil,
@@ -437,7 +431,6 @@ struct AngryQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 99,
 //            totalQuestions: 45,
-//            type: .multiChoice,
 //            uiStyle: .styleE,
 //            texts: ["小云朵明白了~","如果你现在感到愤怒，可以告诉我身体是否出现了下列这些变化吗？（多选）"],
 //            animation: nil,
@@ -465,7 +458,6 @@ struct AngryQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 35,
 //            totalQuestions: 45,
-//            type: .fillInBlank,
 //            uiStyle: .styleF,
 //            texts: [
 //                "首先，请记住每一次你回想起令你感到愤怒的情景，情绪涌上来，都是又回到了那一刻，这是在重复伤害自己~",
@@ -494,7 +486,6 @@ struct AngryQuestionPageView: View {
 //    let gQuestion = MoodTreatmentQuestion(
 //        id: 4,
 //        totalQuestions: 45,
-//        type: .openText,
 //        uiStyle: .styleG,
 //        texts: ["看来你已经整理好心中各个方案的排序了，可以给我展示看看你想尝试的一种吗？"],
 //        animation: nil,
@@ -515,7 +506,6 @@ struct AngryQuestionPageView: View {
 //    let bottleQuestion = MoodTreatmentQuestion(
 //        id: 100,
 //        totalQuestions: 45,
-//        type: .singleChoice,
 //        uiStyle: .styleBottle,
 //        texts: [""],
 //        animation: nil,
@@ -544,7 +534,6 @@ struct AngryQuestionPageView: View {
 //    let noteQuestion = MoodTreatmentQuestion(
 //        id: 123,
 //        totalQuestions: 45,
-//        type: .singleChoice,
 //        uiStyle: .styleNote,
 //        texts: ["接下来，挑一个你喜欢的便签，把这件令人生气的事情写下来吧~"],
 //        animation: "bubble-breaking",
@@ -564,7 +553,6 @@ struct AngryQuestionPageView: View {
 //        question: MoodTreatmentQuestion(
 //            id: 999,
 //            totalQuestions: 45,
-//            type: .custom,
 //            uiStyle: .styleAngryEnding,
 //            texts: [],
 //            animation: nil,
@@ -583,7 +571,6 @@ struct AngryQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 4,
             totalQuestions: 45,
-            type: .singleChoice,
             uiStyle: .styleB,
             texts: ["没关系，\n 先一起深呼吸，让这份难过有个可以放下的地方。"],
             animation: nil,

@@ -217,7 +217,6 @@ struct WrapView<Data: RandomAccessCollection, Content: View>: View where Data.El
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 45,
-            type: .singleChoice,
             uiStyle: .scareStyleMoodWriting,
             texts: ["开始描述你的情绪。你感到害怕吗？还是其他感受？"],
             animation: nil,

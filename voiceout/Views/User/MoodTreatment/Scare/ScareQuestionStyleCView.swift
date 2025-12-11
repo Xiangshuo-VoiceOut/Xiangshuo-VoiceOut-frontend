@@ -282,7 +282,6 @@ struct ScareQuestionStyleCView_Previews: PreviewProvider {
             question: MoodTreatmentQuestion(
                 id: 4,
                 totalQuestions: 45,
-                type: .singleChoice,
                 uiStyle: .scareStyleC,
                 texts: [
                     "可以跟小云朵说下你的害怕程度吗？"

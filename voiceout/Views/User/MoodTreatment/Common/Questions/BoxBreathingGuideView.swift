@@ -241,7 +241,6 @@ struct BoxBreathingGuideView: View {
         MoodTreatmentQuestion(
             id: 21,
             totalQuestions: 45,
-            type: .singleChoice,
             uiStyle: .scareStyleA,
             texts: ["小云朵提示", "一轮盒式呼吸完成了！还想继续吗？"],
             animation: nil,

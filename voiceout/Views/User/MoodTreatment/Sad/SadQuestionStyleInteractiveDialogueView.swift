@@ -169,7 +169,6 @@ struct SadQuestionStyleInteractiveDialogueView: View {
         question: MoodTreatmentQuestion(
             id: 3,
             totalQuestions: 10,
-            type: .fillInBlank,
             uiStyle: .styleInteractiveDialogue,
             texts: [
                 "和小云朵一起从自我介绍开始，迈出拓展社交圈的第一步吧！",

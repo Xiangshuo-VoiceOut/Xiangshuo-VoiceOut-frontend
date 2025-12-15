@@ -40,99 +40,123 @@ struct EnvyQuestionPageView: View {
             ? Color(moodColors["envy"]!)
             : .surfaceBrandTertiaryGreen
     }
+    
+    private var fallbackBackground: Color {
+        guard let q = currentQuestion else {
+            return moodColors["envy"] ?? Color.surfaceBrandTertiaryGreen
+        }
+        return (q.uiStyle == .styleEnvyFinalEnding || q.uiStyle == .styleEnvyEnding)
+            ? (moodColors["envy"] ?? Color.surfaceBrandTertiaryGreen)
+            : Color.surfaceBrandTertiaryGreen
+    }
 
     var body: some View {
-        Group {
-            if let question = currentQuestion {
-                VStack(spacing: 0) {
+        ZStack {
+            // 背景色层 - 总是显示，避免空白
+            fallbackBackground
+                .ignoresSafeArea()
+            
+            // 内容层
+            ZStack(alignment: .top) {
+                if let question = currentQuestion {
                     VStack(spacing: 0) {
-                        StickyHeaderView(
-                            title: "疗愈云港",
-                            leadingComponent: AnyView(Spacer().frame(width: ViewSpacing.large)),
-                            trailingComponent: AnyView(
-                                Button {
-                                    withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
-                                        showExitPopup = true
+                        VStack(spacing: 0) {
+                            StickyHeaderView(
+                                title: "疗愈云港",
+                                leadingComponent: AnyView(Spacer().frame(width: ViewSpacing.large)),
+                                trailingComponent: AnyView(
+                                    Button {
+                                        withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
+                                            showExitPopup = true
+                                        }
+                                    } label: {
+                                        Image("close")
+                                            .resizable()
+                                            .frame(width: 24, height: 24)
+                                            .foregroundColor(.grey500)
                                     }
-                                } label: {
-                                    Image("close")
-                                        .resizable()
-                                        .frame(width: 24, height: 24)
-                                        .foregroundColor(.grey500)
-                                }
-                            ),
-                            backgroundColor: headerColor
-                        )
-                        .frame(height: 44)
+                                ),
+                                backgroundColor: headerColor
+                            )
+                            .frame(height: 44)
 
-                        let totalWidth = UIScreen.main.bounds.width - 128
-                        ZStack(alignment: .leading) {
-                            Capsule().fill(Color.surfacePrimary)
-                                .frame(width: totalWidth, height: 12)
-                            Capsule().fill(Color.surfaceBrandPrimary)
-                                .frame(width: progressViewModel.progressWidth, height: 12)
+                            let totalWidth = UIScreen.main.bounds.width - 128
+                            ZStack(alignment: .leading) {
+                                Capsule().fill(Color.surfacePrimary)
+                                    .frame(width: totalWidth, height: 12)
+                                Capsule().fill(Color.surfaceBrandPrimary)
+                                    .frame(width: progressViewModel.progressWidth, height: 12)
+                            }
+                            .padding(.vertical, ViewSpacing.xsmall)
+                            .padding(.horizontal, 2 * ViewSpacing.xlarge)
+                            .background(headerColor)
                         }
-                        .padding(.vertical, ViewSpacing.xsmall)
-                        .padding(.horizontal, 2 * ViewSpacing.xlarge)
-                        .background(headerColor)
-                    }
 
-                    Rectangle().fill(headerColor).frame(height: 12)
+                        Rectangle().fill(headerColor).frame(height: 12)
 
-                    if let name = question.customViewName, name == "EnvyQuestion1StyleView" {
-                        EnvyQuestion1StyleView(question: question, onSelect: handleSelect)
-                    } else {
-                        switch question.uiStyle {
-                        case .styleH:
+                        if let name = question.customViewName, name == "EnvyQuestion1StyleView" {
                             EnvyQuestion1StyleView(question: question, onSelect: handleSelect)
-                        case .styleI:
-                            EnvyQuestionStyleIView(
-                                question: question,
-                                onSelect: { _ in },
-                                onConfirm: { _ in router.navigateBack() }
-                            )
-                        case .styleJ:
-                            EnvyQuestionStyleJView(
-                                question: question,
-                                onSelect: { opt in if opt.next == nil { router.navigateBack() } }
-                            )
-                        case .styleScrollDown:
-                            EnvyQuestionStyleScrollDownView(
-                                question: question,
-                                onSelect: { opt in if opt.next == nil { router.navigateBack() } }
-                            )
-                        case .styleMirror:
-                            EnvyQuestionStyleMirrorView(
-                                question: question,
-                                requiredSelections: question.id == 5 ? 1 : nil,
-                                onSelect: { opt in if opt.next == nil { router.navigateBack() } }
-                            )
-                        case .styleTyping:
-                            EnvyQuestionStyleTypingView(
-                                question: question,
-                                onSelect: { _ in }
-                            )
-                        case .styleEnvyFinalEnding:
-                            EnvyFinalEndingView()
-                        case .styleEnvyEnding:
-                            EnvyEndingView(question: question)
-                        default:
-                            Text("Unknown")
-                                .foregroundColor(.red)
+                        } else {
+                            switch question.uiStyle {
+                            case .styleH:
+                                EnvyQuestion1StyleView(question: question, onSelect: handleSelect)
+                            case .styleI:
+                                EnvyQuestionStyleIView(
+                                    question: question,
+                                    onSelect: { _ in },
+                                    onConfirm: { _ in router.navigateBack() }
+                                )
+                            case .styleJ:
+                                EnvyQuestionStyleJView(
+                                    question: question,
+                                    onSelect: { opt in if opt.next == nil { router.navigateBack() } }
+                                )
+                            case .styleScrollDown:
+                                EnvyQuestionStyleScrollDownView(
+                                    question: question,
+                                    onSelect: { opt in if opt.next == nil { router.navigateBack() } }
+                                )
+                            case .styleMirror:
+                                EnvyQuestionStyleMirrorView(
+                                    question: question,
+                                    requiredSelections: question.id == 5 ? 1 : nil,
+                                    onSelect: { opt in if opt.next == nil { router.navigateBack() } }
+                                )
+                            case .styleTyping:
+                                EnvyQuestionStyleTypingView(
+                                    question: question,
+                                    onSelect: { _ in }
+                                )
+                            case .styleEnvyFinalEnding:
+                                EnvyFinalEndingView()
+                            case .styleEnvyEnding:
+                                EnvyEndingView(question: question)
+                            default:
+                                Text("Unknown")
+                                    .foregroundColor(.red)
+                            }
                         }
                     }
+                    .onAppear {
+                        progressViewModel.fullWidth = UIScreen.main.bounds.width - 128
+                        let total = question.totalQuestions ?? 1
+                        progressViewModel.updateProgress(currentIndex: min(question.id, total), totalQuestions: total)
+                    }
+                } else if vm.isLoading {
+                    VStack {
+                        Spacer()
+                        ProgressView("Loading…")
+                        Spacer()
+                    }
+                } else if let error = vm.errorMessage {
+                    VStack {
+                        Spacer()
+                        Text(error)
+                            .foregroundColor(.red)
+                            .padding()
+                        Spacer()
+                    }
                 }
-                .background(Color.surfaceBrandTertiaryGreen)
-                .onAppear {
-                    progressViewModel.fullWidth = UIScreen.main.bounds.width - 128
-                    let total = question.totalQuestions ?? 1
-                    progressViewModel.updateProgress(currentIndex: min(question.id, total), totalQuestions: total)
-                }
-
-            } else if vm.isLoading {
-                ProgressView("Loading…")
-            } else if let error = vm.errorMessage {
-                Text(error).foregroundColor(.red).padding()
             }
         }
         .overlay {

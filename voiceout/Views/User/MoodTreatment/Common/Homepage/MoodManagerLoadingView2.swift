@@ -133,6 +133,7 @@ struct MoodManagerLoadingView2: View {
         case "guilt": return .moodTreatmentGuiltHomepage
         case "envy": return .moodTreatmentEnvyHomepage
         case "scare": return .moodTreatmentScareHomepage
+        case "anxiety": return .moodTreatmentAnxietyHomepage
         default: return .mainHomepage
         }
     }

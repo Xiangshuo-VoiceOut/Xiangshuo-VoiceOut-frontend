@@ -10,7 +10,7 @@ import SwiftUI
 struct SadQuestionPageView: View {
     @EnvironmentObject var router: RouterModel
     @StateObject private var vm = MoodTreatmentVM()
-    
+    @State private var showExitPopup = false
     private let questionId: Int?
     private let previewQuestion: MoodTreatmentQuestion?
     
@@ -67,14 +67,17 @@ struct SadQuestionPageView: View {
                 StickyHeaderView(
                     title: "疗愈云港",
                     leadingComponent: AnyView(
-                        // 如果是上传题、互动对话题、填空题、打分题、配对题或便签题，不显示返回按钮，但保留占位以保持标题居中
                         (question?.uiStyle == .styleUpload || question?.uiStyle == .styleInteractiveDialogue || question?.uiStyle == .styleFillInBlank || question?.uiStyle == .styleSlider || question?.uiStyle == .styleMatching || question?.uiStyle == .styleNotes) ? AnyView(
                             Color.clear.frame(width: 24, height: 24)
                         ) : AnyView(BackButtonView()
                             .foregroundColor(.grey500))
                     ),
                     trailingComponent: AnyView(
-                        Button {} label: {
+                        Button {
+                            withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
+                                showExitPopup = true
+                            }
+                        } label: {
                             Image("close")
                                 .resizable()
                                 .frame(width: 24, height: 24)
@@ -85,24 +88,43 @@ struct SadQuestionPageView: View {
                 )
                 .frame(height: 44)
 
-                let totalWidth = UIScreen.main.bounds.width - 128
-                
-                ZStack(alignment: .leading) {
-                    Capsule()
-                        .fill(Color.surfacePrimary)
-                        .frame(width: totalWidth, height: 12)
-                    Capsule()
-                        .fill(Color.surfaceBrandPrimary)
-                        .frame(width: progressViewModel.progressWidth, height: 12)
-                }
-                .padding(.vertical, ViewSpacing.xsmall)
-                .padding(.horizontal, 2*ViewSpacing.xlarge)
+//                let totalWidth = UIScreen.main.bounds.width - 128
+//                
+//                ZStack(alignment: .leading) {
+//                    Capsule()
+//                        .fill(Color.surfacePrimary)
+//                        .frame(width: totalWidth, height: 12)
+//                    Capsule()
+//                        .fill(Color.surfaceBrandPrimary)
+//                        .frame(width: progressViewModel.progressWidth, height: 12)
+//                }
+//                .padding(.vertical, ViewSpacing.xsmall)
+//                .padding(.horizontal, 2*ViewSpacing.xlarge)
 
                 Color.clear.frame(height: 12)
 
                 contentBody
             }
-
+        }
+        .overlay {
+            ZStack {
+                if showExitPopup {
+                    Color.black.opacity(0.4)
+                        .ignoresSafeArea()
+                        .transition(.opacity)
+                    ExitPopupCardView(
+                        onExit: {
+                            hidePopup()
+                            router.navigateTo(.mainHomepage)
+                        },
+                        onContinue: { hidePopup() },
+                        onClose: { hidePopup() }
+                    )
+                    .padding(.horizontal, ViewSpacing.xlarge)
+                    .transition(.scale(scale: 0.9).combined(with: .opacity))
+                }
+            }
+            .animation(.spring(response: 0.32, dampingFraction: 0.86), value: showExitPopup)
         }
         .onAppear {
             if previewQuestion == nil, let id = questionId {
@@ -159,12 +181,13 @@ struct SadQuestionPageView: View {
     
     private func handleSelectBackend(_ option: MoodTreatmentAnswerOption) {
         vm.submitAnswer(option: option)
+        if let nextId = option.next {
+            router.navigateTo(.sadSingleQuestion(id: nextId))
+        }
     }
     
     private func handleContinue() {
-        // 对于非选择题，需要创建虚拟选项来提交数据
         if let currentQuestion = question {
-            // 创建一个虚拟的选项来表示"继续"操作
             let continueOption = MoodTreatmentAnswerOption(
                 key: "continue",
                 text: "继续",
@@ -174,7 +197,11 @@ struct SadQuestionPageView: View {
             vm.submitAnswer(option: continueOption)
         }
     }
-    
+    private func hidePopup() {
+        withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
+            showExitPopup = false
+        }
+    }
     private func refreshProgress() {
         guard let q = question else { return }
         let total = max(q.totalQuestions ?? 0, 1)

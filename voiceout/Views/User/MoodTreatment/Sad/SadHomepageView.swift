@@ -116,7 +116,8 @@ struct MoodTreatmentSadHomepageView: View {
                             Spacer()
 
                             Button(action: {
-                                router.navigateTo(.sadSingleQuestion(id: 401))
+                                let startId = RoutineStartConfig.id(for: .sad)
+                                router.navigateTo(.sadSingleQuestion(id: startId))
                             }) {
                                 Text("点击按钮继续")
                                     .font(Font.typography(.bodyMedium))

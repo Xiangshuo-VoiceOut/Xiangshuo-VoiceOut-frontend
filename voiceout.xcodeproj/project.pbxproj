@@ -130,12 +130,10 @@
 		844ED34F2D9FB56F0055F5D6 /* HappyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED34E2D9FB5670055F5D6 /* HappyHomepageView.swift */; };
 		844ED3552D9FB92D0055F5D6 /* GuiltHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844ED3542D9FB92A0055F5D6 /* GuiltHomepageView.swift */; };
 		8450E3E12E729C04008B2784 /* TypewriterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450E3E02E729C04008B2784 /* TypewriterText.swift */; };
-		8450E3E32E7783D4008B2784 /* AngryQuestion1StyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450E3E22E7783D2008B2784 /* AngryQuestion1StyleView.swift */; };
 		8450E4022E7DE387008B2784 /* ScareHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450E3ED2E7DE387008B2784 /* ScareHomepageView.swift */; };
 		8450E4072E7DFCAB008B2784 /* MusicButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450E4062E7DFC9B008B2784 /* MusicButtonView.swift */; };
 		846BA01D2C44E780009BB6A9 /* CommentcardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */; };
 		847AA82D2EB1F1C200282536 /* ExitPopupCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847AA82C2EB1F1BA00282536 /* ExitPopupCardView.swift */; };
-		847AA8312EB20DD800282536 /* EnvyQuestion1StyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847AA8302EB20DD800282536 /* EnvyQuestion1StyleView.swift */; };
 		848E62AD2C891D37009B162A /* StickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AC2C891D37009B162A /* StickyHeaderView.swift */; };
 		848E62AF2C892439009B162A /* OneWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62AE2C892439009B162A /* OneWeekView.swift */; };
 		848E62B42C8BC8F1009B162A /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E62B32C8BC8F1009B162A /* Day.swift */; };
@@ -159,6 +157,7 @@
 		84B100E42CF1CB94003C6C20 /* TherapistScheduleTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B100E32CF1CB91003C6C20 /* TherapistScheduleTimeView.swift */; };
 		84B100E62CF457F6003C6C20 /* WaitingConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B100E52CF457F4003C6C20 /* WaitingConfirmationView.swift */; };
 		84B100E82CF5A366003C6C20 /* TimeSlotUnavailableAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B100E72CF5A363003C6C20 /* TimeSlotUnavailableAlert.swift */; };
+		84BA06DF2EF228650055F181 /* RoutineStartConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA06DE2EF228640055F181 /* RoutineStartConfig.swift */; };
 		84C2972A2EB01EAB009F7AD6 /* MoodManagerLoadingView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C297292EB01EAB009F7AD6 /* MoodManagerLoadingView2.swift */; };
 		84C2972C2EB02494009F7AD6 /* RotatingWheelView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2972B2EB02493009F7AD6 /* RotatingWheelView2.swift */; };
 		84CB40042D585677004ED7DE /* FAQService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB40032D585676004ED7DE /* FAQService.swift */; };
@@ -166,6 +165,7 @@
 		84DC8FDD2D0C109D00FAAAC1 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8FDC2D0C109500FAAAC1 /* FAQView.swift */; };
 		84DC8FDF2D0C10C600FAAAC1 /* SatisfactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8FDE2D0C10BD00FAAAC1 /* SatisfactionView.swift */; };
 		84DC8FE12D1114AC00FAAAC1 /* FeedbackReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8FE02D1114AA00FAAAC1 /* FeedbackReviewView.swift */; };
+		84DE79232EF3ADE90092FAAD /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DE79222EF3ADE90092FAAD /* LanguageManager.swift */; };
 		84F0D9462D359F340029F651 /* FAQInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0D9452D359F260029F651 /* FAQInformation.swift */; };
 		84F0D9482D359F6E0029F651 /* FAQViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0D9472D359F650029F651 /* FAQViewModel.swift */; };
 		84F0D94B2D35A00D0029F651 /* BeforeFirstConsultationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F0D94A2D35A0090029F651 /* BeforeFirstConsultationViewModel.swift */; };
@@ -388,12 +388,10 @@
 		844ED34E2D9FB5670055F5D6 /* HappyHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyHomepageView.swift; sourceTree = "<group>"; };
 		844ED3542D9FB92A0055F5D6 /* GuiltHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuiltHomepageView.swift; sourceTree = "<group>"; };
 		8450E3E02E729C04008B2784 /* TypewriterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypewriterText.swift; sourceTree = "<group>"; };
-		8450E3E22E7783D2008B2784 /* AngryQuestion1StyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngryQuestion1StyleView.swift; sourceTree = "<group>"; };
 		8450E3ED2E7DE387008B2784 /* ScareHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScareHomepageView.swift; sourceTree = "<group>"; };
 		8450E4062E7DFC9B008B2784 /* MusicButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicButtonView.swift; sourceTree = "<group>"; };
 		846BA00E2C44E780009BB6A9 /* CommentcardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentcardViewModel.swift; sourceTree = "<group>"; };
 		847AA82C2EB1F1BA00282536 /* ExitPopupCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitPopupCardView.swift; sourceTree = "<group>"; };
-		847AA8302EB20DD800282536 /* EnvyQuestion1StyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvyQuestion1StyleView.swift; sourceTree = "<group>"; };
 		848E62AC2C891D37009B162A /* StickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
 		848E62AE2C892439009B162A /* OneWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWeekView.swift; sourceTree = "<group>"; };
 		848E62B32C8BC8F1009B162A /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
@@ -417,6 +415,7 @@
 		84B100E32CF1CB91003C6C20 /* TherapistScheduleTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistScheduleTimeView.swift; sourceTree = "<group>"; };
 		84B100E52CF457F4003C6C20 /* WaitingConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingConfirmationView.swift; sourceTree = "<group>"; };
 		84B100E72CF5A363003C6C20 /* TimeSlotUnavailableAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlotUnavailableAlert.swift; sourceTree = "<group>"; };
+		84BA06DE2EF228640055F181 /* RoutineStartConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStartConfig.swift; sourceTree = "<group>"; };
 		84C297292EB01EAB009F7AD6 /* MoodManagerLoadingView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManagerLoadingView2.swift; sourceTree = "<group>"; };
 		84C2972B2EB02493009F7AD6 /* RotatingWheelView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatingWheelView2.swift; sourceTree = "<group>"; };
 		84CB40032D585676004ED7DE /* FAQService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQService.swift; sourceTree = "<group>"; };
@@ -424,6 +423,7 @@
 		84DC8FDC2D0C109500FAAAC1 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
 		84DC8FDE2D0C10BD00FAAAC1 /* SatisfactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SatisfactionView.swift; sourceTree = "<group>"; };
 		84DC8FE02D1114AA00FAAAC1 /* FeedbackReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackReviewView.swift; sourceTree = "<group>"; };
+		84DE79222EF3ADE90092FAAD /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		84F0D9452D359F260029F651 /* FAQInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQInformation.swift; sourceTree = "<group>"; };
 		84F0D9472D359F650029F651 /* FAQViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewModel.swift; sourceTree = "<group>"; };
 		84F0D94A2D35A0090029F651 /* BeforeFirstConsultationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeFirstConsultationViewModel.swift; sourceTree = "<group>"; };
@@ -633,7 +633,6 @@
 				840A6EE92E72026800D8235C /* ChatBubbleView.swift */,
 				840A6EEA2E72026800D8235C /* AngryEndingView.swift */,
 				840A6EEB2E72026800D8235C /* AngryQuestionPageView.swift */,
-				8450E3E22E7783D2008B2784 /* AngryQuestion1StyleView.swift */,
 				840A6EEC2E72026800D8235C /* AngryQuestionStyleAView.swift */,
 				840A6EED2E72026800D8235C /* AngryQuestionStyleBView.swift */,
 				840A6EEE2E72026800D8235C /* AngryQuestionStyleCView.swift */,
@@ -658,7 +657,6 @@
 				840A6F142E72038400D8235C /* EnvyEndingView.swift */,
 				840A6F152E72038400D8235C /* EnvyFinalEndingView.swift */,
 				840A6F162E72038400D8235C /* EnvyQuestionPageView.swift */,
-				847AA8302EB20DD800282536 /* EnvyQuestion1StyleView.swift */,
 				840A6F172E72038400D8235C /* EnvyQuestionStyleHView.swift */,
 				840A6F182E72038400D8235C /* EnvyQuestionStyleIView.swift */,
 				840A6F192E72038400D8235C /* EnvyQuestionStyleJView.swift */,
@@ -1137,6 +1135,8 @@
 		D25C2ED02BDDD58B0011212A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				84DE79222EF3ADE90092FAAD /* LanguageManager.swift */,
+				84BA06DE2EF228640055F181 /* RoutineStartConfig.swift */,
 				D21660E12C4C24DD008248DE /* FileReader.swift */,
 				B8860E2D2C3CCCC300A79073 /* Formatters.swift */,
 				D2ECDF872C8E2C4D00FC3E24 /* LocalizationManager.swift */,
@@ -1358,6 +1358,7 @@
 				82C441182EE793BB00B71BA2 /* SadQuestionPageView.swift in Sources */,
 				82C441192EE793BB00B71BA2 /* AnxietyQuestionStyleRankView.swift in Sources */,
 				82C4411A2EE793BB00B71BA2 /* SadQuestionStyleMultichoice2View.swift in Sources */,
+				84DE79232EF3ADE90092FAAD /* LanguageManager.swift in Sources */,
 				82C4411B2EE793BB00B71BA2 /* SadQuestionStyleUploadView.swift in Sources */,
 				82C4411C2EE793BB00B71BA2 /* SadQuestionStyleTodoView.swift in Sources */,
 				82C4411D2EE793BB00B71BA2 /* AnxietyQuestionStyleSinglechoiceView.swift in Sources */,
@@ -1443,7 +1444,6 @@
 				840236712CF06B1000C8BA17 /* BasicInfoContentView.swift in Sources */,
 				B8444E872C47526900CBCAF8 /* SignUpWebService.swift in Sources */,
 				D23811362CA1D0CB00B90ED2 /* TimePickerPopupContent.swift in Sources */,
-				847AA8312EB20DD800282536 /* EnvyQuestion1StyleView.swift in Sources */,
 				D228B28A2C9547F3003975FB /* BankInformationView.swift in Sources */,
 				84D4C70F2D7A7C8D0091B389 /* RotatingWheelView.swift in Sources */,
 				8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */,
@@ -1507,7 +1507,6 @@
 				6894896C2CC84C52000FEA22 /* EducationView.swift in Sources */,
 				D2D6CD892C038B1700DD7688 /* Color.swift in Sources */,
 				D2AA0AE62CA1C2B6007A96E4 /* TimePickerView.swift in Sources */,
-				8450E3E32E7783D4008B2784 /* AngryQuestion1StyleView.swift in Sources */,
 				840A6EDD2E7201F700D8235C /* MoodTreatment.swift in Sources */,
 				8497B51B2CE81EB9006D6050 /* EditButtonView.swift in Sources */,
 				D2ECDF8A2C8F659200FC3E24 /* BasicInfoView.swift in Sources */,
@@ -1552,6 +1551,7 @@
 				844ED3462D9CFC740055F5D6 /* MoodDefinitions.swift in Sources */,
 				689489742CC8533C000FEA22 /* CareerView.swift in Sources */,
 				B8D4721F2C1E405000D6716A /* ResetPasswordView.swift in Sources */,
+				84BA06DF2EF228650055F181 /* RoutineStartConfig.swift in Sources */,
 				84AFFEC02D8E005500F90680 /* MoodReportView.swift in Sources */,
 				84B100DA2CF1AB21003C6C20 /* NoReviewsView.swift in Sources */,
 				D28498DC2BDDE47F00963B3A /* ButtonView.swift in Sources */,

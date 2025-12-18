@@ -81,18 +81,18 @@ struct AngryQuestionPageView: View {
                     )
                     .frame(height: 44)
 
-                    let totalWidth = UIScreen.main.bounds.width - 128
-                    
-                    ZStack(alignment: .leading) {
-                        Capsule()
-                            .fill(Color.surfacePrimary)
-                            .frame(width: totalWidth, height: 12)
-                        Capsule()
-                            .fill(Color.surfaceBrandPrimary)
-                            .frame(width: progressViewModel.progressWidth, height: 12)
-                    }
-                    .padding(.vertical, ViewSpacing.xsmall)
-                    .padding(.horizontal, 2*ViewSpacing.xlarge)
+//                    let totalWidth = UIScreen.main.bounds.width - 128
+//                    
+//                    ZStack(alignment: .leading) {
+//                        Capsule()
+//                            .fill(Color.surfacePrimary)
+//                            .frame(width: totalWidth, height: 12)
+//                        Capsule()
+//                            .fill(Color.surfaceBrandPrimary)
+//                            .frame(width: progressViewModel.progressWidth, height: 12)
+//                    }
+//                    .padding(.vertical, ViewSpacing.xsmall)
+//                    .padding(.horizontal, 2*ViewSpacing.xlarge)
 
                     Color.clear.frame(height: 12)
 
@@ -192,8 +192,6 @@ struct AngryQuestionPageView: View {
         if let q = question {
             if let name = q.customViewName, name == "AngryQuestionStyleTimingView" {
                 EmptyView()
-            } else if let name = q.customViewName, name == "AngryQuestion1StyleView" {
-                AngryQuestion1StyleView(question: q, onSelect: handleSelectBackend)
             } else {
                 defaultSwitch(for: q)
             }
@@ -222,9 +220,11 @@ struct AngryQuestionPageView: View {
             AngryQuestionStyleEView(
                 question: q,
                 onSelect: { _ in },
-                onConfirm: { _ in
-                    if let confirmOpt = q.options.first(where: { $0.exclusive == true }),
-                       let nextId = confirmOpt.next {
+                onConfirm: { selected in
+                    for opt in selected {
+                        vm.submitAnswer(option: opt)
+                    }
+                    if let nextId = q.options.first(where: { $0.exclusive == true })?.next {
                         router.navigateTo(.angrySingleQuestion(id: nextId))
                     }
                 }
@@ -256,6 +256,10 @@ struct AngryQuestionPageView: View {
     
     private func handleSelectBackend(_ option: MoodTreatmentAnswerOption) {
         vm.submitAnswer(option: option)
+        if let nextId = option.next {
+            router.navigateTo(.angrySingleQuestion(id: nextId))
+        } else {
+        }
     }
     
     private func refreshProgress() {

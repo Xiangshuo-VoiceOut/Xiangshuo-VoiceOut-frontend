@@ -158,7 +158,7 @@ struct GuiltQuestionStyleAView: View {
                 .init(key: "B", text: "没有达到对自己的要求", next: 3,  exclusive: false),
                 .init(key: "C", text: "拒绝了别人的请求",   next: 10, exclusive: false),
                 .init(key: "D", text: "做了自己不太满意的决定", next: 11, exclusive: false),
-                .init(key: "E", text: "其他",                 next: 12, exclusive: false)
+                .init(key: "E", text: "其他", next: 12, exclusive: false)
             ],
             introTexts: nil,
             showSlider: nil,

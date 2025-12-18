@@ -10,7 +10,7 @@ import SwiftUI
 struct GuiltQuestionPageView: View {
     @EnvironmentObject var router: RouterModel
     @StateObject private var vm = MoodTreatmentVM()
-    
+    @State private var showExitPopup = false
     private let questionId: Int?
     private let previewQuestion: MoodTreatmentQuestion?
     
@@ -67,7 +67,11 @@ struct GuiltQuestionPageView: View {
                         leadingComponent: AnyView(BackButtonView()
                             .foregroundColor(.grey500)),
                         trailingComponent: AnyView(
-                            Button {} label: {
+                            Button {
+                                withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
+                                    showExitPopup = true
+                                }
+                            } label: {
                                 Image("close")
                                     .resizable()
                                     .frame(width: 24, height: 24)
@@ -78,22 +82,44 @@ struct GuiltQuestionPageView: View {
                     )
                     .frame(height: 44)
 
-                    let totalWidth = UIScreen.main.bounds.width - 128
-                    
-                    ZStack(alignment: .leading) {
-                        Capsule()
-                            .fill(Color.surfacePrimary)
-                            .frame(width: totalWidth, height: 12)
-                        Capsule()
-                            .fill(Color.surfaceBrandPrimary)
-                            .frame(width: progressViewModel.progressWidth, height: 12)
-                    }
-                    .padding(.vertical, ViewSpacing.xsmall)
-                    .padding(.horizontal, 2*ViewSpacing.xlarge)
+//                    let totalWidth = UIScreen.main.bounds.width - 128
+//                    
+//                    ZStack(alignment: .leading) {
+//                        Capsule()
+//                            .fill(Color.surfacePrimary)
+//                            .frame(width: totalWidth, height: 12)
+//                        Capsule()
+//                            .fill(Color.surfaceBrandPrimary)
+//                            .frame(width: progressViewModel.progressWidth, height: 12)
+//                    }
+//                    .padding(.vertical, ViewSpacing.xsmall)
+//                    .padding(.horizontal, 2*ViewSpacing.xlarge)
 
                     Color.clear.frame(height: 12)
+                    contentBody
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
+        }
+        .overlay {
+            ZStack {
+                if showExitPopup {
+                    Color.black.opacity(0.4)
+                        .ignoresSafeArea()
+                        .transition(.opacity)
+                    ExitPopupCardView(
+                        onExit: {
+                            hidePopup()
+                            router.navigateTo(.mainHomepage)
+                        },
+                        onContinue: { hidePopup() },
+                        onClose: { hidePopup() }
+                    )
+                    .padding(.horizontal, ViewSpacing.xlarge)
+                    .transition(.scale(scale: 0.9).combined(with: .opacity))
+                }
+            }
+            .animation(.spring(response: 0.32, dampingFraction: 0.86), value: showExitPopup)
         }
         .onAppear {
             if previewQuestion == nil, let id = questionId {
@@ -113,13 +139,7 @@ struct GuiltQuestionPageView: View {
     @ViewBuilder
     private var contentBody: some View {
         if let q = question {
-            if let name = q.customViewName, name == "AngryQuestionStyleTimingView" {
-                EmptyView()
-            } else if let name = q.customViewName, name == "AngryQuestion1StyleView" {
-                AngryQuestion1StyleView(question: q, onSelect: handleSelectBackend)
-            } else {
-                defaultSwitch(for: q)
-            }
+            defaultSwitch(for: q)
         } else {
             EmptyView()
         }
@@ -128,8 +148,22 @@ struct GuiltQuestionPageView: View {
     @ViewBuilder
     private func defaultSwitch(for q: MoodTreatmentQuestion) -> some View {
         switch q.uiStyle {
-        case .styleA:
-            AngryQuestionStyleAView(question: q, onSelect: handleSelectBackend)
+        case .guiltStyleA:
+            GuiltQuestionStyleAView(question: q, onSelect: handleSelectBackend)
+        case .guiltStyleB:
+            GuiltQuestionStyleBView(
+                question: q,
+                onSelect: { _ in
+                },
+                onConfirm: { selected in
+                    for opt in selected {
+                        vm.submitAnswer(option: opt)
+                    }
+                    if let nextId = q.options.first(where: { $0.exclusive == true })?.next {
+                        router.navigateTo(.guiltSingleQuestion(id: nextId))
+                    }
+                }
+            )
         default:
             EmptyView()
         }
@@ -137,8 +171,15 @@ struct GuiltQuestionPageView: View {
     
     private func handleSelectBackend(_ option: MoodTreatmentAnswerOption) {
         vm.submitAnswer(option: option)
+        if let nextId = option.next {
+            router.navigateTo(.guiltSingleQuestion(id: nextId))
+        }
     }
-    
+    private func hidePopup() {
+        withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
+            showExitPopup = false
+        }
+    }
     private func refreshProgress() {
         guard let q = question else { return }
         let total = max(q.totalQuestions ?? 0, 1)
@@ -146,39 +187,31 @@ struct GuiltQuestionPageView: View {
         let ratio = CGFloat(current) / CGFloat(total)
         progressViewModel.progressWidth = progressViewModel.fullWidth * ratio
     }
-    private func isTimingUIStyle(_ q: MoodTreatmentQuestion?) -> Bool {
-        guard let q = q else { return false }
-        return q.uiStyle == .styleAngryTiming
-    }
-    private func isTimingQuestion(_ q: MoodTreatmentQuestion?) -> Bool {
-        guard let q = q else { return false }
-        return q.uiStyle == .styleAngryTiming || q.customViewName == "AngryQuestionStyleTimingView"
-    }
 }
 
-//#Preview {
-//    GuiltQuestionPageView(
-//        question: MoodTreatmentQuestion(
-//            id: 1,
-//            totalQuestions: 45,
-//            uiStyle: .styleA,
-//            texts: [
-//                "小云朵感受到了你现在有些心情不好，",
-//                "我想要试着帮帮你呀。",
-//                "可以告诉我，你现在感觉有多愤怒吗？"
-//            ],
-//            animation: nil,
-//            options: [
-//                .init(key: "A", text: "轻微生气/烦躁", next: 2,  exclusive: false),
-//                .init(key: "B", text: "可控范围内的愤怒", next: 20, exclusive: false),
-//                .init(key: "C", text: "非常愤怒影响生活", next: 54, exclusive: false)
-//            ],
-//            introTexts: [],
-//            showSlider: false,
-//            endingStyle: nil,
-//            customViewName: "AngryQuestion1StyleView",
-//            routine: "anger"
-//        )
-//    )
-//    .environmentObject(RouterModel())
-//}
+#Preview {
+    GuiltQuestionPageView(
+        question: MoodTreatmentQuestion(
+            id: 1,
+            totalQuestions: 45,
+            uiStyle: .guiltStyleA,
+            texts: [
+                "小云朵感受到了你现在有些心情不好，",
+                "我想要试着帮帮你呀。",
+                "可以告诉我，你现在感觉有多愤怒吗？"
+            ],
+            animation: nil,
+            options: [
+                .init(key: "A", text: "轻微生气/烦躁", next: 2,  exclusive: false),
+                .init(key: "B", text: "可控范围内的愤怒", next: 20, exclusive: false),
+                .init(key: "C", text: "非常愤怒影响生活", next: 54, exclusive: false)
+            ],
+            introTexts: [],
+            showSlider: false,
+            endingStyle: nil,
+            customViewName: nil,
+            routine: "guilt"
+        )
+    )
+    .environmentObject(RouterModel())
+}

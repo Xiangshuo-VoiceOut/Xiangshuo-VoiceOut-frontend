@@ -52,11 +52,8 @@ struct EnvyQuestionPageView: View {
 
     var body: some View {
         ZStack {
-            // 背景色层 - 总是显示，避免空白
             fallbackBackground
                 .ignoresSafeArea()
-            
-            // 内容层
             ZStack(alignment: .top) {
                 if let question = currentQuestion {
                     VStack(spacing: 0) {
@@ -80,61 +77,63 @@ struct EnvyQuestionPageView: View {
                             )
                             .frame(height: 44)
 
-                            let totalWidth = UIScreen.main.bounds.width - 128
-                            ZStack(alignment: .leading) {
-                                Capsule().fill(Color.surfacePrimary)
-                                    .frame(width: totalWidth, height: 12)
-                                Capsule().fill(Color.surfaceBrandPrimary)
-                                    .frame(width: progressViewModel.progressWidth, height: 12)
-                            }
-                            .padding(.vertical, ViewSpacing.xsmall)
-                            .padding(.horizontal, 2 * ViewSpacing.xlarge)
-                            .background(headerColor)
+//                            let totalWidth = UIScreen.main.bounds.width - 128
+//                            ZStack(alignment: .leading) {
+//                                Capsule().fill(Color.surfacePrimary)
+//                                    .frame(width: totalWidth, height: 12)
+//                                Capsule().fill(Color.surfaceBrandPrimary)
+//                                    .frame(width: progressViewModel.progressWidth, height: 12)
+//                            }
+//                            .padding(.vertical, ViewSpacing.xsmall)
+//                            .padding(.horizontal, 2 * ViewSpacing.xlarge)
+//                            .background(headerColor)
                         }
 
                         Rectangle().fill(headerColor).frame(height: 12)
-
-                        if let name = question.customViewName, name == "EnvyQuestion1StyleView" {
-                            EnvyQuestion1StyleView(question: question, onSelect: handleSelect)
-                        } else {
-                            switch question.uiStyle {
-                            case .styleH:
-                                EnvyQuestion1StyleView(question: question, onSelect: handleSelect)
-                            case .styleI:
-                                EnvyQuestionStyleIView(
-                                    question: question,
-                                    onSelect: { _ in },
-                                    onConfirm: { _ in router.navigateBack() }
-                                )
-                            case .styleJ:
-                                EnvyQuestionStyleJView(
-                                    question: question,
-                                    onSelect: { opt in if opt.next == nil { router.navigateBack() } }
-                                )
-                            case .styleScrollDown:
-                                EnvyQuestionStyleScrollDownView(
-                                    question: question,
-                                    onSelect: { opt in if opt.next == nil { router.navigateBack() } }
-                                )
-                            case .styleMirror:
-                                EnvyQuestionStyleMirrorView(
-                                    question: question,
-                                    requiredSelections: question.id == 5 ? 1 : nil,
-                                    onSelect: { opt in if opt.next == nil { router.navigateBack() } }
-                                )
-                            case .styleTyping:
-                                EnvyQuestionStyleTypingView(
-                                    question: question,
-                                    onSelect: { _ in }
-                                )
-                            case .styleEnvyFinalEnding:
-                                EnvyFinalEndingView()
-                            case .styleEnvyEnding:
-                                EnvyEndingView(question: question)
-                            default:
-                                Text("Unknown")
-                                    .foregroundColor(.red)
-                            }
+                        switch question.uiStyle {
+                        case .styleH:
+                            EnvyQuestionStyleHView(
+                                question: question,
+                                onSelect: handleSelect
+                            )
+                        case .styleI:
+                            EnvyQuestionStyleIView(
+                                question: question,
+                                onSelect: { _ in },
+                                onConfirm: { selected in
+                                    if let nextId = question.options.first(where: { $0.exclusive == true })?.next {
+                                        router.navigateTo(.envySingleQuestion(id: nextId))
+                                    }
+                                }
+                            )
+                        case .styleJ:
+                            EnvyQuestionStyleJView(
+                                question: question,
+                                onSelect: { opt in if opt.next == nil { router.navigateBack() } }
+                            )
+                        case .styleScrollDown:
+                            EnvyQuestionStyleScrollDownView(
+                                question: question,
+                                onSelect: { opt in if opt.next == nil { router.navigateBack() } }
+                            )
+                        case .styleMirror:
+                            EnvyQuestionStyleMirrorView(
+                                question: question,
+                                requiredSelections: question.id == 5 ? 1 : nil,
+                                onSelect: { opt in if opt.next == nil { router.navigateBack() } }
+                            )
+                        case .styleTyping:
+                            EnvyQuestionStyleTypingView(
+                                question: question,
+                                onSelect: { _ in }
+                            )
+                        case .styleEnvyFinalEnding:
+                            EnvyFinalEndingView()
+                        case .styleEnvyEnding:
+                            EnvyEndingView(question: question)
+                        default:
+                            Text("Unknown")
+                                .foregroundColor(.red)
                         }
                     }
                     .onAppear {
@@ -159,6 +158,8 @@ struct EnvyQuestionPageView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .navigationBar)
         .overlay {
             ZStack {
                 if showExitPopup {

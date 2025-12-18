@@ -18,7 +18,7 @@ private struct DialogHeightKey: PreferenceKey {
     }
 }
 
-struct AnxietyHomepageView: View {
+struct MoodTreatmentAnxietyHomepageView: View {
     @EnvironmentObject var router: RouterModel
     @State private var dialogHeight: CGFloat = 0
 
@@ -168,7 +168,8 @@ struct AnxietyHomepageView: View {
                                 .frame(height: buttonSpacingFromVector)
 
                             Button(action: {
-                                router.navigateTo(.anxietySingleQuestion(id: 3001))
+                                let startId = RoutineStartConfig.id(for: .anxiety)
+                                router.navigateTo(.anxietySingleQuestion(id: startId))
                             }) {
                                 Text("点击按钮继续")
                                     .font(Font.typography(.bodyMedium))
@@ -236,6 +237,6 @@ struct AnxietyHomepageView: View {
 }
 
 #Preview {
-    AnxietyHomepageView()
+    MoodTreatmentAnxietyHomepageView()
         .environmentObject(RouterModel())
 }

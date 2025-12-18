@@ -10,7 +10,7 @@ import SwiftUI
 struct ScareQuestionPageView: View {
     @EnvironmentObject var router: RouterModel
     @StateObject private var vm = MoodTreatmentVM()
-    
+    @State private var showExitPopup = false
     private let questionId: Int?
     private let previewQuestion: MoodTreatmentQuestion?
     
@@ -82,7 +82,11 @@ struct ScareQuestionPageView: View {
                                 .foregroundColor(.grey500)
                         ),
                         trailingComponent: AnyView(
-                            Button(action: {}) {
+                            Button(action: {
+                                withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
+                                    showExitPopup = true
+                                }
+                            }) {
                                 Image("close")
                                     .resizable()
                                     .renderingMode(.template)
@@ -99,18 +103,18 @@ struct ScareQuestionPageView: View {
                         }
                     }
 
-                    let totalWidth = UIScreen.main.bounds.width - 128
-                    
-                    ZStack(alignment: .leading) {
-                        Capsule()
-                            .fill(Color.surfacePrimary)
-                            .frame(width: totalWidth, height: 12)
-                        Capsule()
-                            .fill(Color.surfaceBrandPrimary)
-                            .frame(width: progressViewModel.progressWidth, height: 12)
-                    }
-                    .padding(.vertical, ViewSpacing.xsmall)
-                    .padding(.horizontal, 2*ViewSpacing.xlarge)
+//                    let totalWidth = UIScreen.main.bounds.width - 128
+//                    
+//                    ZStack(alignment: .leading) {
+//                        Capsule()
+//                            .fill(Color.surfacePrimary)
+//                            .frame(width: totalWidth, height: 12)
+//                        Capsule()
+//                            .fill(Color.surfaceBrandPrimary)
+//                            .frame(width: progressViewModel.progressWidth, height: 12)
+//                    }
+//                    .padding(.vertical, ViewSpacing.xsmall)
+//                    .padding(.horizontal, 2*ViewSpacing.xlarge)
                     .overlay {
                         if isShowing478Guide && breatheStepIndex == 0 {
                             Color.black.opacity(0.25).ignoresSafeArea()
@@ -132,6 +136,26 @@ struct ScareQuestionPageView: View {
                 .background(headerBgColor)
 
             }
+        }
+        .overlay {
+            ZStack {
+                if showExitPopup {
+                    Color.black.opacity(0.4)
+                        .ignoresSafeArea()
+                        .transition(.opacity)
+                    ExitPopupCardView(
+                        onExit: {
+                            hidePopup()
+                            router.navigateTo(.mainHomepage)
+                        },
+                        onContinue: { hidePopup() },
+                        onClose: { hidePopup() }
+                    )
+                    .padding(.horizontal, ViewSpacing.xlarge)
+                    .transition(.scale(scale: 0.9).combined(with: .opacity))
+                }
+            }
+            .animation(.spring(response: 0.32, dampingFraction: 0.86), value: showExitPopup)
         }
         .onAppear {
             if previewQuestion == nil, let id = questionId {
@@ -199,10 +223,14 @@ struct ScareQuestionPageView: View {
             EmptyView()
         }
     }
-
+    private func hidePopup() {
+        withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
+            showExitPopup = false
+        }
+    }
     private func handleSelect(_ option: MoodTreatmentAnswerOption) {
         guard let nxt = option.next else { return }
-        router.navigateTo(.angrySingleQuestion(id: nxt))
+        router.navigateTo(.scareSingleQuestion(id: nxt))
     }
 }
 

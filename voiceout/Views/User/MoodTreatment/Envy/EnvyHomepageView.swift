@@ -115,7 +115,8 @@ struct MoodTreatmentEnvyHomepageView: View {
                             Spacer()
 
                             Button(action: {
-                                router.navigateTo(.envySingleQuestion(id: 1001))
+                                let startId = RoutineStartConfig.id(for: .envy)
+                                router.navigateTo(.envySingleQuestion(id: startId))
                             }) {
                                 Text("点击按钮继续")
                                     .font(Font.typography(.bodyMedium))

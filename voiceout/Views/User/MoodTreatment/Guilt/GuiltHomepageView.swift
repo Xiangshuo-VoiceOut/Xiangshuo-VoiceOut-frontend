@@ -102,7 +102,8 @@ struct MoodTreatmentGuiltHomepageView: View {
                             Spacer()
 
                             Button(action: {
-                                router.navigateTo(.guiltSingleQuestion(id: 201))
+                                let startId = RoutineStartConfig.id(for: .guilt)
+                                router.navigateTo(.guiltSingleQuestion(id: startId))
                             }) {
                                 Text("点击按钮继续")
                                     .font(Font.typography(.bodyMedium))

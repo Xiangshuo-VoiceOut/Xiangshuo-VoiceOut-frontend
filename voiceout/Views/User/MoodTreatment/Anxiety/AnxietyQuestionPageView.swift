@@ -10,7 +10,7 @@ import SwiftUI
 struct AnxietyQuestionPageView: View {
     @EnvironmentObject var router: RouterModel
     @StateObject private var vm = MoodTreatmentVM()
-    
+    @State private var showExitPopup = false
     private let questionId: Int?
     private let previewQuestion: MoodTreatmentQuestion?
     
@@ -52,13 +52,16 @@ struct AnxietyQuestionPageView: View {
                 StickyHeaderView(
                     title: "疗愈云港",
                     leadingComponent: AnyView(
-                        // 对于 styleAnxietyRank 显示返回按钮，其他 anxiety 题型隐藏返回按钮但保留占位
                         (routine == "anxiety" && question?.uiStyle != .styleAnxietyRank)
                         ? AnyView(Color.clear.frame(width: 24, height: 24))
                         : AnyView(BackButtonView().foregroundColor(.grey500))
                     ),
                     trailingComponent: AnyView(
-                        Button {} label: {
+                        Button {
+                            withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
+                                showExitPopup = true
+                            }
+                        } label: {
                             Image("close")
                                 .resizable()
                                 .frame(width: 24, height: 24)
@@ -69,23 +72,43 @@ struct AnxietyQuestionPageView: View {
                 )
                 .frame(height: 44)
 
-                let totalWidth = UIScreen.main.bounds.width - 128
+//                let totalWidth = UIScreen.main.bounds.width - 128
                 
-                ZStack(alignment: .leading) {
-                    Capsule()
-                        .fill(Color.surfacePrimary)
-                        .frame(width: totalWidth, height: 12)
-                    Capsule()
-                        .fill(Color.surfaceBrandPrimary)
-                        .frame(width: progressViewModel.progressWidth, height: 12)
-                }
-                .padding(.vertical, ViewSpacing.xsmall)
-                .padding(.horizontal, 2*ViewSpacing.xlarge)
+//                ZStack(alignment: .leading) {
+//                    Capsule()
+//                        .fill(Color.surfacePrimary)
+//                        .frame(width: totalWidth, height: 12)
+//                    Capsule()
+//                        .fill(Color.surfaceBrandPrimary)
+//                        .frame(width: progressViewModel.progressWidth, height: 12)
+//                }
+//                .padding(.vertical, ViewSpacing.xsmall)
+//                .padding(.horizontal, 2*ViewSpacing.xlarge)
 
                 Color.clear.frame(height: 12)
 
                 contentBody
             }
+        }
+        .overlay {
+            ZStack {
+                if showExitPopup {
+                    Color.black.opacity(0.4)
+                        .ignoresSafeArea()
+                        .transition(.opacity)
+                    ExitPopupCardView(
+                        onExit: {
+                            hidePopup()
+                            router.navigateTo(.mainHomepage)
+                        },
+                        onContinue: { hidePopup() },
+                        onClose: { hidePopup() }
+                    )
+                    .padding(.horizontal, ViewSpacing.xlarge)
+                    .transition(.scale(scale: 0.9).combined(with: .opacity))
+                }
+            }
+            .animation(.spring(response: 0.32, dampingFraction: 0.86), value: showExitPopup)
         }
         .onAppear {
             if previewQuestion == nil, let id = questionId {
@@ -122,6 +145,9 @@ struct AnxietyQuestionPageView: View {
     
     private func handleSelectBackend(_ option: MoodTreatmentAnswerOption) {
         vm.submitAnswer(option: option)
+        if let nextId = option.next {
+            router.navigateTo(.anxietySingleQuestion(id: nextId))
+        }
     }
     
     private func handleContinue() {
@@ -135,7 +161,11 @@ struct AnxietyQuestionPageView: View {
             vm.submitAnswer(option: continueOption)
         }
     }
-    
+    private func hidePopup() {
+        withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
+            showExitPopup = false
+        }
+    }
     private func refreshProgress() {
         guard let q = question else { return }
         let total = max(q.totalQuestions ?? 0, 1)

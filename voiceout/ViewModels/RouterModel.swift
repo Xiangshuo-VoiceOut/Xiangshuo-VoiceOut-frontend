@@ -45,6 +45,7 @@ enum Route: Hashable {
     case moodTreatmentEnvyHomepage
     case moodTreatmentGuiltHomepage
     case moodTreatmentScareHomepage
+    case moodTreatmentAnxietyHomepage
     case playRelaxVideo(name: String, ext: String = "mov")
 }
 
@@ -157,6 +158,9 @@ final class RouterModel: ObservableObject {
                 .environmentObject(self)
         case .moodTreatmentScareHomepage:
             MoodTreatmentScareHomepageView()
+                .environmentObject(self)
+        case .moodTreatmentAnxietyHomepage:
+            MoodTreatmentAnxietyHomepageView()
                 .environmentObject(self)
         case .playRelaxVideo(let name, let ext):
             RelaxationVideoView(source: .bundle(name: name, ext: ext))

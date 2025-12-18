@@ -52,7 +52,7 @@ struct MoodTreatmentScareHomepageView: View {
 
         case .medium:
             bubbleHorizontalPadding = 45
-            bubbleInnerTextTop = 12
+            bubbleInnerTextTop = 8
             bubbleInnerTextLeading = 6
             bubbleTop = 310
             cloudChatOffsetY = 400
@@ -110,7 +110,8 @@ struct MoodTreatmentScareHomepageView: View {
                             Spacer()
 
                             Button(action: {
-                                router.navigateTo(.scareSingleQuestion(id: 501))
+                                let startId = RoutineStartConfig.id(for: .scare)
+                                router.navigateTo(.scareSingleQuestion(id: startId))
                             }) {
                                 Text("点击按钮继续")
                                     .font(Font.typography(.bodyMedium))

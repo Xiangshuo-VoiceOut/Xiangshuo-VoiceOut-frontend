@@ -206,7 +206,7 @@ struct CloudGardenOnboardingView: View {
             withAnimation { current += 1 }
         } else if current == 5 {
             current = 6
-            router.navigateTo(.playRelaxVideo(name: "relax", ext: "mov"))
+            router.navigateTo(.playRelaxVideo(name: "relax", ext: "mp4"))
         } else {
             router.popToRoot()
         }

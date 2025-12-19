@@ -22,6 +22,7 @@ enum QuestionUIStyle: String, Decodable {
     case styleBottle///bottle
     case styleAngryEnding /// end
     case styleAngryTiming/// end
+    case styleIntensification
     
     ///Envy
     case styleH///single
@@ -93,6 +94,7 @@ enum QuestionUIStyle: String, Decodable {
         case "styleBottle":        self = .styleBottle
         case "styleAngryEnding":   self = .styleAngryEnding
         case "AngryQuestionStyleTimingView": self = .styleAngryTiming
+        case "styleIntensification": self = .styleIntensification
             
         ///Envy
         case "styleH":             self = .styleH
@@ -163,6 +165,7 @@ enum QuestionUIStyle: String, Decodable {
         case .styleBottle:          return "styleBottle"
         case .styleAngryEnding:     return "styleAngryEnding"
         case .styleAngryTiming:     return "styleAngryTiming"
+        case .styleIntensification: return "styleIntensification"
             
         case .styleH:               return "styleH"
         case .styleI:               return "styleI"

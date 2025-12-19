@@ -73,25 +73,22 @@ struct SadQuestionStyleEmotionView: View {
                         if showCurrentText {
                             VStack(spacing: ViewSpacing.small) {
                                 TypewriterText(fullText: currentText, characterDelay: typingInterval) {
-                                    // 打字完成后可以执行的操作
-                                }
-                                .id(currentTextIndex) // 添加key强制重新渲染
                             }
-                            .font(.typography(.bodyMedium))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.grey500)
-                            .frame(maxWidth: .infinity, alignment: .center)
+                            .id(currentTextIndex)
                         }
-                        
-                        // 输入区域 - 始终显示
-                        emotionInputArea
-                        
-                        Spacer()
+                        .font(.typography(.bodyMedium))
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.grey500)
+                        .frame(maxWidth: .infinity, alignment: .center)
                     }
-                    .padding(.horizontal, ViewSpacing.large)
                     
-                    // 底部按钮区域
-                    bottomButtonArea
+                    emotionInputArea
+                    
+                    Spacer()
+                }
+                .padding(.horizontal, ViewSpacing.large)
+                
+                bottomButtonArea
                 }
             }
         }
@@ -100,14 +97,12 @@ struct SadQuestionStyleEmotionView: View {
     
     private var emotionInputArea: some View {
         VStack(spacing: ViewSpacing.medium) {
-            // 输入提示
             Text("在这里写下你想说的话...")
                 .font(.system(size: 16, weight: .regular))
-                .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6)) // #67B899
+                .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
                 .multilineTextAlignment(.center)
                 .frame(width: 252, alignment: .center)
             
-            // 文本输入区域
             TextEditor(text: $userInput)
                 .font(.system(size: 16, weight: .regular))
                 .foregroundColor(.textPrimary)
@@ -122,10 +117,8 @@ struct SadQuestionStyleEmotionView: View {
                         .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                 )
             
-            // 语音输入按钮
             HStack(spacing: ViewSpacing.medium) {
                 Button {
-                    // TODO: 实现语音输入功能
                 } label: {
                     HStack {
                         Image(systemName: "mic.fill")

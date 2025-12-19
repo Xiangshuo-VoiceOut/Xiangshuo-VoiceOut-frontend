@@ -19,7 +19,6 @@ struct SadQuestionStyleMatchingView: View {
     
     private let typingInterval: TimeInterval = 0.1
     
-    // 硬编码的测试选项
     private let testOptions = [
         "责任感", "诚实", "善良", "独立", "宽容", "同情心", "正义感", "感恩", "礼貌"
     ]
@@ -42,7 +41,6 @@ struct SadQuestionStyleMatchingView: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) {
-                    // 云朵参数
                     ZStack(alignment: .topLeading) {
                         HStack(alignment: .center) {
                             Spacer()
@@ -66,15 +64,13 @@ struct SadQuestionStyleMatchingView: View {
 
                     VStack(spacing: ViewSpacing.medium) {
                         if showCurrentText {
-                            // text参数
                             Text(currentText)
                                 .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
                                 .multilineTextAlignment(.center)
-                                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31)) // colorGrey500
+                                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
                                 .frame(width: 358, alignment: .top)
                                 .padding(.bottom, ViewSpacing.small)
                                 .onAppear {
-                                    // 文本直接显示后，如果是第一段文本，延迟显示选项
                                     if currentTextIndex == 0 {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                             showOptions = true
@@ -83,7 +79,6 @@ struct SadQuestionStyleMatchingView: View {
                                 }
                         }
                         
-                        // 选项区域
                         if showOptions && currentTextIndex == 0 {
                             optionsArea
                         }
@@ -92,7 +87,6 @@ struct SadQuestionStyleMatchingView: View {
                     }
                     .padding(.horizontal, ViewSpacing.large)
                     
-                    // 底部按钮区域
                     bottomButtonArea
                 }
             }
@@ -102,7 +96,6 @@ struct SadQuestionStyleMatchingView: View {
     
     private var optionsArea: some View {
         VStack(spacing: ViewSpacing.medium) {
-            // 选项网格
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: ViewSpacing.small), count: 3), spacing: ViewSpacing.medium) {
                 ForEach(testOptions, id: \.self) { option in
                     OptionCircleView(
@@ -126,13 +119,13 @@ struct SadQuestionStyleMatchingView: View {
                 .padding(.horizontal, ViewSpacing.medium)
                 .padding(.vertical, ViewSpacing.small)
                 .frame(width: 114, height: 44)
-                .background(Color.surfacePrimary) // 白底
+                .background(Color.surfacePrimary)
                 .cornerRadius(CornerRadius.full.value)
-                .foregroundColor(Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0)) // 绿色 #67B899
+                .foregroundColor(Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0))
                 .font(Font.typography(.bodyMedium))
                 .kerning(0.64)
                 .multilineTextAlignment(.center)
-                .padding(.bottom, 55) // 距离屏幕最下方55px
+                .padding(.bottom, 55)
             }
         }
     }
@@ -155,7 +148,6 @@ struct SadQuestionStyleMatchingView: View {
     }
 }
 
-// 选项圆形视图
 struct OptionCircleView: View {
     let option: String
     let isSelected: Bool
@@ -164,12 +156,11 @@ struct OptionCircleView: View {
     var body: some View {
         Button(action: onTap) {
             ZStack {
-                // 背景圆形
                 VStack(alignment: .center, spacing: 18) {
                     Text(option)
                         .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
                         .multilineTextAlignment(.center)
-                        .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31)) // colorGrey500
+                        .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
                 }
                 .padding(.horizontal, 7.2)
                 .padding(.vertical, 23.4)
@@ -178,34 +169,31 @@ struct OptionCircleView: View {
                 .cornerRadius(999)
             }
             .overlay(
-                // 使用overlay添加贴图，避免被cornerRadius裁剪
                 ZStack {
-                    // 右下角的curve贴图（未选中时显示curve，选中时显示curve3）
                     if !isSelected {
                         Image("curve")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 48, height: 48)
-                            .offset(x: 20, y: 20) // 右下角位置
+                            .offset(x: 20, y: 20)
                     } else {
                         Image("curve3")
                             .renderingMode(.template)
                             .resizable()
                             .scaledToFit()
-                            .foregroundColor(Color(red: 0xC0/255.0, green: 0xE9/255.0, blue: 0xFF/255.0)) // #C0E9FF
+                            .foregroundColor(Color(red: 0xC0/255.0, green: 0xE9/255.0, blue: 0xFF/255.0))
                             .frame(width: 48, height: 48)
-                            .offset(x: 20, y: 20) // 右下角位置
+                            .offset(x: 20, y: 20)
                     }
                     
-                    // 上方的curve2贴图（选中时显示，12点位置偏左下）
                     if isSelected {
                         Image("curve2")
                             .renderingMode(.template)
                             .resizable()
                             .scaledToFit()
-                            .foregroundColor(Color(red: 0xC0/255.0, green: 0xE9/255.0, blue: 0xFF/255.0)) // #C0E9FF
-                            .frame(width: 24, height: 24) // 缩小一倍
-                            .offset(x: -10, y: -36) // 12点位置往左下
+                            .foregroundColor(Color(red: 0xC0/255.0, green: 0xE9/255.0, blue: 0xFF/255.0))
+                            .frame(width: 24, height: 24)
+                            .offset(x: -10, y: -36)
                     }
                 },
                 alignment: .center

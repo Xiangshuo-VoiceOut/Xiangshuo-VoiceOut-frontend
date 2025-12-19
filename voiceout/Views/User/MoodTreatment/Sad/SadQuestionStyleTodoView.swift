@@ -86,9 +86,8 @@ struct SadQuestionStyleTodoView: View {
                         if showCurrentText {
                             VStack(spacing: ViewSpacing.small) {
                                 TypewriterText(fullText: currentText, characterDelay: typingInterval) {
-                                    // 打字完成后可以执行的操作
                                 }
-                                .id(currentTextIndex) // 添加key强制重新渲染
+                                .id(currentTextIndex)
                             }
                             .font(.typography(.bodyMedium))
                             .multilineTextAlignment(.center)
@@ -98,15 +97,13 @@ struct SadQuestionStyleTodoView: View {
                         
                         if showCurrentText && hasIntroText && !showTodoList {
                             TypewriterText(fullText: currentIntroText, characterDelay: typingInterval) {
-                                // introtext打字完成后可以执行的操作
                             }
-                            .id("intro-\(currentTextIndex)") // 添加key强制重新渲染
+                            .id("intro-\(currentTextIndex)")
                             .font(.system(size: 16, weight: .regular))
-                            .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6)) // #67B899
+                            .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
                             .multilineTextAlignment(.center)
                             .frame(width: 252, alignment: .center)
                             
-                            // Todo输入区域
                             todoInputArea
                         }
                         
@@ -118,7 +115,6 @@ struct SadQuestionStyleTodoView: View {
                     }
                     .padding(.horizontal, ViewSpacing.large)
                     
-                    // 底部按钮区域
                     bottomButtonArea
                 }
             }
@@ -128,7 +124,6 @@ struct SadQuestionStyleTodoView: View {
     
     private var todoInputArea: some View {
         VStack(spacing: ViewSpacing.medium) {
-            // Todo输入框
             VStack(spacing: ViewSpacing.small) {
                 TextField("输入你的计划", text: $currentTodoText)
                     .font(.system(size: 16, weight: .regular))
@@ -145,7 +140,6 @@ struct SadQuestionStyleTodoView: View {
                     )
             }
             
-            // 时间选择
             if !currentTodoText.isEmpty {
                 VStack(spacing: ViewSpacing.small) {
                     Text("打算什么时候去？")
@@ -175,7 +169,6 @@ struct SadQuestionStyleTodoView: View {
                 }
             }
             
-            // 我写好了按钮
             if !currentTodoText.isEmpty && !selectedTimeframe.isEmpty {
                 Button("我写好了") {
                     let newTodo = TodoItem(text: currentTodoText, timeframe: selectedTimeframe)
@@ -192,7 +185,6 @@ struct SadQuestionStyleTodoView: View {
                 .padding(.top, ViewSpacing.small)
             }
             
-            // 跳过按钮
             if !todos.isEmpty {
                 Button("跳过") {
                     showTodoList = true

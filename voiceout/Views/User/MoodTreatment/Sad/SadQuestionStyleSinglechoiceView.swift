@@ -57,8 +57,8 @@ struct SadQuestionStyleSinglechoiceView: View {
             Spacer()
             Image("newmill")
                 .resizable()
-                .scaledToFit() // 保持完整图片显示
-                .frame(maxWidth: .infinity) // 宽度填满，高度自适应
+                .scaledToFit()
+                .frame(maxWidth: .infinity)
         }
     }
     
@@ -71,9 +71,9 @@ struct SadQuestionStyleSinglechoiceView: View {
                 optionsSection
             }
             
-            Spacer() // 让图片自适应高度
+            Spacer()
         }
-        .padding(.top, 44) // 避免对话框遮挡header（header高度44px）
+        .padding(.top, 44)
     }
     
     private func chatBubbleSection(texts: [String]) -> some View {
@@ -100,7 +100,7 @@ struct SadQuestionStyleSinglechoiceView: View {
             .frame(height: bubbleFrameHeight)
             .shadow(color: Color(red: 0.36, green: 0.36, blue: 0.47).opacity(0.03), radius: 8.95, x: 5, y: 3)
             .shadow(color: Color(red: 0.15, green: 0.15, blue: 0.25).opacity(0.08), radius: 5.75, x: 2, y: 4)
-            .offset(y: -35.5) // 向上偏移云朵高度的一半，使题目在云朵中间位置，模拟云朵说话的感觉
+            .offset(y: -35.5)
 
             Spacer()
         }
@@ -114,7 +114,7 @@ struct SadQuestionStyleSinglechoiceView: View {
                     optionButton(option: option)
                 }
             }
-            .padding(.top, 40) // 第一个选项的起始位置距离对话云朵y轴上40px
+            .padding(.top, 40)
             .padding(.trailing, ViewSpacing.medium)
             .transition(.opacity)
         }
@@ -124,10 +124,8 @@ struct SadQuestionStyleSinglechoiceView: View {
         HStack {
             Spacer()
             Button { 
-                // 显示选中效果
                 selectedOptionId = option.id
                 
-                // 150ms 后跳转
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                     onSelect(option)
                 }
@@ -175,8 +173,8 @@ struct SadQuestionStyleSinglechoiceView: View {
                         .stroke(
                             LinearGradient(
                                 gradient: Gradient(colors: [
-                                    Color(red: 0.556, green: 0.792, blue: 0.902), // #8ECAE6
-                                    Color(red: 0.129, green: 0.620, blue: 0.737)  // #219EBC
+                                    Color(red: 0.556, green: 0.792, blue: 0.902),
+                                    Color(red: 0.129, green: 0.620, blue: 0.737)
                                 ]),
                                 startPoint: .leading,
                                 endPoint: .trailing
@@ -208,7 +206,6 @@ struct SadQuestionStyleSinglechoiceView: View {
     }
 }
 
-// 自定义对话框组件，只有最后一个显示小三角
 private struct SadChatBubbleView: View {
     let text: String
     let showTriangle: Bool
@@ -238,7 +235,6 @@ private struct SadChatBubbleView: View {
     }
 }
 
-// 自定义BubbleScrollView，只有最后一个对话框显示小三角
 private struct SadBubbleScrollView: View {
     let texts: [String]
     @Binding var displayedCount: Int
@@ -254,7 +250,6 @@ private struct SadBubbleScrollView: View {
                 VStack(spacing: bubbleSpacing) {
                     ForEach(Array(texts.prefix(displayedCount).enumerated()), id: \.offset) { idx, line in
                         HStack {
-                            // 只有最后一个对话框显示小三角
                             let isLast = idx == displayedCount - 1
                             SadChatBubbleView(text: line, showTriangle: isLast)
                                 .fixedSize(horizontal: false, vertical: true)

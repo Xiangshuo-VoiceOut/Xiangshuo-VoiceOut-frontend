@@ -80,9 +80,8 @@ struct SadQuestionStyleMultichoiceView: View {
                         if showCurrentText {
                             VStack(spacing: ViewSpacing.small) {
                                 TypewriterText(fullText: currentText, characterDelay: typingInterval) {
-                                    // 打字完成后可以执行的操作
                                 }
-                                .id(currentTextIndex) // 添加key强制重新渲染
+                                .id(currentTextIndex)
                             }
                             .font(.typography(.bodyMedium))
                             .multilineTextAlignment(.center)
@@ -92,19 +91,16 @@ struct SadQuestionStyleMultichoiceView: View {
                         
                         if showCurrentText && hasIntroText && !optionsConfirmed {
                             TypewriterText(fullText: currentIntroText, characterDelay: typingInterval) {
-                                // introtext打字完成后可以执行的操作
                             }
-                            .id("intro-\(currentTextIndex)") // 添加key强制重新渲染
+                            .id("intro-\(currentTextIndex)")
                             .font(.system(size: 16, weight: .regular))
-                            .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6)) // #67B899
+                            .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
                             .multilineTextAlignment(.center)
                             .frame(width: 252, alignment: .center)
                             
-                            // 多选选项区域
                             multichoiceOptionsArea
                         }
                         
-                        // 显示已选择的选项（在所有阶段都显示）
                         if !selectedOptions.isEmpty && optionsConfirmed {
                             selectedOptionsView
                         }
@@ -153,7 +149,6 @@ struct SadQuestionStyleMultichoiceView: View {
     
     private var multichoiceOptionsArea: some View {
         VStack(spacing: ViewSpacing.small) {
-            // 预设选项
             ForEach(question.options.filter { $0.exclusive != true }) { option in
                 let isSelected = selectedOptions.contains(option.id)
                 Button {
@@ -188,10 +183,8 @@ struct SadQuestionStyleMultichoiceView: View {
                 }
             }
             
-            // 自定义输入选项
             customInputOptions
             
-            // 确认按钮
             if !selectedOptions.isEmpty || !selectedCustomOptions.isEmpty {
                 Button("确认") {
                     optionsConfirmed = true
@@ -209,7 +202,6 @@ struct SadQuestionStyleMultichoiceView: View {
     
     private var customInputOptions: some View {
         VStack(spacing: ViewSpacing.small) {
-            // 新技能输入 - 只在没有添加过新技能时显示
             if !customOptions.contains(where: { $0.contains("一个新技能") }) {
                 HStack {
                     Image(systemName: "circle")
@@ -223,7 +215,6 @@ struct SadQuestionStyleMultichoiceView: View {
                     
                     if !customInput1.isEmpty {
                         Button {
-                            // 添加自定义选项
                             customOptions.append("一个新技能：\(customInput1)")
                             customInput1 = ""
                         } label: {
@@ -243,7 +234,6 @@ struct SadQuestionStyleMultichoiceView: View {
                 )
             }
             
-            // 其他输入 - 只在没有添加过其他选项时显示
             if !customOptions.contains(where: { $0.contains("其他") }) {
                 HStack {
                     Image(systemName: "circle")
@@ -257,7 +247,6 @@ struct SadQuestionStyleMultichoiceView: View {
                     
                     if !customInput2.isEmpty {
                         Button {
-                            // 添加自定义选项
                             customOptions.append("其他：\(customInput2)")
                             customInput2 = ""
                         } label: {
@@ -277,7 +266,6 @@ struct SadQuestionStyleMultichoiceView: View {
                 )
             }
             
-            // 显示已添加的自定义选项
             ForEach(customOptions, id: \.self) { customOption in
                 let isSelected = selectedCustomOptions.contains(customOption)
                 Button {
@@ -301,11 +289,8 @@ struct SadQuestionStyleMultichoiceView: View {
                         
                         Spacer()
                         
-                        // 删除按钮
                         Button {
-                            // 从自定义选项中删除
                             customOptions.removeAll { $0 == customOption }
-                            // 从选中选项中删除
                             selectedCustomOptions.remove(customOption)
                         } label: {
                             Image(systemName: "minus.circle.fill")
@@ -358,7 +343,6 @@ struct SadQuestionStyleMultichoiceView: View {
                 )
             }
             
-            // 显示已选择的自定义选项
             ForEach(customOptions.filter { selectedCustomOptions.contains($0) }, id: \.self) { customOption in
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
@@ -388,12 +372,9 @@ struct SadQuestionStyleMultichoiceView: View {
     
     private func handleContinue() {
         if currentTextIndex < (question.texts?.count ?? 0) - 1 {
-            // 还有下一句文本
             currentTextIndex += 1
-            showCurrentText = true  // 保持显示状态
-            // 不清除选择的选项，让它在所有阶段都保持显示
+            showCurrentText = true
         } else {
-            // 所有文本都显示完了，进入下一题
             onContinue()
         }
     }

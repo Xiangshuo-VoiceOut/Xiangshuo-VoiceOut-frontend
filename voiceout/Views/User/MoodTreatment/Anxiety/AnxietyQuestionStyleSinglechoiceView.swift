@@ -124,10 +124,7 @@ struct AnxietyQuestionStyleSinglechoiceView: View {
         HStack {
             Spacer()
             Button { 
-                // 显示选中效果
                 selectedOptionId = option.id
-                
-                // 150ms 后跳转
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                     onSelect(option)
                 }
@@ -180,7 +177,6 @@ struct AnxietyQuestionStyleSinglechoiceView: View {
     }
 }
 
-// 自定义对话框组件，只有最后一个显示小三角
 private struct AnxietyChatBubbleView: View {
     let text: String
     let showTriangle: Bool
@@ -210,7 +206,6 @@ private struct AnxietyChatBubbleView: View {
     }
 }
 
-// 自定义BubbleScrollView，只有最后一个对话框显示小三角
 private struct AnxietyBubbleScrollView: View {
     let texts: [String]
     @Binding var displayedCount: Int

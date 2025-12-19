@@ -45,7 +45,7 @@ struct SadQuestionStyleEndView: View {
     }
     
     private var backgroundView: some View {
-        Color(red: 0.659, green: 0.843, blue: 0.969) // #A8D7F7
+        Color(red: 0.659, green: 0.843, blue: 0.969)
             .ignoresSafeArea(edges: .bottom)
     }
     
@@ -71,25 +71,20 @@ struct SadQuestionStyleEndView: View {
     @ViewBuilder
     private func mainContent(texts: [String]) -> some View {
         VStack(spacing: 0) {
-            // 对话部分
             chatBubbleSection(texts: texts)
             
-            // 中间区域：sadcloud、happycloud、wind效果
             ZStack {
                 VStack(spacing: ViewSpacing.medium) {
                     Spacer()
                     sadAndRainSection
                     Spacer()
                 }
-                .frame(maxHeight: 200) // 限制中间区域高度
+                .frame(maxHeight: 200)
                 
-                // 风效果在中间区域
                 if showWindEffect {
                     WindEffectView(offset: windOffset)
                         .onAppear {
-                            // 从左边开始
                             windOffset = -200
-                            // 移动到右边
                             withAnimation(.easeInOut(duration: 2.0)) {
                                 windOffset = UIScreen.main.bounds.width + 200
                             }
@@ -99,19 +94,16 @@ struct SadQuestionStyleEndView: View {
                                     cloudOpacity = 0.0
                                 }
                                 
-                                // sad云朵消失后显示happycloud
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                     withAnimation(.easeInOut(duration: 0.5)) {
                                         showHappyCloud = true
                                     }
                                     
-                                    // happy cloud出现后显示新文本
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                         withAnimation(.easeInOut(duration: 0.5)) {
                                             showHappyText = true
                                         }
                                         
-                                        // 再等3秒后进入下一题
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                                             onContinue()
                                         }
@@ -122,7 +114,7 @@ struct SadQuestionStyleEndView: View {
                 }
             }
             
-            // 底部留出空间给风车
+            
             Spacer(minLength: 150)
         }
         .padding(.top, ViewSpacing.large)
@@ -138,7 +130,6 @@ struct SadQuestionStyleEndView: View {
                 .offset(x: -ViewSpacing.medium)
                 .frame(width: 68)
             
-            // 使用BubbleScrollView，根据showHappyText状态显示不同文本
             BubbleScrollView(
                 texts: showHappyText ? ["难过已经被你温柔地安放好了，是不是感觉轻松了一点呢？就像夜晚终会迎来晨曦，希望也会一点一点填满你的心。小云朵给你一个温柔的拥抱~"] : texts,
                 displayedCount: $displayedCount,
@@ -154,16 +145,14 @@ struct SadQuestionStyleEndView: View {
     
     private var sadAndRainSection: some View {
         ZStack {
-            // sad cloud
             Image("sad")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 216, height: 154.286) // 根据提供的数据
+                .frame(width: 216, height: 154.286)
                 .padding(.horizontal, 1.08)
                 .padding(.vertical, 19.98)
                 .opacity(cloudOpacity)
             
-            // happycloud在sad云朵消失后出现，在同一个位置
             if showHappyCloud {
                 Image("happycloud")
                     .resizable()
@@ -187,7 +176,6 @@ struct SadQuestionStyleEndView: View {
     }
 }
 
-// 风效果视图
 struct WindEffectView: View {
     let offset: CGFloat
     
@@ -195,8 +183,8 @@ struct WindEffectView: View {
         Image("sadwind")
             .resizable()
             .scaledToFit()
-            .frame(width: 200, height: 100)
-            .offset(x: offset) // 移除y偏移，因为现在在中间区域
+        .frame(width: 200, height: 100)
+        .offset(x: offset)
     }
 }
 

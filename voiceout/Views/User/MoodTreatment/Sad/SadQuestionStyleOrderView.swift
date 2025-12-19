@@ -19,7 +19,6 @@ struct SadQuestionStyleOrderView: View {
     
     private let typingInterval: TimeInterval = 0.1
     
-    // 硬编码的测试选项
     private let testOptions = [
         "善良", "诚实", "责任感", "勇气", "感恩", "礼貌",
         "耐心", "坚持", "独立", "宽容", "同情心", "正义感"
@@ -48,8 +47,8 @@ struct SadQuestionStyleOrderView: View {
                             Spacer()
                             Image("cloud-chat")
                                 .resizable()
-                                .frame(width: 120, height: 80) // 减小云朵尺寸
-                                .padding(.bottom, ViewSpacing.small) // 减小底部间距
+                                .frame(width: 120, height: 80)
+                                .padding(.bottom, ViewSpacing.small)
                             Spacer()
                         }
                         
@@ -67,9 +66,8 @@ struct SadQuestionStyleOrderView: View {
                         if showCurrentText {
                             VStack(spacing: ViewSpacing.small) {
                                 TypewriterText(fullText: currentText, characterDelay: typingInterval) {
-                                    // 打字完成后可以执行的操作
                                 }
-                                .id(currentTextIndex) // 添加key强制重新渲染
+                                .id(currentTextIndex)
                             }
                             .font(.typography(.bodyMedium))
                             .multilineTextAlignment(.center)
@@ -78,14 +76,12 @@ struct SadQuestionStyleOrderView: View {
                             .padding(.bottom, ViewSpacing.small)
                         }
                         
-                        // 排序区域
                         if isLastText {
                             sortingArea
                         }
                     }
                     .padding(.horizontal, ViewSpacing.large)
                     
-                    // 底部按钮区域
                     bottomButtonArea
                 }
             }
@@ -95,17 +91,15 @@ struct SadQuestionStyleOrderView: View {
     
     private var sortingArea: some View {
         VStack(spacing: ViewSpacing.small) {
-            // 排序说明
             Text("拖拽整行或点击箭头调整顺序，最看重的放在最上面")
                 .font(.system(size: 14, weight: .regular))
                 .foregroundColor(.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, ViewSpacing.small)
             
-            // 排序列表 - 使用GeometryReader获取可用空间
             GeometryReader { geometry in
                 ScrollView {
-                    LazyVStack(spacing: 4) { // 进一步减少间距
+                    LazyVStack(spacing: 4) {
                         ForEach(Array(sortedItems.enumerated()), id: \.element) { index, item in
                             OrderItemView(
                                 item: item,
@@ -115,11 +109,11 @@ struct SadQuestionStyleOrderView: View {
                         }
                     }
                     .padding(.horizontal, ViewSpacing.small)
-                    .padding(.bottom, ViewSpacing.large) // 底部留出空间给按钮
+                    .padding(.bottom, ViewSpacing.large)
                 }
                 .frame(maxHeight: geometry.size.height)
             }
-            .frame(maxHeight: 450) // 增加最大高度
+            .frame(maxHeight: 450)
         }
         .padding(.horizontal, ViewSpacing.medium)
         .onAppear {
@@ -150,7 +144,6 @@ struct SadQuestionStyleOrderView: View {
     }
 }
 
-// 排序项目视图
 struct OrderItemView: View {
     let item: String
     let index: Int
@@ -161,26 +154,22 @@ struct OrderItemView: View {
     
     var body: some View {
         HStack {
-            // 序号
             Text("\(index + 1)")
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
                 .frame(width: 25)
             
-            // 拖拽手柄
             Image(systemName: "line.3.horizontal")
                 .font(.system(size: 14))
                 .foregroundColor(.textSecondary)
                 .frame(width: 16)
                 .opacity(isDragging ? 0.5 : 1.0)
             
-            // 选项内容
             Text(item)
                 .font(.system(size: 14, weight: .regular))
                 .foregroundColor(.textPrimary)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            // 移动按钮
             VStack(spacing: 2) {
                 Button {
                     moveItem(direction: -1)
@@ -213,7 +202,7 @@ struct OrderItemView: View {
         .offset(dragOffset)
         .scaleEffect(isDragging ? 1.05 : 1.0)
         .shadow(color: isDragging ? Color.black.opacity(0.3) : Color.clear, radius: 10)
-        .contentShape(Rectangle()) // 让整个区域都可以响应拖拽
+        .contentShape(Rectangle())
         .gesture(
             DragGesture()
                 .onChanged { value in
@@ -227,9 +216,8 @@ struct OrderItemView: View {
                     isDragging = false
                     dragOffset = .zero
                     
-                    // 计算拖拽距离，支持一次移动多个位置
                     let dragDistance = value.translation.height
-                    let itemHeight: CGFloat = 45 // 估算每个项目的高度（变小后）
+                    let itemHeight: CGFloat = 45
                     let positionsToMove = Int(abs(dragDistance) / itemHeight)
                     
                     if positionsToMove > 0 {
@@ -258,9 +246,7 @@ struct OrderItemView: View {
         guard newIndex >= 0 && newIndex < items.count else { return }
         
         withAnimation(.easeInOut(duration: 0.3)) {
-            // 移除当前项目
             let itemToMove = items.remove(at: currentIndex)
-            // 插入到新位置
             items.insert(itemToMove, at: newIndex)
         }
     }

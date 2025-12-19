@@ -122,7 +122,6 @@ struct SadQuestionStyleMultichoice2View: View {
                     optionButton(option: option)
                 }
                 
-                // 确认按钮 - 始终显示
                 confirmButton
             }
             .padding(.top, 40)
@@ -135,7 +134,6 @@ struct SadQuestionStyleMultichoice2View: View {
         HStack {
             Spacer()
             Button {
-                // 只有在有选择时才能点击
                 if !selectedOptions.isEmpty {
                     onContinue()
                 }
@@ -162,7 +160,6 @@ struct SadQuestionStyleMultichoice2View: View {
         HStack {
             Spacer()
             Button { 
-                // 多选：切换选中状态
                 if selectedOptions.contains(option.id) {
                     selectedOptions.remove(option.id)
                 } else {
@@ -212,8 +209,8 @@ struct SadQuestionStyleMultichoice2View: View {
                         .stroke(
                             LinearGradient(
                                 gradient: Gradient(colors: [
-                                    Color(red: 0.556, green: 0.792, blue: 0.902), // #8ECAE6
-                                    Color(red: 0.129, green: 0.620, blue: 0.737)  // #219EBC
+                                    Color(red: 0.556, green: 0.792, blue: 0.902),
+                                    Color(red: 0.129, green: 0.620, blue: 0.737)
                                 ]),
                                 startPoint: .leading,
                                 endPoint: .trailing
@@ -245,7 +242,6 @@ struct SadQuestionStyleMultichoice2View: View {
     }
 }
 
-// 自定义对话框组件，只有最后一个显示小三角
 private struct SadChatBubbleView: View {
     let text: String
     let showTriangle: Bool
@@ -275,7 +271,6 @@ private struct SadChatBubbleView: View {
     }
 }
 
-// 自定义BubbleScrollView，只有最后一个对话框显示小三角
 private struct SadBubbleScrollView: View {
     let texts: [String]
     @Binding var displayedCount: Int

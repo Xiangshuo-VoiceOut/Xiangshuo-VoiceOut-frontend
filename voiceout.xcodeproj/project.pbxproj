@@ -205,6 +205,7 @@
 		B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845452C28BC82008C0D80 /* Dropdown.swift */; };
 		B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845472C29BB09008C0D80 /* DropdownList.swift */; };
 		B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */; };
+		C0FD51EF2EF529CF00D05D02 /* relax.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C0FD51EE2EF529CF00D05D02 /* relax.mp4 */; };
 		D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */; };
 		D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0D2BA62F300040B0AE /* ContentView.swift */; };
 		D2071D102BA62F340040B0AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2071D0F2BA62F340040B0AE /* Assets.xcassets */; };
@@ -465,6 +466,7 @@
 		B8F845452C28BC82008C0D80 /* Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		B8F845472C29BB09008C0D80 /* DropdownList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownList.swift; sourceTree = "<group>"; };
 		B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownListRow.swift; sourceTree = "<group>"; };
+		C0FD51EE2EF529CF00D05D02 /* relax.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = relax.mp4; sourceTree = "<group>"; };
 		D2071D082BA62F300040B0AE /* voiceout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voiceout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voiceoutApp.swift; sourceTree = "<group>"; };
 		D2071D0D2BA62F300040B0AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -756,6 +758,7 @@
 		847AA82B2EB1F16E00282536 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C0FD51EE2EF529CF00D05D02 /* relax.mp4 */,
 				8447DA112EC6A3DC008B4DCE /* Questions */,
 				8447DA102EC6A3C2008B4DCE /* Homepage */,
 			);
@@ -1278,6 +1281,7 @@
 			files = (
 				840A6ED52E72014A00D8235C /* handdrum.mp3 in Resources */,
 				840A6ED62E72014A00D8235C /* tonebar.mp3 in Resources */,
+				C0FD51EF2EF529CF00D05D02 /* relax.mp4 in Resources */,
 				840A6ED72E72014A00D8235C /* djembe.mp3 in Resources */,
 				840A6ED82E72014A00D8235C /* garden.mp3 in Resources */,
 				840A6ED92E72014A00D8235C /* kalimba.mp3 in Resources */,

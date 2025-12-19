@@ -60,7 +60,7 @@ struct AngryIntensificationQuestionStyleView: View {
                let confirmOption = question.options.first(where: { $0.exclusive == true }) {
                 Button {
                     onSelect(confirmOption)
-                    router.navigateTo(.playRelaxVideo(name: "relax", ext: "mov"))
+                    router.navigateTo(.playRelaxVideo(name: "relax", ext: "mp4"))
                 } label: {
                     Text(confirmOption.text)
                         .font(Font.typography(.bodyMedium))

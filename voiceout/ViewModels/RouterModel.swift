@@ -46,7 +46,7 @@ enum Route: Hashable {
     case moodTreatmentGuiltHomepage
     case moodTreatmentScareHomepage
     case moodTreatmentAnxietyHomepage
-    case playRelaxVideo(name: String, ext: String = "mov")
+    case playRelaxVideo(name: String, ext: String = "mp4")
 }
 
 final class RouterModel: ObservableObject {

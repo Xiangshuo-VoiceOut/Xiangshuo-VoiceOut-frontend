@@ -245,6 +245,8 @@ struct AngryQuestionPageView: View {
             )
         case .styleNote:
             AngryQuestionStyleNoteView(question: q, onSelect: handleSelectBackend)
+        case .styleIntensification:
+            AngryIntensificationQuestionStyleView(question: q, onSelect: handleSelectBackend)
         case .styleAngryEnding:
             AngryEndingView()
         case .sliderStyle:

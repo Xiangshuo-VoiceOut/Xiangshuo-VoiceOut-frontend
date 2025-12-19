@@ -12,7 +12,7 @@ struct RelaxationVideoView: View {
     @EnvironmentObject var router: RouterModel
 
     enum Source {
-        case bundle(name: String, ext: String = "mov")
+        case bundle(name: String, ext: String = "mp4")
         case remote(URL)
     }
 
@@ -96,6 +96,15 @@ struct RelaxationVideoView: View {
     }
 
     private func setupAndPlay() {
+        print("player setup")
+        do {
+            let session = AVAudioSession.sharedInstance()
+            try session.setCategory(.playback, mode: .moviePlayback)
+            try session.setActive(true)
+        } catch {
+            print("Audio session error:", error)
+        }
+        
         switch source {
         case .bundle(let name, let ext):
             if let url = Bundle.main.url(forResource: name, withExtension: ext) {
@@ -211,6 +220,6 @@ private struct PlayerView: UIViewRepresentable {
 }
 
 #Preview {
-    RelaxationVideoView(source: .bundle(name: "relax", ext: "mov"))
+    RelaxationVideoView(source: .bundle(name: "relax", ext: "mp4"))
         .environmentObject(RouterModel())
 }

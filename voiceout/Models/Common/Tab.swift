@@ -11,12 +11,18 @@ struct Tab: Identifiable, Hashable {
     var id = UUID().uuidString
     var name: String
     var icon: String?
+    
+    static func ==(lhs: Tab, rhs: Tab) -> Bool {
+        lhs.id == rhs.id && lhs.name == rhs.name
+    }
 }
 
 extension Tab {
     static let startEndTimes: [Tab] = [
         Tab(name: String(localized: "start_time")),
-        Tab(name: String(localized: "end_time"))
+        Tab(name: String(localized: "end_time")),
+        Tab(id: "week", name: String(localized: "week_title")),
+        Tab(id: "month", name: String(localized: "month_title"))
     ]
 
     static let profile: [Tab] = [

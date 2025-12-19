@@ -12,7 +12,8 @@ struct VoiceoutApp: App {
     var body: some Scene {
         WindowGroup {
             RouterView {
-                ContentView()
+//                ContentView()
+                MainHomepageView()
             }
         }
     }

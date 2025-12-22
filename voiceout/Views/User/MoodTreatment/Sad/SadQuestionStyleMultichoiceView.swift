@@ -395,7 +395,7 @@ struct SadQuestionStyleMultichoiceView: View {
                 .init(key: "G", text: "欣赏过程而非结果", next: nil, exclusive: false),
                 .init(key: "confirm", text: "我选好了", next: nil, exclusive: true)
             ],
-            introTexts: ["我学了"],
+            introTexts: [],
             showSlider: false,
             endingStyle: nil,
             customViewName: nil,

@@ -89,7 +89,7 @@ struct SadQuestionStyleMultichoiceView: View {
                             .frame(maxWidth: .infinity, alignment: .center)
                         }
                         
-                        if showCurrentText && hasIntroText && !optionsConfirmed {
+                        if showCurrentText && !optionsConfirmed {
                             TypewriterText(fullText: currentIntroText, characterDelay: typingInterval) {
                             }
                             .id("intro-\(currentTextIndex)")
@@ -398,7 +398,7 @@ struct SadQuestionStyleMultichoiceView: View {
                 .init(key: "G", text: "欣赏过程而非结果", next: nil, exclusive: false),
                 .init(key: "confirm", text: "我选好了", next: nil, exclusive: true)
             ],
-            introTexts: [],
+            introTexts: [""],
             showSlider: false,
             endingStyle: nil,
             customViewName: nil,

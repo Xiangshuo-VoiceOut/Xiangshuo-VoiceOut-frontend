@@ -55,6 +55,9 @@ struct SadQuestionStyleFillInBlankView: View {
             ZStack(alignment: .topLeading) {
                 Color.surfaceBrandTertiaryGreen
                     .ignoresSafeArea()
+                    .onTapGesture {
+                        isTextFieldFocused = false  // Dismiss keyboard
+                    }
                 
                 VStack(spacing: 0) {
                     ZStack(alignment: .topLeading) {

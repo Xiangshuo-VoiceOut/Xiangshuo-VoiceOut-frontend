@@ -49,6 +49,7 @@ final class MoodTreatmentVM: ObservableObject {
                     selectedOptionKey: option.key
                 )
                 question = nextQuestion
+                print(question)
             } catch {
                 errorMessage = "Failed to submit answer：\(error.localizedDescription)"
             }

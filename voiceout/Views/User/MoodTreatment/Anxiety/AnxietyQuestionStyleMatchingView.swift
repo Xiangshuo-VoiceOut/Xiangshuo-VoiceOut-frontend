@@ -60,6 +60,7 @@ struct AnxietyQuestionStyleMatchingView: View {
 //                                .frame(width: 48, height: 48)
 //                        }
 //                        .padding(.leading, ViewSpacing.medium)
+
                     }
 
                     VStack(spacing: ViewSpacing.medium) {

@@ -159,6 +159,9 @@ struct AnxietyQuestionPageView: View {
                 exclusive: false
             )
             vm.submitAnswer(option: continueOption)
+            if let nextId = continueOption.next {
+                router.navigateTo(.anxietySingleQuestion(id: nextId))
+            }
         }
     }
     private func hidePopup() {

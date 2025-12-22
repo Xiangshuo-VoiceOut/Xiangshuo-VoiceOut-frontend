@@ -21,8 +21,9 @@ struct MainHomepageView: View {
     @EnvironmentObject var userManager: UserManager
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     let iconItems: [(image: String, label: String, route: Route)] = [
-        ("chart-histogram 2", "云报", .moodCalendar),
-        ("love-time", "压力缓解", .stressReliefEntry)
+
+//        ("chart-histogram 1", "云报", .moodCalendar),
+//        ("love-time", "压力缓解", .stressReliefEntry)
     ]
     
     var body: some View {
@@ -137,7 +138,7 @@ struct MainHomepageView: View {
                     .allowsHitTesting(false)
             }
             .padding(.horizontal, ViewSpacing.xlarge)
-            .padding(.top,5*ViewSpacing.medium)
+            .padding(.top,15*ViewSpacing.medium)
             .frame(maxWidth: .infinity, alignment: .trailing)
             
             HStack(spacing: 0) {

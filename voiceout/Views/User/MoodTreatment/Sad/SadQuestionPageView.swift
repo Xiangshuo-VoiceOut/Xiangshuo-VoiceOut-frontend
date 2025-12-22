@@ -195,6 +195,9 @@ struct SadQuestionPageView: View {
                 exclusive: false
             )
             vm.submitAnswer(option: continueOption)
+            if let nextId = continueOption.next {
+                router.navigateTo(.sadSingleQuestion(id: nextId))
+            }
         }
     }
     private func hidePopup() {

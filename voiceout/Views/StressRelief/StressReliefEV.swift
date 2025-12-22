@@ -134,6 +134,9 @@ struct StressReliefEntryView: View {
         .onAppear {
             StressReliefBGMManager.shared.playGardenIfNeeded()
         }
+        .onDisappear {
+            StressReliefBGMManager.shared.pause()
+        }
     }
     
     private func startJourney() {

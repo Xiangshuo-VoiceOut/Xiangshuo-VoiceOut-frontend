@@ -21,6 +21,7 @@ final class MoodTreatmentVM: ObservableObject {
 
         Task {
             do {
+                print(id)
                 let q = try await MoodTreatmentService.shared.fetchQuestion(routine: routine, id: id)
                 question = q
             } catch {

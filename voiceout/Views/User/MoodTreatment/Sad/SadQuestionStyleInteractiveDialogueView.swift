@@ -47,6 +47,14 @@ struct SadQuestionStyleInteractiveDialogueView: View {
         return currentTextIndex == (question.texts?.count ?? 0) - 1
     }
     
+    private var shouldShowContinueButton: Bool {
+        if hasIntroText {
+            return introDone
+        } else {
+            return textDone
+        }
+    }
+    
     var body: some View {
         GeometryReader { proxy in
             let screenHeight = proxy.size.height
@@ -118,7 +126,7 @@ struct SadQuestionStyleInteractiveDialogueView: View {
                     Spacer()
                 }
                 
-                if introDone {
+                if shouldShowContinueButton {
                     VStack {
                         Spacer()
                         HStack {
@@ -166,10 +174,6 @@ struct SadQuestionStyleInteractiveDialogueView: View {
             ],
             animation: nil,
             options: [],
-            introTexts: [
-                "在这里写下一个你想让别人记住你的一件事吧！",
-                "用简短几句话包含自己的名字，年纪，来自哪里，兴趣爱好，以及自己的一个fun fact书写下来可以更加有利于整理逻辑和记忆哦：）"
-            ],
             showSlider: false,
             endingStyle: nil,
             customViewName: nil,

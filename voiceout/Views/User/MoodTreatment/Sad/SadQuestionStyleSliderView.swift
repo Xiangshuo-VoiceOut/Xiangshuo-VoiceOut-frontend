@@ -143,7 +143,7 @@ struct SadQuestionStyleSliderView: View {
             id: 4,
             totalQuestions: 10,
             uiStyle: .styleSlider,
-            texts: ["你觉得外部环境或者他人认可的因素，对于这件事的重要程度是多少呢？"],
+            texts: ["你觉得外部环境或者他人认可的因素，对于这件事的重要程度是多少呢？", "从1到5，为它打个分？"],
             animation: nil,
             options: [],
             introTexts: [],

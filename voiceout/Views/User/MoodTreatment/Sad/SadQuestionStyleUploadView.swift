@@ -95,7 +95,7 @@ struct SadQuestionStyleUploadView: View {
                             }
                             .frame(minHeight: 22.4 * 2, alignment: .top)
                             
-                            if hasIntroText && !imageConfirmed && !skippedUpload {
+                            if !imageConfirmed && !skippedUpload {
                                 Color.clear
                                     .frame(height: 16)
                                 

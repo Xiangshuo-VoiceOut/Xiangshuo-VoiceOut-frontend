@@ -29,7 +29,7 @@ struct AnxietyQuestionStyleSinglechoiceView: View {
 
             ZStack(alignment: .topLeading) {
                 backgroundView
-                musicButton
+//                musicButton
                 anxietybookBackground
                 mainContent(texts: texts)
             }
@@ -43,14 +43,14 @@ struct AnxietyQuestionStyleSinglechoiceView: View {
             .ignoresSafeArea(edges: .bottom)
     }
     
-    private var musicButton: some View {
-        Button { isPlayingMusic.toggle() } label: {
-            Image(isPlayingMusic ? "music" : "stop-music")
-                .resizable()
-                .frame(width: 48, height: 48)
-        }
-        .padding(.leading, ViewSpacing.medium)
-    }
+//    private var musicButton: some View {
+//        Button { isPlayingMusic.toggle() } label: {
+//            Image(isPlayingMusic ? "music" : "stop-music")
+//                .resizable()
+//                .frame(width: 48, height: 48)
+//        }
+//        .padding(.leading, ViewSpacing.medium)
+//    }
     
     private var anxietybookBackground: some View {
         VStack {
@@ -73,7 +73,7 @@ struct AnxietyQuestionStyleSinglechoiceView: View {
             
             Spacer()
         }
-        .padding(.top, 44)
+        .padding(.top, ViewSpacing.base+ViewSpacing.xlarge)
     }
     
     private func chatBubbleSection(texts: [String]) -> some View {
@@ -86,20 +86,19 @@ struct AnxietyQuestionStyleSinglechoiceView: View {
                 .offset(x: -ViewSpacing.medium)
                 .frame(width: 68)
 
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: ViewSpacing.betweenSmallAndBase) {
                 AnxietyBubbleScrollView(
                     texts: texts,
                     displayedCount: $displayedCount,
                     bubbleHeight: $bubbleHeight,
-                    bubbleSpacing: 8,
+                    bubbleSpacing: ViewSpacing.small,
                     totalHeight: bubbleFrameHeight
                 )
             }
             .padding(0)
             .frame(width: 268, alignment: .bottomLeading)
             .frame(height: bubbleFrameHeight)
-            .shadow(color: Color(red: 0.36, green: 0.36, blue: 0.47).opacity(0.03), radius: 8.95, x: 5, y: 3)
-            .shadow(color: Color(red: 0.15, green: 0.15, blue: 0.25).opacity(0.08), radius: 5.75, x: 2, y: 4)
+            .imageShadow()
             .offset(y: -35.5)
 
             Spacer()
@@ -114,7 +113,7 @@ struct AnxietyQuestionStyleSinglechoiceView: View {
                     optionButton(option: option)
                 }
             }
-            .padding(.top, 40)
+            .padding(.top, ViewSpacing.medium+ViewSpacing.large)
             .padding(.trailing, ViewSpacing.medium)
             .transition(.opacity)
         }
@@ -135,25 +134,23 @@ struct AnxietyQuestionStyleSinglechoiceView: View {
     }
     
     private func optionButtonLabel(option: MoodTreatmentAnswerOption, isSelected: Bool) -> some View {
-        HStack(alignment: .center, spacing: 10) {
+        HStack(alignment: .center, spacing: ViewSpacing.betweenSmallAndBase) {
             Text(option.text)
-                .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                .font(Font.typography(.bodyMedium))
                 .multilineTextAlignment(.trailing)
-                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                .foregroundColor(.grey500)
+
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
+        .padding(.horizontal, ViewSpacing.medium)
+        .padding(.vertical, ViewSpacing.base)
         .background(
-            isSelected ? Color(red: 0.992, green: 0.937, blue: 0.894) : Color(red: 0.98, green: 0.99, blue: 1) // #FDEFE4 : white
+            isSelected ? Color(red: 0.992, green: 0.937, blue: 0.894) : Color(red: 0.98, green: 0.99, blue: 1)
         )
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .inset(by: 1.5)
-                .stroke(
-                    Color(red: 0.757, green: 0.533, blue: 0.369), // #C1885E
-                    lineWidth: 3
-                )
+                .stroke(Color(red: 0.757, green: 0.533, blue: 0.369),lineWidth: 3)
         )
     }
 
@@ -190,8 +187,8 @@ private struct AnxietyChatBubbleView: View {
                 .frame(width: Self.width)
 
             Text(text)
-                .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
-                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                .font(.typography(.bodyMedium))
+                .foregroundColor(.textPrimary)
                 .frame(width: 244, alignment: .topLeading)
                 .padding(.horizontal, ViewSpacing.base)
                 .padding(.vertical, ViewSpacing.medium)
@@ -200,7 +197,7 @@ private struct AnxietyChatBubbleView: View {
                 Image("vector49")
                     .resizable()
                     .frame(width: 15, height: 14)
-                    .offset(x: ViewSpacing.large, y: 14)
+                    .offset(x: ViewSpacing.large, y: ViewSpacing.xxsmall+ViewSpacing.base)
             }
         }
     }

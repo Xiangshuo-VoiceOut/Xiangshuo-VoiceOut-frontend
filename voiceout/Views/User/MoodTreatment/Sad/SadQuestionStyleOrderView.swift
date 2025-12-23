@@ -52,14 +52,14 @@ struct SadQuestionStyleOrderView: View {
                             Spacer()
                         }
                         
-                        Button {
-                            isPlayingMusic.toggle()
-                        } label: {
-                            Image(isPlayingMusic ? "music" : "stop-music")
-                                .resizable()
-                                .frame(width: 48, height: 48)
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+//                        Button {
+//                            isPlayingMusic.toggle()
+//                        } label: {
+//                            Image(isPlayingMusic ? "music" : "stop-music")
+//                                .resizable()
+//                                .frame(width: 48, height: 48)
+//                        }
+//                        .padding(.leading, ViewSpacing.medium)
                     }
 
                     VStack(spacing: ViewSpacing.medium) {
@@ -92,14 +92,14 @@ struct SadQuestionStyleOrderView: View {
     private var sortingArea: some View {
         VStack(spacing: ViewSpacing.small) {
             Text("拖拽整行或点击箭头调整顺序，最看重的放在最上面")
-                .font(.system(size: 14, weight: .regular))
+                .font(Font.typography(.bodySmall))
                 .foregroundColor(.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, ViewSpacing.small)
             
             GeometryReader { geometry in
                 ScrollView {
-                    LazyVStack(spacing: 4) {
+                    LazyVStack(spacing: ViewSpacing.xsmall) {
                         ForEach(Array(sortedItems.enumerated()), id: \.element) { index, item in
                             OrderItemView(
                                 item: item,
@@ -135,7 +135,7 @@ struct SadQuestionStyleOrderView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal, ViewSpacing.large)
                 .padding(.vertical, ViewSpacing.medium)
-                .background(Color(red: 0.404, green: 0.722, blue: 0.6))
+                .background(Color.surfaceBrandPrimary)
                 .cornerRadius(CornerRadius.full.value)
                 .padding(.horizontal, ViewSpacing.large)
                 .padding(.bottom, ViewSpacing.large)
@@ -155,27 +155,27 @@ struct OrderItemView: View {
     var body: some View {
         HStack {
             Text("\(index + 1)")
-                .font(.system(size: 14, weight: .bold))
-                .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
+                .font(Font.typography(.bodySmall))
+                .foregroundColor(.textBrandPrimary)
                 .frame(width: 25)
             
             Image(systemName: "line.3.horizontal")
-                .font(.system(size: 14))
+                .font(Font.typography(.bodySmall))
                 .foregroundColor(.textSecondary)
                 .frame(width: 16)
                 .opacity(isDragging ? 0.5 : 1.0)
             
             Text(item)
-                .font(.system(size: 14, weight: .regular))
+                .font(Font.typography(.bodySmall))
                 .foregroundColor(.textPrimary)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            VStack(spacing: 2) {
+            VStack(spacing: ViewSpacing.xxsmall) {
                 Button {
                     moveItem(direction: -1)
                 } label: {
                     Image(systemName: "chevron.up")
-                        .font(.system(size: 10))
+                        .font(Font.typography(.bodyXXSmall))
                         .foregroundColor(.textSecondary)
                 }
                 .disabled(index == 0)
@@ -184,7 +184,7 @@ struct OrderItemView: View {
                     moveItem(direction: 1)
                 } label: {
                     Image(systemName: "chevron.down")
-                        .font(.system(size: 10))
+                        .font(Font.typography(.bodyXXSmall))
                         .foregroundColor(.textSecondary)
                 }
                 .disabled(index == items.count - 1)
@@ -192,12 +192,12 @@ struct OrderItemView: View {
             .frame(width: 25)
         }
         .padding(.horizontal, ViewSpacing.small)
-        .padding(.vertical, 6)
+        .padding(.vertical, ViewSpacing.xsmall+ViewSpacing.xxsmall)
         .background(isDragging ? Color.surfacePrimary.opacity(0.8) : Color.surfacePrimary)
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(isDragging ? Color(red: 0.404, green: 0.722, blue: 0.6) : Color.gray.opacity(0.3), lineWidth: isDragging ? 2 : 1)
+                .stroke(isDragging ? Color.surfaceBrandPrimary : Color.gray.opacity(0.3), lineWidth: isDragging ? StrokeWidth.width200.value : StrokeWidth.width100.value)
         )
         .offset(dragOffset)
         .scaleEffect(isDragging ? 1.05 : 1.0)

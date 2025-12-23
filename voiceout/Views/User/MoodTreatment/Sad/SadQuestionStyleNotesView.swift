@@ -32,7 +32,7 @@ struct SadQuestionStyleNotesView: View {
             
             ZStack(alignment: .topLeading) {
                 backgroundView
-                musicButton
+//                musicButton
                 mainContent
                 
                 if showNoteEditor {
@@ -48,18 +48,18 @@ struct SadQuestionStyleNotesView: View {
     }
     
     private var backgroundView: some View {
-        Color(red: 0.95, green: 0.98, blue: 0.96)
+        Color.surfaceBrandTertiaryGreen
             .ignoresSafeArea(edges: .all)
     }
     
-    private var musicButton: some View {
-        Button { } label: {
-            Image("music")
-                .resizable()
-                .frame(width: 48, height: 48)
-        }
-        .padding(.leading, ViewSpacing.medium)
-    }
+//    private var musicButton: some View {
+//        Button { } label: {
+//            Image("music")
+//                .resizable()
+//                .frame(width: 48, height: 48)
+//        }
+//        .padding(.leading, ViewSpacing.medium)
+//    }
     
     
     private var mainContent: some View {
@@ -90,7 +90,7 @@ struct SadQuestionStyleNotesView: View {
                     VStack {
                         Spacer()
                         addNoteButtonArea
-                            .padding(.bottom, 60)
+                            .padding(.bottom, ViewSpacing.xlarge+ViewSpacing.large+ViewSpacing.xsmall)
                     }
                 }
             }
@@ -102,26 +102,26 @@ struct SadQuestionStyleNotesView: View {
             .resizable()
             .scaledToFit()
             .frame(width: 168, height: 120)
-            .padding(.vertical, 15.569)
-            .padding(.horizontal, 0.842)
+            .padding(.vertical, ViewSpacing.medium)
+            .padding(.horizontal, ViewSpacing.xxxsmall)
     }
     
     private var questionText: some View {
         VStack(spacing: ViewSpacing.small) {
             if let texts = question.texts {
                 Text(texts.joined(separator: "\n"))
-                    .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                    .font(Font.typography(.bodyMedium))
                     .multilineTextAlignment(.center)
-                    .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                    .foregroundColor(.textPrimary)
                     .frame(width: 358, alignment: .top)
                     .fixedSize(horizontal: false, vertical: true)
             }
             
             if let introTexts = question.introTexts, !introTexts.isEmpty {
                 Text(introTexts.joined(separator: "\n"))
-                    .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                    .font(Font.typography(.bodyMedium))
                     .multilineTextAlignment(.center)
-                    .foregroundColor(Color(red: 0.4, green: 0.72, blue: 0.6))
+                    .foregroundColor(.textBrandPrimary)
                     .frame(width: 358, alignment: .top)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -129,7 +129,7 @@ struct SadQuestionStyleNotesView: View {
     }
     
     private var stickyNotesGrid: some View {
-        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 16) {
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: ViewSpacing.medium) {
             ForEach(0..<6, id: \.self) { index in
                 if !noteTexts[index].isEmpty {
                     stickyNoteCard(
@@ -161,7 +161,7 @@ struct SadQuestionStyleNotesView: View {
     }
     
     private var addNoteButtonArea: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: ViewSpacing.small) {
             let hasAnyNote = noteTexts.contains { !$0.isEmpty }
             
             Button {
@@ -175,7 +175,7 @@ struct SadQuestionStyleNotesView: View {
             .frame(width: 114, height: 44)
             .background(Color.surfacePrimary)
             .cornerRadius(CornerRadius.full.value)
-            .foregroundColor(hasAnyNote ? Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0) : Color.gray)
+            .foregroundColor(hasAnyNote ? Color.textBrandPrimary : Color.textLight)
             .font(Font.typography(.bodyMedium))
             .kerning(0.64)
             .multilineTextAlignment(.center)
@@ -203,18 +203,15 @@ struct SadQuestionStyleNotesView: View {
                         
                         ZStack(alignment: .topLeading) {
                             TextEditor(text: $editingText)
-                                .font(Font.custom("Abel", size: 12))
+                                .font(Font.typography(.bodyXSmall))
                                 .kerning(0.36)
-                                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                                .foregroundColor(.textPrimary)
                                 .scrollContentBackground(.hidden)
                                 .background(Color.clear)
                                 .frame(width: 122.5, height: 128.5, alignment: .topLeading)
-                                .padding(.top, 10)
-                                .padding(.leading, 10)
-                                .padding(.trailing, 10)
-                                .padding(.bottom, 10)
+                                .padding(ViewSpacing.betweenSmallAndBase)
                                 .focused($isTextFieldFocused)
-                                .offset(x: 50, y: 50)
+                                .offset(x: 5*ViewSpacing.betweenSmallAndBase, y: 5*ViewSpacing.betweenSmallAndBase)
                                 .onAppear {
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                         isTextFieldFocused = true
@@ -223,13 +220,13 @@ struct SadQuestionStyleNotesView: View {
                             
                             if editingText.isEmpty {
                                 Text(" 请填写")
-                                    .font(Font.custom("Abel", size: 12))
+                                    .font(Font.typography(.bodyXSmall))
                                     .kerning(0.36)
-                                    .foregroundColor(Color(red: 0.79, green: 0.77, blue: 0.82))
+                                    .foregroundColor(.textLight)
                                     .allowsHitTesting(false)
-                                    .padding(.top, 10 + 8)
-                                    .padding(.leading, 10 + 5)
-                                    .offset(x: 50 + 50, y: 50 + 50)
+                                    .padding(.top, ViewSpacing.small+ViewSpacing.betweenSmallAndBase)
+                                    .padding(.leading, ViewSpacing.base+ViewSpacing.xxxsmall+ViewSpacing.xxsmall)
+                                    .offset(x: 10*ViewSpacing.betweenSmallAndBase, y: 10*ViewSpacing.betweenSmallAndBase)
                             }
                         }
                     }
@@ -240,15 +237,15 @@ struct SadQuestionStyleNotesView: View {
                         Text("完成")
                     }
                     .disabled(editingText.isEmpty)
-                    .padding(.horizontal, 24)
-                    .padding(.vertical, 8)
+                    .padding(.horizontal, ViewSpacing.large)
+                    .padding(.vertical, ViewSpacing.small)
                     .frame(width: 139, height: 44, alignment: .center)
-                    .background(Color(red: 0.4, green: 0.72, blue: 0.6))
-                    .cornerRadius(360)
+                    .background(Color.surfaceBrandPrimary)
+                    .cornerRadius(CornerRadius.full.value)
                     .shadow(color: Color(red: 0.35, green: 0.46, blue: 0.65).opacity(0.04), radius: 10, x: 2, y: 12)
                     .foregroundColor(.white)
                     .font(Font.typography(.bodyMedium))
-                    .offset(y: 4)
+                    .offset(y: ViewSpacing.xsmall)
                 }
                 
                 Spacer()
@@ -264,8 +261,8 @@ struct SadQuestionStyleNotesView: View {
                 .frame(width: 120, height: 100)
             
             Text("添加便利贴")
-                .font(Font.custom("Alibaba PuHuiTi 3.0", size: 14))
-                .foregroundColor(Color(red: 0.4, green: 0.72, blue: 0.6))
+                .font(Font.typography(.bodySmall))
+                .foregroundColor(.textBrandPrimary)
                 .multilineTextAlignment(.center)
         }
     }
@@ -279,20 +276,20 @@ struct SadQuestionStyleNotesView: View {
                     .frame(width: 120, height: 100)
                 
                 Text(text)
-                    .font(Font.custom("Abel", size: 12))
+                    .font(Font.typography(.bodyXSmall))
                     .kerning(0.36)
-                    .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                    .foregroundColor(.textPrimary)
                     .frame(width: 60, alignment: .topLeading)
                     .multilineTextAlignment(.leading)
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
-                    .padding(.horizontal, 4)
-                    .padding(.vertical, 8)
-                    .offset(x: 30, y: 16)
+                    .padding(.horizontal, ViewSpacing.xsmall)
+                    .padding(.vertical, ViewSpacing.small)
+                    .offset(x: ViewSpacing.medium+ViewSpacing.base+ViewSpacing.xxsmall, y: ViewSpacing.medium)
             }
             .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(isSelected ? Color.blue : Color.clear, lineWidth: 2)
+                RoundedRectangle(cornerRadius: CornerRadius.small.value)
+                    .stroke(isSelected ? Color.blue : Color.clear, lineWidth: StrokeWidth.width200.value)
             )
         }
     }

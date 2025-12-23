@@ -65,31 +65,31 @@ struct SadQuestionStyleUploadView: View {
                             Image("cloud-chat")
                                 .resizable()
                                 .frame(width: 168, height: 120)
-                                .padding(.vertical, 15.569)
-                                .padding(.horizontal, 0.842)
+                                .padding(.vertical, ViewSpacing.medium)
+                                .padding(.horizontal, ViewSpacing.xxxsmall)
                             Spacer()
                         }
                         
-                        Button {
-                            isPlayingMusic.toggle()
-                        } label: {
-                            Image(isPlayingMusic ? "music" : "stop-music")
-                                .resizable()
-                                .frame(width: 48, height: 48)
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+//                        Button {
+//                            isPlayingMusic.toggle()
+//                        } label: {
+//                            Image(isPlayingMusic ? "music" : "stop-music")
+//                                .resizable()
+//                                .frame(width: 48, height: 48)
+//                        }
+//                        .padding(.leading, ViewSpacing.medium)
                     }
-                    .padding(.bottom, 24)
+                    .padding(.bottom, ViewSpacing.large)
 
                     if showCurrentText {
                         VStack(spacing: 0) {
                             VStack {
                                 Text(currentText)
                                     .id(currentTextIndex)
-                                    .font(.system(size: 16, weight: .regular))
+                                    .font(.typography(.bodyMedium))
                                     .lineSpacing(22.4 - 16)
                                     .multilineTextAlignment(.center)
-                                    .foregroundColor(Color(red: 0x49/255.0, green: 0x45/255.0, blue: 0x4F/255.0))
+                                    .foregroundColor(.textPrimary)
                                     .fixedSize(horizontal: false, vertical: true)
                                     .frame(maxWidth: .infinity, alignment: .center)
                             }
@@ -102,8 +102,8 @@ struct SadQuestionStyleUploadView: View {
                                 VStack {
                                     Text(currentIntroText)
                                         .id("intro-\(currentTextIndex)")
-                                        .font(.system(size: 16, weight: .regular))
-                                        .foregroundColor(Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0))
+                                        .font(.typography(.bodyMedium))
+                                        .foregroundColor(.textBrandPrimary)
                                         .multilineTextAlignment(.center)
                                         .fixedSize(horizontal: false, vertical: true)
                                 }
@@ -113,12 +113,12 @@ struct SadQuestionStyleUploadView: View {
                                     .frame(height: 73)
                                 
                                 uploadArea
-                                    .padding(.bottom, 188)
+                                    .padding(.bottom, ViewSpacing.xxxxlarge+2*ViewSpacing.xlarge)
                             }
                             
                             if skippedUpload {
                                 Color.clear
-                                    .frame(height: 73 + 228 + 69)
+                                    .frame(height: 370)
                                 
                                 HStack(spacing: 0) {
                                     Spacer()
@@ -127,23 +127,23 @@ struct SadQuestionStyleUploadView: View {
                                         onContinue()
                                     } label: {
                                         Text("继续")
-                                            .font(.system(size: 16, weight: .regular))
-                                            .foregroundColor(Color(red: 0.4, green: 0.72, blue: 0.6))
+                                            .font(.typography(.bodyMedium))
+                                            .foregroundColor(.textBrandPrimary)
                                     }
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, ViewSpacing.medium)
+                                    .padding(.vertical, ViewSpacing.small)
                                     .frame(width: 114, height: 38)
                                     .background(Color.white)
-                                    .cornerRadius(360)
+                                    .cornerRadius(CornerRadius.full.value)
                                     
                                     Spacer()
                                 }
-                                .padding(.bottom, 188)
+                                .padding(.bottom, ViewSpacing.xxxxlarge+2*ViewSpacing.xlarge)
                             }
                             
                             if uploadedImage != nil && imageConfirmed {
                                 uploadedImageView
-                                    .padding(.top, 16)
+                                    .padding(.top, ViewSpacing.medium)
                             }
                         }
                         .padding(.horizontal, ViewSpacing.medium)
@@ -168,20 +168,20 @@ struct SadQuestionStyleUploadView: View {
                 .resizable()
                 .scaledToFill()
                 .frame(width: 255, height: 228)
-                .cornerRadius(8)
+                .cornerRadius(CornerRadius.small.value)
                 .clipped()
         }
     }
     
     private var uploadArea: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: ViewSpacing.betweenSmallAndBase) {
             if let image = uploadedImage {
                 VStack(spacing: 0) {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 255, height: 228)
-                        .cornerRadius(8)
+                        .cornerRadius(CornerRadius.small.value)
                         .clipped()
                     
                     Color.clear
@@ -189,20 +189,20 @@ struct SadQuestionStyleUploadView: View {
                     
                     HStack(spacing: 0) {
                         Spacer()
-                            .frame(width: 74 - ViewSpacing.medium)
+                            .frame(width:58)
                         
                         Button {
                             showImagePicker = true
                         } label: {
                             Text("重新上传")
-                                .font(.system(size: 16, weight: .regular))
-                                .foregroundColor(Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0))
+                                .font(.typography(.bodyMedium))
+                                .foregroundColor(.textBrandPrimary)
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
+                        .padding(.horizontal, ViewSpacing.medium)
+                        .padding(.vertical, ViewSpacing.small)
                         .frame(width: 114, height: 38)
-                        .background(Color(red: 0.98, green: 0.99, blue: 1.0))
-                        .cornerRadius(360)
+                        .background(Color.surfacePrimary)
+                        .cornerRadius(CornerRadius.full.value)
                         
                         Spacer()
                             .frame(width: 21)
@@ -211,17 +211,17 @@ struct SadQuestionStyleUploadView: View {
                             onContinue()
                         } label: {
                             Text("确认")
-                                .font(.system(size: 16, weight: .regular))
+                                .font(.typography(.bodyMedium))
                                 .foregroundColor(Color.white)
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
+                        .padding(.horizontal, ViewSpacing.medium)
+                        .padding(.vertical, ViewSpacing.small)
                         .frame(width: 114, height: 38)
-                        .background(Color(red: 0.4, green: 0.72, blue: 0.6))
-                        .cornerRadius(360)
+                        .background(Color.surfaceBrandPrimary)
+                        .cornerRadius(CornerRadius.full.value)
                         
                         Spacer()
-                            .frame(width: 67 - ViewSpacing.medium)
+                            .frame(width: 51)
                     }
                     .padding(.horizontal, -ViewSpacing.medium)
                 }
@@ -230,23 +230,23 @@ struct SadQuestionStyleUploadView: View {
                     Button {
                         showImagePicker = true
                     } label: {
-                        VStack(spacing: 10) {
+                        VStack(spacing: ViewSpacing.betweenSmallAndBase) {
                             Image(systemName: "camera.fill")
-                                .font(.system(size: 32))
-                                .foregroundColor(Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0))
+                                .font(.typography(.headerSmall))
+                                .foregroundColor(.textBrandPrimary)
                             
                             Text("点击上传照片")
                                 .font(.typography(.bodyMedium))
-                                .foregroundColor(Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0))
+                                .foregroundColor(.textBrandPrimary)
                         }
-                        .padding(.vertical, 95)
-                        .padding(.horizontal, 69)
+                        .padding(.vertical, ViewSpacing.xxxlarge+ViewSpacing.xsmall+ViewSpacing.xxsmall+ViewSpacing.xxxsmall)
+                        .padding(.horizontal, ViewSpacing.xxlarge+ViewSpacing.base)
                         .frame(width: 255, height: 228)
                         .background(Color.surfacePrimary)
-                        .cornerRadius(8)
+                        .cornerRadius(CornerRadius.small.value)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .strokeBorder(Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0), style: StrokeStyle(lineWidth: 1, dash: [5, 5]))
+                            RoundedRectangle(cornerRadius: CornerRadius.small.value)
+                                .strokeBorder(Color.surfaceBrandPrimary, style: StrokeStyle(lineWidth: StrokeWidth.width100.value, dash: [5, 5]))
                         )
                     }
                     
@@ -260,8 +260,8 @@ struct SadQuestionStyleUploadView: View {
                             skippedUpload = true
                         } label: {
                             Text("我还没给好吃的拍照")
-                                .font(.system(size: 16, weight: .regular))
-                                .foregroundColor(Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0))
+                                .font(.typography(.bodyMedium))
+                                .foregroundColor(.textBrandPrimary)
                                 .underline()
                         }
                         

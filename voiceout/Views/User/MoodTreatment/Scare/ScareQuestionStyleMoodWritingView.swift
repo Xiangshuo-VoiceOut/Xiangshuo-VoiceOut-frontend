@@ -21,11 +21,11 @@ struct ScareQuestionStyleMoodWritingView: View {
 
                 VStack(spacing: 0) {
                     ZStack(alignment: .top) {
-                        HStack {
-                            MusicButtonView()
-                            Spacer()
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+//                        HStack {
+//                            MusicButtonView()
+//                            Spacer()
+//                        }
+//                        .padding(.leading, ViewSpacing.medium)
                     }
 
                     Text("开始描述你的情绪。你感到害怕吗？还是其他感受？")

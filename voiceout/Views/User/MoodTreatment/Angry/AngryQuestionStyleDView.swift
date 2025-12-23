@@ -65,8 +65,8 @@ struct AngryQuestionStyleDView: View {
                         Spacer()
                     }
                     
-                    MusicButtonView()
-                        .padding(.leading, ViewSpacing.medium)
+//                    MusicButtonView()
+//                        .padding(.leading, ViewSpacing.medium)
                 }
                 
                 ForEach(Array(displayTexts.enumerated()), id: \.offset) { idx, line in

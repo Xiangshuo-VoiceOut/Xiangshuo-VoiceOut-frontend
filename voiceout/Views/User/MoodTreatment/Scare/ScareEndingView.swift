@@ -21,11 +21,11 @@ struct ScareEndingView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                HStack {
-                    MusicButtonView().padding(.leading, ViewSpacing.medium)
-                    Spacer()
-                }
-                .padding(.top, ViewSpacing.small)
+//                HStack {
+//                    MusicButtonView().padding(.leading, ViewSpacing.medium)
+//                    Spacer()
+//                }
+//                .padding(.top, ViewSpacing.small)
 
                 HStack(alignment: .top, spacing: ViewSpacing.small) {
                     VStack(alignment: .leading, spacing: ViewSpacing.small) {

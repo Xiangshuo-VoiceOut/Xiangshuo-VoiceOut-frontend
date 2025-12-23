@@ -146,10 +146,10 @@ struct SliderQuestionStyleView: View {
                                 .padding(.bottom, ViewSpacing.xxxsmall+ViewSpacing.base+ViewSpacing.medium)
                             Spacer()
                         }
-                        HStack {
-                            MusicButtonView()
-                            Spacer()
-                        }
+//                        HStack {
+//                            MusicButtonView()
+//                            Spacer()
+//                        }
                     }
                     .padding(.leading, ViewSpacing.medium)
 
@@ -159,7 +159,7 @@ struct SliderQuestionStyleView: View {
                             .multilineTextAlignment(.center)
                             .foregroundColor(.grey500)
                             .frame(maxWidth: .infinity, alignment: .top)
-                            .padding(.bottom, 162)
+                            .padding(.bottom, ViewSpacing.xxxlarge+ViewSpacing.xlarge+ViewSpacing.xsmall+ViewSpacing.xxsmall)
                             .onAppear {
                                 if idx == (question.texts?.count ?? 0) - 1 {
                                     withAnimation(.easeIn(duration: 0.25)) {
@@ -212,7 +212,7 @@ struct SliderQuestionStyleView: View {
                                 .background(Color.grey50)
                                 .cornerRadius(CornerRadius.full.value)
                         }
-                        .padding(.bottom, 55)
+                        .padding(.bottom, ViewSpacing.xlarge+ViewSpacing.medium+ViewSpacing.xsmall+ViewSpacing.xxsmall+ViewSpacing.xxxsmall)
                         .frame(maxHeight: .infinity, alignment: .bottom)
                         .transition(.opacity)
                     }

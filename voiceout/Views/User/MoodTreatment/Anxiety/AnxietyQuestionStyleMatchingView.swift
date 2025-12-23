@@ -19,7 +19,6 @@ struct AnxietyQuestionStyleMatchingView: View {
     
     private let typingInterval: TimeInterval = 0.1
     
-    // 硬编码的测试选项
     private let testOptions = [
         "善良", "诚实", "责任感", "勇气", "感恩", "礼貌",
         "耐心", "坚持", "独立", "宽容", "同情心", "正义感"
@@ -60,14 +59,13 @@ struct AnxietyQuestionStyleMatchingView: View {
 //                                .resizable()
 //                                .frame(width: 48, height: 48)
 //                        }
-                        .padding(.leading, ViewSpacing.medium)
+//                        .padding(.leading, ViewSpacing.medium)
                     }
 
                     VStack(spacing: ViewSpacing.medium) {
                         if showCurrentText {
                             VStack(spacing: ViewSpacing.small) {
                                 TypewriterText(fullText: currentText, characterDelay: typingInterval) {
-                                    // 打字完成后可以执行的操作
                                     if currentTextIndex == 0 {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                             showOptions = true
@@ -83,7 +81,6 @@ struct AnxietyQuestionStyleMatchingView: View {
                             .padding(.bottom, ViewSpacing.small)
                         }
                         
-                        // 选项区域
                         if showOptions && currentTextIndex == 0 {
                             optionsArea
                         }
@@ -92,7 +89,6 @@ struct AnxietyQuestionStyleMatchingView: View {
                     }
                     .padding(.horizontal, ViewSpacing.large)
                     
-                    // 底部按钮区域
                     bottomButtonArea
                 }
             }
@@ -102,7 +98,6 @@ struct AnxietyQuestionStyleMatchingView: View {
     
     private var optionsArea: some View {
         VStack(spacing: ViewSpacing.medium) {
-            // 选项网格
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: ViewSpacing.small), count: 3), spacing: ViewSpacing.medium) {
                 ForEach(testOptions, id: \.self) { option in
                     AnxietyOptionCircleView(
@@ -153,30 +148,28 @@ struct AnxietyQuestionStyleMatchingView: View {
     }
 }
 
-// 选项圆形视图
 struct AnxietyOptionCircleView: View {
     let option: String
     let isSelected: Bool
     let onTap: () -> Void
     
-    // #A9D8F1 color
     private let optionColor = Color(red: 169/255.0, green: 216/255.0, blue: 241/255.0)
     
     var body: some View {
         Button(action: onTap) {
             Text(option)
-                .font(.system(size: 14, weight: .medium))
+                .font(Font.typography(.bodySmall))
                 .foregroundColor(.textPrimary)
                 .multilineTextAlignment(.center)
-                .padding(.vertical, 23.4)
-                .padding(.horizontal, 7.2)
+                .padding(.vertical, ViewSpacing.large)
+                .padding(.horizontal,ViewSpacing.xxxsmall+ViewSpacing.xxsmall+ViewSpacing.xsmall)
                 .frame(width: 72, height: 72)
                 .background(
                     Circle()
                         .fill(isSelected ? optionColor : Color.clear)
                         .overlay(
                             Circle()
-                                .stroke(optionColor, lineWidth: 2)
+                                .stroke(optionColor, lineWidth: StrokeWidth.width200.value)
                         )
                 )
         }
@@ -206,4 +199,3 @@ struct AnxietyOptionCircleView: View {
         onContinue: {}
     )
 }
-

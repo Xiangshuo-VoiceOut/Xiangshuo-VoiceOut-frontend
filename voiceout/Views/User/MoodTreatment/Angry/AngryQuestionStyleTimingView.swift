@@ -189,7 +189,7 @@ struct AngryQuestionStyleTimingView: View {
                 Spacer()
             }
             
-            MusicButtonView()
+//            MusicButtonView()
         }
     }
     

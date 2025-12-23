@@ -32,7 +32,7 @@ struct SadQuestionStyleEndView: View {
 
             ZStack(alignment: .topLeading) {
                 backgroundView
-                musicButton
+//                musicButton
                 windmillBackground
                 mainContent(texts: texts)
             }
@@ -49,14 +49,14 @@ struct SadQuestionStyleEndView: View {
             .ignoresSafeArea(edges: .bottom)
     }
     
-    private var musicButton: some View {
-        Button { isPlayingMusic.toggle() } label: {
-            Image(isPlayingMusic ? "music" : "stop-music")
-                .resizable()
-                .frame(width: 48, height: 48)
-        }
-        .padding(.leading, ViewSpacing.medium)
-    }
+//    private var musicButton: some View {
+//        Button { isPlayingMusic.toggle() } label: {
+//            Image(isPlayingMusic ? "music" : "stop-music")
+//                .resizable()
+//                .frame(width: 48, height: 48)
+//        }
+//        .padding(.leading, ViewSpacing.medium)
+//    }
     
     private var windmillBackground: some View {
         VStack {
@@ -134,7 +134,7 @@ struct SadQuestionStyleEndView: View {
                 texts: showHappyText ? ["难过已经被你温柔地安放好了，是不是感觉轻松了一点呢？就像夜晚终会迎来晨曦，希望也会一点一点填满你的心。小云朵给你一个温柔的拥抱~"] : texts,
                 displayedCount: $displayedCount,
                 bubbleHeight: $bubbleHeight,
-                bubbleSpacing: 24,
+                bubbleSpacing: ViewSpacing.large,
                 totalHeight: bubbleFrameHeight
             )
             .frame(height: bubbleFrameHeight)
@@ -148,18 +148,18 @@ struct SadQuestionStyleEndView: View {
             Image("sad")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 216, height: 154.286)
-                .padding(.horizontal, 1.08)
-                .padding(.vertical, 19.98)
+                .frame(width: 216, height: 154)
+                .padding(.horizontal, ViewSpacing.xxxsmall)
+                .padding(.vertical, ViewSpacing.xsmall+ViewSpacing.medium)
                 .opacity(cloudOpacity)
             
             if showHappyCloud {
                 Image("happycloud")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 216, height: 154.286)
-                    .padding(.horizontal, 1.08)
-                    .padding(.vertical, 19.98)
+                    .frame(width: 216, height: 154)
+                    .padding(.horizontal, ViewSpacing.xxxsmall)
+                    .padding(.vertical, ViewSpacing.xsmall+ViewSpacing.medium)
                     .transition(.scale.combined(with: .opacity))
             }
         }

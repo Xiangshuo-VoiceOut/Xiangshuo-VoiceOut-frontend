@@ -48,21 +48,21 @@ struct SadQuestionStyleSliderView: View {
                         Spacer()
                     }
                     
-                    Button { isPlayingMusic.toggle() } label: {
-                        Image(isPlayingMusic ? "music" : "stop-music")
-                            .resizable()
-                            .frame(width: 48, height: 48)
-                    }
-                    .padding(.leading, ViewSpacing.medium)
+//                    Button { isPlayingMusic.toggle() } label: {
+//                        Image(isPlayingMusic ? "music" : "stop-music")
+//                            .resizable()
+//                            .frame(width: 48, height: 48)
+//                    }
+//                    .padding(.leading, ViewSpacing.medium)
                 }
-                .padding(.bottom, 24)
+                .padding(.bottom, ViewSpacing.large)
                 
                 VStack(spacing: 0) {
                     ForEach(Array(displayTexts.enumerated()), id: \.offset) { idx, line in
                         Text(line)
-                            .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                            .font(Font.typography(.bodyMedium))
                             .multilineTextAlignment(.center)
-                            .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                            .foregroundColor(.textPrimary)
                             .frame(width: 358, alignment: .top)
                             .padding(.bottom, idx < displayTexts.count - 1 ? ViewSpacing.medium : 0)
                     }
@@ -76,11 +76,11 @@ struct SadQuestionStyleSliderView: View {
                     .frame(height: 140)
                 
                 VStack(spacing: 0) {
-                    HStack(alignment: .center, spacing: -2) {
+                    HStack(alignment: .center, spacing: -ViewSpacing.xxsmall) {
                         SliderView(value: $sliderValue,
                                    minValue: 0, maxValue: 4,
-                                   trackColor: Color(red: 0.4, green: 0.72, blue: 0.6),
-                                   thumbInnerColor: Color(red: 0.4, green: 0.72, blue: 0.6),
+                                   trackColor: Color.surfaceBrandPrimary,
+                                   thumbInnerColor: Color.surfaceBrandPrimary,
                                    thumbOuterColor: Color(red: 0.96, green: 0.96, blue: 0.96),
                                    thumbInnerDiameter: 24,
                                    thumbOuterDiameter: 24)
@@ -89,20 +89,20 @@ struct SadQuestionStyleSliderView: View {
                             currentStep = Int(newValue) + 1
                         }
                     }
-                    .padding(.horizontal, 8)
+                    .padding(.horizontal, ViewSpacing.small)
                     .padding(.vertical, 0)
                     .frame(maxWidth: .infinity, alignment: .center)
                     
                     Color.clear
                         .frame(height: 20)
                     
-                    HStack(alignment: .center, spacing: -2) {
+                    HStack(alignment: .center, spacing: -ViewSpacing.xxsmall) {
                         HStack(spacing: 0) {
                             ForEach(1...5, id: \.self) { number in
                                 Text("\(number)")
-                                    .font(Font.custom("Alibaba PuHuiTi 3.0", size: 14))
+                                    .font(Font.typography(.bodySmall))
                                     .multilineTextAlignment(.center)
-                                    .foregroundColor(Color(red: 0.79, green: 0.77, blue: 0.82))
+                                    .foregroundColor(.textLight)
                                 if number < 5 {
                                     Spacer()
                                 }
@@ -110,7 +110,7 @@ struct SadQuestionStyleSliderView: View {
                         }
                         .frame(width: 342)
                     }
-                    .padding(.horizontal, 8)
+                    .padding(.horizontal, ViewSpacing.small)
                     .padding(.vertical, 0)
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
@@ -130,7 +130,7 @@ struct SadQuestionStyleSliderView: View {
                 .font(Font.typography(.bodyMedium))
                 .kerning(0.64)
                 .multilineTextAlignment(.center)
-                .padding(.bottom, 55)
+                .padding(.bottom, ViewSpacing.xlarge+ViewSpacing.medium+ViewSpacing.xsmall+ViewSpacing.xxsmall+ViewSpacing.xxxsmall)
             }
         }
         .ignoresSafeArea(edges: .all)

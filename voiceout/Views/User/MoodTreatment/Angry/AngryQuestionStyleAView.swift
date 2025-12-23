@@ -32,8 +32,8 @@ struct AngryQuestionStyleAView: View {
                 Color.surfaceBrandTertiaryGreen
                     .ignoresSafeArea(edges: .bottom)
 
-                MusicButtonView()
-                    .padding(.leading, ViewSpacing.medium)
+//                MusicButtonView()
+//                    .padding(.leading, ViewSpacing.medium)
 
                 VStack {
                     Spacer()

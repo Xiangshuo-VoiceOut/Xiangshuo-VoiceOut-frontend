@@ -36,8 +36,8 @@ struct EnvyEndingView: View {
 
                 VStack(spacing: 0) {
                     HStack {
-                        MusicButtonView()
-                            .padding(.leading, ViewSpacing.medium)
+//                        MusicButtonView()
+//                            .padding(.leading, ViewSpacing.medium)
                         Spacer()
                     }
                     .padding(.top, geo.safeAreaInsets.top)

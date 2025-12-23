@@ -59,14 +59,14 @@ struct SadQuestionStyleEmotionView: View {
                             Spacer()
                         }
                         
-                        Button {
-                            isPlayingMusic.toggle()
-                        } label: {
-                            Image(isPlayingMusic ? "music" : "stop-music")
-                                .resizable()
-                                .frame(width: 48, height: 48)
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+//                        Button {
+//                            isPlayingMusic.toggle()
+//                        } label: {
+//                            Image(isPlayingMusic ? "music" : "stop-music")
+//                                .resizable()
+//                                .frame(width: 48, height: 48)
+//                        }
+//                        .padding(.leading, ViewSpacing.medium)
                     }
 
                     VStack(spacing: ViewSpacing.large) {
@@ -98,23 +98,23 @@ struct SadQuestionStyleEmotionView: View {
     private var emotionInputArea: some View {
         VStack(spacing: ViewSpacing.medium) {
             Text("在这里写下你想说的话...")
-                .font(.system(size: 16, weight: .regular))
-                .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
+                .font(.typography(.bodyMedium))
+                .foregroundColor(.textBrandPrimary)
                 .multilineTextAlignment(.center)
                 .frame(width: 252, alignment: .center)
             
             TextEditor(text: $userInput)
-                .font(.system(size: 16, weight: .regular))
+                .font(.typography(.bodyMedium))
                 .foregroundColor(.textPrimary)
                 .focused($isTextFieldFocused)
                 .frame(minHeight: 120, maxHeight: 200)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
+                .padding(.horizontal, ViewSpacing.medium)
+                .padding(.vertical, ViewSpacing.base)
                 .background(Color.surfacePrimary)
                 .cornerRadius(12)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                        .stroke(Color.gray.opacity(0.3), lineWidth: StrokeWidth.width100.value)
                 )
             
             HStack(spacing: ViewSpacing.medium) {
@@ -122,18 +122,18 @@ struct SadQuestionStyleEmotionView: View {
                 } label: {
                     HStack {
                         Image(systemName: "mic.fill")
-                            .font(.system(size: 16))
+                            .font(.typography(.bodyMedium))
                         Text("语音输入")
-                            .font(.system(size: 14, weight: .regular))
+                            .font(.typography(.bodySmall))
                     }
-                    .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
+                    .foregroundColor(.textBrandPrimary)
+                    .padding(.horizontal, ViewSpacing.medium)
+                    .padding(.vertical,ViewSpacing.small)
                     .background(Color.surfacePrimary)
-                    .cornerRadius(8)
+                    .cornerRadius(CornerRadius.small.value)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color(red: 0.404, green: 0.722, blue: 0.6), lineWidth: 1)
+                        RoundedRectangle(cornerRadius: CornerRadius.small.value)
+                            .stroke(Color.surfacePrimary, lineWidth: StrokeWidth.width100.value)
                     )
                 }
                 
@@ -154,7 +154,7 @@ struct SadQuestionStyleEmotionView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal, ViewSpacing.large)
                 .padding(.vertical, ViewSpacing.medium)
-                .background(Color(red: 0.404, green: 0.722, blue: 0.6))
+                .background(Color.surfaceBrandPrimary)
                 .cornerRadius(CornerRadius.full.value)
                 .padding(.horizontal, ViewSpacing.large)
                 .padding(.bottom, ViewSpacing.large)

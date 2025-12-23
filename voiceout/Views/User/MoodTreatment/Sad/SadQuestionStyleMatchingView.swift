@@ -47,27 +47,27 @@ struct SadQuestionStyleMatchingView: View {
                             Image("cloud-chat")
                                 .resizable()
                                 .frame(width: 168, height: 120, alignment: .center)
-                                .padding(.horizontal, 0.84157)
-                                .padding(.vertical, 15.56904)
+                                .padding(.vertical, ViewSpacing.medium)
+                                .padding(.horizontal, ViewSpacing.xxxsmall)
                             Spacer()
                         }
                         
-                        Button {
-                            isPlayingMusic.toggle()
-                        } label: {
-                            Image(isPlayingMusic ? "music" : "stop-music")
-                                .resizable()
-                                .frame(width: 48, height: 48)
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+//                        Button {
+//                            isPlayingMusic.toggle()
+//                        } label: {
+//                            Image(isPlayingMusic ? "music" : "stop-music")
+//                                .resizable()
+//                                .frame(width: 48, height: 48)
+//                        }
+//                        .padding(.leading, ViewSpacing.medium)
                     }
 
                     VStack(spacing: ViewSpacing.medium) {
                         if showCurrentText {
                             Text(currentText)
-                                .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                                .font(.typography(.bodyMedium))
                                 .multilineTextAlignment(.center)
-                                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                                .foregroundColor(.textPrimary)
                                 .frame(width: 358, alignment: .top)
                                 .padding(.bottom, ViewSpacing.small)
                                 .onAppear {
@@ -121,11 +121,11 @@ struct SadQuestionStyleMatchingView: View {
                 .frame(width: 114, height: 44)
                 .background(Color.surfacePrimary)
                 .cornerRadius(CornerRadius.full.value)
-                .foregroundColor(Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0))
+                .foregroundColor(.textBrandPrimary)
                 .font(Font.typography(.bodyMedium))
                 .kerning(0.64)
                 .multilineTextAlignment(.center)
-                .padding(.bottom, 55)
+                .padding(.bottom, ViewSpacing.xlarge+ViewSpacing.large-ViewSpacing.xxxsmall)
             }
         }
     }
@@ -156,14 +156,14 @@ struct OptionCircleView: View {
     var body: some View {
         Button(action: onTap) {
             ZStack {
-                VStack(alignment: .center, spacing: 18) {
+                VStack(alignment: .center, spacing: ViewSpacing.medium+ViewSpacing.xxsmall) {
                     Text(option)
-                        .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                        .font(.typography(.bodyMedium))
                         .multilineTextAlignment(.center)
-                        .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                        .foregroundColor(.textPrimary)
                 }
-                .padding(.horizontal, 7.2)
-                .padding(.vertical, 23.4)
+                .padding(.horizontal, ViewSpacing.small)
+                .padding(.vertical, ViewSpacing.large)
                 .frame(width: 96, height: 96, alignment: .center)
                 .background(isSelected ? Color(red: 0xAF/255.0, green: 0xE2/255.0, blue: 0xFD/255.0) : Color(red: 0.99, green: 1, blue: 1))
                 .cornerRadius(999)
@@ -175,7 +175,7 @@ struct OptionCircleView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 48, height: 48)
-                            .offset(x: 20, y: 20)
+                            .offset(x: ViewSpacing.medium+ViewSpacing.xsmall, y: ViewSpacing.medium+ViewSpacing.xsmall)
                     } else {
                         Image("curve3")
                             .renderingMode(.template)
@@ -183,7 +183,7 @@ struct OptionCircleView: View {
                             .scaledToFit()
                             .foregroundColor(Color(red: 0xC0/255.0, green: 0xE9/255.0, blue: 0xFF/255.0))
                             .frame(width: 48, height: 48)
-                            .offset(x: 20, y: 20)
+                            .offset(x: ViewSpacing.medium+ViewSpacing.xsmall, y: ViewSpacing.medium+ViewSpacing.xsmall)
                     }
                     
                     if isSelected {
@@ -193,7 +193,7 @@ struct OptionCircleView: View {
                             .scaledToFit()
                             .foregroundColor(Color(red: 0xC0/255.0, green: 0xE9/255.0, blue: 0xFF/255.0))
                             .frame(width: 24, height: 24)
-                            .offset(x: -10, y: -36)
+                            .offset(x: -ViewSpacing.betweenSmallAndBase, y: -ViewSpacing.xlarge-ViewSpacing.xsmall)
                     }
                 },
                 alignment: .center

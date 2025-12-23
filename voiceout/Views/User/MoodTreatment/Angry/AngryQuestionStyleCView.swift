@@ -29,10 +29,10 @@ struct AngryQuestionStyleCView: View {
                             Spacer()
                         }
                         
-                        HStack {
-                            MusicButtonView()
-                            Spacer()
-                        }
+//                        HStack {
+//                            MusicButtonView()
+//                            Spacer()
+//                        }
                     }
                     .padding(.leading, ViewSpacing.medium)
                     

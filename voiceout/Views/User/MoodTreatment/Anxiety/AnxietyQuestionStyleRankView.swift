@@ -37,7 +37,7 @@ struct AnxietyQuestionStyleRankView: View {
 
             ZStack(alignment: .topLeading) {
                 backgroundView
-                musicButton
+//                musicButton
                 mainContent(texts: texts)
                 endTreatmentButton
             }
@@ -51,14 +51,14 @@ struct AnxietyQuestionStyleRankView: View {
             .ignoresSafeArea(edges: .bottom)
     }
     
-    private var musicButton: some View {
-        Button { isPlayingMusic.toggle() } label: {
-            Image(isPlayingMusic ? "music" : "stop-music")
-                .resizable()
-                .frame(width: 48, height: 48)
-        }
-        .padding(.leading, ViewSpacing.medium)
-    }
+//    private var musicButton: some View {
+//        Button { isPlayingMusic.toggle() } label: {
+//            Image(isPlayingMusic ? "music" : "stop-music")
+//                .resizable()
+//                .frame(width: 48, height: 48)
+//        }
+//        .padding(.leading, ViewSpacing.medium)
+//    }
     
     private var endTreatmentButton: some View {
         VStack {
@@ -83,20 +83,18 @@ struct AnxietyQuestionStyleRankView: View {
                 }
             }
             .disabled(isSubmitting)
-            .padding(.horizontal, 45)
-            .padding(.bottom, 60)
+            .padding(.horizontal, ViewSpacing.xxxsmall+ViewSpacing.base+ViewSpacing.xlarge)
+            .padding(.bottom, 5*ViewSpacing.base)
         }
     }
     
     private func submitRatingAndExit() {
-        // 评分：selectedIconIndex 0-4 对应 rating 1-5
-        let rating = (selectedIconIndex ?? 2) + 1  // 默认为3（中间值）
+        let rating = (selectedIconIndex ?? 2) + 1
         let routine = question.routine ?? "anxiety"
         
         isSubmitting = true
         
         Task {
-            // 使用 ViewModel 提交评分（userId/sessionId 在 VM 中统一管理）
             _ = await vm.submitRating(routine: routine, rating: rating)
             
             await MainActor.run {
@@ -112,41 +110,29 @@ struct AnxietyQuestionStyleRankView: View {
             let screenHeight = geometry.size.height
             let screenWidth = geometry.size.width
             let cloudChatHeight: CGFloat = 71
-            // cloud-chat 向上移动80px，所以底部距离屏幕底部从404px变为484px
             let cloudChatDistanceFromBottom: CGFloat = 404 + 80
-            // cloud-chat 顶部距离屏幕顶部 = 屏幕高度 - 484 - cloud-chat 高度
             let cloudChatTop: CGFloat = screenHeight - cloudChatDistanceFromBottom - cloudChatHeight
-            // cloud-chat 中间位置
             let cloudChatCenter: CGFloat = screenHeight - cloudChatDistanceFromBottom - cloudChatHeight / 2
-            // 对话框底部对齐到 cloud-chat 中间，对话框有 offset(y: -35.5)
-            // 所以对话框顶部大约在 cloud-chat 中间上方
             let dialogTop: CGFloat = cloudChatCenter - bubbleFrameHeight
-            // 对话框底部位置
             let dialogBottom: CGFloat = dialogTop + bubbleFrameHeight
-            // happy云朵底部距离对话框上方62px
             let happyCloudBottom: CGFloat = dialogTop - 62
-            // happy云朵高度
             let happyCloudHeight: CGFloat = 154.28571
             let happyCloudTop: CGFloat = happyCloudBottom - happyCloudHeight
-            // happy云朵中心 y 位置（下降80px，加上之前的100px，总共180px）
             let happyCloudCenterY: CGFloat = happyCloudTop + happyCloudHeight / 2 + 100 + 80
-            
-            // 选择区域在对话框下方，向下移动150px，然后向上移动50px
             let selectionAreaTop: CGFloat = dialogBottom
-            let selectionAreaHeight: CGFloat = 250 // 加厚一倍，从100变为200
+            let selectionAreaHeight: CGFloat = 250
             let selectionAreaCenterY: CGFloat = selectionAreaTop + selectionAreaHeight / 2 + 150 - 50
             
             ZStack {
                 VStack(spacing: 0) {
                     Spacer()
-                        .frame(height: cloudChatTop - 44) // 减去顶部 padding 44px
+                        .frame(height: cloudChatTop - 44)
                     
                     chatBubbleSection(texts: texts)
                     
                     Spacer()
                 }
                 
-                // happy云朵在屏幕中间，对话框上方
                 HStack(alignment: .center) {
                     Spacer()
                     Image("happy")
@@ -154,23 +140,21 @@ struct AnxietyQuestionStyleRankView: View {
                         .scaledToFit()
                     Spacer()
                 }
-                .padding(.horizontal, 1.08202)
-                .padding(.vertical, 20.01733)
-                .frame(width: 216, height: 154.28571, alignment: .center)
+                .padding(.horizontal, ViewSpacing.xxxsmall)
+                .padding(.vertical, ViewSpacing.small+ViewSpacing.base)
+                .frame(width: 216, height: 154, alignment: .center)
                 .position(
                     x: screenWidth / 2,
                     y: happyCloudCenterY
                 )
                 .allowsHitTesting(false)
                 
-                // 选择区域在对话框下方
                 VStack(alignment: .leading, spacing: Constants.spacingSpacingM) {
                     HStack(alignment: .top) {
                         ForEach(0..<5) { index in
-                            VStack(spacing: 8) {
+                            VStack(spacing: ViewSpacing.small) {
                                 Button(action: {
                                     selectedIconIndex = index
-                                    // 可以选择后自动继续，或者等待用户点击继续按钮
                                 }) {
                                     Image(selectedIconIndex == index ? "icon\(index + 1)-b" : "icon\(index + 1)")
                                         .resizable()
@@ -180,20 +164,19 @@ struct AnxietyQuestionStyleRankView: View {
                                 
                                 if index == 0 {
                                     Text("更糟")
-                                        .font(Font.custom("Alibaba PuHuiTi 3.0", size: 14))
+                                        .font(Font.typography(.bodySmall))
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(Constants.textTextPrimary.opacity(0.6))
                                         .frame(width: 42, alignment: .top)
                                 } else if index == 4 {
                                     Text("好多了")
-                                        .font(Font.custom("Alibaba PuHuiTi 3.0", size: 14))
+                                        .font(Font.typography(.bodySmall))
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(Constants.textTextPrimary.opacity(0.6))
                                         .frame(width: 42, alignment: .top)
                                 } else {
-                                    // icon2、3、4 添加占位，使图标与 icon1、5 齐平
                                     Spacer()
-                                        .frame(height: 20) // 估算文字高度，使图标对齐
+                                        .frame(height: 20)
                                 }
                             }
                             
@@ -206,7 +189,7 @@ struct AnxietyQuestionStyleRankView: View {
                 .padding(Constants.spacingSpacingM)
                 .frame(width: 358, alignment: .topLeading)
                 .background(Constants.surfaceSurfacePrimary)
-                .cornerRadius(16)
+                .cornerRadius(CornerRadius.medium.value)
                 .position(
                     x: screenWidth / 2,
                     y: selectionAreaCenterY
@@ -214,7 +197,7 @@ struct AnxietyQuestionStyleRankView: View {
                 .allowsHitTesting(true)
             }
         }
-        .padding(.top, 44)
+        .padding(.top, ViewSpacing.base+ViewSpacing.xlarge)
     }
     
     private func chatBubbleSection(texts: [String]) -> some View {
@@ -227,20 +210,19 @@ struct AnxietyQuestionStyleRankView: View {
                 .offset(x: -ViewSpacing.medium)
                 .frame(width: 68)
 
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: ViewSpacing.betweenSmallAndBase) {
                 AnxietyRankBubbleScrollView(
                     texts: texts,
                     displayedCount: $displayedCount,
                     bubbleHeight: $bubbleHeight,
-                    bubbleSpacing: 8,
+                    bubbleSpacing: ViewSpacing.small,
                     totalHeight: bubbleFrameHeight
                 )
             }
             .padding(0)
             .frame(width: 268, alignment: .bottomLeading)
             .frame(height: bubbleFrameHeight)
-            .shadow(color: Color(red: 0.36, green: 0.36, blue: 0.47).opacity(0.03), radius: 8.95, x: 5, y: 3)
-            .shadow(color: Color(red: 0.15, green: 0.15, blue: 0.25).opacity(0.08), radius: 5.75, x: 2, y: 4)
+            .imageShadow()
             .offset(y: -35.5)
 
             Spacer()
@@ -260,7 +242,6 @@ struct AnxietyQuestionStyleRankView: View {
     }
 }
 
-// 自定义对话框组件，只有最后一个显示小三角
 private struct AnxietyRankChatBubbleView: View {
     let text: String
     let showTriangle: Bool
@@ -274,8 +255,8 @@ private struct AnxietyRankChatBubbleView: View {
                 .frame(width: Self.width)
 
             Text(text)
-                .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
-                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                .font(Font.typography(.bodyMedium))
+                .foregroundColor(.textPrimary)
                 .frame(width: 244, alignment: .topLeading)
                 .padding(.horizontal, ViewSpacing.base)
                 .padding(.vertical, ViewSpacing.medium)
@@ -284,13 +265,12 @@ private struct AnxietyRankChatBubbleView: View {
                 Image("vector49")
                     .resizable()
                     .frame(width: 15, height: 14)
-                    .offset(x: ViewSpacing.large, y: 14)
+                    .offset(x: ViewSpacing.large, y: ViewSpacing.xxsmall+ViewSpacing.base)
             }
         }
     }
 }
 
-// 自定义BubbleScrollView，只有最后一个对话框显示小三角
 private struct AnxietyRankBubbleScrollView: View {
     let texts: [String]
     @Binding var displayedCount: Int

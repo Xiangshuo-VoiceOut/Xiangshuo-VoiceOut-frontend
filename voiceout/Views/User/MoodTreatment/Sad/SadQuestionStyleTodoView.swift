@@ -72,14 +72,14 @@ struct SadQuestionStyleTodoView: View {
                             Spacer()
                         }
                         
-                        Button {
-                            isPlayingMusic.toggle()
-                        } label: {
-                            Image(isPlayingMusic ? "music" : "stop-music")
-                                .resizable()
-                                .frame(width: 48, height: 48)
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+//                        Button {
+//                            isPlayingMusic.toggle()
+//                        } label: {
+//                            Image(isPlayingMusic ? "music" : "stop-music")
+//                                .resizable()
+//                                .frame(width: 48, height: 48)
+//                        }
+//                        .padding(.leading, ViewSpacing.medium)
                     }
 
                     VStack(spacing: ViewSpacing.large) {
@@ -99,8 +99,8 @@ struct SadQuestionStyleTodoView: View {
                             TypewriterText(fullText: currentIntroText, characterDelay: typingInterval) {
                             }
                             .id("intro-\(currentTextIndex)")
-                            .font(.system(size: 16, weight: .regular))
-                            .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
+                            .font(.typography(.bodyMedium))
+                            .foregroundColor(.textBrandPrimary)
                             .multilineTextAlignment(.center)
                             .frame(width: 252, alignment: .center)
                             
@@ -126,24 +126,24 @@ struct SadQuestionStyleTodoView: View {
         VStack(spacing: ViewSpacing.medium) {
             VStack(spacing: ViewSpacing.small) {
                 TextField("输入你的计划", text: $currentTodoText)
-                    .font(.system(size: 16, weight: .regular))
+                    .font(.typography(.bodyMedium))
                     .foregroundColor(.textPrimary)
                     .focused($isTextFieldFocused)
                     .textFieldStyle(PlainTextFieldStyle())
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 12)
+                    .padding(.horizontal, ViewSpacing.medium)
+                    .padding(.vertical, ViewSpacing.base)
                     .background(Color.surfacePrimary)
                     .cornerRadius(12)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                            .stroke(Color.gray.opacity(0.3), lineWidth: StrokeWidth.width100.value)
                     )
             }
             
             if !currentTodoText.isEmpty {
                 VStack(spacing: ViewSpacing.small) {
                     Text("打算什么时候去？")
-                        .font(.system(size: 14, weight: .regular))
+                        .font(.typography(.bodySmall))
                         .foregroundColor(.textSecondary)
                         .multilineTextAlignment(.center)
                     
@@ -153,15 +153,15 @@ struct SadQuestionStyleTodoView: View {
                                 selectedTimeframe = timeframe
                             } label: {
                                 Text(timeframe)
-                                    .font(.system(size: 14, weight: .regular))
+                                    .font(.typography(.bodySmall))
                                     .foregroundColor(selectedTimeframe == timeframe ? .white : .textPrimary)
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 8)
-                                    .background(selectedTimeframe == timeframe ? Color(red: 0.404, green: 0.722, blue: 0.6) : Color.surfacePrimary)
-                                    .cornerRadius(8)
+                                    .padding(.horizontal, ViewSpacing.medium)
+                                    .padding(.vertical, ViewSpacing.small)
+                                    .background(selectedTimeframe == timeframe ? Color.surfaceBrandPrimary : Color.surfacePrimary)
+                                    .cornerRadius(CornerRadius.small.value)
                                     .overlay(
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .stroke(selectedTimeframe == timeframe ? Color(red: 0.404, green: 0.722, blue: 0.6) : Color.gray.opacity(0.3), lineWidth: 1)
+                                        RoundedRectangle(cornerRadius: CornerRadius.small.value)
+                                            .stroke(selectedTimeframe == timeframe ? Color.surfaceBrandPrimary : Color.gray.opacity(0.3), lineWidth: StrokeWidth.width100.value)
                                     )
                             }
                         }
@@ -180,7 +180,7 @@ struct SadQuestionStyleTodoView: View {
                 .foregroundColor(Color.white)
                 .padding(.horizontal, ViewSpacing.large)
                 .padding(.vertical, ViewSpacing.small)
-                .background(Color(red: 0.404, green: 0.722, blue: 0.6))
+                .background(Color.surfaceBrandPrimary)
                 .cornerRadius(CornerRadius.full.value)
                 .padding(.top, ViewSpacing.small)
             }
@@ -190,13 +190,13 @@ struct SadQuestionStyleTodoView: View {
                     showTodoList = true
                 }
                 .font(.typography(.bodyMedium))
-                .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
+                .foregroundColor(.textBrandPrimary)
                 .padding(.horizontal, ViewSpacing.large)
                 .padding(.vertical, ViewSpacing.small)
                 .background(Color.clear)
                 .overlay(
                     RoundedRectangle(cornerRadius: CornerRadius.full.value)
-                        .stroke(Color(red: 0.404, green: 0.722, blue: 0.6), lineWidth: 1)
+                        .stroke(Color.surfaceBrandPrimary, lineWidth: StrokeWidth.width100.value)
                 )
                 .padding(.top, ViewSpacing.small)
             }
@@ -207,7 +207,7 @@ struct SadQuestionStyleTodoView: View {
     private var todoListView: some View {
         VStack(spacing: ViewSpacing.medium) {
             Text("你的计划清单")
-                .font(.system(size: 18, weight: .bold))
+                .font(.typography(.bodyLarge))
                 .foregroundColor(.textPrimary)
                 .padding(.bottom, ViewSpacing.small)
             
@@ -224,12 +224,12 @@ struct SadQuestionStyleTodoView: View {
                         } label: {
                             HStack {
                                 Image(systemName: isCompleted ? "checkmark.circle.fill" : "circle")
-                                    .foregroundColor(isCompleted ? Color(red: 0.404, green: 0.722, blue: 0.6) : Color.gray)
-                                    .font(.system(size: 20))
-                                
-                                VStack(alignment: .leading, spacing: 4) {
+                                    .foregroundColor(isCompleted ? Color.textBrandPrimary : Color.gray)
+                                    .font(.typography(.bodyLarge))
+
+                                VStack(alignment: .leading, spacing: ViewSpacing.xsmall) {
                                     Text("\(todo.timeframe) - \(todo.text)")
-                                        .font(.system(size: 16, weight: .regular))
+                                        .font(.typography(.bodyMedium))
                                         .foregroundColor(.textPrimary)
                                         .multilineTextAlignment(.leading)
                                         .strikethrough(isCompleted)
@@ -243,7 +243,7 @@ struct SadQuestionStyleTodoView: View {
                             .cornerRadius(12)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
-                                    .stroke(isCompleted ? Color(red: 0.404, green: 0.722, blue: 0.6) : Color.gray.opacity(0.3), lineWidth: 1)
+                                    .stroke(isCompleted ? Color.surfaceBrandPrimary : Color.gray.opacity(0.3), lineWidth: StrokeWidth.width100.value)
                             )
                         }
                     }
@@ -263,11 +263,10 @@ struct SadQuestionStyleTodoView: View {
                 .font(.typography(.bodyMedium))
                 .foregroundColor(Color.white)
                 .frame(maxWidth: .infinity)
-                .padding(.horizontal, ViewSpacing.large)
+                .padding(.horizontal, 2*ViewSpacing.large)
                 .padding(.vertical, ViewSpacing.medium)
-                .background(Color(red: 0.404, green: 0.722, blue: 0.6))
+                .background(Color.surfaceBrandPrimary)
                 .cornerRadius(CornerRadius.full.value)
-                .padding(.horizontal, ViewSpacing.large)
                 .padding(.bottom, ViewSpacing.large)
             }
         }

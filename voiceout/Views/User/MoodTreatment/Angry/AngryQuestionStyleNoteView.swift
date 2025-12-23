@@ -53,8 +53,8 @@ struct AngryQuestionStyleNoteView: View {
                             .padding(.bottom, ViewSpacing.large)
                         Spacer()
                     }
-                    MusicButtonView()
-                        .padding(.leading, ViewSpacing.medium)
+//                    MusicButtonView()
+//                        .padding(.leading, ViewSpacing.medium)
                 }
                 .zIndex(10)
                 

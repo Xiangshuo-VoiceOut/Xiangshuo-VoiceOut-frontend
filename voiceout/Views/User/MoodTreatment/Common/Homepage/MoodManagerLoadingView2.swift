@@ -17,10 +17,21 @@ struct MoodManagerLoadingView2: View {
 
     @State private var isSaving = false
 
+    private var isComingSoonMood: Bool {
+        let mood = selectedImage.lowercased()
+        return ["happy", "calm", "angry", "envy"].contains(mood)
+    }
+    private var confirmButtonTitle: String {
+        isComingSoonMood ? "敬请期待" : "确定"
+    }
+    private var confirmButtonFont: Font {
+        isComingSoonMood ? Font.typography(.bodySmall) : Font.typography(.bodyMedium)
+    }
+    
     var body: some View {
         ZStack(alignment: .top) {
             Color.surfaceBrandTertiaryBlue.ignoresSafeArea()
-
+            
             VStack(spacing: 0) {
                 StickyHeaderView(
                     title: "疗愈云港",
@@ -45,7 +56,7 @@ struct MoodManagerLoadingView2: View {
                             .scaleEffect(x: -1, y: 1)
                             .offset(x: -ViewSpacing.medium)
                             .frame(width: 68)
-
+                        
                         BubbleScrollView(
                             texts: texts,
                             displayedCount: $displayedCount,
@@ -56,7 +67,7 @@ struct MoodManagerLoadingView2: View {
                         .foregroundColor(.grey500)
                         .safeImageShadow()
                         .environment(\.font, Font.typography(.bodyMedium))
-
+                        
                         Spacer()
                     }
                 }
@@ -65,6 +76,8 @@ struct MoodManagerLoadingView2: View {
                     RotatingWheelView2(selectedImage: $selectedImage)
                 }
                 
+                let isButtonDisabled = isSaving || isComingSoonMood
+                let titleColor: Color = isButtonDisabled ? .textLight : .textBrandPrimary
                 Button(action: submitMoodAndGo) {
                     ZStack {
                         Circle()
@@ -72,19 +85,20 @@ struct MoodManagerLoadingView2: View {
                             .frame(width: 72, height: 72)
                             .safeImageShadow()
                         VStack(spacing: 0) {
-                            Image("arrow-right").frame(width: 24, height: 24)
-                            Text(LocalizedStringKey("confirmation"))
-                                .font(Font.typography(.bodyMedium))
+                            Image(isButtonDisabled ? "arrow-right-gray" : "arrow-right")
+                                .frame(width: 24, height: 24)
+                            Text(confirmButtonTitle)
+                                .font(confirmButtonFont)
                                 .kerning(0.64)
                                 .multilineTextAlignment(.center)
-                                .foregroundColor(.textBrandPrimary)
+                                .foregroundColor(titleColor)
                         }
                     }
                     .overlay(Circle().stroke(Color.grey50, lineWidth: StrokeWidth.width200.value))
                 }
                 .padding(.bottom, ViewSpacing.medium)
                 .frame(width: 72, height: 72)
-                .disabled(isSaving)
+                .disabled(isButtonDisabled)
                 .opacity(isSaving ? 0.6 : 1.0)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

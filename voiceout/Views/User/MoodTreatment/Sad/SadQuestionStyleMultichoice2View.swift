@@ -37,7 +37,7 @@ struct SadQuestionStyleMultichoice2View: View {
 
             ZStack(alignment: .topLeading) {
                 backgroundView
-                musicButton
+//                musicButton
                 windmillBackground
                 mainContent(texts: texts)
             }
@@ -51,14 +51,14 @@ struct SadQuestionStyleMultichoice2View: View {
             .ignoresSafeArea(edges: .bottom)
     }
     
-    private var musicButton: some View {
-        Button { isPlayingMusic.toggle() } label: {
-            Image(isPlayingMusic ? "music" : "stop-music")
-                .resizable()
-                .frame(width: 48, height: 48)
-        }
-        .padding(.leading, ViewSpacing.medium)
-    }
+//    private var musicButton: some View {
+//        Button { isPlayingMusic.toggle() } label: {
+//            Image(isPlayingMusic ? "music" : "stop-music")
+//                .resizable()
+//                .frame(width: 48, height: 48)
+//        }
+//        .padding(.leading, ViewSpacing.medium)
+//    }
     
     private var windmillBackground: some View {
         VStack {
@@ -81,7 +81,7 @@ struct SadQuestionStyleMultichoice2View: View {
             
             Spacer()
         }
-        .padding(.top, 44)
+        .padding(.top, ViewSpacing.base+ViewSpacing.xlarge)
     }
     
     private func chatBubbleSection(texts: [String]) -> some View {
@@ -94,20 +94,19 @@ struct SadQuestionStyleMultichoice2View: View {
                 .offset(x: -ViewSpacing.medium)
                 .frame(width: 68)
 
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: ViewSpacing.betweenSmallAndBase) {
                 SadBubbleScrollView(
                     texts: texts,
                     displayedCount: $displayedCount,
                     bubbleHeight: $bubbleHeight,
-                    bubbleSpacing: 8,
+                    bubbleSpacing: ViewSpacing.small,
                     totalHeight: bubbleFrameHeight
                 )
             }
             .padding(0)
             .frame(width: 268, alignment: .bottomLeading)
             .frame(height: bubbleFrameHeight)
-            .shadow(color: Color(red: 0.36, green: 0.36, blue: 0.47).opacity(0.03), radius: 8.95, x: 5, y: 3)
-            .shadow(color: Color(red: 0.15, green: 0.15, blue: 0.25).opacity(0.08), radius: 5.75, x: 2, y: 4)
+            .imageShadow()
             .offset(y: -35.5)
 
             Spacer()
@@ -124,7 +123,7 @@ struct SadQuestionStyleMultichoice2View: View {
                 
                 confirmButton
             }
-            .padding(.top, 40)
+            .padding(.top, ViewSpacing.medium+ViewSpacing.large)
             .padding(.trailing, ViewSpacing.medium)
             .transition(.opacity)
         }
@@ -138,9 +137,9 @@ struct SadQuestionStyleMultichoice2View: View {
                     onContinue()
                 }
             } label: {
-                HStack(alignment: .center, spacing: 10) {
+                HStack(alignment: .center, spacing: ViewSpacing.betweenSmallAndBase) {
                     Text("我选好了")
-                        .font(Font.custom("Abel", size: 16))
+                        .font(Font.typography(.bodyMedium))
                         .kerning(0.64)
                         .multilineTextAlignment(.center)
                         .foregroundColor(selectedOptions.isEmpty ? Color.grey300 : Constants.textTextBrand)
@@ -172,14 +171,14 @@ struct SadQuestionStyleMultichoice2View: View {
     }
     
     private func optionButtonLabel(option: MoodTreatmentAnswerOption, isSelected: Bool) -> some View {
-        HStack(alignment: .center, spacing: 10) {
+        HStack(alignment: .center, spacing: ViewSpacing.betweenSmallAndBase) {
             Text(option.text)
-                .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                .font(Font.typography(.bodyMedium))
                 .multilineTextAlignment(.trailing)
-                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                .foregroundColor(.textPrimary)
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
+        .padding(.horizontal, ViewSpacing.medium)
+        .padding(.vertical, ViewSpacing.base)
         .frame(height: 46, alignment: .trailing)
         .background(
             isSelected ? LinearGradient(
@@ -255,8 +254,8 @@ private struct SadChatBubbleView: View {
                 .frame(width: Self.width)
 
             Text(text)
-                .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
-                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                .font(Font.typography(.bodyMedium))
+                .foregroundColor(.textPrimary)
                 .frame(width: 244, alignment: .topLeading)
                 .padding(.horizontal, ViewSpacing.base)
                 .padding(.vertical, ViewSpacing.medium)
@@ -265,7 +264,7 @@ private struct SadChatBubbleView: View {
                 Image("vector49")
                     .resizable()
                     .frame(width: 15, height: 14)
-                    .offset(x: ViewSpacing.large, y: 14)
+                    .offset(x: ViewSpacing.large, y: ViewSpacing.xxsmall+ViewSpacing.base)
             }
         }
     }

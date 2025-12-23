@@ -91,6 +91,8 @@
 		840B85542D7E560100638493 /* SelectPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B85532D7E560000638493 /* SelectPictureView.swift */; };
 		840B855A2D7E6DB900638493 /* CustomPhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B85592D7E6DB800638493 /* CustomPhotoPickerView.swift */; };
 		8427A8CE2E554CA40014067D /* MainHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427A8CD2E554CA40014067D /* MainHomepageView.swift */; };
+		842D05C52EFA47F400120045 /* UserIDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D05C42EFA47F400120045 /* UserIDService.swift */; };
+		842D05C72EFA480000120045 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D05C62EFA480000120045 /* UserManager.swift */; };
 		842FC91C2D2A275D00BA9242 /* FeedbackInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FC91B2D2A275B00BA9242 /* FeedbackInputView.swift */; };
 		8433CAA92C459AA800845A7A /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAA82C459AA800845A7A /* CommentCardView.swift */; };
 		8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */; };
@@ -349,6 +351,8 @@
 		840B85532D7E560000638493 /* SelectPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPictureView.swift; sourceTree = "<group>"; };
 		840B85592D7E6DB800638493 /* CustomPhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoPickerView.swift; sourceTree = "<group>"; };
 		8427A8CD2E554CA40014067D /* MainHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomepageView.swift; sourceTree = "<group>"; };
+		842D05C42EFA47F400120045 /* UserIDService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIDService.swift; sourceTree = "<group>"; };
+		842D05C62EFA480000120045 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		842FC91B2D2A275B00BA9242 /* FeedbackInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackInputView.swift; sourceTree = "<group>"; };
 		8433CAA82C459AA800845A7A /* CommentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCardView.swift; sourceTree = "<group>"; };
 		8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardViewModel.swift; sourceTree = "<group>"; };
@@ -798,6 +802,7 @@
 		84AFFECC2D973EEB00F90680 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				842D05C62EFA480000120045 /* UserManager.swift */,
 				84AFFECA2D973EDA00F90680 /* MoodManagerVM.swift */,
 				844942FD2DC17D1800C8E740 /* MoodManagerImageUploader.swift */,
 				840B85512D7BEA9300638493 /* MoodManagerAudioRecorderVM.swift */,
@@ -980,6 +985,7 @@
 		D2071D442BAA8CD00040B0AE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				842D05C42EFA47F400120045 /* UserIDService.swift */,
 				84AFFEC82D94E96700F90680 /* MoodManagerService.swift */,
 				840A6EDE2E72021500D8235C /* MoodTreatmentService.swift */,
 				84CB40032D585676004ED7DE /* FAQService.swift */,
@@ -1338,6 +1344,7 @@
 				B8D472282C1E40BD00D6716A /* LoginWebService.swift in Sources */,
 				B8D472292C1E40BD00D6716A /* ResetPasswordWebService.swift in Sources */,
 				689489702CC8516B000FEA22 /* ConsultServiceView.swift in Sources */,
+				842D05C72EFA480000120045 /* UserManager.swift in Sources */,
 				D2D6CD782BF8E22300DD7688 /* LegalDialogContent.swift in Sources */,
 				D2D6CD7C2BF8FE3400DD7688 /* DialogView.swift in Sources */,
 				8497B51D2CE825A0006D6050 /* SegementedControlButtonView.swift in Sources */,
@@ -1488,6 +1495,7 @@
 				8447D9F42EBC06FF008B4DCE /* ScareQuestionStyleBreatheView.swift in Sources */,
 				8433CAD22C45A0DD00845A7A /* ClinicianCardView.swift in Sources */,
 				84F0FD5F2C48D85A00E2DB79 /* StarRatingWithIntView.swift in Sources */,
+				842D05C52EFA47F400120045 /* UserIDService.swift in Sources */,
 				84B100E02CF1CB32003C6C20 /* TherapistScheduleViewModel.swift in Sources */,
 				84F0FD592C48D29200E2DB79 /* StarRatingWithDoubleView.swift in Sources */,
 				D21660CD2C339A49008248DE /* VerificationCodeButton.swift in Sources */,

@@ -61,21 +61,21 @@ struct SadQuestionStyleInteractiveDialogueView: View {
                             Image("cloud-chat")
                                 .resizable()
                                 .frame(width: 168, height: 120)
-                                .padding(.vertical, 15.569)
-                                .padding(.horizontal, 0.842)
+                                .padding(.vertical, ViewSpacing.medium)
+                                .padding(.horizontal, ViewSpacing.xxxsmall)
                             Spacer()
                         }
                         
-                        Button {
-                            isPlayingMusic.toggle()
-                        } label: {
-                            Image(isPlayingMusic ? "music" : "stop-music")
-                                .resizable()
-                                .frame(width: 48, height: 48)
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+//                        Button {
+//                            isPlayingMusic.toggle()
+//                        } label: {
+//                            Image(isPlayingMusic ? "music" : "stop-music")
+//                                .resizable()
+//                                .frame(width: 48, height: 48)
+//                        }
+//                        .padding(.leading, ViewSpacing.medium)
                     }
-                    .padding(.bottom, 24)
+                    .padding(.bottom, ViewSpacing.large)
 
                     if showCurrentText {
                         VStack(spacing: 0) {
@@ -84,9 +84,9 @@ struct SadQuestionStyleInteractiveDialogueView: View {
                                     textDone = true
                                 }
                                 .id(currentTextIndex)
-                                .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                                .font(.typography(.bodyMedium))
                                 .multilineTextAlignment(.center)
-                                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                                .foregroundColor(.textPrimary)
                                 .frame(width: 358, alignment: .top)
                             }
                             .frame(minHeight: 22.4 * 2, alignment: .top)
@@ -101,9 +101,9 @@ struct SadQuestionStyleInteractiveDialogueView: View {
                                             introDone = true
                                         }
                                         .id("intro-\(currentTextIndex)")
-                                        .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                                        .font(.typography(.bodyMedium))
                                         .multilineTextAlignment(.center)
-                                        .foregroundColor(Color(red: 0.4, green: 0.72, blue: 0.6))
+                                        .foregroundColor(.textBrandPrimary)
                                         .fixedSize(horizontal: false, vertical: true)
                                         .frame(width: 358, alignment: .top)
                                     }
@@ -131,13 +131,13 @@ struct SadQuestionStyleInteractiveDialogueView: View {
                             .frame(width: 114, height: 44)
                             .background(Color.surfacePrimary)
                             .cornerRadius(CornerRadius.full.value)
-                            .foregroundColor(Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0))
+                            .foregroundColor(.textBrandPrimary)
                             .font(Font.typography(.bodyMedium))
                             .kerning(0.64)
                             .multilineTextAlignment(.center)
                             Spacer()
                         }
-                        .padding(.bottom, 53)
+                        .padding(.bottom,ViewSpacing.xlarge+ViewSpacing.medium+ViewSpacing.xsmall+ViewSpacing.xxxsmall )
                     }
                 }
             }

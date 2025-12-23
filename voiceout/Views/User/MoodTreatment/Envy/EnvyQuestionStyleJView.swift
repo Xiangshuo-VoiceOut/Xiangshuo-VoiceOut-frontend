@@ -30,10 +30,10 @@ struct EnvyQuestionStyleJView: View {
                                 .padding(.bottom, ViewSpacing.large)
                             Spacer()
                         }
-                        HStack {
-                            MusicButtonView()
-                            Spacer()
-                        }
+//                        HStack {
+//                            MusicButtonView()
+//                            Spacer()
+//                        }
                     }
                     .padding(.leading, ViewSpacing.medium)
                     

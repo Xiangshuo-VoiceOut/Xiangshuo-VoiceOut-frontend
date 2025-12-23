@@ -28,7 +28,7 @@ struct ChatBubbleView: View {
             Image("vector49")
                 .resizable()
                 .frame(width: 15, height: 14)
-                .offset(x: ViewSpacing.large, y: 14)
+                .offset(x: ViewSpacing.large, y: ViewSpacing.base+ViewSpacing.xxsmall)
         }
     }
 }

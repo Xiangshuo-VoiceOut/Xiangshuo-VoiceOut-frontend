@@ -36,8 +36,8 @@ struct EnvyQuestionStyleTypingView: View {
                             Spacer()
                         }
                         
-                        MusicButtonView()
-                            .padding(.leading, ViewSpacing.medium)
+//                        MusicButtonView()
+//                            .padding(.leading, ViewSpacing.medium)
                     }
 
                     VStack(spacing: ViewSpacing.small) {

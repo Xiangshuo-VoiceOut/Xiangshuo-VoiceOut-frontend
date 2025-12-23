@@ -50,10 +50,10 @@ struct ScareQuestionStyleBubble1View: View {
                         Spacer()
                     }
                     
-                    HStack {
-                        MusicButtonView()
-                        Spacer()
-                    }
+//                    HStack {
+//                        MusicButtonView()
+//                        Spacer()
+//                    }
                 }
                 .padding(.leading, ViewSpacing.medium)
                 

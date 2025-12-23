@@ -14,6 +14,12 @@ struct RotatingWheelView2: View {
     
     private let imageNames = ["happy", "scare", "sad", "guilt", "calm", "envy", "anxiety", "angry"]
     private let numberOfImages = 8
+    private var comingSoonMoods: [String] {
+        ["happy", "calm", "angry", "envy"]
+    }
+    private func moodLabelColor(for mood: String) -> Color {
+        comingSoonMoods.contains(mood.lowercased()) ? .textLight : .surfaceBrandPrimary
+    }
 
     var body: some View {
         GeometryReader { geometry in
@@ -43,15 +49,13 @@ struct RotatingWheelView2: View {
         VStack(alignment: .center, spacing: 2 * ViewSpacing.large) {
             Text(imageToChinese[imageForTargetAngle(225)] ?? "")
                 .font(Font.typography(.bodyMedium))
-                .foregroundColor(.surfaceBrandPrimary)
-            
+                .foregroundColor(moodLabelColor(for: imageForTargetAngle(225)))
             Text(imageToChinese[imageForTargetAngle(180)] ?? "")
                 .font(Font.typography(.headerSmall))
-                .foregroundColor(.surfaceBrandPrimary)
-            
+                .foregroundColor(moodLabelColor(for: imageForTargetAngle(180)))
             Text(imageToChinese[imageForTargetAngle(135)] ?? "")
                 .font(Font.typography(.bodyMedium))
-                .foregroundColor(.surfaceBrandPrimary)
+                .foregroundColor(moodLabelColor(for: imageForTargetAngle(135)))
         }
         .padding(.top,3 * ViewSpacing.base)
         .padding(.leading, 16 * scale)

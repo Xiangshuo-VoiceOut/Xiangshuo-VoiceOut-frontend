@@ -63,30 +63,30 @@ struct SadQuestionStyleFillInBlankView: View {
                             Image("cloud-chat")
                                 .resizable()
                                 .frame(width: 168, height: 120)
-                                .padding(.vertical, 15.569)
-                                .padding(.horizontal, 0.842)
+                                .padding(.vertical, ViewSpacing.medium)
+                                .padding(.horizontal, ViewSpacing.xxxsmall)
                             Spacer()
                         }
                         
-                        Button {
-                            isPlayingMusic.toggle()
-                        } label: {
-                            Image(isPlayingMusic ? "music" : "stop-music")
-                                .resizable()
-                                .frame(width: 48, height: 48)
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+//                        Button {
+//                            isPlayingMusic.toggle()
+//                        } label: {
+//                            Image(isPlayingMusic ? "music" : "stop-music")
+//                                .resizable()
+//                                .frame(width: 48, height: 48)
+//                        }
+//                        .padding(.leading, ViewSpacing.medium)
                     }
-                    .padding(.bottom, 24)
+                    .padding(ViewSpacing.large)
 
                     if showCurrentText {
                         VStack(spacing: 0) {
                             VStack {
                                 Text(currentText)
                                     .id(currentTextIndex)
-                                    .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                                    .font(.typography(.bodyMedium))
                                     .multilineTextAlignment(.center)
-                                    .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                                    .foregroundColor(.textPrimary)
                                     .frame(width: 358, alignment: .top)
                                     .onAppear {
                                         textDone = true
@@ -104,9 +104,9 @@ struct SadQuestionStyleFillInBlankView: View {
                                             introDone = true
                                         }
                                         .id("intro-\(currentTextIndex)")
-                                        .font(Font.custom("Alibaba PuHuiTi 3.0", size: 16))
+                                        .font(.typography(.bodyMedium))
                                         .multilineTextAlignment(.center)
-                                        .foregroundColor(Color(red: 0.4, green: 0.72, blue: 0.6))
+                                        .foregroundColor(.textBrandPrimary)
                                         .fixedSize(horizontal: false, vertical: true)
                                         .frame(width: 358, alignment: .top)
                                     }
@@ -136,7 +136,7 @@ struct SadQuestionStyleFillInBlankView: View {
                                     .font(Font.typography(.bodyMedium))
                                     .kerning(0.64)
                                     .multilineTextAlignment(.center)
-                                    .padding(.bottom, 68)
+                                    .padding(.bottom, ViewSpacing.xsmall+2*ViewSpacing.xlarge)
                                 }
                             } else {
                                 if textDone {
@@ -161,7 +161,7 @@ struct SadQuestionStyleFillInBlankView: View {
                                     .font(Font.typography(.bodyMedium))
                                     .kerning(0.64)
                                     .multilineTextAlignment(.center)
-                                    .padding(.bottom, 68)
+                                    .padding(.bottom, ViewSpacing.xsmall+2*ViewSpacing.xlarge)
                                 }
                             }
                         }
@@ -180,36 +180,35 @@ struct SadQuestionStyleFillInBlankView: View {
         }
     }
     
-    
     private var fillInBlankArea: some View {
         ZStack(alignment: .topLeading) {
             TextEditor(text: $userInput)
-                .font(Font.custom("Alibaba PuHuiTi 3.0", size: 18))
-                .foregroundColor(Color(red: 0.29, green: 0.27, blue: 0.31))
+                .font(.typography(.bodyLarge))
+                .foregroundColor(Color.surfaceBrandPrimary)
                 .tint(.black)
                 .focused($isTextFieldFocused)
                 .scrollContentBackground(.hidden)
                 .frame(width: 294, height: 241, alignment: .topLeading)
-                .padding(.top, 25)
-                .padding(.leading, 16)
-                .padding(.trailing, 11)
+                .padding(.top, ViewSpacing.large)
+                .padding(.leading, ViewSpacing.medium)
+                .padding(.trailing, ViewSpacing.betweenSmallAndBase+ViewSpacing.xxxsmall)
                 .overlay(
                     Group {
                         if userInput.isEmpty {
                             Text(" 请填写")
-                                .font(Font.custom("Alibaba PuHuiTi 3.0", size: 18))
-                                .foregroundColor(Color(red: 0.79, green: 0.77, blue: 0.82))
+                                .font(.typography(.bodyLarge))
+                                .foregroundColor(.textLight)
                                 .allowsHitTesting(false)
-                                .padding(.top, 25 + 8)
-                                .padding(.leading, 16 + 5)
+                                .padding(.top, ViewSpacing.xxxsmall+ViewSpacing.xlarge)
+                                .padding(.leading, ViewSpacing.xxxsmall+2*ViewSpacing.betweenSmallAndBase)
                         }
                     },
                     alignment: .topLeading
                 )
         }
-        .frame(width: 294 + 16 + 11, height: 241, alignment: .topLeading)
-        .background(Color(red: 0.98, green: 0.99, blue: 1))
-        .cornerRadius(16)
+        .frame(width: 321, height: 241, alignment: .topLeading)
+        .background(Color.surfacePrimary)
+        .cornerRadius(CornerRadius.medium.value)
         .clipped()
     }
     

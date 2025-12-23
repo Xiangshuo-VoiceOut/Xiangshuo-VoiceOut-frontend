@@ -18,8 +18,10 @@ struct MainHomepageView: View {
     @State private var isNight = Date().currentHour < 6 || Date().currentHour >= 18
     @State private var isChatMode = false
     @EnvironmentObject var router: RouterModel
+    @EnvironmentObject var userManager: UserManager
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
     let iconItems: [(image: String, label: String, route: Route)] = [
-        ("chart-histogram 1", "云报", .moodCalendar),
+        ("chart-histogram 2", "云报", .moodCalendar),
         ("love-time", "压力缓解", .stressReliefEntry)
     ]
     
@@ -30,6 +32,19 @@ struct MainHomepageView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
             mainHomepageContentView
+        }
+        .overlay(alignment: .topLeading) {
+            Text("ID: \(userManager.displayIDForUI)")
+                .font(Font.typography(.bodyMedium))
+                .kerning(0.64)
+                .foregroundColor(.black)
+                .padding(.leading, ViewSpacing.large)
+                .padding(.top, safeAreaInsets.top + ViewSpacing.base)
+        }
+        .onAppear {
+            Task {
+                await userManager.resolveUserIDIfNeeded()
+            }
         }
     }
     
@@ -43,7 +58,6 @@ struct MainHomepageView: View {
                         .padding(.leading, 2*ViewSpacing.xlarge+ViewSpacing.betweenSmallAndBase)
                         .padding(.top, 14*ViewSpacing.betweenSmallAndBase)
                 }
-                
                 VStack(spacing: ViewSpacing.medium) {
                     ForEach(iconItems, id: \.image) { item in
                         Button {
@@ -54,6 +68,8 @@ struct MainHomepageView: View {
                                     Image("message-frame")
                                         .frame(width: 48, height: 48)
                                     Image(item.image)
+                                        .resizable()
+                                        .scaledToFill()
                                         .frame(width: 24, height: 24)
                                 }
                                 Text(item.label)
@@ -77,20 +93,20 @@ struct MainHomepageView: View {
                     .opacity(0.4)
                     .offset(x: ViewSpacing.xxxsmall+ViewSpacing.xxsmall, y: ViewSpacing.small)
                     .allowsHitTesting(false)
-
+                
                 Image("polygon4")
                     .resizable()
                     .frame(width: 25, height: 22)
                     .offset(x: -5*ViewSpacing.base, y: ViewSpacing.xxsmall+ViewSpacing.large)
                     .opacity(0.4)
                     .allowsHitTesting(false)
-
+                
                 VStack(alignment: .leading, spacing: ViewSpacing.xsmall) {
                     Text("今天心情还好吗？我在这听你说～")
                         .font(Font.typography(.bodyMedium))
                         .foregroundColor(.textSecondary)
                         .padding(.leading, ViewSpacing.large+ViewSpacing.xsmall+ViewSpacing.xxsmall)
-
+                    
                     Button {
                         router.navigateTo(.moodManagerLoading2)
                     } label: {
@@ -113,7 +129,7 @@ struct MainHomepageView: View {
                 .frame(width: 326, height: 108)
                 .background(Color.white)
                 .cornerRadius(28)
-
+                
                 Image("polygon4")
                     .resizable()
                     .frame(width: 29, height: 29)
@@ -143,11 +159,16 @@ struct MainHomepageView: View {
         }
         .navigationBarHidden(true)
     }
+    
+    private func sendUserIDToBackend(id: String) {
+        print("Send ID: \(id)")
+    }
 }
 
 #Preview {
     NavigationStack {
         MainHomepageView()
             .environmentObject(RouterModel())
+            .environmentObject(UserManager())
     }
 }

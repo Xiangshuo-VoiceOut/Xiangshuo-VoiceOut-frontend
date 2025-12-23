@@ -66,14 +66,14 @@ struct SadQuestionStyleMultichoiceView: View {
                             Spacer()
                         }
                         
-                        Button {
-                            isPlayingMusic.toggle()
-                        } label: {
-                            Image(isPlayingMusic ? "music" : "stop-music")
-                                .resizable()
-                                .frame(width: 48, height: 48)
-                        }
-                        .padding(.leading, ViewSpacing.medium)
+//                        Button {
+//                            isPlayingMusic.toggle()
+//                        } label: {
+//                            Image(isPlayingMusic ? "music" : "stop-music")
+//                                .resizable()
+//                                .frame(width: 48, height: 48)
+//                        }
+//                        .padding(.leading, ViewSpacing.medium)
                     }
 
                     VStack(spacing: ViewSpacing.large) {
@@ -93,8 +93,8 @@ struct SadQuestionStyleMultichoiceView: View {
                             TypewriterText(fullText: currentIntroText, characterDelay: typingInterval) {
                             }
                             .id("intro-\(currentTextIndex)")
-                            .font(.system(size: 16, weight: .regular))
-                            .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
+                            .font(Font.typography(.bodyMedium))
+                            .foregroundColor(.textBrandPrimary)
                             .multilineTextAlignment(.center)
                             .frame(width: 252, alignment: .center)
                             
@@ -160,11 +160,11 @@ struct SadQuestionStyleMultichoiceView: View {
                 } label: {
                     HStack {
                         Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                            .foregroundColor(isSelected ? Color(red: 0.404, green: 0.722, blue: 0.6) : Color.gray)
-                            .font(.system(size: 20))
-                        
+                            .foregroundColor(isSelected ? Color.surfaceBrandPrimary : Color.gray)
+                            .font(.typography(.bodyLarge))
+
                         Text(option.text)
-                            .font(.system(size: 14, weight: .regular))
+                            .font(Font.typography(.bodySmall))
                             .foregroundColor(.grey500)
                             .multilineTextAlignment(.leading)
                             .lineLimit(nil)
@@ -178,7 +178,7 @@ struct SadQuestionStyleMultichoiceView: View {
                     .cornerRadius(12)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(isSelected ? Color(red: 0.404, green: 0.722, blue: 0.6) : Color.gray.opacity(0.3), lineWidth: 1)
+                            .stroke(isSelected ? Color.surfaceBrandPrimary : Color.gray.opacity(0.3), lineWidth: StrokeWidth.width100.value)
                     )
                 }
             }
@@ -193,7 +193,7 @@ struct SadQuestionStyleMultichoiceView: View {
                 .foregroundColor(Color.white)
                 .padding(.horizontal, ViewSpacing.medium)
                 .padding(.vertical, ViewSpacing.small)
-                .background(Color(red: 0.404, green: 0.722, blue: 0.6))
+                .background(Color.surfaceBrandPrimary)
                 .cornerRadius(CornerRadius.full.value)
                 .padding(.top, ViewSpacing.small)
             }
@@ -206,10 +206,9 @@ struct SadQuestionStyleMultichoiceView: View {
                 HStack {
                     Image(systemName: "circle")
                         .foregroundColor(Color.gray)
-                        .font(.system(size: 20))
-                    
+                        .font(.typography(.bodyLarge))
                     TextField("一个新技能", text: $customInput1)
-                        .font(.system(size: 14, weight: .regular))
+                        .font(.typography(.bodySmall))
                         .foregroundColor(.grey500)
                         .focused($isTextFieldFocused)
                     
@@ -219,8 +218,8 @@ struct SadQuestionStyleMultichoiceView: View {
                             customInput1 = ""
                         } label: {
                             Image(systemName: "plus.circle.fill")
-                                .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
-                                .font(.system(size: 20))
+                                .foregroundColor(.textBrandPrimary)
+                                .font(.typography(.bodyLarge))
                         }
                     }
                 }
@@ -230,7 +229,7 @@ struct SadQuestionStyleMultichoiceView: View {
                 .cornerRadius(12)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                        .stroke(Color.gray.opacity(0.3), lineWidth: StrokeWidth.width100.value)
                 )
             }
             
@@ -238,10 +237,9 @@ struct SadQuestionStyleMultichoiceView: View {
                 HStack {
                     Image(systemName: "circle")
                         .foregroundColor(Color.gray)
-                        .font(.system(size: 20))
-                    
+                        .font(.typography(.bodyLarge))
                     TextField("其他", text: $customInput2)
-                        .font(.system(size: 14, weight: .regular))
+                        .font(.typography(.bodySmall))
                         .foregroundColor(.grey500)
                         .focused($isTextFieldFocused)
                     
@@ -251,8 +249,8 @@ struct SadQuestionStyleMultichoiceView: View {
                             customInput2 = ""
                         } label: {
                             Image(systemName: "plus.circle.fill")
-                                .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
-                                .font(.system(size: 20))
+                                .foregroundColor(.textBrandPrimary)
+                                .font(.typography(.bodyLarge))
                         }
                     }
                 }
@@ -262,7 +260,7 @@ struct SadQuestionStyleMultichoiceView: View {
                 .cornerRadius(12)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                        .stroke(Color.gray.opacity(0.3), lineWidth: StrokeWidth.width100.value)
                 )
             }
             
@@ -277,11 +275,10 @@ struct SadQuestionStyleMultichoiceView: View {
                 } label: {
                     HStack {
                         Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                            .foregroundColor(isSelected ? Color(red: 0.404, green: 0.722, blue: 0.6) : Color.gray)
-                            .font(.system(size: 20))
-                        
+                            .foregroundColor(isSelected ? Color.textBrandPrimary : Color.gray)
+                            .font(.typography(.bodyLarge))
                         Text(customOption)
-                            .font(.system(size: 14, weight: .regular))
+                            .font(.typography(.bodySmall))
                             .foregroundColor(.grey500)
                             .multilineTextAlignment(.leading)
                             .lineLimit(nil)
@@ -295,7 +292,7 @@ struct SadQuestionStyleMultichoiceView: View {
                         } label: {
                             Image(systemName: "minus.circle.fill")
                                 .foregroundColor(Color.red)
-                                .font(.system(size: 16))
+                                .font(.typography(.bodyMedium))
                         }
                     }
                     .padding(.horizontal, ViewSpacing.medium)
@@ -304,7 +301,7 @@ struct SadQuestionStyleMultichoiceView: View {
                     .cornerRadius(12)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(isSelected ? Color(red: 0.404, green: 0.722, blue: 0.6) : Color.gray.opacity(0.3), lineWidth: 1)
+                            .stroke(isSelected ? Color.textBrandPrimary : Color.gray.opacity(0.3), lineWidth: StrokeWidth.width100.value)
                     )
                 }
             }
@@ -314,18 +311,18 @@ struct SadQuestionStyleMultichoiceView: View {
     private var selectedOptionsView: some View {
         VStack(spacing: ViewSpacing.small) {
             Text("我学了：")
-                .font(.system(size: 16, weight: .regular))
-                .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
+                .font(.typography(.bodyMedium))
+                .foregroundColor(.textBrandPrimary)
                 .multilineTextAlignment(.center)
             
             ForEach(question.options.filter { $0.exclusive != true && selectedOptions.contains($0.id) }) { option in
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
-                        .font(.system(size: 16))
-                    
+                        .foregroundColor(.textBrandPrimary)
+                        .font(.typography(.bodyMedium))
+
                     Text(option.text)
-                        .font(.system(size: 14, weight: .regular))
+                        .font(.typography(.bodySmall))
                         .foregroundColor(.grey500)
                         .multilineTextAlignment(.leading)
                         .lineLimit(nil)
@@ -339,18 +336,18 @@ struct SadQuestionStyleMultichoiceView: View {
                 .cornerRadius(12)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color(red: 0.404, green: 0.722, blue: 0.6), lineWidth: 1)
+                        .stroke(Color.textBrandPrimary, lineWidth: StrokeWidth.width100.value)
                 )
             }
             
             ForEach(customOptions.filter { selectedCustomOptions.contains($0) }, id: \.self) { customOption in
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(Color(red: 0.404, green: 0.722, blue: 0.6))
-                        .font(.system(size: 16))
-                    
+                        .foregroundColor(.textBrandPrimary)
+                        .font(.typography(.bodyMedium))
+
                     Text(customOption)
-                        .font(.system(size: 14, weight: .regular))
+                        .font(.typography(.bodySmall))
                         .foregroundColor(.grey500)
                         .multilineTextAlignment(.leading)
                         .lineLimit(nil)
@@ -364,7 +361,7 @@ struct SadQuestionStyleMultichoiceView: View {
                 .cornerRadius(12)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color(red: 0.404, green: 0.722, blue: 0.6), lineWidth: 1)
+                        .stroke(Color.textBrandPrimary, lineWidth: StrokeWidth.width100.value)
                 )
             }
         }

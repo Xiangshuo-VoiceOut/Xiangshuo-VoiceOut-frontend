@@ -1,5 +1,5 @@
 //
-//  ScareQuestionStyleBottleView.swift
+//  CommonQuestionStyleBottleView.swift
 //  voiceout
 //
 //  Created by Yujia Yang on 9/19/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ScareQuestionStyleBottleView: View {
+struct CommonQuestionStyleBottleView: View {
     let question: MoodTreatmentQuestion
     let onSelect: (MoodTreatmentAnswerOption) -> Void
     
@@ -201,7 +201,7 @@ struct ScareQuestionStyleBottleView: View {
         customViewName: nil,
         routine: "scare"
     )
-    return ScareQuestionStyleBottleView(question: q, onSelect: { _ in })
+    return CommonQuestionStyleBottleView(question: q, onSelect: { _ in })
         .environmentObject(RouterModel())
 }
 

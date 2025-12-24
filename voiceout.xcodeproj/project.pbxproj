@@ -16,13 +16,13 @@
 		689489742CC8533C000FEA22 /* CareerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689489732CC8533C000FEA22 /* CareerView.swift */; };
 		82C441132EE793BB00B71BA2 /* SadQuestionStyleFillInBlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441072EE793BB00B71BA2 /* SadQuestionStyleFillInBlankView.swift */; };
 		82C441142EE793BB00B71BA2 /* AnxietyHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C440FC2EE793BB00B71BA2 /* AnxietyHomepageView.swift */; };
-		82C441152EE793BB00B71BA2 /* SadQuestionStyleMatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441092EE793BB00B71BA2 /* SadQuestionStyleMatchingView.swift */; };
-		82C441162EE793BB00B71BA2 /* SadQuestionStyleSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4410F2EE793BB00B71BA2 /* SadQuestionStyleSliderView.swift */; };
-		82C441172EE793BB00B71BA2 /* SadQuestionStyleInteractiveDialogueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441082EE793BB00B71BA2 /* SadQuestionStyleInteractiveDialogueView.swift */; };
+		82C441152EE793BB00B71BA2 /* CommonQuestionStyleMatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441092EE793BB00B71BA2 /* CommonQuestionStyleMatchingView.swift */; };
+		82C441162EE793BB00B71BA2 /* CommonQuestionStyleSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4410F2EE793BB00B71BA2 /* CommonQuestionStyleSliderView.swift */; };
+		82C441172EE793BB00B71BA2 /* CommonQuestionStyleInteractiveDialogueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441082EE793BB00B71BA2 /* CommonQuestionStyleInteractiveDialogueView.swift */; };
 		82C441182EE793BB00B71BA2 /* SadQuestionPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441042EE793BB00B71BA2 /* SadQuestionPageView.swift */; };
-		82C441192EE793BB00B71BA2 /* AnxietyQuestionStyleRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441002EE793BB00B71BA2 /* AnxietyQuestionStyleRankView.swift */; };
+		82C441192EE793BB00B71BA2 /* CommonQuestionStyleRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441002EE793BB00B71BA2 /* CommonQuestionStyleRankView.swift */; };
 		82C4411A2EE793BB00B71BA2 /* SadQuestionStyleMultichoice2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4410A2EE793BB00B71BA2 /* SadQuestionStyleMultichoice2View.swift */; };
-		82C4411B2EE793BB00B71BA2 /* SadQuestionStyleUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441112EE793BB00B71BA2 /* SadQuestionStyleUploadView.swift */; };
+		82C4411B2EE793BB00B71BA2 /* CommonQuestionStyleUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441112EE793BB00B71BA2 /* CommonQuestionStyleUploadView.swift */; };
 		82C4411C2EE793BB00B71BA2 /* SadQuestionStyleTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441102EE793BB00B71BA2 /* SadQuestionStyleTodoView.swift */; };
 		82C4411D2EE793BB00B71BA2 /* AnxietyQuestionStyleSinglechoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441012EE793BB00B71BA2 /* AnxietyQuestionStyleSinglechoiceView.swift */; };
 		82C4411E2EE793BB00B71BA2 /* SadHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441032EE793BB00B71BA2 /* SadHomepageView.swift */; };
@@ -111,7 +111,7 @@
 		8447D9F62EBC0706008B4DCE /* Scare478BreatheGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447D9F52EBC0706008B4DCE /* Scare478BreatheGuideView.swift */; };
 		8447D9F82EBC0710008B4DCE /* BoxBreathingGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447D9F72EBC0710008B4DCE /* BoxBreathingGuideView.swift */; };
 		8447D9FA2EBC0718008B4DCE /* ScareQuestionStyleMoodWritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447D9F92EBC0718008B4DCE /* ScareQuestionStyleMoodWritingView.swift */; };
-		8447D9FC2EBC0721008B4DCE /* ScareQuestionStyleBottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447D9FB2EBC0721008B4DCE /* ScareQuestionStyleBottleView.swift */; };
+		8447D9FC2EBC0721008B4DCE /* CommonQuestionStyleBottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447D9FB2EBC0721008B4DCE /* CommonQuestionStyleBottleView.swift */; };
 		8447D9FE2EBC0729008B4DCE /* ScareQuestionStyleBubble1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447D9FD2EBC0729008B4DCE /* ScareQuestionStyleBubble1View.swift */; };
 		8447DA002EBC0731008B4DCE /* ScareQuestionStyleBubble2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447D9FF2EBC0731008B4DCE /* ScareQuestionStyleBubble2View.swift */; };
 		8447DA022EBC0738008B4DCE /* ScareQuestionStyleTypingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447DA012EBC0738008B4DCE /* ScareQuestionStyleTypingView.swift */; };
@@ -205,6 +205,8 @@
 		B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845452C28BC82008C0D80 /* Dropdown.swift */; };
 		B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845472C29BB09008C0D80 /* DropdownList.swift */; };
 		B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */; };
+		C0E42DB52EFB049D00D95AF6 /* CommonQuestionStyleFillInBlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E42DB42EFB049D00D95AF6 /* CommonQuestionStyleFillInBlankView.swift */; };
+		C0E42DB72EFB05DE00D95AF6 /* CommonQuestionStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E42DB62EFB05DA00D95AF6 /* CommonQuestionStyles.swift */; };
 		C0FD51EF2EF529CF00D05D02 /* relax.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C0FD51EE2EF529CF00D05D02 /* relax.mp4 */; };
 		D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */; };
 		D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0D2BA62F300040B0AE /* ContentView.swift */; };
@@ -280,23 +282,23 @@
 		82C440FD2EE793BB00B71BA2 /* AnxietyQuestionPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyQuestionPageView.swift; sourceTree = "<group>"; };
 		82C440FE2EE793BB00B71BA2 /* AnxietyQuestionStyleMatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyQuestionStyleMatchingView.swift; sourceTree = "<group>"; };
 		82C440FF2EE793BB00B71BA2 /* AnxietyQuestionStyleMultichoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyQuestionStyleMultichoiceView.swift; sourceTree = "<group>"; };
-		82C441002EE793BB00B71BA2 /* AnxietyQuestionStyleRankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyQuestionStyleRankView.swift; sourceTree = "<group>"; };
+		82C441002EE793BB00B71BA2 /* CommonQuestionStyleRankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionStyleRankView.swift; sourceTree = "<group>"; };
 		82C441012EE793BB00B71BA2 /* AnxietyQuestionStyleSinglechoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyQuestionStyleSinglechoiceView.swift; sourceTree = "<group>"; };
 		82C441032EE793BB00B71BA2 /* SadHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadHomepageView.swift; sourceTree = "<group>"; };
 		82C441042EE793BB00B71BA2 /* SadQuestionPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionPageView.swift; sourceTree = "<group>"; };
 		82C441052EE793BB00B71BA2 /* SadQuestionStyleEmotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleEmotionView.swift; sourceTree = "<group>"; };
 		82C441062EE793BB00B71BA2 /* SadQuestionStyleEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleEndView.swift; sourceTree = "<group>"; };
 		82C441072EE793BB00B71BA2 /* SadQuestionStyleFillInBlankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleFillInBlankView.swift; sourceTree = "<group>"; };
-		82C441082EE793BB00B71BA2 /* SadQuestionStyleInteractiveDialogueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleInteractiveDialogueView.swift; sourceTree = "<group>"; };
-		82C441092EE793BB00B71BA2 /* SadQuestionStyleMatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleMatchingView.swift; sourceTree = "<group>"; };
+		82C441082EE793BB00B71BA2 /* CommonQuestionStyleInteractiveDialogueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionStyleInteractiveDialogueView.swift; sourceTree = "<group>"; };
+		82C441092EE793BB00B71BA2 /* CommonQuestionStyleMatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionStyleMatchingView.swift; sourceTree = "<group>"; };
 		82C4410A2EE793BB00B71BA2 /* SadQuestionStyleMultichoice2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleMultichoice2View.swift; sourceTree = "<group>"; };
 		82C4410B2EE793BB00B71BA2 /* SadQuestionStyleMultichoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleMultichoiceView.swift; sourceTree = "<group>"; };
 		82C4410C2EE793BB00B71BA2 /* SadQuestionStyleNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleNotesView.swift; sourceTree = "<group>"; };
 		82C4410D2EE793BB00B71BA2 /* SadQuestionStyleOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleOrderView.swift; sourceTree = "<group>"; };
 		82C4410E2EE793BB00B71BA2 /* SadQuestionStyleSinglechoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleSinglechoiceView.swift; sourceTree = "<group>"; };
-		82C4410F2EE793BB00B71BA2 /* SadQuestionStyleSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleSliderView.swift; sourceTree = "<group>"; };
+		82C4410F2EE793BB00B71BA2 /* CommonQuestionStyleSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionStyleSliderView.swift; sourceTree = "<group>"; };
 		82C441102EE793BB00B71BA2 /* SadQuestionStyleTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleTodoView.swift; sourceTree = "<group>"; };
-		82C441112EE793BB00B71BA2 /* SadQuestionStyleUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleUploadView.swift; sourceTree = "<group>"; };
+		82C441112EE793BB00B71BA2 /* CommonQuestionStyleUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionStyleUploadView.swift; sourceTree = "<group>"; };
 		840236702CF06B0A00C8BA17 /* BasicInfoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoContentView.swift; sourceTree = "<group>"; };
 		840236722CF06B4F00C8BA17 /* ProfilePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageView.swift; sourceTree = "<group>"; };
 		840A6EC22E72010500D8235C /* StressReliefBGMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressReliefBGMManager.swift; sourceTree = "<group>"; };
@@ -372,7 +374,7 @@
 		8447D9F52EBC0706008B4DCE /* Scare478BreatheGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scare478BreatheGuideView.swift; sourceTree = "<group>"; };
 		8447D9F72EBC0710008B4DCE /* BoxBreathingGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxBreathingGuideView.swift; sourceTree = "<group>"; };
 		8447D9F92EBC0718008B4DCE /* ScareQuestionStyleMoodWritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScareQuestionStyleMoodWritingView.swift; sourceTree = "<group>"; };
-		8447D9FB2EBC0721008B4DCE /* ScareQuestionStyleBottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScareQuestionStyleBottleView.swift; sourceTree = "<group>"; };
+		8447D9FB2EBC0721008B4DCE /* CommonQuestionStyleBottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionStyleBottleView.swift; sourceTree = "<group>"; };
 		8447D9FD2EBC0729008B4DCE /* ScareQuestionStyleBubble1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScareQuestionStyleBubble1View.swift; sourceTree = "<group>"; };
 		8447D9FF2EBC0731008B4DCE /* ScareQuestionStyleBubble2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScareQuestionStyleBubble2View.swift; sourceTree = "<group>"; };
 		8447DA012EBC0738008B4DCE /* ScareQuestionStyleTypingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScareQuestionStyleTypingView.swift; sourceTree = "<group>"; };
@@ -466,6 +468,8 @@
 		B8F845452C28BC82008C0D80 /* Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		B8F845472C29BB09008C0D80 /* DropdownList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownList.swift; sourceTree = "<group>"; };
 		B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownListRow.swift; sourceTree = "<group>"; };
+		C0E42DB42EFB049D00D95AF6 /* CommonQuestionStyleFillInBlankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionStyleFillInBlankView.swift; sourceTree = "<group>"; };
+		C0E42DB62EFB05DA00D95AF6 /* CommonQuestionStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionStyles.swift; sourceTree = "<group>"; };
 		C0FD51EE2EF529CF00D05D02 /* relax.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = relax.mp4; sourceTree = "<group>"; };
 		D2071D082BA62F300040B0AE /* voiceout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voiceout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voiceoutApp.swift; sourceTree = "<group>"; };
@@ -550,7 +554,6 @@
 				82C440FD2EE793BB00B71BA2 /* AnxietyQuestionPageView.swift */,
 				82C440FE2EE793BB00B71BA2 /* AnxietyQuestionStyleMatchingView.swift */,
 				82C440FF2EE793BB00B71BA2 /* AnxietyQuestionStyleMultichoiceView.swift */,
-				82C441002EE793BB00B71BA2 /* AnxietyQuestionStyleRankView.swift */,
 				82C441012EE793BB00B71BA2 /* AnxietyQuestionStyleSinglechoiceView.swift */,
 			);
 			path = Anxiety;
@@ -564,16 +567,12 @@
 				82C441052EE793BB00B71BA2 /* SadQuestionStyleEmotionView.swift */,
 				82C441062EE793BB00B71BA2 /* SadQuestionStyleEndView.swift */,
 				82C441072EE793BB00B71BA2 /* SadQuestionStyleFillInBlankView.swift */,
-				82C441082EE793BB00B71BA2 /* SadQuestionStyleInteractiveDialogueView.swift */,
-				82C441092EE793BB00B71BA2 /* SadQuestionStyleMatchingView.swift */,
 				82C4410A2EE793BB00B71BA2 /* SadQuestionStyleMultichoice2View.swift */,
 				82C4410B2EE793BB00B71BA2 /* SadQuestionStyleMultichoiceView.swift */,
 				82C4410C2EE793BB00B71BA2 /* SadQuestionStyleNotesView.swift */,
 				82C4410D2EE793BB00B71BA2 /* SadQuestionStyleOrderView.swift */,
 				82C4410E2EE793BB00B71BA2 /* SadQuestionStyleSinglechoiceView.swift */,
-				82C4410F2EE793BB00B71BA2 /* SadQuestionStyleSliderView.swift */,
 				82C441102EE793BB00B71BA2 /* SadQuestionStyleTodoView.swift */,
-				82C441112EE793BB00B71BA2 /* SadQuestionStyleUploadView.swift */,
 			);
 			path = Sad;
 			sourceTree = "<group>";
@@ -685,13 +684,12 @@
 				8447D9ED2EBC06D4008B4DCE /* ScareQuestionStyleCView.swift */,
 				8447D9EF2EBC06EF008B4DCE /* ScareQuestionStyleDView.swift */,
 				8447D9F12EBC06F8008B4DCE /* ScareQuestionStyleLocationView.swift */,
-				8447D9F32EBC06FF008B4DCE /* ScareQuestionStyleBreatheView.swift */,
-				8447D9F52EBC0706008B4DCE /* Scare478BreatheGuideView.swift */,
 				8447D9F92EBC0718008B4DCE /* ScareQuestionStyleMoodWritingView.swift */,
-				8447D9FB2EBC0721008B4DCE /* ScareQuestionStyleBottleView.swift */,
 				8447D9FD2EBC0729008B4DCE /* ScareQuestionStyleBubble1View.swift */,
 				8447D9FF2EBC0731008B4DCE /* ScareQuestionStyleBubble2View.swift */,
 				8447DA012EBC0738008B4DCE /* ScareQuestionStyleTypingView.swift */,
+				8447D9F32EBC06FF008B4DCE /* ScareQuestionStyleBreatheView.swift */,
+				8447D9F52EBC0706008B4DCE /* Scare478BreatheGuideView.swift */,
 			);
 			path = Scare;
 			sourceTree = "<group>";
@@ -758,6 +756,14 @@
 		847AA82B2EB1F16E00282536 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				82C4410F2EE793BB00B71BA2 /* CommonQuestionStyleSliderView.swift */,
+				82C441002EE793BB00B71BA2 /* CommonQuestionStyleRankView.swift */,
+				82C441092EE793BB00B71BA2 /* CommonQuestionStyleMatchingView.swift */,
+				82C441112EE793BB00B71BA2 /* CommonQuestionStyleUploadView.swift */,
+				C0E42DB62EFB05DA00D95AF6 /* CommonQuestionStyles.swift */,
+				C0E42DB42EFB049D00D95AF6 /* CommonQuestionStyleFillInBlankView.swift */,
+				8447D9FB2EBC0721008B4DCE /* CommonQuestionStyleBottleView.swift */,
+				82C441082EE793BB00B71BA2 /* CommonQuestionStyleInteractiveDialogueView.swift */,
 				C0FD51EE2EF529CF00D05D02 /* relax.mp4 */,
 				8447DA112EC6A3DC008B4DCE /* Questions */,
 				8447DA102EC6A3C2008B4DCE /* Homepage */,
@@ -1363,14 +1369,14 @@
 				840A6ED32E72014A00D8235C /* CloudGardenOnboardingView.swift in Sources */,
 				82C441132EE793BB00B71BA2 /* SadQuestionStyleFillInBlankView.swift in Sources */,
 				82C441142EE793BB00B71BA2 /* AnxietyHomepageView.swift in Sources */,
-				82C441152EE793BB00B71BA2 /* SadQuestionStyleMatchingView.swift in Sources */,
-				82C441162EE793BB00B71BA2 /* SadQuestionStyleSliderView.swift in Sources */,
-				82C441172EE793BB00B71BA2 /* SadQuestionStyleInteractiveDialogueView.swift in Sources */,
+				82C441152EE793BB00B71BA2 /* CommonQuestionStyleMatchingView.swift in Sources */,
+				82C441162EE793BB00B71BA2 /* CommonQuestionStyleSliderView.swift in Sources */,
+				82C441172EE793BB00B71BA2 /* CommonQuestionStyleInteractiveDialogueView.swift in Sources */,
 				82C441182EE793BB00B71BA2 /* SadQuestionPageView.swift in Sources */,
-				82C441192EE793BB00B71BA2 /* AnxietyQuestionStyleRankView.swift in Sources */,
+				82C441192EE793BB00B71BA2 /* CommonQuestionStyleRankView.swift in Sources */,
 				82C4411A2EE793BB00B71BA2 /* SadQuestionStyleMultichoice2View.swift in Sources */,
 				84DE79232EF3ADE90092FAAD /* LanguageManager.swift in Sources */,
-				82C4411B2EE793BB00B71BA2 /* SadQuestionStyleUploadView.swift in Sources */,
+				82C4411B2EE793BB00B71BA2 /* CommonQuestionStyleUploadView.swift in Sources */,
 				82C4411C2EE793BB00B71BA2 /* SadQuestionStyleTodoView.swift in Sources */,
 				82C4411D2EE793BB00B71BA2 /* AnxietyQuestionStyleSinglechoiceView.swift in Sources */,
 				82C4411E2EE793BB00B71BA2 /* SadHomepageView.swift in Sources */,
@@ -1460,7 +1466,7 @@
 				8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */,
 				D21660E02C4C22E3008248DE /* CooperationAgreementPopupContent.swift in Sources */,
 				840B854C2D7AD48A00638493 /* MoodDiaryView.swift in Sources */,
-				8447D9FC2EBC0721008B4DCE /* ScareQuestionStyleBottleView.swift in Sources */,
+				8447D9FC2EBC0721008B4DCE /* CommonQuestionStyleBottleView.swift in Sources */,
 				84ACCBE72CEC24D5000C2C7E /* ProfileCardView.swift in Sources */,
 				848E62B42C8BC8F1009B162A /* Day.swift in Sources */,
 				840A6EE12E72023500D8235C /* MoodTreatmentVM.swift in Sources */,
@@ -1513,6 +1519,7 @@
 				840A6F122E72034B00D8235C /* ProgressViewModel.swift in Sources */,
 				B8F845482C29BB09008C0D80 /* DropdownList.swift in Sources */,
 				844ED3552D9FB92D0055F5D6 /* GuiltHomepageView.swift in Sources */,
+				C0E42DB52EFB049D00D95AF6 /* CommonQuestionStyleFillInBlankView.swift in Sources */,
 				B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */,
 				D2ECDF902C8F6DBE00FC3E24 /* TherapistRegistrationFormView.swift in Sources */,
 				B8F845462C28BC82008C0D80 /* Dropdown.swift in Sources */,
@@ -1535,6 +1542,7 @@
 				D21660E22C4C24DD008248DE /* FileReader.swift in Sources */,
 				844ED34F2D9FB56F0055F5D6 /* HappyHomepageView.swift in Sources */,
 				B8D472232C1E408C00D6716A /* AuthViewModel.swift in Sources */,
+				C0E42DB72EFB05DE00D95AF6 /* CommonQuestionStyles.swift in Sources */,
 				B8D472132C1E3CB700D6716A /* BackgroundView.swift in Sources */,
 				D21660CF2C339B98008248DE /* BackButtonView.swift in Sources */,
 				B8D472242C1E408C00D6716A /* ResetPasswordVM.swift in Sources */,

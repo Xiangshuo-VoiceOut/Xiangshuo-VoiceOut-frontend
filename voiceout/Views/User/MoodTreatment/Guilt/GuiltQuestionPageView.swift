@@ -38,7 +38,7 @@ struct GuiltQuestionPageView: View {
     
     private var fallbackBackground: Color {
         guard let q = question else { return Color.surfaceBrandTertiaryGreen }
-        return q.uiStyle == .styleAngryEnding
+        return q.uiStyle == .styleEnd
         ? (moodColors[routine] ?? Color.surfaceBrandTertiaryGreen)
         : Color.surfaceBrandTertiaryGreen
     }
@@ -50,7 +50,7 @@ struct GuiltQuestionPageView: View {
     var body: some View {
         ZStack {
             Group {
-                if let q = question, q.uiStyle == .styleAngryEnding, showImageBackground {
+                if let q = question, q.uiStyle == .styleEnd, showImageBackground {
                     Image("angry-ending")
                         .resizable()
                         .scaledToFill()
@@ -165,7 +165,9 @@ struct GuiltQuestionPageView: View {
                 }
             )
         default:
-            EmptyView()
+            // Fall back to common styles
+            CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelectBackend,
+                vm: vm)
         }
     }
     
@@ -175,6 +177,23 @@ struct GuiltQuestionPageView: View {
             router.navigateTo(.guiltSingleQuestion(id: nextId))
         }
     }
+    
+    private func handleContinue() {
+        if let curr = question {
+            let nextQuestionId = curr.options.first?.next ?? curr.id + 1
+            let continueOption = MoodTreatmentAnswerOption(
+                key: "continue",
+                text: "继续",
+                next: nextQuestionId,
+                exclusive: false
+            )
+            vm.submitAnswer(option: continueOption)
+            if let nextId = continueOption.next {
+                router.navigateTo(.sadSingleQuestion(id: nextId))
+            }
+        }
+    }
+    
     private func hidePopup() {
         withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
             showExitPopup = false

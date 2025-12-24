@@ -74,7 +74,7 @@ enum QuestionUIStyle: String, Decodable {
     case styleAnxietySinglechoice//选择题
     case styleAnxietyMultichoice//多选题
     case styleAnxietyMatching//配对题
-    case styleAnxietyRank//最终打分题
+    case styleRank//最终打分题
     
     ///Custom
     case unknown
@@ -146,7 +146,7 @@ enum QuestionUIStyle: String, Decodable {
         case "styleAnxietySinglechoice": self = .styleAnxietySinglechoice
         case "styleAnxietyMultichoice": self = .styleAnxietyMultichoice
         case "styleAnxietyMatching": self = .styleAnxietyMatching
-        case "anxietyquestionstylerank": self = .styleAnxietyRank
+        case "styleRank": self = .styleRank
         default:
             self = .unknown
         }
@@ -211,7 +211,7 @@ enum QuestionUIStyle: String, Decodable {
         case .styleAnxietySinglechoice: return "styleAnxietySinglechoice"
         case .styleAnxietyMultichoice: return "styleAnxietyMultichoice"
         case .styleAnxietyMatching: return "styleAnxietyMatching"
-        case .styleAnxietyRank: return "anxietyquestionstylerank"
+        case .styleRank: return "styleRank"
         case .unknown:
             return ""
         }

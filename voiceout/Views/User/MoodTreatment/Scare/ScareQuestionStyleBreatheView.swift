@@ -27,10 +27,7 @@ struct ScareQuestionStyleBreatheView: View {
             uiStyle: .scareStyleA,
             texts: ["完成呼吸练习后，闭上眼睛，感受身体的变化。你的情绪是否有变得平静些呢？每次呼吸就想是一阵微风，吹散心里的乌云。小云朵会一直在你身边，陪着你走出不安。"],
             animation: nil,
-            options: [
-                .init(key: "A", text: "再做一次呼吸练习", next: 2001, exclusive: false),
-                .init(key: "B", text: "我准备好继续了", next: 2002, exclusive: true)
-            ],
+            options: question.options,
             introTexts: nil,
             showSlider: nil,
             endingStyle: nil,

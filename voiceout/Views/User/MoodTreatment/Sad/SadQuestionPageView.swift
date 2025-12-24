@@ -149,20 +149,10 @@ struct SadQuestionPageView: View {
                 SadQuestionStyleSinglechoiceView(question: q, onSelect: handleSelectBackend)
             case .styleNotes:
                 SadQuestionStyleNotesView(question: q, onContinue: handleContinue)
-            case .styleInteractiveDialogue:
-                SadQuestionStyleInteractiveDialogueView(question: q, onContinue: handleContinue)
-            case .styleMatching:
-                SadQuestionStyleMatchingView(question: q, onContinue: handleContinue)
-            case .styleUpload:
-                SadQuestionStyleUploadView(question: q, onContinue: handleContinue)
-            case .styleSlider:
-                SadQuestionStyleSliderView(question: q, onContinue: handleContinue)
             case .styleMultichoice:
                 SadQuestionStyleMultichoiceView(question: q, onContinue: handleContinue)
             case .styleMultichoice2:
                 SadQuestionStyleMultichoice2View(question: q, onContinue: handleContinue)
-            case .styleFillInBlank:
-                SadQuestionStyleFillInBlankView(question: q, onContinue: handleContinue)
             case .styleTodo:
                 SadQuestionStyleTodoView(question: q, onContinue: handleContinue)
             case .styleEmotion:
@@ -172,7 +162,9 @@ struct SadQuestionPageView: View {
             case .styleEnd:
                 SadQuestionStyleEndView(question: q, onContinue: handleContinue)
             default:
-                EmptyView()
+                // Fall back to common styles
+                CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelectBackend,
+                                          vm: vm)
             }
         } else {
             EmptyView()
@@ -188,10 +180,11 @@ struct SadQuestionPageView: View {
     
     private func handleContinue() {
         if let currentQuestion = question {
+            let nextQuestionId = currentQuestion.options.first?.next ?? currentQuestion.id + 1
             let continueOption = MoodTreatmentAnswerOption(
                 key: "continue",
                 text: "继续",
-                next: currentQuestion.id + 1,
+                next: nextQuestionId,
                 exclusive: false
             )
             vm.submitAnswer(option: continueOption)

@@ -52,7 +52,7 @@ struct AnxietyQuestionPageView: View {
                 StickyHeaderView(
                     title: "疗愈云港",
                     leadingComponent: AnyView(
-                        (routine == "anxiety" && question?.uiStyle != .styleAnxietyRank)
+                        (routine == "anxiety" && question?.uiStyle != .styleRank)
                         ? AnyView(Color.clear.frame(width: 24, height: 24))
                         : AnyView(BackButtonView().foregroundColor(.grey500))
                     ),
@@ -132,11 +132,11 @@ struct AnxietyQuestionPageView: View {
                 AnxietyQuestionStyleMultichoiceView(question: q, onContinue: handleContinue)
             case .styleAnxietyMatching:
                 AnxietyQuestionStyleMatchingView(question: q, onContinue: handleContinue)
-            case .styleAnxietyRank:
-                AnxietyQuestionStyleRankView(question: q, onContinue: handleContinue, vm: vm)
+
             default:
-                // TODO: Add other anxiety-specific style views here as they are developed
-                EmptyView()
+                // Fall back to common styles
+                CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelectBackend,
+                                          vm: vm)
             }
         } else {
             EmptyView()
@@ -152,10 +152,11 @@ struct AnxietyQuestionPageView: View {
     
     private func handleContinue() {
         if let currentQuestion = question {
+            let nextQuestionId = currentQuestion.options.first?.next ?? currentQuestion.id + 1
             let continueOption = MoodTreatmentAnswerOption(
                 key: "continue",
                 text: "继续",
-                next: currentQuestion.id + 1,
+                next: nextQuestionId,
                 exclusive: false
             )
             vm.submitAnswer(option: continueOption)
@@ -258,7 +259,7 @@ struct AnxietyQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 10,
             totalQuestions: 10,
-            uiStyle: .styleAnxietyRank,
+            uiStyle: .styleRank,
             texts: [
                 "相比疗愈前，你现在的感受是"
             ],

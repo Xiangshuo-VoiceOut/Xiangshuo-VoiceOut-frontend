@@ -1,5 +1,5 @@
 //
-//  AnxietyQuestionStyleRankView.swift
+//  CommonQuestionStyleRankView.swift
 //  voiceout
 //
 //  Created by Ziyang Ye on 11/10/25.
@@ -13,7 +13,7 @@ private struct Constants {
     static let textTextPrimary: Color = Color.black
 }
 
-struct AnxietyQuestionStyleRankView: View {
+struct CommonQuestionStyleRankView: View {
     let question: MoodTreatmentQuestion
     let onContinue: () -> Void
     @ObservedObject var vm: MoodTreatmentVM
@@ -90,7 +90,7 @@ struct AnxietyQuestionStyleRankView: View {
     
     private func submitRatingAndExit() {
         let rating = (selectedIconIndex ?? 2) + 1
-        let routine = question.routine ?? "anxiety"
+        let routine = question.routine ?? ""
         
         isSubmitting = true
         
@@ -99,7 +99,7 @@ struct AnxietyQuestionStyleRankView: View {
             
             await MainActor.run {
                 isSubmitting = false
-                router.navigateTo(.moodHomepageLauncher)
+                router.navigateTo(.mainHomepage)
             }
         }
     }
@@ -211,7 +211,7 @@ struct AnxietyQuestionStyleRankView: View {
                 .frame(width: 68)
 
             VStack(alignment: .leading, spacing: ViewSpacing.betweenSmallAndBase) {
-                AnxietyRankBubbleScrollView(
+                CommonRankBubbleScrollView(
                     texts: texts,
                     displayedCount: $displayedCount,
                     bubbleHeight: $bubbleHeight,
@@ -242,7 +242,7 @@ struct AnxietyQuestionStyleRankView: View {
     }
 }
 
-private struct AnxietyRankChatBubbleView: View {
+private struct CommonRankChatBubbleView: View {
     let text: String
     let showTriangle: Bool
     static let width: CGFloat = 268
@@ -271,7 +271,7 @@ private struct AnxietyRankChatBubbleView: View {
     }
 }
 
-private struct AnxietyRankBubbleScrollView: View {
+private struct CommonRankBubbleScrollView: View {
     let texts: [String]
     @Binding var displayedCount: Int
     @Binding var bubbleHeight: CGFloat
@@ -287,20 +287,20 @@ private struct AnxietyRankBubbleScrollView: View {
                     ForEach(Array(texts.prefix(displayedCount).enumerated()), id: \.offset) { idx, line in
                         HStack {
                             let isLast = idx == displayedCount - 1
-                            AnxietyRankChatBubbleView(text: line, showTriangle: isLast)
+                            CommonRankChatBubbleView(text: line, showTriangle: isLast)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         .background(
                             GeometryReader { geo in
                                 Color.clear
-                                    .preference(key: AnxietyRankBubbleHeightKey.self, value: geo.size.height)
+                                    .preference(key: CommonRankBubbleHeightKey.self, value: geo.size.height)
                             }
                         )
                         .id(idx)
                     }
                 }
                 .frame(height: totalHeight, alignment: .bottom)
-                .onPreferenceChange(AnxietyRankBubbleHeightKey.self) { bubbleHeight = $0 }
+                .onPreferenceChange(CommonRankBubbleHeightKey.self) { bubbleHeight = $0 }
             }
             .frame(height: totalHeight + 14)
             .onAppear {
@@ -319,7 +319,7 @@ private struct AnxietyRankBubbleScrollView: View {
         reader.scrollTo(lastIndex, anchor: .bottom)
     }
 
-    private struct AnxietyRankBubbleHeightKey: PreferenceKey {
+    private struct CommonRankBubbleHeightKey: PreferenceKey {
         static var defaultValue: CGFloat = 0
         static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
             value = max(value, nextValue())
@@ -328,11 +328,11 @@ private struct AnxietyRankBubbleScrollView: View {
 }
 
 #Preview {
-    AnxietyQuestionStyleRankView(
+    CommonQuestionStyleRankView(
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 10,
-            uiStyle: .styleAnxietyRank,
+            uiStyle: .styleRank,
             texts: [
                 "相比疗愈前，你现在的感受是"
             ],

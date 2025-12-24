@@ -132,8 +132,9 @@ struct EnvyQuestionPageView: View {
                         case .styleEnvyEnding:
                             EnvyEndingView(question: question)
                         default:
-                            Text("Unknown")
-                                .foregroundColor(.red)
+                            // Fall back to common styles
+                            CommonQuestionStyles.view(for: question, onContinue: handleContinue, onSelect: handleSelect,
+                                vm: vm)
                         }
                     }
                     .onAppear {
@@ -191,6 +192,23 @@ struct EnvyQuestionPageView: View {
         guard let nextId = option.next else { return }
         router.navigateTo(.envySingleQuestion(id: nextId))
     }
+    
+    private func handleContinue() {
+        if let curr = currentQuestion {
+            let nextQuestionId = curr.options.first?.next ?? curr.id + 1
+            let continueOption = MoodTreatmentAnswerOption(
+                key: "continue",
+                text: "继续",
+                next: nextQuestionId,
+                exclusive: false
+            )
+            vm.submitAnswer(option: continueOption)
+            if let nextId = continueOption.next {
+                router.navigateTo(.sadSingleQuestion(id: nextId))
+            }
+        }
+    }
+    
     private func hidePopup() {
         withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
             showExitPopup = false

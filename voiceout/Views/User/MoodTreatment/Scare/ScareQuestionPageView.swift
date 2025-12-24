@@ -205,8 +205,6 @@ struct ScareQuestionPageView: View {
                 )
             case .scareStyleMoodWriting:
                 ScareQuestionStyleMoodWritingView(question: q, onSelect: handleSelect)
-            case .scareStyleBottle:
-                ScareQuestionStyleBottleView(question: q, onSelect: handleSelect)
             case .scareStyleBubble1:
                 ScareQuestionStyleBubble1View(question: q, onSelect: handleSelect)
             case .scareStyleBubble2:
@@ -217,7 +215,9 @@ struct ScareQuestionPageView: View {
                 ScareEndingView(question: q)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             default:
-                EmptyView()
+                // Fall back to common styles
+                CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelect,
+                    vm: vm)
             }
         } else {
             EmptyView()
@@ -231,6 +231,22 @@ struct ScareQuestionPageView: View {
     private func handleSelect(_ option: MoodTreatmentAnswerOption) {
         guard let nxt = option.next else { return }
         router.navigateTo(.scareSingleQuestion(id: nxt))
+    }
+    
+    private func handleContinue() {
+        if let currentQuestion = question {
+            let nextQuestionId = currentQuestion.options.first?.next ?? currentQuestion.id + 1
+            let continueOption = MoodTreatmentAnswerOption(
+                key: "continue",
+                text: "继续",
+                next: nextQuestionId,
+                exclusive: false
+            )
+            vm.submitAnswer(option: continueOption)
+            if let nextId = continueOption.next {
+                router.navigateTo(.scareSingleQuestion(id: nextId))
+            }
+        }
     }
 }
 

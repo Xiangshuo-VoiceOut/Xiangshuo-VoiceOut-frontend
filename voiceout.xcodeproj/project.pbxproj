@@ -93,6 +93,7 @@
 		8427A8CE2E554CA40014067D /* MainHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427A8CD2E554CA40014067D /* MainHomepageView.swift */; };
 		842D05C52EFA47F400120045 /* UserIDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D05C42EFA47F400120045 /* UserIDService.swift */; };
 		842D05C72EFA480000120045 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D05C62EFA480000120045 /* UserManager.swift */; };
+		842D05CF2EFC93D200120045 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D05CE2EFC93D200120045 /* PrivacyPolicyView.swift */; };
 		842FC91C2D2A275D00BA9242 /* FeedbackInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FC91B2D2A275B00BA9242 /* FeedbackInputView.swift */; };
 		8433CAA92C459AA800845A7A /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAA82C459AA800845A7A /* CommentCardView.swift */; };
 		8433CAC62C459F0500845A7A /* ClinicianCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */; };
@@ -356,6 +357,7 @@
 		8427A8CD2E554CA40014067D /* MainHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomepageView.swift; sourceTree = "<group>"; };
 		842D05C42EFA47F400120045 /* UserIDService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIDService.swift; sourceTree = "<group>"; };
 		842D05C62EFA480000120045 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		842D05CE2EFC93D200120045 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		842FC91B2D2A275B00BA9242 /* FeedbackInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackInputView.swift; sourceTree = "<group>"; };
 		8433CAA82C459AA800845A7A /* CommentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCardView.swift; sourceTree = "<group>"; };
 		8433CAC52C459F0500845A7A /* ClinicianCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicianCardViewModel.swift; sourceTree = "<group>"; };
@@ -947,6 +949,7 @@
 				84ACCBEE2CEC4BBB000C2C7E /* Profile */,
 				D2071D412BAA8B880040B0AE /* Authentication */,
 				8427A8CD2E554CA40014067D /* MainHomepageView.swift */,
+				842D05CE2EFC93D200120045 /* PrivacyPolicyView.swift */,
 				D2071D0D2BA62F300040B0AE /* ContentView.swift */,
 				D2D6CD862C036BCD00DD7688 /* RouterView.swift */,
 			);
@@ -1366,6 +1369,7 @@
 				D21660DA2C34DE3C008248DE /* TherapistSignupVM.swift in Sources */,
 				B8D4720D2C175DBB00D6716A /* BadgeView.swift in Sources */,
 				840A6ED22E72014A00D8235C /* CloudAudioOnboardingView.swift in Sources */,
+				842D05CF2EFC93D200120045 /* PrivacyPolicyView.swift in Sources */,
 				840A6ED32E72014A00D8235C /* CloudGardenOnboardingView.swift in Sources */,
 				82C441132EE793BB00B71BA2 /* SadQuestionStyleFillInBlankView.swift in Sources */,
 				82C441142EE793BB00B71BA2 /* AnxietyHomepageView.swift in Sources */,

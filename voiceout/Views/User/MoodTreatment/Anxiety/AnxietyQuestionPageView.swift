@@ -132,7 +132,8 @@ struct AnxietyQuestionPageView: View {
                 AnxietyQuestionStyleMultichoiceView(question: q, onContinue: handleContinue)
             case .styleAnxietyMatching:
                 AnxietyQuestionStyleMatchingView(question: q, onContinue: handleContinue)
-
+            case .styleIntensificationVideo:
+                RelaxationVideoView(question: q, onSelect: handleSelectBackend)
             default:
                 // Fall back to common styles
                 CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelectBackend,

@@ -47,6 +47,7 @@ enum Route: Hashable {
     case moodTreatmentScareHomepage
     case moodTreatmentAnxietyHomepage
     case playRelaxVideo(name: String, ext: String = "mp4")
+    case privacyPolicy
 }
 
 final class RouterModel: ObservableObject {
@@ -163,8 +164,10 @@ final class RouterModel: ObservableObject {
             MoodTreatmentAnxietyHomepageView()
                 .environmentObject(self)
         case .playRelaxVideo(let name, let ext):
-            RelaxationVideoView(source: .bundle(name: name, ext: ext))
+            RelaxationVideoView(name: name, ext: ext)
                 .environmentObject(self)
+        case .privacyPolicy:
+            PrivacyPolicyView()
         }
     }
 

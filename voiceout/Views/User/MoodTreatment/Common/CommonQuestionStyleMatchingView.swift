@@ -1,5 +1,5 @@
 //
-//  SadQuestionStyleMatchingView.swift
+//  CommonQuestionStyleMatchingView.swift
 //  voiceout
 //
 //  Created by Ziyang Ye on 9/25/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SadQuestionStyleMatchingView: View {
+struct CommonQuestionStyleMatchingView: View {
     let question: MoodTreatmentQuestion
     let onContinue: () -> Void
     
@@ -97,12 +97,12 @@ struct SadQuestionStyleMatchingView: View {
     private var optionsArea: some View {
         VStack(spacing: ViewSpacing.medium) {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: ViewSpacing.small), count: 3), spacing: ViewSpacing.medium) {
-                ForEach(testOptions, id: \.self) { option in
+                ForEach(question.options, id: \.self) { option in
                     OptionCircleView(
-                        option: option,
-                        isSelected: selectedOptions.contains(option)
+                        option: option.text,
+                        isSelected: selectedOptions.contains(option.text)
                     ) {
-                        toggleSelection(option)
+                        toggleSelection(option.text)
                     }
                 }
             }
@@ -204,7 +204,7 @@ struct OptionCircleView: View {
 }
 
 #Preview {
-    SadQuestionStyleMatchingView(
+    CommonQuestionStyleMatchingView(
         question: MoodTreatmentQuestion(
             id: 11,
             totalQuestions: 10,

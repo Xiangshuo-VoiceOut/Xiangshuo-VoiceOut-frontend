@@ -1,5 +1,5 @@
 //
-//  SadQuestionStyleUploadView.swift
+//  CommonQuestionStyleUploadView.swift
 //  voiceout
 //
 //  Created by Ziyang Ye on 9/19/25.
@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct SadQuestionStyleUploadView: View {
+struct CommonQuestionStyleUploadView: View {
     let question: MoodTreatmentQuestion
     let onContinue: () -> Void
     
@@ -292,7 +292,7 @@ struct SadQuestionStyleUploadView: View {
 }
 
 #Preview {
-    SadQuestionStyleUploadView(
+    CommonQuestionStyleUploadView(
         question: MoodTreatmentQuestion(
             id: 5,
             totalQuestions: 10,

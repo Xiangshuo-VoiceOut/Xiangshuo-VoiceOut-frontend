@@ -24,6 +24,7 @@ final class MoodTreatmentVM: ObservableObject {
                 print(id)
                 let q = try await MoodTreatmentService.shared.fetchQuestion(routine: routine, id: id)
                 question = q
+                print(question?.uiStyle)
             } catch {
                 errorMessage = "Failed to load the question：\(error.localizedDescription)"
             }

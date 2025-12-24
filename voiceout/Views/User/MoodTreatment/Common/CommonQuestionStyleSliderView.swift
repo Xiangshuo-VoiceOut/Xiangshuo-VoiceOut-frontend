@@ -1,5 +1,5 @@
 //
-//  SadQuestionStyleSliderView.swift
+//  CommonQuestionStyleSliderView.swift
 //  voiceout
 //
 //  Created by Ziyang Ye on 9/18/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SadQuestionStyleSliderView: View {
+struct CommonQuestionStyleSliderView: View {
     let question: MoodTreatmentQuestion
     let onContinue: () -> Void
     
@@ -138,7 +138,7 @@ struct SadQuestionStyleSliderView: View {
 }
 
 #Preview {
-    SadQuestionStyleSliderView(
+    CommonQuestionStyleSliderView(
         question: MoodTreatmentQuestion(
             id: 4,
             totalQuestions: 10,

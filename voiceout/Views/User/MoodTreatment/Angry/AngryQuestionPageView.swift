@@ -50,7 +50,7 @@ struct AngryQuestionPageView: View {
     var body: some View {
         ZStack {
             Group {
-                if let q = question, q.uiStyle == .styleAngryEnding, showImageBackground {
+                if let q = question, q.uiStyle == .styleEnd, showImageBackground {
                     Image("angry-ending")
                         .resizable()
                         .scaledToFill()
@@ -247,12 +247,14 @@ struct AngryQuestionPageView: View {
             AngryQuestionStyleNoteView(question: q, onSelect: handleSelectBackend)
         case .styleIntensification:
             AngryIntensificationQuestionStyleView(question: q, onSelect: handleSelectBackend)
-        case .styleAngryEnding:
+        case .styleEnd:
             AngryEndingView()
         case .sliderStyle:
             SliderQuestionStyleView(question: q, onSelect: handleSelectBackend)
         default:
-            EmptyView()
+            // Fall back to common styles
+            CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelectBackend,
+                                      vm: vm)
         }
     }
     
@@ -261,6 +263,22 @@ struct AngryQuestionPageView: View {
         if let nextId = option.next {
             router.navigateTo(.angrySingleQuestion(id: nextId))
         } else {
+        }
+    }
+    
+    private func handleContinue() {
+        if let curr = question {
+            let nextQuestionId = curr.options.first?.next ?? curr.id + 1
+            let continueOption = MoodTreatmentAnswerOption(
+                key: "continue",
+                text: "继续",
+                next: nextQuestionId,
+                exclusive: false
+            )
+            vm.submitAnswer(option: continueOption)
+            if let nextId = continueOption.next {
+                router.navigateTo(.sadSingleQuestion(id: nextId))
+            }
         }
     }
     

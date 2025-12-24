@@ -19,7 +19,8 @@ struct MoodManagerLoadingView2: View {
 
     private var isComingSoonMood: Bool {
         let mood = selectedImage.lowercased()
-        return ["happy", "calm", "angry", "envy"].contains(mood)
+        return false
+        //["happy", "calm", "angry", "envy"].contains(mood)
     }
     private var confirmButtonTitle: String {
         isComingSoonMood ? "敬请期待" : "确定"

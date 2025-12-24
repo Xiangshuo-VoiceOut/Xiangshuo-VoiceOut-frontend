@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SadQuestionStyleInteractiveDialogueView: View {
+struct CommonQuestionStyleInteractiveDialogueView: View {
     let question: MoodTreatmentQuestion
     let onContinue: () -> Void
     
@@ -159,7 +159,7 @@ struct SadQuestionStyleInteractiveDialogueView: View {
 }
 
 #Preview {
-    SadQuestionStyleInteractiveDialogueView(
+    CommonQuestionStyleInteractiveDialogueView(
         question: MoodTreatmentQuestion(
             id: 3,
             totalQuestions: 10,

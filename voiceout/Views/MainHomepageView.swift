@@ -21,7 +21,6 @@ struct MainHomepageView: View {
     @EnvironmentObject var userManager: UserManager
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     let iconItems: [(image: String, label: String, route: Route)] = [
-
 //        ("chart-histogram 1", "云报", .moodCalendar),
 //        ("love-time", "压力缓解", .stressReliefEntry)
     ]

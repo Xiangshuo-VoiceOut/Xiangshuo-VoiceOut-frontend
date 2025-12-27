@@ -191,7 +191,7 @@ struct GuiltQuestionPageView: View {
             )
             vm.submitAnswer(option: continueOption)
             if let nextId = continueOption.next {
-                router.navigateTo(.sadSingleQuestion(id: nextId))
+                router.navigateTo(.guiltSingleQuestion(id: nextId))
             }
         }
     }
@@ -215,7 +215,7 @@ struct GuiltQuestionPageView: View {
         question: MoodTreatmentQuestion(
             id: 1,
             totalQuestions: 45,
-            uiStyle: .guiltStyleA,
+            uiStyle: .guiltStyleB,
             texts: [
                 "小云朵感受到了你现在有些心情不好，",
                 "我想要试着帮帮你呀。",

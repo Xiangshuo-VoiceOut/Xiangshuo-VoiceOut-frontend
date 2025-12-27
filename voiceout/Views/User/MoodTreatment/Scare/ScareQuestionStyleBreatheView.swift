@@ -141,14 +141,15 @@ struct ScareQuestionStyleBreatheView: View {
             .onTapGesture {
                 selectedId = option.id
                 showButton = true
-                switch option.text {
-                case "478呼吸法":
+                switch option.key {
+                case "A":
                     breatheStepIndex = 0
                     isShowing478Guide = true
-                case "盒式呼吸法":
+                case "B":
                     showBoxGuide = true
                 default:
-                    break
+                    onSelect(option)
+                    break;
                 }
             }
     }

@@ -41,6 +41,9 @@ struct CommonQuestionStyles {
         case .styleSlider:
             CommonQuestionStyleSliderView(question: question, onContinue: onContinue)
         
+        case .styleIntensification:
+            RelaxationVideoView(question: question, onSelect: onSelect)
+        
         default:
             // Fallback for truly unhandled cases
             CommonQuestionFallbackView(question: question, onContinue: onContinue)

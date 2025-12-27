@@ -206,7 +206,7 @@ struct EnvyQuestionPageView: View {
             )
             vm.submitAnswer(option: continueOption)
             if let nextId = continueOption.next {
-                router.navigateTo(.sadSingleQuestion(id: nextId))
+                router.navigateTo(.envySingleQuestion(id: nextId))
             }
         }
     }

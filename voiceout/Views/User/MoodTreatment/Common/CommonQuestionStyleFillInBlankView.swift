@@ -90,7 +90,8 @@ struct CommonQuestionStyleFillInBlankView: View {
                                     .font(.typography(.bodyMedium))
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(.textPrimary)
-                                    .frame(width: 358, alignment: .top)
+                                    .frame(maxWidth: 358)
+                                       .fixedSize(horizontal: false, vertical: true)
                                     .onAppear {
                                         textDone = true
                                     }

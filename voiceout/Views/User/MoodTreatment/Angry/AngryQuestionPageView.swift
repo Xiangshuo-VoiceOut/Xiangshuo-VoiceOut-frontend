@@ -279,7 +279,7 @@ struct AngryQuestionPageView: View {
             )
             vm.submitAnswer(option: continueOption)
             if let nextId = continueOption.next {
-                router.navigateTo(.sadSingleQuestion(id: nextId))
+                router.navigateTo(.angrySingleQuestion(id: nextId))
             }
         }
     }

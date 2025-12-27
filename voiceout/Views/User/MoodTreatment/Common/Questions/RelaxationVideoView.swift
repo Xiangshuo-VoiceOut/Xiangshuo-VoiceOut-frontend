@@ -7,18 +7,30 @@
 
 import SwiftUI
 import AVKit
+import UIKit
+
+extension RelaxationVideoView {
+    init(name: String, ext: String = "mp4") {
+        self.question = MoodTreatmentQuestion(
+            id: -999,
+            totalQuestions: nil,
+            uiStyle: .styleIntensificationVideo,
+            texts: nil,
+            animation: ext.isEmpty ? name : "\(name).\(ext)",
+            options: [],
+            introTexts: nil,
+            showSlider: nil,
+            endingStyle: nil,
+            routine: nil
+        )
+        self.onSelect = nil
+    }
+}
 
 struct RelaxationVideoView: View {
     @EnvironmentObject var router: RouterModel
-
-    enum Source {
-        case bundle(name: String, ext: String = "mp4")
-        case remote(URL)
-    }
-
-    let source: Source
-    var onDone: (() -> Void)? = nil
-
+    let question: MoodTreatmentQuestion
+    var onSelect: ((MoodTreatmentAnswerOption) -> Void)? = nil
     @State private var player: AVPlayer?
     @State private var timeObserver: Any?
     @State private var boundaryObserver: Any?
@@ -33,14 +45,12 @@ struct RelaxationVideoView: View {
             VStack {
                 HStack {
                     Spacer()
-                    HStack {
-                        Button { skipToEnd() } label: {
-                            Text("跳过")
-                                .font(Font.typography(.bodyMedium))
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(.textPrimary)
-                                .clipShape(Capsule())
-                        }
+                    Button { skipToEnd() } label: {
+                        Text("跳过")
+                            .font(Font.typography(.bodyMedium))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.textPrimary)
+                            .clipShape(Capsule())
                     }
                     .padding(.horizontal, ViewSpacing.medium)
                     .padding(.vertical, ViewSpacing.xsmall)
@@ -52,10 +62,8 @@ struct RelaxationVideoView: View {
                 Spacer()
 
                 if showDoneButton {
-                    Button {
-                        if let onDone { onDone() } else { router.navigateBack() }
-                    } label: {
-                        Text("完成")
+                    Button { handleDone() } label: {
+                        Text(question.buttonTitle.isEmpty ? "完成" : question.buttonTitle)
                             .font(Font.typography(.bodyMedium))
                             .kerning(0.64)
                             .multilineTextAlignment(.center)
@@ -95,8 +103,19 @@ struct RelaxationVideoView: View {
         .toolbar(.hidden, for: .navigationBar)
     }
 
+    private func handleDone() {
+        if let nextOption = question.options.first(where: { $0.exclusive == true }) {
+            if let onSelect {
+                onSelect(nextOption)
+            } else {
+                router.navigateBack()
+            }
+            return
+        }
+        router.navigateBack()
+    }
+    
     private func setupAndPlay() {
-        print("player setup")
         do {
             let session = AVAudioSession.sharedInstance()
             try session.setCategory(.playback, mode: .moviePlayback)
@@ -104,16 +123,8 @@ struct RelaxationVideoView: View {
         } catch {
             print("Audio session error:", error)
         }
-        
-        switch source {
-        case .bundle(let name, let ext):
-            if let url = Bundle.main.url(forResource: name, withExtension: ext) {
-                player = AVPlayer(url: url)
-            }
-        case .remote(let url):
-            player = AVPlayer(url: url)
-        }
-        guard let player = player else { return }
+        player = makePlayerFromQuestion()
+        guard let player else { return }
 
         player.actionAtItemEnd = .pause
 
@@ -148,6 +159,36 @@ struct RelaxationVideoView: View {
         player.play()
     }
 
+    private func makePlayerFromQuestion() -> AVPlayer? {
+        let raw = (question.animation ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if raw.lowercased().hasPrefix("http://") || raw.lowercased().hasPrefix("https://"),
+           let url = URL(string: raw) {
+            return AVPlayer(url: url)
+        }
+
+        let (name, ext) = splitNameAndExt(raw, defaultExt: "mp4")
+        if !name.isEmpty, let url = Bundle.main.url(forResource: name, withExtension: ext) {
+            return AVPlayer(url: url)
+        }
+
+        if let url = Bundle.main.url(forResource: "relax", withExtension: "mp4") {
+            return AVPlayer(url: url)
+        }
+
+        return nil
+    }
+
+    private func splitNameAndExt(_ raw: String, defaultExt: String) -> (String, String) {
+        guard !raw.isEmpty else { return ("", defaultExt) }
+        if let dot = raw.lastIndex(of: ".") {
+            let name = String(raw[..<dot])
+            let ext = String(raw[raw.index(after: dot)...])
+            return (name, ext.isEmpty ? defaultExt : ext)
+        }
+        return (raw, defaultExt)
+    }
+
     private func cleanup() {
         player?.pause()
         if let obs = timeObserver {
@@ -167,7 +208,7 @@ struct RelaxationVideoView: View {
     }
 
     private func skipToEnd() {
-        guard let player = player, let item = player.currentItem else { return }
+        guard let player, let item = player.currentItem else { return }
         let hold = endHoldTime(for: item)
 
         player.seek(to: hold, toleranceBefore: .zero, toleranceAfter: .zero) { _ in
@@ -220,6 +261,21 @@ private struct PlayerView: UIViewRepresentable {
 }
 
 #Preview {
-    RelaxationVideoView(source: .bundle(name: "relax", ext: "mp4"))
-        .environmentObject(RouterModel())
+    RelaxationVideoView(
+        question: MoodTreatmentQuestion(
+            id: 1001,
+            totalQuestions: 45,
+            uiStyle: .styleIntensificationVideo,
+            texts: nil,
+            animation: "relax",
+            options: [
+                .init(key: "A", text: "继续", next: 2002, exclusive: true)
+            ],
+            introTexts: nil,
+            showSlider: nil,
+            endingStyle: nil,
+            routine: "anger"
+        )
+    )
+    .environmentObject(RouterModel())
 }

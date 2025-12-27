@@ -131,6 +131,8 @@ struct EnvyQuestionPageView: View {
                             EnvyFinalEndingView()
                         case .styleEnvyEnding:
                             EnvyEndingView(question: question)
+                        case .styleIntensificationVideo:
+                            RelaxationVideoView(question: question, onSelect: handleSelect)
                         default:
                             // Fall back to common styles
                             CommonQuestionStyles.view(for: question, onContinue: handleContinue, onSelect: handleSelect,

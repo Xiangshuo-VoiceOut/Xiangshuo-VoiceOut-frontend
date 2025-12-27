@@ -15,7 +15,7 @@ extension Date {
 }
 
 struct MainHomepageView: View {
-    @State private var isNight = Date().currentHour < 6 || Date().currentHour >= 18
+    //@State private var isNight = Date().currentHour < 6 || Date().currentHour >= 18
     @State private var isChatMode = false
     @EnvironmentObject var router: RouterModel
     @EnvironmentObject var userManager: UserManager
@@ -27,7 +27,8 @@ struct MainHomepageView: View {
     
     var body: some View {
         ZStack {
-            Image(isNight ? "night" : "day")
+            Image("day")
+            //            Image(isNight ? "night" : "day")
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
@@ -41,23 +42,23 @@ struct MainHomepageView: View {
                 .padding(.leading, ViewSpacing.large)
                 .padding(.top, safeAreaInsets.top + ViewSpacing.base)
         }
-        .onAppear {
-            Task {
-                await userManager.resolveUserIDIfNeeded()
-            }
-        }
+//        .onAppear {
+//            Task {
+//                await userManager.resolveUserIDIfNeeded()
+//            }
+//        }
     }
     
     var mainHomepageContentView: some View {
         VStack {
             HStack {
-                if isNight {
-                    Image("moon")
-                        .resizable()
-                        .frame(width: 56, height: 56)
-                        .padding(.leading, 2*ViewSpacing.xlarge+ViewSpacing.betweenSmallAndBase)
-                        .padding(.top, 14*ViewSpacing.betweenSmallAndBase)
-                }
+//                if isNight {
+//                    Image("moon")
+//                        .resizable()
+//                        .frame(width: 56, height: 56)
+//                        .padding(.leading, 2*ViewSpacing.xlarge+ViewSpacing.betweenSmallAndBase)
+//                        .padding(.top, 14*ViewSpacing.betweenSmallAndBase)
+//                }
                 VStack(spacing: ViewSpacing.medium) {
                     ForEach(iconItems, id: \.image) { item in
                         Button {

@@ -17,7 +17,7 @@ private struct Constants {
 
 struct AnxietyQuestionStyleMultichoiceView: View {
     let question: MoodTreatmentQuestion
-    let onContinue: () -> Void
+    let onConfirm: (_ selectedOptions: [MoodTreatmentAnswerOption]) -> Void
 
     @State private var isPlayingMusic = true
     @State private var displayedCount = 0
@@ -117,28 +117,33 @@ struct AnxietyQuestionStyleMultichoiceView: View {
     private var optionsSection: some View {
         if showOptions {
             VStack(spacing: ViewSpacing.small) {
-                ForEach(question.options) { option in
+                ForEach(question.options.filter { $0.exclusive != true }) { option in
                     optionButton(option: option)
                 }
-                
-                confirmButton
+                if let confirmOption = question.options.first(where: { $0.exclusive == true }) {
+                    confirmButton(confirmOption: confirmOption)
+                }
             }
-            .padding(.top,ViewSpacing.medium+ViewSpacing.large)
+            .padding(.top, ViewSpacing.medium + ViewSpacing.large)
             .padding(.trailing, ViewSpacing.medium)
             .transition(.opacity)
         }
     }
     
-    private var confirmButton: some View {
+    private func confirmButton(confirmOption: MoodTreatmentAnswerOption) -> some View {
         HStack {
             Spacer()
             Button {
-                if !selectedOptions.isEmpty {
-                    onContinue()
+                let selected = question.options
+                    .filter { $0.exclusive != true }
+                    .filter { selectedOptions.contains($0.id) }
+
+                if !selected.isEmpty {
+                    onConfirm(selected)
                 }
             } label: {
                 HStack(alignment: .center, spacing: ViewSpacing.betweenSmallAndBase) {
-                    Text("我选好了")
+                    Text(confirmOption.text)
                         .font(.typography(.bodyMedium))
                         .kerning(0.64)
                         .multilineTextAlignment(.center)
@@ -154,7 +159,7 @@ struct AnxietyQuestionStyleMultichoiceView: View {
         }
         .padding(.top, ViewSpacing.small)
     }
-    
+
     private func optionButton(option: MoodTreatmentAnswerOption) -> some View {
         HStack {
             Spacer()
@@ -312,7 +317,8 @@ private struct AnxietyBubbleScrollView: View {
                 .init(key: "1", text: "身体紧绷", next: nil, exclusive: false),
                 .init(key: "2", text: "呼吸不太顺畅", next: nil, exclusive: false),
                 .init(key: "3", text: "心情烦躁", next: nil, exclusive: false),
-                .init(key: "4", text: "一直在胡思乱想", next: nil, exclusive: false)
+                .init(key: "4", text: "一直在胡思乱想", next: nil, exclusive: false),
+                .init(key: "5", text: "我选好了", next: 2, exclusive: true)
             ],
             introTexts: nil,
             showSlider: false,
@@ -320,6 +326,6 @@ private struct AnxietyBubbleScrollView: View {
             customViewName: nil,
             routine: "anxiety"
         ),
-        onContinue: {}
+        onConfirm: { _ in }
     )
 }

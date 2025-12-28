@@ -9,8 +9,7 @@ import SwiftUI
 
 struct CommonQuestionStyleInteractiveDialogueView: View {
     let question: MoodTreatmentQuestion
-    let onContinue: () -> Void
-    
+    let onSelect: (MoodTreatmentAnswerOption) -> Void
     @State private var currentTextIndex = 0
     @State private var isPlayingMusic = true
     @State private var textDone = false
@@ -126,13 +125,14 @@ struct CommonQuestionStyleInteractiveDialogueView: View {
                     Spacer()
                 }
                 
-                if shouldShowContinueButton {
+                if shouldShowContinueButton,
+                   let confirmOption = question.options.first(where: { $0.exclusive == true }) {
                     VStack {
                         Spacer()
                         HStack {
                             Spacer()
-                            Button("继续") {
-                                onContinue()
+                            Button(confirmOption.text) {
+                                onSelect(confirmOption)
                             }
                             .padding(.horizontal, ViewSpacing.medium)
                             .padding(.vertical, ViewSpacing.small)
@@ -145,7 +145,7 @@ struct CommonQuestionStyleInteractiveDialogueView: View {
                             .multilineTextAlignment(.center)
                             Spacer()
                         }
-                        .padding(.bottom,ViewSpacing.xlarge+ViewSpacing.medium+ViewSpacing.xsmall+ViewSpacing.xxxsmall )
+                        .padding(.bottom, ViewSpacing.xlarge+ViewSpacing.medium+ViewSpacing.xsmall+ViewSpacing.xxxsmall )
                     }
                 }
             }
@@ -173,14 +173,15 @@ struct CommonQuestionStyleInteractiveDialogueView: View {
                 "注意，在社交过程中，眼神对视和微笑是拉进人与人距离的重要元素。尝试对着镜子多练习一下这两个技能！"
             ],
             animation: nil,
-            options: [],
+            options: [
+                .init(key: "A", text: "继续", next: 4, exclusive: true)
+            ],
             showSlider: false,
             endingStyle: nil,
             customViewName: nil,
             routine: "sad"
         ),
-        onContinue: {
-        }
+        onSelect: { _ in }
     )
     .environmentObject(RouterModel())
 }

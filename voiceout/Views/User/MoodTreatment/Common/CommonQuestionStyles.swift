@@ -22,7 +22,7 @@ struct CommonQuestionStyles {
             
         // Interactive Dialogue (15)
         case .styleInteractiveDialogue:
-            CommonQuestionStyleInteractiveDialogueView(question: question, onContinue: onContinue)
+            CommonQuestionStyleInteractiveDialogueView(question: question, onSelect: onSelect)
             
         // Fill in blank (16)
         case .styleFillInBlank:

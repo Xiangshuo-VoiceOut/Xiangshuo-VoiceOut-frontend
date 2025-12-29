@@ -20,10 +20,7 @@ struct CommonQuestionStyleSliderView: View {
     
     private var displayTexts: [String] {
         if let texts = question.texts, !texts.isEmpty {
-            return texts.map { text in
-                text.replacingOccurrences(of: "，", with: "，\n")
-                    .replacingOccurrences(of: ",", with: ",\n")
-            }
+            return texts
         }
         return ["你觉得外部环境或者他人认可的因素，对于这件事的重要程度是多少呢？"]
     }
@@ -63,7 +60,8 @@ struct CommonQuestionStyleSliderView: View {
                             .font(Font.typography(.bodyMedium))
                             .multilineTextAlignment(.center)
                             .foregroundColor(.textPrimary)
-                            .frame(width: 358, alignment: .top)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(width: 342, alignment: .top)
                             .padding(.bottom, idx < displayTexts.count - 1 ? ViewSpacing.medium : 0)
                     }
                 }
@@ -143,7 +141,7 @@ struct CommonQuestionStyleSliderView: View {
             id: 4,
             totalQuestions: 10,
             uiStyle: .styleSlider,
-            texts: ["你觉得外部环境或者他人认可的因素，对于这件事的重要程度是多少呢？", "从1到5，为它打个分？"],
+            texts: ["你觉得外部环境或者他人认可的因素，对于这件事的重要程度是多少呢？"],
             animation: nil,
             options: [],
             introTexts: [],

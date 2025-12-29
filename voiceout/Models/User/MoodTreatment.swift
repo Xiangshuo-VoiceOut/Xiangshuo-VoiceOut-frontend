@@ -75,6 +75,7 @@ enum QuestionUIStyle: String, Decodable {
     case styleAnxietyMultichoice//多选题
     case styleAnxietyMatching//配对题
     case styleRank//最终打分题
+    case styleTips//小贴士
     
     ///
     case styleIntensificationVideo//强烈情绪视频
@@ -150,6 +151,7 @@ enum QuestionUIStyle: String, Decodable {
         case "styleAnxietyMultichoice": self = .styleAnxietyMultichoice
         case "styleAnxietyMatching": self = .styleAnxietyMatching
         case "styleRank": self = .styleRank
+        case "styleTips": self = .styleTips
             
         ///
         case "styleIntensificationVideo": self = .styleIntensificationVideo
@@ -219,6 +221,7 @@ enum QuestionUIStyle: String, Decodable {
         case .styleAnxietyMultichoice: return "styleAnxietyMultichoice"
         case .styleAnxietyMatching: return "styleAnxietyMatching"
         case .styleRank: return "styleRank"
+        case .styleTips: return "styleTips"
             
         case .styleIntensificationVideo: return "styleIntensificationVideo"
 

@@ -259,7 +259,7 @@ struct CommonQuestionStyleUploadView: View {
                         Button {
                             skippedUpload = true
                         } label: {
-                            Text("我还没给好吃的拍照")
+                            Text("我没有照片")
                                 .font(.typography(.bodyMedium))
                                 .foregroundColor(.textBrandPrimary)
                                 .underline()

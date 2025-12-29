@@ -187,7 +187,13 @@ struct SadQuestionStyleNotesView: View {
             Color.black.opacity(0.3)
                 .ignoresSafeArea()
                 .onTapGesture {
-                    closeNoteEditor()
+                    // 如果键盘显示中，先收起键盘
+                    if isTextFieldFocused {
+                        isTextFieldFocused = false
+                    } else {
+                        // 键盘已收起，关闭编辑器
+                        closeNoteEditor()
+                    }
                 }
             
             VStack(spacing: 0) {
@@ -230,8 +236,16 @@ struct SadQuestionStyleNotesView: View {
                             }
                         }
                     }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        // 点击便签区域：如果键盘收起则弹出，如果已显示则保持编辑状态
+                        if !isTextFieldFocused {
+                            isTextFieldFocused = true
+                        }
+                    }
                     
                     Button {
+                        isTextFieldFocused = false
                         completeNoteEditing()
                     } label: {
                         Text("完成")
@@ -246,7 +260,10 @@ struct SadQuestionStyleNotesView: View {
                     .foregroundColor(.white)
                     .font(Font.typography(.bodyMedium))
                     .offset(y: ViewSpacing.xsmall)
+                    .allowsHitTesting(true)
                 }
+                .background(Color.clear)
+                .allowsHitTesting(true)
                 
                 Spacer()
             }
@@ -357,6 +374,7 @@ struct SadQuestionStyleNotesView: View {
             }
         }
         editingText = ""
+        isTextFieldFocused = false  // 确保键盘收起
         showNoteEditor = false
     }
     

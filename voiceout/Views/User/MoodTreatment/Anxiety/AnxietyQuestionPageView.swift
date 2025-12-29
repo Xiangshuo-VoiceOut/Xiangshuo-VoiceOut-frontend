@@ -129,11 +129,13 @@ struct AnxietyQuestionPageView: View {
             case .styleAnxietySinglechoice:
                 AnxietyQuestionStyleSinglechoiceView(question: q, onSelect: handleSelectBackend)
             case .styleAnxietyMultichoice:
-                AnxietyQuestionStyleMultichoiceView(question: q, onContinue: handleContinue)
+                AnxietyQuestionStyleMultichoiceView(question: q, onConfirm: handleConfirmMultichoice)
             case .styleAnxietyMatching:
                 AnxietyQuestionStyleMatchingView(question: q, onContinue: handleContinue)
             case .styleIntensificationVideo:
                 RelaxationVideoView(question: q, onSelect: handleSelectBackend)
+            case .styleTips:
+                TipsView(question: q, onSelect: handleSelectBackend)
             default:
                 // Fall back to common styles
                 CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelectBackend,
@@ -141,6 +143,14 @@ struct AnxietyQuestionPageView: View {
             }
         } else {
             EmptyView()
+        }
+    }
+    
+    private func handleConfirmMultichoice(_ selected: [MoodTreatmentAnswerOption]) {
+        selected.forEach { vm.submitAnswer(option: $0) }
+        if let confirmOption = question?.options.first(where: { $0.exclusive == true }),
+           let nextId = confirmOption.next {
+            router.navigateTo(.anxietySingleQuestion(id: nextId))
         }
     }
     

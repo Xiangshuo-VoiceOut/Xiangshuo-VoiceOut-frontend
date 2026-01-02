@@ -255,7 +255,9 @@ struct SadQuestionPageView: View {
             uiStyle: .styleInteractiveDialogue,
             texts: ["尝试和小云朵一起探索拓宽的社交场合， 寻找更多志同道合的朋友吧！"],
             animation: nil,
-            options: [],
+            options: [
+                .init(key: "A", text: "继续", next: 4, exclusive: true)
+            ],
             introTexts: ["接下来， 你有没有一直很想尝试， 但是一直没有尝试的新技能或者新的想要探索的场所？ 请写下一个告诉我吧！"],
             showSlider: false,
             endingStyle: nil,

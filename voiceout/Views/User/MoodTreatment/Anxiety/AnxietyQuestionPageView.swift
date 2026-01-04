@@ -131,7 +131,7 @@ struct AnxietyQuestionPageView: View {
             case .styleAnxietyMultichoice:
                 AnxietyQuestionStyleMultichoiceView(question: q, onConfirm: handleConfirmMultichoice)
             case .styleAnxietyMatching:
-                AnxietyQuestionStyleMatchingView(question: q, onContinue: handleContinue)
+                AnxietyQuestionStyleMatchingView(question: q, onConfirm: handleConfirmMatching)
             case .styleIntensificationVideo:
                 RelaxationVideoView(question: q, onSelect: handleSelectBackend)
             case .styleTips:
@@ -151,6 +151,20 @@ struct AnxietyQuestionPageView: View {
         if let confirmOption = question?.options.first(where: { $0.exclusive == true }),
            let nextId = confirmOption.next {
             router.navigateTo(.anxietySingleQuestion(id: nextId))
+        }
+    }
+    
+    private func handleConfirmMatching(_ next: Int?) {
+        if let nextId = next {
+            router.navigateTo(.anxietySingleQuestion(id: nextId))
+            return
+        }
+        if let nextId = question?.options.first(where: { $0.exclusive == true })?.next {
+            router.navigateTo(.anxietySingleQuestion(id: nextId))
+            return
+        }
+        if let currentId = question?.id {
+            router.navigateTo(.anxietySingleQuestion(id: currentId + 1))
         }
     }
     

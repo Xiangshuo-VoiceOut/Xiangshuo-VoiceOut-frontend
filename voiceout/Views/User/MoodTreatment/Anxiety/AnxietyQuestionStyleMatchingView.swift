@@ -9,9 +9,8 @@ import SwiftUI
 
 struct AnxietyQuestionStyleMatchingView: View {
     let question: MoodTreatmentQuestion
-    let onContinue: () -> Void
+    let onConfirm: (_ next: Int?) -> Void
     
-    @State private var currentTextIndex = 0
     @State private var isPlayingMusic = false
     @State private var showCurrentText = true
     @State private var selectedOptions: Set<String> = []
@@ -24,15 +23,8 @@ struct AnxietyQuestionStyleMatchingView: View {
         "耐心", "坚持", "独立", "宽容", "同情心", "正义感"
     ]
     
-    private var currentText: String {
-        guard let texts = question.texts, currentTextIndex < texts.count else {
-            return ""
-        }
-        return texts[currentTextIndex]
-    }
-    
-    private var isLastText: Bool {
-        return currentTextIndex == (question.texts?.count ?? 0) - 1
+    private var confirmOption: MoodTreatmentAnswerOption? {
+        question.options.first(where: { $0.exclusive == true })
     }
     
     var body: some View {
@@ -65,14 +57,15 @@ struct AnxietyQuestionStyleMatchingView: View {
                     VStack(spacing: ViewSpacing.medium) {
                         if showCurrentText {
                             VStack(spacing: ViewSpacing.small) {
-                                TypewriterText(fullText: currentText, characterDelay: typingInterval) {
-                                    if currentTextIndex == 0 {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                            showOptions = true
-                                        }
+                                TypewriterText(
+                                    fullText: question.texts?.first ?? "",
+                                    characterDelay: typingInterval
+                                ) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        showOptions = true
                                     }
                                 }
-                                .id(currentTextIndex)
+                                .id("firstText")
                             }
                             .font(.typography(.bodyMedium))
                             .multilineTextAlignment(.center)
@@ -81,7 +74,7 @@ struct AnxietyQuestionStyleMatchingView: View {
                             .padding(.bottom, ViewSpacing.small)
                         }
                         
-                        if showOptions && currentTextIndex == 0 {
+                        if showOptions {
                             optionsArea
                         }
                         
@@ -114,9 +107,9 @@ struct AnxietyQuestionStyleMatchingView: View {
     
     private var bottomButtonArea: some View {
         VStack {
-            if showCurrentText {
-                Button("继续") {
-                    handleContinue()
+            if showCurrentText, let confirmOption {
+                Button(confirmOption.text) {
+                    onConfirm(confirmOption.next)
                 }
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.textBrandPrimary)
@@ -135,15 +128,6 @@ struct AnxietyQuestionStyleMatchingView: View {
             selectedOptions.remove(option)
         } else {
             selectedOptions.insert(option)
-        }
-    }
-    
-    private func handleContinue() {
-        if currentTextIndex < (question.texts?.count ?? 0) - 1 {
-            currentTextIndex += 1
-            showCurrentText = true
-        } else {
-            onContinue()
         }
     }
 }
@@ -183,19 +167,18 @@ struct AnxietyOptionCircleView: View {
             id: 3,
             totalQuestions: 10,
             uiStyle: .styleAnxietyMatching,
-            texts: [
-                "然后，小云朵希望你能圈出自己具有的品德：",
-                "哇！\n小云朵发现你真的有很多值得骄傲的地方呢！\n不要低估自己的闪光点，\n你已经拥有这么多优秀的品质啦。\n继续相信自己，\n这些品质会让你的生活更加精彩，\n也会带给身边的人温暖哦！",
-                "小云朵想告诉你，\n其实你比你想象的更加优秀哦！\n有时候我们会忽略自己的优点，\n但它们真的在那里。\n再仔细看看，\n你还有哪些品质值得被肯定呢？\n给自己多一点鼓励，\n小云朵相信你有更多的闪光点等着被发现！"
-            ],
+            texts: ["然后，小云朵希望你能圈出自己具有的品德："],
             animation: nil,
-            options: [],
+            options: [
+                .init(key: "confirm", text: "继续", next: 4, exclusive: true)
+            ],
             introTexts: nil,
             showSlider: false,
             endingStyle: nil,
             customViewName: nil,
             routine: "anxiety"
         ),
-        onContinue: {}
+        onConfirm: { next in
+        }
     )
 }

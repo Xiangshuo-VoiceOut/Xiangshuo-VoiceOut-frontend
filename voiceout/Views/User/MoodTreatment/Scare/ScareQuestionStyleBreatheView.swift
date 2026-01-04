@@ -13,8 +13,11 @@ struct ScareQuestionStyleBreatheView: View {
     
     @State private var isPlayingMusic: Bool = true
     @State private var showIntro: Bool = false
-    @State private var showButton: Bool = false
     @State private var selectedId: UUID? = nil
+    @State private var selectedKey: String? = nil
+    @State private var showDescription: Bool = false
+    @State private var descriptionKey: String? = nil
+    @State private var showReadyButton: Bool = false
     @State private var showBoxGuide = false
     
     @Binding var isShowing478Guide: Bool
@@ -33,6 +36,11 @@ struct ScareQuestionStyleBreatheView: View {
             endingStyle: nil,
             routine: "scare"
         )
+    }
+    
+    private var readyOption: MoodTreatmentAnswerOption? {
+        if let byKey = question.options.first(where: { $0.key == "C" }) { return byKey }
+        return question.options.first(where: { $0.exclusive == true })
     }
     
     var body: some View {
@@ -71,7 +79,8 @@ struct ScareQuestionStyleBreatheView: View {
                         .foregroundColor(.grey500)
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal, 2*ViewSpacing.xlarge)
-                        .padding(.bottom, ViewSpacing.medium)
+                        .padding(.bottom, ViewSpacing.xxxsmall+ViewSpacing.xxlarge)
+                        .frame(alignment: .top)
                     }
                     
                     if showIntro {
@@ -85,8 +94,32 @@ struct ScareQuestionStyleBreatheView: View {
                             .padding(.horizontal, ViewSpacing.large)
                             .padding(.vertical, ViewSpacing.small)
                         }
+                        if showDescription, let key = descriptionKey {
+                            TypewriterText(fullText: descriptionText(for: key)) {
+                                withAnimation(.easeIn(duration: 0.2)) {
+                                    showReadyButton = true
+                                }
+                            }
+                            .id(key)
+                            .font(Font.typography(.bodyMedium))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.grey500)
+                            .frame(maxWidth: .infinity)
+                            .padding(.horizontal, 2*ViewSpacing.xlarge)
+                            .padding(.top, ViewSpacing.xxxsmall+2*ViewSpacing.xlarge)
+                            .frame(alignment: .top)
+                        }
                     }
                     Spacer()
+                }
+                
+                if showReadyButton, let readyOption {
+                    VStack {
+                        Spacer()
+                        readyButton(option: readyOption)
+                            .padding(.bottom, ViewSpacing.xxxxlarge+ViewSpacing.large+ViewSpacing.xxxsmall+ViewSpacing.xsmall)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
             .ignoresSafeArea(edges: .all)
@@ -113,9 +146,13 @@ struct ScareQuestionStyleBreatheView: View {
             
             if showBoxGuide {
                 BoxBreathingGuideView(
-                    isPresented: $showBoxGuide
-                ) {
-                }
+                    isPresented: $showBoxGuide,
+                    styleAQuestion: demoStyleAQuestion,
+                    onSelectNext: { selected in
+                        onSelect(selected)
+                    },
+                    onFinish: { }
+                )
                 .zIndex(10)
             }
         }
@@ -124,7 +161,12 @@ struct ScareQuestionStyleBreatheView: View {
     @ViewBuilder
     private func optionButton(option: MoodTreatmentAnswerOption) -> some View {
         let isSelected = selectedId == option.id
-        let capInsets = EdgeInsets(top: ViewSpacing.base, leading: ViewSpacing.base+ViewSpacing.medium, bottom: ViewSpacing.base, trailing: ViewSpacing.base+ViewSpacing.medium)
+        let capInsets = EdgeInsets(
+            top: ViewSpacing.base,
+            leading: ViewSpacing.base + ViewSpacing.medium,
+            bottom: ViewSpacing.base,
+            trailing: ViewSpacing.base + ViewSpacing.medium
+        )
         let imageName = isSelected ? "bottle-option-selected" : "bottle-option-normal"
         
         Text(option.text)
@@ -140,18 +182,55 @@ struct ScareQuestionStyleBreatheView: View {
             .contentShape(Rectangle())
             .onTapGesture {
                 selectedId = option.id
-                showButton = true
-                switch option.key {
-                case "A":
-                    breatheStepIndex = 0
-                    isShowing478Guide = true
-                case "B":
-                    showBoxGuide = true
-                default:
-                    onSelect(option)
-                    break;
+                selectedKey = option.key
+                showReadyButton = false
+                showDescription = false
+                descriptionKey = option.key
+                DispatchQueue.main.async {
+                    showDescription = true
                 }
             }
+    }
+    
+    private func descriptionText(for key: String) -> String {
+        switch key {
+        case "A":
+            return "这是一种有助于快速放松的呼吸法。\n你可以跟着跟随小云朵的引导来完成每个呼吸阶段。"
+        case "B":
+            return "盒式呼吸法的每个阶段都是4秒，它能帮助你在一个稳定的节奏中进行呼吸，带来平稳的情绪。"
+        default:
+            return ""
+        }
+    }
+
+    @ViewBuilder
+    private func readyButton(option: MoodTreatmentAnswerOption) -> some View {
+        Button {
+            guard let key = selectedKey else {
+                return
+            }
+            showReadyButton = false
+
+            switch key {
+            case "A":
+                breatheStepIndex = 0
+                isShowing478Guide = true
+            case "B":
+                showBoxGuide = true
+            default:
+                break
+            }
+        } label: {
+            Text(option.text)
+                .font(Font.typography(.bodyMedium))
+                .foregroundColor(.textBrandPrimary)
+                .padding(.horizontal, ViewSpacing.medium)
+                .padding(.vertical, ViewSpacing.small)
+                .background(
+                    Capsule().fill(Color.white.opacity(0.6))
+                )
+        }
+        .buttonStyle(.plain)
     }
 }
 

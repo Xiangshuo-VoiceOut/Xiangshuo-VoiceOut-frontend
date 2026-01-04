@@ -137,6 +137,9 @@ struct Scare478BreatheGuideView: View {
                 }
 
                 if stepIndex == 4 {
+                    let finishNext =
+                        styleAQuestion?.options.first(where: { $0.key == "B" })?.next
+                        ?? styleAQuestion?.options.first(where: { $0.exclusive == true })?.next
                     ScareQuestionStyleAView(
                         question: MoodTreatmentQuestion(
                             id: 9,
@@ -151,7 +154,7 @@ struct Scare478BreatheGuideView: View {
                                 .init(
                                     key: "B",
                                     text: "我完成了",
-                                    next: styleAQuestion?.options.first(where: { $0.exclusive ?? false })?.next,
+                                    next: finishNext,
                                     exclusive: true
                                 )
                             ],
@@ -161,22 +164,25 @@ struct Scare478BreatheGuideView: View {
                             routine: "scare"
                         )
                     ) { opt in
-                        if opt.text == "再来一轮" {
+                        switch opt.key {
+                        case "A":
                             stepIndex = 0
-                        } else {
-                            if let onSelectNext = onSelectNext {
-                                onSelectNext(opt)
-                            }
+                        case "B":
+                            onSelectNext?(opt)
                             DispatchQueue.main.async {
                                 isPresented = false
                             }
+                        default:
+                            break
                         }
                     }
                     .transition(.opacity)
                 }
             }
             .ignoresSafeArea(edges: .bottom)
-            .onDisappear { stopTimer() }
+            .onDisappear {
+                stopTimer()
+            }
         }
     }
 

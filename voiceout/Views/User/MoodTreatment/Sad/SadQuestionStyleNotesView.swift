@@ -23,6 +23,7 @@ struct SadQuestionStyleNotesView: View {
     @State private var editingText = ""
     @State private var isFirstContinue = true
     @FocusState private var isTextFieldFocused: Bool
+    @State private var keyboardDismissedInCurrentTap = false
     
     private let animationDelay: TimeInterval = 2.0
     
@@ -187,13 +188,20 @@ struct SadQuestionStyleNotesView: View {
             Color.black.opacity(0.3)
                 .ignoresSafeArea()
                 .onTapGesture {
-                    // 如果键盘显示中，先收起键盘
+                    // 如果键盘显示中，先收起键盘，并标记本次点击已处理
                     if isTextFieldFocused {
                         isTextFieldFocused = false
-                    } else {
-                        // 键盘已收起，关闭编辑器
+                        keyboardDismissedInCurrentTap = true
+                        
+                        // 重置标记，为下次点击做准备
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            keyboardDismissedInCurrentTap = false
+                        }
+                    } else if !keyboardDismissedInCurrentTap {
+                        // 只有在本次点击没有收起键盘的情况下，才关闭编辑器
                         closeNoteEditor()
                     }
+                    // 如果 keyboardDismissedInCurrentTap == true，说明刚收起键盘，不做任何操作
                 }
             
             VStack(spacing: 0) {
@@ -360,6 +368,7 @@ struct SadQuestionStyleNotesView: View {
     
     private func closeNoteEditor() {
         editingText = ""
+        keyboardDismissedInCurrentTap = false
         showNoteEditor = false
     }
     
@@ -375,6 +384,7 @@ struct SadQuestionStyleNotesView: View {
         }
         editingText = ""
         isTextFieldFocused = false  // 确保键盘收起
+        keyboardDismissedInCurrentTap = false  // 重置标记
         showNoteEditor = false
     }
     

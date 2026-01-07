@@ -43,23 +43,24 @@ final class UserIDService {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let body = ResolveUserIDRequest(
-            user_uuid: userUUID,
-            display_id: displayID
-        )
+        let body = ResolveUserIDRequest(user_uuid: userUUID, display_id: displayID)
         request.httpBody = try JSONEncoder().encode(body)
-
-        let (data, response) = try await URLSession.shared.data(for: request)
-
-        guard let http = response as? HTTPURLResponse else {
-            throw UserIDServiceError.invalidResponse
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let http = response as? HTTPURLResponse else {
+                throw UserIDServiceError.invalidResponse
+            }
+            
+            if !(200...299).contains(http.statusCode) {
+                let text = String(data: data, encoding: .utf8) ?? "<non-utf8>"
+                print("resolve httpError:", http.statusCode, "body:", text)
+                throw UserIDServiceError.httpError(http.statusCode)
+            }
+            return try JSONDecoder().decode(ResolveUserIDResponse.self, from: data)
+        } catch {
+            print("resolve request failed:", error)
+            throw error
         }
-
-        guard (200...299).contains(http.statusCode) else {
-            throw UserIDServiceError.httpError(http.statusCode)
-        }
-
-        return try JSONDecoder().decode(ResolveUserIDResponse.self, from: data)
     }
 }

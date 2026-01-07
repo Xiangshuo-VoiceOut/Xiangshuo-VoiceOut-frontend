@@ -9,6 +9,8 @@ import SwiftUI
 
 struct BoxBreathingGuideView: View {
     @Binding var isPresented: Bool
+    var styleAQuestion: MoodTreatmentQuestion?
+    var onSelectNext: ((MoodTreatmentAnswerOption) -> Void)?
     let onFinish: () -> Void
 
     private enum BoxPhase: Int { case intro, inhale, hold1, exhale, hold2, complete }
@@ -28,8 +30,15 @@ struct BoxBreathingGuideView: View {
     private let brandFill = Color(red: 0.42, green: 0.81, blue: 0.95).opacity(0.25)
     private let idleSize: CGFloat = 88
     @State private var scheduledWork: [DispatchWorkItem] = []
-    init(isPresented: Binding<Bool>, onFinish: @escaping () -> Void) {
+    init(
+        isPresented: Binding<Bool>,
+        styleAQuestion: MoodTreatmentQuestion? = nil,
+        onSelectNext: ((MoodTreatmentAnswerOption) -> Void)? = nil,
+        onFinish: @escaping () -> Void
+    ) {
         self._isPresented = isPresented
+        self.styleAQuestion = styleAQuestion
+        self.onSelectNext = onSelectNext
         self.onFinish = onFinish
     }
 
@@ -52,7 +61,7 @@ struct BoxBreathingGuideView: View {
 
     var body: some View {
         ZStack {
-            Color.surfaceBrandTertiaryGreen.ignoresSafeArea(edges: .bottom)
+            Color.surfaceBrandTertiaryGreen.ignoresSafeArea()
 
             VStack(spacing: 0) {
                 ZStack(alignment: .top) {
@@ -238,15 +247,18 @@ struct BoxBreathingGuideView: View {
     }
 
     private var finishQuestion: MoodTreatmentQuestion {
-        MoodTreatmentQuestion(
+        let finishNext =
+            styleAQuestion?.options.first(where: { $0.key == "B" })?.next
+            ?? styleAQuestion?.options.first(where: { ($0.exclusive ?? false) == true })?.next
+        return MoodTreatmentQuestion(
             id: 21,
             totalQuestions: 45,
             uiStyle: .scareStyleA,
             texts: ["小云朵提示", "一轮盒式呼吸完成了！还想继续吗？"],
             animation: nil,
             options: [
-                .init(key: "A",text: "再来一轮", next: 2101, exclusive: false),
-                .init(key: "B",text: "我完成了", next: 2200, exclusive: true)
+                .init(key: "A", text: "再来一轮", next: nil, exclusive: false),
+                .init(key: "B", text: "我完成了", next: finishNext, exclusive: true)
             ],
             introTexts: nil,
             showSlider: nil,
@@ -268,11 +280,31 @@ struct BoxBreathingGuideView: View {
         } else {
             showFinishStyleA = false
             isPresented = false
+            onSelectNext?(option)
             onFinish()
         }
     }
 }
 
 #Preview("Scare Box Breathing") {
-    BoxBreathingGuideView(isPresented: .constant(true)) { }
+    BoxBreathingGuideView(
+        isPresented: .constant(true),
+        styleAQuestion: MoodTreatmentQuestion(
+            id: 4,
+            totalQuestions: 45,
+            uiStyle: .scareStyleBreathe,
+            texts: [],
+            animation: nil,
+            options: [
+                .init(key: "B", text: "我完成了", next: 5, exclusive: true)
+            ],
+            introTexts: nil,
+            showSlider: nil,
+            endingStyle: nil,
+            routine: "scare"
+        ),
+        onSelectNext: { opt in
+        },
+        onFinish: { }
+    )
 }

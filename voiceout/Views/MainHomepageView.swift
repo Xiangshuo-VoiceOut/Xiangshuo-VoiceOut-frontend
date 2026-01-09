@@ -42,11 +42,9 @@ struct MainHomepageView: View {
                 .padding(.leading, ViewSpacing.large)
                 .padding(.top, safeAreaInsets.top + ViewSpacing.base)
         }
-//        .onAppear {
-//            Task {
-//                await userManager.resolveUserIDIfNeeded()
-//            }
-//        }
+        .onAppear {
+            Task { await userManager.resolveUserIDOnAppLaunch() }
+        }
     }
     
     var mainHomepageContentView: some View {

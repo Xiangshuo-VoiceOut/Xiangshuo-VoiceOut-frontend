@@ -38,52 +38,32 @@ struct TipsView: View {
                     }
                     .padding(.leading, ViewSpacing.medium)
                     
-                    if let texts = question.texts {
-                        ForEach(Array(texts.enumerated()), id: \.offset) { idx, line in
-                            Text(line)
-                                .font(Font.typography(.bodyMedium))
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(.grey500)
-                                .frame( alignment: .top)
-                                .padding(.bottom, ViewSpacing.medium)
-                                .onAppear {
-                                    if idx == texts.count - 1 {
-                                        if let highlights = question.introTexts, !highlights.isEmpty {
-                                            showIntro = true
-                                        } else {
-                                            showButton = true
-                                        }
-                                    }
-                                }
-                        }
-                    }
-                    
                     VStack{
                         VStack(alignment: .leading, spacing: ViewSpacing.betweenSmallAndBase) {
                             VStack(alignment: .center, spacing: ViewSpacing.medium) {
-                                Text("身体的刚需")
-                                    .font(Font.typography(.bodyMediumEmphasis))
-                                    .foregroundColor(.textBrandPrimary)
-                                    .frame(maxWidth: .infinity, alignment: .top)
-                                
-                                VStack(alignment: .leading, spacing: ViewSpacing.small) {
-                                    Text("就像手机需要充电，汽车需要保养。")
-                                        .font(Font.typography(.bodyMedium))
-                                        .foregroundColor(.grey500)
-                                        .frame(maxWidth: .infinity, alignment: .top)
-                                    
-                                    Text("我们的身体和大脑在高强度运转后，必须通过休息来进行修复、补充能量和整合信息。")
-                                        .font(Font.typography(.bodyMedium))
-                                        .foregroundColor(.grey500)
-                                        .frame(maxWidth: .infinity, alignment: .top)
-                                    
-                                    Text("剥夺休息，就是在透支未来的健康和效能。")
-                                        .font(Font.typography(.bodyMedium))
-                                        .foregroundColor(.grey500)
+                                if let texts = question.texts, let title = texts.first, !title.isEmpty {
+                                    Text(title)
+                                        .font(Font.typography(.bodyMediumEmphasis))
+                                        .multilineTextAlignment(.center)
+                                        .foregroundColor(.textBrandPrimary)
                                         .frame(maxWidth: .infinity, alignment: .top)
                                 }
-                                .multilineTextAlignment(.center)
-                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                                if let introTexts = question.introTexts, !introTexts.isEmpty {
+                                    VStack(alignment: .leading, spacing: ViewSpacing.small) {
+                                        ForEach(Array(introTexts.enumerated()), id: \.offset) { idx, line in
+                                            TypewriterText(fullText: line) {
+                                                if idx == introTexts.count - 1 {
+                                                    showButton = true
+                                                }
+                                            }
+                                            .font(Font.typography(.bodyMedium))
+                                            .foregroundColor(.grey500)
+                                            .frame(maxWidth: .infinity, alignment: .top)
+                                        }
+                                    }
+                                    .multilineTextAlignment(.center)
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                }
                             }
                             .frame(maxWidth: .infinity, alignment: .top)
                         }
@@ -99,9 +79,7 @@ struct TipsView: View {
                     
                     if showButton,
                        let confirmOption = question.options.first(where: { $0.exclusive == true }) {
-                        Button(action: {
-                            onSelect(confirmOption)
-                        }) {
+                        Button(action: { onSelect(confirmOption) }) {
                             Text(confirmOption.text)
                                 .font(Font.typography(.bodyMedium))
                                 .kerning(0.64)
@@ -129,13 +107,15 @@ struct TipsView_Previews: PreviewProvider {
                 totalQuestions: 45,
                 uiStyle: .styleTips,
                 texts: [
-                    "我们常常将休息视为“不工作”的时间，\n甚至是生产力的对立面。\n但如果换个角度看呢？"
+                    "身体的刚需"
                 ],
                 animation: nil,
                 options: [
                     .init(key: "A",text: "继续", next: 5, exclusive: true)
                 ],
-                introTexts: nil,
+                introTexts: [
+                  "就像手机需要充电，汽车需要保养。我们的身体和大脑在高强度运转后，必须通过休息来进行修复、补充能量和整合信息。剥夺休息，就是在透支未来的健康和效能。"
+                ],
                 showSlider: nil,
                 endingStyle: nil,
                 routine: "anxiety"

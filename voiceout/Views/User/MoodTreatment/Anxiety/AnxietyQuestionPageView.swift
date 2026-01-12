@@ -36,7 +36,10 @@ struct AnxietyQuestionPageView: View {
     }
     
     private var fallbackBackground: Color {
-        Color.surfaceBrandTertiaryGreen
+        guard let q = question else { return Color.surfaceBrandTertiaryGreen }
+        return q.uiStyle == .styleAnxietyEnding
+        ? Color.surfaceBrandTertiaryPurple
+        : Color.surfaceBrandTertiaryGreen
     }
     
     private var headerPlusProgressHeight: CGFloat {
@@ -132,6 +135,8 @@ struct AnxietyQuestionPageView: View {
                 AnxietyQuestionStyleMultichoiceView(question: q, onConfirm: handleConfirmMultichoice)
             case .styleAnxietyMatching:
                 AnxietyQuestionStyleMatchingView(question: q, onConfirm: handleConfirmMatching)
+            case .styleAnxietyEnding:
+                AnxietyEndingView(question: q, onContinue: handleContinue)
             case .styleIntensificationVideo:
                 RelaxationVideoView(question: q, onSelect: handleSelectBackend)
             case .styleTips:
@@ -292,6 +297,28 @@ struct AnxietyQuestionPageView: View {
             options: [],
             introTexts: nil,
             showSlider: false,
+            endingStyle: nil,
+            customViewName: nil,
+            routine: "anxiety"
+        )
+    )
+    .environmentObject(RouterModel())
+}
+
+#Preview("结算动画页面") {
+    AnxietyQuestionPageView(
+        question: MoodTreatmentQuestion(
+            id: 100,
+            totalQuestions: 100,
+            uiStyle: .styleAnxietyEnding,
+            texts: [
+                "长按屏幕帮助小云朵整理焦虑吧！", 
+                "不要抓着每一件事不放手，学会在合适的时候画上完美句号。学会允许事情进入人生，也要学会让它们离开。未完成和不完美，本就是生活的一部分。请接受和相信自己已经做得足够好了，调整和相信自己会变得更好。"
+            ],
+            animation: nil,
+            options: [],
+            introTexts: nil,
+            showSlider: nil,
             endingStyle: nil,
             customViewName: nil,
             routine: "anxiety"

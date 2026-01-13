@@ -1,3 +1,8 @@
+//
+//  AnxietyEndingView.swift
+//  voiceout
+// Created by Ziyang Ye on 1/12/26.
+
 import SwiftUI
 
 /// 焦虑流程结算页状态机
@@ -16,7 +21,19 @@ struct AnxietyEndingView: View {
     @State private var showFinalBubble = false
     @Namespace private var animation
     
-    // 1. 固定便签坐标：围绕在 anxiety cloud 附近
+
+    private var initialText: String {
+        question.texts?.first ?? "长按屏幕帮助小云朵整理焦虑吧！"
+    }
+    
+    private var endText: String {
+        if let texts = question.texts, texts.count > 1 {
+            return texts[1]
+        }
+        return "" 
+    }
+    
+
     private let notePositions: [CGPoint] = [
         CGPoint(x: -130, y: -65), CGPoint(x: 130, y: -75),
         CGPoint(x: -150, y: 10),  CGPoint(x: 150, y: 20),
@@ -24,27 +41,21 @@ struct AnxietyEndingView: View {
         CGPoint(x: 0, y: 125)
     ]
     
-    private let finalText = NSLocalizedString(
-        "anxiety_ending_bubble_text",
-        value: "不要抓着每一件事不放手，学会在合适的时候画上完美句号。学会允许事情进入人生，也要学会让它们离开。未完成和不完美，本就是生活的一部分。请接受和相信自己已经做得足够好了，调整和相信自己会变得更好。",
-        comment: "Anxiety ending bubble text"
-    )
-    
     var body: some View {
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
         
-        // 核心位置常量
+
         let cloudCenterY = screenHeight * 0.40
-        // 气泡底部对齐的基准高度（确保气泡底部固定在此，文字多则向上长）
+
         let bubbleBaselineY = screenHeight * (200.0 / 874.0) 
         
         ZStack(alignment: .top) {
-            // --- 1. 背景层 ---
+
             Color.surfaceBrandTertiaryPurple
                 .ignoresSafeArea()
             
-            // --- 2. 底部书本层 (填满左右并贴底) ---
+
             VStack(spacing: 0) {
                 Spacer()
                 ZStack(alignment: .bottom) {
@@ -66,7 +77,7 @@ struct AnxietyEndingView: View {
             }
             .ignoresSafeArea(edges: .bottom)
             
-            // --- 3. 中间云朵与线团层 (位置绝对固定) ---
+
             ZStack {
                 if animationState == .pressing {
                     Image("anxiety-ending-mess")
@@ -96,17 +107,17 @@ struct AnxietyEndingView: View {
             }
             .position(x: screenWidth / 2, y: cloudCenterY)
             
-            // --- 4. 气泡 UI 层 (初始与最终共用逻辑) ---
+
             Group {
                 if animationState == .initial {
-                    renderBubbleGroup(text: "长按屏幕帮助小云朵整理焦虑吧！")
+                    renderBubbleGroup(text: initialText)
                         .transition(.opacity)
                 } else if showFinalBubble {
-                    renderBubbleGroup(text: finalText)
+                    renderBubbleGroup(text: endText)
                         .transition(.opacity.animation(.easeInOut(duration: 0.8)))
                 }
             }
-            // 关键：通过容器限制，让气泡在 bubbleBaselineY 高度处向上生长
+
             .frame(maxWidth: .infinity, maxHeight: bubbleBaselineY, alignment: .bottom)
         }
         .contentShape(Rectangle())
@@ -138,13 +149,11 @@ struct AnxietyEndingView: View {
                 }
         )
     }
-    
-    // MARK: - 核心组件：向上生长且中心对齐的气泡
+
     @ViewBuilder
     private func renderBubbleGroup(text: String) -> some View {
-        // 使用 .bottomTrailing 确保气泡右下角是稳定的对齐点
         ZStack(alignment: .bottomTrailing) {
-            // 1. 气泡主体
+
             Text(text)
                 .font(.typography(.bodyMedium))
                 .foregroundColor(.grey500)
@@ -153,19 +162,18 @@ struct AnxietyEndingView: View {
                 .padding(.top, 16)
                 .padding(.leading, 18)
                 .padding(.trailing, 25)
-                .padding(.bottom, 35) // 尖角所在位置的留白
+                .padding(.bottom, 35) 
                 .background(
                     Image("bubble-down-right")
                         .resizable(capInsets: EdgeInsets(top: 20, leading: 20, bottom: 40, trailing: 40))
                         .imageShadow()
                 )
             
-            // 2. 说话的小云朵 (cloud-chat)
+
             Image("cloud-chat")
                 .resizable()
                 .frame(width: 100, height: 71)
-                // 关键计算：将云朵向右移动一半宽度(50)，向下移动一半高度(35.5)
-                // 这样云朵的正中心就会刚好压在气泡背景的右下角顶点上
+
                 .offset(x: 80, y: 50)
                 .allowsHitTesting(false)
         }
@@ -186,3 +194,4 @@ struct AnxietyEndingView: View {
             .animation(.spring(response: 0.7, dampingFraction: 0.8).delay(Double(index) * 0.08), value: animationState)
     }
 }
+

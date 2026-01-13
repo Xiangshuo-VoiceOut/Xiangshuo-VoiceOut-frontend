@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 private enum APIConfig {
-    static let baseURL = "http://127.0.0.1:3000"
-    // static let baseURL = "http://3.132.55.92:4000"
+//    static let baseURL = "http://127.0.0.1:3000"
+     static let baseURL = "http://3.132.55.92:5000"
 }
 
 @MainActor
@@ -65,24 +65,15 @@ final class UserManager: ObservableObject {
         }
     }
 
-    func resolveUserIDIfNeeded() async {
-        if !userID.isEmpty { return }
-
+    func resolveUserIDOnAppLaunch() async {
         do {
-            let response = try await service.resolve(
-                userUUID: userUUID,
-                displayID: displayID
-            )
-            print("UserID resolved success")
-            print("uuid:", userUUID)
-            print("displayID:", displayID)
-            print("userID:", response.user_id)
-            print("isNew:", response.is_new)
+            let response = try await service.resolve(userUUID: userUUID, displayID: displayID)
 
             self.userID = response.user_id
             defaults.set(response.user_id, forKey: Keys.userID)
+            print("resolve ok. userID:", response.user_id, "isNew:", response.is_new)
         } catch {
-            print("UserID resolve failed:", error)
+            print("resolve failed:", error)
         }
     }
 

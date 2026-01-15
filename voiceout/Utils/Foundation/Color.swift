@@ -14,6 +14,7 @@ extension Color {
     static let brandTertiaryPeach = Color(.brandTertiarypeach)
     static let brandTertiaryGreen = Color(.brandTertiarygreen)
     static let brandTertiaryBlue = Color(.brandTertiaryblue)
+    static let brandTertiaryPurple = Color(red: 0.83, green: 0.75, blue: 0.95) // #D4BFEF (Anxiety mood color)
     static let actionValid = Color(.actionValid)
     static let actionInvalid = Color(.actionInvalid)
     static let actionInfo = Color(.actionInfo)
@@ -37,6 +38,7 @@ extension Color {
     static let surfaceBrandTertiaryPeach = brandTertiaryPeach
     static let surfaceBrandTertiaryGreen = brandTertiaryGreen
     static let surfaceBrandTertiaryBlue = brandTertiaryBlue
+    static let surfaceBrandTertiaryPurple = brandTertiaryPurple
     static let surfaceInvalid = actionInvalid
     static let surfaceInfo = actionInfo
 

@@ -35,6 +35,7 @@
 		82C441252EE793BB00B71BA2 /* AnxietyQuestionPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C440FD2EE793BB00B71BA2 /* AnxietyQuestionPageView.swift */; };
 		82C441262EE793BB00B71BA2 /* SadQuestionStyleNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4410C2EE793BB00B71BA2 /* SadQuestionStyleNotesView.swift */; };
 		82C441272EE793BB00B71BA2 /* SadQuestionStyleEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441062EE793BB00B71BA2 /* SadQuestionStyleEndView.swift */; };
+		82C441292F0F250E00B71BA2 /* AnxietyEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C441282F0F250D00B71BA2 /* AnxietyEndingView.swift */; };
 		840236712CF06B1000C8BA17 /* BasicInfoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840236702CF06B0A00C8BA17 /* BasicInfoContentView.swift */; };
 		840236732CF06B5400C8BA17 /* ProfilePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840236722CF06B4F00C8BA17 /* ProfilePageView.swift */; };
 		840A6EC32E72010500D8235C /* StressReliefBGMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EC22E72010500D8235C /* StressReliefBGMManager.swift */; };
@@ -300,6 +301,7 @@
 		82C4410F2EE793BB00B71BA2 /* CommonQuestionStyleSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionStyleSliderView.swift; sourceTree = "<group>"; };
 		82C441102EE793BB00B71BA2 /* SadQuestionStyleTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadQuestionStyleTodoView.swift; sourceTree = "<group>"; };
 		82C441112EE793BB00B71BA2 /* CommonQuestionStyleUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionStyleUploadView.swift; sourceTree = "<group>"; };
+		82C441282F0F250D00B71BA2 /* AnxietyEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyEndingView.swift; sourceTree = "<group>"; };
 		840236702CF06B0A00C8BA17 /* BasicInfoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoContentView.swift; sourceTree = "<group>"; };
 		840236722CF06B4F00C8BA17 /* ProfilePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageView.swift; sourceTree = "<group>"; };
 		840A6EC22E72010500D8235C /* StressReliefBGMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressReliefBGMManager.swift; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 		82C441022EE793BB00B71BA2 /* Anxiety */ = {
 			isa = PBXGroup;
 			children = (
+				82C441282F0F250D00B71BA2 /* AnxietyEndingView.swift */,
 				82C440FC2EE793BB00B71BA2 /* AnxietyHomepageView.swift */,
 				82C440FD2EE793BB00B71BA2 /* AnxietyQuestionPageView.swift */,
 				82C440FE2EE793BB00B71BA2 /* AnxietyQuestionStyleMatchingView.swift */,
@@ -1459,6 +1462,7 @@
 				B814C5952C220F66008F4A60 /* LoginView.swift in Sources */,
 				84F0D94B2D35A00D0029F651 /* BeforeFirstConsultationViewModel.swift in Sources */,
 				D2D6CD872C036BCD00DD7688 /* RouterView.swift in Sources */,
+				82C441292F0F250E00B71BA2 /* AnxietyEndingView.swift in Sources */,
 				D2A77F572CB5FF26002F3EFB /* SafeAreaInsets.swift in Sources */,
 				B8860E302C3CD21D00A79073 /* FinishView.swift in Sources */,
 				D238113A2CA990E300B90ED2 /* TimeInputViewModel.swift in Sources */,

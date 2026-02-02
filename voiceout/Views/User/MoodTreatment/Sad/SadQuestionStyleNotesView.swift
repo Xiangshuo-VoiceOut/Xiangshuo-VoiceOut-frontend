@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SadQuestionStyleNotesView: View {
     let question: MoodTreatmentQuestion
-    let onContinue: () -> Void
-    
+    let onSelect: (MoodTreatmentAnswerOption) -> Void
+
     @State private var showContinueText = false
     @State private var showIntroText = false
     @State private var currentStep = 0
@@ -166,9 +166,13 @@ struct SadQuestionStyleNotesView: View {
             let hasAnyNote = noteTexts.contains { !$0.isEmpty }
             
             Button {
-                onContinue()
+                if let opt = question.options.first(where: { $0.exclusive == true }) {
+                    onSelect(opt)
+                } else if let opt = question.options.first(where: { $0.next != nil }) {
+                    onSelect(opt)
+                }
             } label: {
-                Text("继续")
+                Text(question.options.first(where: { $0.exclusive == true })?.text ?? "继续")
             }
             .disabled(!hasAnyNote)
             .padding(.horizontal, ViewSpacing.medium)
@@ -188,20 +192,15 @@ struct SadQuestionStyleNotesView: View {
             Color.black.opacity(0.3)
                 .ignoresSafeArea()
                 .onTapGesture {
-                    // 如果键盘显示中，先收起键盘，并标记本次点击已处理
                     if isTextFieldFocused {
                         isTextFieldFocused = false
                         keyboardDismissedInCurrentTap = true
-                        
-                        // 重置标记，为下次点击做准备
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             keyboardDismissedInCurrentTap = false
                         }
                     } else if !keyboardDismissedInCurrentTap {
-                        // 只有在本次点击没有收起键盘的情况下，才关闭编辑器
                         closeNoteEditor()
                     }
-                    // 如果 keyboardDismissedInCurrentTap == true，说明刚收起键盘，不做任何操作
                 }
             
             VStack(spacing: 0) {
@@ -246,7 +245,6 @@ struct SadQuestionStyleNotesView: View {
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        // 点击便签区域：如果键盘收起则弹出，如果已显示则保持编辑状态
                         if !isTextFieldFocused {
                             isTextFieldFocused = true
                         }
@@ -354,7 +352,11 @@ struct SadQuestionStyleNotesView: View {
                 }
             }
         } else {
-            onContinue()
+            if let opt = question.options.first(where: { $0.exclusive == true }) {
+                onSelect(opt)
+            } else if let opt = question.options.first(where: { $0.next != nil }) {
+                onSelect(opt)
+            }
         }
     }
     
@@ -383,8 +385,8 @@ struct SadQuestionStyleNotesView: View {
             }
         }
         editingText = ""
-        isTextFieldFocused = false  // 确保键盘收起
-        keyboardDismissedInCurrentTap = false  // 重置标记
+        isTextFieldFocused = false
+        keyboardDismissedInCurrentTap = false
         showNoteEditor = false
     }
     
@@ -405,14 +407,16 @@ struct SadQuestionStyleNotesView: View {
                 "可以试着把这个当成一个短期目标去努力哦!"
             ],
             animation: nil,
-            options: [],
+            options: [
+                .init(key: "A", text: "继续", next: 3, exclusive: true)
+            ],
             introTexts: [],
             showSlider: false,
             endingStyle: nil,
             customViewName: nil,
             routine: "sad"
         ),
-        onContinue: {}
+        onSelect: { _ in }
     )
     .environmentObject(RouterModel())
 }

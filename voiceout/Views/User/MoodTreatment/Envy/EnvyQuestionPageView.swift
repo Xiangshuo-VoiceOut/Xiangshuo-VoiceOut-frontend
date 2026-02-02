@@ -12,7 +12,7 @@ struct EnvyQuestionPageView: View {
     @StateObject private var vm = MoodTreatmentVM()
     @StateObject private var progressViewModel = ProgressViewModel()
     @State private var showExitPopup = false
-
+    @State private var timingStepIndex: Int = 0
     private let questionId: Int
     private let previewQuestion: MoodTreatmentQuestion?
 
@@ -133,6 +133,27 @@ struct EnvyQuestionPageView: View {
                             EnvyEndingView(question: question)
                         case .styleIntensificationVideo:
                             RelaxationVideoView(question: question, onSelect: handleSelect)
+                        case .styleAngryTiming:
+                            AngryQuestionStyleTimingView(
+                                question: question,
+                                onSelect: handleSelect,
+                                stepIndex: $timingStepIndex
+                            )
+                        case .scareStyleMoodWriting:
+                            ScareQuestionStyleMoodWritingView(
+                                question: question,
+                                onSelect: handleSelect
+                            )
+                        case .styleNote:
+                            AngryQuestionStyleNoteView(
+                                question: question,
+                                onSelect: handleSelect
+                            )
+                        case .styleNotes:
+                            SadQuestionStyleNotesView(
+                                question: question,
+                                onSelect: handleSelect
+                            )
                         default:
                             // Fall back to common styles
                             CommonQuestionStyles.view(for: question, onContinue: handleContinue, onSelect: handleSelect,
@@ -143,6 +164,11 @@ struct EnvyQuestionPageView: View {
                         progressViewModel.fullWidth = UIScreen.main.bounds.width - 128
                         let total = question.totalQuestions ?? 1
                         progressViewModel.updateProgress(currentIndex: min(question.id, total), totalQuestions: total)
+                    }
+                    .onChange(of: vm.question) { _, new in
+                        if new?.uiStyle == .styleAngryTiming || new?.customViewName == "AngryQuestionStyleTimingView" {
+                            timingStepIndex = 0
+                        }
                     }
                 } else if vm.isLoading {
                     VStack {
@@ -191,6 +217,7 @@ struct EnvyQuestionPageView: View {
     }
 
     private func handleSelect(_ option: MoodTreatmentAnswerOption) {
+        vm.submitAnswer(option: option)
         guard let nextId = option.next else { return }
         router.navigateTo(.envySingleQuestion(id: nextId))
     }

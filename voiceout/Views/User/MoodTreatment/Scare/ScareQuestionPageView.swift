@@ -203,8 +203,6 @@ struct ScareQuestionPageView: View {
                     isShowing478Guide: $isShowing478Guide,
                     breatheStepIndex: $breatheStepIndex
                 )
-            case .scareStyleMoodWriting:
-                ScareQuestionStyleMoodWritingView(question: q, onSelect: handleSelect)
             case .scareStyleBubble1:
                 ScareQuestionStyleBubble1View(question: q, onSelect: handleSelect)
             case .scareStyleBubble2:
@@ -214,6 +212,29 @@ struct ScareQuestionPageView: View {
             case .scareStyleEnding:
                 ScareEndingView(question: q)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            case .styleIntensificationVideo:
+                RelaxationVideoView(question: q, onSelect: handleSelectBackend)
+            case .styleAngryTiming:
+                AngryQuestionStyleTimingView(
+                    question: q,
+                    onSelect: handleSelectBackend,
+                    stepIndex: $timingStepIndex
+                )
+            case .scareStyleMoodWriting:
+                ScareQuestionStyleMoodWritingView(
+                    question: q,
+                    onSelect: handleSelectBackend
+                )
+            case .styleNote:
+                AngryQuestionStyleNoteView(
+                    question: q,
+                    onSelect: handleSelectBackend
+                )
+            case .styleNotes:
+                SadQuestionStyleNotesView(
+                    question: q,
+                    onSelect: handleSelectBackend
+                )
             default:
                 // Fall back to common styles
                 CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelect,
@@ -221,6 +242,13 @@ struct ScareQuestionPageView: View {
             }
         } else {
             EmptyView()
+        }
+    }
+    private func handleSelectBackend(_ option: MoodTreatmentAnswerOption) {
+        vm.submitAnswer(option: option)
+        if let nextId = option.next {
+            router.navigateTo(.angrySingleQuestion(id: nextId))
+        } else {
         }
     }
     private func hidePopup() {

@@ -11,17 +11,11 @@ import Lottie
 struct AngryQuestionStyleTimingView: View {
     let question: MoodTreatmentQuestion
     let onSelect: (MoodTreatmentAnswerOption) -> Void
-    private let durations = [0, 60, 7, 11]
     private let instructions = [
-        "请放松从头顶到脚尖的肌肉，要特别注意你的面。",
-        "让我们先闭上眼睛深呼吸，每次吸气和呼气都要超过5秒。请不要担心时间，1分钟后，我会负责提醒你的~",
-        "当你做好准备时，下一次呼吸请非常缓慢地吸气，心中可以默数7秒钟",
-        "呼气时同样慢慢来，慢慢的在心中默数11秒"
+        "请放松从头顶到脚尖的肌肉，要特别注意你的面。"
     ]
 
-    @State private var remainingTime = 0
     @State private var isPlayingMusic = true
-    @State private var timer: Timer?
     @State private var showFinalIntro = false
     @State private var showFinalButton = false
     @Binding var stepIndex: Int
@@ -64,48 +58,7 @@ struct AngryQuestionStyleTimingView: View {
                     .frame(width: geo.size.width, height: geo.size.height)
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                            stepIndex = 1
-                        }
-                    }
-                }
-
-                if (1...3).contains(stepIndex) {
-                    VStack(spacing: 0) {
-                        Spacer()
-                            .frame(height: 144)
-                        TypewriterText(fullText: instructions[stepIndex]) {
-                            startTimer()
-                        }
-                        .id(stepIndex)
-                        .font(Font.typography(.bodyMedium))
-                        .multilineTextAlignment(.leading)
-                        .foregroundColor(.grey500)
-                        .padding(.horizontal, 2*ViewSpacing.xlarge)
-
-                        ZStack {
-                            Circle()
-                                .stroke(Color(red: 0.78, green: 0.91, blue: 0.96).opacity(0.2), lineWidth: 10)
-                                .frame(width: 346, height: 346)
-                            Circle()
-                                .stroke(Color(red: 0.78, green: 0.91, blue: 0.96).opacity(0.5), lineWidth: 18)
-                                .frame(width: 248, height: 248)
-                            Circle()
-                                .stroke(Color(red: 0.78, green: 0.91, blue: 0.96), lineWidth: 8)
-                                .frame(width: 138, height: 138)
-                            Text("\(remainingTime)")
-                                .font(Font.typography(.headerMedium))
-                                .monospacedDigit()
-                                .foregroundColor(Color(red: 0.42, green: 0.81, blue: 0.95))
-                        }
-                        .frame(width: geo.size.width - 48, height: geo.size.width - 48)
-                        .padding(.top, 3*ViewSpacing.betweenSmallAndBase)
-
-                        Spacer()
-                    }
-                    .onAppear { remainingTime = durations[stepIndex] }
-                    .onChange(of: stepIndex) { new in
-                        if (1...3).contains(new) {
-                            remainingTime = durations[new]
+                            stepIndex = 4
                         }
                     }
                 }
@@ -113,7 +66,8 @@ struct AngryQuestionStyleTimingView: View {
                 if stepIndex == 4 {
                     VStack(spacing: 0) {
                         Spacer().frame(height: 144)
-                        TypewriterText(fullText: "请重复这个动作3次，直到你感觉充分放松", characterDelay: 0.05) {
+                        let firstLine = question.texts?.first ?? ""
+                        TypewriterText(fullText: firstLine) {
                             showFinalIntro = true
                         }
                         .id("finalIntro")
@@ -123,7 +77,8 @@ struct AngryQuestionStyleTimingView: View {
                         .padding(.bottom, ViewSpacing.large)
 
                         if showFinalIntro {
-                            TypewriterText(fullText: "完成后返回主页面继续下一步") {
+                            let secondLine = question.introTexts?.first ?? ""
+                            TypewriterText(fullText: secondLine) {
                                 showFinalButton = true
                             }
                             .id("finalHighlight")
@@ -134,8 +89,10 @@ struct AngryQuestionStyleTimingView: View {
                         }
 
                         if showFinalButton {
-                            let option = question.options.first(where: { $0.exclusive == true }) ?? question.options.first
-                            Button(option?.text ?? "我已经完成啦") {
+                            let option = question.options.first(where: { $0.exclusive == true })
+                                ?? question.options.first
+                            Button(option?.text ?? "")
+                            {
                                 if let opt = option {
                                     onSelect(opt)
                                 }
@@ -155,27 +112,7 @@ struct AngryQuestionStyleTimingView: View {
                 }
             }
             .ignoresSafeArea()
-            .onAppear {
-                if (1...3).contains(stepIndex) {
-                    remainingTime = durations[stepIndex]
-                } else {
-                    remainingTime = 0
-                }
-            }
         }
-    }
-
-    private func startTimer() {
-        timer?.invalidate()
-        let t = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tm in
-            remainingTime -= 1
-            if remainingTime <= 0 {
-                tm.invalidate()
-                stepIndex += 1
-            }
-        }
-        RunLoop.main.add(t, forMode: .common)
-        timer = t
     }
 
     private var header: some View {
@@ -208,12 +145,11 @@ struct AngryQuestionStyleTimingView_Previews: PreviewProvider {
             totalQuestions: 45,
             uiStyle: .styleAngryTiming,
             texts: [
-                "接下来可以睁开眼睛，双手相握向上举起，像伸懒腰一样在头顶撑住再放松，手臂回到原位。",
-                "请重复这个动作3次，直到你感觉充分放松。"
+                "呼气时同样慢慢来，慢慢的在心中默数11秒"
             ],
             animation: "伸懒腰动画",
             options: [.init(key: "A", text: "我已经完成啦", next: 9, exclusive: true)],
-            introTexts: [],
+            introTexts: ["请重复这个动作3次，直到你感觉充分放松"],
             showSlider: false,
             buttonTitle: "完成",
             endingStyle: nil,

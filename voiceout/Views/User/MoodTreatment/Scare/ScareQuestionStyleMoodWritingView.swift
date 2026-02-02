@@ -37,18 +37,23 @@ struct ScareQuestionStyleMoodWritingView: View {
                         .padding(.bottom, ViewSpacing.betweenSmallAndBase+ViewSpacing.base+ViewSpacing.xlarge)
 
                     ZStack {
-                        KeywordBeeButton(keyword: "害怕", selectedKeywords: $selectedKeywords)
-                            .offset(x: -100, y: -80)
-                        KeywordBeeButton(keyword: "焦虑", selectedKeywords: $selectedKeywords)
-                            .offset(x: 100, y: -80)
-                        KeywordBeeButton(keyword: "无助", selectedKeywords: $selectedKeywords)
-                            .offset(x: 0, y: -10)
-                        KeywordBeeButton(keyword: "孤单", selectedKeywords: $selectedKeywords)
-                            .offset(x: -100, y: 60)
-                        KeywordBeeButton(keyword: "不确定", selectedKeywords: $selectedKeywords)
-                            .offset(x: 100, y: 60)
-                        KeywordBeeButton(keyword: "紧张", selectedKeywords: $selectedKeywords)
-                            .offset(x: 0, y: 120)
+                        let keywordOptions = question.options.filter { $0.exclusive != true }
+                        let positions: [CGSize] = [
+                            .init(width: -100, height: -80),
+                            .init(width:  100, height: -80),
+                            .init(width:    0, height: -10),
+                            .init(width: -100, height:  60),
+                            .init(width:  100, height:  60),
+                            .init(width:    0, height: 120),
+                            .init(width: -100, height: 190),
+                            .init(width:  100, height: 190),
+                            .init(width:    0, height: 250),
+                        ]
+
+                        ForEach(Array(keywordOptions.prefix(positions.count).enumerated()), id: \.element.key) { index, opt in
+                            KeywordBeeButton(keyword: opt.text, selectedKeywords: $selectedKeywords)
+                                .offset(x: positions[index].width, y: positions[index].height)
+                        }
                     }
                     .frame(height: 220)
                     .padding(.bottom, ViewSpacing.large)
@@ -79,14 +84,14 @@ struct ScareQuestionStyleMoodWritingView: View {
 
                             }
                         }
-                        .frame(width: 326, height: 120, alignment: .topLeading)
+                        .frame(width: 326, height: 160, alignment: .topLeading)
                         .background(Color.surfacePrimary)
                         .overlay(
                             RoundedRectangle(cornerRadius: CornerRadius.small.value)
                                 .stroke(Color(red: 0.6, green: 0.83, blue: 0.95), lineWidth: 4)
                         )
                     }
-                    .padding(.top,ViewSpacing.betweenSmallAndBase+ViewSpacing.xlarge)
+                    .padding(.top,ViewSpacing.betweenSmallAndBase+ViewSpacing.xlarge+120)
                         
                     Spacer()
 
@@ -220,7 +225,18 @@ struct WrapView<Data: RandomAccessCollection, Content: View>: View where Data.El
             uiStyle: .scareStyleMoodWriting,
             texts: ["开始描述你的情绪。你感到害怕吗？还是其他感受？"],
             animation: nil,
-            options: [.init(key: "A",text: "我选好了", next: 2, exclusive: true)],
+            options: [
+                .init(key: "A", text: "害怕", next: nil, exclusive: false),
+                .init(key: "B", text: "焦虑", next: nil, exclusive: false),
+                .init(key: "C", text: "无助", next: nil, exclusive: false),
+                .init(key: "D", text: "孤单", next: nil, exclusive: false),
+                .init(key: "E", text: "不确定", next: nil, exclusive: false),
+                .init(key: "F", text: "紧张", next: nil, exclusive: false),
+                .init(key: "G", text: "伤心", next: nil, exclusive: false),
+                .init(key: "H", text: "开心", next: nil, exclusive: false),
+                .init(key: "I", text: "平静", next: nil, exclusive: false),
+                .init(key: "J", text: "我选好了", next: 2, exclusive: true),
+            ],
             introTexts: nil,
             showSlider: nil,
             endingStyle: nil,

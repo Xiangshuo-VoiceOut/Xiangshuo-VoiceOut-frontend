@@ -243,8 +243,6 @@ struct AngryQuestionPageView: View {
                 question: q,
                 onSelect: handleSelectBackend  
             )
-        case .styleNote:
-            AngryQuestionStyleNoteView(question: q, onSelect: handleSelectBackend)
         case .styleIntensification:
             AngryIntensificationQuestionStyleView(question: q, onSelect: handleSelectBackend)
         case .styleEnd:
@@ -253,6 +251,21 @@ struct AngryQuestionPageView: View {
             SliderQuestionStyleView(question: q, onSelect: handleSelectBackend)
         case .styleIntensificationVideo:
             RelaxationVideoView(question: q, onSelect: handleSelectBackend)
+        case .scareStyleMoodWriting:
+            ScareQuestionStyleMoodWritingView(
+                question: q,
+                onSelect: handleSelectBackend
+            )
+        case .styleNote:
+            AngryQuestionStyleNoteView(
+                question: q,
+                onSelect: handleSelectBackend
+            )
+        case .styleNotes:
+            SadQuestionStyleNotesView(
+                question: q,
+                onSelect: handleSelectBackend
+            )
         default:
             // Fall back to common styles
             CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelectBackend,

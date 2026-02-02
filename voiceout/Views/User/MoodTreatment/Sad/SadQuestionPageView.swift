@@ -11,6 +11,7 @@ struct SadQuestionPageView: View {
     @EnvironmentObject var router: RouterModel
     @StateObject private var vm = MoodTreatmentVM()
     @State private var showExitPopup = false
+    @State private var timingStepIndex: Int = 0
     private let questionId: Int?
     private let previewQuestion: MoodTreatmentQuestion?
     
@@ -148,7 +149,7 @@ struct SadQuestionPageView: View {
             case .styleSinglechoice:
                 SadQuestionStyleSinglechoiceView(question: q, onSelect: handleSelectBackend)
             case .styleNotes:
-                SadQuestionStyleNotesView(question: q, onContinue: handleContinue)
+                SadQuestionStyleNotesView(question: q,onSelect: handleSelectBackend)
             case .styleMultichoice:
                 SadQuestionStyleMultichoiceView(question: q, onContinue: handleContinue)
             case .styleMultichoice2:
@@ -163,6 +164,22 @@ struct SadQuestionPageView: View {
                 SadQuestionStyleEndView(question: q, onContinue: handleContinue)
             case .styleIntensificationVideo:
                 RelaxationVideoView(question: q, onSelect: handleSelectBackend)
+            case .styleAngryTiming:
+                AngryQuestionStyleTimingView(
+                    question: q,
+                    onSelect: handleSelectBackend,
+                    stepIndex: $timingStepIndex
+                )
+            case .scareStyleMoodWriting:
+                ScareQuestionStyleMoodWritingView(
+                    question: q,
+                    onSelect: handleSelectBackend
+                )
+            case .styleNote:
+                AngryQuestionStyleNoteView(
+                    question: q,
+                    onSelect: handleSelectBackend
+                )
             default:
                 // Fall back to common styles
                 CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelectBackend,

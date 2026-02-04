@@ -86,6 +86,10 @@ enum QuestionUIStyle: String, Decodable {
     
     init(from decoder: Decoder) throws {
         let raw = try decoder.singleValueContainer().decode(String.self)
+        
+        // 🔍 [验证点1] 调试：打印后端返回的原始 uiStyle 字符串
+        print("🔍 [QuestionUIStyle] Decoding raw uiStyle from backend: '\(raw)'")
+        
         switch raw {
         ///Angry
         case "styleA":             self = .styleA
@@ -151,6 +155,7 @@ enum QuestionUIStyle: String, Decodable {
         case "styleAnxietySinglechoice": self = .styleAnxietySinglechoice
         case "styleAnxietyMultichoice": self = .styleAnxietyMultichoice
         case "styleAnxietyMatching": self = .styleAnxietyMatching
+        case "styleAnxietyEnding": self = .styleAnxietyEnding  // ✅ 添加缺失的 case
         case "styleRank": self = .styleRank
         case "styleTips": self = .styleTips
             
@@ -158,6 +163,7 @@ enum QuestionUIStyle: String, Decodable {
         case "styleIntensificationVideo": self = .styleIntensificationVideo
 
         default:
+            print("⚠️ [QuestionUIStyle] Unknown uiStyle from backend: '\(raw)' - falling back to .unknown")
             self = .unknown
         }
     }

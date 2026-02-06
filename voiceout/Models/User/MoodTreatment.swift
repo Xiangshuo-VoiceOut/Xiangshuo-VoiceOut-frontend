@@ -102,7 +102,7 @@ enum QuestionUIStyle: String, Decodable {
         case "styleNote":          self = .styleNote
         case "styleBottle":        self = .styleBottle
         case "styleAngryEnding":   self = .styleAngryEnding
-        case "AngryQuestionStyleTimingView": self = .styleAngryTiming
+        case "styleAngryTiming", "AngryQuestionStyleTimingView":self = .styleAngryTiming
         case "styleIntensification": self = .styleIntensification
             
         ///Envy

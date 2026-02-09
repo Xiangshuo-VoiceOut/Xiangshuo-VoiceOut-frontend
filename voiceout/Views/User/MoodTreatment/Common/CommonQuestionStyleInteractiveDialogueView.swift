@@ -136,6 +136,13 @@ struct CommonQuestionStyleInteractiveDialogueView: View {
                 if shouldShowContinueButton,
                    let confirmOption = question.options.first(where: { $0.exclusive == true }) ?? (question.options.count == 1 ? question.options.first : nil) {
                     Button(confirmOption.text) {
+                        AnalyticsManager.shared.logClick(
+                            elementName: "continue_button",
+                            screenName: "CommonQuestionStyleInteractiveDialogue",
+                            additionalParams: [
+                                "question_id": question.id
+                            ]
+                        )
                         onSelect(confirmOption)
                     }
                     .padding(.horizontal, ViewSpacing.medium)

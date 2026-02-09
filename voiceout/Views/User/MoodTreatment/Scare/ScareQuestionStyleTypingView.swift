@@ -84,6 +84,15 @@ struct ScareQuestionStyleTypingView: View {
 
                             if let btnOpt = exclusiveOption, !inputText.isEmpty {
                                 Button(action: {
+                                    AnalyticsManager.shared.logClick(
+                                        elementName: "submit_button",
+                                        screenName: "ScareQuestionStyleTyping",
+                                        additionalParams: [
+                                            "question_id": question.id,
+                                            "input_length": inputText.count
+                                        ]
+                                    )
+                                    
                                     let answer = MoodTreatmentAnswerOption(
                                         key: btnOpt.key ?? "DONE",
                                         text: inputText,

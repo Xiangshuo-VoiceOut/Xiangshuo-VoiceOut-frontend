@@ -123,8 +123,17 @@ struct SadQuestionStyleSinglechoiceView: View {
         HStack {
             Spacer()
             Button { 
-                selectedOptionId = option.id
+                AnalyticsManager.shared.logClick(
+                    elementName: "option_button",
+                    screenName: "SadQuestionStyleSinglechoice",
+                    additionalParams: [
+                        "option_key": option.key,
+                        "option_text": option.text,
+                        "question_id": question.id
+                    ]
+                )
                 
+                selectedOptionId = option.id
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                     onSelect(option)
                 }

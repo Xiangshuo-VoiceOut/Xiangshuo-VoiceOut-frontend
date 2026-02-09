@@ -122,7 +122,17 @@ struct AnxietyQuestionStyleSinglechoiceView: View {
     private func optionButton(option: MoodTreatmentAnswerOption) -> some View {
         HStack {
             Spacer()
-            Button { 
+            Button {
+                AnalyticsManager.shared.logClick(
+                    elementName: "option_button",
+                    screenName: "AnxietyQuestionStyleSinglechoice",
+                    additionalParams: [
+                        "option_key": option.key,
+                        "option_text": option.text,
+                        "question_id": question.id
+                    ]
+                )
+                
                 selectedOptionId = option.id
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                     onSelect(option)

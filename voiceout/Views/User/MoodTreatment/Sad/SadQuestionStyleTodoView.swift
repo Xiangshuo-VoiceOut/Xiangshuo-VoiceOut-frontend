@@ -258,6 +258,15 @@ struct SadQuestionStyleTodoView: View {
         VStack {
             if showTodoList {
                 Button("继续") {
+                    AnalyticsManager.shared.logClick(
+                        elementName: "continue_button",
+                        screenName: "SadQuestionStyleTodo",
+                        additionalParams: [
+                            "question_id": question.id,
+                            "todos_count": todos.count,
+                            "completed_count": completedTodos.count
+                        ]
+                    )
                     onContinue()
                 }
                 .font(.typography(.bodyMedium))

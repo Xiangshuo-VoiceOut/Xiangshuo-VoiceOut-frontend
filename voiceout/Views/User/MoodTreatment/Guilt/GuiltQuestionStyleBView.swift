@@ -108,6 +108,15 @@ struct GuiltQuestionStyleBView: View {
                                 if let confirmOption = question.options.first(where: { $0.exclusive == true }) {
                                     let isReady = !selectedOptions.isEmpty
                                     Button {
+                                        AnalyticsManager.shared.logClick(
+                                            elementName: "confirm_button",
+                                            screenName: "GuiltQuestionStyleB",
+                                            additionalParams: [
+                                                "question_id": question.id,
+                                                "selected_options_count": selectedOptions.count
+                                            ]
+                                        )
+                                        
                                         let selected = question.options
                                             .filter { $0.exclusive != true }
                                             .filter { selectedOptions.contains($0.id) }

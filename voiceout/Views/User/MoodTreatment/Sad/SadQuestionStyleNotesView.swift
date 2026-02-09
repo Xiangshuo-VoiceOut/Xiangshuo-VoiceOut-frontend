@@ -166,6 +166,14 @@ struct SadQuestionStyleNotesView: View {
             let hasAnyNote = noteTexts.contains { !$0.isEmpty }
             
             Button {
+                AnalyticsManager.shared.logClick(
+                    elementName: "continue_button",
+                    screenName: "SadQuestionStyleNotes",
+                    additionalParams: [
+                        "question_id": question.id,
+                        "notes_count": noteTexts.filter { !$0.isEmpty }.count
+                    ]
+                )
                 if let opt = question.options.first(where: { $0.exclusive == true }) {
                     onSelect(opt)
                 } else if let opt = question.options.first(where: { $0.next != nil }) {

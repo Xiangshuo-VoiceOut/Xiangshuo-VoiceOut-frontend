@@ -80,6 +80,17 @@ struct GuiltQuestionStyleAView: View {
                                     Spacer()
                                     Button {
                                         guard selectedKey == nil else { return }
+                                        
+                                        AnalyticsManager.shared.logClick(
+                                            elementName: "option_button",
+                                            screenName: "GuiltQuestionStyleA",
+                                            additionalParams: [
+                                                "option_key": option.key,
+                                                "option_text": option.text,
+                                                "question_id": question.id
+                                            ]
+                                        )
+                                        
                                         withAnimation(.easeIn(duration: selectionHold)) {
                                             selectedKey = option.key
                                         }

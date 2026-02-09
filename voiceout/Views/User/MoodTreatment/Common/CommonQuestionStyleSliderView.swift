@@ -117,6 +117,14 @@ struct CommonQuestionStyleSliderView: View {
                     .frame(height: 269)
                 
                 Button("继续") {
+                    AnalyticsManager.shared.logClick(
+                        elementName: "continue_button",
+                        screenName: "CommonQuestionStyleSlider",
+                        additionalParams: [
+                            "question_id": question.id,
+                            "slider_value": Int(sliderValue)
+                        ]
+                    )
                     onContinue()
                 }
                 .padding(.horizontal, ViewSpacing.medium)

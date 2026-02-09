@@ -154,6 +154,14 @@ struct CommonQuestionStyleBottleView: View {
                 HStack {
                     Spacer()
                     Button {
+                        AnalyticsManager.shared.logClick(
+                            elementName: "bottle_option_button",
+                            screenName: "CommonQuestionStyleBottle",
+                            additionalParams: [
+                                "question_id": question.id,
+                                "option_key": opt.key
+                            ]
+                        )
                         onSelect(opt)
                     } label: {
                         Text(opt.text)

@@ -109,6 +109,15 @@ struct AnxietyQuestionStyleMatchingView: View {
         VStack {
             if showCurrentText, let confirmOption {
                 Button(confirmOption.text) {
+                    AnalyticsManager.shared.logClick(
+                        elementName: "continue_button",
+                        screenName: "AnxietyQuestionStyleMatching",
+                        additionalParams: [
+                            "question_id": question.id,
+                            "selected_options_count": selectedOptions.count
+                        ]
+                    )
+                    
                     onConfirm(confirmOption.next)
                 }
                 .font(.typography(.bodyMedium))

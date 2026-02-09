@@ -97,6 +97,15 @@ struct ScareQuestionStyleMoodWritingView: View {
 
                     if let confirmOption = question.options.first(where: { $0.exclusive == true }) {
                         Button(action: {
+                            AnalyticsManager.shared.logClick(
+                                elementName: "confirm_button",
+                                screenName: "ScareQuestionStyleMoodWriting",
+                                additionalParams: [
+                                    "question_id": question.id,
+                                    "selected_keywords_count": selectedKeywords.count
+                                ]
+                            )
+                            
                             onSelect(confirmOption)
                         }) {
                             Text(confirmOption.text)

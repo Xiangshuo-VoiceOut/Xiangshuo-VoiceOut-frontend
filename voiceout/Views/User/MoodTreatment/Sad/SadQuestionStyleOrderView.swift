@@ -127,6 +127,14 @@ struct SadQuestionStyleOrderView: View {
         VStack {
             if isLastText && !sortedItems.isEmpty {
                 Button("完成") {
+                    AnalyticsManager.shared.logClick(
+                        elementName: "complete_button",
+                        screenName: "SadQuestionStyleOrder",
+                        additionalParams: [
+                            "question_id": question.id,
+                            "items_count": sortedItems.count
+                        ]
+                    )
                     isOrdered = true
                     onContinue()
                 }

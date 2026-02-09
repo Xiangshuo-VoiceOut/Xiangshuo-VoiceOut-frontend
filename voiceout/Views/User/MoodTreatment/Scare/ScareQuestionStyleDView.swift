@@ -80,6 +80,14 @@ struct ScareQuestionStyleDView: View {
                     if showButton,
                        let confirmOption = question.options.first(where: { $0.exclusive == true }) {
                         Button(action: {
+                            AnalyticsManager.shared.logClick(
+                                elementName: "ready_button",
+                                screenName: "ScareQuestionStyleD",
+                                additionalParams: [
+                                    "question_id": question.id
+                                ]
+                            )
+                            
                             onSelect(confirmOption)
                         }) {
                             Text(confirmOption.text)

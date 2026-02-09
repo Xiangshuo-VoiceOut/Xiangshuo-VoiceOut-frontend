@@ -147,6 +147,14 @@ struct SadQuestionStyleEmotionView: View {
         VStack {
             if !userInput.isEmpty {
                 Button("完成") {
+                    AnalyticsManager.shared.logClick(
+                        elementName: "complete_button",
+                        screenName: "SadQuestionStyleEmotion",
+                        additionalParams: [
+                            "question_id": question.id,
+                            "input_length": userInput.count
+                        ]
+                    )
                     onContinue()
                 }
                 .font(.typography(.bodyMedium))

@@ -124,6 +124,14 @@ struct CommonQuestionStyleUploadView: View {
                                     Spacer()
                                     
                                     Button {
+                                        AnalyticsManager.shared.logClick(
+                                            elementName: "continue_button",
+                                            screenName: "CommonQuestionStyleUpload",
+                                            additionalParams: [
+                                                "question_id": question.id,
+                                                "has_image": uploadedImage != nil
+                                            ]
+                                        )
                                         onContinue()
                                     } label: {
                                         Text("继续")

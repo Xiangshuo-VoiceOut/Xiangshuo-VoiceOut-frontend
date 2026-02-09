@@ -92,6 +92,16 @@ struct CommonQuestionStyleRankView: View {
         let rating = (selectedIconIndex ?? 2) + 1
         let routine = question.routine ?? ""
         
+        AnalyticsManager.shared.logClick(
+            elementName: "end_treatment_button",
+            screenName: "CommonQuestionStyleRank",
+            additionalParams: [
+                "question_id": question.id,
+                "rating": rating,
+                "routine": routine
+            ]
+        )
+        
         isSubmitting = true
         
         Task {

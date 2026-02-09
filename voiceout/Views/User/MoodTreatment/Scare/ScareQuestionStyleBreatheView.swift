@@ -209,6 +209,16 @@ struct ScareQuestionStyleBreatheView: View {
             guard let key = selectedKey else {
                 return
             }
+            
+            AnalyticsManager.shared.logClick(
+                elementName: "ready_button",
+                screenName: "ScareQuestionStyleBreathe",
+                additionalParams: [
+                    "question_id": question.id,
+                    "breathe_type": key == "A" ? "478" : "box"
+                ]
+            )
+            
             showReadyButton = false
 
             switch key {

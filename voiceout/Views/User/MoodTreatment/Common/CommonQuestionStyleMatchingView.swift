@@ -114,6 +114,14 @@ struct CommonQuestionStyleMatchingView: View {
         VStack {
             if showCurrentText {
                 Button("继续") {
+                    AnalyticsManager.shared.logClick(
+                        elementName: "continue_button",
+                        screenName: "CommonQuestionStyleMatching",
+                        additionalParams: [
+                            "question_id": question.id,
+                            "matched_count": selectedOptions.count
+                        ]
+                    )
                     handleContinue()
                 }
                 .padding(.horizontal, ViewSpacing.medium)

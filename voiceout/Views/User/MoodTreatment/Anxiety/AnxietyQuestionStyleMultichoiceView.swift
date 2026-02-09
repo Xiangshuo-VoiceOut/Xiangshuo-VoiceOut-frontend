@@ -134,6 +134,15 @@ struct AnxietyQuestionStyleMultichoiceView: View {
         HStack {
             Spacer()
             Button {
+                AnalyticsManager.shared.logClick(
+                    elementName: "confirm_button",
+                    screenName: "AnxietyQuestionStyleMultichoice",
+                    additionalParams: [
+                        "question_id": question.id,
+                        "selected_options_count": selectedOptions.count
+                    ]
+                )
+                
                 let selected = question.options
                     .filter { $0.exclusive != true }
                     .filter { selectedOptions.contains($0.id) }

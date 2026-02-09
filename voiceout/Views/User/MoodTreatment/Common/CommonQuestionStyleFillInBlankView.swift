@@ -128,6 +128,14 @@ struct CommonQuestionStyleFillInBlankView: View {
                                         .frame(height: 142)
                                     
                                     Button("我写好了") {
+                                        AnalyticsManager.shared.logClick(
+                                            elementName: "submit_button",
+                                            screenName: "CommonQuestionStyleFillInBlank",
+                                            additionalParams: [
+                                                "question_id": question.id,
+                                                "input_length": userInput.count
+                                            ]
+                                        )
                                         onContinue()
                                     }
                                     .padding(.horizontal, ViewSpacing.medium)
@@ -153,6 +161,14 @@ struct CommonQuestionStyleFillInBlankView: View {
                                         .frame(height: 142)
                                     
                                     Button("我写好了") {
+                                        AnalyticsManager.shared.logClick(
+                                            elementName: "submit_button",
+                                            screenName: "CommonQuestionStyleFillInBlank",
+                                            additionalParams: [
+                                                "question_id": question.id,
+                                                "input_length": userInput.count
+                                            ]
+                                        )
                                         onContinue()
                                     }
                                     .padding(.horizontal, ViewSpacing.medium)

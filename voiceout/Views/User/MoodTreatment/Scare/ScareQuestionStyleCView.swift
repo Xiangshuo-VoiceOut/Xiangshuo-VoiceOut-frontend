@@ -255,6 +255,15 @@ struct ScareQuestionStyleCView: View {
                     if showUI,
                        let confirmOption = question.options.first(where: { $0.exclusive == true }) {
                         Button {
+                            AnalyticsManager.shared.logClick(
+                                elementName: "confirm_button",
+                                screenName: "ScareQuestionStyleC",
+                                additionalParams: [
+                                    "question_id": question.id,
+                                    "severity_score": score
+                                ]
+                            )
+                            
                             onSelect(confirmOption)
                         } label: {
                             Text(confirmOption.text)

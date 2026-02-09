@@ -134,6 +134,14 @@ struct SadQuestionStyleMultichoice2View: View {
             Spacer()
             Button {
                 if !selectedOptions.isEmpty {
+                    AnalyticsManager.shared.logClick(
+                        elementName: "confirm_button",
+                        screenName: "SadQuestionStyleMultichoice2",
+                        additionalParams: [
+                            "question_id": question.id,
+                            "selected_count": selectedOptions.count
+                        ]
+                    )
                     onContinue()
                 }
             } label: {

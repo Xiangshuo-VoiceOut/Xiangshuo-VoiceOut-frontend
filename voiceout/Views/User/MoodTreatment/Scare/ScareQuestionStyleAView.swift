@@ -125,6 +125,16 @@ struct ScareQuestionStyleAView: View {
             .fixedSize(horizontal: false, vertical: true)
             .contentShape(Rectangle())
             .onTapGesture {
+                AnalyticsManager.shared.logClick(
+                    elementName: "option_button",
+                    screenName: "ScareQuestionStyleA",
+                    additionalParams: [
+                        "option_key": option.key,
+                        "option_text": option.text,
+                        "question_id": question.id
+                    ]
+                )
+                
                 selectedId = option.id
                 onSelect(option)
             }

@@ -127,6 +127,14 @@ struct SadQuestionStyleMultichoiceView: View {
                     
                     if showCurrentText && hasIntroText && optionsConfirmed {
                         Button(isLastText ? "完成" : "继续") {
+                            AnalyticsManager.shared.logClick(
+                                elementName: "continue_button",
+                                screenName: "SadQuestionStyleMultichoice",
+                                additionalParams: [
+                                    "question_id": question.id,
+                                    "selected_count": selectedOptions.count + selectedCustomOptions.count
+                                ]
+                            )
                             handleContinue()
                         }
                         .padding(.horizontal, ViewSpacing.medium)

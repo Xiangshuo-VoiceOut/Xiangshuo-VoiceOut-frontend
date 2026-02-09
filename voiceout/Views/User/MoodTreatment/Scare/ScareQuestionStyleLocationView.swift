@@ -167,6 +167,15 @@ struct ScareQuestionStyleLocationView: View {
                        selectedRing != nil,
                        let confirmOption = confirmOption {
                         Button {
+                            AnalyticsManager.shared.logClick(
+                                elementName: "confirm_button",
+                                screenName: "ScareQuestionStyleLocation",
+                                additionalParams: [
+                                    "question_id": question.id,
+                                    "selected_ring": selectedRing ?? -1
+                                ]
+                            )
+                            
                             if let selected = selectedLocationOption() {
                                 onSelect(selected)
                             }

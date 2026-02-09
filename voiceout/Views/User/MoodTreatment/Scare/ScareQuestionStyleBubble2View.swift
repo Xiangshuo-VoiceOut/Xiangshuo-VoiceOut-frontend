@@ -100,6 +100,15 @@ struct ScareQuestionStyleBubble2View: View {
                     HStack {
                         Spacer()
                         Button {
+                            AnalyticsManager.shared.logClick(
+                                elementName: "confirm_button",
+                                screenName: "ScareQuestionStyleBubble2",
+                                additionalParams: [
+                                    "question_id": question.id,
+                                    "selected_options_count": selectedIndices.count
+                                ]
+                            )
+                            
                             let selected = options
                                 .filter { $0.exclusive != true }
                                 .enumerated()

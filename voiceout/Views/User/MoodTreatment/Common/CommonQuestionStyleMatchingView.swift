@@ -72,7 +72,7 @@ struct CommonQuestionStyleMatchingView: View {
                                 .padding(.bottom, ViewSpacing.small)
                                 .onAppear {
                                     if currentTextIndex == 0 {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                             showOptions = true
                                         }
                                     }

@@ -304,6 +304,7 @@ struct SadQuestionPageView: View {
     .environmentObject(RouterModel())
 }
 
+
 #Preview("打分题") {
     SadQuestionPageView(
         question: MoodTreatmentQuestion(
@@ -335,7 +336,17 @@ struct SadQuestionPageView: View {
                 "小云朵想告诉你，\n其实你比你想象的更加优秀哦！\n有时候我们会忽略自己的优点，\n但它们真的在那里。\n再仔细看看，\n你还有哪些品质值得被肯定呢？\n给自己多一点鼓励，\n小云朵相信你有更多的闪光点等着被发现！"
             ],
             animation: nil,
-            options: [],
+            options: [
+                .init(key: "A", text: "责任感", next: nil, exclusive: false),
+                .init(key: "B", text: "诚实", next: nil, exclusive: false),
+                .init(key: "C", text: "善良", next: nil, exclusive: false),
+                .init(key: "D", text: "独立", next: nil, exclusive: false),
+                .init(key: "E", text: "宽容", next: nil, exclusive: false),
+                .init(key: "F", text: "同情心", next: nil, exclusive: false),
+                .init(key: "G", text: "正义感", next: nil, exclusive: false),
+                .init(key: "H", text: "感恩", next: nil, exclusive: false),
+                .init(key: "I", text: "礼貌", next: nil, exclusive: false)
+            ],
             introTexts: nil,
             showSlider: false,
             endingStyle: nil,
@@ -345,6 +356,7 @@ struct SadQuestionPageView: View {
     )
     .environmentObject(RouterModel())
 }
+
 
 #Preview("便签题") {
     SadQuestionPageView(

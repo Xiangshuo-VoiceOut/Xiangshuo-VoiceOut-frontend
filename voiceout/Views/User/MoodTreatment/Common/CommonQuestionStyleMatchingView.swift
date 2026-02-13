@@ -19,10 +19,6 @@ struct CommonQuestionStyleMatchingView: View {
     
     private let typingInterval: TimeInterval = 0.1
     
-    private let testOptions = [
-        "责任感", "诚实", "善良", "独立", "宽容", "同情心", "正义感", "感恩", "礼貌"
-    ]
-    
     private var currentText: String {
         guard let texts = question.texts, currentTextIndex < texts.count else {
             return ""
@@ -36,40 +32,35 @@ struct CommonQuestionStyleMatchingView: View {
     
     var body: some View {
         GeometryReader { proxy in
+            let screenWidth = proxy.size.width
+            let screenHeight = proxy.size.height
+            let isSmallScreen = screenHeight < 700
+            
             ZStack(alignment: .topLeading) {
                 Color.surfaceBrandTertiaryGreen
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) {
-                    ZStack(alignment: .topLeading) {
-                        HStack(alignment: .center) {
-                            Spacer()
-                            Image("cloud-chat")
-                                .resizable()
-                                .frame(width: 168, height: 120, alignment: .center)
-                                .padding(.vertical, ViewSpacing.medium)
-                                .padding(.horizontal, ViewSpacing.xxxsmall)
-                            Spacer()
-                        }
-                        
-//                        Button {
-//                            isPlayingMusic.toggle()
-//                        } label: {
-//                            Image(isPlayingMusic ? "music" : "stop-music")
-//                                .resizable()
-//                                .frame(width: 48, height: 48)
-//                        }
-//                        .padding(.leading, ViewSpacing.medium)
+                    HStack(alignment: .center) {
+                        Spacer()
+                        Image("cloud-chat")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: min(isSmallScreen ? 120 : 160, screenHeight * (isSmallScreen ? 0.15 : 0.18)))
+                            .padding(.vertical, isSmallScreen ? ViewSpacing.small : ViewSpacing.xlarge)
+                        Spacer()
                     }
 
-                    VStack(spacing: ViewSpacing.medium) {
+                    VStack(spacing: isSmallScreen ? ViewSpacing.xsmall : ViewSpacing.small) {
                         if showCurrentText {
                             Text(currentText)
-                                .font(.typography(.bodyMedium))
+                                .font(.typography(.bodyLarge))
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(.textPrimary)
-                                .frame(width: 358, alignment: .top)
-                                .padding(.bottom, ViewSpacing.small)
+                                .frame(maxWidth: .infinity)
+                                .padding(.horizontal, ViewSpacing.medium)
+                                .padding(.bottom, isSmallScreen ? ViewSpacing.medium : ViewSpacing.large)
+                                .fixedSize(horizontal: false, vertical: true)
                                 .onAppear {
                                     if currentTextIndex == 0 {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -80,12 +71,11 @@ struct CommonQuestionStyleMatchingView: View {
                         }
                         
                         if showOptions && currentTextIndex == 0 {
-                            optionsArea
+                            optionsArea(screenWidth: screenWidth, isSmallScreen: isSmallScreen)
                         }
                         
-                        Spacer()
+                        Spacer(minLength: ViewSpacing.xsmall)
                     }
-                    .padding(.horizontal, ViewSpacing.large)
                     
                     bottomButtonArea
                 }
@@ -94,20 +84,22 @@ struct CommonQuestionStyleMatchingView: View {
         .ignoresSafeArea(edges: .all)
     }
     
-    private var optionsArea: some View {
-        VStack(spacing: ViewSpacing.medium) {
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: ViewSpacing.small), count: 3), spacing: ViewSpacing.medium) {
-                ForEach(question.options, id: \.self) { option in
-                    OptionCircleView(
-                        option: option.text,
-                        isSelected: selectedOptions.contains(option.text)
-                    ) {
-                        toggleSelection(option.text)
-                    }
+    private func optionsArea(screenWidth: CGFloat, isSmallScreen: Bool) -> some View {
+        LazyVGrid(
+            columns: Array(repeating: GridItem(.flexible(), spacing: ViewSpacing.small), count: 3),
+            spacing: isSmallScreen ? ViewSpacing.small : ViewSpacing.medium
+        ) {
+            ForEach(question.options, id: \.self) { option in
+                OptionCircleView(
+                    option: option.text,
+                    isSelected: selectedOptions.contains(option.text),
+                    screenWidth: screenWidth
+                ) {
+                    toggleSelection(option.text)
                 }
             }
-            .padding(.horizontal, ViewSpacing.medium)
         }
+        .padding(.horizontal, ViewSpacing.xlarge)
     }
     
     private var bottomButtonArea: some View {
@@ -125,7 +117,7 @@ struct CommonQuestionStyleMatchingView: View {
                 .font(Font.typography(.bodyMedium))
                 .kerning(0.64)
                 .multilineTextAlignment(.center)
-                .padding(.bottom, ViewSpacing.xlarge+ViewSpacing.large-ViewSpacing.xxxsmall)
+                .padding(.bottom, ViewSpacing.large)
             }
         }
     }
@@ -151,78 +143,60 @@ struct CommonQuestionStyleMatchingView: View {
 struct OptionCircleView: View {
     let option: String
     let isSelected: Bool
+    let screenWidth: CGFloat
     let onTap: () -> Void
     
     var body: some View {
-        Button(action: onTap) {
-            ZStack {
-                VStack(alignment: .center, spacing: ViewSpacing.medium+ViewSpacing.xxsmall) {
+        GeometryReader { geo in
+            Button(action: onTap) {
+                ZStack {
                     Text(option)
                         .font(.typography(.bodyMedium))
+                        .minimumScaleFactor(0.6)
+                        .lineLimit(2)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.textPrimary)
+                        .padding(.horizontal, ViewSpacing.xsmall)
+                        .padding(.vertical, ViewSpacing.xxsmall)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(isSelected ? Color(red: 0xAF/255.0, green: 0xE2/255.0, blue: 0xFD/255.0) : Color(red: 0.99, green: 1, blue: 1))
+                        .clipShape(Circle())
                 }
-                .padding(.horizontal, ViewSpacing.small)
-                .padding(.vertical, ViewSpacing.large)
-                .frame(width: 96, height: 96, alignment: .center)
-                .background(isSelected ? Color(red: 0xAF/255.0, green: 0xE2/255.0, blue: 0xFD/255.0) : Color(red: 0.99, green: 1, blue: 1))
-                .cornerRadius(999)
+                .overlay(
+                    ZStack {
+                        if !isSelected {
+                            Image("curve")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: geo.size.width * 0.5, height: geo.size.width * 0.5)
+                                .offset(x: geo.size.width * 0.2, y: geo.size.width * 0.2)
+                        } else {
+                            Image("curve3")
+                                .renderingMode(.template)
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color(red: 0xC0/255.0, green: 0xE9/255.0, blue: 0xFF/255.0))
+                                .frame(width: geo.size.width * 0.5, height: geo.size.width * 0.5)
+                                .offset(x: geo.size.width * 0.2, y: geo.size.width * 0.2)
+                        }
+                        
+                        if isSelected {
+                            Image("curve2")
+                                .renderingMode(.template)
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color(red: 0xC0/255.0, green: 0xE9/255.0, blue: 0xFF/255.0))
+                                .frame(width: geo.size.width * 0.25, height: geo.size.width * 0.25)
+                                .offset(x: -geo.size.width * 0.1, y: -geo.size.width * 0.3)
+                        }
+                    },
+                    alignment: .center
+                )
             }
-            .overlay(
-                ZStack {
-                    if !isSelected {
-                        Image("curve")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 48, height: 48)
-                            .offset(x: ViewSpacing.medium+ViewSpacing.xsmall, y: ViewSpacing.medium+ViewSpacing.xsmall)
-                    } else {
-                        Image("curve3")
-                            .renderingMode(.template)
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(Color(red: 0xC0/255.0, green: 0xE9/255.0, blue: 0xFF/255.0))
-                            .frame(width: 48, height: 48)
-                            .offset(x: ViewSpacing.medium+ViewSpacing.xsmall, y: ViewSpacing.medium+ViewSpacing.xsmall)
-                    }
-                    
-                    if isSelected {
-                        Image("curve2")
-                            .renderingMode(.template)
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(Color(red: 0xC0/255.0, green: 0xE9/255.0, blue: 0xFF/255.0))
-                            .frame(width: 24, height: 24)
-                            .offset(x: -ViewSpacing.betweenSmallAndBase, y: -ViewSpacing.xlarge-ViewSpacing.xsmall)
-                    }
-                },
-                alignment: .center
-            )
+            .buttonStyle(PlainButtonStyle())
         }
-        .buttonStyle(PlainButtonStyle())
+        .padding(ViewSpacing.xxsmall)
+        .aspectRatio(1, contentMode: .fit)
     }
 }
 
-#Preview {
-    CommonQuestionStyleMatchingView(
-        question: MoodTreatmentQuestion(
-            id: 11,
-            totalQuestions: 10,
-            uiStyle: .styleMatching,
-            texts: [
-                "然后，小云朵希望你能圈出自己具有的品德：",
-                "哇！\n小云朵发现你真的有很多值得骄傲的地方呢！\n不要低估自己的闪光点，\n你已经拥有这么多优秀的品质啦。\n继续相信自己，\n这些品质会让你的生活更加精彩，\n也会带给身边的人温暖哦！",
-                "小云朵想告诉你，\n其实你比你想象的更加优秀哦！\n有时候我们会忽略自己的优点，\n但它们真的在那里。\n再仔细看看，\n你还有哪些品质值得被肯定呢？\n给自己多一点鼓励，\n小云朵相信你有更多的闪光点等着被发现！"
-            ],
-            animation: nil,
-            options: [],
-            introTexts: nil,
-            showSlider: false,
-            endingStyle: nil,
-            customViewName: nil,
-            routine: "sad"
-        ),
-        onContinue: {}
-    )
-    .environmentObject(RouterModel())
-}

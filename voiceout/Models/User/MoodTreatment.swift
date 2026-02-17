@@ -51,6 +51,7 @@ enum QuestionUIStyle: String, Decodable {
     ///Guilt
     case guiltStyleA///single
     case guiltStyleB///multiple
+    case guiltStyleEnding///end
     
     ///伤心+内疚共用
     case sliderStyle
@@ -201,6 +202,7 @@ enum QuestionUIStyle: String, Decodable {
             
         case .guiltStyleA:            return "guiltStyleA"
         case .guiltStyleB:            return "guiltStyleB"
+        case .guiltStyleEnding:            return "guiltStyleEnding"
             
         case .sliderStyle: return "sliderStyle"
             

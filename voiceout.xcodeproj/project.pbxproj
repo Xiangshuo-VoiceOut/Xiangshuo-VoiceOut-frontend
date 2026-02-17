@@ -91,6 +91,8 @@
 		840B85522D7BEA9500638493 /* MoodManagerAudioRecorderVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B85512D7BEA9300638493 /* MoodManagerAudioRecorderVM.swift */; };
 		840B85542D7E560100638493 /* SelectPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B85532D7E560000638493 /* SelectPictureView.swift */; };
 		840B855A2D7E6DB900638493 /* CustomPhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B85592D7E6DB800638493 /* CustomPhotoPickerView.swift */; };
+		8423BB1E2F3FF7B700996A0A /* GuiltEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423BB1D2F3FF7B100996A0A /* GuiltEndingView.swift */; };
+		8423BB212F40585500996A0A /* guilt-end.json in Resources */ = {isa = PBXBuildFile; fileRef = 8423BB202F40585500996A0A /* guilt-end.json */; };
 		8427A8CE2E554CA40014067D /* MainHomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427A8CD2E554CA40014067D /* MainHomepageView.swift */; };
 		842D05C52EFA47F400120045 /* UserIDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D05C42EFA47F400120045 /* UserIDService.swift */; };
 		842D05C72EFA480000120045 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D05C62EFA480000120045 /* UserManager.swift */; };
@@ -356,6 +358,8 @@
 		840B85512D7BEA9300638493 /* MoodManagerAudioRecorderVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManagerAudioRecorderVM.swift; sourceTree = "<group>"; };
 		840B85532D7E560000638493 /* SelectPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPictureView.swift; sourceTree = "<group>"; };
 		840B85592D7E6DB800638493 /* CustomPhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoPickerView.swift; sourceTree = "<group>"; };
+		8423BB1D2F3FF7B100996A0A /* GuiltEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuiltEndingView.swift; sourceTree = "<group>"; };
+		8423BB202F40585500996A0A /* guilt-end.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "guilt-end.json"; sourceTree = "<group>"; };
 		8427A8CD2E554CA40014067D /* MainHomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomepageView.swift; sourceTree = "<group>"; };
 		842D05C42EFA47F400120045 /* UserIDService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIDService.swift; sourceTree = "<group>"; };
 		842D05C62EFA480000120045 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -677,6 +681,14 @@
 			path = Envy;
 			sourceTree = "<group>";
 		};
+		8423BB1F2F40582F00996A0A /* Guilt-animation */ = {
+			isa = PBXGroup;
+			children = (
+				8423BB202F40585500996A0A /* guilt-end.json */,
+			);
+			path = "Guilt-animation";
+			sourceTree = "<group>";
+		};
 		8447D9DE2EBBDFA6008B4DCE /* Scare */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,6 +723,8 @@
 		8447DA072EBC0747008B4DCE /* Guilt */ = {
 			isa = PBXGroup;
 			children = (
+				8423BB1F2F40582F00996A0A /* Guilt-animation */,
+				8423BB1D2F3FF7B100996A0A /* GuiltEndingView.swift */,
 				844ED3542D9FB92A0055F5D6 /* GuiltHomepageView.swift */,
 				8447DA042EBC0747008B4DCE /* GuiltQuestionPageView.swift */,
 				8447DA052EBC0747008B4DCE /* GuiltQuestionStyleAView.swift */,
@@ -1291,6 +1305,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8423BB212F40585500996A0A /* guilt-end.json in Resources */,
 				840A6ED52E72014A00D8235C /* handdrum.mp3 in Resources */,
 				840A6ED62E72014A00D8235C /* tonebar.mp3 in Resources */,
 				C0FD51EF2EF529CF00D05D02 /* relax.mp4 in Resources */,
@@ -1570,6 +1585,7 @@
 				84B100E22CF1CB7D003C6C20 /* TherapistScheduleCalendarView.swift in Sources */,
 				D21660CB2C337E47008248DE /* TherapistSignupView.swift in Sources */,
 				D2EEE68A2CF125EF00726FCE /* WarningBannerView.swift in Sources */,
+				8423BB1E2F3FF7B700996A0A /* GuiltEndingView.swift in Sources */,
 				D28499242BE9AAE300963B3A /* Popup.swift in Sources */,
 				6894896A2CC847AA000FEA22 /* PersonalView.swift in Sources */,
 				8490EDE62D30F6BA00C6C765 /* BeforeFirstConsultationView.swift in Sources */,

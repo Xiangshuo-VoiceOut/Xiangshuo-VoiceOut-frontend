@@ -211,6 +211,7 @@
 		B8F8454A2C29CBC5008C0D80 /* DropdownListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */; };
 		C0E42DB52EFB049D00D95AF6 /* CommonQuestionStyleFillInBlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E42DB42EFB049D00D95AF6 /* CommonQuestionStyleFillInBlankView.swift */; };
 		C0E42DB72EFB05DE00D95AF6 /* CommonQuestionStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E42DB62EFB05DA00D95AF6 /* CommonQuestionStyles.swift */; };
+		C0E42DB92F36B1D200D95AF6 /* CommonQuestionStyleBreatheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E42DB82F36B19300D95AF6 /* CommonQuestionStyleBreatheView.swift */; };
 		C0FD51EF2EF529CF00D05D02 /* relax.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C0FD51EE2EF529CF00D05D02 /* relax.mp4 */; };
 		D2071D0C2BA62F300040B0AE /* voiceoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */; };
 		D2071D0E2BA62F300040B0AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2071D0D2BA62F300040B0AE /* ContentView.swift */; };
@@ -478,6 +479,7 @@
 		B8F845492C29CBC5008C0D80 /* DropdownListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownListRow.swift; sourceTree = "<group>"; };
 		C0E42DB42EFB049D00D95AF6 /* CommonQuestionStyleFillInBlankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionStyleFillInBlankView.swift; sourceTree = "<group>"; };
 		C0E42DB62EFB05DA00D95AF6 /* CommonQuestionStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionStyles.swift; sourceTree = "<group>"; };
+		C0E42DB82F36B19300D95AF6 /* CommonQuestionStyleBreatheView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonQuestionStyleBreatheView.swift; sourceTree = "<group>"; };
 		C0FD51EE2EF529CF00D05D02 /* relax.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = relax.mp4; sourceTree = "<group>"; };
 		D2071D082BA62F300040B0AE /* voiceout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voiceout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2071D0B2BA62F300040B0AE /* voiceoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voiceoutApp.swift; sourceTree = "<group>"; };
@@ -775,6 +777,7 @@
 		847AA82B2EB1F16E00282536 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C0E42DB82F36B19300D95AF6 /* CommonQuestionStyleBreatheView.swift */,
 				82C4410F2EE793BB00B71BA2 /* CommonQuestionStyleSliderView.swift */,
 				82C441002EE793BB00B71BA2 /* CommonQuestionStyleRankView.swift */,
 				82C441092EE793BB00B71BA2 /* CommonQuestionStyleMatchingView.swift */,
@@ -1447,6 +1450,7 @@
 				840A6EFC2E72026800D8235C /* AngryQuestionStyleBView.swift in Sources */,
 				840A6EFD2E72026800D8235C /* AngryQuestionPageView.swift in Sources */,
 				840A6EFE2E72026800D8235C /* AngryQuestionStyleAView.swift in Sources */,
+				C0E42DB92F36B1D200D95AF6 /* CommonQuestionStyleBreatheView.swift in Sources */,
 				840A6EFF2E72026800D8235C /* AngryQuestionStyleBottleView.swift in Sources */,
 				840A6F002E72026800D8235C /* AngryQuestionStyleFView.swift in Sources */,
 				840A6F012E72026800D8235C /* AngryQuestionStyleNoteView.swift in Sources */,

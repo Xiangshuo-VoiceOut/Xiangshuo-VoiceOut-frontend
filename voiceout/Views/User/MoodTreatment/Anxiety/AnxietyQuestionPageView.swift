@@ -172,6 +172,7 @@ struct AnxietyQuestionPageView: View {
                 // Fall back to common styles
                 let _ = print("⚠️ [AnxietyQuestionPage] Falling back to CommonQuestionStyles for uiStyle: \(q.uiStyle)")
                 CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelectBackend,
+                    stepIndex: $timingStepIndex,
                                           vm: vm)
             }
         } else {

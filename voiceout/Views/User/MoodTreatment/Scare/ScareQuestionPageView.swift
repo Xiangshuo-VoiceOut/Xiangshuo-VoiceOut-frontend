@@ -237,8 +237,9 @@ struct ScareQuestionPageView: View {
                 )
             default:
                 // Fall back to common styles
-                CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelect,
-                    vm: vm)
+                CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelectBackend,
+                    stepIndex: $timingStepIndex,
+                                          vm: vm)
             }
         } else {
             EmptyView()

@@ -13,6 +13,7 @@ struct CommonQuestionStyles {
         for question: MoodTreatmentQuestion,
         onContinue: @escaping () -> Void,
         onSelect: @escaping ((MoodTreatmentAnswerOption) -> Void),
+        stepIndex: Binding<Int>,
         @ObservedObject vm: MoodTreatmentVM
     ) -> some View {
         switch question.uiStyle {
@@ -43,6 +44,9 @@ struct CommonQuestionStyles {
         
         case .styleIntensification:
             RelaxationVideoView(question: question, onSelect: onSelect)
+            
+        case .styleBreathe:
+            CommonQuestionStyleBreatheView(question: question, onSelect: onSelect, stepIndex: stepIndex)
         
         default:
             // Fallback for truly unhandled cases

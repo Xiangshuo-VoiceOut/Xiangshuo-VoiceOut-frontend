@@ -129,6 +129,11 @@ struct AnxietyQuestionPageView: View {
     @ViewBuilder
     private var contentBody: some View {
         if let q = question {
+            // 🔍 [验证点2] 调试：打印当前问题的 uiStyle
+            let _ = print("🔍 [AnxietyQuestionPage] Question ID: \(q.id)")
+            let _ = print("🔍 [AnxietyQuestionPage] Current uiStyle: \(q.uiStyle)")
+            let _ = print("🔍 [AnxietyQuestionPage] uiStyle rawValue: '\(q.uiStyle.rawValue)'")
+            
             switch q.uiStyle {
             case .styleAnxietySinglechoice:
                 AnxietyQuestionStyleSinglechoiceView(question: q, onSelect: handleSelectBackend)
@@ -165,6 +170,7 @@ struct AnxietyQuestionPageView: View {
                 )
             default:
                 // Fall back to common styles
+                let _ = print("⚠️ [AnxietyQuestionPage] Falling back to CommonQuestionStyles for uiStyle: \(q.uiStyle)")
                 CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelectBackend,
                     stepIndex: $timingStepIndex,
                                           vm: vm)

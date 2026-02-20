@@ -1,15 +1,16 @@
 //
 //  AnxietyEndingView.swift
 //  voiceout
-// Created by Ziyang Ye on 1/12/26.
+//
+//  Created by Ziyang Ye on 1/12/26.
+//
 
 import SwiftUI
 
-/// 焦虑流程结算页状态机
 enum AnxietyAnimationState {
-    case initial    // 初始状态
-    case pressing   // 长按中
-    case resolved   // 已释放
+    case initial
+    case pressing
+    case resolved
 }
 
 struct AnxietyEndingView: View {
@@ -21,7 +22,6 @@ struct AnxietyEndingView: View {
     @State private var showFinalBubble = false
     @Namespace private var animation
     
-
     private var initialText: String {
         question.texts?.first ?? "长按屏幕帮助小云朵整理焦虑吧！"
     }
@@ -30,10 +30,9 @@ struct AnxietyEndingView: View {
         if let texts = question.texts, texts.count > 1 {
             return texts[1]
         }
-        return "" 
+        return ""
     }
     
-
     private let notePositions: [CGPoint] = [
         CGPoint(x: -130, y: -65), CGPoint(x: 130, y: -75),
         CGPoint(x: -150, y: 10),  CGPoint(x: 150, y: 20),
@@ -45,17 +44,14 @@ struct AnxietyEndingView: View {
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
         
-
-        let cloudCenterY = screenHeight * 0.40
-
-        let bubbleBaselineY = screenHeight * (200.0 / 874.0) 
+        let cloudCenterY = screenHeight * (370/800)
+        let bubbleBottomAnchorY = screenHeight * ((800-567) / 800.0)
         
         ZStack(alignment: .top) {
-
+            
             Color.surfaceBrandTertiaryPurple
                 .ignoresSafeArea()
             
-
             VStack(spacing: 0) {
                 Spacer()
                 ZStack(alignment: .bottom) {
@@ -77,7 +73,6 @@ struct AnxietyEndingView: View {
             }
             .ignoresSafeArea(edges: .bottom)
             
-
             ZStack {
                 if animationState == .pressing {
                     Image("anxiety-ending-mess")
@@ -107,18 +102,18 @@ struct AnxietyEndingView: View {
             }
             .position(x: screenWidth / 2, y: cloudCenterY)
             
-
             Group {
                 if animationState == .initial {
-                    renderBubbleGroup(text: initialText)
+                    renderBubbleGroup(text: initialText, screenWidth: screenWidth)
                         .transition(.opacity)
                 } else if showFinalBubble {
-                    renderBubbleGroup(text: endText)
+                    renderBubbleGroup(text: endText, screenWidth: screenWidth)
                         .transition(.opacity.animation(.easeInOut(duration: 0.8)))
                 }
             }
-
-            .frame(maxWidth: .infinity, maxHeight: bubbleBaselineY, alignment: .bottom)
+            .frame(maxWidth: .infinity)
+            .frame(height: bubbleBottomAnchorY, alignment: .bottom)
+            .frame(maxHeight: .infinity, alignment: .top)
         }
         .contentShape(Rectangle())
         .gesture(
@@ -149,35 +144,39 @@ struct AnxietyEndingView: View {
                 }
         )
     }
-
+    
     @ViewBuilder
-    private func renderBubbleGroup(text: String) -> some View {
-        ZStack(alignment: .bottomTrailing) {
-
-            Text(text)
-                .font(.typography(.bodyMedium))
-                .foregroundColor(.grey500)
-                .lineSpacing(4)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.top, 16)
-                .padding(.leading, 18)
-                .padding(.trailing, 25)
-                .padding(.bottom, 35) 
-                .background(
-                    Image("bubble-down-right")
-                        .resizable(capInsets: EdgeInsets(top: 20, leading: 20, bottom: 40, trailing: 40))
-                        .imageShadow()
-                )
+    private func renderBubbleGroup(text: String, screenWidth: CGFloat) -> some View {
+        let fixedTextWidth = screenWidth * (240/(268+64+58))
+        
+        HStack(alignment: .bottom) {
+            Spacer()
             
-
-            Image("cloud-chat")
-                .resizable()
-                .frame(width: 100, height: 71)
-
-                .offset(x: 80, y: 50)
-                .allowsHitTesting(false)
+            ZStack(alignment: .bottomTrailing) {
+                Text(text)
+                    .font(.typography(.bodyMedium))
+                    .foregroundColor(.grey500)
+                    .frame(width: fixedTextWidth, alignment: .topLeading)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.top, 16)
+                    .padding(.leading, 12)
+                    .padding(.trailing, 16)
+                    .padding(.bottom, 32)
+                    .background(
+                        Image("bubble-down-right")
+                            .resizable(capInsets: EdgeInsets(top: 20, leading: 20, bottom: 40, trailing: 40))
+                            .imageShadow()
+                    )
+                
+                Image("cloud-chat")
+                    .resizable()
+                    .frame(width: 100, height: 71)
+                    .offset(x: 77, y: 55)
+                    .allowsHitTesting(false)
+            }
+            .padding(.trailing, 45)
+            .frame(maxWidth: screenWidth > 600 ? 400 : .infinity, alignment: .trailing)
         }
-        .padding(.horizontal, 45)
     }
     
     private func stickyNoteOnBook(index: Int) -> some View {
@@ -194,4 +193,3 @@ struct AnxietyEndingView: View {
             .animation(.spring(response: 0.7, dampingFraction: 0.8).delay(Double(index) * 0.08), value: animationState)
     }
 }
-

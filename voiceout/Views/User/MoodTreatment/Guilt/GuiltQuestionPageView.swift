@@ -49,16 +49,8 @@ struct GuiltQuestionPageView: View {
 
     var body: some View {
         ZStack {
-            Group {
-                if let q = question, q.uiStyle == .styleEnd, showImageBackground {
-                    Image("angry-ending")
-                        .resizable()
-                        .scaledToFill()
-                } else {
-                    fallbackBackground
-                }
-            }
-            .ignoresSafeArea()
+            fallbackBackground
+                .ignoresSafeArea()
 
             ZStack(alignment: .top) {
                 VStack(spacing: 0) {
@@ -187,6 +179,8 @@ struct GuiltQuestionPageView: View {
                 question: q,
                 onSelect: handleSelectBackend
             )
+        case .styleEnd:
+            GuiltEndingView(question: q)
         default:
             // Fall back to common styles
             CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelectBackend,
@@ -250,6 +244,29 @@ struct GuiltQuestionPageView: View {
             ],
             introTexts: [],
             showSlider: false,
+            endingStyle: nil,
+            customViewName: nil,
+            routine: "guilt"
+        )
+    )
+    .environmentObject(RouterModel())
+}
+
+#Preview {
+    let endings = [
+        "你已经收集了足够多的鲜花啦，长按屏幕帮助小云朵吧！"
+    ]
+
+    GuiltQuestionPageView(
+        question: MoodTreatmentQuestion(
+            id: 999,
+            totalQuestions: 45,
+            uiStyle: .styleEnd,
+            texts: endings,
+            animation: nil,
+            options: [],
+            introTexts: nil,
+            showSlider: nil,
             endingStyle: nil,
             customViewName: nil,
             routine: "guilt"

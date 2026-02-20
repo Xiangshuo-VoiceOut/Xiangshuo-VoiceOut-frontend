@@ -91,6 +91,9 @@ struct SadQuestionStyleMultichoiceView: View {
                         
                         if showCurrentText && !optionsConfirmed {
                             TypewriterText(fullText: currentIntroText, characterDelay: typingInterval) {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                    showOptions = true
+                                }
                             }
                             .id("intro-\(currentTextIndex)")
                             .font(Font.typography(.bodyMedium))
@@ -98,7 +101,9 @@ struct SadQuestionStyleMultichoiceView: View {
                             .multilineTextAlignment(.center)
                             .frame(width: 252, alignment: .center)
                             
-                            multichoiceOptionsArea
+                            if showOptions {
+                                multichoiceOptionsArea
+                            }
                         }
                         
                         if !selectedOptions.isEmpty && optionsConfirmed {

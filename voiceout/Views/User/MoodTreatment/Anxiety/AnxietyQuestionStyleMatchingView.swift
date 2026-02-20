@@ -61,7 +61,7 @@ struct AnxietyQuestionStyleMatchingView: View {
                                     fullText: question.texts?.first ?? "",
                                     characterDelay: typingInterval
                                 ) {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                         showOptions = true
                                     }
                                 }

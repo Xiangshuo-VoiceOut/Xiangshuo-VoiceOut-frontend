@@ -8,7 +8,7 @@
 import SwiftUI
 import Lottie
 
-struct AngryQuestionStyleTimingView: View {
+struct CommonQuestionStyleBreatheView: View {
     let question: MoodTreatmentQuestion
     let onSelect: (MoodTreatmentAnswerOption) -> Void
     private let instructions = [
@@ -138,7 +138,7 @@ struct AngryQuestionStyleTimingView: View {
     }
 }
 
-struct AngerQuestionStyleTimingView_Previews: PreviewProvider {
+struct CommonQuestionStyleBreatheView_Previews: PreviewProvider {
     static var previews: some View {
         let q = MoodTreatmentQuestion(
             id: 5,
@@ -154,12 +154,12 @@ struct AngerQuestionStyleTimingView_Previews: PreviewProvider {
             buttonTitle: "完成",
             endingStyle: nil,
             customViewName: "AngryQuestionStyleTimingView",
-            routine: "anger"
+            routine: "Anger"
         )
-        AngryQuestionStyleTimingView(
+        CommonQuestionStyleBreatheView(
             question: q,
             onSelect: { _ in },
-            stepIndex: .constant(4)
+            stepIndex: .constant(0)
         )
     }
 }

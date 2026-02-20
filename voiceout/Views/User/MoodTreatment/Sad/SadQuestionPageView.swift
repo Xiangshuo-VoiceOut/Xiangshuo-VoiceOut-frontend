@@ -183,6 +183,7 @@ struct SadQuestionPageView: View {
             default:
                 // Fall back to common styles
                 CommonQuestionStyles.view(for: q, onContinue: handleContinue, onSelect: handleSelectBackend,
+                    stepIndex: $timingStepIndex,
                                           vm: vm)
             }
         } else {

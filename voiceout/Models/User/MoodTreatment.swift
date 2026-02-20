@@ -80,6 +80,7 @@ enum QuestionUIStyle: String, Decodable {
     
     ///
     case styleIntensificationVideo//强烈情绪视频
+    case styleBreathe
     
     ///Custom
     case unknown
@@ -156,6 +157,7 @@ enum QuestionUIStyle: String, Decodable {
             
         ///
         case "styleIntensificationVideo": self = .styleIntensificationVideo
+        case "styleBreathe": self = .styleBreathe
 
         default:
             self = .unknown
@@ -226,6 +228,7 @@ enum QuestionUIStyle: String, Decodable {
         case .styleAnxietyEnding: return "styleAnxietyEnding"//结束动画
             
         case .styleIntensificationVideo: return "styleIntensificationVideo"
+        case .styleBreathe: return "styleBreath"
 
         case .unknown:
             return ""

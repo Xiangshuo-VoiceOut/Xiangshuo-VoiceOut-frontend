@@ -157,6 +157,7 @@ struct EnvyQuestionPageView: View {
                         default:
                             // Fall back to common styles
                             CommonQuestionStyles.view(for: question, onContinue: handleContinue, onSelect: handleSelect,
+                                                      stepIndex: $timingStepIndex,
                                 vm: vm)
                         }
                     }

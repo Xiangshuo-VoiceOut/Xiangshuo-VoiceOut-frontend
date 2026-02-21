@@ -26,20 +26,14 @@ struct CommonQuestionStyleFillInBlankView: View {
         guard let texts = question.texts, currentTextIndex < texts.count else {
             return ""
         }
-        return texts[currentTextIndex].replacingOccurrences(of: "，", with: "，\n")
-            .replacingOccurrences(of: ",", with: ",\n")
+        return texts[currentTextIndex]
     }
     
     private var currentIntroText: String {
         guard let introTexts = question.introTexts, !introTexts.isEmpty else {
             return ""
         }
-        var text = introTexts[0]
-        text = text.replacingOccurrences(of: "，", with: "，\n")
-        text = text.replacingOccurrences(of: ",", with: ",\n")
-        text = text.replacingOccurrences(of: "？", with: "？\n")
-        text = text.replacingOccurrences(of: "?", with: "?\n")
-        return text
+        return introTexts[0]
     }
     
     private var hasIntroText: Bool {
@@ -52,143 +46,77 @@ struct CommonQuestionStyleFillInBlankView: View {
     
     var body: some View {
         GeometryReader { proxy in
+            let screenHeight = proxy.size.height
+            let isSmallScreen = screenHeight < 700
+            
             ZStack(alignment: .topLeading) {
                 Color.surfaceBrandTertiaryGreen
                     .ignoresSafeArea()
                     .onTapGesture {
-                        isTextFieldFocused = false  // Dismiss keyboard
+                        isTextFieldFocused = false
                     }
                 
                 VStack(spacing: 0) {
-                    ZStack(alignment: .topLeading) {
-                        HStack {
-                            Spacer()
-                            Image("cloud-chat")
-                                .resizable()
-                                .frame(width: 168, height: 120)
-                                .padding(.vertical, ViewSpacing.medium)
-                                .padding(.horizontal, ViewSpacing.xxxsmall)
-                            Spacer()
-                        }
-                        
-//                        Button {
-//                            isPlayingMusic.toggle()
-//                        } label: {
-//                            Image(isPlayingMusic ? "music" : "stop-music")
-//                                .resizable()
-//                                .frame(width: 48, height: 48)
-//                        }
-//                        .padding(.leading, ViewSpacing.medium)
+                    HStack {
+                        Spacer()
+                        Image("cloud-chat")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: min(isSmallScreen ? 120 : 160, screenHeight * (isSmallScreen ? 0.15 : 0.18)))
+                            .padding(.vertical, isSmallScreen ? ViewSpacing.small : ViewSpacing.xlarge)
+                        Spacer()
                     }
-                    .padding(ViewSpacing.large)
 
                     if showCurrentText {
                         VStack(spacing: 0) {
-                            VStack {
-                                Text(currentText)
-                                    .id(currentTextIndex)
-                                    .font(.typography(.bodyMedium))
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(.textPrimary)
-                                    .frame(maxWidth: 358)
-                                       .fixedSize(horizontal: false, vertical: true)
-                                    .onAppear {
-                                        textDone = true
-                                    }
-                            }
-                            .frame(minHeight: 22.4 * 2, alignment: .top)
+                            Text(currentText)
+                                .id(currentTextIndex)
+                                .font(.typography(.bodyLarge))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.textPrimary)
+                                .frame(maxWidth: .infinity)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.horizontal, ViewSpacing.medium)
+                                .padding(.bottom, isSmallScreen ? ViewSpacing.medium : ViewSpacing.xlarge)
+                                .onAppear {
+                                    textDone = true
+                                }
                             
                             if hasIntroText {
-                                Color.clear
-                                    .frame(height: 16)
-                                
-                                VStack {
-                                    if textDone {
-                                        TypewriterText(fullText: currentIntroText, characterDelay: typingInterval) {
-                                            introDone = true
-                                        }
-                                        .id("intro-\(currentTextIndex)")
-                                        .font(.typography(.bodyMedium))
-                                        .multilineTextAlignment(.center)
-                                        .foregroundColor(.textBrandPrimary)
-                                        .fixedSize(horizontal: false, vertical: true)
-                                        .frame(width: 358, alignment: .top)
+                                if textDone {
+                                    TypewriterText(fullText: currentIntroText, characterDelay: typingInterval) {
+                                        introDone = true
                                     }
+                                    .id("intro-\(currentTextIndex)")
+                                    .font(.typography(.bodyLarge))
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(.textBrandPrimary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.horizontal, ViewSpacing.medium)
+                                    .padding(.bottom, isSmallScreen ? ViewSpacing.small : ViewSpacing.medium)
                                 }
-                                .frame(width: 358)
-                                .frame(minHeight: 22.4 * 4, alignment: .top)
                                 
                                 if introDone {
-                                    Color.clear
-                                        .frame(height: 40)
+                                    fillInBlankArea(screenHeight: screenHeight, isSmallScreen: isSmallScreen)
                                     
-                                    fillInBlankArea
+                                    Spacer(minLength: ViewSpacing.small)
                                     
-                                    Color.clear
-                                        .frame(height: 142)
-                                    
-                                    Button("我写好了") {
-                                        AnalyticsManager.shared.logClick(
-                                            elementName: "submit_button",
-                                            screenName: "CommonQuestionStyleFillInBlank",
-                                            additionalParams: [
-                                                "question_id": question.id,
-                                                "input_length": userInput.count
-                                            ]
-                                        )
-                                        onContinue()
-                                    }
-                                    .padding(.horizontal, ViewSpacing.medium)
-                                    .padding(.vertical, ViewSpacing.small)
-                                    .frame(width: 114, height: 44)
-                                    .background(Color.surfacePrimary)
-                                    .disabled(userInput.isEmpty)
-                                    .cornerRadius(CornerRadius.full.value)
-                                    .foregroundColor(userInput.isEmpty ? Color.gray : Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0))
-                                    .font(Font.typography(.bodyMedium))
-                                    .kerning(0.64)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.bottom, ViewSpacing.xsmall+2*ViewSpacing.xlarge)
+                                    submitButton
                                 }
                             } else {
                                 if textDone {
-                                    Color.clear
-                                        .frame(height: 40)
+                                    fillInBlankArea(screenHeight: screenHeight, isSmallScreen: isSmallScreen)
                                     
-                                    fillInBlankArea
+                                    Spacer(minLength: ViewSpacing.small)
                                     
-                                    Color.clear
-                                        .frame(height: 142)
-                                    
-                                    Button("我写好了") {
-                                        AnalyticsManager.shared.logClick(
-                                            elementName: "submit_button",
-                                            screenName: "CommonQuestionStyleFillInBlank",
-                                            additionalParams: [
-                                                "question_id": question.id,
-                                                "input_length": userInput.count
-                                            ]
-                                        )
-                                        onContinue()
-                                    }
-                                    .padding(.horizontal, ViewSpacing.medium)
-                                    .padding(.vertical, ViewSpacing.small)
-                                    .frame(width: 114, height: 44)
-                                    .background(Color.surfacePrimary)
-                                    .disabled(userInput.isEmpty)
-                                    .cornerRadius(CornerRadius.full.value)
-                                    .foregroundColor(userInput.isEmpty ? Color.gray : Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0))
-                                    .font(Font.typography(.bodyMedium))
-                                    .kerning(0.64)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.bottom, ViewSpacing.xsmall+2*ViewSpacing.xlarge)
+                                    submitButton
                                 }
                             }
                         }
-                        .padding(.horizontal, ViewSpacing.medium)
                     }
                     
-                    Spacer()
+                    Spacer(minLength: 0)
                 }
             }
         }
@@ -200,7 +128,7 @@ struct CommonQuestionStyleFillInBlankView: View {
         }
     }
     
-    private var fillInBlankArea: some View {
+    private func fillInBlankArea(screenHeight: CGFloat, isSmallScreen: Bool) -> some View {
         ZStack(alignment: .topLeading) {
             TextEditor(text: $userInput)
                 .font(.typography(.bodyLarge))
@@ -208,10 +136,8 @@ struct CommonQuestionStyleFillInBlankView: View {
                 .tint(.black)
                 .focused($isTextFieldFocused)
                 .scrollContentBackground(.hidden)
-                .frame(width: 294, height: 241, alignment: .topLeading)
-                .padding(.top, ViewSpacing.large)
-                .padding(.leading, ViewSpacing.medium)
-                .padding(.trailing, ViewSpacing.betweenSmallAndBase+ViewSpacing.xxxsmall)
+                .padding(.top, ViewSpacing.medium)
+                .padding(.horizontal, ViewSpacing.medium)
                 .overlay(
                     Group {
                         if userInput.isEmpty {
@@ -219,17 +145,43 @@ struct CommonQuestionStyleFillInBlankView: View {
                                 .font(.typography(.bodyLarge))
                                 .foregroundColor(.textLight)
                                 .allowsHitTesting(false)
-                                .padding(.top, ViewSpacing.xxxsmall+ViewSpacing.xlarge)
-                                .padding(.leading, ViewSpacing.xxxsmall+2*ViewSpacing.betweenSmallAndBase)
+                                .padding(.top, ViewSpacing.large)
+                                .padding(.leading, ViewSpacing.medium + ViewSpacing.small)
                         }
                     },
                     alignment: .topLeading
                 )
         }
-        .frame(width: 321, height: 241, alignment: .topLeading)
+        .frame(maxWidth: .infinity)
+        .frame(height: screenHeight * (isSmallScreen ? 0.25 : 0.3))
         .background(Color.surfacePrimary)
         .cornerRadius(CornerRadius.medium.value)
-        .clipped()
+        .padding(.horizontal, ViewSpacing.large)
+    }
+    
+    private var submitButton: some View {
+        Button("我写好了") {
+            AnalyticsManager.shared.logClick(
+                elementName: "submit_button",
+                screenName: "CommonQuestionStyleFillInBlank",
+                additionalParams: [
+                    "question_id": question.id,
+                    "input_length": userInput.count
+                ]
+            )
+            onContinue()
+        }
+        .padding(.horizontal, ViewSpacing.medium)
+        .padding(.vertical, ViewSpacing.small)
+        .frame(width: 114, height: 44)
+        .background(Color.surfacePrimary)
+        .disabled(userInput.isEmpty)
+        .cornerRadius(CornerRadius.full.value)
+        .foregroundColor(userInput.isEmpty ? Color.gray : Color(red: 0x67/255.0, green: 0xB8/255.0, blue: 0x99/255.0))
+        .font(Font.typography(.bodyMedium))
+        .kerning(0.64)
+        .multilineTextAlignment(.center)
+        .padding(.bottom, ViewSpacing.large)
     }
     
     private func handleContinue() {
